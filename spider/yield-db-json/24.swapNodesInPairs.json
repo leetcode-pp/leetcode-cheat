@@ -1,0 +1,15 @@
+{
+  "question": "24.swapNodesInPairs",
+  "companys": [
+    "TODO"
+  ],
+  "tags": [
+    "TODO"
+  ],
+  "reslove": [
+    {
+      "lang": "python",
+      "code": "\nclass Solution:\n    def swapPairs(self, head: ListNode) -> ListNode:\n        \"\"\"\n        用递归实现链表相邻互换：\n        第一个节点的 next 是第三、第四个节点交换的结果，第二个节点的 next 是第一个节点；\n        第三个节点的 next 是第五、第六个节点交换的结果，第四个节点的 next 是第三个节点；\n        以此类推\n        :param ListNode head\n        :return ListNode\n        \"\"\"\n        # 如果为 None 或 next 为 None，则直接返回\n        if not head or not head.next:\n            return head\n\n        _next = head.next\n        head.next = self.swapPairs(_next.next)\n        _next.next = head\n        return _next\n"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "question": "30.substring-with-concatenation-of-all-words",
+  "companys": [
+    "TODO"
+  ],
+  "tags": [
+    "TODO"
+  ],
+  "reslove": [
+    {
+      "lang": "python",
+      "code": "\nfrom collections import Counter\n\n\nclass Solution:\n    def findSubstring(self, s: str, words: List[str]) -> List[int]:\n        if not s or not words:\n            return []\n        res = []\n        n = len(words)\n        word_len = len(words[0])\n        window_len = word_len * n\n        target = Counter(words)\n        i = 0\n        while i < len(s) - window_len + 1:\n            sliced = []\n            start = i\n            for _ in range(n):\n                sliced.append(s[start:start + word_len])\n                start += word_len\n            if Counter(sliced) == target:\n                res.append(i)\n            i += 1\n        return res\n"
+    }
+  ]
+}

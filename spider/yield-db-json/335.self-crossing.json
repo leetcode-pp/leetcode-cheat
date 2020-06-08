@@ -1,0 +1,15 @@
+{
+  "question": "335.self-crossing",
+  "companys": [
+    "TODO"
+  ],
+  "tags": [
+    "TODO"
+  ],
+  "reslove": [
+    {
+      "lang": "python",
+      "code": "\nclass Solution:\n    def isSelfCrossing(self, x: List[int]) -> bool:\n        n = len(x)\n        if n < 4:\n            return False\n        for i in range(3, n):\n            if x[i] >= x[i - 2] and x[i - 1] <= x[i - 3]:\n                return True\n            if x[i - 1] <= x[i - 3] and x[i - 2] <= x[i]:\n                return True\n            if i > 3 and x[i - 1] == x[i - 3] and x[i] + x[i - 4] == x[i - 2]:\n                return True\n            if i > 4 and x[i] + x[i - 4] >= x[i - 2] and x[i - 1] >= x[i - 3] - x[i - 5] \\\n                    and x[i - 1] <= x[i - 3] and x[i - 2] >= x[i - 4] and x[i - 3] >= x[i - 5]:\n                return True\n        return False\n"
+    }
+  ]
+}

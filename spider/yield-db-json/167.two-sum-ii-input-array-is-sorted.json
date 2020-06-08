@@ -1,0 +1,15 @@
+{
+  "question": "167.two-sum-ii-input-array-is-sorted",
+  "companys": [
+    "TODO"
+  ],
+  "tags": [
+    "TODO"
+  ],
+  "reslove": [
+    {
+      "lang": "python",
+      "code": "\nclass Solution:\n    def twoSum(self, numbers: List[int], target: int) -> List[int]:\n        visited = {}\n        for index, number in enumerate(numbers):\n            if target - number in visited:\n                return [visited[target-number], index+1]\n            else:\n                visited[number] = index + 1\n\n# 双指针思路实现\nclass Solution:\n    def twoSum(self, numbers: List[int], target: int) -> List[int]:\n        left, right = 0, len(numbers) - 1\n        while left < right:\n            if numbers[left] + numbers[right] < target:\n                left += 1\n            if numbers[left] + numbers[right] > target:\n                right -= 1\n            if numbers[left] + numbers[right] == target:\n                return [left+1, right+1]\n"
+    }
+  ]
+}

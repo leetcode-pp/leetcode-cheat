@@ -1,0 +1,15 @@
+{
+  "question": "5.longest-palindromic-substring",
+  "companys": [
+    "TODO"
+  ],
+  "tags": [
+    "TODO"
+  ],
+  "reslove": [
+    {
+      "lang": "python",
+      "code": "\nclass Solution:\n    def longestPalindrome(self, s: str) -> str:\n        n = len(s)\n        if n == 0:\n            return \"\"\n        res = s[0]\n        def extend(i, j, s):\n            while(i >= 0 and j < len(s) and s[i] == s[j]):\n                i -= 1\n                j += 1\n            return s[i + 1:j]\n\n        for i in range(n - 1):\n            e1 = extend(i, i, s)\n            e2 = extend(i, i + 1, s) \n            if max(len(e1), len(e2)) > len(res):\n                res = e1 if len(e1) > len(e2) else e2\n        return res\n"
+    }
+  ]
+}

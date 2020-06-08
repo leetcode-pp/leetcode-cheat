@@ -1,0 +1,23 @@
+{
+  "question": "547.friend-circles-en",
+  "companys": [
+    "TODO"
+  ],
+  "tags": [
+    "TODO"
+  ],
+  "reslove": [
+    {
+      "lang": "java",
+      "code": "\nclass FindCirclesDFS {\n  public int findCircleNumDFS(int[][] M) {\n    if (M == null || M.length == 0 || M[0].length == 0) return 0;\n    int n = M.length;\n    int numCircles = 0;\n    boolean[] visited = new boolean[n];\n    for (int i = 0; i < n; i++) {\n      if (!visited[i]) {\n        dfs(M, i, visited, n);\n        numCircles++;\n      }\n    }\n    return numCircles;\n  }\n\n  private void dfs(int[][] M, int i, boolean[] visited, int n) {\n    for (int j = 0; j < n; j++) {\n      if (M[i][j] == 1 && !visited[j]) {\n        visited[j] = true;\n        dfs(M, j, visited, n);\n      }\n    }\n  }\n}\n"
+    },
+    {
+      "lang": "java",
+      "code": "\nclass FindCircleBFS {\n  public int findCircleNumBFS(int[][] M) {\n    if (M == null || M.length == 0) return 0;\n    int numCircle = 0;\n    int n = M.length;\n    boolean[] visited = new boolean[n];\n    Queue<Integer> queue = new LinkedList<>();\n    for (int i = 0; i < n; i++) {\n      // already visited, skip\n      if (visited[i]) continue;\n      queue.add(i);\n      while (!queue.isEmpty()) {\n        int curr = queue.poll();\n        visited[curr] = true;\n        for (int j = 0; j < n; j++) {\n          if (M[curr][j] == 1 && !visited[j]) {\n            queue.add(j);\n          }\n        }\n      }\n      numCircle++;\n    }\n    return numCircle;\n  }\n}\n"
+    },
+    {
+      "lang": "java",
+      "code": "\nclass FindCircleUF {\n public int findCircleNumUF(int[][] M) {\n    if (M == null || M.length == 0 || M[0].length == 0) return 0;\n    int n = M.length;\n    UnionFind uf = new UnionFind(n);\n    for (int i = 0; i < n - 1; i++) {\n      for (int j = i + 1; j < n; j++) {\n        // union friends\n        if (M[i][j] == 1) {\n          uf.union(i, j);\n        }\n      }\n    }\n    return uf.count;\n  }\n}\n\nclass UnionFind {\n  int count;\n  int[] parent;\n  int[] rank;\n\n  public UnionFind(int n) {\n    count = n;\n    parent = new int[n];\n    rank = new int[n];\n    for (int i = 0; i < n; i++) {\n      parent[i] = i;\n    }\n  }\n\n  public int find(int a) {\n    return parent[a] == a ? a : find(parent[a]);\n  }\n\n  public void union(int a, int b) {\n    int rootA = find(a);\n    int rootB = find(b);\n    if (rootA == rootB) return;\n    if (rank[rootA] <= rank[rootB]) {\n      parent[rootA] = rootB;\n      rank[rootB] += rank[rootA];\n    } else {\n      parent[rootB] = rootA;\n      rank[rootA] += rank[rootB];\n    }\n    count--;\n  }\n\n  public int count() {\n    return count;\n  }\n}\n"
+    }
+  ]
+}

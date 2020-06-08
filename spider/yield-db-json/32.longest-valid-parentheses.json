@@ -1,0 +1,15 @@
+{
+  "question": "32.longest-valid-parentheses",
+  "companys": [
+    "TODO"
+  ],
+  "tags": [
+    "TODO"
+  ],
+  "reslove": [
+    {
+      "lang": "python",
+      "code": "\ns = '(())())'\n"
+    }
+  ]
+}

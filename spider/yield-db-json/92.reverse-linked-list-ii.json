@@ -1,0 +1,23 @@
+{
+  "question": "92.reverse-linked-list-ii",
+  "companys": [
+    "TODO"
+  ],
+  "tags": [
+    "TODO"
+  ],
+  "reslove": [
+    {
+      "lang": "python",
+      "code": "\nclass Solution:\n    def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:\n        pre = None\n        cur = head\n        i = 0\n        p1 = p2 = p3 = p4 = None\n        # ...\n        if p1:\n            p1.next = p3\n        else:\n            dummy.next = p3\n        if p2:\n            p2.next = p4\n        return head\n"
+    },
+    {
+      "lang": "python",
+      "code": "\n class Solution:\n    def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:\n        pre = None\n        cur = head\n        i = 0\n        p1 = p2 = p3 = p4 = None\n        dummy = ListNode(0)\n        dummy.next = head\n\n        # ...\n\n        if p1:\n            p1.next = p3\n        else:\n            dummy.next = p3\n        if p2:\n            p2.next = p4\n\n        return dummy.next\n "
+    },
+    {
+      "lang": "python",
+      "code": "\n     while cur:\n            i += 1\n            if i == m - 1:\n                p1 = cur\n            next = cur.next\n            if m < i <= n:\n                cur.next = pre\n\n            if i == m:\n                p2 = cur\n                p2.next = None\n\n            if i == n:\n                p3 = cur\n\n            if i == n + 1:\n                p4 = cur\n\n            pre = cur\n            cur = next\n "
+    }
+  ]
+}

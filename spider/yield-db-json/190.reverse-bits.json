@@ -1,0 +1,15 @@
+{
+  "question": "190.reverse-bits",
+  "companys": [
+    "TODO"
+  ],
+  "tags": [
+    "TODO"
+  ],
+  "reslove": [
+    {
+      "lang": "python",
+      "code": "\nclass Solution:\n    # @param n, an integer\n    # @return an integer\n    def reverseBits(self, n):\n        result = 0\n        for i in range(32):\n            result = (result << 1) + (n & 1)\n            n >>= 1\n        return result\n"
+    }
+  ]
+}

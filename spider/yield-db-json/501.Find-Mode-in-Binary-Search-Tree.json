@@ -1,0 +1,15 @@
+{
+  "question": "501.Find-Mode-in-Binary-Search-Tree",
+  "companys": [
+    "TODO"
+  ],
+  "tags": [
+    "TODO"
+  ],
+  "reslove": [
+    {
+      "lang": "java",
+      "code": "\n/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode(int x) { val = x; }\n * }\n */\nclass Solution {   \n    List<Integer> list = new ArrayList<> ();\n    TreeNode preNode = null;\n    int max = 0, count = 0;\n    \n    public int[] findMode(TreeNode root) {\n        helper(root);\n        int[] res = new int[list.size()];\n        for (int i=0; i<res.length; i++) {\n            res[i] = list.get(i);\n        }\n        return res;\n    }\n    \n    private void helper (TreeNode root) {\n        if (root == null) return;\n        helper(root.left);\n        \n        if (preNode != null && root.val == preNode.val) {\n            count++;\n        } else {\n            count = 1;\n        }\n        \n        if (count > max) {\n            list.clear();\n            list.add(root.val);\n            max = count;\n        } else if (max == count) {\n            list.add(root.val);            \n        }\n        preNode = root;\n        helper(root.right);\n    }\n}\n"
+    }
+  ]
+}

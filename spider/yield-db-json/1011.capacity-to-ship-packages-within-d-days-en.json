@@ -1,0 +1,19 @@
+{
+  "question": "1011.capacity-to-ship-packages-within-d-days-en",
+  "companys": [
+    "TODO"
+  ],
+  "tags": [
+    "TODO"
+  ],
+  "reslove": [
+    {
+      "lang": "python",
+      "code": "\r\ndef canShip(opacity):\r\n    # Whether the capacity of the specified ship can be shipped in D days\r\n    lo = 0\r\n    hi = total\r\n    while lo < hi:\r\n        mid = (lo + hi) // 2\r\n        if canShip(mid):\r\n            hi = mid\r\n        else:\r\n            lo = mid + 1\r\n    return lo\r\n"
+    },
+    {
+      "lang": "python",
+      "code": "\r\nclass Solution:\r\n    def shipWithinDays(self, weights: List[int], D: int) -> int:\r\n        lo = 0\r\n        hi = 0\r\n\r\n        def canShip(opacity):\r\n            days = 1\r\n            remain = opacity\r\n            for weight in weights:\r\n                if weight > opacity:\r\n                    return False\r\n                remain -= weight\r\n                if remain < 0:\r\n                    days += 1\r\n                    remain = opacity - weight\r\n            return days <= D\r\n\r\n        for weight in weights:\r\n            hi += weight\r\n        while lo < hi:\r\n            mid = (lo + hi) // 2\r\n            if canShip(mid):\r\n                hi = mid\r\n            else:\r\n                lo = mid + 1\r\n\r\n        return lo\r\n"
+    }
+  ]
+}

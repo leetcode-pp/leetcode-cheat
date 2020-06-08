@@ -1,0 +1,15 @@
+{
+  "question": "460.lfu-cache",
+  "companys": [
+    "TODO"
+  ],
+  "tags": [
+    "TODO"
+  ],
+  "reslove": [
+    {
+      "lang": "java",
+      "code": "\npublic class LC460LFUCache {\n  class Node {\n    int key, val, freq;\n    Node prev, next;\n\n    Node(int key, int val) {\n      this.key = key;\n      this.val = val;\n      freq = 1;\n    }\n  }\n\n  class DoubleLinkedList {\n    private Node head;\n    private Node tail;\n    private int size;\n\n    DoubleLinkedList() {\n      head = new Node(0, 0);\n      tail = new Node(0, 0);\n      head.next = tail;\n      tail.prev = head;\n    }\n\n    void add(Node node) {\n      head.next.prev = node;\n      node.next = head.next;\n      node.prev = head;\n      head.next = node;\n      size++;\n    }\n\n    void remove(Node node) {\n      node.prev.next = node.next;\n      node.next.prev = node.prev;\n      size--;\n    }\n\n    // always remove last node if last node exists\n    Node removeLast() {\n      if (size > 0) {\n        Node node = tail.prev;\n        remove(node);\n        return node;\n      } else return null;\n    }\n  }\n\n  // cache capacity\n  private int capacity;\n  // min frequent\n  private int minFreq;\n  Map<Integer, Node> nodeMap;\n  Map<Integer, DoubleLinkedList> freqMap;\n  public LC460LFUCache(int capacity) {\n    this.minFreq = 0;\n    this.capacity = capacity;\n    nodeMap = new HashMap<>();\n    freqMap = new HashMap<>();\n  }\n\n  public int get(int key) {\n    Node node = nodeMap.get(key);\n    if (node == null) return -1;\n    update(node);\n    return node.val;\n  }\n\n  public void put(int key, int value) {\n    if (capacity == 0) return;\n    Node node;\n    if (nodeMap.containsKey(key)) {\n      node = nodeMap.get(key);\n      node.val = value;\n      update(node);\n    } else {\n      node = new Node(key, value);\n      nodeMap.put(key, node);\n      if (nodeMap.size() == capacity) {\n        DoubleLinkedList lastList = freqMap.get(minFreq);\n        nodeMap.remove(lastList.removeLast().key);\n      }\n      minFreq = 1;\n      DoubleLinkedList newList = freqMap.getOrDefault(node.freq, new DoubleLinkedList());\n      newList.add(node);\n      freqMap.put(node.freq, newList);\n    }\n  }\n\n  private void update(Node node) {\n    DoubleLinkedList oldList = freqMap.get(node.freq);\n    oldList.remove(node);\n    if (node.freq == minFreq && oldList.size == 0) minFreq++;\n    node.freq++;\n    DoubleLinkedList newList = freqMap.getOrDefault(node.freq, new DoubleLinkedList());\n    newList.add(node);\n    freqMap.put(node.freq, newList);\n  }\n }\n"
+    }
+  ]
+}

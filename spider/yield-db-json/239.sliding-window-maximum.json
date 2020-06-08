@@ -1,0 +1,19 @@
+{
+  "question": "239.sliding-window-maximum",
+  "companys": [
+    "TODO"
+  ],
+  "tags": [
+    "TODO"
+  ],
+  "reslove": [
+    {
+      "lang": "python",
+      "code": "\nclass Solution:\n    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:\n        if k == 0: return []\n        res = []\n        for r in range(k - 1, len(nums)):\n            res.append(max(nums[r - k + 1:r + 1]))\n        return res\n"
+    },
+    {
+      "lang": "python",
+      "code": "\nclass Solution:\n    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:\n        deque, res, n = [], [], len(nums)\n        for i in range(n):\n            while deque and deque[0] < i - k + 1:\n                deque.pop(0)\n            while deque and nums[i] > nums[deque[-1]]:\n                deque.pop(-1)\n            deque.append(i)\n            if i >= k - 1: res.append(nums[deque[0]])\n        return res\n\n\n"
+    }
+  ]
+}

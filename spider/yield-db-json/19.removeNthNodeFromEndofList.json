@@ -1,0 +1,15 @@
+{
+  "question": "19.removeNthNodeFromEndofList",
+  "companys": [
+    "TODO"
+  ],
+  "tags": [
+    "TODO"
+  ],
+  "reslove": [
+    {
+      "lang": "java",
+      "code": "\n/**\n * Definition for singly-linked list.\n * public class ListNode {\n *     int val;\n *     ListNode next;\n *     ListNode(int x) { val = x; }\n * }\n */\nclass Solution {\n    public ListNode removeNthFromEnd(ListNode head, int n) {\n        TreeNode dummy = new TreeNode(0);\n        dummy.next = head;\n        TreeNode first = dummy;\n        TreeNode second = dummy;\n\n        if (int i=0; i<=n; i++) {\n            first = first.next;\n        }\n\n        while (first != null) {\n            first = first.next;\n            second = second.next;\n        }\n\n        second.next = second.next.next;\n\n        return dummy.next;\n    }\n}\n"
+    }
+  ]
+}

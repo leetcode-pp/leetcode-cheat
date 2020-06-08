@@ -1,0 +1,19 @@
+{
+  "question": "94.binary-tree-inorder-traversal",
+  "companys": [
+    "TODO"
+  ],
+  "tags": [
+    "TODO"
+  ],
+  "reslove": [
+    {
+      "lang": "java",
+      "code": "\n/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode(int x) { val = x; }\n * }\n */\nclass Solution {\n    List<Integer> res = new LinkedList<>();\n    public List<Integer> inorderTraversal(TreeNode root) {\n        inorder(root);\n        return res;\n    }\n    \n    public void inorder (TreeNode root) {\n        if (root == null) return;\n        \n        inorder(root.left);\n        \n        res.add(root.val);\n        \n        inorder(root.right);\n    }\n}\n"
+    },
+    {
+      "lang": "java",
+      "code": "\n/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode(int x) { val = x; }\n * }\n */\nclass Solution {\n    public List<Integer> inorderTraversal(TreeNode root) {\n        List<Integer> res = new ArrayList<> ();\n        Stack<TreeNode> stack = new Stack<> ();\n\n        while (root != null || !stack.isEmpty()) {\n            while (root != null) {\n                stack.push(root);\n                root = root.left;\n            }\n            root = stack.pop();\n            res.add(root.val);\n            root = root.right;\n        }\n        return res;\n    }\n}\n"
+    }
+  ]
+}

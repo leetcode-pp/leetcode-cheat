@@ -1,0 +1,19 @@
+{
+  "question": "105.Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal",
+  "companys": [
+    "TODO"
+  ],
+  "tags": [
+    "TODO"
+  ],
+  "reslove": [
+    {
+      "lang": "java",
+      "code": "\npreorder = [3,9,20,15,7]\ninorder = [9,3,15,20,7]\n"
+    },
+    {
+      "lang": "java",
+      "code": "\n/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode(int x) { val = x; }\n * }\n */\nclass Solution {\n  public TreeNode buildTree(int[] preorder, int[] inorder) {\n    if (preorder.length != inorder.length) return null;\n    \n    HashMap<Integer, Integer> map = new HashMap<> ();\n\n    for (int i=0; i<inorder.length; i++) {\n      map.put(inorder[i], i);\n    }\n\n    return helper(preorder, 0, preorder.length-1, inorder, 0, inorder.length-1, map);\n  }\n\n  public TreeNode helper(int[] preorder, int preStart, int preEnd, int[] inorder, int inStart, int inEnd, HashMap<Integer, Integer> map) {\n    if (preStart>preEnd || inStart>inEnd) return null;\n    \n    TreeNode root = new TreeNode(preorder[prestart]);\n    int inRoot = map.get(preorder[preStart]);\n    int leftChldLen = inRoot - inStart;\n\n    root.left = helper(preorder, preStart+1, preStart+leftChldLen, inorder, inStart, inRoot-1, map);\n    root.left = helper(preorder, preStart+leftChldLen+1, preEnd, inorder, inRoot+1, inEnd, map);\n\n    return root;\n  }\n}\n"
+    }
+  ]
+}

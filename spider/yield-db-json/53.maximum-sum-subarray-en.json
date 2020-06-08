@@ -1,0 +1,43 @@
+{
+  "question": "53.maximum-sum-subarray-en",
+  "companys": [
+    "TODO"
+  ],
+  "tags": [
+    "TODO"
+  ],
+  "reslove": [
+    {
+      "lang": "java",
+      "code": "\nclass MaximumSubarrayPrefixSum {\n  public int maxSubArray(int[] nums) {\n      int len = nums.length;\n      int maxSum = Integer.MIN_VALUE;\n      int sum = 0;\n      for (int i = 0; i < len; i++) {\n        sum = 0;\n        for (int j = i; j < len; j++) {\n          sum += nums[j];\n          maxSum = Math.max(maxSum, sum);\n        }\n      }\n      return maxSum;\n  }\n}\n"
+    },
+    {
+      "lang": "java",
+      "code": "\nclass MaxSumSubarray {\n  public int maxSubArray3(int[] nums) {\n      int maxSum = nums[0];\n      int sum = 0;\n      int minSum = 0;\n      for (int num : nums) {\n        // prefix Sum\n        sum += num;\n        // update maxSum\n        maxSum = Math.max(maxSum, sum - minSum);\n        // update minSum\n        minSum = Math.min(minSum, sum);\n      }\n      return maxSum;\n  }\n}\n"
+    },
+    {
+      "lang": "java",
+      "code": "\nclass MaximumSubarrayDivideConquer {\n  public int maxSubArrayDividConquer(int[] nums) {\n      if (nums == null || nums.length == 0) return 0;\n      return helper(nums, 0, nums.length - 1);\n    }\n    private int helper(int[] nums, int l, int r) {\n      if (l > r) return Integer.MIN_VALUE;\n      int mid = (l + r) >>> 1;\n      int left = helper(nums, l, mid - 1);\n      int right = helper(nums, mid + 1, r);\n      int leftMaxSum = 0;\n      int sum = 0;\n      // left surfix maxSum start from index mid - 1 to l\n      for (int i = mid - 1; i >= l; i--) {\n        sum += nums[i];\n        leftMaxSum = Math.max(leftMaxSum, sum);\n      }\n      int rightMaxSum = 0;\n      sum = 0;\n      // right prefix maxSum start from index mid + 1 to r\n      for (int i = mid + 1; i <= r; i++) {\n        sum += nums[i];\n        rightMaxSum = Math.max(sum, rightMaxSum);\n      }\n      // max(left, right, crossSum)\n      return Math.max(leftMaxSum + rightMaxSum + nums[mid], Math.max(left, right));\n    }\n}\n"
+    },
+    {
+      "lang": "java",
+      "code": "\nclass MaximumSubarrayDP {\n   public int maxSubArray(int[] nums) {\n      int currMaxSum = nums[0];\n      int maxSum = nums[0];\n      for (int i = 1; i < nums.length; i++) {\n        currMaxSum = Math.max(currMaxSum + nums[i], nums[i]);\n        maxSum = Math.max(maxSum, currMaxSum);\n      }\n      return maxSum;\n   }\n}\n"
+    },
+    {
+      "lang": "python",
+      "code": "\nimport sys\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        n = len(nums)\n        maxSum = -sys.maxsize\n        sum = 0\n        for i in range(n):\n            sum = 0\n            for j in range(i, n):\n                sum += nums[j]\n                maxSum = max(maxSum, sum)\n        \n        return maxSum\n"
+    },
+    {
+      "lang": "python",
+      "code": "\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        n = len(nums)\n        maxSum = nums[0]\n        minSum = sum = 0\n        for i in range(n):\n            sum += nums[i]\n            maxSum = max(maxSum, sum - minSum)\n            minSum = min(minSum, sum)\n            \n        return maxSum\n"
+    },
+    {
+      "lang": "python",
+      "code": "\nimport sys\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        return self.helper(nums, 0, len(nums) - 1)\n    def helper(self, nums, l, r):\n        if l > r:\n            return -sys.maxsize\n        mid = (l + r) // 2\n        left = self.helper(nums, l, mid - 1)\n        right = self.helper(nums, mid + 1, r)\n        left_suffix_max_sum = right_prefix_max_sum = 0\n        sum = 0\n        for i in reversed(range(l, mid)):\n            sum += nums[i]\n            left_suffix_max_sum = max(left_suffix_max_sum, sum)\n        sum = 0\n        for i in range(mid + 1, r + 1):\n            sum += nums[i]\n            right_prefix_max_sum = max(right_prefix_max_sum, sum)\n        cross_max_sum = left_suffix_max_sum + right_prefix_max_sum + nums[mid]\n        return max(cross_max_sum, left, right)\n"
+    },
+    {
+      "lang": "python",
+      "code": "\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        n = len(nums)\n        max_sum_ending_curr_index = max_sum = nums[0]\n        for i in range(1, n):\n            max_sum_ending_curr_index = max(max_sum_ending_curr_index + nums[i], nums[i])\n            max_sum = max(max_sum_ending_curr_index, max_sum)\n            \n        return max_sum\n"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "question": "229.majority-element-ii",
+  "companys": [
+    "TODO"
+  ],
+  "tags": [
+    "TODO"
+  ],
+  "reslove": [
+    {
+      "lang": "java",
+      "code": "\n/*\n * @lc app=leetcode id=229 lang=java\n *\n * [229] Majority Element II\n */\nclass Solution {\n    public List<Integer> majorityElement(int[] nums) {\n        List<Integer> res = new ArrayList<Integer>();\n        if (nums == null || nums.length == 0)\n            return res;\n        int n1 = nums[0], n2 = nums[0], cnt1 = 0, cnt2 = 0, len = nums.length;\n        for (int i = 0; i < len; i++) {\n            if (nums[i] == n1)\n                cnt1++;\n            else if (nums[i] == n2)\n                cnt2++;\n            else if (cnt1 == 0) {\n                n1 = nums[i];\n                cnt1 = 1;\n            } else if (cnt2 == 0) {\n                n2 = nums[i];\n                cnt2 = 1;\n            } else {\n                cnt1--;\n                cnt2--;\n            }\n        }\n        cnt1 = 0;\n        cnt2 = 0;\n        for (int i = 0; i < len; i++) {\n            if (nums[i] == n1)\n                cnt1++;\n            else if (nums[i] == n2)\n                cnt2++;\n        }\n        if (cnt1 > len / 3)\n            res.add(n1);\n        if (cnt2 > len / 3 && n1 != n2)\n            res.add(n2);\n        return res;\n    }\n}\n\n"
+    }
+  ]
+}

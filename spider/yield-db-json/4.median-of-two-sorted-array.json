@@ -1,0 +1,19 @@
+{
+  "question": "4.median-of-two-sorted-array",
+  "companys": [
+    "TODO"
+  ],
+  "tags": [
+    "TODO"
+  ],
+  "reslove": [
+    {
+      "lang": "java",
+      "code": " []\nclass MedianTwoSortedArrayBruteForce {\n    public double findMedianSortedArrays(int[] nums1, int[] nums2) {\n      int[] newArr = mergeTwoSortedArray(nums1, nums2);\n      int n = newArr.length;\n      if (n % 2 == 0) {\n        // even\n        return (double) (newArr[n / 2] + newArr[n / 2 - 1]) / 2;\n      } else {\n        // odd\n        return (double) newArr[n / 2];\n      }\n    }\n    private int[] mergeTwoSortedArray(int[] nums1, int[] nums2) {\n      int m = nums1.length;\n      int n = nums2.length;\n      int[] res = new int[m + n];\n      int i = 0;\n      int j = 0;\n      int idx = 0;\n      while (i < m && j < n) {\n        if (nums1[i] <= nums2[j]) {\n          res[idx++] = nums1[i++];\n        } else {\n          res[idx++] = nums2[j++];\n        }\n      }\n      while (i < m) {\n        res[idx++] = nums1[i++];\n      }\n      while (j < n) {\n        res[idx++] = nums2[j++];\n      }\n      return res;\n    }\n}\n"
+    },
+    {
+      "lang": "java",
+      "code": " []\nclass MedianSortedTwoArrayBinarySearch {\n  public static double findMedianSortedArraysBinarySearch(int[] nums1, int[] nums2) {\n     // do binary search for shorter length array, make sure time complexity log(min(m,n)).\n     if (nums1.length > nums2.length) {\n        return findMedianSortedArraysBinarySearch(nums2, nums1);\n      }\n      int m = nums1.length;\n      int n = nums2.length;\n      int lo = 0;\n      int hi = m;\n      while (lo <= hi) {\n        // partition A position i\n        int i = lo + (hi - lo) / 2;\n        // partition B position j\n        int j = (m + n + 1) / 2 - i;\n\n        int maxLeftA = i == 0 ? Integer.MIN_VALUE : nums1[i - 1];\n        int minRightA = i == m ? Integer.MAX_VALUE : nums1[i];\n\n        int maxLeftB = j == 0 ? Integer.MIN_VALUE : nums2[j - 1];\n        int minRightB = j == n ? Integer.MAX_VALUE : nums2[j];\n\n        if (maxLeftA <= minRightB && maxLeftB <= minRightA) {\n          // total length is even\n          if ((m + n) % 2 == 0) {\n            return (double) (Math.max(maxLeftA, maxLeftB) + Math.min(minRightA, minRightB)) / 2;\n          } else {\n            // total length is odd\n            return (double) Math.max(maxLeftA, maxLeftB);\n          }\n        } else if (maxLeftA > minRightB) {\n          // binary search left half\n          hi = i - 1;\n        } else {\n          // binary search right half\n          lo = i + 1;\n        }\n      }\n      return 0.0;\n    }\n}\n"
+    }
+  ]
+}
