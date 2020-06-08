@@ -38,6 +38,22 @@
     {
       "lang": "python",
       "code": "\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        n = len(nums)\n        max_sum_ending_curr_index = max_sum = nums[0]\n        for i in range(1, n):\n            max_sum_ending_curr_index = max(max_sum_ending_curr_index + nums[i], nums[i])\n            max_sum = max(max_sum_ending_curr_index, max_sum)\n            \n        return max_sum\n"
+    },
+    {
+      "lang": "js",
+      "code": "\nfunction LSS(list) {\n  const len = list.length;\n  let max = -Number.MAX_VALUE;\n  let sum = 0;\n  for (let i = 0; i < len; i++) {\n    sum = 0;\n    for (let j = i; j < len; j++) {\n      sum += list[j];\n      if (sum > max) {\n        max = sum;\n      }\n    }\n  }\n\n  return max;\n}\n"
+    },
+    {
+      "lang": "js",
+      "code": "\nfunction LSS(list) {\n  const len = list.length;\n  let max = list[0];\n  let min = 0;\n  let sum = 0;\n  for (let i = 0; i < len; i++) {\n    sum += list[i];\n    if (sum - min > max) max = sum - min;\n    if (sum < min) {\n      min = sum;\n    }\n  }\n\n  return max;\n}\n"
+    },
+    {
+      "lang": "js",
+      "code": "\nfunction helper(list, m, n) {\n  if (m === n) return list[m];\n  let sum = 0;\n  let lmax = -Number.MAX_VALUE;\n  let rmax = -Number.MAX_VALUE;\n  const mid = ((n - m) >> 1) + m;\n  const l = helper(list, m, mid);\n  const r = helper(list, mid + 1, n);\n  for (let i = mid; i >= m; i--) {\n    sum += list[i];\n    if (sum > lmax) lmax = sum;\n  }\n\n  sum = 0;\n\n  for (let i = mid + 1; i <= n; i++) {\n    sum += list[i];\n    if (sum > rmax) rmax = sum;\n  }\n\n  return Math.max(l, r, lmax + rmax);\n}\n\nfunction LSS(list) {\n  return helper(list, 0, list.length - 1);\n}\n"
+    },
+    {
+      "lang": "js",
+      "code": "\nfunction LSS(list) {\n  const len = list.length;\n  let max = list[0];\n  for (let i = 1; i < len; i++) {\n    list[i] = Math.max(0, list[i - 1]) + list[i];\n    if (list[i] > max) max = list[i];\n  }\n\n  return max;\n}\n"
     }
   ]
 }

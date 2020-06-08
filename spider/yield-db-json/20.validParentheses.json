@@ -6,5 +6,10 @@
   "tags": [
     "TODO"
   ],
-  "reslove": []
+  "reslove": [
+    {
+      "lang": "js",
+      "code": "\n/**\n * @param {string} s\n * @return {boolean}\n */\nvar isValid = function(s) {\n    let valid = true;\n    const stack = [];\n    const mapper = {\n        '{': \"}\",\n        \"[\": \"]\",\n        \"(\": \")\"\n    }\n    \n    for(let i in s) {\n        const v = s[i];\n        if (['(', '[', '{'].indexOf(v) > -1) {\n            stack.push(v);\n        } else {\n            const peak = stack.pop();\n            if (v !== mapper[peak]) {\n                return false;\n            }\n        }\n    }\n\n    if (stack.length > 0) return false;\n\n    return valid;\n};\n"
+    }
+  ]
 }

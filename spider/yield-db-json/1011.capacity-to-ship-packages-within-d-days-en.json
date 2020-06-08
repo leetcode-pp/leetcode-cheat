@@ -14,6 +14,10 @@
     {
       "lang": "python",
       "code": "\r\nclass Solution:\r\n    def shipWithinDays(self, weights: List[int], D: int) -> int:\r\n        lo = 0\r\n        hi = 0\r\n\r\n        def canShip(opacity):\r\n            days = 1\r\n            remain = opacity\r\n            for weight in weights:\r\n                if weight > opacity:\r\n                    return False\r\n                remain -= weight\r\n                if remain < 0:\r\n                    days += 1\r\n                    remain = opacity - weight\r\n            return days <= D\r\n\r\n        for weight in weights:\r\n            hi += weight\r\n        while lo < hi:\r\n            mid = (lo + hi) // 2\r\n            if canShip(mid):\r\n                hi = mid\r\n            else:\r\n                lo = mid + 1\r\n\r\n        return lo\r\n"
+    },
+    {
+      "lang": "js",
+      "code": "\r\n/**\r\n * @param {number[]} weights\r\n * @param {number} D\r\n * @return {number}\r\n */\r\nvar shipWithinDays = function(weights, D) {\r\n  let high = weights.reduce((acc, cur) => acc + cur)\r\n  let low = 0\r\n\r\n  while(low < high) {\r\n    let mid = Math.floor((high + low) / 2)\r\n    if (canShip(mid)) {\r\n      high = mid\r\n    } else {\r\n      low = mid + 1\r\n    }\r\n  }\r\n\r\n  return low\r\n\r\n  function canShip(opacity) {\r\n    let remain = opacity\r\n    let count = 1\r\n    for (let weight of weights) {\r\n      if (weight > opacity) {\r\n        return false\r\n      }\r\n      remain -= weight\r\n      if (remain < 0) {\r\n        count++\r\n        remain = opacity - weight\r\n      }\r\n      if (count > D) {\r\n        return false\r\n      }\r\n    }\r\n    return count <= D\r\n  }\r\n};\r\n"
     }
   ]
 }

@@ -6,5 +6,10 @@
   "tags": [
     "TODO"
   ],
-  "reslove": []
+  "reslove": [
+    {
+      "lang": "js",
+      "code": "\n/**\n * @param {number} n\n * @return {string[]}\n * @param l 左括号已经用了几个\n * @param r 右括号已经用了几个\n * @param str 当前递归得到的拼接字符串结果\n * @param res 结果集\n */\nconst generateParenthesis = function (n) {\n    const res = [];\n\n    function dfs(l, r, str) {\n        if (l == n && r == n) {\n            return res.push(str);\n        }\n        // l 小于 r 时不满足条件 剪枝\n        if (l < r) {\n            return;\n        }\n        // l 小于 n 时可以插入左括号，最多可以插入 n 个\n        if (l < n) {\n            dfs(l + 1, r, str + '(');\n        }\n        // r < l 时 可以插入右括号\n        if (r < l) {\n            dfs(l, r + 1, str + ')');\n        }\n    }\n    dfs(0, 0, '');\n    return res;\n};\n"
+    }
+  ]
 }

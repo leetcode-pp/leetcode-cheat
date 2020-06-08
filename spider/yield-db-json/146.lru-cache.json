@@ -6,5 +6,10 @@
   "tags": [
     "TODO"
   ],
-  "reslove": []
+  "reslove": [
+    {
+      "lang": "js",
+      "code": "\n/**\n * @param {number} capacity\n */\nvar LRUCache = function(capacity) {\n    this.cache = {};\n    this.capacity = capacity;\n    this.size = 0;\n    this.queue = [];\n};\n\n/** \n * @param {number} key\n * @return {number}\n */\nLRUCache.prototype.get = function(key) {\n    const hit = this.cache[key];\n\n    if (hit !== undefined) {\n        this.queue = this.queue.filter(q => q !== key);\n        this.queue.push(key);\n        return hit;\n    }\n    return -1;\n};\n\n/** \n * @param {number} key \n * @param {number} value\n * @return {void}\n */\nLRUCache.prototype.put = function(key, value) {\n    const hit = this.cache[key];\n\n    // update cache\n    this.cache[key] = value;\n\n    if (!hit) {\n        // invalid cache and resize size;\n        if (this.size === this.capacity) {\n            // invalid cache\n            const key = this.queue.shift();\n            this.cache[key] = undefined;\n        } else {\n            this.size = this.size + 1;\n        }\n        this.queue.push(key);\n    } else {\n        this.queue = this.queue.filter(q => q !== key);\n        this.queue.push(key);\n    }\n};\n\n/** \n * Your LRUCache object will be instantiated and called as such:\n * var obj = new LRUCache(capacity)\n * var param_1 = obj.get(key)\n * obj.put(key,value)\n */\n\n"
+    }
+  ]
 }

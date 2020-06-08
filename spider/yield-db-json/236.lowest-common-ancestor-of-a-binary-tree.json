@@ -6,5 +6,14 @@
   "tags": [
     "TODO"
   ],
-  "reslove": []
+  "reslove": [
+    {
+      "lang": "js",
+      "code": "\n  // 如果我们找到了p，直接进行返回，那如果下面就是q呢？ 其实这没有影响，但是还是要多考虑一下\n  if (!root || root === p || root === q) return root;\n  const left = lowestCommonAncestor(root.left, p, q); // 去左边找，我们期望返回找到的节点\n  const right = lowestCommonAncestor(root.right, p, q);// 去右边找，我们期望返回找到的节点\n  if (!left) return right; // 左子树找不到，返回右子树\n  if (!right) return left; // 右子树找不到，返回左子树\n  return root; // 左右子树分别有一个，则返回root\n\n"
+    },
+    {
+      "lang": "js",
+      "code": "\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @param {TreeNode} p\n * @param {TreeNode} q\n * @return {TreeNode}\n */\nvar lowestCommonAncestor = function(root, p, q) {\n  if (!root || root === p || root === q) return root;\n  const left = lowestCommonAncestor(root.left, p, q);\n  const right = lowestCommonAncestor(root.right, p, q);\n  if (!left) return right; // 左子树找不到，返回右子树\n  if (!right) return left; // 右子树找不到，返回左子树\n  return root; // 左右子树分别有一个，则返回root\n};\n"
+    }
+  ]
 }

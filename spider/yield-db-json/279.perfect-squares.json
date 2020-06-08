@@ -6,5 +6,18 @@
   "tags": [
     "TODO"
   ],
-  "reslove": []
+  "reslove": [
+    {
+      "lang": "js",
+      "code": "\nconst mapper = {};\n\nfunction d(n, level) {\n  if (n === 0) return level;\n\n  let i = 1;\n  const arr = [];\n\n  while (n - i * i >= 0) {\n    const hit = mapper[n - i * i];\n    if (hit) {\n      arr.push(hit + level);\n    } else {\n      const depth = d(n - i * i, level + 1) - level;\n      mapper[n - i * i] = depth;\n      arr.push(depth + level);\n    }\n    i++;\n  }\n\n  return Math.min(...arr);\n}\n/**\n * @param {number} n\n * @return {number}\n */\nvar numSquares = function(n) {\n  return d(n, 0);\n};\n"
+    },
+    {
+      "lang": "js",
+      "code": "\nfor (let i = 1; i <= n; i++) {\n  for (let j = 1; j * j <= i; j++) {\n    // 不选（dp[i]） 还是  选（dp[i - j * j]）\n    dp[i] = Math.min(dp[i], dp[i - j * j] + 1);\n  }\n}\n"
+    },
+    {
+      "lang": "js",
+      "code": "\n/*\n * @lc app=leetcode id=279 lang=javascript\n *\n * [279] Perfect Squares\n *\n * https://leetcode.com/problems/perfect-squares/description/\n *\n * algorithms\n * Medium (40.98%)\n * Total Accepted:    168.2K\n * Total Submissions: 408.5K\n * Testcase Example:  '12'\n *\n * Given a positive integer n, find the least number of perfect square numbers\n * (for example, 1, 4, 9, 16, ...) which sum to n.\n *\n * Example 1:\n *\n *\n * Input: n = 12\n * Output: 3\n * Explanation: 12 = 4 + 4 + 4.\n *\n * Example 2:\n *\n *\n * Input: n = 13\n * Output: 2\n * Explanation: 13 = 4 + 9.\n */\n/**\n * @param {number} n\n * @return {number}\n */\nvar numSquares = function(n) {\n  if (n <= 0) {\n    return 0;\n  }\n\n  const dp = Array(n + 1).fill(Number.MAX_VALUE);\n  dp[0] = 0;\n  for (let i = 1; i <= n; i++) {\n    for (let j = 1; j * j <= i; j++) {\n      // 不选（dp[i]） 还是  选（dp[i - j * j]）\n      dp[i] = Math.min(dp[i], dp[i - j * j] + 1);\n    }\n  }\n\n  return dp[n];\n};\n"
+    }
+  ]
 }

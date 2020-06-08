@@ -10,6 +10,10 @@
     {
       "lang": "python",
       "code": "\nclass Solution:\n    def distributeCandies(self, candies: List[int]) -> int:\n        return min(len(set(candies)), len(candies) >> 1)\n"
+    },
+    {
+      "lang": "js",
+      "code": "\n/*\n * @lc app=leetcode id=575 lang=javascript\n *\n * [575] Distribute Candies\n */\n/**\n * @param {number[]} candies\n * @return {number}\n */\nvar distributeCandies = function(candies) {\n    const count = new Set(candies);\n    return Math.min(count.size, candies.length >> 1);\n};\n"
     }
   ]
 }

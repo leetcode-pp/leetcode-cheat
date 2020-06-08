@@ -20,6 +20,11 @@ class Utils  {
     }
 
 
+    static getKeyMatterReg() {
+       return /(?:# 关键点)([.|[\r\n]]*?)(?:#)/g
+    }
+
+
     static readFileSync(relativePath,filename) {
        return fs.readFileSync(pathResolve(__dirname, '../',relativePath,filename),{encoding:'utf8'}) 
     }

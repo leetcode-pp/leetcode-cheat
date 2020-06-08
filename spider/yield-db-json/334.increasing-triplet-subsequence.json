@@ -6,5 +6,10 @@
   "tags": [
     "TODO"
   ],
-  "reslove": []
+  "reslove": [
+    {
+      "lang": "js",
+      "code": "\n\n\n/*\n * @lc app=leetcode id=334 lang=javascript\n *\n * [334] Increasing Triplet Subsequence\n *\n * https://leetcode.com/problems/increasing-triplet-subsequence/description/\n *\n * algorithms\n * Medium (39.47%)\n * Total Accepted:    89.6K\n * Total Submissions: 226.6K\n * Testcase Example:  '[1,2,3,4,5]'\n *\n * Given an unsorted array return whether an increasing subsequence of length 3\n * exists or not in the array.\n * \n * Formally the function should:\n * \n * Return true if there exists i, j, k \n * such that arr[i] < arr[j] < arr[k] given 0 ≤ i < j < k ≤ n-1 else return\n * false.\n * \n * Note: Your algorithm should run in O(n) time complexity and O(1) space\n * complexity.\n * \n * \n * Example 1:\n * \n * \n * Input: [1,2,3,4,5]\n * Output: true\n * \n * \n *\n * Example 2:\n * \n * \n * Input: [5,4,3,2,1]\n * Output: false\n * \n * \n * \n */\n/**\n * @param {number[]} nums\n * @return {boolean}\n */\nvar increasingTriplet = function(nums) {\n    if (nums.length < 3) return false;\n    let n1 = Number.MAX_VALUE;\n    let n2 = Number.MAX_VALUE;\n\n    for(let i = 0; i < nums.length; i++) {\n        if (nums[i] <= n1) {\n            n1 = nums[i]\n        } else if (nums[i] <= n2) {\n            n2 = nums[i]\n        } else {\n            return true;\n        }\n    }\n\n    return false;\n};\n"
+    }
+  ]
 }

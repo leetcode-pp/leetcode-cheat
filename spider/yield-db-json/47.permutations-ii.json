@@ -6,5 +6,10 @@
   "tags": [
     "TODO"
   ],
-  "reslove": []
+  "reslove": [
+    {
+      "lang": "js",
+      "code": "\n/*\n * @lc app=leetcode id=47 lang=javascript\n *\n * [47] Permutations II\n *\n * https://leetcode.com/problems/permutations-ii/description/\n *\n * algorithms\n * Medium (39.29%)\n * Total Accepted:    234.1K\n * Total Submissions: 586.2K\n * Testcase Example:  '[1,1,2]'\n *\n * Given a collection of numbers that might contain duplicates, return all\n * possible unique permutations.\n *\n * Example:\n *\n *\n * Input: [1,1,2]\n * Output:\n * [\n * ⁠ [1,1,2],\n * ⁠ [1,2,1],\n * ⁠ [2,1,1]\n * ]\n *\n *\n */\nfunction backtrack(list, nums, tempList, visited) {\n  if (tempList.length === nums.length) return list.push([...tempList]);\n  for (let i = 0; i < nums.length; i++) {\n    // 和46.permutations的区别是这道题的nums是可以重复的\n    // 我们需要过滤这种情况\n    if (visited[i]) continue; // 不能用tempList.includes(nums[i])了，因为有重复\n    // visited[i - 1] 这个判断容易忽略\n    if (i > 0 && nums[i] === nums[i - 1] && visited[i - 1]) continue;\n\n    visited[i] = true;\n    tempList.push(nums[i]);\n    backtrack(list, nums, tempList, visited);\n    visited[i] = false;\n    tempList.pop();\n  }\n}\n/**\n * @param {number[]} nums\n * @return {number[][]}\n */\nvar permuteUnique = function(nums) {\n  const list = [];\n  backtrack(list, nums.sort((a, b) => a - b), [], []);\n  return list;\n};\n"
+    }
+  ]
 }

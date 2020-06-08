@@ -6,5 +6,10 @@
   "tags": [
     "TODO"
   ],
-  "reslove": []
+  "reslove": [
+    {
+      "lang": "js",
+      "code": "\n/**\n * @param {number} n\n * @return {number}\n * @param row 当前层\n * @param cols 列\n * @param pie 左斜线\n * @param na 右斜线\n */\nconst totalNQueens = function (n) {\n    let res = 0;\n    const dfs = (n, row, cols, pie, na) => {\n        if (row >= n) {\n            res++;\n            return;\n        }\n        // 将所有能放置 Q 的位置由 0 变成 1，以便进行后续的位遍历\n        // 也就是得到当前所有的空位\n        let bits = (~(cols | pie | na)) & ((1 << n) - 1);\n        while (bits) {\n            // 取最低位的1\n            let p = bits & -bits;\n            // 把P位置上放入皇后\n            bits = bits & (bits - 1);\n            // row + 1 搜索下一行可能的位置\n            // cols ｜ p 目前所有放置皇后的列\n            // (pie | p) << 1 和 (na | p) >> 1) 与已放置过皇后的位置 位于一条斜线上的位置\n            dfs(n, row + 1, cols | p, (pie | p) << 1, (na | p) >> 1);\n        }\n    }\n    dfs(n, 0, 0, 0, 0);\n    return res;\n};\n"
+    }
+  ]
 }

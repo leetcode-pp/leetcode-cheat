@@ -44,6 +44,7 @@ rowMarkdowns.forEach(filename => {
         })
 
     })
+
      
 
     let oCustomStruct = {
@@ -58,7 +59,7 @@ rowMarkdowns.forEach(filename => {
     Logger.success(`开始生成 "${filename}"`)
     
     Utils.writeFileSync('spider/yield-db-json',`${filename.slice(0,-3)}.json`, JSON.stringify(oCustomStruct, null, 2))
-    
+
     Logger.success(`生成 "${filename}" 完毕`)
 
    })

@@ -6,5 +6,10 @@
   "tags": [
     "TODO"
   ],
-  "reslove": []
+  "reslove": [
+    {
+      "lang": "js",
+      "code": "\n/*\n * @lc app=leetcode id=103 lang=javascript\n *\n * [103] Binary Tree Zigzag Level Order Traversal\n *\n * https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/description/\n *\n * algorithms\n * Medium (40.57%)\n * Total Accepted:    201.2K\n * Total Submissions: 493.7K\n * Testcase Example:  '[3,9,20,null,null,15,7]'\n *\n * Given a binary tree, return the zigzag level order traversal of its nodes'\n * values. (ie, from left to right, then right to left for the next level and\n * alternate between).\n * \n * \n * For example:\n * Given binary tree [3,9,20,null,null,15,7],\n * \n * ⁠   3\n * ⁠  / \\\n * ⁠ 9  20\n * ⁠   /  \\\n * ⁠  15   7\n * \n * \n * \n * return its zigzag level order traversal as:\n * \n * [\n * ⁠ [3],\n * ⁠ [20,9],\n * ⁠ [15,7]\n * ]\n * \n * \n */\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @return {number[][]}\n */\nvar zigzagLevelOrder = function(root) {\n  if (!root) return [];   \n  const items = [];\n  let isOdd = true;\n  let levelNodes = [];\n  \n  const queue = [root, null];\n\n\n  while(queue.length > 0) {\n      const t = queue.shift();\n\n      if (t) {\n          levelNodes.push(t.val)\n          if (t.left) {\n            queue.push(t.left)\n          }\n          if (t.right) {\n            queue.push(t.right)\n          }\n      } else {\n        if (!isOdd) {\n          levelNodes = levelNodes.reverse();\n        }\n        items.push(levelNodes)\n        levelNodes = [];\n        isOdd = !isOdd;\n        if (queue.length > 0) {\n            queue.push(null);\n        }\n      }\n  }\n\n  return items\n    \n};\n"
+    }
+  ]
 }

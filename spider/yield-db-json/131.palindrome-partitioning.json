@@ -10,6 +10,10 @@
     {
       "lang": "python",
       "code": "\nclass Solution:\n    def partition(self, s: str) -> List[List[str]]:\n        \"\"\"回溯法\"\"\"\n        \n        res = []\n        \n        def helper(s, tmp):\n            \"\"\"\n            如果是空字符串，说明已经处理完毕\n            否则逐个字符往前测试，判断是否是回文\n            如果是，则处理剩余字符串，并将已经得到的列表作为参数\n            \"\"\"\n            if not s:\n                res.append(tmp)\n            for i in range(1, len(s) + 1):\n                if s[:i] == s[:i][::-1]:\n                    helper(s[i:], tmp + [s[:i]])\n        \n        helper(s, [])\n        return res\n"
+    },
+    {
+      "lang": "js",
+      "code": "\n\n\n/*\n * @lc app=leetcode id=131 lang=javascript\n *\n * [131] Palindrome Partitioning\n */\n\nfunction isPalindrom(s) {\n    let left = 0;\n    let right = s.length - 1;\n\n    while(left < right && s[left] === s[right]) {\n        left++;\n        right--;\n    }\n\n    return left >= right;\n}\n function backtrack(s, list, tempList, start) {\n    const sliced = s.slice(start);\n\n    if (isPalindrom(sliced) && (tempList.join(\"\").length === s.length)) list.push([...tempList]);\n\n    for(let i = 0; i < sliced.length; i++) {\n        const sub = sliced.slice(0, i + 1);\n        if (isPalindrom(sub)) {\n            tempList.push(sub);\n        } else {\n            continue;\n        }\n        backtrack(s, list, tempList, start + i + 1);\n        tempList.pop();\n    }\n }\n/**\n * @param {string} s\n * @return {string[][]}\n */\nvar partition = function(s) {\n    // \"aab\"\n    // [\"aa\", \"b\"]\n    // [\"a\", \"a\", \"b\"]\n    const list = [];\n    backtrack(s, list, [], 0);\n    return list;\n};\n\n\n"
     }
   ]
 }

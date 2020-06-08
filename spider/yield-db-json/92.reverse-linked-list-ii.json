@@ -18,6 +18,10 @@
     {
       "lang": "python",
       "code": "\n     while cur:\n            i += 1\n            if i == m - 1:\n                p1 = cur\n            next = cur.next\n            if m < i <= n:\n                cur.next = pre\n\n            if i == m:\n                p2 = cur\n                p2.next = None\n\n            if i == n:\n                p3 = cur\n\n            if i == n + 1:\n                p4 = cur\n\n            pre = cur\n            cur = next\n "
+    },
+    {
+      "lang": "js",
+      "code": "\n/*\n * @lc app=leetcode id=92 lang=javascript\n *\n * [92] Reverse Linked List II\n *\n * https://leetcode.com/problems/reverse-linked-list-ii/description/\n */\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} head\n * @param {number} m\n * @param {number} n\n * @return {ListNode}\n */\nvar reverseBetween = function(head, m, n) {\n    // 虚拟节点，简化操作\n    const dummyHead = {\n        next: head\n    }\n\n    let cur = dummyHead.next; // 当前遍历的节点\n    let pre = cur; // 因为要反转，因此我们需要记住前一个节点\n    let index = 0; // 链表索引，用来判断是否是特殊位置（头尾位置）\n\n    // 上面提到的四个特殊节点\n    let p1 = p2 = p3 = p4 = null\n\n    while(cur) {\n        const next = cur.next;\n        index++;\n\n        // 对 (m - n) 范围内的节点进行反转\n        if (index > m && index <= n) {           \n            cur.next = pre;\n        }\n\n        // 下面四个if都是边界, 用于更新四个特殊节点的值\n        if (index === m - 1) {\n            p1 = cur;\n        }\n        if (index === m) {\n            p2 = cur;\n        }\n\n        if (index === n) {\n            p3 = cur;\n        }\n\n        if (index === n + 1) {\n            p4 = cur;;\n        }\n\n        pre = cur;\n\n        cur = next;\n    }\n\n    // 两个链表合并起来\n    (p1 || dummyHead).next = p3; // 特殊情况需要考虑\n    p2.next = p4;\n\n    return dummyHead.next;\n};\n\n"
     }
   ]
 }

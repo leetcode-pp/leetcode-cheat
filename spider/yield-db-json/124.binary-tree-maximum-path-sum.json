@@ -10,6 +10,10 @@
     {
       "lang": "java",
       "code": "\n/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode(int x) { val = x; }\n * }\n */\nclass Solution {\n  int ans;\n  public int maxPathSum(TreeNode root) {\n    ans = Integer.MIN_VALUE;\n    helper(root);   // recursion\n    return ans;\n  }\n\n  public int helper(TreeNode root) {\n    if (root == null) return 0;\n    int leftMax = Math.max(0, helper(root.left));     // find the max sub-path sum in left sub-tree\n    int rightMax = Math.max(0, helper(root.right));   // find the max sub-path sum in right sub-tree\n    ans = Math.max(ans, leftMax+rightMax+root.val);   // find the max path sum at current node\n    return max(leftMax, rightMax) + root.val;         // according to the definition of path, the return value of current node can only be that the sum of current node value plus either left or right max path sum.\n  }\n}\n"
+    },
+    {
+      "lang": "js",
+      "code": "\n\n\n/*\n * @lc app=leetcode id=124 lang=javascript\n *\n * [124] Binary Tree Maximum Path Sum\n */\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\nfunction helper(node, payload) {\n  if (node === null) return 0;\n\n  const l = helper(node.left, payload);\n  const r = helper(node.right, payload);\n\n  payload.max = Math.max(\n    node.val + Math.max(0, l) + Math.max(0, r),\n    payload.max\n  );\n\n  return node.val + Math.max(l, r, 0);\n}\n/**\n * @param {TreeNode} root\n * @return {number}\n */\nvar maxPathSum = function(root) {\n  if (root === null) return 0;\n  const payload = {\n    max: root.val\n  };\n  helper(root, payload);\n  return payload.max;\n};\n"
     }
   ]
 }

@@ -10,6 +10,18 @@
     {
       "lang": "python",
       "code": "\nclass Solution:\n    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:\n        \"\"\"\n        Do not return anything, modify nums1 in-place instead.\n        \"\"\"\n        # 整体思路相似，只不过没有使用 current 指针记录当前填补位置\n        while m > 0 and n > 0:\n            if nums1[m-1] <= nums2[n-1]:\n                nums1[m+n-1] = nums2[n-1]\n                n -= 1\n            else:\n                nums1[m+n-1] = nums1[m-1]\n                m -=1\n        \"\"\"\n        由于没有使用 current，第一步比较结束后有两种情况:\n            1. 指针 m>0，n=0，此时不需要做任何处理\n            2. 指针 n>0，m=0，此时需要将 nums2 指针左侧元素全部拷贝到 nums1 的前 n 位\n        \"\"\"\n        if n > 0:\n            nums1[:n] = nums2[:n]\n"
+    },
+    {
+      "lang": "js",
+      "code": "\n  // 这种解法连m都用不到\n  // 这显然不是出题人的意思\n  if (n === 0) return;\n  let current2 = 0;\n  for(let i = nums1.length - 1; i >= nums1.length - n ; i--) {\n      nums1[i] = nums2[current2++];\n  }\n  nums1.sort((a, b) => a - b); // 当然你可以自己写排序，这里懒得写了，因为已经偏离了题目本身\n\n"
+    },
+    {
+      "lang": "js",
+      "code": "\n// 将nums1 和 nums2 合并\nfunction merge(nums1, nums2) {\n  let ret = [];\n  while (nums1.length || nums2.length) {\n    // 为了方便大家理解，这里代码有点赘余\n    if (nums1.length === 0) {\n      ret.push(nums2.shift());\n      continue;\n    }\n\n    if (nums2.length === 0) {\n      ret.push(nums1.shift());\n      continue;\n    }\n    const a = nums1[0];\n    const b = nums2[0];\n    if (a > b) {\n      ret.push(nums2.shift());\n    } else {\n      ret.push(nums1.shift());\n    }\n  }\n  return ret;\n}\n"
+    },
+    {
+      "lang": "js",
+      "code": "\nvar merge = function(nums1, m, nums2, n) {\n  // 设置一个指针，指针初始化指向nums1的末尾（根据#62，应该是index为 m+n-1 的位置，因为nums1的长度有可能更长）\n  // 然后不断左移指针更新元素\n  let current = m + n - 1;\n\n  while (current >= 0) {\n    // 没必要继续了\n    if (n === 0) return;\n\n    // 为了方便大家理解，这里代码有点赘余\n    if (m < 1) {\n      nums1[current--] = nums2[--n];\n      continue;\n    }\n\n    if (n < 1) {\n      nums1[current--] = nums1[--m];\n      continue;\n    }\n    // 取大的填充 nums1的末尾\n    // 然后更新 m 或者 n\n    if (nums1[m - 1] > nums2[n - 1]) {\n      nums1[current--] = nums1[--m];\n    } else {\n      nums1[current--] = nums2[--n];\n    }\n  }\n};\n"
     }
   ]
 }

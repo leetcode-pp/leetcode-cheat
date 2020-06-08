@@ -6,5 +6,22 @@
   "tags": [
     "TODO"
   ],
-  "reslove": []
+  "reslove": [
+    {
+      "lang": "js",
+      "code": "\nfunction TrieNode(val) {\n  this.val = val; // 当前的字母\n  this.children = []; // 题目要求字典仅有a-z，那么其长度最大为26（26个字母）\n  this.isWord = false;\n}\n"
+    },
+    {
+      "lang": "js",
+      "code": "\nfunction computeIndex(c) {\n  return c.charCodeAt(0) - \"a\".charCodeAt(0);\n}\n"
+    },
+    {
+      "lang": "js",
+      "code": "\n const c = word[i];\n const current = computeIndex(c)\nif (!ws.children[current]) {\n    ws.children[current] = new TrieNode(c);\n  }\n  ws = ws.children[current]; // 深度递增\n}\n\n"
+    },
+    {
+      "lang": "js",
+      "code": "\n/*\n * @lc app=leetcode id=208 lang=javascript\n *\n * [208] Implement Trie (Prefix Tree)\n *\n * https://leetcode.com/problems/implement-trie-prefix-tree/description/\n *\n * algorithms\n * Medium (36.93%)\n * Total Accepted:    172K\n * Total Submissions: 455.5K\n * Testcase Example:  '[\"Trie\",\"insert\",\"search\",\"search\",\"startsWith\",\"insert\",\"search\"]\\n[[],[\"apple\"],[\"apple\"],[\"app\"],[\"app\"],[\"app\"],[\"app\"]]'\n *\n * Implement a trie with insert, search, and startsWith methods.\n *\n * Example:\n *\n *\n * Trie trie = new Trie();\n *\n * trie.insert(\"apple\");\n * trie.search(\"apple\");   // returns true\n * trie.search(\"app\");     // returns false\n * trie.startsWith(\"app\"); // returns true\n * trie.insert(\"app\");\n * trie.search(\"app\");     // returns true\n *\n *\n * Note:\n *\n *\n * You may assume that all inputs are consist of lowercase letters a-z.\n * All inputs are guaranteed to be non-empty strings.\n *\n *\n */\nfunction TrieNode(val) {\n  this.val = val;\n  this.children = [];\n  this.isWord = false;\n}\n\nfunction computeIndex(c) {\n  return c.charCodeAt(0) - \"a\".charCodeAt(0);\n}\n/**\n * Initialize your data structure here.\n */\nvar Trie = function() {\n  this.root = new TrieNode(null);\n};\n\n/**\n * Inserts a word into the trie.\n * @param {string} word\n * @return {void}\n */\nTrie.prototype.insert = function(word) {\n  let ws = this.root;\n  for (let i = 0; i < word.length; i++) {\n    const c = word[i];\n    const current = computeIndex(c);\n    if (!ws.children[current]) {\n      ws.children[current] = new TrieNode(c);\n    }\n    ws = ws.children[current];\n  }\n  ws.isWord = true;\n};\n\n/**\n * Returns if the word is in the trie.\n * @param {string} word\n * @return {boolean}\n */\nTrie.prototype.search = function(word) {\n  let ws = this.root;\n  for (let i = 0; i < word.length; i++) {\n    const c = word[i];\n    const current = computeIndex(c);\n    if (!ws.children[current]) return false;\n    ws = ws.children[current];\n  }\n  return ws.isWord;\n};\n\n/**\n * Returns if there is any word in the trie that starts with the given prefix.\n * @param {string} prefix\n * @return {boolean}\n */\nTrie.prototype.startsWith = function(prefix) {\n  let ws = this.root;\n  for (let i = 0; i < prefix.length; i++) {\n    const c = prefix[i];\n    const current = computeIndex(c);\n    if (!ws.children[current]) return false;\n    ws = ws.children[current];\n  }\n  return true;\n};\n\n/**\n * Your Trie object will be instantiated and called as such:\n * var obj = new Trie()\n * obj.insert(word)\n * var param_2 = obj.search(word)\n * var param_3 = obj.startsWith(prefix)\n */\n"
+    }
+  ]
 }

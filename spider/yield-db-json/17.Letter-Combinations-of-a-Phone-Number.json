@@ -6,5 +6,10 @@
   "tags": [
     "TODO"
   ],
-  "reslove": []
+  "reslove": [
+    {
+      "lang": "js",
+      "code": "\n/**\n * @param {string} digits\n * @return {string[]}\n */\nconst letterCombinations = function (digits) {\n    if (!digits) {\n        return [];\n    }\n    const len = digits.length;\n    const map = new Map();\n    map.set('2', 'abc');\n    map.set('3', 'def');\n    map.set('4', 'ghi');\n    map.set('5', 'jkl');\n    map.set('6', 'mno');\n    map.set('7', 'pqrs');\n    map.set('8', 'tuv');\n    map.set('9', 'wxyz');\n    const result = [];\n\n    function generate(i, str) {\n        if (i == len) {\n            result.push(str);\n            return;\n        }\n        const tmp = map.get(digits[i]);\n        for (let r = 0; r < tmp.length; r++) {\n            generate(i + 1, str + tmp[r]);\n        }\n    }\n    generate(0, '');\n    return result;\n};\n"
+    }
+  ]
 }

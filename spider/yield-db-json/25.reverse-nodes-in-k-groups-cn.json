@@ -14,6 +14,10 @@
     {
       "lang": "python",
       "code": "\nclass Solution:\n    def reverseKGroup(self, head: ListNode, k: int) -> ListNode:\n        if head is None or k < 2:\n            return head\n        dummy = ListNode(0)\n        dummy.next = head\n        start = dummy\n        end = head\n        count = 0\n        while end:\n            count += 1\n            if count % k == 0:\n                start = self.reverse(start, end.next)\n                end = start.next\n            else:\n                end = end.next\n        return dummy.next\n\n    def reverse(self, start, end):\n        prev, curr = start, start.next\n        first = curr\n        while curr != end:\n            temp = curr.next\n            curr.next = prev\n            prev = curr\n            curr = temp\n        start.next = prev\n        first.next = curr\n        return first\n"
+    },
+    {
+      "lang": "js",
+      "code": "\n/**\n * @param {ListNode} head\n * @param {number} k\n * @return {ListNode}\n */\nvar reverseKGroup = function(head, k) {\n  // 标兵\n  let dummy = new ListNode()\n  dummy.next = head\n  let [start, end] = [dummy, dummy.next]\n  let count = 0\n  while(end) {\n    count++\n    if (count % k === 0) {\n      start = reverseList(start, end.next)\n      end = start.next\n    } else {\n      end = end.next\n    }\n  }\n  return dummy.next\n\n  // 翻转stat -> end的链表\n  function reverseList(start, end) {\n    let [pre, cur] = [start, start.next]\n    const first = cur\n    while(cur !== end) {\n      let next = cur.next\n      cur.next = pre\n      pre = cur\n      cur = next\n    }\n    start.next = pre\n    first.next = cur\n    return first\n  }\n};\n\n"
     }
   ]
 }

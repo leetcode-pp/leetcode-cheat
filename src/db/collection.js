@@ -1,4 +1,4 @@
-import * as questions from '../../spider/yield-db-json'
+import * as questions from '../../spider/yield-db-json/'
 
 
 console.log(questions)

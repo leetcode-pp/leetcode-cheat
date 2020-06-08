@@ -10,6 +10,14 @@
     {
       "lang": "python",
       "code": "\n# 非递归写法\nclass Solution:\n    def isUgly(self, num: int) -> bool:\n        if num <= 0:\n            return False\n        for i in (2, 3, 5):\n            while num % i == 0:\n                num /= i\n        return num == 1\n"
+    },
+    {
+      "lang": "js",
+      "code": "\n\n  while(num % 2 === 0)   num = num / 2;\n  while(num % 3 === 0)   num = num / 3;\n  while(num % 5 === 0)   num = num / 5;\n\n  return num === 1;\n\n"
+    },
+    {
+      "lang": "js",
+      "code": "\n/*\n * @lc app=leetcode id=263 lang=javascript\n *\n * [263] Ugly Number\n */\n/**\n * @param {number} num\n * @return {boolean}\n */\nvar isUgly = function(num) {\n  // TAG: 数论\n  if (num <= 0) return false;\n  if (num === 1) return true;\n\n  const list = [2, 3, 5];\n\n  if (list.includes(num)) return true;\n\n  for (let i of list) {\n    if (num % i === 0) return isUgly(Math.floor(num / i));\n  }\n  return false;\n};\n"
     }
   ]
 }

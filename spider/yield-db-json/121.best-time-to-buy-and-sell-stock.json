@@ -10,6 +10,10 @@
     {
       "lang": "python",
       "code": "\nclass Solution:\n    def maxProfit(self, prices: 'List[int]') -> int:\n        if not prices: return 0\n\n        min_price = float('inf')\n        max_profit = 0\n\n        for price in prices:\n            if price < min_price:\n                min_price = price\n            elif max_profit < price - min_price:\n                max_profit = price - min_price\n        return max_profit\n"
+    },
+    {
+      "lang": "js",
+      "code": "\n/**\n * @param {number[]} prices\n * @return {number}\n */\nvar maxProfit = function(prices) {\n    let min = prices[0];\n    let profit = 0;\n    // 7 1 5 3 6 4\n    for(let i = 1; i < prices.length; i++) {\n        if (prices[i] > prices[i -1]) {\n            profit = Math.max(profit, prices[i] - min);\n        } else {\n            min = Math.min(min, prices[i]);;\n        }\n    }\n\n    return profit;\n};\n"
     }
   ]
 }

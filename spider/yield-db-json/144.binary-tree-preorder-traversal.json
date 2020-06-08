@@ -6,5 +6,10 @@
   "tags": [
     "TODO"
   ],
-  "reslove": []
+  "reslove": [
+    {
+      "lang": "js",
+      "code": "\n/*\n * @lc app=leetcode id=144 lang=javascript\n *\n * [144] Binary Tree Preorder Traversal\n *\n * https://leetcode.com/problems/binary-tree-preorder-traversal/description/\n *\n * algorithms\n * Medium (50.36%)\n * Total Accepted:    314K\n * Total Submissions: 621.2K\n * Testcase Example:  '[1,null,2,3]'\n *\n * Given a binary tree, return the preorder traversal of its nodes' values.\n *\n * Example:\n *\n *\n * Input: [1,null,2,3]\n * ⁠  1\n * ⁠   \\\n * ⁠    2\n * ⁠   /\n * ⁠  3\n *\n * Output: [1,2,3]\n *\n *\n * Follow up: Recursive solution is trivial, could you do it iteratively?\n *\n */\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @return {number[]}\n */\nvar preorderTraversal = function(root) {\n  // 1. Recursive solution\n\n  // if (!root) return [];\n\n  // return [root.val].concat(preorderTraversal(root.left)).concat(preorderTraversal(root.right));\n\n  // 2. iterative solutuon\n\n  if (!root) return [];\n  const ret = [];\n  const stack = [root];\n  let t = stack.pop();\n\n  while (t) {\n    ret.push(t.val);\n    if (t.right) {\n      stack.push(t.right);\n    }\n    if (t.left) {\n      stack.push(t.left);\n    }\n    t = stack.pop();\n  }\n\n  return ret;\n};\n"
+    }
+  ]
 }

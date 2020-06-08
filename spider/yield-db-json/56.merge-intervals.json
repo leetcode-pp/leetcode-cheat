@@ -6,5 +6,10 @@
   "tags": [
     "TODO"
   ],
-  "reslove": []
+  "reslove": [
+    {
+      "lang": "js",
+      "code": "\n\n\n/*\n * @lc app=leetcode id=56 lang=javascript\n *\n * [56] Merge Intervals\n */\n/**\n * @param {number[][]} intervals\n * @return {number[][]}\n */\n\nfunction intersected(a, b) {\n  if (a[0] > b[1] || a[1] < b[0]) return false;\n  return true;\n}\n\nfunction mergeTwo(a, b) {\n  return [Math.min(a[0], b[0]), Math.max(a[1], b[1])];\n}\nvar merge = function(intervals) {\n  // 这种算法需要先排序\n  intervals.sort((a, b) => a[0] - b[0]);\n  for (let i = 0; i < intervals.length - 1; i++) {\n    const cur = intervals[i];\n    const next = intervals[i + 1];\n\n    if (intersected(cur, next)) {\n      intervals[i] = undefined;\n      intervals[i + 1] = mergeTwo(cur, next);\n    }\n  }\n  return intervals.filter(q => q);\n};\n"
+    }
+  ]
 }

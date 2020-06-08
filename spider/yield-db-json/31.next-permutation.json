@@ -14,6 +14,10 @@
     {
       "lang": "python",
       "code": "\nclass Solution:\n    def nextPermutation(self, nums):\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        :param list nums\n        \"\"\"\n        # 第一步，从后往前，找到下降点\n        down_index = None\n        for i in range(len(nums)-2, -1, -1):\n            if nums[i] < nums[i+1]:\n                down_index = i\n                break\n        # 如果没有下降点，重新排列\n        if down_index is None:\n            nums.reverse()\n        # 如果有下降点\n        else:\n            # 第二步，从后往前，找到比下降点大的数，对换位置\n            for i in range(len(nums)-1, i, -1):\n                if nums[down_index] < nums[i]:\n                    nums[down_index], nums[i] = nums[i], nums[down_index]\n                    break\n            # 第三步，重新排列下降点之后的数\n            i, j = down_index+1, len(nums)-1\n            while i < j:\n                nums[i], nums[j] = nums[j], nums[i]\n                i += 1\n                j -= 1\n"
+    },
+    {
+      "lang": "js",
+      "code": "\n/*\n * @lc app=leetcode id=31 lang=javascript\n *\n * [31] Next Permutation\n */\n\nfunction reverseRange(A, i, j) {\n  while (i < j) {\n    const temp = A[i];\n    A[i] = A[j];\n    A[j] = temp;\n    i++;\n    j--;\n  }\n}\n/**\n * @param {number[]} nums\n * @return {void} Do not return anything, modify nums in-place instead.\n */\nvar nextPermutation = function(nums) {\n  // 时间复杂度O(n) 空间复杂度O(1)\n  if (nums == null || nums.length <= 1) return;\n\n  let i = nums.length - 2;\n  // 从后往前找到第一个降序的,相当于找到了我们的回溯点\n  while (i > -1 && nums[i + 1] <= nums[i]) i--;\n\n  // 如果找了就swap\n  if (i > -1) {\n    let j = nums.length - 1;\n    // 找到从右边起第一个大于nums[i]的，并将其和nums[i]进行交换\n    // 因为如果交换的数字比nums[i]还要小肯定不符合题意\n    while (nums[j] <= nums[i]) j--;\n    const temp = nums[i];\n    nums[i] = nums[j];\n    nums[j] = temp;\n  }\n\n  // 最后我们只需要将剩下的元素从左到右，依次填入当前最小的元素就可以保证是大于当前排列的最小值了\n  // [i + 1, A.length -1]的元素进行反转\n\n  reverseRange(nums, i + 1, nums.length - 1);\n};\n"
     }
   ]
 }

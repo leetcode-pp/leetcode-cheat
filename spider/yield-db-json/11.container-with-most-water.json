@@ -6,5 +6,14 @@
   "tags": [
     "TODO"
   ],
-  "reslove": []
+  "reslove": [
+    {
+      "lang": "js",
+      "code": "\n   // 这个解法比较暴力，效率比较低\n    // 时间复杂度是O(n^2)\n    let max = 0;\n    for(let i = 0; i < height.length; i++) {\n        for(let j = i + 1; j < height.length; j++) {\n            const currentArea = Math.abs(i - j) * Math.min(height[i], height[j]);\n            if (currentArea > max) {\n                max = currentArea;\n            }\n        }\n    }\n    return max;\n\n"
+    },
+    {
+      "lang": "js",
+      "code": "\n/**\n * @param {number[]} height\n * @return {number}\n */\nvar maxArea = function(height) {\n    if (!height || height.length <= 1) return 0;\n    \n    let leftPos = 0;\n    let rightPos = height.length - 1;\n    let max = 0;\n    while(leftPos < rightPos) {\n        \n        const currentArea = Math.abs(leftPos - rightPos) * Math.min(height[leftPos] , height[rightPos]);\n        if (currentArea > max) {\n            max = currentArea;\n        }\n        // 更新小的\n        if (height[leftPos] < height[rightPos]) {\n            leftPos++;\n        } else { // 如果相等就随便了\n            rightPos--;\n        }\n    }\n\n    return max;\n};\n"
+    }
+  ]
 }

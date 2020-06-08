@@ -6,5 +6,10 @@
   "tags": [
     "TODO"
   ],
-  "reslove": []
+  "reslove": [
+    {
+      "lang": "js",
+      "code": "\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} l1\n * @param {ListNode} l2\n * @return {ListNode}\n */\nvar addTwoNumbers = function(l1, l2) {\n  if (l1 === null || l2 === null) return null\n\n  // 使用dummyHead可以简化对链表的处理，dummyHead.next指向新链表\n  let dummyHead = new ListNode(0)\n  let cur1 = l1\n  let cur2 = l2\n  let cur = dummyHead // cur用于计算新链表\n  let carry = 0 // 进位标志\n\n  while (cur1 !== null || cur2 !== null) {\n    let val1 = cur1 !== null ? cur1.val : 0\n    let val2 = cur2 !== null ? cur2.val : 0\n    let sum = val1 + val2 + carry\n    let newNode = new ListNode(sum % 10) // sum%10取模结果范围为0~9，即为当前节点的值\n    carry = sum >= 10 ? 1 : 0 // sum>=10，carry=1，表示有进位\n    cur.next = newNode\n    cur = cur.next\n\n    if (cur1 !== null) {\n      cur1 = cur1.next\n    }\n\n    if (cur2 !== null) {\n      cur2 = cur2.next\n    }\n  }\n\n  if (carry > 0) {\n    // 如果最后还有进位，新加一个节点\n    cur.next = new ListNode(carry)\n  }\n\n  return dummyHead.next\n};\n"
+    }
+  ]
 }

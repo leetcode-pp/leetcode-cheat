@@ -6,5 +6,10 @@
   "tags": [
     "TODO"
   ],
-  "reslove": []
+  "reslove": [
+    {
+      "lang": "js",
+      "code": "\n\n\n/*\n * @lc app=leetcode id=90 lang=javascript\n *\n * [90] Subsets II\n *\n * https://leetcode.com/problems/subsets-ii/description/\n *\n * algorithms\n * Medium (41.53%)\n * Total Accepted:    197.1K\n * Total Submissions: 469.1K\n * Testcase Example:  '[1,2,2]'\n *\n * Given a collection of integers that might contain duplicates, nums, return\n * all possible subsets (the power set).\n * \n * Note: The solution set must not contain duplicate subsets.\n * \n * Example:\n * \n * \n * Input: [1,2,2]\n * Output:\n * [\n * ⁠ [2],\n * ⁠ [1],\n * ⁠ [1,2,2],\n * ⁠ [2,2],\n * ⁠ [1,2],\n * ⁠ []\n * ]\n * \n * \n */\nfunction backtrack(list, tempList, nums, start) {\n    list.push([...tempList]);\n    for(let i = start; i < nums.length; i++) {\n        // 和78.subsets的区别在于这道题nums可以有重复\n        // 因此需要过滤这种情况\n        if (i > start && nums[i] === nums[i - 1]) continue;\n        tempList.push(nums[i]);\n        backtrack(list, tempList, nums, i + 1)\n        tempList.pop();\n    }\n}\n/**\n * @param {number[]} nums\n * @return {number[][]}\n */\nvar subsetsWithDup = function(nums) {\n    const list = [];\n    backtrack(list, [], nums.sort((a, b) => a - b), 0, [])\n    return list;\n};\n"
+    }
+  ]
 }

@@ -10,6 +10,10 @@
     {
       "lang": "python",
       "code": "\ns = '(())())'\n"
+    },
+    {
+      "lang": "js",
+      "code": "\n// 用栈来解\nvar longestValidParentheses = function(s) {\n  let stack = new Array()\n  let longest = 0\n  stack.push(-1)\n  for(let i = 0; i < s.length; i++) {\n    if (s[i] === '(') {\n      stack.push(i)\n    } else {\n      stack.pop()\n      if (stack.length === 0) {\n        stack.push(i)\n      } else {\n        longest = Math.max(longest, i - stack[stack.length - 1])\n      }\n    }\n  }\n  return longest\n};\n"
     }
   ]
 }

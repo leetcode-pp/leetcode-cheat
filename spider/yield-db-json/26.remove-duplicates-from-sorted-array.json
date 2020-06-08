@@ -10,6 +10,10 @@
     {
       "lang": "python",
       "code": "\nclass Solution:\n    def removeDuplicates(self, nums: List[int]) -> int:\n        if nums:\n            slow = 0\n            for fast in range(1, len(nums)):\n                if nums[fast] != nums[slow]:\n                    slow += 1\n                    nums[slow] = nums[fast]\n            return slow + 1\n        else:\n            return 0\n"
+    },
+    {
+      "lang": "js",
+      "code": "\n/**\n * @param {number[]} nums\n * @return {number}\n */\nvar removeDuplicates = function(nums) {\n    const size = nums.length;\n    if(size==0) return 0;\n    let slowP = 0;\n    for (let fastP = 0; fastP < size; fastP++) {\n        if (nums[fastP] !== nums[slowP]) {\n            slowP++;\n            nums[slowP] = nums[fastP]\n        }\n    }\n    return slowP + 1;\n};\n"
     }
   ]
 }
