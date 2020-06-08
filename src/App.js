@@ -44,11 +44,17 @@ const columns = [
     dataIndex: "tags",
     key: "tags",
     render: (tags) => (
-      <>
+      <div>
         {tags.map((tag) => {
-          return <TagOrLink text={tagMapper[tag.id].text} link={tag.link} />;
+          return (
+            <TagOrLink
+              key={tag.id}
+              text={tagMapper[tag.id].text}
+              link={tag.link}
+            />
+          );
         })}
-      </>
+      </div>
     ),
   },
 ];
@@ -73,13 +79,13 @@ function App() {
       {show ? (
         <Tabs defaultActiveKey="0">
           <TabPane tab="前置知识" key="0">
-            {problems[problemId].pre.map(({ link, text }) => (
-              <TagOrLink text={text} link={link} />
+            {problems[problemId].pre.map(({ id, link, text }) => (
+              <TagOrLink key={id} text={text} link={link} />
             ))}
           </TabPane>
           <TabPane tab="关键点" key="1">
-            {problems[problemId].keyPoints.map(({ link, text }) => (
-              <TagOrLink text={text} link={link} />
+            {problems[problemId].keyPoints.map(({ id, link, text }) => (
+              <TagOrLink key={id} text={text} link={link} />
             ))}
           </TabPane>
           <TabPane tab="题解" key="2">
@@ -95,7 +101,11 @@ function App() {
           <TabPane tab="代码" key="3">
             <div className="code-block">
               {problems[problemId].code.map((c) => (
-                <div className="row" style={{ marginTop: "10px" }}>
+                <div
+                  key={c.language}
+                  className="row"
+                  style={{ marginTop: "10px" }}
+                >
                   <span className="language language-js">{c.language}</span>
                   <Button
                     type="primary"
