@@ -1,13 +1,13 @@
 const Utils = require('./utils')
 const Logger = require('./Logger')
-const { SUPPORT_LANGUAGE, DB_JSON_OUTPUT_DIR } = require('./constants')
+const { SUPPORT_LANGUAGE, DB_JSON_OUTPUT_DIR, RAW_MARKDOWN_OUTPUT_DIR } = require('./constants')
 
 
 
 
 const genertateLeetcodeToJson = () => {
 
-const rowMarkdowns = Utils.getDirsFileName('spider/raw-markdown')
+const rowMarkdowns = Utils.getDirsFileName(RAW_MARKDOWN_OUTPUT_DIR).filter(name => !name.endsWith('.en.md'))
   
 rowMarkdowns.forEach(filename => {
  
@@ -18,7 +18,7 @@ rowMarkdowns.forEach(filename => {
 
    Logger.success(`开始读取${filename}`)
 
-   markdown = Utils.readFileSync(`spider/raw-markdown/`,filename)
+   markdown = Utils.readFileSync(RAW_MARKDOWN_OUTPUT_DIR,filename)
 
    Logger.success(`读取${filename}完毕`)
 
@@ -40,8 +40,8 @@ rowMarkdowns.forEach(filename => {
     markdown.replace(Utils.genRegByLang(lang), (noUseMatch, $1) => {
 
         languageResloved.push({
-            lang,
-            code: $1
+            language:lang,
+            text:$1,
         })
 
     })
@@ -50,12 +50,39 @@ rowMarkdowns.forEach(filename => {
     /**
      *  TODO 这边解析字段不全 
      */
-  
+     
+     const [ questionID, name, ] = filename.split('.')
+
     let oCustomStruct = {
-      question: filename.slice(0,-3),
-      companys: ['TODO'],
-      tags: ['TODO'],
-      reslove: languageResloved
+      id: questionID,
+      name,
+      company: [
+        {
+          name: "阿里巴巴",
+        }
+      ],
+      // todo
+      tags: [
+        {
+          id: "recursion",
+          text: "递归",
+          link: null,
+        }
+      ],
+      pre: [
+        {
+          text: "辅助栈",
+          link: null,
+        }
+      ],
+      keyPoints: [
+        {
+          text: "辅助栈",
+          link: null,
+        },
+      ],
+      solution: `https://github.com/azl397985856/leetcode/blob/master/problems/${filename}`,
+      code: languageResloved,
     }
 
     
@@ -67,14 +94,32 @@ rowMarkdowns.forEach(filename => {
     Logger.success(`生成 "${filename}" 完毕`)
 
    })
-   
-
-
 
  })
 
+}
+
+
+const generateCollectionIndexFile = () => {
+   Logger.success('开始生产index文件')
+   const jsonsName = Utils.getDirsFileName(DB_JSON_OUTPUT_DIR)
+
+   let sRootContent = `
+    export const db_collection = {
+       ${ jsonsName.reduce((acc, next) => {
+         return acc + ('"' + next.split('.')[1] + '":' + JSON.stringify(require('../spider/yield-db-json/' + next), null ,4) + ',\n')
+        },'') }
+     }
+   `
+    
+    Utils.writeFileSync('src/db','root.db.js',sRootContent)
+    Logger.success('index文件生成完毕')
 
 }
 
+
+
 Utils.mkdirSync(DB_JSON_OUTPUT_DIR)
+
 genertateLeetcodeToJson()
+generateCollectionIndexFile()

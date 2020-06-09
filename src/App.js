@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Tabs, Tag, Button, Table, Empty, message } from "antd";
-
+import { Tabs, Tag, Button, Table, Empty, message,Collapse } from "antd";
+import ReactMarkdown from 'react-markdown'
 import { copy } from "./utils";
 import db from "./db/db";
 
@@ -8,8 +8,11 @@ import "antd/dist/antd.css";
 import "./App.css";
 
 const { TabPane } = Tabs;
+const { Panel } = Collapse;
 const { problems, tags: tagMapper } = db;
 const dataSource = Object.values(problems);
+
+const formatCodeToMarkDown = (code,lang) => `\`\`\`${lang}\n${code}\`\`\`\n`
 
 function TagOrLink({ link, text }) {
   return link !== null ? (
@@ -94,8 +97,10 @@ function App() {
           </TabPane>
           <TabPane tab="代码" key="3">
             <div className="code-block">
+              <Collapse>
               {problems[problemId].code.map((c) => (
-                <div className="row" style={{ marginTop: "10px" }}>
+                <Panel header={
+                  <div className="row" style={{ marginTop: "10px" }}>
                   <span className="language language-js">{c.language}</span>
                   <Button
                     type="primary"
@@ -109,7 +114,12 @@ function App() {
                     复制
                   </Button>
                 </div>
+                }>
+                  <ReactMarkdown source={formatCodeToMarkDown(c.text,c.language)} />
+               
+                </Panel>
               ))}
+              </Collapse>
             </div>
           </TabPane>
           <TabPane tab="公司" key="4">
