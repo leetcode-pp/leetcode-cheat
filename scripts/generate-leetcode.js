@@ -1,12 +1,13 @@
 const Utils = require('./utils')
 const Logger = require('./Logger')
-const { support_language } = require('./constants')
+const { SUPPORT_LANGUAGE, DB_JSON_OUTPUT_DIR } = require('./constants')
 
 
 
 
 const genertateLeetcodeToJson = () => {
-const rowMarkdowns = Utils.getDirsFileName('spider/row-markdown')
+
+const rowMarkdowns = Utils.getDirsFileName('spider/raw-markdown')
   
 rowMarkdowns.forEach(filename => {
  
@@ -17,7 +18,7 @@ rowMarkdowns.forEach(filename => {
 
    Logger.success(`开始读取${filename}`)
 
-   markdown = Utils.readFileSync(`spider/row-markdown/`,filename)
+   markdown = Utils.readFileSync(`spider/raw-markdown/`,filename)
 
    Logger.success(`读取${filename}完毕`)
 
@@ -34,7 +35,7 @@ rowMarkdowns.forEach(filename => {
 
    markdown = markdown.replace(/```javascript/g, '```js')
     
-   support_language.forEach(lang => {
+   SUPPORT_LANGUAGE.forEach(lang => {
        
     markdown.replace(Utils.genRegByLang(lang), (noUseMatch, $1) => {
 
@@ -45,8 +46,11 @@ rowMarkdowns.forEach(filename => {
 
     })
 
-     
-
+    
+    /**
+     *  TODO 这边解析字段不全 
+     */
+  
     let oCustomStruct = {
       question: filename.slice(0,-3),
       companys: ['TODO'],
@@ -72,4 +76,5 @@ rowMarkdowns.forEach(filename => {
 
 }
 
+Utils.mkdirSync(DB_JSON_OUTPUT_DIR)
 genertateLeetcodeToJson()

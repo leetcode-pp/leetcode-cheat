@@ -10,7 +10,7 @@
 
 # production
 /build
-/spider
+/spider/**
 
 # misc
 .DS_Store

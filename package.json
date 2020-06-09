@@ -16,8 +16,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "auto": "node scripts/curl-leetcode.js && node scripts/generate-leetcode.js"
-    
+    "crawl": "node scripts/curl-leetcode.js && node scripts/generate-leetcode.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -37,6 +36,7 @@
   "devDependencies": {
     "cheerio": "^1.0.0-rc.3",
     "iconv-lite": "^0.5.1",
-    "log4js": "^6.3.0"
+    "log4js": "^6.3.0",
+    "mkdirp": "^1.0.4"
   }
 }

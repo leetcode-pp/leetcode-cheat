@@ -31,7 +31,7 @@ class LeetCodeProvider {
                     let sHtml = Iconv.decode(body, 'utf-8').toString()
                     cheerio.load(sHtml)('.js-navigation-item .content .js-navigation-open ').each((idx,ele)=> aProblemTitles.push(ele.attribs['title']) )
                      Logger.success('获取问题列表成功')
-                     ok(aProblemTitles)
+                     ok(aProblemTitles.filter(name => !name.endsWith('.en.md')))
                  }
             })
 
