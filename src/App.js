@@ -8,16 +8,18 @@ import "antd/dist/antd.css";
 import "./App.css";
 
 const { TabPane } = Tabs;
-const { problems, tags: tagMapper } = db;
+const { problems } = db;
 const dataSource = Object.values(problems);
 
-function TagOrLink({ link, text }) {
+function TagOrLink({ link, text, style, color }) {
   return link !== null ? (
     <a className="link" href={link} rel="noopener noreferrer" target="_blank">
       <Button type="link">{text}</Button>
     </a>
   ) : (
-    <Tag color="orange">{text}</Tag>
+    <div style={style}>
+      <Tag color={color}>{text}</Tag>
+    </div>
   );
 }
 
@@ -25,7 +27,8 @@ const columns = [
   {
     title: "题目",
     dataIndex: "name",
-    key: "name",
+    width: "300",
+    align: "center",
     render: (name, row) => (
       <a
         className="link"
@@ -42,15 +45,21 @@ const columns = [
   {
     title: "标签",
     dataIndex: "tags",
-    key: "tags",
+    align: "center",
     render: (tags) => (
       <div>
         {tags.map((tag) => {
           return (
             <TagOrLink
+              style={{
+                width: "100px",
+                display: "inline-block",
+                margin: "4px 0",
+              }}
               key={tag.id}
-              text={tagMapper[tag.id].text}
+              text={tag.text}
               link={tag.link}
+              color={tag.color}
             />
           );
         })}
@@ -79,13 +88,13 @@ function App() {
       {show ? (
         <Tabs defaultActiveKey="0">
           <TabPane tab="前置知识" key="0">
-            {problems[problemId].pre.map(({ id, link, text }) => (
-              <TagOrLink key={id} text={text} link={link} />
+            {problems[problemId].pre.map(({ id, link, text, tag }) => (
+              <TagOrLink key={id} text={text} link={link} color={tag.color} />
             ))}
           </TabPane>
           <TabPane tab="关键点" key="1">
-            {problems[problemId].keyPoints.map(({ id, link, text }) => (
-              <TagOrLink key={id} text={text} link={link} />
+            {problems[problemId].keyPoints.map(({ id, link, text, tag }) => (
+              <TagOrLink key={text} text={text} link={link} color={tag.color} />
             ))}
           </TabPane>
           <TabPane tab="题解" key="2">
@@ -101,11 +110,7 @@ function App() {
           <TabPane tab="代码" key="3">
             <div className="code-block">
               {problems[problemId].code.map((c) => (
-                <div
-                  key={c.language}
-                  className="row"
-                  style={{ marginTop: "10px" }}
-                >
+                <div key={c.text} className="row" style={{ marginTop: "10px" }}>
                   <span className="language language-js">{c.language}</span>
                   <Button
                     type="primary"
