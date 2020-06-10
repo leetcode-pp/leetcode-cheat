@@ -7,6 +7,8 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "antd": "^4.3.1",
+    "highlight.js": "^10.0.3",
+    "marked": "^1.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-markdown": "^4.3.1",
@@ -17,7 +19,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "crawl": "node scripts/curl-leetcode.js && node scripts/generate-leetcode.js"
+    "crawl": "node scripts/curlleetcode.js && node scripts/generateleetcode.js"
   },
   "eslintConfig": {
     "extends": "react-app"

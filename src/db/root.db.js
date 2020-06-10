@@ -31,7 +31,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/**\n * @param {number[]} nums\n * @param {number} target\n * @return {number[]}\n */\nconst twoSum = function (nums, target) {\n    const map = new Map();\n    for (let i = 0; i < nums.length; i++) {\n        const diff = target - nums[i];\n        if (map.has(diff)) {\n            return [map.get(diff), i];\n        }\n        map.set(nums[i], i);\n    }\n}\n"
+            "text": "\n/**\n * @param {number[]} nums\n * @param {number} target\n * @return {number[]}\n */\nconst twoSum = function (nums, target) {\n  const map = new Map();\n  for (let i = 0; i < nums.length; i++) {\n    const diff = target - nums[i];\n    if (map.has(diff)) {\n      return [map.get(diff), i];\n    }\n    map.set(nums[i], i);\n  }\n};\n"
         }
     ]
 },
@@ -63,7 +63,20 @@
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/101.symmetric-tree.md",
-    "code": []
+    "code": [
+        {
+            "language": "py",
+            "text": "\nseen = dict()\nfor i, num in enumerate(nums):\n    seen[i] = num\nfor i, num in enumerate(nums):\n    if  seen[len(nums) - 1 - i] != num:\n      return False\nreturn True\n"
+        },
+        {
+            "language": "py",
+            "text": "\nl = 0\nr = len(nums) - 1\n\nwhile l < r:\n   if nums[l] != nums[r]: return False\n   l += 1\n   r -= 1\nreturn True\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def isSymmetric(self, root: TreeNode) -> bool:\n        def dfs(root1, root2):\n            if root1 == root2: return True\n            if not root1 or not root2: return False\n            if root1.val != root2.val: return False\n            return dfs(root1.left, root2.right) and dfs(root1.right, root2.left)\n        if not root: return True\n        return dfs(root.left, root.right)\n"
+        }
+    ]
 },
 "capacity-to-ship-packages-within-d-days-cn":{
     "id": "1011",
@@ -95,16 +108,16 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1011.capacity-to-ship-packages-within-d-days-cn.md",
     "code": [
         {
-            "language": "python",
+            "language": "js",
+            "text": "\n/**\n * @param {number[]} weights\n * @param {number} D\n * @return {number}\n */\nvar shipWithinDays = function(weights, D) {\n  let high = weights.reduce((acc, cur) => acc + cur)\n  let low = 0\n\n  while(low < high) {\n    let mid = Math.floor((high + low) / 2)\n    if (canShip(mid)) {\n      high = mid\n    } else {\n      low = mid + 1\n    }\n  }\n\n  return low\n\n  function canShip(opacity) {\n    let remain = opacity\n    let count = 1\n    for (let weight of weights) {\n      if (weight > opacity) {\n        return false\n      }\n      remain -= weight\n      if (remain < 0) {\n        count++\n        remain = opacity - weight\n      }\n      if (count > D) {\n        return false\n      }\n    }\n    return count <= D\n  }\n};\n"
+        },
+        {
+            "language": "py",
             "text": "\ndef canShip(opacity):\n    # 指定船的容量是否可以在D天运完\n    lo = 0\n    hi = total\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if canShip(mid):\n            hi = mid\n        else:\n            lo = mid + 1\n\n    return lo\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def shipWithinDays(self, weights: List[int], D: int) -> int:\n        lo = 0\n        hi = 0\n\n        def canShip(opacity):\n            days = 1\n            remain = opacity\n            for weight in weights:\n                if weight > opacity:\n                    return False\n                remain -= weight\n                if remain < 0:\n                    days += 1\n                    remain = opacity - weight\n            return days <= D\n\n        for weight in weights:\n            hi += weight\n        while lo < hi:\n            mid = (lo + hi) // 2\n            if canShip(mid):\n                hi = mid\n            else:\n                lo = mid + 1\n\n        return lo\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/**\n * @param {number[]} weights\n * @param {number} D\n * @return {number}\n */\nvar shipWithinDays = function(weights, D) {\n  let high = weights.reduce((acc, cur) => acc + cur)\n  let low = 0\n\n  while(low < high) {\n    let mid = Math.floor((high + low) / 2)\n    if (canShip(mid)) {\n      high = mid\n    } else {\n      low = mid + 1\n    }\n  }\n\n  return low\n\n  function canShip(opacity) {\n    let remain = opacity\n    let count = 1\n    for (let weight of weights) {\n      if (weight > opacity) {\n        return false\n      }\n      remain -= weight\n      if (remain < 0) {\n        count++\n        remain = opacity - weight\n      }\n      if (count > D) {\n        return false\n      }\n    }\n    return count <= D\n  }\n};\n"
         }
     ]
 },
@@ -138,16 +151,16 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1011.capacity-to-ship-packages-within-d-days-en.md",
     "code": [
         {
-            "language": "python",
+            "language": "js",
+            "text": "\r\n/**\r\n * @param {number[]} weights\r\n * @param {number} D\r\n * @return {number}\r\n */\r\nvar shipWithinDays = function(weights, D) {\r\n  let high = weights.reduce((acc, cur) => acc + cur)\r\n  let low = 0\r\n\r\n  while(low < high) {\r\n    let mid = Math.floor((high + low) / 2)\r\n    if (canShip(mid)) {\r\n      high = mid\r\n    } else {\r\n      low = mid + 1\r\n    }\r\n  }\r\n\r\n  return low\r\n\r\n  function canShip(opacity) {\r\n    let remain = opacity\r\n    let count = 1\r\n    for (let weight of weights) {\r\n      if (weight > opacity) {\r\n        return false\r\n      }\r\n      remain -= weight\r\n      if (remain < 0) {\r\n        count++\r\n        remain = opacity - weight\r\n      }\r\n      if (count > D) {\r\n        return false\r\n      }\r\n    }\r\n    return count <= D\r\n  }\r\n};\r\n"
+        },
+        {
+            "language": "py",
             "text": "\r\ndef canShip(opacity):\r\n    # Whether the capacity of the specified ship can be shipped in D days\r\n    lo = 0\r\n    hi = total\r\n    while lo < hi:\r\n        mid = (lo + hi) // 2\r\n        if canShip(mid):\r\n            hi = mid\r\n        else:\r\n            lo = mid + 1\r\n    return lo\r\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\r\nclass Solution:\r\n    def shipWithinDays(self, weights: List[int], D: int) -> int:\r\n        lo = 0\r\n        hi = 0\r\n\r\n        def canShip(opacity):\r\n            days = 1\r\n            remain = opacity\r\n            for weight in weights:\r\n                if weight > opacity:\r\n                    return False\r\n                remain -= weight\r\n                if remain < 0:\r\n                    days += 1\r\n                    remain = opacity - weight\r\n            return days <= D\r\n\r\n        for weight in weights:\r\n            hi += weight\r\n        while lo < hi:\r\n            mid = (lo + hi) // 2\r\n            if canShip(mid):\r\n                hi = mid\r\n            else:\r\n                lo = mid + 1\r\n\r\n        return lo\r\n"
-        },
-        {
-            "language": "js",
-            "text": "\r\n/**\r\n * @param {number[]} weights\r\n * @param {number} D\r\n * @return {number}\r\n */\r\nvar shipWithinDays = function(weights, D) {\r\n  let high = weights.reduce((acc, cur) => acc + cur)\r\n  let low = 0\r\n\r\n  while(low < high) {\r\n    let mid = Math.floor((high + low) / 2)\r\n    if (canShip(mid)) {\r\n      high = mid\r\n    } else {\r\n      low = mid + 1\r\n    }\r\n  }\r\n\r\n  return low\r\n\r\n  function canShip(opacity) {\r\n    let remain = opacity\r\n    let count = 1\r\n    for (let weight of weights) {\r\n      if (weight > opacity) {\r\n        return false\r\n      }\r\n      remain -= weight\r\n      if (remain < 0) {\r\n        count++\r\n        remain = opacity - weight\r\n      }\r\n      if (count > D) {\r\n        return false\r\n      }\r\n    }\r\n    return count <= D\r\n  }\r\n};\r\n"
         }
     ]
 },
@@ -181,19 +194,19 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1014.best-sightseeing-pair.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def maxScoreSightseeingPair(self, A: List[int]) -> int:\n        n = len(A)\n        res = 0\n        for i in range(n - 1):\n            for j in range(i + 1, n):\n                res = max(res, A[i] + A[j] + i - j)\n        return res\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def maxScoreSightseeingPair(self, A: List[int]) -> int:\n        n = len(A)\n        dp = [float('-inf')] * (n + 1)\n        res = 0\n        for i in range(n):\n            dp[i + 1] = max(dp[i], A[i] + i)\n            res = max(res, dp[i] + A[i] - i)\n        return res\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def maxScoreSightseeingPair(self, A: List[int]) -> int:\n        n = len(A)\n        pre = A[0] + 0\n        res = 0\n        for i in range(1, n):\n            res = max(res, pre + A[i] - i)\n            pre = max(pre, A[i] + i)\n        return res\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def maxScoreSightseeingPair(self, A: List[int]) -> int:\n        n = len(A)\n        pre = A[0] + 0\n        res = 0\n        for i in range(1, n):\n            # res = max(res, pre + A[i] - i)\n            # pre = max(pre, A[i] + i)\n            res = res if res > pre + A[i] - i else pre + A[i] - i\n            pre = pre if pre > A[i] + i else A[i] + i\n        return res\n"
         }
     ]
@@ -228,7 +241,7 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1015.smallest-integer-divisible-by-k.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\n#\n# @lc app=leetcode.cn id=1015 lang=python3\n#\n# [1015] 可被 K 整除的最小整数\n#\n\n# @lc code=start\n\n\nclass Solution:\n    def smallestRepunitDivByK(self, K: int) -> int:\n        if K % 10 in [2, 4, 5, 6, 8]:\n            return - 1\n        seen = set()\n        mod = 0\n        for i in range(1, K + 1):\n            mod = (mod * 10 + 1) % K\n            if mod in seen:\n                return -1\n            if mod == 0:\n                return ix\n            seen.add(mod)\n\n        # @lc code=end\n\n\n"
         }
     ]
@@ -263,11 +276,11 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1019.next-greater-node-in-linked-list.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\ndef monoStack(list):\n    st = []\n    for v in list:\n        while len(st) > 0 and v > st[-1]:\n            st.pop()\n        st.append(v)\n    return st\nmonoStack([5, 4, 2, 1, 3]) # output: [5, 4, 3]\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\n# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.next = None\n\nclass Solution:\n     def nextLargerNodes(self, head):\n        res, st = [], []\n        while head:\n            while len(st) > 0 and head.val > st[-1][1]:\n                res[st.pop()[0]] = head.val\n            st.append((len(res), head.val))\n            res.append(0)\n            head = head.next\n        return res\n"
         }
     ]
@@ -302,12 +315,12 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/102.binary-tree-level-order-traversal.md",
     "code": [
         {
-            "language": "python",
-            "text": "\n# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.left = None\n#         self.right = None\n\nclass Solution:\n    def levelOrder(self, root: TreeNode) -> List[List[int]]:\n        \"\"\"递归法\"\"\"\n        if root is None:\n            return []\n        \n        result = []\n        \n        def add_to_result(level, node):\n            \"\"\"递归函数\n            :param level int 当前在二叉树的层次\n            :param node TreeNode 当前节点\n            \"\"\"\n            if level > len(result) - 1:\n                result.append([])\n                \n            result[level].append(node.val)\n            if node.left:\n                add_to_result(level+1, node.left)\n            if node.right:\n                add_to_result(level+1, node.right)\n        \n        add_to_result(0, root)\n        return result\n"
-        },
-        {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=102 lang=javascript\n *\n * [102] Binary Tree Level Order Traversal\n *\n * https://leetcode.com/problems/binary-tree-level-order-traversal/description/\n *\n * algorithms\n * Medium (47.18%)\n * Total Accepted:    346.4K\n * Total Submissions: 731.3K\n * Testcase Example:  '[3,9,20,null,null,15,7]'\n *\n * Given a binary tree, return the level order traversal of its nodes' values.\n * (ie, from left to right, level by level).\n *\n *\n * For example:\n * Given binary tree [3,9,20,null,null,15,7],\n *\n *\n * ⁠   3\n * ⁠  / \\\n * ⁠ 9  20\n * ⁠   /  \\\n * ⁠  15   7\n *\n *\n *\n * return its level order traversal as:\n *\n * [\n * ⁠ [3],\n * ⁠ [9,20],\n * ⁠ [15,7]\n * ]\n *\n *\n */\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @return {number[][]}\n */\nvar levelOrder = function(root) {\n  if (!root) return [];\n  const items = []; // 存放所有节点\n  const queue = [root, null]; // null 简化操作\n  let levelNodes = []; // 存放每一层的节点\n\n  while (queue.length > 0) {\n    const t = queue.shift();\n\n    if (t) {\n      levelNodes.push(t.val)\n      if (t.left) {\n        queue.push(t.left);\n      }\n      if (t.right) {\n        queue.push(t.right);\n      }\n    } else { // 一层已经遍历完了\n      items.push(levelNodes);\n      levelNodes = [];\n      if (queue.length > 0) {\n        queue.push(null)\n      }\n    }\n  }\n\n  return items;\n};\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\n# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.left = None\n#         self.right = None\n\nclass Solution:\n    def levelOrder(self, root: TreeNode) -> List[List[int]]:\n        \"\"\"递归法\"\"\"\n        if root is None:\n            return []\n        \n        result = []\n        \n        def add_to_result(level, node):\n            \"\"\"递归函数\n            :param level int 当前在二叉树的层次\n            :param node TreeNode 当前节点\n            \"\"\"\n            if level > len(result) - 1:\n                result.append([])\n                \n            result[level].append(node.val)\n            if node.left:\n                add_to_result(level+1, node.left)\n            if node.right:\n                add_to_result(level+1, node.right)\n        \n        add_to_result(0, root)\n        return result\n"
         }
     ]
 },
@@ -341,11 +354,11 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1020.number-of-enclaves.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    temp = 0\n    meetEdge = False\n\n    def numEnclaves(self, A: List[List[int]]) -> int:\n        cnt = 0\n        m = len(A)\n        n = len(A[0])\n        visited = set()\n\n        def dfs(i, j):\n            if i < 0 or i >= m or j < 0 or j >= n or (i, j) in visited:\n                return\n            visited.add((i, j))\n            if A[i][j] == 1:\n                self.temp += 1\n            else:\n                return\n            if i == 0 or i == m - 1 or j == 0 or j == n - 1:\n                self.meetEdge = True\n            dfs(i + 1, j)\n            dfs(i - 1, j)\n            dfs(i, j + 1)\n            dfs(i, j - 1)\n        for i in range(m):\n            for j in range(n):\n                dfs(i, j)\n                if not self.meetEdge:\n                    cnt += self.temp\n                self.meetEdge = False\n                self.temp = 0\n        return cnt\n\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\n#\n# @lc app=leetcode.cn id=1020 lang=python3\n#\n# [1020] 飞地的数量\n#\n\n# @lc code=start\n\n\nclass Solution:\n\n    def numEnclaves(self, A: List[List[int]]) -> int:\n        cnt = 0\n        m = len(A)\n        n = len(A[0])\n\n        def dfs(i, j):\n            if i < 0 or i >= m or j < 0 or j >= n or A[i][j] == 0:\n                return\n            A[i][j] = 0\n\n            dfs(i + 1, j)\n            dfs(i - 1, j)\n            dfs(i, j + 1)\n            dfs(i, j - 1)\n        for i in range(m):\n            dfs(i, 0)\n            dfs(i, n - 1)\n        for j in range(1, n - 1):\n            dfs(0, j)\n            dfs(m - 1, j)\n        for i in range(m):\n            for j in range(n):\n                if A[i][j] == 1:\n                    cnt += 1\n        return cnt\n\n        # @lc code=end\n\n"
         }
     ]
@@ -380,11 +393,11 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1023.camelcase-matching.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def isSubsequence(self, s: str, t: str) -> bool:\n        i = 0\n        j = 0\n        while j < len(t):\n            if i < len(s) and s[i] == t[j]:\n                i += 1\n                j += 1\n            else:\n                j += 1\n            if i >= len (s):\n                return True\n        return i == len(s)\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def camelMatch(self, queries: List[str], pattern: str) -> List[bool]:\n        res = []\n        for query in queries:\n            i = 0\n            j = 0\n            while i < len(query):\n                if j < len(pattern) and query[i] == pattern[j]:\n                    i += 1\n                    j += 1\n                elif query[i].islower():\n                    i += 1\n                else:\n                    break\n            if i == len(query) and j == len(pattern):\n                res.append(True)\n            else:\n                res.append(False)\n        return res\n"
         }
     ]
@@ -454,7 +467,7 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1031.maximum-sum-of-two-non-overlapping-subarrays.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def maxSumTwoNoOverlap(self, a: List[int], l: int, m: int) -> int:\n        \"\"\"\n\n        define asum[i] as the sum of subarray, a[0:i]\n        define maxl[i] as the maximum sum of l-length subarray in a[0:i]\n        define maxm[i] as the maximum sum of m-length subarray in a[0:i]\n        define msum[i] as the maximum sum of non-overlap l-length subarray and m-length subarray\n\n        case 1: a[i] is both not in l-length subarray and m-length subarray, then msum[i] = msum[i - 1]\n        case 2: a[i] is in l-length subarray, then msum[i] = asum[i] - asum[i-l] + maxm[i-l]\n        case 3: a[i] is in m-length subarray, then msum[i] = asum[i] - asum[i-m] + maxl[i-m]\n\n        so, msum[i] = max(msum[i - 1], asum[i] - asum[i-l] + maxl[i-l], asum[i] - asum[i-m] + maxm[i-m])\n        \"\"\"\n\n        alen, tlen = len(a), l + m\n        asum = [0] * (alen + 1)\n        maxl = [0] * (alen + 1)\n        maxm = [0] * (alen + 1)\n        msum = [0] * (alen + 1)\n\n        for i in range(tlen):\n            if i == 1:\n                asum[i] = a[i - 1]\n            elif i > 1:\n                asum[i] = asum[i - 1] + a[i - 1]\n            if i >= l:\n                maxl[i] = max(maxl[i - 1], asum[i] - asum[i - l])\n            if i >= m:\n                maxm[i] = max(maxm[i - 1], asum[i] - asum[i - m])\n\n        for i in range(tlen, alen + 1):\n            asum[i] = asum[i - 1] + a[i - 1]\n            suml = asum[i] - asum[i - l]\n            summ = asum[i] - asum[i - m]\n            maxl[i] = max(maxl[i - 1], suml)\n            maxm[i] = max(maxm[i - 1], summ)\n            msum[i] = max(msum[i - 1], suml + maxm[i - l], summ + maxl[i - m])\n\n        return msum[-1]\n"
         }
     ]
@@ -489,16 +502,16 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/104.maximum-depth-of-binary-tree.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def maxDepth(self, root: TreeNode) -> int:\n        if not root: return 0\n        q, depth = [root, None], 1\n        while q:\n            node = q.pop(0)\n            if node:\n                if node.left: q.append(node.left)\n                if node.right: q.append(node.right)\n            elif q:\n                q.append(None)\n                depth += 1\n        return depth\n"
-        },
-        {
             "language": "js",
             "text": "\nvar maxDepth = function(root) {\n  if (!root) return 0;\n  if (!root.left && !root.right) return 1;\n  return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));\n};\n"
         },
         {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=104 lang=javascript\n *\n * [104] Maximum Depth of Binary Tree\n */\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @return {number}\n */\nvar maxDepth = function(root) {\n  if (!root) return 0;\n  if (!root.left && !root.right) return 1;\n\n  // 层次遍历 BFS\n  let cur = root;\n  const queue = [root, null];\n  let depth = 1;\n\n  while ((cur = queue.shift()) !== undefined) {\n    if (cur === null) {\n      // 注意⚠️： 不处理会无限循环，进而堆栈溢出\n      if (queue.length === 0) return depth;\n      depth++;\n      queue.push(null);\n      continue;\n    }\n    const l = cur.left;\n    const r = cur.right;\n\n    if (l) queue.push(l);\n    if (r) queue.push(r);\n  }\n\n  return depth;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def maxDepth(self, root: TreeNode) -> int:\n        if not root: return 0\n        q, depth = [root, None], 1\n        while q:\n            node = q.pop(0)\n            if node:\n                if node.left: q.append(node.left)\n                if node.right: q.append(node.right)\n            elif q:\n                q.append(None)\n                depth += 1\n        return depth\n"
         }
     ]
 },
@@ -610,7 +623,7 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1104.path-in-zigzag-labelled-binary-tree.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def pathInZigZagTree(self, label: int) -> List[int]:\n        level = 0\n        res = []\n        # for each level, ranged from 2 ** (level - 1) to 2 ** level - 1\n        while 2 ** level - 1 < label:\n            level += 1\n\n        while level > 0:\n            res.insert(0, label)\n            label = 2 ** (level - 1) + 2 ** level - 1 - label\n            label //= 2\n            level -= 1\n        return res\n"
         }
     ]
@@ -645,12 +658,12 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/113.path-sum-ii.md",
     "code": [
         {
-            "language": "python",
-            "text": "\n# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.left = None\n#         self.right = None\n\nclass Solution:\n    def pathSum(self, root: TreeNode, sum: int) -> List[List[int]]:\n        if not root:\n            return []\n        \n        result = []\n        \n        def trace_node(pre_list, left_sum, node):\n            new_list = pre_list.copy()\n            new_list.append(node.val)\n            if not node.left and not node.right:\n                # 这个判断可以和上面的合并，但分开写会快几毫秒，可以省去一些不必要的判断\n                if left_sum == node.val:\n                    result.append(new_list)\n            else:\n                if node.left:\n                    trace_node(new_list, left_sum-node.val, node.left)\n                if node.right:\n                    trace_node(new_list, left_sum-node.val, node.right)\n        \n        trace_node([], sum, root)\n        return result\n"
-        },
-        {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=113 lang=javascript\n *\n * [113] Path Sum II\n */\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\nfunction backtrack(root, sum, res, tempList) {\n  if (root === null) return;\n  if (root.left === null && root.right === null && sum === root.val)\n    return res.push([...tempList, root.val]);\n\n  tempList.push(root.val);\n  backtrack(root.left, sum - root.val, res, tempList);\n\n  backtrack(root.right, sum - root.val, res, tempList);\n  tempList.pop();\n}\n/**\n * @param {TreeNode} root\n * @param {number} sum\n * @return {number[][]}\n */\nvar pathSum = function(root, sum) {\n  if (root === null) return [];\n  const res = [];\n  backtrack(root, sum, res, []);\n  return res;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\n# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.left = None\n#         self.right = None\n\nclass Solution:\n    def pathSum(self, root: TreeNode, sum: int) -> List[List[int]]:\n        if not root:\n            return []\n        \n        result = []\n        \n        def trace_node(pre_list, left_sum, node):\n            new_list = pre_list.copy()\n            new_list.append(node.val)\n            if not node.left and not node.right:\n                # 这个判断可以和上面的合并，但分开写会快几毫秒，可以省去一些不必要的判断\n                if left_sum == node.val:\n                    result.append(new_list)\n            else:\n                if node.left:\n                    trace_node(new_list, left_sum-node.val, node.left)\n                if node.right:\n                    trace_node(new_list, left_sum-node.val, node.right)\n        \n        trace_node([], sum, root)\n        return result\n"
         }
     ]
 },
@@ -684,11 +697,11 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1131.maximum-of-absolute-value-expression.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def maxAbsValExpr(self, arr1: List[int], arr2: List[int]) -> int:\n        A = []\n        B = []\n        C = []\n        D = []\n        for i in range(len(arr1)):\n            a, b, c, d = arr1[i] + arr2[i] + i, arr1[i] - arr2[i] + \\\n                i, arr2[i] - arr1[i] + i, -1 * arr2[i] - arr1[i] + i\n            A.append(a)\n            B.append(b)\n            C.append(c)\n            D.append(d)\n        return max(max(A) - min(A), max(B) - min(B), max(C) - min(C), max(D) - min(D))\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def maxAbsValExpr(self, arr1: List[int], arr2: List[int]) -> int:\n        # 曼哈顿距离模板代码\n        sign = [1, -1]\n        n = len(arr1)\n        dists = []\n        # 三维模板\n        for a in sign:\n            for b in sign:\n                for c in sign:\n                    maxDist = float('-inf')\n                    minDist = float('inf')\n                    # 分别计算所有点的曼哈顿距离\n                    for i in range(n):\n                        dist = arr1[i] * a + arr2[i] * b + i * c\n                        maxDist = max(maxDist, dist)\n                        minDist = min(minDist, dist)\n                    # 将所有的点的曼哈顿距离放到dists中\n                    dists.append(maxDist - minDist)\n        return max(dists)\n"
         }
     ]
@@ -727,7 +740,7 @@
             "text": "\n  class OptimizeWaterDistribution {\n    public int minCostToSupplyWater(int n, int[] wells, int[][] pipes) {\n      List<EdgeCost> costs = new ArrayList<>();\n      for (int i = 1; i <= n; i++) {\n        costs.add(new EdgeCost(0, i, wells[i - 1]));\n      }\n      for (int[] p : pipes) {\n        costs.add(new EdgeCost(p[0], p[1], p[2]));\n      }\n      Collections.sort(costs);\n      int minCosts = 0;\n      UnionFind uf = new UnionFind(n);\n      for (EdgeCost edge : costs) {\n        int rootX = uf.find(edge.node1);\n        int rootY = uf.find(edge.node2);\n        if (rootX == rootY) continue;\n        minCosts += edge.cost;\n        uf.union(edge.node1, edge.node2);\n        // for each union, we connnect one node\n        n--;\n        // if all nodes already connected, terminate early\n        if (n == 0) {\n          return minCosts;\n        }\n      }\n      return minCosts;\n    }\n  \n    class EdgeCost implements Comparable<EdgeCost> {\n      int node1;\n      int node2;\n      int cost;\n      public EdgeCost(int node1, int node2, int cost) {\n        this.node1 = node1;\n        this.node2 = node2;\n        this.cost = cost;\n      }\n  \n      @Override\n      public int compareTo(EdgeCost o) {\n        return this.cost - o.cost;\n      }\n    }\n    \n    class UnionFind {\n      int[] parent;\n      int[] rank;\n      public UnionFind(int n) {\n        parent = new int[n + 1];\n        for (int i = 0; i <= n; i++) {\n          parent[i] = i;\n        }\n        rank = new int[n + 1];\n      }\n      public int find(int x) {\n        return x == parent[x] ? x : find(parent[x]);\n      }\n      public void union(int x, int y) {\n        int px = find(x);\n        int py = find(y);\n        if (px == py) return;\n        if (rank[px] >= rank[py]) {\n          parent[py] = px;\n          rank[px] += rank[py];\n        } else {\n          parent[px] = py;\n          rank[py] += rank[px];\n        }\n      }\n    }\n  }\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def minCostToSupplyWater(self, n: int, wells: List[int], pipes: List[List[int]]) -> int:\n        union_find = {i: i for i in range(n + 1)}\n        \n        def find(x):\n            return x if x == union_find[x] else find(union_find[x])\n        \n        def union(x, y):\n            px = find(x)\n            py = find(y)\n            union_find[px] = py\n            \n        graph_wells = [[cost, 0, i] for i, cost in enumerate(wells, 1)]\n        graph_pipes = [[cost, i, j] for i, j, cost in pipes]\n        min_costs = 0\n        for cost, x, y in sorted(graph_wells + graph_pipes):\n            if find(x) == find(y):\n                continue\n            union(x, y)\n            min_costs += cost\n            n -= 1\n            if n == 0:\n                return min_costs\n"
         }
     ]
@@ -766,7 +779,7 @@
             "text": "\n  class OptimizeWaterDistribution {\n    public int minCostToSupplyWater(int n, int[] wells, int[][] pipes) {\n      List<EdgeCost> costs = new ArrayList<>();\n      for (int i = 1; i <= n; i++) {\n        costs.add(new EdgeCost(0, i, wells[i - 1]));\n      }\n      for (int[] p : pipes) {\n        costs.add(new EdgeCost(p[0], p[1], p[2]));\n      }\n      Collections.sort(costs);\n      int minCosts = 0;\n      UnionFind uf = new UnionFind(n);\n      for (EdgeCost edge : costs) {\n        int rootX = uf.find(edge.node1);\n        int rootY = uf.find(edge.node2);\n        if (rootX == rootY) continue;\n        minCosts += edge.cost;\n        uf.union(edge.node1, edge.node2);\n        // for each union, we connnect one node\n        n--;\n        // if all nodes already connected, terminate early\n        if (n == 0) {\n          return minCosts;\n        }\n      }\n      return minCosts;\n    }\n  \n    class EdgeCost implements Comparable<EdgeCost> {\n      int node1;\n      int node2;\n      int cost;\n      public EdgeCost(int node1, int node2, int cost) {\n        this.node1 = node1;\n        this.node2 = node2;\n        this.cost = cost;\n      }\n  \n      @Override\n      public int compareTo(EdgeCost o) {\n        return this.cost - o.cost;\n      }\n    }\n    \n    class UnionFind {\n      int[] parent;\n      int[] rank;\n      public UnionFind(int n) {\n        parent = new int[n + 1];\n        for (int i = 0; i <= n; i++) {\n          parent[i] = i;\n        }\n        rank = new int[n + 1];\n      }\n      public int find(int x) {\n        return x == parent[x] ? x : find(parent[x]);\n      }\n      public void union(int x, int y) {\n        int px = find(x);\n        int py = find(y);\n        if (px == py) return;\n        if (rank[px] >= rank[py]) {\n          parent[py] = px;\n          rank[px] += rank[py];\n        } else {\n          parent[px] = py;\n          rank[py] += rank[px];\n        }\n      }\n    }\n  }\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def minCostToSupplyWater(self, n: int, wells: List[int], pipes: List[List[int]]) -> int:\n        union_find = {i: i for i in range(n + 1)}\n        \n        def find(x):\n            return x if x == union_find[x] else find(union_find[x])\n        \n        def union(x, y):\n            px = find(x)\n            py = find(y)\n            union_find[px] = py\n            \n        graph_wells = [[cost, 0, i] for i, cost in enumerate(wells, 1)]\n        graph_pipes = [[cost, i, j] for i, j, cost in pipes]\n        min_costs = 0\n        for cost, x, y in sorted(graph_wells + graph_pipes):\n            if find(x) == find(y):\n                continue\n            union(x, y)\n            min_costs += cost\n            n -= 1\n            if n == 0:\n                return min_costs\n"
         }
     ]
@@ -801,15 +814,15 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1186.maximum-subarray-sum-with-one-deletion.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\n  class Solution:\n    def maximumSum(self, arr: List[int]) -> int:\n        res = arr[0]\n        def maxSubSum(arr, skip):\n            res = maxSub = float(\"-inf\")\n           \n            for i in range(len(arr)):\n                if i == skip:\n                    continue\n                maxSub = max(arr[i], maxSub + arr[i])\n                res = max(res, maxSub)\n            return res\n\t\t# 这里循环到了len(arr)项，表示的是一个都不删除的情况\n        for i in range(len(arr) + 1):\n            res = max(res, maxSubSum(arr, i))\n        return res\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def maximumSum(self, arr: List[int]) -> int:\n        n = len(arr)\n        l = [arr[0]] * n\n        r = [arr[n - 1]] * n\n        if n == 1:\n            return arr[0]\n        res = arr[0]\n        for i in range(1, n):\n            l[i] = max(l[i - 1] + arr[i], arr[i])\n            res = max(res, l[i])\n        for i in range(n - 2, -1, -1):\n            r[i] = max(r[i + 1] + arr[i], arr[i])\n            res = max(res, r[i])\n        for i in range(1, n - 1):\n            res = max(res, l[i - 1] + r[i + 1])\n      \n        return res\n\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\n#\n# @lc app=leetcode.cn id=1186 lang=python3\n#\n# [1186] 删除一次得到子数组最大和\n#\n\n# @lc code=start\n\n\nclass Solution:\n    def maximumSum(self, arr: List[int]) -> int:\n        # DP\n        max0 = arr[0]\n        max1 = arr[0]\n        res = arr[0]\n        n = len(arr)\n        if n == 1:\n            return max0\n\n        for i in range(1, n):\n            # 先更新max1，再更新max0，因为max1用到了上一个max0\n            max1 = max(max1 + arr[i], max0)\n            max0 = max(max0 + arr[i], arr[i])\n            res = max(res, max0, max1)\n        return res\n\n\n# @lc code=end\n\n\n"
         }
     ]
@@ -844,12 +857,16 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/121.best-time-to-buy-and-sell-stock.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def maxProfit(self, prices: 'List[int]') -> int:\n        if not prices: return 0\n\n        min_price = float('inf')\n        max_profit = 0\n\n        for price in prices:\n            if price < min_price:\n                min_price = price\n            elif max_profit < price - min_price:\n                max_profit = price - min_price\n        return max_profit\n"
-        },
-        {
             "language": "js",
             "text": "\n/**\n * @param {number[]} prices\n * @return {number}\n */\nvar maxProfit = function(prices) {\n    let min = prices[0];\n    let profit = 0;\n    // 7 1 5 3 6 4\n    for(let i = 1; i < prices.length; i++) {\n        if (prices[i] > prices[i -1]) {\n            profit = Math.max(profit, prices[i] - min);\n        } else {\n            min = Math.min(min, prices[i]);;\n        }\n    }\n\n    return profit;\n};\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\n/**\n * 系统上C++的测试用例中的输入有[]，因此需要加一个判断\n */\nclass Solution {\npublic:\n    int maxProfit(vector<int>& prices) {\n        if (prices.empty()) return 0;\n        auto min = prices[0];\n        auto profit = 0;\n        for (auto i = 1; i < prices.size(); ++i) {\n            if (prices[i] > prices[i -1]) {\n                profit = max(profit, prices[i] - min);\n            } else {\n                min = std::min(min, prices[i]);;\n            }\n        }\n        return profit;\n    }\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def maxProfit(self, prices: 'List[int]') -> int:\n        if not prices: return 0\n\n        min_price = float('inf')\n        max_profit = 0\n\n        for price in prices:\n            if price < min_price:\n                min_price = price\n            elif max_profit < price - min_price:\n                max_profit = price - min_price\n        return max_profit\n"
         }
     ]
 },
@@ -883,11 +900,11 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1218.longest-arithmetic-subsequence-of-given-difference.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\n  def longestSubsequence(self, arr: List[int], difference: int) -> int:\n        n = len(arr)\n        res = 1\n        for i in range(n):\n            count = 1\n            for j in range(i + 1, n):\n                if arr[i] + difference * count == arr[j]:\n                    count += 1\n\n                if count > res:\n                    res = count\n\n        return res\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\n#\n# @lc app=leetcode.cn id=1218 lang=python3\n#\n# [1218] 最长定差子序列\n#\n\n# @lc code=start\n\n\nclass Solution:\n\n    # 动态规划\n    def longestSubsequence(self, arr: List[int], difference: int) -> int:\n        n = len(arr)\n        res = 1\n        dp = {}\n        for num in arr:\n            dp[num] = 1\n            if num - difference in dp:\n                dp[num] = dp[num - difference] + 1\n\n        return max(dp.values())\n\n# @lc code=end\n"
         }
     ]
@@ -922,12 +939,12 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/122.best-time-to-buy-and-sell-stock-ii.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def maxProfit(self, prices: 'List[int]') -> int:\n        gains = [prices[i] - prices[i-1] for i in range(1, len(prices))\n                 if prices[i] - prices[i-1] > 0]\n        return sum(gains)\n#评论区里都讲这是一道开玩笑的送分题.\n"
-        },
-        {
             "language": "js",
             "text": "\n/**\n * @param {number[]} prices\n * @return {number}\n */\nvar maxProfit = function(prices) {\n    let profit = 0;\n\n    for(let i = 1; i < prices.length; i++) {\n        if (prices[i] > prices[i -1]) {\n            profit  = profit + prices[i] - prices[i - 1];\n        }\n    }\n\n    return profit;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def maxProfit(self, prices: 'List[int]') -> int:\n        gains = [prices[i] - prices[i-1] for i in range(1, len(prices))\n                 if prices[i] - prices[i-1] > 0]\n        return sum(gains)\n#评论区里都讲这是一道开玩笑的送分题.\n"
         }
     ]
 },
@@ -961,23 +978,23 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1227.airplane-seat-assignment-probability.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def nthPersonGetsNthSeat(self, n: int) -> float:\n        if n == 1:\n            return 1\n        if n == 2:\n            return 0.5\n        res = 1 / n\n        for i in range(2, n):\n            res += self.nthPersonGetsNthSeat(n - i + 1) * 1 / n\n        return res\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    seen = {}\n\n    def nthPersonGetsNthSeat(self, n: int) -> float:\n        if n == 1:\n            return 1\n        if n == 2:\n            return 0.5\n        if n in self.seen:\n            return self.seen[n]\n        res = 1 / n\n        for i in range(2, n):\n            res += self.nthPersonGetsNthSeat(n - i + 1) * 1 / n\n        self.seen[n] = res\n        return res\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def nthPersonGetsNthSeat(self, n: int) -> float:\n        if n == 1:\n            return 1\n        if n == 2:\n            return 0.5\n\n        dp = [1, .5] * n\n\n        for i in range(2, n):\n            dp[i] = 1 / n\n            for j in range(2, i):\n                dp[i] += dp[i - j + 1] * 1 / n\n        return dp[-1]\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def nthPersonGetsNthSeat(self, n: int) -> float:\n        if n == 1:\n            return 1\n        if n == 2:\n            return 0.5\n\n        dp = [1, .5] * n\n\n        for i in range(2, n):\n            dp[i] = 1/n+(n-2)/n * dp[n-1]\n        return dp[-1]\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def nthPersonGetsNthSeat(self, n: int) -> float:\n        return 1 if n == 1 else .5\n\n"
         }
     ]
@@ -1051,12 +1068,12 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/125.valid-palindrome.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def isPalindrome(self, s: str) -> bool:\n        left, right = 0, len(s) - 1\n        while left < right:\n            if not s[left].isalnum():\n                left += 1\n                continue\n            if not s[right].isalnum():\n                right -= 1\n                continue\n            if s[left].lower() == s[right].lower():\n                left += 1\n                right -= 1\n            else:\n                break\n        return right <= left\n\n    def isPalindrome2(self, s: str) -> bool:\n        \"\"\"\n        使用语言特性进行求解\n        \"\"\"\n        s = ''.join(i for i in s if i.isalnum()).lower()\n        return s == s[::-1]\n"
-        },
-        {
             "language": "js",
             "text": "\n\n/*\n * @lc app=leetcode id=125 lang=javascript\n *\n * [125] Valid Palindrome\n */\n// 只处理英文字符（题目忽略大小写，我们前面全部转化成了小写， 因此这里我们只判断小写）和数字\nfunction isValid(c) {\n  const charCode = c.charCodeAt(0);\n  const isDigit =\n    charCode >= \"0\".charCodeAt(0) && charCode <= \"9\".charCodeAt(0);\n  const isChar = charCode >= \"a\".charCodeAt(0) && charCode <= \"z\".charCodeAt(0);\n\n  return isDigit || isChar;\n}\n/**\n * @param {string} s\n * @return {boolean}\n */\nvar isPalindrome = function(s) {\n  s = s.toLowerCase();\n  let left = 0;\n  let right = s.length - 1;\n\n  while (left < right) {\n    if (!isValid(s[left])) {\n      left++;\n      continue;\n    }\n    if (!isValid(s[right])) {\n      right--;\n      continue;\n    }\n\n    if (s[left] === s[right]) {\n      left++;\n      right--;\n    } else {\n      break;\n    }\n  }\n\n  return right <= left;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def isPalindrome(self, s: str) -> bool:\n        left, right = 0, len(s) - 1\n        while left < right:\n            if not s[left].isalnum():\n                left += 1\n                continue\n            if not s[right].isalnum():\n                right -= 1\n                continue\n            if s[left].lower() == s[right].lower():\n                left += 1\n                right -= 1\n            else:\n                break\n        return right <= left\n\n    def isPalindrome2(self, s: str) -> bool:\n        \"\"\"\n        使用语言特性进行求解\n        \"\"\"\n        s = ''.join(i for i in s if i.isalnum()).lower()\n        return s == s[::-1]\n"
         }
     ]
 },
@@ -1090,11 +1107,11 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1260.shift-2d-grid.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nfrom copy import deepcopy\n\nclass Solution:\n    def shiftGrid(self, grid: List[List[int]], k: int) -> List[List[int]]:\n        n = len(grid)\n        m = len(grid[0])\n        for _ in range(k):\n            old = deepcopy(grid)\n            for i in range(n):\n                for j in range(m):\n                    if j == m - 1:\n                            grid[(i + 1) % n][0] = old[i][j]\n                    elif i == n - 1 and j == m - 1:\n                        grid[0][0] = old[i][j]\n                    else:\n                        grid[i][j + 1] = old[i][j]\n        return grid\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\n#\n# @lc app=leetcode.cn id=1260 lang=python3\n#\n# [1260] 二维网格迁移\n#\n\n# @lc code=start\n\n\nclass Solution:\n    def shiftGrid(self, grid: List[List[int]], k: int) -> List[List[int]]:\n        n = len(grid)\n        m = len(grid[0])\n        # 二维到一维\n        arr = [grid[i][j] for i in range(n) for j in range(m)]\n        # 取模，缩小k的范围，避免无意义的运算\n        k %= m * n\n        res = []\n        # 首尾交换法\n\n        def reverse(l, r):\n            while l < r:\n                t = arr[l]\n                arr[l] = arr[r]\n                arr[r] = t\n                l += 1\n                r -= 1\n        # 三次旋转\n        reverse(0, m * n - k - 1)\n        reverse(m * n - k, m * n - 1)\n        reverse(0, m * n - 1)\n        # 一维到二维\n        row = []\n        for i in range(m * n):\n            if i > 0 and i % m == 0:\n                res.append(row)\n                row = []\n            row.append(arr[i])\n        res.append(row)\n\n        return res\n\n# @lc code=end\n\n"
         }
     ]
@@ -1129,15 +1146,15 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1261.find-elements-in-a-contaminated-binary-tree.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\n# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.left = None\n#         self.right = None\n\nclass FindElements:\n    node = None\n    def __init__(self, root: TreeNode):\n        def recover(node):\n            if not node:\n                return node;\n            if node.left:\n                node.left.val =  2 * node.val + 1\n            if node.right:\n                 node.right.val = 2 * node.val + 2\n            recover(node.left)\n            recover(node.right)\n            return node\n        root.val = 0\n        self.node = recover(root)\n\n\n    def find(self, target: int) -> bool:\n        def findInTree(node, target):\n            if not node:\n                return False\n            if node.val == target:\n                return True\n            return findInTree(node.left, target) or findInTree(node.right, target)\n        return findInTree(self.node, target)\n\n\n\n\n# Your FindElements object will be instantiated and called as such:\n# obj = FindElements(root)\n# param_1 = obj.find(target)\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\n# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.left = None\n#         self.right = None\n\nclass FindElements:\n    def __init__(self, root: TreeNode):\n        # set 不能放在init外侧。 因为测试用例之间不会销毁FindElements的变量\n        self.seen = set()\n        def recover(node):\n            if not node:\n                return node;\n            if node.left:\n                node.left.val =  2 * node.val + 1\n                self.seen.add(node.left.val)\n            if node.right:\n                 node.right.val = 2 * node.val + 2\n                 self.seen.add(node.right.val)\n            recover(node.left)\n            recover(node.right)\n            return node\n        root.val = 0\n        self.seen.add(0)\n        self.node = recover(root)\n\n\n    def find(self, target: int) -> bool:\n        return target in self.seen\n\n\n\n\n# Your FindElements object will be instantiated and called as such:\n# obj = FindElements(root)\n# param_1 = obj.find(target)\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\n# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.left = None\n#         self.right = None\n\nclass FindElements:\n    node = None\n    def __init__(self, root: TreeNode):\n        def recover(node):\n            if not node:\n                return node;\n            if node.left:\n                node.left.val =  2 * node.val + 1\n            if node.right:\n                 node.right.val = 2 * node.val + 2\n            recover(node.left)\n            recover(node.right)\n            return node\n        root.val = 0\n        self.node = recover(root)\n\n\n    def find(self, target: int) -> bool:\n        node = self.node\n        for bit in bin(target+1)[3:]:\n            node = node and (node.left, node.right)[int(bit)]\n        return bool(node)\n\n\n\n\n# Your FindElements object will be instantiated and called as such:\n# obj = FindElements(root)\n# param_1 = obj.find(target)\n"
         }
     ]
@@ -1172,23 +1189,23 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1262.greatest-sum-divisible-by-three.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def maxSumDivThree(self, nums: List[int]) -> int:\n        self.res = 0\n        def backtrack(temp, start):\n            total = sum(temp)\n            if total % 3 == 0:\n                self.res = max(self.res, total)\n            for i in range(start, len(nums)):\n                temp.append(nums[i])\n                backtrack(temp, i + 1)\n                temp.pop(-1)\n\n\n        backtrack([], 0)\n\n        return self.res\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def maxSumDivThree(self, nums: List[int]) -> int:\n        one = []\n        two = []\n        total = 0\n\n        for num in nums:\n            total += num\n            if num % 3 == 1:\n                one.append(num)\n            if num % 3 == 2:\n                two.append(num)\n        one.sort()\n        two.sort()\n        if total % 3 == 0:\n            return total\n        elif total % 3 == 1 and one:\n            if len(two) >= 2 and one[0] > two[0] + two[1]:\n                return total - two[0] - two[1]\n            return total - one[0]\n        elif total % 3 == 2 and two:\n            if len(one) >= 2 and two[0] > one[0] + one[1]:\n                return total - one[0] - one[1]\n            return total - two[0]\n        return 0\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def maxSumDivThree(self, nums: List[int]) -> int:\n        one = [float('inf')] * 2\n        two = [float('inf')] * 2\n        total = 0\n\n        for num in nums:\n            total += num\n            if num % 3 == 1:\n                if num < one[0]:\n                    t = one[0]\n                    one[0] = num\n                    one[1] = t\n                elif num < one[1]:\n                    one[1] = num\n            if num % 3 == 2:\n                if num < two[0]:\n                    t = two[0]\n                    two[0] = num\n                    two[1] = t\n                elif num < two[1]:\n                    two[1] = num\n        if total % 3 == 0:\n            return total\n        elif total % 3 == 1 and one:\n            if len(two) >= 2 and one[0] > two[0] + two[1]:\n                return total - two[0] - two[1]\n            return total - one[0]\n        elif total % 3 == 2 and two:\n            if len(one) >= 2 and two[0] > one[0] + one[1]:\n                return total - one[0] - one[1]\n            return total - two[0]\n        return 0\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def maxSumDivThree(self, nums: List[int]) -> int:\n        state = [0, float('-inf'), float('-inf')]\n\n        for num in nums:\n            if num % 3 == 0:\n                state = [state[0] + num, state[1] + num, state[2] + num]\n            if num % 3 == 1:\n                a = max(state[2] + num, state[0])\n                b = max(state[0] + num, state[1])\n                c = max(state[1] + num, state[2])\n                state = [a, b, c]\n            if num % 3 == 2:\n                a = max(state[1] + num, state[0])\n                b = max(state[2] + num, state[1])\n                c = max(state[0] + num, state[2])\n                state = [a, b, c]\n        return state[0]\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def maxSumDivThree(self, nums: List[int]) -> int:\n        state = [0, float('-inf'), float('-inf')]\n\n        for num in nums:\n            temp = [0] * 3\n            for i in range(3):\n                temp[(i + num) % 3] = max(state[(i + num) % 3], state[i] + num)\n            state = temp\n\n        return state[0]\n"
         }
     ]
@@ -1262,16 +1279,16 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/129.sum-root-to-leaf-numbers.md",
     "code": [
         {
-            "language": "python",
+            "language": "js",
+            "text": "\n/*\n * @lc app=leetcode id=129 lang=javascript\n *\n * [129] Sum Root to Leaf Numbers\n */\nfunction helper(node, cur) {\n  if (node === null) return 0;\n  const next = node.val + cur * 10;\n\n  if (node.left === null && node.right === null) return next;\n\n  const l = helper(node.left, next);\n  const r = helper(node.right, next);\n\n  return l + r;\n}\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @return {number}\n */\nvar sumNumbers = function(root) {\n  // tag: `tree` `dfs` `math`\n  return helper(root, 0);\n};\n"
+        },
+        {
+            "language": "py",
             "text": "\n# class TreeNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.left = None\n#         self.right = None\n\nclass Solution:\n    def sumNumbers(self, root: TreeNode) -> int:\n\n        def helper(node, cur_val):\n            if not node: return 0\n            next_val = cur_val * 10 + node.val\n\n            if not (node.left or node.right):\n                return next_val\n\n            left_val = helper(node.left, next_val)\n            right_val = helper(node.right, next_val)\n\n            return left_val + right_val\n\n        return helper(root, 0)\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def sumNumbers(self, root: TreeNode) -> int:\n        if not root: return 0\n        result = 0\n        node_queue, sum_queue = [root], [root.val]\n        while node_queue:\n            for i in node_queue:\n                cur_node = node_queue.pop(0)\n                cur_val = sum_queue.pop(0)\n                if cur_node.left:\n                    node_queue.append(cur_node.left)\n                    sum_queue.append(cur_val * 10 + cur_node.left.val)\n                if cur_node.right:\n                    node_queue.append(cur_node.right)\n                    sum_queue.append(cur_val * 10 + cur_node.right.val)\n                if not (cur_node.left or cur_node.right):\n                    result += cur_val\n        return result\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=129 lang=javascript\n *\n * [129] Sum Root to Leaf Numbers\n */\nfunction helper(node, cur) {\n  if (node === null) return 0;\n  const next = node.val + cur * 10;\n\n  if (node.left === null && node.right === null) return next;\n\n  const l = helper(node.left, next);\n  const r = helper(node.right, next);\n\n  return l + r;\n}\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @return {number}\n */\nvar sumNumbers = function(root) {\n  // tag: `tree` `dfs` `math`\n  return helper(root, 0);\n};\n"
         }
     ]
 },
@@ -1309,11 +1326,11 @@
             "text": "\n public int maxFreq(String s, int maxLetters, int minSize, int maxSize) {\n    Map<String, Integer> counter = new HashMap<>();\n    int res = 0;\n    for (int i = 0; i < s.length() - minSize + 1; i++) {\n        String substr = s.substring(i, i + minSize);\n        if (checkNum(substr, maxLetters)) {\n            int newVal = counter.getOrDefault(substr, 0) + 1;\n            counter.put(substr, newVal);\n            res = Math.max(res, newVal);\n        }\n    }\n    return res;\n}\npublic boolean checkNum(String substr, int maxLetters) {\n    Set<Character> set = new HashSet<>();\n    for (int i = 0; i < substr.length(); i++)\n        set.add(substr.charAt(i));\n    return set.size() <= maxLetters;\n}\n\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def maxFreq(self, s: str, maxLetters: int, minSize: int, maxSize: int) -> int:\n        n = len(s)\n        letters = set()\n        cnts = dict()\n        res = 0\n        for i in range(n - minSize + 1):\n            length = minSize\n            while i + length <= n and length <= maxSize:\n                t = s[i:i + length]\n                for c in t:\n                    if len(letters) > maxLetters:\n                        break\n                    letters.add(c)\n                if len(letters) <= maxLetters:\n                    cnts[t] = cnts.get(t, 0) + 1\n                    res = max(res, cnts[t])\n                letters.clear()\n                length += 1\n        return res\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\n def maxFreq(self, s: str, maxLetters: int, minSize: int, maxSize: int) -> int:\n        counter, res = {}, 0\n        for i in range(0, len(s) - minSize + 1):\n            sub = s[i : i + minSize]\n            if len(set(sub)) <= maxLetters:\n                counter[sub] = counter.get(sub, 0) + 1\n                res = max(res, counter[sub])\n        return res;\n\n# @lc code=end\n"
         }
     ]
@@ -1348,12 +1365,12 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/130.surrounded-regions.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def solve(self, board: List[List[str]]) -> None:\n        \"\"\"\n        Do not return anything, modify board in-place instead.\n        \"\"\"\n        # 如果数组长或宽小于等于2，则不需要替换\n        if len(board) <= 2 or len(board[0]) <= 2:\n            return\n        \n        row, col = len(board), len(board[0])\n        \n        def dfs(i, j):\n            \"\"\"\n            深度优先算法，如果符合条件，替换为A并进一步测试，否则停止\n            \"\"\"\n            if i < 0 or j < 0 or i >= row or j >= col or board[i][j] != 'O':\n                return\n            board[i][j] = 'A'\n            \n            dfs(i - 1, j)\n            dfs(i + 1, j)\n            dfs(i, j - 1)\n            dfs(i, j + 1)\n        \n        # 从外围开始\n        for i in range(row):\n            dfs(i, 0)\n            dfs(i, col-1)\n        \n        for j in range(col):\n            dfs(0, j)\n            dfs(row-1, j)\n        \n        # 最后完成替换\n        for i in range(row):\n            for j in range(col):\n                if board[i][j] == 'O':\n                    board[i][j] = 'X'\n                elif board[i][j] == 'A':\n                    board[i][j] = 'O'\n"
-        },
-        {
             "language": "js",
             "text": "\n\n\n\n/*\n * @lc app=leetcode id=130 lang=javascript\n *\n * [130] Surrounded Regions\n */\n// 将O以及周边的O转化为A\nfunction mark(board, i, j, rows, cols) {\n  if (i < 0 || i > rows - 1 || j < 0 || j > cols - 1 || board[i][j] !== \"O\")\n    return;\n\n  board[i][j] = \"A\";\n  mark(board, i + 1, j, rows, cols);\n  mark(board, i - 1, j, rows, cols);\n  mark(board, i, j + 1, rows, cols);\n  mark(board, i, j - 1, rows, cols);\n}\n/**\n * @param {character[][]} board\n * @return {void} Do not return anything, modify board in-place instead.\n */\nvar solve = function(board) {\n  const rows = board.length;\n  if (rows === 0) return [];\n  const cols = board[0].length;\n\n  for (let i = 0; i < rows; i++) {\n    for (let j = 0; j < cols; j++) {\n      if (i === 0 || i == rows - 1 || j === 0 || j === cols - 1) {\n        mark(board, i, j, rows, cols);\n      }\n    }\n  }\n\n  for (let i = 0; i < rows; i++) {\n    for (let j = 0; j < cols; j++) {\n      if (board[i][j] === \"O\") {\n        board[i][j] = \"X\";\n      } else if (board[i][j] === \"A\") {\n        board[i][j] = \"O\";\n      }\n    }\n  }\n\n  return board;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def solve(self, board: List[List[str]]) -> None:\n        \"\"\"\n        Do not return anything, modify board in-place instead.\n        \"\"\"\n        # 如果数组长或宽小于等于2，则不需要替换\n        if len(board) <= 2 or len(board[0]) <= 2:\n            return\n        \n        row, col = len(board), len(board[0])\n        \n        def dfs(i, j):\n            \"\"\"\n            深度优先算法，如果符合条件，替换为A并进一步测试，否则停止\n            \"\"\"\n            if i < 0 or j < 0 or i >= row or j >= col or board[i][j] != 'O':\n                return\n            board[i][j] = 'A'\n            \n            dfs(i - 1, j)\n            dfs(i + 1, j)\n            dfs(i, j - 1)\n            dfs(i, j + 1)\n        \n        # 从外围开始\n        for i in range(row):\n            dfs(i, 0)\n            dfs(i, col-1)\n        \n        for j in range(col):\n            dfs(0, j)\n            dfs(row-1, j)\n        \n        # 最后完成替换\n        for i in range(row):\n            for j in range(col):\n                if board[i][j] == 'O':\n                    board[i][j] = 'X'\n                elif board[i][j] == 'A':\n                    board[i][j] = 'O'\n"
         }
     ]
 },
@@ -1387,12 +1404,12 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/131.palindrome-partitioning.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def partition(self, s: str) -> List[List[str]]:\n        \"\"\"回溯法\"\"\"\n        \n        res = []\n        \n        def helper(s, tmp):\n            \"\"\"\n            如果是空字符串，说明已经处理完毕\n            否则逐个字符往前测试，判断是否是回文\n            如果是，则处理剩余字符串，并将已经得到的列表作为参数\n            \"\"\"\n            if not s:\n                res.append(tmp)\n            for i in range(1, len(s) + 1):\n                if s[:i] == s[:i][::-1]:\n                    helper(s[i:], tmp + [s[:i]])\n        \n        helper(s, [])\n        return res\n"
-        },
-        {
             "language": "js",
             "text": "\n\n\n/*\n * @lc app=leetcode id=131 lang=javascript\n *\n * [131] Palindrome Partitioning\n */\n\nfunction isPalindrom(s) {\n    let left = 0;\n    let right = s.length - 1;\n\n    while(left < right && s[left] === s[right]) {\n        left++;\n        right--;\n    }\n\n    return left >= right;\n}\n function backtrack(s, list, tempList, start) {\n    const sliced = s.slice(start);\n\n    if (isPalindrom(sliced) && (tempList.join(\"\").length === s.length)) list.push([...tempList]);\n\n    for(let i = 0; i < sliced.length; i++) {\n        const sub = sliced.slice(0, i + 1);\n        if (isPalindrom(sub)) {\n            tempList.push(sub);\n        } else {\n            continue;\n        }\n        backtrack(s, list, tempList, start + i + 1);\n        tempList.pop();\n    }\n }\n/**\n * @param {string} s\n * @return {string[][]}\n */\nvar partition = function(s) {\n    // \"aab\"\n    // [\"aa\", \"b\"]\n    // [\"a\", \"a\", \"b\"]\n    const list = [];\n    backtrack(s, list, [], 0);\n    return list;\n};\n\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def partition(self, s: str) -> List[List[str]]:\n        \"\"\"回溯法\"\"\"\n        \n        res = []\n        \n        def helper(s, tmp):\n            \"\"\"\n            如果是空字符串，说明已经处理完毕\n            否则逐个字符往前测试，判断是否是回文\n            如果是，则处理剩余字符串，并将已经得到的列表作为参数\n            \"\"\"\n            if not s:\n                res.append(tmp)\n            for i in range(1, len(s) + 1):\n                if s[:i] == s[:i][::-1]:\n                    helper(s[i:], tmp + [s[:i]])\n        \n        helper(s, [])\n        return res\n"
         }
     ]
 },
@@ -1430,11 +1447,15 @@
             "text": "\n  public int[] xorQueries(int[] arr, int[][] queries) {\n\n        int[] preXor = new int[arr.length];\n        preXor[0] = 0;\n\n        for (int i = 1; i < arr.length; i++)\n            preXor[i] = preXor[i - 1] ^ arr[i - 1];\n\n        int[] res = new int[queries.length];\n\n        for (int i = 0; i < queries.length; i++) {\n\n            int left = queries[i][0], right = queries[i][1];\n            res[i] = arr[right] ^ preXor[right] ^ preXor[left];\n        }\n\n        return res;\n    }\n\n"
         },
         {
-            "language": "python",
+            "language": "cpp",
+            "text": "\nclass Solution {\npublic:\n    vector<int> xorQueries(vector<int>& arr, vector<vector<int>>& queries) {\n        vector<int>res;\n        for(int i=1; i<arr.size(); ++i){\n            arr[i]^=arr[i-1];\n        }\n        for(vector<int>temp :queries){\n            if(temp[0]==0){\n                res.push_back(arr[temp[1]]);\n            }\n            else{\n                res.push_back(arr[temp[0]-1]^arr[temp[1]]);\n            }\n        }\n        return res;\n    }\n};\n"
+        },
+        {
+            "language": "py",
             "text": "\n\nclass Solution:\n    def xorQueries(self, arr: List[int], queries: List[List[int]]) -> List[int]:\n \t\tres = []\n        for (L, R) in queries:\n            i = L\n            xor = 0\n            while i <= R:\n                xor ^= arr[i]\n                i += 1\n            res.append(xor)\n        return res\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\n#\n# @lc app=leetcode.cn id=1218 lang=python3\n#\n# [1218] 最长定差子序列\n#\n\n# @lc code=start\n\n\nclass Solution:\n    def xorQueries(self, arr: List[int], queries: List[List[int]]) -> List[int]:\n\t\tpre = [0]\n        res = []\n        for i in range(len(arr)):\n            pre.append(pre[i] ^ arr[i])\n        for (L, R) in queries:\n            res.append(pre[L] ^ pre[R + 1])\n        return res\n\n# @lc code=end\n"
         }
     ]
@@ -1469,11 +1490,11 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1332.remove-palindromic-subsequences.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\n\nclass Solution:\n    def removePalindromeSub(self, s: str) -> int:\n        if s == '':\n            return 0\n        def isPalindrome(s):\n            l = 0\n            r = len(s) - 1\n            while l < r:\n                if s[l] != s[r]:\n                    return False\n                l += 1\n                r -= 1\n            return True\n        return 1 if isPalindrome(s) else 2\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def removePalindromeSub(self, s: str) -> int:\n        if s == '':\n            return 0\n        return 1 if s == s[::-1] else 2\n\n"
         }
     ]
@@ -1508,7 +1529,7 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1334.find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def findTheCity(self, n: int, edges: List[List[int]], distanceThreshold: int) -> int:\n        # 构建dist矩阵\n        dist = [[float('inf')] * n for _ in  range(n)]\n        for i, j, w in edges:\n            dist[i][j] = w\n            dist[j][i] = w\n        for i in range(n):\n            dist[i][i] = 0\n        for k in range(n):\n            for i in range(n):\n                for j in range(n):\n                    dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])\n\n        # 过滤\n        res = 0\n        minCnt = float('inf')\n        for i in range(n):\n            cnt = 0\n            for d in dist[i]:\n                if d <= distanceThreshold:\n                    cnt += 1\n            if cnt <= minCnt:\n                minCnt = cnt\n                res = i\n        return res\n\n\n"
         }
     ]
@@ -1543,12 +1564,12 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/136.single-number.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def singleNumber(self, nums: List[int]) -> int:\n        single_number = 0\n        for num in nums:\n            single_number ^= num\n        return single_number\n"
-        },
-        {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=136 lang=javascript\n *\n * [136] Single Number\n *\n * https://leetcode.com/problems/single-number/description/\n *\n * algorithms\n * Easy (59.13%)\n * Total Accepted:    429.3K\n * Total Submissions: 724.1K\n * Testcase Example:  '[2,2,1]'\n *\n * Given a non-empty array of integers, every element appears twice except for\n * one. Find that single one.\n *\n * Note:\n *\n * Your algorithm should have a linear runtime complexity. Could you implement\n * it without using extra memory?\n *\n * Example 1:\n *\n *\n * Input: [2,2,1]\n * Output: 1\n *\n *\n * Example 2:\n *\n *\n * Input: [4,1,2,1,2]\n * Output: 4\n *\n *\n */\n/**\n * @param {number[]} nums\n * @return {number}\n */\nvar singleNumber = function(nums) {\n  let ret = 0;\n  for (let index = 0; index < nums.length; index++) {\n    const element = nums[index];\n    ret = ret ^ element;\n  }\n  return ret;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def singleNumber(self, nums: List[int]) -> int:\n        single_number = 0\n        for num in nums:\n            single_number ^= num\n        return single_number\n"
         }
     ]
 },
@@ -1586,15 +1607,15 @@
             "text": "\nclass Solution {\n    public int findTheLongestSubstring(String s) {\n\n        int len = s.length();\n\n        if (len == 0)\n            return 0;\n\n        int[][] preSum = new int[len][5];\n        int start = getIndex(s.charAt(0));\n        if (start != -1)\n            preSum[0][start]++;\n\n        // preSum\n        for (int i = 1; i < len; i++) {\n\n            int idx = getIndex(s.charAt(i));\n\n            for (int j = 0; j < 5; j++) {\n\n                if (idx == j)\n                    preSum[i][j] = preSum[i - 1][j] + 1;\n                else\n                    preSum[i][j] = preSum[i - 1][j];\n            }\n        }\n\n        for (int i = len - 1; i >= 0; i--) {\n\n            for (int j = 0; j < len - i; j++) {\n                if (checkValid(preSum, s, i, i + j))\n                    return i + 1\n            }\n        }\n        return 0\n    }\n\n\n    public boolean checkValid(int[][] preSum, String s, int left, int right) {\n\n        int idx = getIndex(s.charAt(left));\n\n        for (int i = 0; i < 5; i++)\n            if (((preSum[right][i] - preSum[left][i] + (idx == i ? 1 : 0)) & 1) == 1)\n                return false;\n\n        return true;\n    }\n    public int getIndex(char ch) {\n\n        if (ch == 'a')\n            return 0;\n        else if (ch == 'e')\n            return 1;\n        else if (ch == 'i')\n            return 2;\n        else if (ch == 'o')\n            return 3;\n        else if (ch == 'u')\n            return 4;\n        else\n            return -1;\n    }\n}\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\n\nclass Solution:\n    def findTheLongestSubstring(self, s: str) -> int:\n        for i in range(len(s), 0, -1):\n            for j in range(len(s) - i + 1):\n                sub = s[j:j + i]\n                has_odd_vowel = False\n                for vowel in ['a', 'e', 'i', 'o', 'u']:\n                    if sub.count(vowel) % 2 != 0:\n                        has_odd_vowel = True\n                        break\n                if not has_odd_vowel: return  i\n        return 0\n\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    i_mapper = {\n        \"a\": 0,\n        \"e\": 1,\n        \"i\": 2,\n        \"o\": 3,\n        \"u\": 4\n    }\n    def check(self, s, pre, l, r):\n        for i in range(5):\n            if s[l] in self.i_mapper and i == self.i_mapper[s[l]]: cnt = 1\n            else: cnt = 0\n            if (pre[r][i] - pre[l][i] + cnt) % 2 != 0: return False\n        return True\n    def findTheLongestSubstring(self, s: str) -> int:\n        n = len(s)\n\n        pre = [[0] * 5 for _ in range(n)]\n\n        # pre\n        for i in range(n):\n            for j in range(5):\n                if s[i] in self.i_mapper and self.i_mapper[s[i]] == j:\n                    pre[i][j] = pre[i - 1][j] + 1\n                else:\n                    pre[i][j] = pre[i - 1][j]\n        for i in range(n - 1, -1, -1):\n            for j in range(n - i):\n                if self.check(s, pre, j, i + j):\n                    return i + 1\n        return 0\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\n\nclass Solution:\n    def findTheLongestSubstring(self, s: str) -> int:\n        mapper = {\n            \"a\": 1,\n            \"e\": 2,\n            \"i\": 4,\n            \"o\": 8,\n            \"u\": 16\n        }\n        seen = {0: -1}\n        res = cur = 0\n\n        for i in range(len(s)):\n            if s[i] in mapper:\n                cur ^= mapper.get(s[i])\n            # 全部奇偶性都相同，相减一定都是偶数\n            if cur in seen:\n                res = max(res, i - seen.get(cur))\n            else:\n                seen[cur] = i\n        return res\n\n"
         }
     ]
@@ -1697,7 +1718,40 @@
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1449.form-largest-integer-with-digits-that-add-up-to-target.md",
-    "code": []
+    "code": [
+        {
+            "language": "py",
+            "text": "\nfor i in 0 to N:\n    for j in 1 to V + 1:\n        dp[j] = max(dp[j], dp[j - cost[i])\n"
+        },
+        {
+            "language": "py",
+            "text": "\nfor i in 1 to N + 1:\n    # 这里是倒序的，原因在于这里是01背包。\n    for j in V to 0:\n        dp[j] = max(dp[j], dp[j - cost[i - 1])\n"
+        },
+        {
+            "language": "py",
+            "text": "\nfor i in 1 to N + 1:\n    # 这里不是倒序，原因是我们这里是完全背包问题\n    for j in 1 to V + 1:\n        dp[j] = max(dp[j], dp[j - cost[i - 1])\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nfor i in 1 to N + 1:\n    for j in V to 0:\n        dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - cost[i - 1])\n"
+        },
+        {
+            "language": "py",
+            "text": "\nfor i in 1 to N + 1:\n   for j in 1 to V + 1:\n       dp[i][j] = max(dp[i - 1][j], dp[i][j - cost[i - 1])\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def largestNumber(self, cost: List[int], target: int) -> str:\n        dp = [0] + [float('-inf')] * target\n        for i in range(9, 0, -1):\n            for j in range(1, target+1):\n                if j >= cost[i - 1]:\n                    dp[j] = max(dp[j], (dp[j-cost[i - 1]] * 10) + i)\n        return str(dp[target]) if dp[target] > 0 else '0'\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nfor i in 1 to N + 1:\n    for j in V to 0:\n        ...\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nfor j in V to 0:\n    for i in 1 to N + 1:\n        ...\n\n"
+        }
+    ]
 },
 "binary-tree-postorder-traversal":{
     "id": "145",
@@ -1869,20 +1923,20 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/152.maximum-product-subarray.md",
     "code": [
         {
-            "language": "python",
-            "text": "\n\n\nclass Solution:\n    def maxProduct(self, nums: List[int]) -> int:\n        n = len(nums)\n        max__dp = [1] * (n + 1)\n        min_dp = [1] * (n + 1)\n        ans = float('-inf')\n\n        for i in range(1, n + 1):\n            max__dp[i] = max(max__dp[i - 1] * nums[i - 1],\n                             min_dp[i - 1] * nums[i - 1], nums[i - 1])\n            min_dp[i] = min(max__dp[i - 1] * nums[i - 1],\n                            min_dp[i - 1] * nums[i - 1], nums[i - 1])\n            ans = max(ans, max__dp[i])\n        return ans\n  "
-        },
-        {
-            "language": "python",
-            "text": "\n\nclass Solution:\n    def maxProduct(self, nums: List[int]) -> int:\n        n = len(nums)\n        a = b = 1\n        ans = float('-inf')\n\n        for i in range(1, n + 1):\n            temp = a\n            a = max(a * nums[i - 1],\n                    b * nums[i - 1], nums[i - 1])\n            b = min(temp * nums[i - 1],\n                    b * nums[i - 1], nums[i - 1])\n            ans = max(ans, a)\n        return ans\n\n"
-        },
-        {
             "language": "js",
             "text": "\nvar maxProduct = function(nums) {\n  let max = nums[0];\n  let temp = null;\n  for (let i = 0; i < nums.length; i++) {\n    temp = nums[i];\n    for (let j = i + 1; j < nums.length; j++) {\n      temp *= nums[j];\n      max = Math.max(temp, max);\n    }\n  }\n\n  return max;\n};\n"
         },
         {
             "language": "js",
             "text": "\nvar maxProduct = function(nums) {\n  let max = nums[0];\n  let min = nums[0];\n  let res = nums[0];\n\n  for (let i = 1; i < nums.length; i++) {\n    let tmp = min;\n    min = Math.min(nums[i], Math.min(max * nums[i], min * nums[i])); // 取最小\n    max = Math.max(nums[i], Math.max(max * nums[i], tmp * nums[i])); /// 取最大\n    res = Math.max(res, max);\n  }\n  return res;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\n\nclass Solution:\n    def maxProduct(self, nums: List[int]) -> int:\n        n = len(nums)\n        max__dp = [1] * (n + 1)\n        min_dp = [1] * (n + 1)\n        ans = float('-inf')\n\n        for i in range(1, n + 1):\n            max__dp[i] = max(max__dp[i - 1] * nums[i - 1],\n                             min_dp[i - 1] * nums[i - 1], nums[i - 1])\n            min_dp[i] = min(max__dp[i - 1] * nums[i - 1],\n                            min_dp[i - 1] * nums[i - 1], nums[i - 1])\n            ans = max(ans, max__dp[i])\n        return ans\n  "
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def maxProduct(self, nums: List[int]) -> int:\n        n = len(nums)\n        a = b = 1\n        ans = float('-inf')\n\n        for i in range(1, n + 1):\n            temp = a\n            a = max(a * nums[i - 1],\n                    b * nums[i - 1], nums[i - 1])\n            b = min(temp * nums[i - 1],\n                    b * nums[i - 1], nums[i - 1])\n            ans = max(ans, a)\n        return ans\n\n"
         }
     ]
 },
@@ -1916,20 +1970,20 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/155.min-stack.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass MinStack:\n\n    def __init__(self):\n        \"\"\"\n        initialize your data structure here.\n        \"\"\"\n        self.minV = float('inf')\n        self.stack = []\n\n    def push(self, x: int) -> None:\n        self.stack.append(x - self.minV)\n        if x < self.minV:\n            self.minV = x\n\n    def pop(self) -> None:\n        if not self.stack:\n            return\n        tmp = self.stack.pop()\n        if tmp < 0:\n            self.minV -= tmp\n\n    def top(self) -> int:\n        if not self.stack:\n            return\n        tmp = self.stack[-1]\n        if tmp < 0:\n            return self.minV\n        else:\n            return self.minV + tmp\n\n    def min(self) -> int:\n        return self.minV\n\n\n\n# Your MinStack object will be instantiated and called as such:\n# obj = MinStack()\n# obj.push(x)\n# obj.pop()\n# param_3 = obj.top()\n# param_4 = obj.min()\n"
-        },
-        {
-            "language": "python",
-            "text": "\nclass MinStack:\n\n    def __init__(self):\n        \"\"\"\n        initialize your data structure here.\n        \"\"\"\n        self.stack = []\n        self.minstack = []\n\n    def push(self, x: int) -> None:\n        self.stack.append(x)\n        if not self.minstack or x <= self.minstack[-1]:\n            self.minstack.append(x)\n\n    def pop(self) -> None:\n        tmp = self.stack.pop()\n        if tmp == self.minstack[-1]:\n            self.minstack.pop()\n\n    def top(self) -> int:\n        return self.stack[-1]\n\n    def min(self) -> int:\n        return self.minstack[-1]\n\n\n# Your MinStack object will be instantiated and called as such:\n# obj = MinStack()\n# obj.push(x)\n# obj.pop()\n# param_3 = obj.top()\n# param_4 = obj.min()\n"
-        },
-        {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=155 lang=javascript\n *\n * [155] Min Stack\n */\n/**\n * initialize your data structure here.\n */\nvar MinStack = function() {\n  this.stack = [];\n  this.minV = Number.MAX_VALUE;\n};\n\n/**\n * @param {number} x\n * @return {void}\n */\nMinStack.prototype.push = function(x) {\n  // update 'min'\n  const minV = this.minV;\n  if (x < this.minV) {\n    this.minV = x;\n  }\n  return this.stack.push(x - minV);\n};\n\n/**\n * @return {void}\n */\nMinStack.prototype.pop = function() {\n  const item = this.stack.pop();\n  const minV = this.minV;\n\n  if (item < 0) {\n    this.minV = minV - item;\n    return minV;\n  }\n  return item + minV;\n};\n\n/**\n * @return {number}\n */\nMinStack.prototype.top = function() {\n  const item = this.stack[this.stack.length - 1];\n  const minV = this.minV;\n\n  if (item < 0) {\n    return minV;\n  }\n  return item + minV;\n};\n\n/**\n * @return {number}\n */\nMinStack.prototype.min = function() {\n  return this.minV;\n};\n\n/**\n * Your MinStack object will be instantiated and called as such:\n * var obj = new MinStack()\n * obj.push(x)\n * obj.pop()\n * var param_3 = obj.top()\n * var param_4 = obj.min()\n */\n"
         },
         {
             "language": "js",
             "text": "\n/**\n * initialize your data structure here.\n */\nvar MinStack = function() {\n    this.stack = []\n    this.minStack = []\n};\n\n/** \n * @param {number} x\n * @return {void}\n */\nMinStack.prototype.push = function(x) {\n    this.stack.push(x)\n    if (this.minStack.length == 0 ||  x <= this.minStack[this.minStack.length - 1]) {\n        this.minStack.push(x)\n    }\n};\n\n/**\n * @return {void}\n */\nMinStack.prototype.pop = function() {\n    const x = this.stack.pop()\n    if (x !== void 0 &&  x === this.minStack[this.minStack.length - 1]) {\n        this.minStack.pop()\n    }\n};\n\n/**\n * @return {number}\n */\nMinStack.prototype.top = function() {\n    return this.stack[this.stack.length - 1]\n};\n\n/**\n * @return {number}\n */\nMinStack.prototype.min = function() {\n    return this.minStack[this.minStack.length - 1]\n};\n\n/** \n * Your MinStack object will be instantiated and called as such:\n * var obj = new MinStack()\n * obj.push(x)\n * obj.pop()\n * var param_3 = obj.top()\n * var param_4 = obj.min()\n */\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass MinStack:\n\n    def __init__(self):\n        \"\"\"\n        initialize your data structure here.\n        \"\"\"\n        self.minV = float('inf')\n        self.stack = []\n\n    def push(self, x: int) -> None:\n        self.stack.append(x - self.minV)\n        if x < self.minV:\n            self.minV = x\n\n    def pop(self) -> None:\n        if not self.stack:\n            return\n        tmp = self.stack.pop()\n        if tmp < 0:\n            self.minV -= tmp\n\n    def top(self) -> int:\n        if not self.stack:\n            return\n        tmp = self.stack[-1]\n        if tmp < 0:\n            return self.minV\n        else:\n            return self.minV + tmp\n\n    def min(self) -> int:\n        return self.minV\n\n\n\n# Your MinStack object will be instantiated and called as such:\n# obj = MinStack()\n# obj.push(x)\n# obj.pop()\n# param_3 = obj.top()\n# param_4 = obj.min()\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass MinStack:\n\n    def __init__(self):\n        \"\"\"\n        initialize your data structure here.\n        \"\"\"\n        self.stack = []\n        self.minstack = []\n\n    def push(self, x: int) -> None:\n        self.stack.append(x)\n        if not self.minstack or x <= self.minstack[-1]:\n            self.minstack.append(x)\n\n    def pop(self) -> None:\n        tmp = self.stack.pop()\n        if tmp == self.minstack[-1]:\n            self.minstack.pop()\n\n    def top(self) -> int:\n        return self.stack[-1]\n\n    def min(self) -> int:\n        return self.minstack[-1]\n\n\n# Your MinStack object will be instantiated and called as such:\n# obj = MinStack()\n# obj.push(x)\n# obj.pop()\n# param_3 = obj.top()\n# param_4 = obj.min()\n"
         }
     ]
 },
@@ -1963,12 +2017,12 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/167.two-sum-ii-input-array-is-sorted.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def twoSum(self, numbers: List[int], target: int) -> List[int]:\n        visited = {}\n        for index, number in enumerate(numbers):\n            if target - number in visited:\n                return [visited[target-number], index+1]\n            else:\n                visited[number] = index + 1\n\n# 双指针思路实现\nclass Solution:\n    def twoSum(self, numbers: List[int], target: int) -> List[int]:\n        left, right = 0, len(numbers) - 1\n        while left < right:\n            if numbers[left] + numbers[right] < target:\n                left += 1\n            if numbers[left] + numbers[right] > target:\n                right -= 1\n            if numbers[left] + numbers[right] == target:\n                return [left+1, right+1]\n"
-        },
-        {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=167 lang=javascript\n *\n * [167] Two Sum II - Input array is sorted\n *\n * https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/\n *\n * algorithms\n * Easy (49.46%)\n * Total Accepted:    221.8K\n * Total Submissions: 447K\n * Testcase Example:  '[2,7,11,15]\\n9'\n *\n * Given an array of integers that is already sorted in ascending order, find\n * two numbers such that they add up to a specific target number.\n *\n * The function twoSum should return indices of the two numbers such that they\n * add up to the target, where index1 must be less than index2.\n *\n * Note:\n *\n *\n * Your returned answers (both index1 and index2) are not zero-based.\n * You may assume that each input would have exactly one solution and you may\n * not use the same element twice.\n *\n *\n * Example:\n *\n *\n * Input: numbers = [2,7,11,15], target = 9\n * Output: [1,2]\n * Explanation: The sum of 2 and 7 is 9. Therefore index1 = 1, index2 = 2.\n *\n */\n/**\n * @param {number[]} numbers\n * @param {number} target\n * @return {number[]}\n */\nvar twoSum = function(numbers, target) {\n    const visited = {} // 记录出现的数字， 空间复杂度N\n\n    for (let index = 0; index < numbers.length; index++) {\n        const element = numbers[index];\n        if (visited[target - element] !== void 0) {\n            return [visited[target - element], index + 1]\n        }\n        visited[element] = index + 1;\n    }\n    return [];\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def twoSum(self, numbers: List[int], target: int) -> List[int]:\n        visited = {}\n        for index, number in enumerate(numbers):\n            if target - number in visited:\n                return [visited[target-number], index+1]\n            else:\n                visited[number] = index + 1\n\n# 双指针思路实现\nclass Solution:\n    def twoSum(self, numbers: List[int], target: int) -> List[int]:\n        left, right = 0, len(numbers) - 1\n        while left < right:\n            if numbers[left] + numbers[right] < target:\n                left += 1\n            if numbers[left] + numbers[right] > target:\n                right -= 1\n            if numbers[left] + numbers[right] == target:\n                return [left+1, right+1]\n"
         }
     ]
 },
@@ -2002,12 +2056,12 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/169.majority-element.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def majorityElement(self, nums: List[int]) -> int:\n        count, majority = 1, nums[0]\n        for num in nums[1:]:\n            if count == 0:\n                majority = num\n            if num == majority:\n                count += 1\n            else:\n                count -= 1\n        return majority\n"
-        },
-        {
             "language": "js",
             "text": "\nvar majorityElement = function(nums) {\n    let count = 1;\n    let majority = nums[0];\n    for(let i = 1; i < nums.length; i++) {\n        if (count === 0) {\n            majority = nums[i];\n        }\n        if (nums[i] === majority) {\n            count ++;\n        } else {\n            count --;\n        }\n    }\n    return majority;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def majorityElement(self, nums: List[int]) -> int:\n        count, majority = 1, nums[0]\n        for num in nums[1:]:\n            if count == 0:\n                majority = num\n            if num == majority:\n                count += 1\n            else:\n                count -= 1\n        return majority\n"
         }
     ]
 },
@@ -2076,12 +2130,12 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/172.factorial-trailing-zeroes.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def trailingZeroes(self, n: int) -> int:\n        count = 0\n        while n >= 5:\n            n = n // 5\n            count += n\n        return count\n\n\n# 递归\nclass Solution:\n    def trailingZeroes(self, n: int) -> int:\n        if n == 0: return 0\n        return n // 5 + self.trailingZeroes(n // 5)\n"
-        },
-        {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=172 lang=javascript\n *\n * [172] Factorial Trailing Zeroes\n */\n/**\n * @param {number} n\n * @return {number}\n */\nvar trailingZeroes = function(n) {\n  // tag: 数论\n\n  // if (n === 0) return n;\n\n  // 递归： f(n) = n / 5 + f(n / 5)\n  // return Math.floor(n / 5)  + trailingZeroes(Math.floor(n / 5));\n  let count = 0;\n  while (n >= 5) {\n    count += Math.floor(n / 5);\n    n = Math.floor(n / 5);\n  }\n  return count;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def trailingZeroes(self, n: int) -> int:\n        count = 0\n        while n >= 5:\n            n = n // 5\n            count += n\n        return count\n\n\n# 递归\nclass Solution:\n    def trailingZeroes(self, n: int) -> int:\n        if n == 0: return 0\n        return n // 5 + self.trailingZeroes(n // 5)\n"
         }
     ]
 },
@@ -2154,12 +2208,12 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/190.reverse-bits.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    # @param n, an integer\n    # @return an integer\n    def reverseBits(self, n):\n        result = 0\n        for i in range(32):\n            result = (result << 1) + (n & 1)\n            n >>= 1\n        return result\n"
-        },
-        {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=190 lang=javascript\n *\n * [190] Reverse Bits\n *\n * https://leetcode.com/problems/reverse-bits/description/\n *\n * algorithms\n * Easy (30.30%)\n * Total Accepted:    173.7K\n * Total Submissions: 568.2K\n * Testcase Example:  '00000010100101000001111010011100'\n *\n * Reverse bits of a given 32 bits unsigned integer.\n *\n *\n *\n * Example 1:\n *\n *\n * Input: 00000010100101000001111010011100\n * Output: 00111001011110000010100101000000\n * Explanation: The input binary string 00000010100101000001111010011100\n * represents the unsigned integer 43261596, so return 964176192 which its\n * binary representation is 00111001011110000010100101000000.\n *\n *\n * Example 2:\n *\n *\n * Input: 11111111111111111111111111111101\n * Output: 10111111111111111111111111111111\n * Explanation: The input binary string 11111111111111111111111111111101\n * represents the unsigned integer 4294967293, so return 3221225471 which its\n * binary representation is 10101111110010110010011101101001.\n *\n *\n *\n * Note:\n *\n *\n * Note that in some languages such as Java, there is no unsigned integer type.\n * In this case, both input and output will be given as signed integer type and\n * should not affect your implementation, as the internal binary representation\n * of the integer is the same whether it is signed or unsigned.\n * In Java, the compiler represents the signed integers using 2's complement\n * notation. Therefore, in Example 2 above the input represents the signed\n * integer -3 and the output represents the signed integer -1073741825.\n *\n *\n *\n *\n * Follow up:\n *\n * If this function is called many times, how would you optimize it?\n *\n */\n/**\n * @param {number} n - a positive integer\n * @return {number} - a positive integer\n */\nvar reverseBits = function(n) {\n  let res = 0;\n  for (let i = 0; i < 32; i++) {\n    res = (res << 1) + (n & 1);\n    n = n >>> 1;\n  }\n\n  return res >>> 0;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    # @param n, an integer\n    # @return an integer\n    def reverseBits(self, n):\n        result = 0\n        for i in range(32):\n            result = (result << 1) + (n & 1)\n            n >>= 1\n        return result\n"
         }
     ]
 },
@@ -2193,12 +2247,20 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/191.number-of-1-bits.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution(object):\n    def hammingWeight(self, n):\n        \"\"\"\n        :type n: int\n        :rtype: int\n        \"\"\"\n        count = 0\n        while n:\n            n &= n - 1\n            count += 1\n        return count\n"
-        },
-        {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=191 lang=javascript\n *\n */\n/**\n * @param {number} n - a positive integer\n * @return {number}\n */\nvar hammingWeight = function(n) {\n  let count = 0;\n  while (n !== 0) {\n    n = n & (n - 1);\n    count++;\n  }\n\n  return count;\n};\n\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\nclass Solution {\npublic:\n    int hammingWeight(uint32_t v) {\n        auto count = 0;\n        while (v != 0) {\n            v &= (v - 1);\n            ++count;\n        }\n        return count;\n    }\n};\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\nconst uint32_t ODD_BIT_MASK = 0xAAAAAAAA;\nconst uint32_t EVEN_BIT_MASK = 0x55555555;\nconst uint32_t ODD_2BIT_MASK = 0xCCCCCCCC;\nconst uint32_t EVEN_2BIT_MASK = 0x33333333;\nconst uint32_t ODD_4BIT_MASK = 0xF0F0F0F0;\nconst uint32_t EVEN_4BIT_MASK = 0x0F0F0F0F;\nconst uint32_t ODD_8BIT_MASK = 0xFF00FF00;\nconst uint32_t EVEN_8BIT_MASK = 0x00FF00FF;\nconst uint32_t ODD_16BIT_MASK = 0xFFFF0000;\nconst uint32_t EVEN_16BIT_MASK = 0x0000FFFF;\n\nclass Solution {\npublic:\n\n    int hammingWeight(uint32_t v) {\n        v = (v & EVEN_BIT_MASK) + ((v & ODD_BIT_MASK) >> 1);\n        v = (v & EVEN_2BIT_MASK) + ((v & ODD_2BIT_MASK) >> 2);\n        v = (v & EVEN_4BIT_MASK) + ((v & ODD_4BIT_MASK) >> 4);\n        v = (v & EVEN_8BIT_MASK) + ((v & ODD_8BIT_MASK) >> 8);\n        return (v & EVEN_16BIT_MASK) + ((v & ODD_16BIT_MASK) >> 16);\n    }\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution(object):\n    def hammingWeight(self, n):\n        \"\"\"\n        :type n: int\n        :rtype: int\n        \"\"\"\n        count = 0\n        while n:\n            n &= n - 1\n            count += 1\n        return count\n"
         }
     ]
 },
@@ -2232,16 +2294,16 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/198.house-robber.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def rob(self, nums: List[int]) -> int:\n        if not nums:\n            return 0\n\n        length = len(nums)\n        if length == 1:\n            return nums[0]\n        else:\n            prev = nums[0]\n            cur = max(prev, nums[1])\n            for i in range(2, length):\n                cur, prev = max(prev + nums[i], cur), cur\n            return cur\n"
-        },
-        {
             "language": "js",
             "text": "\nlet a = 0;\nlet b = 0;\n\nfor (let i = 0; i < nums.length; i++) {\n  const temp = b;\n  b = Math.max(a + nums[i], b);\n  a = temp;\n}\n\nreturn b;\n"
         },
         {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=198 lang=javascript\n *\n * [198] House Robber\n *\n * https://leetcode.com/problems/house-robber/description/\n *\n * algorithms\n * Easy (40.80%)\n * Total Accepted:    312.1K\n * Total Submissions: 762.4K\n * Testcase Example:  '[1,2,3,1]'\n *\n * You are a professional robber planning to rob houses along a street. Each\n * house has a certain amount of money stashed, the only constraint stopping\n * you from robbing each of them is that adjacent houses have security system\n * connected and it will automatically contact the police if two adjacent\n * houses were broken into on the same night.\n *\n * Given a list of non-negative integers representing the amount of money of\n * each house, determine the maximum amount of money you can rob tonight\n * without alerting the police.\n *\n * Example 1:\n *\n *\n * Input: [1,2,3,1]\n * Output: 4\n * Explanation: Rob house 1 (money = 1) and then rob house 3 (money =\n * 3).\n * Total amount you can rob = 1 + 3 = 4.\n *\n * Example 2:\n *\n *\n * Input: [2,7,9,3,1]\n * Output: 12\n * Explanation: Rob house 1 (money = 2), rob house 3 (money = 9) and rob house\n * 5 (money = 1).\n * Total amount you can rob = 2 + 9 + 1 = 12.\n *\n *\n */\n/**\n * @param {number[]} nums\n * @return {number}\n */\nvar rob = function(nums) {\n  // Tag: DP\n  const dp = [];\n  dp[0] = 0;\n  dp[1] = 0;\n\n  for (let i = 2; i < nums.length + 2; i++) {\n    dp[i] = Math.max(dp[i - 2] + nums[i - 2], dp[i - 1]);\n  }\n\n  return dp[nums.length + 1];\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def rob(self, nums: List[int]) -> int:\n        if not nums:\n            return 0\n\n        length = len(nums)\n        if length == 1:\n            return nums[0]\n        else:\n            prev = nums[0]\n            cur = max(prev, nums[1])\n            for i in range(2, length):\n                cur, prev = max(prev + nums[i], cur), cur\n            return cur\n"
         }
     ]
 },
@@ -2311,7 +2373,11 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} l1\n * @param {ListNode} l2\n * @return {ListNode}\n */\nvar addTwoNumbers = function(l1, l2) {\n  if (l1 === null || l2 === null) return null\n\n  // 使用dummyHead可以简化对链表的处理，dummyHead.next指向新链表\n  let dummyHead = new ListNode(0)\n  let cur1 = l1\n  let cur2 = l2\n  let cur = dummyHead // cur用于计算新链表\n  let carry = 0 // 进位标志\n\n  while (cur1 !== null || cur2 !== null) {\n    let val1 = cur1 !== null ? cur1.val : 0\n    let val2 = cur2 !== null ? cur2.val : 0\n    let sum = val1 + val2 + carry\n    let newNode = new ListNode(sum % 10) // sum%10取模结果范围为0~9，即为当前节点的值\n    carry = sum >= 10 ? 1 : 0 // sum>=10，carry=1，表示有进位\n    cur.next = newNode\n    cur = cur.next\n\n    if (cur1 !== null) {\n      cur1 = cur1.next\n    }\n\n    if (cur2 !== null) {\n      cur2 = cur2.next\n    }\n  }\n\n  if (carry > 0) {\n    // 如果最后还有进位，新加一个节点\n    cur.next = new ListNode(carry)\n  }\n\n  return dummyHead.next\n};\n"
+            "text": "\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} l1\n * @param {ListNode} l2\n * @return {ListNode}\n */\nvar addTwoNumbers = function (l1, l2) {\n  if (l1 === null || l2 === null) return null;\n\n  // 使用dummyHead可以简化对链表的处理，dummyHead.next指向新链表\n  let dummyHead = new ListNode(0);\n  let cur1 = l1;\n  let cur2 = l2;\n  let cur = dummyHead; // cur用于计算新链表\n  let carry = 0; // 进位标志\n\n  while (cur1 !== null || cur2 !== null) {\n    let val1 = cur1 !== null ? cur1.val : 0;\n    let val2 = cur2 !== null ? cur2.val : 0;\n    let sum = val1 + val2 + carry;\n    let newNode = new ListNode(sum % 10); // sum%10取模结果范围为0~9，即为当前节点的值\n    carry = sum >= 10 ? 1 : 0; // sum>=10，carry=1，表示有进位\n    cur.next = newNode;\n    cur = cur.next;\n\n    if (cur1 !== null) {\n      cur1 = cur1.next;\n    }\n\n    if (cur2 !== null) {\n      cur2 = cur2.next;\n    }\n  }\n\n  if (carry > 0) {\n    // 如果最后还有进位，新加一个节点\n    cur.next = new ListNode(carry);\n  }\n\n  return dummyHead.next;\n};\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\n/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     ListNode *next;\n *     ListNode(int x) : val(x), next(NULL) {}\n * };\n */\nclass Solution {\npublic:\n    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {\n        ListNode* ret = nullptr;\n        ListNode* cur = nullptr;\n        int carry = 0;\n        while (l1 != nullptr || l2 != nullptr || carry != 0) {\n            carry += (l1 == nullptr ? 0 : l1->val) + (l2 == nullptr ? 0 : l2->val);\n            auto temp = new ListNode(carry % 10);\n            carry /= 10;\n            if (ret == nullptr) {\n                ret = temp;\n                cur = ret;\n            }\n            else {\n                cur->next = temp;\n                cur = cur->next;\n            }\n            l1 = l1 == nullptr ? nullptr : l1->next;\n            l2 = l2 == nullptr ? nullptr : l2->next;\n        }\n        return ret;\n    }\n};\n"
         }
     ]
 },
@@ -2419,10 +2485,6 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/201.bitwise-and-of-numbers-range.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def rangeBitwiseAnd(self, m: int, n: int) -> int:\n        cnt = 0\n        while m != n:\n            m >>= 1\n            n >>= 1\n            cnt += 1\n\n        return m << cnt\n "
-        },
-        {
             "language": "js",
             "text": "\n\n    let res = m;\n    for (let i = m + 1; i <= n; i++) {\n      res = res & i;\n    }\n    return res;\n\n"
         },
@@ -2433,6 +2495,10 @@
         {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=201 lang=javascript\n *\n * [201] Bitwise AND of Numbers Range\n *\n */\n/**\n * @param {number} m\n * @param {number} n\n * @return {number}\n */\nvar rangeBitwiseAnd = function(m, n) {\n  let count = 0;\n  while (m !== n) {\n    m = m >> 1;\n    n = n >> 1;\n    count++;\n  }\n\n  return n << count;\n};\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def rangeBitwiseAnd(self, m: int, n: int) -> int:\n        cnt = 0\n        while m != n:\n            m >>= 1\n            n >>= 1\n            cnt += 1\n\n        return m << cnt\n "
         }
     ]
 },
@@ -2466,16 +2532,16 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/203.remove-linked-list-elements.md",
     "code": [
         {
-            "language": "python",
-            "text": "\n# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.next = None\n\nclass Solution:\n    def removeElements(self, head: ListNode, val: int) -> ListNode:\n        prev = ListNode(0)\n        prev.next = head\n        cur = prev\n        while cur.next:\n            if cur.next.val == val:\n                cur.next = cur.next.next\n            else:\n                cur = cur.next\n        return prev.next\n"
-        },
-        {
             "language": "js",
             "text": "\n// 只有下个节点不是要删除的节点才更新 current\nif (!next || next.val !== val) {\n    current =  next;\n}\n\n"
         },
         {
             "language": "js",
             "text": "\n/**\n * @param {ListNode} head\n * @param {number} val\n * @return {ListNode}\n */\nvar removeElements = function(head, val) {\n    const dummy = {\n        next: head\n    }\n    let current = dummy;\n\n    while(current && current.next) {\n        let next = current.next;\n        if (next.val === val) {\n            current.next = next.next;\n            next = next.next;\n        }\n\n        if (!next || next.val !== val) {\n            current =  next;\n        }\n    }\n\n    return dummy.next;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\n# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.next = None\n\nclass Solution:\n    def removeElements(self, head: ListNode, val: int) -> ListNode:\n        prev = ListNode(0)\n        prev.next = head\n        cur = prev\n        while cur.next:\n            if cur.next.val == val:\n                cur.next = cur.next.next\n            else:\n                cur = cur.next\n        return prev.next\n"
         }
     ]
 },
@@ -2513,20 +2579,28 @@
             "text": "\n/**\n * Definition for singly-linked list.\n * public class ListNode {\n *     int val;\n *     ListNode next;\n *     ListNode(int x) { val = x; }\n * }\n */\nclass Solution {\n    public ListNode reverseList(ListNode head) {\n        ListNode pre = null, cur = head;\n\n        while (cur != null) {\n            ListNode next = cur.next;\n            cur.next = pre;\n            pre = cur;\n            cur = next;\n        }\n\n        return pre;\n    }\n}\n"
         },
         {
-            "language": "python",
-            "text": "\n# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.next = None\n\nclass Solution:\n    def reverseList(self, head: ListNode) -> ListNode:\n        if not head: return None\n        prev = None\n        cur = head\n        while cur:\n            cur.next, prev, cur = prev, cur, cur.next\n        return prev\n"
-        },
-        {
-            "language": "python",
-            "text": "\nclass Solution:\n    def reverseList(self, head: ListNode) -> ListNode:\n        if not head or not head.next: return head\n        ans = self.reverseList(head.next)\n        head.next.next = head\n        head.next = None\n        return ans\n"
-        },
-        {
             "language": "js",
             "text": "\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} head\n * @return {ListNode}\n */\nvar reverseList = function(head) {\n    if (!head || !head.next) return head;\n\n    let cur = head;\n    let pre = null;\n\n    while(cur) {\n        const next = cur.next;\n        cur.next = pre;\n        pre = cur;\n        cur = next;\n    }\n\n    return pre;\n};\n\n"
         },
         {
             "language": "js",
             "text": "\nvar reverseList = function(head) {\n  // 递归结束条件\n  if (head === null || head.next === null) {\n    return head\n  }\n\n  // 递归反转 子链表\n  let newReverseList = reverseList(head.next)\n  // 获取原来链表的第 2 个节点 newReverseListTail\n  let newReverseListTail = head.next\n  // 调整原来头结点和第 2 个节点的指向\n  newReverseListTail.next = head\n  head.next = null\n\n  // 将调整后的链表返回\n  return newReverseList\n}\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\n/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     ListNode *next;\n *     ListNode(int x) : val(x), next(NULL) {}\n * };\n */\nclass Solution {\npublic:\n    ListNode* reverseList(ListNode* head) {\n        ListNode* prev = NULL;\n        ListNode* cur = head;\n        ListNode* next = NULL;\n        while (cur != NULL) {\n            next = cur->next;\n            cur->next = prev;\n            prev = cur;\n            cur = next;\n        }\n        return prev;\n    }\n};\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\n// 普通递归\nclass Solution {\npublic:\n    ListNode* reverseList(ListNode* head) {\n        ListNode* tail = nullptr;\n        return reverseRecursive(head, tail);\n    }\n\n    ListNode* reverseRecursive(ListNode *head, ListNode *&tail) {\n        if (head == nullptr) {\n            tail = nullptr;\n            return head;\n        }\n        if (head->next == nullptr) {\n            tail = head;\n            return head;\n        }\n        auto h = reverseRecursive(head->next, tail);\n        if (tail != nullptr) {\n            tail->next = head;\n            tail = head;\n            head->next = nullptr;\n        }\n        return h;\n    }\n};\n\n// （类似）尾递归\nclass Solution {\npublic:\n    ListNode* reverseList(ListNode* head) {\n        if (head == nullptr) return head;\n        return reverseRecursive(nullptr, head, head->next);\n    }\n\n    ListNode* reverseRecursive(ListNode *prev, ListNode *head, ListNode *next)\n    {\n        if (next == nullptr) return head;\n        auto n = next->next;\n        next->next = head;\n        head->next = prev;\n        return reverseRecursive(head, next, n);\n    }\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\n# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.next = None\n\nclass Solution:\n    def reverseList(self, head: ListNode) -> ListNode:\n        if not head: return None\n        prev = None\n        cur = head\n        while cur:\n            cur.next, prev, cur = prev, cur, cur.next\n        return prev\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def reverseList(self, head: ListNode) -> ListNode:\n        if not head or not head.next: return head\n        ans = self.reverseList(head.next)\n        head.next.next = head\n        head.next = None\n        return ans\n"
         }
     ]
 },
@@ -2607,16 +2681,16 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/209.minimum-size-subarray-sum.md",
     "code": [
         {
-            "language": "python",
-            "text": "\n\nclass Solution:\n    def minSubArrayLen(self, s: int, nums: List[int]) -> int:\n        l = total = 0\n        ans = len(nums) + 1\n        for r in range(len(nums)):\n            total += nums[r]\n            while total >= s:\n                ans = min(ans, r - l + 1)\n                total -= nums[l]\n                l += 1\n        return  0 if ans == len(nums) + 1 else ans\n"
-        },
-        {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=209 lang=javascript\n *\n * [209] Minimum Size Subarray Sum\n *\n */\n/**\n * @param {number} s\n * @param {number[]} nums\n * @return {number}\n */\nvar minSubArrayLen = function(s, nums) {\n  if (nums.length === 0) return 0;\n  const slideWindow = [];\n  let acc = 0;\n  let min = null;\n\n  for (let i = 0; i < nums.length + 1; i++) {\n    const num = nums[i];\n\n    while (acc >= s) {\n      if (min === null || slideWindow.length < min) {\n        min = slideWindow.length;\n      }\n      acc = acc - slideWindow.shift();\n    }\n\n    slideWindow.push(num);\n\n    acc = slideWindow.reduce((a, b) => a + b, 0);\n  }\n\n  return min || 0;\n};\n"
         },
         {
             "language": "js",
             "text": "\nvar minSubArrayLen = function(s, nums) {\n  if (nums.length === 0) return 0;\n  const slideWindow = [];\n  let acc = 0;\n  let min = null;\n\n  for (let i = 0; i < nums.length + 1; i++) {\n    const num = nums[i];\n\n    while (acc > s) {\n      acc = acc - slideWindow.shift();\n    }\n    if (acc === s) {\n      if (min === null || slideWindow.length < min) {\n        min = slideWindow.length;\n      }\n      slideWindow.shift();\n    }\n\n    slideWindow.push(num);\n\n    acc = slideWindow.reduce((a, b) => a + b, 0);\n  }\n\n  return min || 0;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def minSubArrayLen(self, s: int, nums: List[int]) -> int:\n        l = total = 0\n        ans = len(nums) + 1\n        for r in range(len(nums)):\n            total += nums[r]\n            while total >= s:\n                ans = min(ans, r - l + 1)\n                total -= nums[l]\n                l += 1\n        return  0 if ans == len(nums) + 1 else ans\n"
         }
     ]
 },
@@ -2685,19 +2759,19 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/211.add-and-search-word-data-structure-design.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\ndef search(self, word):\n        \"\"\"\n        Returns if the word is in the trie.\n        :type word: str\n        :rtype: bool\n        \"\"\"\n        curr = self.Trie\n        for i, w in enumerate(word):\n            if w == '.':\n                wizards = []\n                for k in curr.keys():\n                    if k == '#':\n                        continue\n                    wizards.append(self.search(word[:i] + k + word[i + 1:]))\n                return any(wizards)\n            if w not in curr:\n                return False\n            curr = curr[w]\n        return \"#\" in curr\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\ndef search(self, word):\n        \"\"\"\n        Returns if the word is in the trie.\n        :type word: str\n        :rtype: bool\n        \"\"\"\n        curr = self.Trie\n        for w in word:\n            if w not in curr:\n                return False\n            curr = curr[w]\n        return \"#\" in curr\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Trie:\n\n    def __init__(self):\n        \"\"\"\n        Initialize your data structure here.\n        \"\"\"\n        self.Trie = {}\n\n    def insert(self, word):\n        \"\"\"\n        Inserts a word into the trie.\n        :type word: str\n        :rtype: void\n        \"\"\"\n        curr = self.Trie\n        for w in word:\n            if w not in curr:\n                curr[w] = {}\n            curr = curr[w]\n        curr['#'] = 1\n\n    def search(self, word):\n        \"\"\"\n        Returns if the word is in the trie.\n        :type word: str\n        :rtype: bool\n        \"\"\"\n        curr = self.Trie\n        for i, w in enumerate(word):\n            if w == '.':\n                wizards = []\n                for k in curr.keys():\n                    if k == '#':\n                        continue\n                    wizards.append(self.search(word[:i] + k + word[i + 1:]))\n                return any(wizards)\n            if w not in curr:\n                return False\n            curr = curr[w]\n        return \"#\" in curr\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass WordDictionary:\n\n    def __init__(self):\n        \"\"\"\n        Initialize your data structure here.\n        \"\"\"\n        self.trie = Trie()\n\n    def addWord(self, word: str) -> None:\n        \"\"\"\n        Adds a word into the data structure.\n        \"\"\"\n        self.trie.insert(word)\n\n    def search(self, word: str) -> bool:\n        \"\"\"\n        Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter.\n        \"\"\"\n        return self.trie.search(word)\n\n\n# Your WordDictionary object will be instantiated and called as such:\n# obj = WordDictionary()\n# obj.addWord(word)\n# param_2 = obj.search(word)\n"
         }
     ]
@@ -2732,11 +2806,11 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/212.word-search-ii.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Trie:\n\n    def __init__(self):\n        \"\"\"\n        Initialize your data structure here.\n        \"\"\"\n        self.Trie = {}\n\n    def insert(self, word):\n        \"\"\"\n        Inserts a word into the trie.\n        :type word: str\n        :rtype: void\n        \"\"\"\n        curr = self.Trie\n        for w in word:\n            if w not in curr:\n                curr[w] = {}\n            curr = curr[w]\n        curr['#'] = 1\n\n    def startsWith(self, prefix):\n        \"\"\"\n        Returns if there is any word in the trie that starts with the given prefix.\n        :type prefix: str\n        :rtype: bool\n        \"\"\"\n\n        curr = self.Trie\n        for w in prefix:\n            if w not in curr:\n                return False\n            curr = curr[w]\n        return True\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:\n        m = len(board)\n        if m == 0:\n            return []\n        n = len(board[0])\n        trie = Trie()\n        seen = None\n        res = set()\n        for word in words:\n            trie.insert(word)\n\n        def dfs(s, i, j):\n            if (i, j) in seen or i < 0 or i >= m or j < 0 or j >= n or not trie.startsWith(s):\n                return\n            s += board[i][j]\n            seen[(i, j)] = True\n\n            if s in words:\n                res.add(s)\n            dfs(s, i + 1, j)\n            dfs(s, i - 1, j)\n            dfs(s, i, j + 1)\n            dfs(s, i, j - 1)\n\n            del seen[(i, j)]\n\n        for i in range(m):\n            for j in range(n):\n                seen = dict()\n                dfs(\"\", i, j)\n        return list(res)\n"
         }
     ]
@@ -2814,12 +2888,12 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/219.contains-duplicate-ii.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:\n        d = {}\n        for index, num in enumerate(nums):\n            if num in d and index - d[num] <= k:\n                return True\n            d[num] = index\n        return False\n"
-        },
-        {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=219 lang=javascript\n *\n * [219] Contains Duplicate II\n *\n * https://leetcode.com/problems/contains-duplicate-ii/description/\n *\n * algorithms\n * Easy (34.75%)\n * Total Accepted:    187.3K\n * Total Submissions: 537.5K\n * Testcase Example:  '[1,2,3,1]\\n3'\n *\n * Given an array of integers and an integer k, find out whether there are two\n * distinct indices i and j in the array such that nums[i] = nums[j] and the\n * absolute difference between i and j is at most k.\n *\n *\n * Example 1:\n *\n *\n * Input: nums = [1,2,3,1], k = 3\n * Output: true\n *\n *\n *\n * Example 2:\n *\n *\n * Input: nums = [1,0,1,1], k = 1\n * Output: true\n *\n *\n *\n * Example 3:\n *\n *\n * Input: nums = [1,2,3,1,2,3], k = 2\n * Output: false\n *\n *\n *\n *\n *\n */\n/**\n * @param {number[]} nums\n * @param {number} k\n * @return {boolean}\n */\nvar containsNearbyDuplicate = function(nums, k) {\n    const visited = {};\n    for(let i = 0; i < nums.length; i++) {\n        const num = nums[i];\n        if (visited[num] !== undefined && i - visited[num] <= k) {\n            return true;\n        }\n        visited[num] = i;\n    }\n    return false\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:\n        d = {}\n        for index, num in enumerate(nums):\n            if num in d and index - d[num] <= k:\n                return True\n            d[num] = index\n        return False\n"
         }
     ]
 },
@@ -2888,12 +2962,12 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/221.maximal-square.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def maximalSquare(self, matrix: List[List[str]]) -> int:\n        res = 0\n        m = len(matrix)\n        if m == 0:\n            return 0\n        n = len(matrix[0])\n        dp = [[0] * (n + 1) for _ in range(m + 1)]\n\n        for i in range(1, m + 1):\n            for j in range(1, n + 1):\n                dp[i][j] = min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]) + 1 if matrix[i - 1][j - 1] == \"1\" else 0\n                res = max(res, dp[i][j])\n        return res ** 2\n"
-        },
-        {
             "language": "js",
             "text": "\n\n/*\n * @lc app=leetcode id=221 lang=javascript\n *\n * [221] Maximal Square\n */\n/**\n * @param {character[][]} matrix\n * @return {number}\n */\nvar maximalSquare = function(matrix) {\n  if (matrix.length === 0) return 0;\n  const dp = [];\n  const rows = matrix.length;\n  const cols = matrix[0].length;\n  let max = Number.MIN_VALUE;\n\n  for (let i = 0; i < rows + 1; i++) {\n    if (i === 0) {\n      dp[i] = Array(cols + 1).fill(0);\n    } else {\n      dp[i] = [0];\n    }\n  }\n\n  for (let i = 1; i < rows + 1; i++) {\n    for (let j = 1; j < cols + 1; j++) {\n      if (matrix[i - 1][j - 1] === \"1\") {\n        dp[i][j] = Math.min(dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]) + 1;\n        max = Math.max(max, dp[i][j]);\n      } else {\n        dp[i][j] = 0;\n      }\n    }\n  }\n\n  return max * max;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def maximalSquare(self, matrix: List[List[str]]) -> int:\n        res = 0\n        m = len(matrix)\n        if m == 0:\n            return 0\n        n = len(matrix[0])\n        dp = [[0] * (n + 1) for _ in range(m + 1)]\n\n        for i in range(1, m + 1):\n            for j in range(1, n + 1):\n                dp[i][j] = min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]) + 1 if matrix[i - 1][j - 1] == \"1\" else 0\n                res = max(res, dp[i][j])\n        return res ** 2\n"
         }
     ]
 },
@@ -2927,12 +3001,12 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/226.invert-binary-tree.md",
     "code": [
         {
-            "language": "python",
-            "text": "\n# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.left = None\n#         self.right = None\n\nclass Solution:\n    def invertTree(self, root: TreeNode) -> TreeNode:\n        if not root:\n            return None\n        stack = [root]\n        while stack:\n            node = stack.pop(0)\n            node.left, node.right = node.right, node.left\n            if node.left:\n                stack.append(node.left)\n            if node.right:\n                stack.append(node.right)\n        return root\n"
-        },
-        {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=226 lang=javascript\n *\n * [226] Invert Binary Tree\n *\n * https://leetcode.com/problems/invert-binary-tree/description/\n *\n * algorithms\n * Easy (57.14%)\n * Total Accepted:    311K\n * Total Submissions: 540.6K\n * Testcase Example:  '[4,2,7,1,3,6,9]'\n *\n * Invert a binary tree.\n *\n * Example:\n *\n * Input:\n *\n *\n * ⁠    4\n * ⁠  /   \\\n * ⁠ 2     7\n * ⁠/ \\   / \\\n * 1   3 6   9\n *\n * Output:\n *\n *\n * ⁠    4\n * ⁠  /   \\\n * ⁠ 7     2\n * ⁠/ \\   / \\\n * 9   6 3   1\n *\n * Trivia:\n * This problem was inspired by this original tweet by Max Howell:\n *\n * Google: 90% of our engineers use the software you wrote (Homebrew), but you\n * can’t invert a binary tree on a whiteboard so f*** off.\n *\n */\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @return {TreeNode}\n */\nvar invertTree = function(root) {\n  if (!root) return root;\n  // 递归\n  //   const left = root.left;\n  //   const right = root.right;\n  //   root.right = invertTree(left);\n  //   root.left = invertTree(right);\n  // 我们用stack来模拟递归\n  // 本质上递归是利用了执行栈，执行栈也是一种栈\n  // 其实这里使用队列也是一样的，因为这里顺序不重要\n\n  const stack = [root];\n  let current = null;\n  while ((current = stack.shift())) {\n    const left = current.left;\n    const right = current.right;\n    current.right = left;\n    current.left = right;\n    if (left) {\n      stack.push(left);\n    }\n    if (right) {\n      stack.push(right);\n    }\n  }\n  return root;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\n# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.left = None\n#         self.right = None\n\nclass Solution:\n    def invertTree(self, root: TreeNode) -> TreeNode:\n        if not root:\n            return None\n        stack = [root]\n        while stack:\n            node = stack.pop(0)\n            node.left, node.right = node.right, node.left\n            if node.left:\n                stack.append(node.left)\n            if node.right:\n                stack.append(node.right)\n        return root\n"
         }
     ]
 },
@@ -3087,12 +3161,12 @@
             "text": "\nclass MyQueue {\n    Stack<Integer> pushStack = new Stack<> ();\n    Stack<Integer> popStack = new Stack<> ();\n\n    /** Initialize your data structure here. */\n    public MyQueue() {\n\n    }\n    \n    /** Push element x to the back of queue. */\n    public void push(int x) {\n        while (!popStack.isEmpty()) {\n            pushStack.push(popStack.pop());\n        }\n        pushStack.push(x);\n    }\n    \n    /** Removes the element from in front of queue and returns that element. */\n    public int pop() {\n        while (!pushStack.isEmpty()) {\n            popStack.push(pushStack.pop());\n        }\n        return popStack.pop();\n    }\n    \n    /** Get the front element. */\n    public int peek() {\n        while (!pushStack.isEmpty()) {\n            popStack.push(pushStack.pop());\n        }\n        return popStack.peek();\n    }\n    \n    /** Returns whether the queue is empty. */\n    public boolean empty() {\n        return pushStack.isEmpty() && popStack.isEmpty();\n    }\n}\n\n/**\n * Your MyQueue object will be instantiated and called as such:\n * MyQueue obj = new MyQueue();\n * obj.push(x);\n * int param_2 = obj.pop();\n * int param_3 = obj.peek();\n * boolean param_4 = obj.empty();\n */\n"
         },
         {
-            "language": "python",
-            "text": "\nclass MyQueue:\n\n    def __init__(self):\n        \"\"\"\n        Initialize your data structure here.\n        \"\"\"\n        self.stack = []\n        self.help_stack = []\n\n    def push(self, x: int) -> None:\n        \"\"\"\n        Push element x to the back of queue.\n        \"\"\"\n        while self.stack:\n            self.help_stack.append(self.stack.pop())\n        self.help_stack.append(x)\n        while self.help_stack:\n            self.stack.append(self.help_stack.pop())\n\n    def pop(self) -> int:\n        \"\"\"\n        Removes the element from in front of queue and returns that element.\n        \"\"\"\n        return self.stack.pop()\n\n    def peek(self) -> int:\n        \"\"\"\n        Get the front element.\n        \"\"\"\n        return self.stack[-1]\n\n    def empty(self) -> bool:\n        \"\"\"\n        Returns whether the queue is empty.\n        \"\"\"\n        return not bool(self.stack)\n\n\n# Your MyQueue object will be instantiated and called as such:\n# obj = MyQueue()\n# obj.push(x)\n# param_2 = obj.pop()\n# param_3 = obj.peek()\n# param_4 = obj.empty()\n"
-        },
-        {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=232 lang=javascript\n *\n * [232] Implement Queue using Stacks\n */\n/**\n * Initialize your data structure here.\n */\nvar MyQueue = function() {\n  // tag: queue stack array\n  this.stack = [];\n  this.helperStack = [];\n};\n\n/**\n * Push element x to the back of queue.\n * @param {number} x\n * @return {void}\n */\nMyQueue.prototype.push = function(x) {\n  let cur = null;\n  while ((cur = this.stack.pop())) {\n    this.helperStack.push(cur);\n  }\n  this.helperStack.push(x);\n\n  while ((cur = this.helperStack.pop())) {\n    this.stack.push(cur);\n  }\n};\n\n/**\n * Removes the element from in front of queue and returns that element.\n * @return {number}\n */\nMyQueue.prototype.pop = function() {\n  return this.stack.pop();\n};\n\n/**\n * Get the front element.\n * @return {number}\n */\nMyQueue.prototype.peek = function() {\n  return this.stack[this.stack.length - 1];\n};\n\n/**\n * Returns whether the queue is empty.\n * @return {boolean}\n */\nMyQueue.prototype.empty = function() {\n  return this.stack.length === 0;\n};\n\n/**\n * Your MyQueue object will be instantiated and called as such:\n * var obj = new MyQueue()\n * obj.push(x)\n * var param_2 = obj.pop()\n * var param_3 = obj.peek()\n * var param_4 = obj.empty()\n */\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass MyQueue:\n\n    def __init__(self):\n        \"\"\"\n        Initialize your data structure here.\n        \"\"\"\n        self.stack = []\n        self.help_stack = []\n\n    def push(self, x: int) -> None:\n        \"\"\"\n        Push element x to the back of queue.\n        \"\"\"\n        while self.stack:\n            self.help_stack.append(self.stack.pop())\n        self.help_stack.append(x)\n        while self.help_stack:\n            self.stack.append(self.help_stack.pop())\n\n    def pop(self) -> int:\n        \"\"\"\n        Removes the element from in front of queue and returns that element.\n        \"\"\"\n        return self.stack.pop()\n\n    def peek(self) -> int:\n        \"\"\"\n        Get the front element.\n        \"\"\"\n        return self.stack[-1]\n\n    def empty(self) -> bool:\n        \"\"\"\n        Returns whether the queue is empty.\n        \"\"\"\n        return not bool(self.stack)\n\n\n# Your MyQueue object will be instantiated and called as such:\n# obj = MyQueue()\n# obj.push(x)\n# param_2 = obj.pop()\n# param_3 = obj.peek()\n# param_4 = obj.empty()\n"
         }
     ]
 },
@@ -3200,20 +3274,20 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/239.sliding-window-maximum.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:\n        if k == 0: return []\n        res = []\n        for r in range(k - 1, len(nums)):\n            res.append(max(nums[r - k + 1:r + 1]))\n        return res\n"
-        },
-        {
-            "language": "python",
-            "text": "\nclass Solution:\n    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:\n        deque, res, n = [], [], len(nums)\n        for i in range(n):\n            while deque and deque[0] < i - k + 1:\n                deque.pop(0)\n            while deque and nums[i] > nums[deque[-1]]:\n                deque.pop(-1)\n            deque.append(i)\n            if i >= k - 1: res.append(nums[deque[0]])\n        return res\n\n\n"
-        },
-        {
             "language": "js",
             "text": "\nvar maxSlidingWindow = function(nums, k) {\n  // bad 时间复杂度O(n * k)\n  if (nums.length === 0 || k === 0) return [];\n  let slideWindow = [];\n  const ret = [];\n  for (let i = 0; i < nums.length - k + 1; i++) {\n    for (let j = 0; j < k; j++) {\n      slideWindow.push(nums[i + j]);\n    }\n    ret.push(Math.max(...slideWindow));\n    slideWindow = [];\n  }\n  return ret;\n};\n"
         },
         {
             "language": "js",
             "text": "\nvar maxSlidingWindow = function(nums, k) {\n  // 双端队列优化时间复杂度, 时间复杂度O(n)\n  const deque = []; // 存放在接下来的滑动窗口可能成为最大值的数\n  const ret = [];\n  for (let i = 0; i < nums.length; i++) {\n    // 清空失效元素\n    while (deque[0] < i - k + 1) {\n      deque.shift();\n    }\n\n    while (nums[deque[deque.length - 1]] < nums[i]) {\n      deque.pop();\n    }\n\n    deque.push(i);\n\n    if (i >= k - 1) {\n      ret.push(nums[deque[0]]);\n    }\n  }\n  return ret;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:\n        if k == 0: return []\n        res = []\n        for r in range(k - 1, len(nums)):\n            res.append(max(nums[r - k + 1:r + 1]))\n        return res\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:\n        deque, res, n = [], [], len(nums)\n        for i in range(n):\n            while deque and deque[0] < i - k + 1:\n                deque.pop(0)\n            while deque and nums[i] > nums[deque[-1]]:\n                deque.pop(-1)\n            deque.append(i)\n            if i >= k - 1: res.append(nums[deque[0]])\n        return res\n\n\n"
         }
     ]
 },
@@ -3247,12 +3321,12 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/24.swapNodesInPairs.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def swapPairs(self, head: ListNode) -> ListNode:\n        \"\"\"\n        用递归实现链表相邻互换：\n        第一个节点的 next 是第三、第四个节点交换的结果，第二个节点的 next 是第一个节点；\n        第三个节点的 next 是第五、第六个节点交换的结果，第四个节点的 next 是第三个节点；\n        以此类推\n        :param ListNode head\n        :return ListNode\n        \"\"\"\n        # 如果为 None 或 next 为 None，则直接返回\n        if not head or not head.next:\n            return head\n\n        _next = head.next\n        head.next = self.swapPairs(_next.next)\n        _next.next = head\n        return _next\n"
-        },
-        {
             "language": "js",
             "text": "\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} head\n * @return {ListNode}\n */\nvar swapPairs = function(head) {\n  const dummy = new ListNode(0);\n  dummy.next = head;\n  let current = dummy;\n  while (current.next != null && current.next.next != null) {\n    // 初始化双指针\n    const first = current.next;\n    const second = current.next.next;\n    \n    // 更新双指针和 current 指针\n    first.next = second.next;\n    second.next = first;\n    current.next = second;\n\n    // 更新指针\n    current = current.next.next;\n  }\n  return dummy.next;\n};\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def swapPairs(self, head: ListNode) -> ListNode:\n        \"\"\"\n        用递归实现链表相邻互换：\n        第一个节点的 next 是第三、第四个节点交换的结果，第二个节点的 next 是第一个节点；\n        第三个节点的 next 是第五、第六个节点交换的结果，第四个节点的 next 是第三个节点；\n        以此类推\n        :param ListNode head\n        :return ListNode\n        \"\"\"\n        # 如果为 None 或 next 为 None，则直接返回\n        if not head or not head.next:\n            return head\n\n        _next = head.next\n        head.next = self.swapPairs(_next.next)\n        _next.next = head\n        return _next\n"
         }
     ]
 },
@@ -3286,12 +3360,12 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/240.search-a-2-d-matrix-ii.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def searchMatrix(self, matrix, target):\n        m = len(matrix)\n        if m == 0:\n            return False\n        n = len(matrix[0])\n        i = m - 1\n        j = 0\n\n        while i >= 0 and j < n:\n            if matrix[i][j] == target:\n                return True\n            if matrix[i][j] > target:\n                i -= 1\n            else:\n                j += 1\n        return False\n"
-        },
-        {
             "language": "js",
             "text": "\n\n/*\n * @lc app=leetcode id=240 lang=javascript\n *\n * [240] Search a 2D Matrix II\n *\n * https://leetcode.com/problems/search-a-2d-matrix-ii/description/\n *\n * \n */\n/**\n * @param {number[][]} matrix\n * @param {number} target\n * @return {boolean}\n */\nvar searchMatrix = function(matrix, target) {\n    if (!matrix || matrix.length === 0) return 0;\n\n    let colIndex = 0;\n    let rowIndex = matrix.length - 1;\n    while(rowIndex > 0 && target < matrix[rowIndex][colIndex]) {\n        rowIndex --;\n    }\n\n    while(colIndex < matrix[0].length) {\n        if (target === matrix[rowIndex][colIndex]) return true;\n        if (target > matrix[rowIndex][colIndex]) {\n            colIndex ++;\n        } else if (rowIndex > 0){\n            rowIndex --;\n        } else {\n            return false;\n        }\n    }\n\n    return  false;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def searchMatrix(self, matrix, target):\n        m = len(matrix)\n        if m == 0:\n            return False\n        n = len(matrix[0])\n        i = m - 1\n        j = 0\n\n        while i >= 0 and j < n:\n            if matrix[i][j] == target:\n                return True\n            if matrix[i][j] > target:\n                i -= 1\n            else:\n                j += 1\n        return False\n"
         }
     ]
 },
@@ -3329,12 +3403,12 @@
             "text": "\nclass ReverseKGroupsLinkedList {\n  public ListNode reverseKGroup(ListNode head, int k) {\n      if (head == null || k == 1) {\n        return head;\n      }\n      ListNode dummy = new ListNode(0);\n      dummy.next = head;\n\n      ListNode start = dummy;\n      ListNode end = head;\n      int count = 0;\n      while (end != null) {\n        count++;\n        // group\n        if (count % k == 0) {\n          // reverse linked list (start, end]\n          start = reverse(start, end.next);\n          end = start.next;\n        } else {\n          end = end.next;\n        }\n      }\n      return dummy.next;\n    }\n\n    /**\n     * reverse linked list from range (start, end), return last node.\n     * for example:\n     * 0->1->2->3->4->5->6->7->8\n     * |           |\n     * start       end\n     *\n     * After call start = reverse(start, end)\n     *\n     * 0->3->2->1->4->5->6->7->8\n     *          |  |\n     *       start end\n     *       first\n     *\n     */\n    private ListNode reverse(ListNode start, ListNode end) {\n      ListNode curr = start.next;\n      ListNode prev = start;\n      ListNode first = curr;\n      while (curr != end){\n        ListNode temp = curr.next;\n        curr.next = prev;\n        prev = curr;\n        curr = temp;\n      }\n      start.next = prev;\n      first.next = curr;\n      return first;\n    }\n}\n"
         },
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def reverseKGroup(self, head: ListNode, k: int) -> ListNode:\n        if head is None or k < 2:\n            return head\n        dummy = ListNode(0)\n        dummy.next = head\n        start = dummy\n        end = head\n        count = 0\n        while end:\n            count += 1\n            if count % k == 0:\n                start = self.reverse(start, end.next)\n                end = start.next\n            else:\n                end = end.next\n        return dummy.next\n\n    def reverse(self, start, end):\n        prev, curr = start, start.next\n        first = curr\n        while curr != end:\n            temp = curr.next\n            curr.next = prev\n            prev = curr\n            curr = temp\n        start.next = prev\n        first.next = curr\n        return first\n"
-        },
-        {
             "language": "js",
             "text": "\n/**\n * @param {ListNode} head\n * @param {number} k\n * @return {ListNode}\n */\nvar reverseKGroup = function(head, k) {\n  // 标兵\n  let dummy = new ListNode()\n  dummy.next = head\n  let [start, end] = [dummy, dummy.next]\n  let count = 0\n  while(end) {\n    count++\n    if (count % k === 0) {\n      start = reverseList(start, end.next)\n      end = start.next\n    } else {\n      end = end.next\n    }\n  }\n  return dummy.next\n\n  // 翻转stat -> end的链表\n  function reverseList(start, end) {\n    let [pre, cur] = [start, start.next]\n    const first = cur\n    while(cur !== end) {\n      let next = cur.next\n      cur.next = pre\n      pre = cur\n      cur = next\n    }\n    start.next = pre\n    first.next = cur\n    return first\n  }\n};\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def reverseKGroup(self, head: ListNode, k: int) -> ListNode:\n        if head is None or k < 2:\n            return head\n        dummy = ListNode(0)\n        dummy.next = head\n        start = dummy\n        end = head\n        count = 0\n        while end:\n            count += 1\n            if count % k == 0:\n                start = self.reverse(start, end.next)\n                end = start.next\n            else:\n                end = end.next\n        return dummy.next\n\n    def reverse(self, start, end):\n        prev, curr = start, start.next\n        first = curr\n        while curr != end:\n            temp = curr.next\n            curr.next = prev\n            prev = curr\n            curr = temp\n        start.next = prev\n        first.next = curr\n        return first\n"
         }
     ]
 },
@@ -3372,7 +3446,7 @@
             "text": "\nclass ReverseKGroupsLinkedList {\n  public ListNode reverseKGroup(ListNode head, int k) {\n      if (head == null || k == 1) {\n        return head;\n      }\n      ListNode dummy = new ListNode(0);\n      dummy.next = head;\n  \n      ListNode start = dummy;\n      ListNode end = head;\n      int count = 0;\n      while (end != null) {\n        count++;\n        // group\n        if (count % k == 0) {\n          // reverse linked list (start, end]\n          start = reverse(start, end.next);\n          end = start.next;\n        } else {\n          end = end.next;\n        }\n      }\n      return dummy.next;\n    }\n  \n     /** \n     * reverse linked list from range (start, end), return last node.\n     * for example: \n     * 0->1->2->3->4->5->6->7->8\n     * |           |\n     * start       end\n     * \n     * After call start = reverse(start, end)\n     * \n     * 0->3->2->1->4->5->6->7->8\n     *          |  |\n     *       start end\n     *       \n     * @return the reversed list's 'start' node, which is the precedence of node end\n     */\n    private ListNode reverse(ListNode start, ListNode end) {\n      ListNode curr = start.next;\n      ListNode prev = start;\n      ListNode first = curr;\n      while (curr != end){\n        ListNode temp = curr.next;\n        curr.next = prev;\n        prev = curr;\n        curr = temp;\n      }\n      start.next = prev;\n      first.next = curr;\n      return first;\n    }\n}\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def reverseKGroup(self, head: ListNode, k: int) -> ListNode:\n        if head is None or k < 2:\n            return head\n        dummy = ListNode(0)\n        dummy.next = head\n        start = dummy\n        end = head\n        count = 0\n        while end:\n            count += 1\n            if count % k == 0:\n                start = self.reverse(start, end.next)\n                end = start.next\n            else:\n                end = end.next\n        return dummy.next\n    \n    def reverse(self, start, end):\n        prev, curr = start, start.next\n        first = curr\n        while curr != end:\n            temp = curr.next\n            curr.next = prev\n            prev = curr\n            curr = temp\n        start.next = prev\n        first.next = curr\n        return first\n"
         }
     ]
@@ -3407,12 +3481,16 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/26.remove-duplicates-from-sorted-array.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def removeDuplicates(self, nums: List[int]) -> int:\n        if nums:\n            slow = 0\n            for fast in range(1, len(nums)):\n                if nums[fast] != nums[slow]:\n                    slow += 1\n                    nums[slow] = nums[fast]\n            return slow + 1\n        else:\n            return 0\n"
-        },
-        {
             "language": "js",
             "text": "\n/**\n * @param {number[]} nums\n * @return {number}\n */\nvar removeDuplicates = function(nums) {\n    const size = nums.length;\n    if(size==0) return 0;\n    let slowP = 0;\n    for (let fastP = 0; fastP < size; fastP++) {\n        if (nums[fastP] !== nums[slowP]) {\n            slowP++;\n            nums[slowP] = nums[fastP]\n        }\n    }\n    return slowP + 1;\n};\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\nclass Solution {\npublic:\n    int removeDuplicates(vector<int>& nums) {\n        if(nums.empty()) return 0;\n        int fast,slow;\n        fast=slow=0;\n        while(fast!=nums.size()){\n            if(nums[fast]==nums[slow]) fast++;\n            else {\n                slow++;\n                nums[slow]=nums[fast];\n                fast++;\n            }\n        }\n        return slow+1;\n    }\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def removeDuplicates(self, nums: List[int]) -> int:\n        if nums:\n            slow = 0\n            for fast in range(1, len(nums)):\n                if nums[fast] != nums[slow]:\n                    slow += 1\n                    nums[slow] = nums[fast]\n            return slow + 1\n        else:\n            return 0\n"
         }
     ]
 },
@@ -3446,16 +3524,16 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/263.ugly-number.md",
     "code": [
         {
-            "language": "python",
-            "text": "\n# 非递归写法\nclass Solution:\n    def isUgly(self, num: int) -> bool:\n        if num <= 0:\n            return False\n        for i in (2, 3, 5):\n            while num % i == 0:\n                num /= i\n        return num == 1\n"
-        },
-        {
             "language": "js",
             "text": "\n\n  while(num % 2 === 0)   num = num / 2;\n  while(num % 3 === 0)   num = num / 3;\n  while(num % 5 === 0)   num = num / 5;\n\n  return num === 1;\n\n"
         },
         {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=263 lang=javascript\n *\n * [263] Ugly Number\n */\n/**\n * @param {number} num\n * @return {boolean}\n */\nvar isUgly = function(num) {\n  // TAG: 数论\n  if (num <= 0) return false;\n  if (num === 1) return true;\n\n  const list = [2, 3, 5];\n\n  if (list.includes(num)) return true;\n\n  for (let i of list) {\n    if (num % i === 0) return isUgly(Math.floor(num / i));\n  }\n  return false;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\n# 非递归写法\nclass Solution:\n    def isUgly(self, num: int) -> bool:\n        if num <= 0:\n            return False\n        for i in (2, 3, 5):\n            while num % i == 0:\n                num /= i\n        return num == 1\n"
         }
     ]
 },
@@ -3532,12 +3610,12 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/283.move-zeroes.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def moveZeroes(self, nums: List[int]) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        slow = fast = 0\n        while fast < len(nums):\n            if nums[fast] != 0:\n                nums[fast], nums[slow] = nums[slow], nums[fast]\n                slow += 1\n            fast += 1\n"
-        },
-        {
             "language": "js",
             "text": "\n/**\n * @param {number[]} nums\n * @return {void} Do not return anything, modify nums in-place instead.\n */\nvar moveZeroes = function(nums) {\n    let index = 0;\n    for(let i = 0; i < nums.length; i++) {\n        const num = nums[i];\n        if (num !== 0) {\n            nums[index++] = num;\n        }\n    }\n\n    for(let i = index; i < nums.length; i++) {\n        nums[index++] = 0;\n    }\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def moveZeroes(self, nums: List[int]) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        slow = fast = 0\n        while fast < len(nums):\n            if nums[fast] != 0:\n                nums[fast], nums[slow] = nums[slow], nums[fast]\n                slow += 1\n            fast += 1\n"
         }
     ]
 },
@@ -3571,10 +3649,6 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/29.divide-two-integers.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def divide(self, dividend: int, divisor: int) -> int:\n        \"\"\"\n        二分法\n        :param int divisor\n        :param int dividend\n        :return int\n        \"\"\"\n        # 错误处理\n        if divisor == 0:\n            raise ZeroDivisionError\n        if abs(divisor) == 1:\n            result = dividend if 1 == divisor else -dividend\n            return min(2**31-1, max(-2**31, result))\n\n        # 确定结果的符号\n        sign = ((dividend >= 0) == (divisor >= 0))\n        \n        result = 0\n        # abs也可以直接写在while条件中，不过可能会多计算几次\n        _divisor = abs(divisor)\n        _dividend = abs(dividend)\n        \n        while _divisor <= _dividend:\n            r, _dividend = self._multi_divide(_divisor, _dividend)\n            result += r\n        \n        result = result if sign else -result\n\n        # 注意返回值不能超过32位有符号数的表示范围\n        return min(2**31-1, max(-2**31, result))\n    \n    def _multi_divide(self, divisor, dividend):\n        \"\"\"\n        翻倍除法，如果可以被除，则下一步除数翻倍，直至除数大于被除数，\n        返回商加总的结果与被除数的剩余值；\n        这里就不做异常处理了；\n        :param int divisor\n        :param int dividend\n        :return tuple result, left_dividend\n        \"\"\"\n        result = 0\n        times_count = 1\n        while divisor <= dividend:\n            dividend -= divisor\n            result += times_count\n            times_count += times_count\n            divisor += divisor\n        return result, dividend\n"
-        },
-        {
             "language": "js",
             "text": "\n  let acc = divisor;\n  let count = 0;\n\n  while (dividend - acc >= 0) {\n    acc += divisor;\n    count++;\n  }\n\n  return count;\n\n"
         },
@@ -3585,6 +3659,10 @@
         {
             "language": "js",
             "text": "\n\n\n/*\n * @lc app=leetcode id=29 lang=javascript\n *\n * [29] Divide Two Integers\n */\n/**\n * @param {number} dividend\n * @param {number} divisor\n * @return {number}\n */\nvar divide = function(dividend, divisor) {\n  if (divisor === 1) return dividend;\n\n  // 这种方法很巧妙，即符号相同则为正，不同则为负\n  const isNegative = dividend > 0 !== divisor > 0;\n\n  const MAX_INTERGER = Math.pow(2, 31);\n\n  const res = helper(Math.abs(dividend), Math.abs(divisor));\n\n  // overflow\n  if (res > MAX_INTERGER - 1 || res < -1 * MAX_INTERGER) {\n    return MAX_INTERGER - 1;\n  }\n\n  return isNegative ? -1 * res : res;\n};\n\nfunction helper(dividend, divisor) {\n  // 二分法\n  if (dividend <= 0) return 0;\n  if (dividend < divisor) return 0;\n  if (divisor === 1) return dividend;\n\n  let acc = 2 * divisor;\n  let count = 1;\n\n  while (dividend - acc > 0) {\n    acc += acc;\n    count += count;\n  }\n  // 直接使用位移运算，比如acc >> 1会有问题\n  const last = dividend - Math.floor(acc / 2);\n\n  return count + helper(last, divisor);\n}\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def divide(self, dividend: int, divisor: int) -> int:\n        \"\"\"\n        二分法\n        :param int divisor\n        :param int dividend\n        :return int\n        \"\"\"\n        # 错误处理\n        if divisor == 0:\n            raise ZeroDivisionError\n        if abs(divisor) == 1:\n            result = dividend if 1 == divisor else -dividend\n            return min(2**31-1, max(-2**31, result))\n\n        # 确定结果的符号\n        sign = ((dividend >= 0) == (divisor >= 0))\n        \n        result = 0\n        # abs也可以直接写在while条件中，不过可能会多计算几次\n        _divisor = abs(divisor)\n        _dividend = abs(dividend)\n        \n        while _divisor <= _dividend:\n            r, _dividend = self._multi_divide(_divisor, _dividend)\n            result += r\n        \n        result = result if sign else -result\n\n        # 注意返回值不能超过32位有符号数的表示范围\n        return min(2**31-1, max(-2**31, result))\n    \n    def _multi_divide(self, divisor, dividend):\n        \"\"\"\n        翻倍除法，如果可以被除，则下一步除数翻倍，直至除数大于被除数，\n        返回商加总的结果与被除数的剩余值；\n        这里就不做异常处理了；\n        :param int divisor\n        :param int dividend\n        :return tuple result, left_dividend\n        \"\"\"\n        result = 0\n        times_count = 1\n        while divisor <= dividend:\n            dividend -= divisor\n            result += times_count\n            times_count += times_count\n            divisor += divisor\n        return result, dividend\n"
         }
     ]
 },
@@ -3665,12 +3743,12 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/3.longestSubstringWithoutRepeatingCharacters.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nfrom collections import defaultdict\n\n\nclass Solution:\n    def lengthOfLongestSubstring(self, s: str) -> int:\n        l = 0\n        ans = 0\n        counter = defaultdict(lambda: 0)\n\n        for r in range(len(s)):\n            while counter.get(s[r], 0) != 0:\n                counter[s[l]] = counter.get(s[l], 0) - 1\n                l += 1\n            counter[s[r]] += 1\n            ans = max(ans, r - l + 1)\n\n        return ans\n"
-        },
-        {
             "language": "js",
             "text": "\n/**\n * @param {string} s\n * @return {number}\n */\nvar lengthOfLongestSubstring = function(s) {\n  const mapper = {}; // 记录已经出现过的charactor\n  let res = 0;\n  let slidingWindow = [];\n\n  for (let c of s) {\n    if (mapper[c]) {\n      // 已经出现过了\n      // 则删除\n      const delIndex = slidingWindow.findIndex(_c => _c === c);\n\n      for (let i = 0; i < delIndex; i++) {\n        mapper[slidingWindow[i]] = false;\n      }\n\n      slidingWindow = slidingWindow.slice(delIndex + 1).concat(c);\n    } else {\n      // 新字符\n      if (slidingWindow.push(c) > res) {\n        res = slidingWindow.length;\n      }\n    }\n    mapper[c] = true;\n  }\n  return res;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nfrom collections import defaultdict\n\n\nclass Solution:\n    def lengthOfLongestSubstring(self, s: str) -> int:\n        l = 0\n        ans = 0\n        counter = defaultdict(lambda: 0)\n\n        for r in range(len(s)):\n            while counter.get(s[r], 0) != 0:\n                counter[s[l]] = counter.get(s[l], 0) - 1\n                l += 1\n            counter[s[r]] += 1\n            ans = max(ans, r - l + 1)\n\n        return ans\n"
         }
     ]
 },
@@ -3704,7 +3782,7 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/30.substring-with-concatenation-of-all-words.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nfrom collections import Counter\n\n\nclass Solution:\n    def findSubstring(self, s: str, words: List[str]) -> List[int]:\n        if not s or not words:\n            return []\n        res = []\n        n = len(words)\n        word_len = len(words[0])\n        window_len = word_len * n\n        target = Counter(words)\n        i = 0\n        while i < len(s) - window_len + 1:\n            sliced = []\n            start = i\n            for _ in range(n):\n                sliced.append(s[start:start + word_len])\n                start += word_len\n            if Counter(sliced) == target:\n                res.append(i)\n            i += 1\n        return res\n"
         }
     ]
@@ -3809,16 +3887,16 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/31.next-permutation.md",
     "code": [
         {
-            "language": "python",
+            "language": "js",
+            "text": "\n/*\n * @lc app=leetcode id=31 lang=javascript\n *\n * [31] Next Permutation\n */\n\nfunction reverseRange(A, i, j) {\n  while (i < j) {\n    const temp = A[i];\n    A[i] = A[j];\n    A[j] = temp;\n    i++;\n    j--;\n  }\n}\n/**\n * @param {number[]} nums\n * @return {void} Do not return anything, modify nums in-place instead.\n */\nvar nextPermutation = function(nums) {\n  // 时间复杂度O(n) 空间复杂度O(1)\n  if (nums == null || nums.length <= 1) return;\n\n  let i = nums.length - 2;\n  // 从后往前找到第一个降序的,相当于找到了我们的回溯点\n  while (i > -1 && nums[i + 1] <= nums[i]) i--;\n\n  // 如果找了就swap\n  if (i > -1) {\n    let j = nums.length - 1;\n    // 找到从右边起第一个大于nums[i]的，并将其和nums[i]进行交换\n    // 因为如果交换的数字比nums[i]还要小肯定不符合题意\n    while (nums[j] <= nums[i]) j--;\n    const temp = nums[i];\n    nums[i] = nums[j];\n    nums[j] = temp;\n  }\n\n  // 最后我们只需要将剩下的元素从左到右，依次填入当前最小的元素就可以保证是大于当前排列的最小值了\n  // [i + 1, A.length -1]的元素进行反转\n\n  reverseRange(nums, i + 1, nums.length - 1);\n};\n"
+        },
+        {
+            "language": "py",
             "text": "\nclass Solution:\n    def nextPermutation(self, nums):\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        :param list nums\n        \"\"\"\n        # 第一步，从后往前，找到下降点\n        down_index = None\n        for i in range(len(nums)-2, -1, -1):\n            if nums[i] < nums[i+1]:\n                down_index = i\n                break\n        # 如果没有下降点，重新排列\n        if down_index is None:\n            nums.reverse()\n        # 如果有下降点\n        else:\n            # 第二步，从后往前，找到比下降点大的数，对换位置\n            for i in range(len(nums)-1, i, -1):\n                if nums[down_index] < nums[i]:\n                    nums[down_index], nums[i] = nums[i], nums[down_index]\n                    break\n            # 第三部，重新排列下降点之后的数\n            i, j = down_index+1, len(nums)-1\n            while i < j:\n                nums[i], nums[j] = nums[j], nums[i]\n                i += 1\n                j -= 1\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def nextPermutation(self, nums):\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        :param list nums\n        \"\"\"\n        # 第一步，从后往前，找到下降点\n        down_index = None\n        for i in range(len(nums)-2, -1, -1):\n            if nums[i] < nums[i+1]:\n                down_index = i\n                break\n        # 如果没有下降点，重新排列\n        if down_index is None:\n            nums.reverse()\n        # 如果有下降点\n        else:\n            # 第二步，从后往前，找到比下降点大的数，对换位置\n            for i in range(len(nums)-1, i, -1):\n                if nums[down_index] < nums[i]:\n                    nums[down_index], nums[i] = nums[i], nums[down_index]\n                    break\n            # 第三步，重新排列下降点之后的数\n            i, j = down_index+1, len(nums)-1\n            while i < j:\n                nums[i], nums[j] = nums[j], nums[i]\n                i += 1\n                j -= 1\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=31 lang=javascript\n *\n * [31] Next Permutation\n */\n\nfunction reverseRange(A, i, j) {\n  while (i < j) {\n    const temp = A[i];\n    A[i] = A[j];\n    A[j] = temp;\n    i++;\n    j--;\n  }\n}\n/**\n * @param {number[]} nums\n * @return {void} Do not return anything, modify nums in-place instead.\n */\nvar nextPermutation = function(nums) {\n  // 时间复杂度O(n) 空间复杂度O(1)\n  if (nums == null || nums.length <= 1) return;\n\n  let i = nums.length - 2;\n  // 从后往前找到第一个降序的,相当于找到了我们的回溯点\n  while (i > -1 && nums[i + 1] <= nums[i]) i--;\n\n  // 如果找了就swap\n  if (i > -1) {\n    let j = nums.length - 1;\n    // 找到从右边起第一个大于nums[i]的，并将其和nums[i]进行交换\n    // 因为如果交换的数字比nums[i]还要小肯定不符合题意\n    while (nums[j] <= nums[i]) j--;\n    const temp = nums[i];\n    nums[i] = nums[j];\n    nums[j] = temp;\n  }\n\n  // 最后我们只需要将剩下的元素从左到右，依次填入当前最小的元素就可以保证是大于当前排列的最小值了\n  // [i + 1, A.length -1]的元素进行反转\n\n  reverseRange(nums, i + 1, nums.length - 1);\n};\n"
         }
     ]
 },
@@ -3891,12 +3969,12 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/32.longest-valid-parentheses.md",
     "code": [
         {
-            "language": "python",
-            "text": "\ns = '(())())'\n"
-        },
-        {
             "language": "js",
             "text": "\n// 用栈来解\nvar longestValidParentheses = function(s) {\n  let stack = new Array()\n  let longest = 0\n  stack.push(-1)\n  for(let i = 0; i < s.length; i++) {\n    if (s[i] === '(') {\n      stack.push(i)\n    } else {\n      stack.pop()\n      if (stack.length === 0) {\n        stack.push(i)\n      } else {\n        longest = Math.max(longest, i - stack[stack.length - 1])\n      }\n    }\n  }\n  return longest\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\ns = '(())())'\n"
         }
     ]
 },
@@ -3930,16 +4008,16 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/322.coin-change.md",
     "code": [
         {
-            "language": "python",
+            "language": "js",
+            "text": "\n\nvar coinChange = function(coins, amount) {\n    if (amount === 0) {\n      return 0;\n    }\n    const dp = Array(amount + 1).fill(Number.MAX_VALUE)\n    dp[0] = 0;\n    for (let i = 1; i < dp.length; i++) {\n      for (let j = 0; j < coins.length; j++) {\n        if (i - coins[j] >= 0) {\n          dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);\n        }\n      }\n    }\n\n    return dp[dp.length - 1] === Number.MAX_VALUE ? -1 : dp[dp.length - 1];\n\n\n};\n"
+        },
+        {
+            "language": "py",
             "text": "\nclass Solution:\n    def coinChange(self, coins: List[int], amount: int) -> int:\n        if amount < 0:\n            return - 1\n        dp = [[amount + 1 for _ in range(len(coins) + 1)]\n              for _ in range(amount + 1)]\n        # 初始化第一行为0，其他为最大值（也就是amount + 1）\n\n        for j in range(len(coins) + 1):\n            dp[0][j] = 0\n\n        for i in range(1, amount + 1):\n            for j in range(1, len(coins) + 1):\n                if i - coins[j - 1] >= 0:\n                    dp[i][j] = min(\n                        dp[i][j - 1], dp[i - coins[j - 1]][j] + 1)\n                else:\n                    dp[i][j] = dp[i][j - 1]\n\n        return -1 if dp[-1][-1] == amount + 1 else dp[-1][-1]\n "
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def coinChange(self, coins: List[int], amount: int) -> int:\n        dp = [amount + 1] * (amount + 1)\n        dp[0] = 0\n\n        for i in range(1, amount + 1):\n            for j in range(len(coins)):\n                if i >= coins[j]:\n                    dp[i] = min(dp[i], dp[i - coins[j]] + 1)\n\n        return -1 if dp[-1] == amount + 1 else dp[-1]\n"
-        },
-        {
-            "language": "js",
-            "text": "\n\nvar coinChange = function(coins, amount) {\n    if (amount === 0) {\n      return 0;\n    }\n    const dp = Array(amount + 1).fill(Number.MAX_VALUE)\n    dp[0] = 0;\n    for (let i = 1; i < dp.length; i++) {\n      for (let j = 0; j < coins.length; j++) {\n        if (i - coins[j] >= 0) {\n          dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);\n        }\n      }\n    }\n\n    return dp[dp.length - 1] === Number.MAX_VALUE ? -1 : dp[dp.length - 1];\n\n\n};\n"
         }
     ]
 },
@@ -4008,12 +4086,12 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/33.search-in-rotated-sorted-array.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def search(self, nums: List[int], target: int) -> int:\n        \"\"\"用二分法，先判断左右两边哪一边是有序的，再判断是否在有序的列表之内\"\"\"\n        if len(nums) <= 0:\n            return -1\n\n        left = 0\n        right = len(nums) - 1\n        while left < right:\n            mid = (right - left) // 2 + left\n            if nums[mid] == target:\n                return mid\n            \n            # 如果中间的值大于最左边的值，说明左边有序\n            if nums[mid] > nums[left]:\n                if nums[left] <= target <= nums[mid]:\n                    right = mid\n                else:\n                    # 这里 +1，因为上面是 <= 符号\n                    left = mid + 1\n            # 否则右边有序\n            else:\n                # 注意：这里必须是 mid+1，因为根据我们的比较方式，mid属于左边的序列\n                if nums[mid+1] <= target <= nums[right]:\n                    left = mid + 1\n                else:\n                    right = mid\n                    \n        return left if nums[left] == target else -1\n"
-        },
-        {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=33 lang=javascript\n *\n * [33] Search in Rotated Sorted Array\n */\n/**\n * @param {number[]} nums\n * @param {number} target\n * @return {number}\n */\nvar search = function(nums, target) {\n  // 时间复杂度：O(logn)\n  // 空间复杂度：O(1)\n  // [6,7,8,1,2,3,4,5]\n  let start = 0;\n  let end = nums.length - 1;\n\n  while (start <= end) {\n    const mid = start + ((end - start) >> 1);\n    if (nums[mid] === target) return mid;\n\n    // [start, mid]有序\n\n    // ️⚠️注意这里的等号\n    if (nums[mid] >= nums[start]) {\n      //target 在 [start, mid] 之间\n\n      // 其实target不可能等于nums[mid]， 但是为了对称，我还是加上了等号\n      if (target >= nums[start] && target <= nums[mid]) {\n        end = mid - 1;\n      } else {\n        //target 不在 [start, mid] 之间\n        start = mid + 1;\n      }\n    } else {\n      // [mid, end]有序\n\n      // target 在 [mid, end] 之间\n      if (target >= nums[mid] && target <= nums[end]) {\n        start = mid + 1;\n      } else {\n        // target 不在 [mid, end] 之间\n        end = mid - 1;\n      }\n    }\n  }\n\n  return -1;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def search(self, nums: List[int], target: int) -> int:\n        \"\"\"用二分法，先判断左右两边哪一边是有序的，再判断是否在有序的列表之内\"\"\"\n        if len(nums) <= 0:\n            return -1\n\n        left = 0\n        right = len(nums) - 1\n        while left < right:\n            mid = (right - left) // 2 + left\n            if nums[mid] == target:\n                return mid\n            \n            # 如果中间的值大于最左边的值，说明左边有序\n            if nums[mid] > nums[left]:\n                if nums[left] <= target <= nums[mid]:\n                    right = mid\n                else:\n                    # 这里 +1，因为上面是 <= 符号\n                    left = mid + 1\n            # 否则右边有序\n            else:\n                # 注意：这里必须是 mid+1，因为根据我们的比较方式，mid属于左边的序列\n                if nums[mid+1] <= target <= nums[right]:\n                    left = mid + 1\n                else:\n                    right = mid\n                    \n        return left if nums[left] == target else -1\n"
         }
     ]
 },
@@ -4082,7 +4160,7 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/335.self-crossing.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def isSelfCrossing(self, x: List[int]) -> bool:\n        n = len(x)\n        if n < 4:\n            return False\n        for i in range(3, n):\n            if x[i] >= x[i - 2] and x[i - 1] <= x[i - 3]:\n                return True\n            if x[i - 1] <= x[i - 3] and x[i - 2] <= x[i]:\n                return True\n            if i > 3 and x[i - 1] == x[i - 3] and x[i] + x[i - 4] == x[i - 2]:\n                return True\n            if i > 4 and x[i] + x[i - 4] >= x[i - 2] and x[i - 1] >= x[i - 3] - x[i - 5] \\\n                    and x[i - 1] <= x[i - 3] and x[i - 2] >= x[i - 4] and x[i - 3] >= x[i - 5]:\n                return True\n        return False\n"
         }
     ]
@@ -4117,10 +4195,6 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/342.power-of-four.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def isPowerOfFour(self, num: int) -> bool:\n        if num == 1:\n            return True\n        elif num < 4:\n            return False\n        else:\n            if not num & (num-1) == 0:\n                return False\n            else:\n                return num & 0x55555555 == num\n\n    # 另一种解法：将数字转化为二进制表示的字符串，利用字符串的相关操作进行判断\n    def isPowerOfFour(self, num: int) -> bool:\n        binary_num = bin(num)[2:]\n        return binary_num.strip('0') == '1' and len(binary_num) % 2 == 1\n"
-        },
-        {
             "language": "js",
             "text": "\nwhile (num && num % 4 == 0) {\n  num /= 4;\n}\nreturn num == 1;\n"
         },
@@ -4131,6 +4205,10 @@
         {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=342 lang=javascript\n *\n * [342] Power of Four\n */\n/**\n * @param {number} num\n * @return {boolean}\n */\nvar isPowerOfFour = function(num) {\n  // tag: 数论\n\n  if (num === 1) return true;\n  if (num < 4) return false;\n\n  if ((num & (num - 1)) !== 0) return false;\n\n  return (num & 0x55555555) === num;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def isPowerOfFour(self, num: int) -> bool:\n        if num == 1:\n            return True\n        elif num < 4:\n            return False\n        else:\n            if not num & (num-1) == 0:\n                return False\n            else:\n                return num & 0x55555555 == num\n\n    # 另一种解法：将数字转化为二进制表示的字符串，利用字符串的相关操作进行判断\n    def isPowerOfFour(self, num: int) -> bool:\n        binary_num = bin(num)[2:]\n        return binary_num.strip('0') == '1' and len(binary_num) % 2 == 1\n"
         }
     ]
 },
@@ -4164,23 +4242,23 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/343.integer-break.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def integerBreak(self, n: int) -> int:\n        dp = [1] * (n + 1)\n        for i in range(3, n + 1):\n            for j in range(1, i):\n                dp[i] = max(j * dp[i - j], j * (i - j), dp[i])\n        return dp[n]\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def integerBreak(self, n: int) -> int:\n        if n == 2: return 1\n        res = 0\n        for i in range(1, n):\n            res = max(res, max(i * self.integerBreak(n - i),i * (n - i)))\n        return res\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    @lru_cache()\n    def integerBreak(self, n: int) -> int:\n        if n == 2: return 1\n        res = 0\n        for i in range(1, n):\n            res = max(res, max(i * self.integerBreak(n - i),i * (n - i)))\n        return res\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def integerBreak(self, n: int) -> int:\n        dp = [1] * (n + 1)\n        for i in range(3, n + 1):\n            for j in range(1, i):\n                dp[i] = max(j * dp[i - j], j * (i - j), dp[i])\n        return dp[n]\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def integerBreak(self, n: int) -> int:\n        dp = [1] * (n + 1)\n        for i in range(3, n + 1):\n            for j in range(1, i):\n                dp[i] = max(j * dp[i - j], j * (i - j), dp[i])\n        return dp[n]\n"
         }
     ]
@@ -4215,12 +4293,12 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/349.intersection-of-two-arrays.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:\n        visited, result = {}, []\n        for num in nums1:\n            visited[num] = num\n        for num in nums2:\n            if num in visited:\n                result.append(num)\n                visited.pop(num)\n        return result\n\n    # 另一种解法：利用 Python 中的集合进行计算\n    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:\n        return set(nums1) & set(nums2)\n"
-        },
-        {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=349 lang=javascript\n *\n * [349] Intersection of Two Arrays\n *\n * https://leetcode.com/problems/intersection-of-two-arrays/description/\n *\n * algorithms\n * Easy (53.11%)\n * Total Accepted:    203.6K\n * Total Submissions: 380.9K\n * Testcase Example:  '[1,2,2,1]\\n[2,2]'\n *\n * Given two arrays, write a function to compute their intersection.\n *\n * Example 1:\n *\n *\n * Input: nums1 = [1,2,2,1], nums2 = [2,2]\n * Output: [2]\n *\n *\n *\n * Example 2:\n *\n *\n * Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]\n * Output: [9,4]\n *\n *\n * Note:\n *\n *\n * Each element in the result must be unique.\n * The result can be in any order.\n *\n *\n *\n *\n */\n/**\n * @param {number[]} nums1\n * @param {number[]} nums2\n * @return {number[]}\n */\nvar intersection = function(nums1, nums2) {\n    const visited = {};\n    const ret = [];\n    for(let i = 0; i < nums1.length; i++) {\n        const num = nums1[i];\n\n        visited[num] = num;\n    }\n\n    for(let i = 0; i < nums2.length; i++) {\n        const num = nums2[i];\n\n        if (visited[num] !== undefined) {\n            ret.push(num);\n            visited[num] = undefined;\n        }\n    }\n\n    return ret;\n\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:\n        visited, result = {}, []\n        for num in nums1:\n            visited[num] = num\n        for num in nums2:\n            if num in visited:\n                result.append(num)\n                visited.pop(num)\n        return result\n\n    # 另一种解法：利用 Python 中的集合进行计算\n    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:\n        return set(nums1) & set(nums2)\n"
         }
     ]
 },
@@ -4254,20 +4332,20 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/365.water-and-jug-problem.md",
     "code": [
         {
-            "language": "python",
+            "language": "js",
+            "text": "\n/**\n * @param {number} x\n * @param {number} y\n * @param {number} z\n * @return {boolean}\n */\nvar canMeasureWater = function(x, y, z) {\n  if (x + y < z) return false;\n\n  if (z === 0) return true;\n\n  if (x === 0) return y === z;\n\n  if (y === 0) return x === z;\n\n  function GCD(a, b) {\n    let min = Math.min(a, b);\n    while (min) {\n      if (a % min === 0 && b % min === 0) return min;\n      min--;\n    }\n    return 1;\n  }\n\n  return z % GCD(x, y) === 0;\n};\n"
+        },
+        {
+            "language": "py",
             "text": "\nclass Solution:\n    def canMeasureWater(self, x: int, y: int, z: int) -> bool:\n        if x + y < z:\n            return False\n        queue = [(0, 0)]\n        seen = set((0, 0))\n\n        while(len(queue) > 0):\n            a, b = queue.pop(0)\n            if a ==z or b == z or a + b == z:\n                return True\n            states = set()\n\n            states.add((x, b))\n            states.add((a, y))\n            states.add((0, b))\n            states.add((a, 0)) \n            states.add((min(x, b + a), 0 if b < x - a else b - (x - a))) \n            states.add((0 if a + b < y else a - (y - b), min(b + a, y)))\n            for state in states:\n                if state in seen:\n                    continue;\n                queue.append(state)\n                seen.add(state)\n        return False\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def canMeasureWater(self, x: int, y: int, z: int) -> bool:\n        if x + y < z:\n            return False\n\n        if (z == 0):\n            return True\n\n        if (x == 0):\n            return y == z\n\n        if (y == 0):\n            return x == z\n\n        def GCD(a, b):\n            smaller = min(a, b)\n            while smaller:\n                if a % smaller == 0 and b % smaller == 0:\n                    return smaller\n                smaller -= 1\n\n        return z % GCD(x, y) == 0\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\ndef GCD(a, b):\n    if b == 0: return a\n    return GCD(b, a % b)\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/**\n * @param {number} x\n * @param {number} y\n * @param {number} z\n * @return {boolean}\n */\nvar canMeasureWater = function(x, y, z) {\n  if (x + y < z) return false;\n\n  if (z === 0) return true;\n\n  if (x === 0) return y === z;\n\n  if (y === 0) return x === z;\n\n  function GCD(a, b) {\n    let min = Math.min(a, b);\n    while (min) {\n      if (a % min === 0 && b % min === 0) return min;\n      min--;\n    }\n    return 1;\n  }\n\n  return z % GCD(x, y) === 0;\n};\n"
         }
     ]
 },
@@ -4371,7 +4449,7 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/380.insert-delete-getrandom-o1.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nfrom random import random\n\n\nclass RandomizedSet:\n\n    def __init__(self):\n        \"\"\"\n        Initialize your data structure here.\n        \"\"\"\n        self.data = dict()\n        self.arr = []\n        self.n = 0\n\n    def insert(self, val: int) -> bool:\n        \"\"\"\n        Inserts a value to the set. Returns true if the set did not already contain the specified element.\n        \"\"\"\n        if val in self.data:\n            return False\n        self.data[val] = self.n\n        self.arr.append(val)\n        self.n += 1\n\n        return True\n\n    def remove(self, val: int) -> bool:\n        \"\"\"\n        Removes a value from the set. Returns true if the set contained the specified element.\n        \"\"\"\n        if val not in self.data:\n            return False\n        i = self.data[val]\n        # 更新data\n        self.data[self.arr[-1]] = i\n        self.data.pop(val)\n        # 更新arr\n        self.arr[i] = self.arr[-1]\n        # 删除最后一项\n        self.arr.pop()\n        self.n -= 1\n\n        return True\n\n    def getRandom(self) -> int:\n        \"\"\"\n        Get a random element from the set.\n        \"\"\"\n\n        return self.arr[int(random() * self.n)]\n\n\n# Your RandomizedSet object will be instantiated and called as such:\n# obj = RandomizedSet()\n# param_1 = obj.insert(val)\n# param_2 = obj.remove(val)\n# param_3 = obj.getRandom()\n"
         }
     ]
@@ -4406,12 +4484,12 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/39.combination-sum.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:\n        \"\"\"\n        回溯法，层层递减，得到符合条件的路径就加入结果集中，超出则剪枝；\n        主要是要注意一些细节，避免重复等；\n        \"\"\"\n        size = len(candidates)\n        if size <= 0:\n            return []\n        \n        # 先排序，便于后面剪枝\n        candidates.sort()\n        \n        path = []\n        res = []\n        self._find_path(target, path, res, candidates, 0, size)\n        \n        return res\n        \n    def _find_path(self, target, path, res, candidates, begin, size):\n        \"\"\"沿着路径往下走\"\"\"\n        if target == 0:\n            res.append(path.copy())\n        else:\n            for i in range(begin, size):\n                left_num = target - candidates[i]\n                # 如果剩余值为负数，说明超过了，剪枝\n                if left_num < 0:\n                    break\n                # 否则把当前值加入路径\n                path.append(candidates[i])\n                # 为避免重复解，我们把比当前值小的参数也从下一次寻找中剔除，\n                # 因为根据他们得出的解一定在之前就找到过了\n                self._find_path(left_num, path, res, candidates, i, size)\n                # 记得把当前值移出路径，才能进入下一个值的路径\n                path.pop()\n"
-        },
-        {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=39 lang=javascript\n *\n * [39] Combination Sum\n *\n * https://leetcode.com/problems/combination-sum/description/\n *\n * algorithms\n * Medium (46.89%)\n * Total Accepted:    326.7K\n * Total Submissions: 684.2K\n * Testcase Example:  '[2,3,6,7]\\n7'\n *\n * Given a set of candidate numbers (candidates) (without duplicates) and a\n * target number (target), find all unique combinations in candidates where the\n * candidate numbers sums to target.\n *\n * The same repeated number may be chosen from candidates unlimited number of\n * times.\n *\n * Note:\n *\n *\n * All numbers (including target) will be positive integers.\n * The solution set must not contain duplicate combinations.\n *\n *\n * Example 1:\n *\n *\n * Input: candidates = [2,3,6,7], target = 7,\n * A solution set is:\n * [\n * ⁠ [7],\n * ⁠ [2,2,3]\n * ]\n *\n *\n * Example 2:\n *\n *\n * Input: candidates = [2,3,5], target = 8,\n * A solution set is:\n * [\n * [2,2,2,2],\n * [2,3,3],\n * [3,5]\n * ]\n *\n */\n\nfunction backtrack(list, tempList, nums, remain, start) {\n  if (remain < 0) return;\n  else if (remain === 0) return list.push([...tempList]);\n  for (let i = start; i < nums.length; i++) {\n    tempList.push(nums[i]);\n    backtrack(list, tempList, nums, remain - nums[i], i); // 数字可以重复使用， i + 1代表不可以重复利用\n    tempList.pop();\n  }\n}\n/**\n * @param {number[]} candidates\n * @param {number} target\n * @return {number[][]}\n */\nvar combinationSum = function(candidates, target) {\n  const list = [];\n  backtrack(list, [], candidates.sort((a, b) => a - b), target, 0);\n  return list;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:\n        \"\"\"\n        回溯法，层层递减，得到符合条件的路径就加入结果集中，超出则剪枝；\n        主要是要注意一些细节，避免重复等；\n        \"\"\"\n        size = len(candidates)\n        if size <= 0:\n            return []\n        \n        # 先排序，便于后面剪枝\n        candidates.sort()\n        \n        path = []\n        res = []\n        self._find_path(target, path, res, candidates, 0, size)\n        \n        return res\n        \n    def _find_path(self, target, path, res, candidates, begin, size):\n        \"\"\"沿着路径往下走\"\"\"\n        if target == 0:\n            res.append(path.copy())\n        else:\n            for i in range(begin, size):\n                left_num = target - candidates[i]\n                # 如果剩余值为负数，说明超过了，剪枝\n                if left_num < 0:\n                    break\n                # 否则把当前值加入路径\n                path.append(candidates[i])\n                # 为避免重复解，我们把比当前值小的参数也从下一次寻找中剔除，\n                # 因为根据他们得出的解一定在之前就找到过了\n                self._find_path(left_num, path, res, candidates, i, size)\n                # 记得把当前值移出路径，才能进入下一个值的路径\n                path.pop()\n"
         }
     ]
 },
@@ -4492,12 +4570,12 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/40.combination-sum-ii.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:\n        \"\"\"\n        与39题的区别是不能重用元素，而元素可能有重复；\n        不能重用好解决，回溯的index往下一个就行；\n        元素可能有重复，就让结果的去重麻烦一些；\n        \"\"\"\n        size = len(candidates)\n        if size == 0:\n            return []\n        \n        # 还是先排序，主要是方便去重\n        candidates.sort()\n        \n        path = []\n        res = []\n        self._find_path(candidates, path, res, target, 0, size)\n        \n        return res\n    \n    def _find_path(self, candidates, path, res, target, begin, size):\n        if target == 0:\n            res.append(path.copy())\n        else:\n            for i in range(begin, size):\n                left_num = target - candidates[i]\n                if left_num < 0:\n                    break\n                # 如果存在重复的元素，前一个元素已经遍历了后一个元素与之后元素组合的所有可能\n                if i > begin and candidates[i] == candidates[i-1]:\n                    continue\n                path.append(candidates[i])\n                # 开始的 index 往后移了一格\n                self._find_path(candidates, path, res, left_num, i+1, size)\n                path.pop()\n"
-        },
-        {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=40 lang=javascript\n *\n * [40] Combination Sum II\n *\n * https://leetcode.com/problems/combination-sum-ii/description/\n *\n * algorithms\n * Medium (40.31%)\n * Total Accepted:    212.8K\n * Total Submissions: 519K\n * Testcase Example:  '[10,1,2,7,6,1,5]\\n8'\n *\n * Given a collection of candidate numbers (candidates) and a target number\n * (target), find all unique combinations in candidates where the candidate\n * numbers sums to target.\n * \n * Each number in candidates may only be used once in the combination.\n * \n * Note:\n * \n * \n * All numbers (including target) will be positive integers.\n * The solution set must not contain duplicate combinations.\n * \n * \n * Example 1:\n * \n * \n * Input: candidates = [10,1,2,7,6,1,5], target = 8,\n * A solution set is:\n * [\n * ⁠ [1, 7],\n * ⁠ [1, 2, 5],\n * ⁠ [2, 6],\n * ⁠ [1, 1, 6]\n * ]\n * \n * \n * Example 2:\n * \n * \n * Input: candidates = [2,5,2,1,2], target = 5,\n * A solution set is:\n * [\n * [1,2,2],\n * [5]\n * ]\n * \n * \n */\nfunction backtrack(list, tempList, nums, remain, start) {\n    if (remain < 0) return;\n    else if (remain === 0) return list.push([...tempList]);\n    for (let i = start; i < nums.length; i++) {\n      // 和39.combination-sum 的其中一个区别就是这道题candidates可能有重复\n      // 代码表示就是下面这一行\n      if(i > start && nums[i] == nums[i-1]) continue; // skip duplicates\n      tempList.push(nums[i]);\n      backtrack(list, tempList, nums, remain - nums[i], i + 1); // i + 1代表不可以重复利用， i 代表数字可以重复使用 \n      tempList.pop();\n    }\n  }\n/**\n * @param {number[]} candidates\n * @param {number} target\n * @return {number[][]}\n */\nvar combinationSum2 = function(candidates, target) {\n    const list = [];\n    backtrack(list, [], candidates.sort((a, b) => a - b), target, 0);\n    return list;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:\n        \"\"\"\n        与39题的区别是不能重用元素，而元素可能有重复；\n        不能重用好解决，回溯的index往下一个就行；\n        元素可能有重复，就让结果的去重麻烦一些；\n        \"\"\"\n        size = len(candidates)\n        if size == 0:\n            return []\n        \n        # 还是先排序，主要是方便去重\n        candidates.sort()\n        \n        path = []\n        res = []\n        self._find_path(candidates, path, res, target, 0, size)\n        \n        return res\n    \n    def _find_path(self, candidates, path, res, target, begin, size):\n        if target == 0:\n            res.append(path.copy())\n        else:\n            for i in range(begin, size):\n                left_num = target - candidates[i]\n                if left_num < 0:\n                    break\n                # 如果存在重复的元素，前一个元素已经遍历了后一个元素与之后元素组合的所有可能\n                if i > begin and candidates[i] == candidates[i-1]:\n                    continue\n                path.append(candidates[i])\n                # 开始的 index 往后移了一格\n                self._find_path(candidates, path, res, left_num, i+1, size)\n                path.pop()\n"
         }
     ]
 },
@@ -4582,16 +4660,16 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/42.trapping-rain-water.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def trap(self, heights: List[int]) -> int:\n        n = len(heights)\n        l, r = [0] * (n + 1), [0] * (n + 1)\n        ans = 0\n        for i in range(1, len(heights) + 1):\n            l[i] = max(l[i - 1], heights[i - 1])\n        for i in range(len(heights) - 1, 0, -1):\n            r[i] = max(r[i + 1], heights[i])\n        for i in range(len(heights)):\n            ans += max(0, min(l[i + 1], r[i]) - heights[i])\n        return ans     \n"
-        },
-        {
             "language": "js",
             "text": "\n\nfor(let i = 0; i < height.length; i++) {\n    area += (h[i] - height[i]) * 1; // h为下雨之后的水位\n}\n\n"
         },
         {
             "language": "js",
             "text": "\n\n/*\n * @lc app=leetcode id=42 lang=javascript\n *\n * [42] Trapping Rain Water\n *\n */\n/**\n * @param {number[]} height\n * @return {number}\n */\nvar trap = function(height) {\n    let max = 0;\n    let volumn = 0;\n    const leftMax = [];\n    const rightMax = [];\n\n    for(let i = 0; i < height.length; i++) {\n        leftMax[i] = max = Math.max(height[i], max);\n    }\n\n    max = 0;\n\n    for(let i = height.length - 1; i >= 0; i--) {\n        rightMax[i] = max = Math.max(height[i], max);\n    }\n\n    for(let i = 0; i < height.length; i++) {\n        volumn = volumn +  Math.min(leftMax[i], rightMax[i]) - height[i]\n    }\n\n    return volumn;\n};\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def trap(self, heights: List[int]) -> int:\n        n = len(heights)\n        l, r = [0] * (n + 1), [0] * (n + 1)\n        ans = 0\n        for i in range(1, len(heights) + 1):\n            l[i] = max(l[i - 1], heights[i - 1])\n        for i in range(len(heights) - 1, 0, -1):\n            r[i] = max(r[i + 1], heights[i])\n        for i in range(len(heights)):\n            ans += max(0, min(l[i + 1], r[i]) - heights[i])\n        return ans     \n"
         }
     ]
 },
@@ -4664,12 +4742,12 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/445.add-two-numbers-ii.md",
     "code": [
         {
-            "language": "python",
-            "text": "\n# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.next = None\n\nclass Solution:\n    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:\n        def listToStack(l: ListNode) -> list:\n            stack, c = [], l\n            while c:\n                stack.append(c.val)\n                c = c.next\n            return stack\n            \n        # transfer l1 and l2 into stacks\n        stack1, stack2 = listToStack(l1), listToStack(l2)\n            \n        # add stack1 and stack2\n        diff = abs(len(stack1) - len(stack2))\n        stack1 = ([0]*diff + stack1 if len(stack1) < len(stack2) else stack1)\n        stack2 = ([0]*diff + stack2 if len(stack2) < len(stack1) else stack2)\n        stack3 = [x + y for x, y in zip(stack1, stack2)]\n        \n        # calculate carry for each item in stack3 and add one to the item before it\n        carry = 0\n        for i, val in enumerate(stack3[::-1]):\n            index = len(stack3) - i - 1\n            carry, stack3[index] = divmod(val + carry, 10)\n            if carry and index == 0: \n                stack3 = [1] + stack3\n            elif carry:\n                stack3[index - 1] += 1\n        \n        # transfer stack3 to a linkedList\n        result = ListNode(0)\n        c = result\n        for item in stack3:\n            c.next = ListNode(item)\n            c = c.next\n        \n        return result.next\n"
-        },
-        {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=445 lang=javascript\n *\n * [445] Add Two Numbers II\n */\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} l1\n * @param {ListNode} l2\n * @return {ListNode}\n */\nvar addTwoNumbers = function(l1, l2) {\n  const stack1 = [];\n  const stack2 = [];\n  const stack = [];\n\n  let cur1 = l1;\n  let cur2 = l2;\n  let curried = 0;\n\n  while (cur1) {\n    stack1.push(cur1.val);\n    cur1 = cur1.next;\n  }\n\n  while (cur2) {\n    stack2.push(cur2.val);\n    cur2 = cur2.next;\n  }\n\n  let a = null;\n  let b = null;\n\n  while (stack1.length > 0 || stack2.length > 0) {\n    a = Number(stack1.pop()) || 0;\n    b = Number(stack2.pop()) || 0;\n\n    stack.push((a + b + curried) % 10);\n\n    if (a + b + curried >= 10) {\n      curried = 1;\n    } else {\n      curried = 0;\n    }\n  }\n\n  if (curried === 1) {\n    stack.push(1);\n  }\n\n  const dummy = {};\n\n  let current = dummy;\n\n  while (stack.length > 0) {\n    current.next = {\n      val: stack.pop(),\n      next: null\n    };\n\n    current = current.next;\n  }\n\n  return dummy.next;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\n# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.next = None\n\nclass Solution:\n    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:\n        def listToStack(l: ListNode) -> list:\n            stack, c = [], l\n            while c:\n                stack.append(c.val)\n                c = c.next\n            return stack\n            \n        # transfer l1 and l2 into stacks\n        stack1, stack2 = listToStack(l1), listToStack(l2)\n            \n        # add stack1 and stack2\n        diff = abs(len(stack1) - len(stack2))\n        stack1 = ([0]*diff + stack1 if len(stack1) < len(stack2) else stack1)\n        stack2 = ([0]*diff + stack2 if len(stack2) < len(stack1) else stack2)\n        stack3 = [x + y for x, y in zip(stack1, stack2)]\n        \n        # calculate carry for each item in stack3 and add one to the item before it\n        carry = 0\n        for i, val in enumerate(stack3[::-1]):\n            index = len(stack3) - i - 1\n            carry, stack3[index] = divmod(val + carry, 10)\n            if carry and index == 0: \n                stack3 = [1] + stack3\n            elif carry:\n                stack3[index - 1] += 1\n        \n        # transfer stack3 to a linkedList\n        result = ListNode(0)\n        c = result\n        for item in stack3:\n            c.next = ListNode(item)\n            c = c.next\n        \n        return result.next\n"
         }
     ]
 },
@@ -4703,12 +4781,12 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/454.4-sum-ii.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def fourSumCount(self, A: List[int], B: List[int], C: List[int], D: List[int]) -> int:\n        mapper = {}\n        res = 0\n        for i in A:\n            for j in B:\n                mapper[i + j] = mapper.get(i + j, 0) + 1\n        \n        for i in C:\n            for j in D:\n                res += mapper.get(-1 * (i + j), 0)\n        return res\n "
-        },
-        {
             "language": "js",
             "text": "\n\n/*\n * @lc app=leetcode id=454 lang=javascript\n *\n * [454] 4Sum II\n *\n * https://leetcode.com/problems/4sum-ii/description/\n/**\n * @param {number[]} A\n * @param {number[]} B\n * @param {number[]} C\n * @param {number[]} D\n * @return {number}\n */\nvar fourSumCount = function(A, B, C, D) {\n  const sumMapper = {};\n  let res = 0;\n  for (let i = 0; i < A.length; i++) {\n    for (let j = 0; j < B.length; j++) {\n        sumMapper[A[i] + B[j]] = (sumMapper[A[i] + B[j]] || 0) + 1;\n    }\n  }\n\n  for (let i = 0; i < C.length; i++) {\n    for (let j = 0; j < D.length; j++) {\n        res += sumMapper[- (C[i] + D[j])] || 0;\n    }\n  }\n\n  return res;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def fourSumCount(self, A: List[int], B: List[int], C: List[int], D: List[int]) -> int:\n        mapper = {}\n        res = 0\n        for i in A:\n            for j in B:\n                mapper[i + j] = mapper.get(i + j, 0) + 1\n        \n        for i in C:\n            for j in D:\n                res += mapper.get(-1 * (i + j), 0)\n        return res\n "
         }
     ]
 },
@@ -4882,7 +4960,7 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/472.concatenated-words.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Trie:\n\n    def __init__(self):\n        self.Trie = {}\n        self.visited = {}\n\n    def insert(self, word):\n        curr = self.Trie\n        for w in word:\n            if w not in curr:\n                curr[w] = {}\n            curr = curr[w]\n        curr['#'] = 1\n\n    def cntWords(self, word):\n        if not word:\n            return 0\n        if word in self.visited:\n            return self.visited[word]\n        curr = self.Trie\n        res = float('-inf')\n\n        for i, w in enumerate(word):\n            if w not in curr:\n                return res\n            curr = curr[w]\n            if '#' in curr:\n                res = max(res, 1 + self.cntWords(word[i + 1:]))\n        self.visited[word] = res\n        return res\n\n\nclass Solution:\n    def findAllConcatenatedWordsInADict(self, words: List[str]) -> List[str]:\n        self.trie = Trie()\n        res = []\n\n        for word in words:\n            self.trie.insert(word)\n        for word in words:\n            if self.trie.cntWords(word) >= 2:\n                res.append(word)\n        return res\n"
         }
     ]
@@ -4933,15 +5011,15 @@
             "text": "\nclass OnesAndZeros2DDP {\n  public int findMaxForm(String[] strs, int m, int n) {\n      int[][] dp = new int[m + 1][n + 1];\n      for (String s : strs) {\n        int[] counts = countZeroOnes(s);\n        for (int i = m; i >= counts[0]; i--) {\n          for (int j = n; j >= counts[1]; j--) {\n            dp[i][j] = Math.max(1 + dp[i - counts[0]][j - counts[1]], dp[i][j]);\n          }\n        }\n      }\n      return dp[m][n];\n  }\n  private int[] countZeroOnes(String s) {\n       int[] res = new int[2];\n       for (char ch : s.toCharArray()) {\n         res[ch - '0']++;\n       }\n       return res;\n  }\n}\n\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def findMaxForm(self, strs: List[str], m: int, n: int) -> int:\n        return self.helper(strs, m, n, 0)\n    \n    def helper(self, strs, m, n, idx):\n        if idx == len(strs):\n            return 0\n        take_curr_str = -1\n        count0, count1 = strs[idx].count('0'), strs[idx].count('1')\n        if m >= count0 and n >= count1:\n            take_curr_str = max(take_curr_str, self.helper(strs, m - count0, n - count1, idx + 1) + 1)\n        not_take_curr_str = self.helper(strs, m, n, idx + 1)\n        return max(take_curr_str, not_take_curr_str)\n        \n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def findMaxForm(self, strs: List[str], m: int, n: int) -> int:\n        memo = {k:[[0]*(n+1) for _ in range(m+1)] for k in range(len(strs)+1)}\n        return self.helper(strs, 0, m, n, memo)\n    \n    def helper(self, strs, idx, m, n, memo):\n        if idx == len(strs):\n            return 0\n        if memo[idx][m][n] != 0:\n            return memo[idx][m][n]\n        take_curr_str = -1\n        count0, count1 = strs[idx].count('0'), strs[idx].count('1')\n        if m >= count0 and n >= count1:\n            take_curr_str = max(take_curr_str, self.helper(strs, idx + 1, m - count0, n - count1, memo) + 1)\n        not_take_curr_str = self.helper(strs, idx + 1, m, n, memo)\n        memo[idx][m][n] = max(take_curr_str, not_take_curr_str)\n        return memo[idx][m][n]\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def findMaxForm(self, strs: List[str], m: int, n: int) -> int:\n        l = len(strs)\n        dp = [[0]*(n+1) for _ in range(m+1)]\n        for i in range(1, l + 1):\n              count0, count1 = strs[i - 1].count('0'), strs[i - 1].count('1')\n              for i in reversed(range(count0, m + 1)):\n                for j in reversed(range(count1, n + 1)):\n                    dp[i][j] = max(dp[i][j], 1 + dp[i - count0][j - count1])\n        return dp[m][n]\n"
         }
     ]
@@ -5054,15 +5132,15 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/493.reverse-pairs.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution(object):\n    def reversePairs(self, nums):\n        n = len(nums)\n        cnt = 0\n        for i in range(n):\n            for j in range(i + 1, n):\n                if nums[i] > 2 * nums[j]:\n                    cnt += 1\n        return cnt\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nl = r = 0\nwhile l < len(left) and r < len(right):\n    if left[l] <= 2 * right[r]:\n        l += 1\n    else:\n        self.cnt += len(left) - l\n        r += 1\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution(object):\n    def reversePairs(self, nums):\n        self.cnt = 0\n\n        def mergeSort(lst):\n            L = len(lst)\n            if L <= 1:\n                return lst\n            return mergeTwo(mergeSort(lst[:L//2]), mergeSort(lst[L//2:]))\n\n        def mergeTwo(left, right):\n            l = r = 0\n            while l < len(left) and r < len(right):\n                if left[l] <= 2 * right[r]:\n                    l += 1\n                else:\n                    self.cnt += len(left) - l\n                    r += 1\n            return sorted(left+right)\n\n        mergeSort(nums)\n        return self.cnt\n\n"
         }
     ]
@@ -5132,16 +5210,16 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/5.longest-palindromic-substring.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def longestPalindrome(self, s: str) -> str:\n        n = len(s)\n        if n == 0:\n            return \"\"\n        res = s[0]\n        def extend(i, j, s):\n            while(i >= 0 and j < len(s) and s[i] == s[j]):\n                i -= 1\n                j += 1\n            return s[i + 1:j]\n\n        for i in range(n - 1):\n            e1 = extend(i, i, s)\n            e2 = extend(i, i + 1, s) \n            if max(len(e1), len(e2)) > len(res):\n                res = e1 if len(e1) > len(e2) else e2\n        return res\n"
-        },
-        {
             "language": "js",
             "text": "\nif (s[i] === s[j] && dp[i + 1][j - 1]) {\n  dp[i][j] = true;\n}\n"
         },
         {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=5 lang=javascript\n *\n * [5] Longest Palindromic Substring\n */\n/**\n * @param {string} s\n * @return {string}\n */\nvar longestPalindrome = function(s) {\n  // babad\n  // tag : dp\n  if (!s || s.length === 0) return \"\";\n  let res = s[0];\n\n  const dp = [];\n\n  // 倒着遍历简化操作， 这么做的原因是dp[i][..]依赖于dp[i + 1][..]\n  for (let i = s.length - 1; i >= 0; i--) {\n    dp[i] = [];\n    for (let j = i; j < s.length; j++) {\n      if (j - i === 0) dp[i][j] = true;\n      // specail case 1\n      else if (j - i === 1 && s[i] === s[j]) dp[i][j] = true;\n      // specail case 2\n      else if (s[i] === s[j] && dp[i + 1][j - 1]) {\n        // state transition\n        dp[i][j] = true;\n      }\n\n      if (dp[i][j] && j - i + 1 > res.length) {\n        // update res\n        res = s.slice(i, j + 1);\n      }\n    }\n  }\n\n  return res;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def longestPalindrome(self, s: str) -> str:\n        n = len(s)\n        if n == 0:\n            return \"\"\n        res = s[0]\n        def extend(i, j, s):\n            while(i >= 0 and j < len(s) and s[i] == s[j]):\n                i -= 1\n                j += 1\n            return s[i + 1:j]\n\n        for i in range(n - 1):\n            e1 = extend(i, i, s)\n            e2 = extend(i, i + 1, s) \n            if max(len(e1), len(e2)) > len(res):\n                res = e1 if len(e1) > len(e2) else e2\n        return res\n"
         }
     ]
 },
@@ -5175,19 +5253,19 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/50.pow-x-n.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def myPow(self, x: float, n: int) -> float:\n        if n == 0:\n            return 1\n        if n < 0:\n            return 1 / self.myPow(x, -n)\n        res = 1\n        for _ in range(n):\n            res *= x\n        return res\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def myPow(self, x: float, n: int) -> float:\n        if n == 0:\n            return 1\n        if n == 1:\n            return x\n        if n < 0:\n            return 1 / self.myPow(x, -n)\n        return self.myPow(x, n // 2) * self.myPow(x, n - n // 2)\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def myPow(self, x: float, n: int) -> float:\n        if n == 0:\n            return 1\n        if n == 1:\n            return x\n        if n < 0:\n            return 1 / self.myPow(x, -n)\n        return self.myPow(x _ x, n // 2) if n % 2 == 0 else x _ self.myPow(x, n - 1)\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def myPow(self, x: float, n: int) -> float:\n        if n < 0:\n            return 1 / self.myPow(x, -n)\n        res = 1\n        while n:\n            if n & 1 == 1:\n                res *= x\n            x *= x\n            n >>= 1\n        return res\n"
         }
     ]
@@ -5296,14 +5374,6 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/518.coin-change-2.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def change(self, amount: int, coins: List[int]) -> int:\n        dp = [0] * (amount + 1)\n        dp[0] = 1\n\n        for j in range(len(coins)):\n            for i in range(1, amount + 1):\n                if i >= coins[j]:\n                    dp[i] += dp[i - coins[j]]\n\n        return dp[-1]\n"
-        },
-        {
-            "language": "python",
-            "text": "\nclass Solution:\n    def change(self, amount: int, coins: List[int]) -> int:\n        dp = [[0 for _ in range(len(coins) + 1)] for _ in range(amount + 1)]\n        for j in range(len(coins) + 1):\n            dp[0][j] = 1\n\n        for i in range(amount + 1):\n            for j in range(1, len(coins) + 1):\n                if i >= coins[j - 1]:\n                    dp[i][j] = dp[i - coins[j - 1]][j] + dp[i][j - 1]\n                else:\n                    dp[i][j] = dp[i][j - 1]\n        return dp[-1][-1]\n"
-        },
-        {
             "language": "js",
             "text": "\nif (amount === 0) return 1;\n\nconst dp = [Array(amount + 1).fill(1)];\n\nfor (let i = 1; i < amount + 1; i++) {\n  dp[i] = Array(coins.length + 1).fill(0);\n  for (let j = 1; j < coins.length + 1; j++) {\n    // 从1开始可以简化运算\n    if (i - coins[j - 1] >= 0) {\n      // 注意这里是coins[j -1]而不是coins[j]\n      dp[i][j] = dp[i][j - 1] + dp[i - coins[j - 1]][j]; // 由于可以重复使用硬币所以这里是j不是j-1\n    } else {\n      dp[i][j] = dp[i][j - 1];\n    }\n  }\n}\n\nreturn dp[dp.length - 1][coins.length];\n"
         },
@@ -5314,6 +5384,14 @@
         {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=518 lang=javascript\n *\n * [518] Coin Change 2\n *\n */\n/**\n * @param {number} amount\n * @param {number[]} coins\n * @return {number}\n */\nvar change = function(amount, coins) {\n  if (amount === 0) return 1;\n\n  const dp = [1].concat(Array(amount).fill(0));\n\n  for (let j = 0; j < coins.length; j++) {\n    for (let i = 1; i < amount + 1; i++) {\n      if (i - coins[j] >= 0) {\n        dp[i] = dp[i] + dp[i - coins[j]];\n      }\n    }\n  }\n\n  return dp[dp.length - 1];\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def change(self, amount: int, coins: List[int]) -> int:\n        dp = [0] * (amount + 1)\n        dp[0] = 1\n\n        for j in range(len(coins)):\n            for i in range(1, amount + 1):\n                if i >= coins[j]:\n                    dp[i] += dp[i - coins[j]]\n\n        return dp[-1]\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def change(self, amount: int, coins: List[int]) -> int:\n        dp = [[0 for _ in range(len(coins) + 1)] for _ in range(amount + 1)]\n        for j in range(len(coins) + 1):\n            dp[0][j] = 1\n\n        for i in range(amount + 1):\n            for j in range(1, len(coins) + 1):\n                if i >= coins[j - 1]:\n                    dp[i][j] = dp[i - coins[j - 1]][j] + dp[i][j - 1]\n                else:\n                    dp[i][j] = dp[i][j - 1]\n        return dp[-1][-1]\n"
         }
     ]
 },
@@ -5398,22 +5476,6 @@
             "text": "\nclass MaximumSubarrayDP {\n   public int maxSubArray(int[] nums) {\n      int currMaxSum = nums[0];\n      int maxSum = nums[0];\n      for (int i = 1; i < nums.length; i++) {\n        currMaxSum = Math.max(currMaxSum + nums[i], nums[i]);\n        maxSum = Math.max(maxSum, currMaxSum);\n      }\n      return maxSum;\n   }\n}\n"
         },
         {
-            "language": "python",
-            "text": "\nimport sys\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        n = len(nums)\n        maxSum = -sys.maxsize\n        sum = 0\n        for i in range(n):\n            sum = 0\n            for j in range(i, n):\n                sum += nums[j]\n                maxSum = max(maxSum, sum)\n        \n        return maxSum\n"
-        },
-        {
-            "language": "python",
-            "text": "\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        n = len(nums)\n        maxSum = nums[0]\n        minSum = sum = 0\n        for i in range(n):\n            sum += nums[i]\n            maxSum = max(maxSum, sum - minSum)\n            minSum = min(minSum, sum)\n            \n        return maxSum\n"
-        },
-        {
-            "language": "python",
-            "text": "\nimport sys\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        return self.helper(nums, 0, len(nums) - 1)\n    def helper(self, nums, l, r):\n        if l > r:\n            return -sys.maxsize\n        mid = (l + r) // 2\n        left = self.helper(nums, l, mid - 1)\n        right = self.helper(nums, mid + 1, r)\n        left_suffix_max_sum = right_prefix_max_sum = 0\n        sum = 0\n        for i in reversed(range(l, mid)):\n            sum += nums[i]\n            left_suffix_max_sum = max(left_suffix_max_sum, sum)\n        sum = 0\n        for i in range(mid + 1, r + 1):\n            sum += nums[i]\n            right_prefix_max_sum = max(right_prefix_max_sum, sum)\n        cross_max_sum = left_suffix_max_sum + right_prefix_max_sum + nums[mid]\n        return max(cross_max_sum, left, right)\n"
-        },
-        {
-            "language": "python",
-            "text": "\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        n = len(nums)\n        max_sum_ending_curr_index = max_sum = nums[0]\n        for i in range(1, n):\n            max_sum_ending_curr_index = max(max_sum_ending_curr_index + nums[i], nums[i])\n            max_sum = max(max_sum_ending_curr_index, max_sum)\n            \n        return max_sum\n"
-        },
-        {
             "language": "js",
             "text": "\nfunction LSS(list) {\n  const len = list.length;\n  let max = -Number.MAX_VALUE;\n  let sum = 0;\n  for (let i = 0; i < len; i++) {\n    sum = 0;\n    for (let j = i; j < len; j++) {\n      sum += list[j];\n      if (sum > max) {\n        max = sum;\n      }\n    }\n  }\n\n  return max;\n}\n"
         },
@@ -5428,6 +5490,22 @@
         {
             "language": "js",
             "text": "\nfunction LSS(list) {\n  const len = list.length;\n  let max = list[0];\n  for (let i = 1; i < len; i++) {\n    list[i] = Math.max(0, list[i - 1]) + list[i];\n    if (list[i] > max) max = list[i];\n  }\n\n  return max;\n}\n"
+        },
+        {
+            "language": "py",
+            "text": "\nimport sys\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        n = len(nums)\n        maxSum = -sys.maxsize\n        sum = 0\n        for i in range(n):\n            sum = 0\n            for j in range(i, n):\n                sum += nums[j]\n                maxSum = max(maxSum, sum)\n        \n        return maxSum\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        n = len(nums)\n        maxSum = nums[0]\n        minSum = sum = 0\n        for i in range(n):\n            sum += nums[i]\n            maxSum = max(maxSum, sum - minSum)\n            minSum = min(minSum, sum)\n            \n        return maxSum\n"
+        },
+        {
+            "language": "py",
+            "text": "\nimport sys\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        return self.helper(nums, 0, len(nums) - 1)\n    def helper(self, nums, l, r):\n        if l > r:\n            return -sys.maxsize\n        mid = (l + r) // 2\n        left = self.helper(nums, l, mid - 1)\n        right = self.helper(nums, mid + 1, r)\n        left_suffix_max_sum = right_prefix_max_sum = 0\n        sum = 0\n        for i in reversed(range(l, mid)):\n            sum += nums[i]\n            left_suffix_max_sum = max(left_suffix_max_sum, sum)\n        sum = 0\n        for i in range(mid + 1, r + 1):\n            sum += nums[i]\n            right_prefix_max_sum = max(right_prefix_max_sum, sum)\n        cross_max_sum = left_suffix_max_sum + right_prefix_max_sum + nums[mid]\n        return max(cross_max_sum, left, right)\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        n = len(nums)\n        max_sum_ending_curr_index = max_sum = nums[0]\n        for i in range(1, n):\n            max_sum_ending_curr_index = max(max_sum_ending_curr_index + nums[i], nums[i])\n            max_sum = max(max_sum_ending_curr_index, max_sum)\n            \n        return max_sum\n"
         }
     ]
 },
@@ -5477,22 +5555,6 @@
             "text": "\nclass MaximumSubarrayDP {\n   public int maxSubArray(int[] nums) {\n      int currMaxSum = nums[0];\n      int maxSum = nums[0];\n      for (int i = 1; i < nums.length; i++) {\n        currMaxSum = Math.max(currMaxSum + nums[i], nums[i]);\n        maxSum = Math.max(maxSum, currMaxSum);\n      }\n      return maxSum;\n   }\n}\n"
         },
         {
-            "language": "python",
-            "text": "\nimport sys\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        n = len(nums)\n        maxSum = -sys.maxsize\n        sum = 0\n        for i in range(n):\n            sum = 0\n            for j in range(i, n):\n                sum += nums[j]\n                maxSum = max(maxSum, sum)\n        \n        return maxSum\n"
-        },
-        {
-            "language": "python",
-            "text": "\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        n = len(nums)\n        maxSum = nums[0]\n        minSum = sum = 0\n        for i in range(n):\n            sum += nums[i]\n            maxSum = max(maxSum, sum - minSum)\n            minSum = min(minSum, sum)\n            \n        return maxSum\n"
-        },
-        {
-            "language": "python",
-            "text": "\nimport sys\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        return self.helper(nums, 0, len(nums) - 1)\n    def helper(self, nums, l, r):\n        if l > r:\n            return -sys.maxsize\n        mid = (l + r) // 2\n        left = self.helper(nums, l, mid - 1)\n        right = self.helper(nums, mid + 1, r)\n        left_suffix_max_sum = right_prefix_max_sum = 0\n        sum = 0\n        for i in reversed(range(l, mid)):\n            sum += nums[i]\n            left_suffix_max_sum = max(left_suffix_max_sum, sum)\n        sum = 0\n        for i in range(mid + 1, r + 1):\n            sum += nums[i]\n            right_prefix_max_sum = max(right_prefix_max_sum, sum)\n        cross_max_sum = left_suffix_max_sum + right_prefix_max_sum + nums[mid]\n        return max(cross_max_sum, left, right)\n"
-        },
-        {
-            "language": "python",
-            "text": "\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        n = len(nums)\n        max_sum_ending_curr_index = max_sum = nums[0]\n        for i in range(1, n):\n            max_sum_ending_curr_index = max(max_sum_ending_curr_index + nums[i], nums[i])\n            max_sum = max(max_sum_ending_curr_index, max_sum)\n            \n        return max_sum\n"
-        },
-        {
             "language": "js",
             "text": "\nfunction LSS(list) {\n  const len = list.length;\n  let max = -Number.MAX_VALUE;\n  let sum = 0;\n  for (let i = 0; i < len; i++) {\n    sum = 0;\n    for (let j = i; j < len; j++) {\n      sum += list[j];\n      if (sum > max) {\n        max = sum;\n      }\n    }\n  }\n\n  return max;\n}\n"
         },
@@ -5507,6 +5569,22 @@
         {
             "language": "js",
             "text": "\nfunction LSS(list) {\n  const len = list.length;\n  let max = list[0];\n  for (let i = 1; i < len; i++) {\n    list[i] = Math.max(0, list[i - 1]) + list[i];\n    if (list[i] > max) max = list[i];\n  }\n\n  return max;\n}\n"
+        },
+        {
+            "language": "py",
+            "text": "\nimport sys\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        n = len(nums)\n        maxSum = -sys.maxsize\n        sum = 0\n        for i in range(n):\n            sum = 0\n            for j in range(i, n):\n                sum += nums[j]\n                maxSum = max(maxSum, sum)\n        \n        return maxSum\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        n = len(nums)\n        maxSum = nums[0]\n        minSum = sum = 0\n        for i in range(n):\n            sum += nums[i]\n            maxSum = max(maxSum, sum - minSum)\n            minSum = min(minSum, sum)\n            \n        return maxSum\n"
+        },
+        {
+            "language": "py",
+            "text": "\nimport sys\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        return self.helper(nums, 0, len(nums) - 1)\n    def helper(self, nums, l, r):\n        if l > r:\n            return -sys.maxsize\n        mid = (l + r) // 2\n        left = self.helper(nums, l, mid - 1)\n        right = self.helper(nums, mid + 1, r)\n        left_suffix_max_sum = right_prefix_max_sum = 0\n        sum = 0\n        for i in reversed(range(l, mid)):\n            sum += nums[i]\n            left_suffix_max_sum = max(left_suffix_max_sum, sum)\n        sum = 0\n        for i in range(mid + 1, r + 1):\n            sum += nums[i]\n            right_prefix_max_sum = max(right_prefix_max_sum, sum)\n        cross_max_sum = left_suffix_max_sum + right_prefix_max_sum + nums[mid]\n        return max(cross_max_sum, left, right)\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        n = len(nums)\n        max_sum_ending_curr_index = max_sum = nums[0]\n        for i in range(1, n):\n            max_sum_ending_curr_index = max(max_sum_ending_curr_index + nums[i], nums[i])\n            max_sum = max(max_sum_ending_curr_index, max_sum)\n            \n        return max_sum\n"
         }
     ]
 },
@@ -5583,7 +5661,7 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/547.friend-circles.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass UF:\n    parent = {}\n    cnt = 0\n    def __init__(self, M):\n        n = len(M)\n        for i in range(n):\n            self.parent[i] = i\n            self.cnt += 1\n\n    def find(self, x):\n        while x != self.parent[x]:\n            x = self.parent[x]\n        return x\n    def union(self, p, q):\n        if self.connected(p, q): return\n        self.parent[self.find(p)] = self.find(q)\n        self.cnt -= 1\n    def connected(self, p, q):\n        return self.find(p) == self.find(q)\n\nclass Solution:\n    def findCircleNum(self, M: List[List[int]]) -> int:\n        n = len(M)\n        uf = UF(M)\n        for i in range(n):\n            for j in range(i):\n                if M[i][j] == 1:\n                    uf.union(i, j)\n        return uf.cnt\n\n"
         }
     ]
@@ -5688,20 +5766,20 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/560.subarray-sum-equals-k.md",
     "code": [
         {
-            "language": "python",
+            "language": "js",
+            "text": "\n/*\n * @lc app=leetcode id=560 lang=javascript\n *\n * [560] Subarray Sum Equals K\n */\n/**\n * @param {number[]} nums\n * @param {number} k\n * @return {number}\n */\nvar subarraySum = function (nums, k) {\n  const hashmap = {};\n  let acc = 0;\n  let count = 0;\n\n  for (let i = 0; i < nums.length; i++) {\n    acc += nums[i];\n\n    if (acc === k) count++;\n\n    if (hashmap[acc - k] !== void 0) {\n      count += hashmap[acc - k];\n    }\n\n    if (hashmap[acc] === void 0) {\n      hashmap[acc] = 1;\n    } else {\n      hashmap[acc] += 1;\n    }\n  }\n\n  return count;\n};\n"
+        },
+        {
+            "language": "py",
             "text": "\nclass Solution:\n    def subarraySum(self, nums: List[int], k: int) -> int:\n        cnt, n =  0, len(nums)\n        for i in range(n):\n            sum = 0\n            for j in range(i, n):\n                sum += nums[j]\n                if (sum == k): cnt += 1\n        return cnt\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def subarraySum(self, nums: List[int], k: int) -> int:\n      cnt, n =  0, len(nums)\n      pre = [0] * (n + 1)\n      for i in range(1, n + 1):\n          pre[i] = pre[i - 1] + nums[i - 1]\n      for i in range(1, n + 1):\n          for j in range(i, n + 1):\n              if (pre[j] - pre[i - 1] == k): cnt += 1\n      return cnt\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def subarraySum(self, nums: List[int], k: int) -> int:\n        d = {}\n        acc = count = 0\n        for num in nums:\n            acc += num\n            if acc == k:\n                count += 1\n            if acc - k in d:\n                count += d[acc-k]\n            if acc in d:\n                d[acc] += 1\n            else:\n                d[acc] = 1\n        return count\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=560 lang=javascript\n *\n * [560] Subarray Sum Equals K\n */\n/**\n * @param {number[]} nums\n * @param {number} k\n * @return {number}\n */\nvar subarraySum = function (nums, k) {\n  const hashmap = {};\n  let acc = 0;\n  let count = 0;\n\n  for (let i = 0; i < nums.length; i++) {\n    acc += nums[i];\n\n    if (acc === k) count++;\n\n    if (hashmap[acc - k] !== void 0) {\n      count += hashmap[acc - k];\n    }\n\n    if (hashmap[acc] === void 0) {\n      hashmap[acc] = 1;\n    } else {\n      hashmap[acc] += 1;\n    }\n  }\n\n  return count;\n};\n"
         }
     ]
 },
@@ -5735,12 +5813,12 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/575.distribute-candies.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def distributeCandies(self, candies: List[int]) -> int:\n        return min(len(set(candies)), len(candies) >> 1)\n"
-        },
-        {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=575 lang=javascript\n *\n * [575] Distribute Candies\n */\n/**\n * @param {number[]} candies\n * @return {number}\n */\nvar distributeCandies = function(candies) {\n    const count = new Set(candies);\n    return Math.min(count.size, candies.length >> 1);\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def distributeCandies(self, candies: List[int]) -> int:\n        return min(len(set(candies)), len(candies) >> 1)\n"
         }
     ]
 },
@@ -5774,7 +5852,7 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/60.permutation-sequence.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nimport math\n\nclass Solution:\n    def getPermutation(self, n: int, k: int) -> str:\n        res = \"\"\n        candidates = [str(i) for i in range(1, n + 1)]\n\n        while n != 0:\n            facto = math.factorial(n - 1)\n            # i 表示前面被我们排除的组数，也就是k所在的组的下标\n            # k // facto 是不行的， 比如在 k % facto == 0的情况下就会有问题\n            i = math.ceil(k / facto) - 1\n            # 我们把candidates[i]加入到结果集，然后将其弹出candidates（不能重复使用元素）\n            res += candidates[i]\n            candidates.pop(i)\n            # k 缩小了 facto *  i\n            k -= facto * i\n            # 每次迭代我们实际上就处理了一个元素，n 减去 1，当n == 0 说明全部处理完成，我们退出循环\n            n -= 1\n        return res\n"
         }
     ]
@@ -5844,24 +5922,24 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/62.unique-paths.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def uniquePaths(self, m: int, n: int) -> int:\n        d = [[1] * n for _ in range(m)]\n\n        for col in range(1, m):\n            for row in range(1, n):\n                d[col][row] = d[col - 1][row] + d[col][row - 1]\n\n        return d[m - 1][n - 1]\n "
-        },
-        {
-            "language": "python",
-            "text": "\nclass Solution:\n    visited = dict()\n\n    def uniquePaths(self, m: int, n: int) -> int:\n        if (m, n) in self.visited:\n            return self.visited[(m, n)]\n        if m == 1 or n == 1:\n            return 1\n        cnt = self.uniquePaths(m - 1, n) + self.uniquePaths(m, n - 1)\n        self.visited[(m, n)] = cnt\n        return cnt\n "
-        },
-        {
-            "language": "python",
-            "text": "\nclass Solution:\n\n    def uniquePaths(self, m: int, n: int) -> int:\n        dp = [1] * n\n        for _ in range(1, m):\n            for j in range(1, n):\n                dp[j] += dp[j - 1]\n        return dp[n - 1]\n"
-        },
-        {
             "language": "js",
             "text": "\n const dp = [];\n  for (let i = 0; i < m + 1; i++) {\n    dp[i] = [];\n    dp[i][0] = 0;\n  }\n  for (let i = 0; i < n + 1; i++) {\n    dp[0][i] = 0;\n  }\n  for (let i = 1; i < m + 1; i++) {\n    for(let j = 1; j < n + 1; j++) {\n        dp[i][j] = j === 1 ? 1 : dp[i - 1][j] + dp[i][j - 1]; // 转移方程\n    }\n  }\n\n  return dp[m][n];\n\n"
         },
         {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=62 lang=javascript\n *\n * [62] Unique Paths\n *\n * https://leetcode.com/problems/unique-paths/description/\n */\n/**\n * @param {number} m\n * @param {number} n\n * @return {number}\n */\nvar uniquePaths = function(m, n) {\n  const dp = Array(n).fill(1);\n  \n  for(let i = 1; i < m; i++) {\n    for(let j = 1; j < n; j++) {\n      dp[j] = dp[j] + dp[j - 1];\n    } \n  }\n\n  return dp[n - 1];\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def uniquePaths(self, m: int, n: int) -> int:\n        d = [[1] * n for _ in range(m)]\n\n        for col in range(1, m):\n            for row in range(1, n):\n                d[col][row] = d[col - 1][row] + d[col][row - 1]\n\n        return d[m - 1][n - 1]\n "
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    visited = dict()\n\n    def uniquePaths(self, m: int, n: int) -> int:\n        if (m, n) in self.visited:\n            return self.visited[(m, n)]\n        if m == 1 or n == 1:\n            return 1\n        cnt = self.uniquePaths(m - 1, n) + self.uniquePaths(m, n - 1)\n        self.visited[(m, n)] = cnt\n        return cnt\n "
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n\n    def uniquePaths(self, m: int, n: int) -> int:\n        dp = [1] * n\n        for _ in range(1, m):\n            for j in range(1, n):\n                dp[j] += dp[j - 1]\n        return dp[n - 1]\n"
         }
     ]
 },
@@ -5895,7 +5973,7 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/721.accounts-merge.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass UF:\n    def __init__(self):\n        self.parent = {}\n\n    def find(self, x):\n        self.parent.setdefault(x, x)\n        while x != self.parent[x]:\n            x = self.parent[x]\n        return x\n    def union(self, p, q):\n        self.parent[self.find(p)] = self.find(q)\n\n\nclass Solution:\n    def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:\n        uf = UF()\n        email_to_name = {}\n        res = collections.defaultdict(list)\n        for account in accounts:\n            for i in range(1, len(account)):\n                email_to_name[account[i]] = account[0]\n                if i < len(account) - 1:uf.union(account[i], account[i + 1])\n        for email in email_to_name:\n            res[uf.find(email)].append(email)\n\n        return [[email_to_name[value[0]]] + sorted(value) for value in res.values()]\n"
         }
     ]
@@ -5930,20 +6008,20 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/73.set-matrix-zeroes.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def setZeroes(self, matrix: List[List[int]]) -> None:\n        \"\"\"\n        Do not return anything, modify matrix in-place instead.\n        \"\"\"\n        def setRowZeros(matrix: List[List[int]], i:int) -> None:\n            C = len(matrix[0])\n            matrix[i] = [0] * C\n        \n        def setColZeros(matrix: List[List[int]], j:int) -> None:\n            R = len(matrix)\n            for i in range(R):\n                matrix[i][j] = 0\n            \n        isCol = False\n        R = len(matrix)\n        C = len(matrix[0])\n        \n        for i in range(R):\n            if matrix[i][0] == 0:\n                isCol = True\n            for j in range(1, C):\n                if matrix[i][j] == 0:\n                    matrix[i][0] = 0\n                    matrix[0][j] = 0\n        for j in range(1, C):\n            if matrix[0][j] == 0:\n                setColZeros(matrix, j)\n                \n        for i in range(R):\n            if matrix[i][0] == 0:\n                setRowZeros(matrix, i)\n        \n        if isCol:\n            setColZeros(matrix, 0)\n\n"
-        },
-        {
-            "language": "python",
-            "text": "\nclass Solution:\n    def setZeroes(self, matrix: List[List[int]]) -> None:\n        \"\"\"\n        这题要解决的问题是，必须有个地方记录判断结果，但又不能影响下一步的判断条件；\n        直接改为0的话，会影响下一步的判断条件；\n        因此，有一种思路是先改为None，最后再将None改为0；\n        从条件上看，如果可以将第一行、第二行作为记录空间，那么，用None应该也不算违背题目条件；\n        \"\"\"\n        rows = len(matrix)\n        cols = len(matrix[0])\n        # 遍历矩阵，用None记录要改的地方，注意如果是0则要保留，否则会影响下一步判断\n        for r in range(rows):\n            for c in range(cols):\n                if matrix[r][c] is not None and matrix[r][c] == 0:\n                    # 改值\n                    for i in range(rows):\n                        matrix[i][c] = None if matrix[i][c] != 0 else 0\n                    for j in range(cols):\n                        matrix[r][j] = None if matrix[r][j] != 0 else 0\n        # 再次遍历，将None改为0\n        for r in range(rows):\n            for c in range(cols):\n                if matrix[r][c] is None:\n                    matrix[r][c] = 0\n"
-        },
-        {
             "language": "js",
             "text": "\nvar setZeroes = function(matrix) {\n  if (matrix.length === 0) return matrix;\n  const m = matrix.length;\n  const n = matrix[0].length;\n  const zeroes = Array(m + n).fill(false);\n\n  for (let i = 0; i < m; i++) {\n    for (let j = 0; j < n; j++) {\n      const item = matrix[i][j];\n\n      if (item === 0) {\n        zeroes[i] = true;\n        zeroes[m + j] = true;\n      }\n    }\n  }\n\n  for (let i = 0; i < m; i++) {\n    if (zeroes[i]) {\n      matrix[i] = Array(n).fill(0);\n    }\n  }\n\n  for (let i = 0; i < n; i++) {\n    if (zeroes[m + i]) {\n      for (let j = 0; j < m; j++) {\n        matrix[j][i] = 0;\n      }\n    }\n  }\n\n  return matrix;\n};\n"
         },
         {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=73 lang=javascript\n *\n * [73] Set Matrix Zeroes\n */\n/**\n * @param {number[][]} matrix\n * @return {void} Do not return anything, modify matrix in-place instead.\n */\nvar setZeroes = function(matrix) {\n  if (matrix.length === 0) return matrix;\n  const m = matrix.length;\n  const n = matrix[0].length;\n\n  // 时间复杂度 O(m * n), 空间复杂度 O(1)\n  let firstRow = false; // 第一行是否应该全部为0\n  let firstCol = false; // 第一列是否应该全部为0\n\n  for (let i = 0; i < m; i++) {\n    for (let j = 0; j < n; j++) {\n      const item = matrix[i][j];\n      if (item === 0) {\n        if (i === 0) {\n          firstRow = true;\n        }\n        if (j === 0) {\n          firstCol = true;\n        }\n        matrix[0][j] = 0;\n        matrix[i][0] = 0;\n      }\n    }\n  }\n\n  for (let i = 1; i < m; i++) {\n    for (let j = 1; j < n; j++) {\n      const item = matrix[i][j];\n      if (matrix[0][j] == 0 || matrix[i][0] == 0) {\n        matrix[i][j] = 0;\n      }\n    }\n  }\n\n  // 最后处理第一行和第一列\n\n  if (firstRow) {\n    for (let i = 0; i < n; i++) {\n      matrix[0][i] = 0;\n    }\n  }\n\n  if (firstCol) {\n    for (let i = 0; i < m; i++) {\n      matrix[i][0] = 0;\n    }\n  }\n\n  return matrix;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def setZeroes(self, matrix: List[List[int]]) -> None:\n        \"\"\"\n        Do not return anything, modify matrix in-place instead.\n        \"\"\"\n        def setRowZeros(matrix: List[List[int]], i:int) -> None:\n            C = len(matrix[0])\n            matrix[i] = [0] * C\n        \n        def setColZeros(matrix: List[List[int]], j:int) -> None:\n            R = len(matrix)\n            for i in range(R):\n                matrix[i][j] = 0\n            \n        isCol = False\n        R = len(matrix)\n        C = len(matrix[0])\n        \n        for i in range(R):\n            if matrix[i][0] == 0:\n                isCol = True\n            for j in range(1, C):\n                if matrix[i][j] == 0:\n                    matrix[i][0] = 0\n                    matrix[0][j] = 0\n        for j in range(1, C):\n            if matrix[0][j] == 0:\n                setColZeros(matrix, j)\n                \n        for i in range(R):\n            if matrix[i][0] == 0:\n                setRowZeros(matrix, i)\n        \n        if isCol:\n            setColZeros(matrix, 0)\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def setZeroes(self, matrix: List[List[int]]) -> None:\n        \"\"\"\n        这题要解决的问题是，必须有个地方记录判断结果，但又不能影响下一步的判断条件；\n        直接改为0的话，会影响下一步的判断条件；\n        因此，有一种思路是先改为None，最后再将None改为0；\n        从条件上看，如果可以将第一行、第二行作为记录空间，那么，用None应该也不算违背题目条件；\n        \"\"\"\n        rows = len(matrix)\n        cols = len(matrix[0])\n        # 遍历矩阵，用None记录要改的地方，注意如果是0则要保留，否则会影响下一步判断\n        for r in range(rows):\n            for c in range(cols):\n                if matrix[r][c] is not None and matrix[r][c] == 0:\n                    # 改值\n                    for i in range(rows):\n                        matrix[i][c] = None if matrix[i][c] != 0 else 0\n                    for j in range(cols):\n                        matrix[r][j] = None if matrix[r][j] != 0 else 0\n        # 再次遍历，将None改为0\n        for r in range(rows):\n            for c in range(cols):\n                if matrix[r][c] is None:\n                    matrix[r][c] = 0\n"
         }
     ]
 },
@@ -6081,12 +6159,12 @@
             "text": "\npublic class LC79WordSearch {\n  public boolean exist(char[][] board, String word) {\n    if (board == null || board.length == 0 || board[0].length == 0\n        || word == null || word.length() == 0) return true;\n    int rows = board.length;\n    int cols = board[0].length;\n    for (int r = 0; r < rows; r++) {\n      for (int c = 0; c < cols; c++) {\n        // scan board, start with word first character \n        if (board[r][c] == word.charAt(0)) {\n          if (helper(board, word, r, c, 0)) {\n            return true;\n          }\n        }\n      }\n    }\n    return false;\n  }\n  \n  private boolean helper(char[][] board, String word, int r, int c, int start) {\n    // already match word all characters, return true\n    if (start == word.length()) return true;\n    if (!isValid(board, r, c) ||\n        board[r][c] != word.charAt(start)) return false;\n    // mark visited\n    board[r][c] = '*';\n    boolean res = helper(board, word, r + 1, c, start + 1)\n        ||  helper(board, word, r, c + 1, start + 1)\n        ||  helper(board, word, r - 1, c, start + 1)\n        ||  helper(board, word, r, c - 1, start + 1);\n    // backtracking to start position\n    board[r][c] = word.charAt(start);\n    return res;\n  }\n  \n  private boolean isValid(char[][] board, int r, int c) {\n    return r >= 0 && r < board.length && c >= 0 && c < board[0].length;\n  }\n}\n"
         },
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def exist(self, board: List[List[str]], word: str) -> bool:\n        m = len(board)\n        n = len(board[0])\n        \n        def dfs(board, r, c, word, index):\n            if index == len(word):\n                return True\n            if r < 0 or r >= m or c < 0 or c >= n or board[r][c] != word[index]:\n                return False\n            board[r][c] = '*'\n            res = dfs(board, r - 1, c, word, index + 1) or dfs(board, r + 1, c, word, index + 1) or dfs(board, r, c - 1, word, index + 1) or dfs(board, r, c + 1, word, index + 1)\n            board[r][c] = word[index]\n            return res\n        \n        for r in range(m):\n            for c in range(n):\n                if board[r][c] == word[0]:\n                    if dfs(board, r, c, word, 0):\n                        return True\n"
-        },
-        {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=79 lang=javascript\n *\n * [79] Word Search\n */\nfunction DFS(board, row, col, rows, cols, word, cur) {\n  // 边界检查\n  if (row >= rows || row < 0) return false;\n  if (col >= cols || col < 0) return false;\n\n  const item = board[row][col];\n\n  if (item !== word[cur]) return false;\n\n  if (cur + 1 === word.length) return true;\n\n  // If use HashMap keep track visited letters, then need manual clear HashMap for each backtrack which needs extra space.\n  // here we use a little trick\n  board[row][col] = null;\n\n  // UP, DOWN, LEFT, RIGHT\n  const res =\n    DFS(board, row + 1, col, rows, cols, word, cur + 1) ||\n    DFS(board, row - 1, col, rows, cols, word, cur + 1) ||\n    DFS(board, row, col - 1, rows, cols, word, cur + 1) ||\n    DFS(board, row, col + 1, rows, cols, word, cur + 1);\n\n  board[row][col] = item;\n\n  return res;\n}\n/**\n * @param {character[][]} board\n * @param {string} word\n * @return {boolean}\n */\nvar exist = function(board, word) {\n  if (word.length === 0) return true;\n  if (board.length === 0) return false;\n\n  const rows = board.length;\n  const cols = board[0].length;\n\n  for (let i = 0; i < rows; i++) {\n    for (let j = 0; j < cols; j++) {\n      const hit = DFS(board, i, j, rows, cols, word, 0);\n      if (hit) return true;\n    }\n  }\n  return false;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def exist(self, board: List[List[str]], word: str) -> bool:\n        m = len(board)\n        n = len(board[0])\n        \n        def dfs(board, r, c, word, index):\n            if index == len(word):\n                return True\n            if r < 0 or r >= m or c < 0 or c >= n or board[r][c] != word[index]:\n                return False\n            board[r][c] = '*'\n            res = dfs(board, r - 1, c, word, index + 1) or dfs(board, r + 1, c, word, index + 1) or dfs(board, r, c - 1, word, index + 1) or dfs(board, r, c + 1, word, index + 1)\n            board[r][c] = word[index]\n            return res\n        \n        for r in range(m):\n            for c in range(n):\n                if board[r][c] == word[0]:\n                    if dfs(board, r, c, word, 0):\n                        return True\n"
         }
     ]
 },
@@ -6124,12 +6202,12 @@
             "text": "\npublic class LC79WordSearch {\n  public boolean exist(char[][] board, String word) {\n    if (board == null || board.length == 0 || board[0].length == 0\n        || word == null || word.length() == 0) return true;\n    int rows = board.length;\n    int cols = board[0].length;\n    for (int r = 0; r < rows; r++) {\n      for (int c = 0; c < cols; c++) {\n        // scan board, start with word first character \n        if (board[r][c] == word.charAt(0)) {\n          if (helper(board, word, r, c, 0)) {\n            return true;\n          }\n        }\n      }\n    }\n    return false;\n  }\n  \n  private boolean helper(char[][] board, String word, int r, int c, int start) {\n    // already match word all characters, return true\n    if (start == word.length()) return true;\n    if (!isValid(board, r, c) ||\n        board[r][c] != word.charAt(start)) return false;\n    // mark visited\n    board[r][c] = '*';\n    boolean res = helper(board, word, r - 1, c, start + 1) // 上\n        ||  helper(board, word, r + 1, c, start + 1)       // 下\n        ||  helper(board, word, r, c - 1, start + 1)       // 左\n        ||  helper(board, word, r, c + 1, start + 1);      // 右\n    // backtracking to start position\n    board[r][c] = word.charAt(start);\n    return res;\n  }\n  \n  private boolean isValid(char[][] board, int r, int c) {\n    return r >= 0 && r < board.length && c >= 0 && c < board[0].length;\n  }\n}\n"
         },
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def exist(self, board: List[List[str]], word: str) -> bool:\n        m = len(board)\n        n = len(board[0])\n        \n        def dfs(board, r, c, word, index):\n            if index == len(word):\n                return True\n            if r < 0 or r >= m or c < 0 or c >= n or board[r][c] != word[index]:\n                return False\n            board[r][c] = '*'\n            res = dfs(board, r - 1, c, word, index + 1) or dfs(board, r + 1, c, word, index + 1) or dfs(board, r, c - 1, word, index + 1) or dfs(board, r, c + 1, word, index + 1)\n            board[r][c] = word[index]\n            return res\n        \n        for r in range(m):\n            for c in range(n):\n                if board[r][c] == word[0]:\n                    if dfs(board, r, c, word, 0):\n                        return True\n"
-        },
-        {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=79 lang=javascript\n *\n * [79] Word Search\n */\nfunction DFS(board, row, col, rows, cols, word, cur) {\n  // 边界检查\n  if (row >= rows || row < 0) return false;\n  if (col >= cols || col < 0) return false;\n\n  const item = board[row][col];\n\n  if (item !== word[cur]) return false;\n\n  if (cur + 1 === word.length) return true;\n\n  // 如果你用hashmap记录访问的字母， 那么你需要每次backtrack的时候手动清除hashmap，并且需要额外的空间\n  // 这里我们使用一个little trick\n  \n  board[row][col] = null;\n\n  // 上下左右\n  const res =\n    DFS(board, row + 1, col, rows, cols, word, cur + 1) ||\n    DFS(board, row - 1, col, rows, cols, word, cur + 1) ||\n    DFS(board, row, col - 1, rows, cols, word, cur + 1) ||\n    DFS(board, row, col + 1, rows, cols, word, cur + 1);\n\n  board[row][col] = item;\n\n  return res;\n}\n/**\n * @param {character[][]} board\n * @param {string} word\n * @return {boolean}\n */\nvar exist = function(board, word) {\n  if (word.length === 0) return true;\n  if (board.length === 0) return false;\n\n  const rows = board.length;\n  const cols = board[0].length;\n\n  for (let i = 0; i < rows; i++) {\n    for (let j = 0; j < cols; j++) {\n      const hit = DFS(board, i, j, rows, cols, word, 0);\n      if (hit) return true;\n    }\n  }\n  return false;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def exist(self, board: List[List[str]], word: str) -> bool:\n        m = len(board)\n        n = len(board[0])\n        \n        def dfs(board, r, c, word, index):\n            if index == len(word):\n                return True\n            if r < 0 or r >= m or c < 0 or c >= n or board[r][c] != word[index]:\n                return False\n            board[r][c] = '*'\n            res = dfs(board, r - 1, c, word, index + 1) or dfs(board, r + 1, c, word, index + 1) or dfs(board, r, c - 1, word, index + 1) or dfs(board, r, c + 1, word, index + 1)\n            board[r][c] = word[index]\n            return res\n        \n        for r in range(m):\n            for c in range(n):\n                if board[r][c] == word[0]:\n                    if dfs(board, r, c, word, 0):\n                        return True\n"
         }
     ]
 },
@@ -6163,7 +6241,7 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/80.remove-duplicates-from-sorted-array-ii.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def removeDuplicates(self, nums: List[int]) -> int:\n        # 写指针\n        i = 0\n        K = 2\n        for num in nums:\n            if i < K or num != nums[i-K]:\n                nums[i] = num\n                i += 1\n        return i\n"
         }
     ]
@@ -6198,7 +6276,7 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/820.short-encoding-of-words.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Trie:\n\n    def __init__(self):\n        \"\"\"\n        Initialize your data structure here.\n        \"\"\"\n        self.Trie = {}\n\n    def insert(self, word):\n        \"\"\"\n        Inserts a word into the trie.\n        :type word: str\n        :rtype: void\n        \"\"\"\n        curr = self.Trie\n        for w in word:\n            if w not in curr:\n                curr[w] = {}\n            curr = curr[w]\n        curr['#'] = 1\n\n    def isTail(self, word):\n        \"\"\"\n        Returns if the word is in the trie.\n        :type word: str\n        :rtype: bool\n        \"\"\"\n        curr = self.Trie\n        for w in word:\n            curr = curr[w]\n        return len(curr) == 1\nclass Solution:\n    def minimumLengthEncoding(self, words: List[str]) -> int:\n        trie = Trie()\n        cnt = 0\n        words = set(words)\n        for word in words:\n            trie.insert(word[::-1])\n        for word in words:\n            if trie.isTail(word[::-1]):\n                cnt += len(word) + 1\n        return cnt\n\n"
         }
     ]
@@ -6233,20 +6311,24 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/84.largest-rectangle-in-histogram.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def largestRectangleArea(self, heights: List[int]) -> int:\n        n, ans = len(heights), 0\n        if n != 0:\n            ans = heights[0]\n        for i in range(n):\n            height = heights[i]\n            for j in range(i, n):\n                height = min(height, heights[j])\n                ans = max(ans, (j - i + 1) * height)\n        return ans\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def largestRectangleArea(self, heights: List[int]) -> int:\n        n = len(heights)\n        l, r, ans = [-1] * n, [n] * n, 0\n        for i in range(1, n):\n            j = i - 1\n            while j >= 0 and heights[j] >= heights[i]:\n                j -= 1\n            l[i] = j\n        for i in range(n - 2, -1, -1):\n            j = i + 1\n            while j < n and heights[j] >= heights[i]:\n                j += 1\n            r[i] = j\n        for i in range(n):\n            ans = max(ans, heights[i] * (r[i] - l[i] - 1))\n        return ans\n\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def largestRectangleArea(self, heights: List[int]) -> int:\n        n = len(heights)\n        l, r, ans = [-1] * n, [n] * n, 0\n\n        for i in range(1, n):\n            j = i - 1\n            while j >= 0 and heights[j] >= heights[i]:\n                j = l[j]\n            l[i] = j\n        for i in range(n - 2, -1, -1):\n            j = i + 1\n            while j < n and heights[j] >= heights[i]:\n                j = r[j]\n            r[i] = j\n        for i in range(n):\n            ans = max(ans, heights[i] * (r[i] - l[i] - 1))\n        return ans\n\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def largestRectangleArea(self, heights: List[int]) -> int:\n        n, heights, st, ans = len(heights), [0] + heights + [0], [], 0\n        for i in range(n + 2):\n            while st and heights[st[-1]] > heights[i]:\n                ans = max(ans, heights[st.pop(-1)] * (i - st[-1] - 1))\n            st.append(i)\n        return ans\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def largestRectangleArea(self, heights: List[int]) -> int:\n        n, heights, st, ans = len(heights),[0] + heights + [0], [], 0\n        for i in range(n + 2):\n            while st and heights[st[-1]] > heights[i]:\n                a = heights[st[-1]]\n                # 如果没有前面的哨兵，这里可能会越界。\n                st.pop()\n                ans = max(ans, a * (i - 1 - st[-1]))\n            st.append(i)\n        return ans\n "
         }
     ]
 },
@@ -6280,7 +6362,7 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/85.maximal-rectangle.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def largestRectangleArea(self, heights: List[int]) -> int:\n        n, heights, st, ans = len(heights), [0] + heights + [0], [], 0\n        for i in range(n + 2):\n            while st and heights[st[-1]] > heights[i]:\n                ans = max(ans, heights[st.pop(-1)] * (i - st[-1] - 1))\n            st.append(i)\n\n        return ans\n    def maximalRectangle(self, matrix: List[List[str]]) -> int:\n        m = len(matrix)\n        if m == 0: return 0\n        n = len(matrix[0])\n        heights = [0] * n\n        ans = 0\n        for i in range(m):\n            for j in range(n):\n                if matrix[i][j] == \"0\":\n                    heights[j] = 0\n                else:\n                    heights[j] += 1\n            ans = max(ans, self.largestRectangleArea(heights))\n        return ans\n\n"
         }
     ]
@@ -6315,12 +6397,12 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/86.partition-list.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def partition(self, head: ListNode, x: int) -> ListNode:\n        \"\"\"在原链表操作，思路基本一致，只是通过指针进行区分而已\"\"\"\n        # 在链表最前面设定一个初始node作为锚点，方便返回最后的结果\n        first_node = ListNode(0)\n        first_node.next = head\n        # 设计三个指针，一个指向小于x的最后一个节点，即前后分离点\n        # 一个指向当前遍历节点的前一个节点\n        # 一个指向当前遍历的节点\n        sep_node = first_node\n        pre_node = first_node\n        current_node = head\n        \n        while current_node is not None:\n            if current_node.val < x:\n                # 注意有可能出现前一个节点就是分离节点的情况\n                if pre_node is sep_node:\n                    pre_node = current_node\n                    sep_node = current_node\n                    current_node = current_node.next\n                else:\n                    # 这段次序比较烧脑\n                    pre_node.next = current_node.next\n                    current_node.next = sep_node.next\n                    sep_node.next = current_node\n                    sep_node = current_node\n                    current_node = pre_node.next\n            else:\n                pre_node = current_node\n                current_node = pre_node.next\n        \n        return first_node.next\n"
-        },
-        {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=86 lang=javascript\n *\n * [86] Partition List\n *\n * https://leetcode.com/problems/partition-list/description/\n *\n * algorithms\n * Medium (36.41%)\n * Total Accepted:    155.1K\n * Total Submissions: 425.1K\n * Testcase Example:  '[1,4,3,2,5,2]\\n3'\n *\n * Given a linked list and a value x, partition it such that all nodes less\n * than x come before nodes greater than or equal to x.\n * \n * You should preserve the original relative order of the nodes in each of the\n * two partitions.\n * \n * Example:\n * \n * \n * Input: head = 1->4->3->2->5->2, x = 3\n * Output: 1->2->2->4->3->5\n * \n * \n */\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} head\n * @param {number} x\n * @return {ListNode}\n */\nvar partition = function(head, x) {\n    const dummyHead1 = {\n        next: null\n    }\n    const dummyHead2 = {\n        next: null\n    }\n    \n    let current = {\n        next: head\n    };\n    let currentL1 = dummyHead1;\n    let currentL2 = dummyHead2;\n    while(current.next) {\n        current = current.next;\n        if (current.val < x) {\n            currentL1.next = current;\n            currentL1 = current;\n        } else {\n            currentL2.next = current;\n            currentL2 = current;\n        }\n    }\n    \n    currentL2.next = null;\n \n    currentL1.next = dummyHead2.next;\n\n    return dummyHead1.next;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def partition(self, head: ListNode, x: int) -> ListNode:\n        \"\"\"在原链表操作，思路基本一致，只是通过指针进行区分而已\"\"\"\n        # 在链表最前面设定一个初始node作为锚点，方便返回最后的结果\n        first_node = ListNode(0)\n        first_node.next = head\n        # 设计三个指针，一个指向小于x的最后一个节点，即前后分离点\n        # 一个指向当前遍历节点的前一个节点\n        # 一个指向当前遍历的节点\n        sep_node = first_node\n        pre_node = first_node\n        current_node = head\n        \n        while current_node is not None:\n            if current_node.val < x:\n                # 注意有可能出现前一个节点就是分离节点的情况\n                if pre_node is sep_node:\n                    pre_node = current_node\n                    sep_node = current_node\n                    current_node = current_node.next\n                else:\n                    # 这段次序比较烧脑\n                    pre_node.next = current_node.next\n                    current_node.next = sep_node.next\n                    sep_node.next = current_node\n                    sep_node = current_node\n                    current_node = pre_node.next\n            else:\n                pre_node = current_node\n                current_node = pre_node.next\n        \n        return first_node.next\n"
         }
     ]
 },
@@ -6354,7 +6436,7 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/874.walking-robot-simulation.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def robotSim(self, commands: List[int], obstacles: List[List[int]]) -> int:\n        pos = [0, 0]\n        deg = 90\n        ans = 0\n        obstaclesSet = set(map(tuple, obstacles))\n\n        for command in commands:\n            if command == -1:\n                deg = (deg + 270) % 360\n            elif command == -2:\n                deg = (deg + 90) % 360\n            else:\n                if deg == 0:\n                    i = 0\n                    while i < command and not (pos[0] + 1, pos[1]) in obstaclesSet:\n                        pos[0] += 1\n                        i += 1\n                if deg == 90:\n                    i = 0\n                    while i < command and not (pos[0], pos[1] + 1) in obstaclesSet:\n                        pos[1] += 1\n                        i += 1\n                if deg == 180:\n                    i = 0\n                    while i < command and not (pos[0] - 1, pos[1]) in obstaclesSet:\n                        pos[0] -= 1\n                        i += 1\n                if deg == 270:\n                    i = 0\n                    while i < command and not (pos[0], pos[1] - 1) in obstaclesSet:\n                        pos[1] -= 1\n                        i += 1\n                ans = max(ans, pos[0] ** 2 + pos[1] ** 2)\n        return ans\n"
         }
     ]
@@ -6459,10 +6541,6 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/88.merge-sorted-array.md",
     "code": [
         {
-            "language": "python",
-            "text": "\nclass Solution:\n    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:\n        \"\"\"\n        Do not return anything, modify nums1 in-place instead.\n        \"\"\"\n        # 整体思路相似，只不过没有使用 current 指针记录当前填补位置\n        while m > 0 and n > 0:\n            if nums1[m-1] <= nums2[n-1]:\n                nums1[m+n-1] = nums2[n-1]\n                n -= 1\n            else:\n                nums1[m+n-1] = nums1[m-1]\n                m -=1\n        \"\"\"\n        由于没有使用 current，第一步比较结束后有两种情况:\n            1. 指针 m>0，n=0，此时不需要做任何处理\n            2. 指针 n>0，m=0，此时需要将 nums2 指针左侧元素全部拷贝到 nums1 的前 n 位\n        \"\"\"\n        if n > 0:\n            nums1[:n] = nums2[:n]\n"
-        },
-        {
             "language": "js",
             "text": "\n  // 这种解法连m都用不到\n  // 这显然不是出题人的意思\n  if (n === 0) return;\n  let current2 = 0;\n  for(let i = nums1.length - 1; i >= nums1.length - n ; i--) {\n      nums1[i] = nums2[current2++];\n  }\n  nums1.sort((a, b) => a - b); // 当然你可以自己写排序，这里懒得写了，因为已经偏离了题目本身\n\n"
         },
@@ -6473,6 +6551,10 @@
         {
             "language": "js",
             "text": "\nvar merge = function(nums1, m, nums2, n) {\n  // 设置一个指针，指针初始化指向nums1的末尾（根据#62，应该是index为 m+n-1 的位置，因为nums1的长度有可能更长）\n  // 然后不断左移指针更新元素\n  let current = m + n - 1;\n\n  while (current >= 0) {\n    // 没必要继续了\n    if (n === 0) return;\n\n    // 为了方便大家理解，这里代码有点赘余\n    if (m < 1) {\n      nums1[current--] = nums2[--n];\n      continue;\n    }\n\n    if (n < 1) {\n      nums1[current--] = nums1[--m];\n      continue;\n    }\n    // 取大的填充 nums1的末尾\n    // 然后更新 m 或者 n\n    if (nums1[m - 1] > nums2[n - 1]) {\n      nums1[current--] = nums1[--m];\n    } else {\n      nums1[current--] = nums2[--n];\n    }\n  }\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:\n        \"\"\"\n        Do not return anything, modify nums1 in-place instead.\n        \"\"\"\n        # 整体思路相似，只不过没有使用 current 指针记录当前填补位置\n        while m > 0 and n > 0:\n            if nums1[m-1] <= nums2[n-1]:\n                nums1[m+n-1] = nums2[n-1]\n                n -= 1\n            else:\n                nums1[m+n-1] = nums1[m-1]\n                m -=1\n        \"\"\"\n        由于没有使用 current，第一步比较结束后有两种情况:\n            1. 指针 m>0，n=0，此时不需要做任何处理\n            2. 指针 n>0，m=0，此时需要将 nums2 指针左侧元素全部拷贝到 nums1 的前 n 位\n        \"\"\"\n        if n > 0:\n            nums1[:n] = nums2[:n]\n"
         }
     ]
 },
@@ -6545,7 +6627,7 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/895.maximum-frequency-stack.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass FreqStack:\n\n    def __init__(self):\n        self.fraq = collections.defaultdict(lambda: 0)\n        self.fraq_stack = collections.defaultdict(list)\n        self.max_fraq = 0\n        \n    def push(self, x: int) -> None:\n        self.fraq[x] += 1\n        if self.fraq[x] > self.max_fraq:\n            self.max_fraq = self.fraq[x]\n        self.fraq_stack[self.fraq[x]].append(x)    \n        \n    def pop(self) -> int:\n        ans = self.fraq_stack[self.max_fraq].pop()\n        self.fraq[ans] -= 1\n        if not self.fraq_stack[self.max_fraq]:\n            self.max_fraq -= 1\n        return ans\n\n# Your FreqStack object will be instantiated and called as such:\n# obj = FreqStack()\n# obj.push(x)\n# param_2 = obj.pop()\n"
         }
     ]
@@ -6759,20 +6841,24 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/92.reverse-linked-list-ii.md",
     "code": [
         {
-            "language": "python",
+            "language": "js",
+            "text": "\n/*\n * @lc app=leetcode id=92 lang=javascript\n *\n * [92] Reverse Linked List II\n *\n * https://leetcode.com/problems/reverse-linked-list-ii/description/\n */\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} head\n * @param {number} m\n * @param {number} n\n * @return {ListNode}\n */\nvar reverseBetween = function(head, m, n) {\n    // 虚拟节点，简化操作\n    const dummyHead = {\n        next: head\n    }\n\n    let cur = dummyHead.next; // 当前遍历的节点\n    let pre = cur; // 因为要反转，因此我们需要记住前一个节点\n    let index = 0; // 链表索引，用来判断是否是特殊位置（头尾位置）\n\n    // 上面提到的四个特殊节点\n    let p1 = p2 = p3 = p4 = null\n\n    while(cur) {\n        const next = cur.next;\n        index++;\n\n        // 对 (m - n) 范围内的节点进行反转\n        if (index > m && index <= n) {           \n            cur.next = pre;\n        }\n\n        // 下面四个if都是边界, 用于更新四个特殊节点的值\n        if (index === m - 1) {\n            p1 = cur;\n        }\n        if (index === m) {\n            p2 = cur;\n        }\n\n        if (index === n) {\n            p3 = cur;\n        }\n\n        if (index === n + 1) {\n            p4 = cur;;\n        }\n\n        pre = cur;\n\n        cur = next;\n    }\n\n    // 两个链表合并起来\n    (p1 || dummyHead).next = p3; // 特殊情况需要考虑\n    p2.next = p4;\n\n    return dummyHead.next;\n};\n\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\n/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     ListNode *next;\n *     ListNode(int x) : val(x), next(NULL) {}\n * };\n */\nclass Solution {\npublic:\n    ListNode* reverseBetween(ListNode* head, int s, int e) {\n        if (s == e) return head;\n        ListNode* prev = nullptr;\n        auto cur = head;\n        for (int i = 1; i < s; ++i) {\n            prev = cur;\n            cur = cur->next;\n        }\n        // 此时各指针指向：\n        // x -> x -> x -> x  -> 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> x -> x -> x ->\n        // ^head          ^prev ^cur\n        ListNode* p = nullptr;\n        auto c = cur;\n        auto tail = c;\n        ListNode* n = nullptr;\n        for (int i = s; i <= e; ++i) {\n            n = c->next;\n            c->next = p;\n            p = c;\n            c = n;\n        }\n        // 此时各指针指向：\n        // x -> x -> x -> x     8 -> 7 -> 6 -> 5 -> 4 -> 3 -> 2 -> 1     x -> x -> x ->\n        // ^head          ^prev ^p                                 ^cur  ^c\n        //                                                         ^tail\n        if (prev != nullptr) { // 若指向前一个节点的指针不为空，则说明s在链表中间（不是头节点）\n            prev->next = p;\n            cur->next = c;\n            return head;\n        } else {\n            if (tail != nullptr) tail->next = c;\n            return p;\n        }\n    }\n};\n"
+        },
+        {
+            "language": "py",
             "text": "\nclass Solution:\n    def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:\n        pre = None\n        cur = head\n        i = 0\n        p1 = p2 = p3 = p4 = None\n        # ...\n        if p1:\n            p1.next = p3\n        else:\n            dummy.next = p3\n        if p2:\n            p2.next = p4\n        return head\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\n class Solution:\n    def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:\n        pre = None\n        cur = head\n        i = 0\n        p1 = p2 = p3 = p4 = None\n        dummy = ListNode(0)\n        dummy.next = head\n\n        # ...\n\n        if p1:\n            p1.next = p3\n        else:\n            dummy.next = p3\n        if p2:\n            p2.next = p4\n\n        return dummy.next\n "
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\n     while cur:\n            i += 1\n            if i == m - 1:\n                p1 = cur\n            next = cur.next\n            if m < i <= n:\n                cur.next = pre\n\n            if i == m:\n                p2 = cur\n                p2.next = None\n\n            if i == n:\n                p3 = cur\n\n            if i == n + 1:\n                p4 = cur\n\n            pre = cur\n            cur = next\n "
-        },
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=92 lang=javascript\n *\n * [92] Reverse Linked List II\n *\n * https://leetcode.com/problems/reverse-linked-list-ii/description/\n */\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} head\n * @param {number} m\n * @param {number} n\n * @return {ListNode}\n */\nvar reverseBetween = function(head, m, n) {\n    // 虚拟节点，简化操作\n    const dummyHead = {\n        next: head\n    }\n\n    let cur = dummyHead.next; // 当前遍历的节点\n    let pre = cur; // 因为要反转，因此我们需要记住前一个节点\n    let index = 0; // 链表索引，用来判断是否是特殊位置（头尾位置）\n\n    // 上面提到的四个特殊节点\n    let p1 = p2 = p3 = p4 = null\n\n    while(cur) {\n        const next = cur.next;\n        index++;\n\n        // 对 (m - n) 范围内的节点进行反转\n        if (index > m && index <= n) {           \n            cur.next = pre;\n        }\n\n        // 下面四个if都是边界, 用于更新四个特殊节点的值\n        if (index === m - 1) {\n            p1 = cur;\n        }\n        if (index === m) {\n            p2 = cur;\n        }\n\n        if (index === n) {\n            p3 = cur;\n        }\n\n        if (index === n + 1) {\n            p4 = cur;;\n        }\n\n        pre = cur;\n\n        cur = next;\n    }\n\n    // 两个链表合并起来\n    (p1 || dummyHead).next = p3; // 特殊情况需要考虑\n    p2.next = p4;\n\n    return dummyHead.next;\n};\n\n"
         }
     ]
 },
@@ -6806,11 +6892,11 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/935.knight-dialer.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def knightDialer(self, N: int) -> int:\n        cnt = 0\n        jump = [[4, 6], [6, 8], [7, 9], [4, 8], [\n            0, 3, 9], [], [0, 1, 7], [2, 6], [1, 3], [2, 4]]\n        visited = dict()\n\n        def helper(i, n):\n            if (i, n) in visited: return visited[(i, n)]\n            if n == 1:\n                return 1\n            cnt = 0\n            for j in jump[i]:\n                cnt += helper(j, n - 1)\n            visited[(i, n)] = cnt\n            return cnt\n        for i in range(10):\n            cnt += helper(i, N)\n        return cnt % (10**9 + 7)\n"
         },
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def knightDialer(self, N: int) -> int:\n        a0 = a1 = a2 = a3 = a4 = a5 = a6 = a7 = a8 = a9 = 1\n        for _ in range(N - 1):\n            a0, a1, a2, a3, a4, a5, a6, a7, a8, a9 = a4 + a6, a6 + a8, a7 + \\\n                a9, a4 + a8, a0 + a3 + a9, 0, a0 + a1 + a7, a2 + a6, a1 + a3, a2 + a4\n        return (a0 + a1 + a2 + a3 + a4 + a5 + a6 + a7 + a8 + a9) % (10**9 + 7)\n"
         }
     ]
@@ -6855,6 +6941,10 @@
         {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=94 lang=javascript\n *\n * [94] Binary Tree Inorder Traversal\n *\n * https://leetcode.com/problems/binary-tree-inorder-traversal/description/\n *\n * algorithms\n * Medium (55.22%)\n * Total Accepted:    422.4K\n * Total Submissions: 762.1K\n * Testcase Example:  '[1,null,2,3]'\n *\n * Given a binary tree, return the inorder traversal of its nodes' values.\n * \n * Example:\n * \n * \n * Input: [1,null,2,3]\n * ⁠  1\n * ⁠   \\\n * ⁠    2\n * ⁠   /\n * ⁠  3\n * \n * Output: [1,3,2]\n * \n * Follow up: Recursive solution is trivial, could you do it iteratively?\n * \n */\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @return {number[]}\n */\nvar inorderTraversal = function(root) {\n    // 1. Recursive solution\n    // if (!root) return [];\n    // const left = root.left ? inorderTraversal(root.left) : [];\n    // const right = root.right ? inorderTraversal(root.right) : [];\n    // return left.concat([root.val]).concat(right);\n\n    // 2. iterative solutuon\n    if (!root) return [];\n    const stack = [root];\n    const ret = [];\n    let left = root.left;\n\n    let item = null; // stack 中弹出的当前项\n\n    while(left) {\n        stack.push(left);\n        left = left.left;\n    }\n    \n    while(item = stack.pop()) {\n        ret.push(item.val);\n        let t = item.right;\n\n        while(t) {\n            stack.push(t);\n            t = t.left;     \n        }\n    }\n\n    return ret;\n\n};\n\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\n/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}\n * };\n */\nclass Solution {\npublic:\n    vector<int> inorderTraversal(TreeNode* root) {\n        vector<TreeNode*> s;\n        vector<int> v;\n        while (root != NULL || !s.empty()) {\n            for (; root != NULL; root = root->left)\n                s.push_back(root);\n            v.push_back(s.back()->val);\n            root = s.back()->right;\n            s.pop_back();\n        }\n        return v;\n    }\n};\n"
         }
     ]
 },
@@ -6918,7 +7008,7 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/96.unique-binary-search-trees.md",
     "code": [
         {
-            "language": "python",
+            "language": "py",
             "text": "\nclass Solution:\n    def numTrees(self, n: int) -> int:\n        if n <= 1:\n            return 1\n        res = 0\n        for i in range(1, n + 1):\n            res += self.numTrees(i - 1) * self.numTrees(n - i)\n        return res\n"
         }
     ]
@@ -6967,6 +7057,10 @@
         {
             "language": "js",
             "text": "\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @return {boolean}\n */\nvar isValidBST = function (root) {\n    if (!root) return true;\n    return valid(root);\n};\n\nfunction valid(root, min = -Infinity, max = Infinity) {\n    if (!root) return true;\n    const val = root.val;\n    if (val <= min) return false;\n    if (val >= max) return false;\n    return valid(root.left, min, val) && valid(root.right, val, max)\n}\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\n// 递归\nclass Solution {\npublic:\n    bool isValidBST(TreeNode* root) {\n        TreeNode* prev = nullptr;\n        return validateBstInorder(root, prev);\n    }\n    \nprivate:\n    bool validateBstInorder(TreeNode* root, TreeNode*& prev) {\n        if (root == nullptr) return true;\n        if (!validateBstInorder(root->left, prev)) return false;\n        if (prev != nullptr && prev->val >= root->val) return false;\n        prev = root;\n        return validateBstInorder(root->right, prev);\n    }\n};\n\n// 迭代\nclass Solution {\npublic:\n    bool isValidBST(TreeNode* root) {\n        auto s = vector<TreeNode*>();\n        TreeNode* prev = nullptr;\n        while (root != nullptr || !s.empty()) {\n            while (root != nullptr) {\n                s.push_back(root);\n                root = root->left;\n            }\n            root = s.back();\n            s.pop_back();\n            if (prev != nullptr && prev->val >= root->val) return false;\n            prev = root;\n            root = root->right;\n        }\n        return true;\n    }\n};\n"
         }
     ]
 },

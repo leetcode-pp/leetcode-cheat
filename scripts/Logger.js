@@ -7,15 +7,12 @@ logger.level = 'debug'
 
 logger.category = 'LeetCode'
 
-class Logger {
+const Logger = {
 
-
-
-    static success(...args) {
+   success(...args) {
       logger.info(...args)
-    } 
-
-    static error(...args) {
+    },
+   error(...args) {
         logger.error(...args)
     }
 

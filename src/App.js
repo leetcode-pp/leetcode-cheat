@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Tabs, Tag, Button, Table, Empty, message,Collapse } from "antd";
-import ReactMarkdown from 'react-markdown'
+import marked from 'marked'
+import hljs from 'highlight.js'
+import 'highlight.js/styles/github.css'
+
 import { copy } from "./utils";
 import db from "./db/db";
 
@@ -71,6 +74,7 @@ function App() {
   const [problemId, setProblemId] = useState("");
   const [show, setShow] = useState(false);
 
+
   return (
     <div className="container">
       {show ? (
@@ -115,7 +119,23 @@ function App() {
                   </Button>
                 </div>
                 }>
-                  <ReactMarkdown source={formatCodeToMarkDown(c.text,c.language)} />
+                  <div dangerouslySetInnerHTML={{__html: marked(formatCodeToMarkDown(c.text,c.language), {renderer: new marked.Renderer(),
+                      highlight: function() {
+                        const validLanguage =c.language
+                        return hljs.highlight(validLanguage, c.text).value;
+                      },
+                      pedantic: false,
+                      gfm: true,
+                      langPrefix: c.language,
+                      breaks: false,
+                      sanitize: false,
+                      smartLists: true,
+                      smartypants: false,
+                      xhtml: false
+                    })}}>
+                      </div>
+                     
+                    
                
                 </Panel>
               ))}
