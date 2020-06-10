@@ -3,11 +3,7 @@
        "TwoSum":{
     "id": "1",
     "name": "TwoSum",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -17,13 +13,20 @@
     ],
     "pre": [
         {
-            "text": "辅助栈",
-            "link": null
+            "text": "\n\n- 哈希表\n\n"
         }
     ],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "求和转换为求差",
+            "link": null
+        },
+        {
+            "text": "借助Map结构将数组中每个元素及其索引相互对应",
+            "link": null
+        },
+        {
+            "text": "以空间换时间，将查找时间从O(N)降低到O(1)",
             "link": null
         }
     ],
@@ -38,11 +41,7 @@
 "symmetric-tree":{
     "id": "101",
     "name": "symmetric-tree",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -50,18 +49,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/101.symmetric-tree.md",
     "code": [
         {
@@ -81,11 +70,7 @@
 "capacity-to-ship-packages-within-d-days-cn":{
     "id": "1011",
     "name": "capacity-to-ship-packages-within-d-days-cn",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -93,15 +78,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "能够识别出是给定的有限序列查找一个数字（二分查找），要求你对二分查找以及变体十分熟悉",
             "link": null
         }
     ],
@@ -124,11 +104,7 @@
 "capacity-to-ship-packages-within-d-days-en":{
     "id": "1011",
     "name": "capacity-to-ship-packages-within-d-days-en",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -136,18 +112,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1011.capacity-to-ship-packages-within-d-days-en.md",
     "code": [
         {
@@ -167,11 +133,7 @@
 "best-sightseeing-pair":{
     "id": "1014",
     "name": "best-sightseeing-pair",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -179,15 +141,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "空间换时间",
+            "link": null
+        },
+        {
+            "text": "dp空间优化",
             "link": null
         }
     ],
@@ -214,11 +175,7 @@
 "smallest-integer-divisible-by-k":{
     "id": "1015",
     "name": "smallest-integer-divisible-by-k",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -226,15 +183,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "数学（无限循环与循环节）",
             "link": null
         }
     ],
@@ -249,11 +201,7 @@
 "next-greater-node-in-linked-list":{
     "id": "1019",
     "name": "next-greater-node-in-linked-list",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -261,15 +209,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "单调栈（单调递减栈）",
+            "link": null
+        },
+        {
+            "text": "单调栈的代码模板",
             "link": null
         }
     ],
@@ -288,11 +235,7 @@
 "binary-tree-level-order-traversal":{
     "id": "102",
     "name": "binary-tree-level-order-traversal",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -300,15 +243,30 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "队列",
+            "link": null
+        },
+        {
+            "text": "队列中用Null(一个特殊元素)来划分每层",
+            "link": null
+        },
+        {
+            "text": "树的基本操作",
+            "link": null
+        },
+        {
+            "text": "遍历",
+            "link": null
+        },
+        {
+            "text": "层次遍历（BFS）",
+            "link": null
+        },
+        {
+            "text": "注意塞入null的时候，判断一下当前队列是否为空，不然会无限循环",
             "link": null
         }
     ],
@@ -327,11 +285,7 @@
 "number-of-enclaves":{
     "id": "1020",
     "name": "number-of-enclaves",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -339,15 +293,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "visited记录访问过的节点，防止重复计算",
             "link": null
         }
     ],
@@ -366,11 +315,7 @@
 "camelcase-matching":{
     "id": "1023",
     "name": "camelcase-matching",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -378,15 +323,22 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "双指针",
+            "link": null
+        },
+        {
+            "text": "字符串匹配",
+            "link": null
+        },
+        {
+            "text": "子序列",
+            "link": null
+        },
+        {
+            "text": "子串",
             "link": null
         }
     ],
@@ -405,11 +357,7 @@
 "binary-tree-zigzag-level-order-traversal":{
     "id": "103",
     "name": "binary-tree-zigzag-level-order-traversal",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -417,15 +365,26 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "队列",
+            "link": null
+        },
+        {
+            "text": "队列中用Null(一个特殊元素)来划分每层",
+            "link": null
+        },
+        {
+            "text": "树的基本操作",
+            "link": null
+        },
+        {
+            "text": "遍历",
+            "link": null
+        },
+        {
+            "text": "层次遍历（BFS）",
             "link": null
         }
     ],
@@ -440,11 +399,7 @@
 "maximum-sum-of-two-non-overlapping-subarrays":{
     "id": "1031",
     "name": "maximum-sum-of-two-non-overlapping-subarrays",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -452,15 +407,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "解析1.注意图中描述的都是A[i",
+            "link": null
+        },
+        {
+            "text": "1],而不是A[i],因为basecase为空数组,而不是A[0];2.求解图中ASUM数组的时候,注意定义的是ASUM[i]=sum(A[0:i]),因此当i等于0时,A[0:0]为空数组,即:ASUM[0]为0,而ASUM[1]才等于A[0];3.求解图中MAXL数组时,注意i<L时,没有意义,因为长度不够,所以从i=L时才开始求解;4.求解图中MAXM数组时,也一样,要从i=M时才开始求解;5.求解图中SUMM数组时,因为我们需要一个L子数组和一个M子数组,因此长度要大于等于L+M才有意义,所以要从i=L+M时开始求解.",
             "link": null
         }
     ],
@@ -475,11 +429,7 @@
 "maximum-depth-of-binary-tree":{
     "id": "104",
     "name": "maximum-depth-of-binary-tree",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -487,15 +437,26 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "队列",
+            "link": null
+        },
+        {
+            "text": "队列中用Null(一个特殊元素)来划分每层，或者在对每层进行迭代之前保存当前队列元素的个数（即当前层所含元素个数）",
+            "link": null
+        },
+        {
+            "text": "树的基本操作",
+            "link": null
+        },
+        {
+            "text": "遍历",
+            "link": null
+        },
+        {
+            "text": "层次遍历（BFS）",
             "link": null
         }
     ],
@@ -518,11 +479,7 @@
 "Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal":{
     "id": "105",
     "name": "Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -530,18 +487,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/105.Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal.md",
     "code": [
         {
@@ -557,11 +504,7 @@
 "container-with-most-water":{
     "id": "11",
     "name": "container-with-most-water",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -569,15 +512,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "双指针优化时间复杂度",
             "link": null
         }
     ],
@@ -596,11 +534,7 @@
 "path-in-zigzag-labelled-binary-tree":{
     "id": "1104",
     "name": "path-in-zigzag-labelled-binary-tree",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -608,15 +542,22 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "满二叉树的性质：1.最小值是`2**(level",
+            "link": null
+        },
+        {
+            "text": "1)`，最大值是`2**level",
+            "link": null
+        },
+        {
+            "text": "1`，其中level是树的深度。2.假如父节点的索引为i，那么左子节点就是2\\*i，右边子节点就是2\\*i+1。3.假如子节点的索引是i，那么父节点的索引就是i//2。",
+            "link": null
+        },
+        {
+            "text": "先思考一般情况（不是之字形），然后通过观察找出规律",
             "link": null
         }
     ],
@@ -631,11 +572,7 @@
 "path-sum-ii":{
     "id": "113",
     "name": "path-sum-ii",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -643,15 +580,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "回溯法",
+            "link": null
+        },
+        {
+            "text": "backtrack解题公式",
             "link": null
         }
     ],
@@ -670,11 +606,7 @@
 "maximum-of-absolute-value-expression":{
     "id": "1131",
     "name": "maximum-of-absolute-value-expression",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -682,15 +614,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "数学分析",
             "link": null
         }
     ],
@@ -709,11 +636,7 @@
 "optimize-water-distribution-in-a-village-cn":{
     "id": "1168",
     "name": "optimize-water-distribution-in-a-village-cn",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -721,15 +644,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "分析1.构建图，得出所有边2.对所有边排序3.遍历所有的边（从小到大）4.对于每条边，检查是否已经连通，若没有连通，加上边上的值，连通两个节点。若已连通，跳过。",
             "link": null
         }
     ],
@@ -748,11 +666,7 @@
 "optimize-water-distribution-in-a-village-en":{
     "id": "1168",
     "name": "optimize-water-distribution-in-a-village-en",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -760,18 +674,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1168.optimize-water-distribution-in-a-village-en.md",
     "code": [
         {
@@ -787,11 +691,7 @@
 "maximum-subarray-sum-with-one-deletion":{
     "id": "1186",
     "name": "maximum-subarray-sum-with-one-deletion",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -799,15 +699,18 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "空间换时间",
+            "link": null
+        },
+        {
+            "text": "头尾双数组",
+            "link": null
+        },
+        {
+            "text": "动态规划",
             "link": null
         }
     ],
@@ -830,11 +733,7 @@
 "best-time-to-buy-and-sell-stock":{
     "id": "121",
     "name": "best-time-to-buy-and-sell-stock",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -842,15 +741,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "这类题只要你在心中（或者别的地方）画出上面这种图就很容易解决",
             "link": null
         }
     ],
@@ -873,11 +767,7 @@
 "longest-arithmetic-subsequence-of-given-difference":{
     "id": "1218",
     "name": "longest-arithmetic-subsequence-of-given-difference",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -885,15 +775,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "将`以每一个元素结尾的最长等差子序列的长度`统统存起来",
             "link": null
         }
     ],
@@ -912,11 +797,7 @@
 "best-time-to-buy-and-sell-stock-ii":{
     "id": "122",
     "name": "best-time-to-buy-and-sell-stock-ii",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -924,15 +805,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "这类题只要你在心中（或者别的地方）画出上面这种图就很容易解决",
             "link": null
         }
     ],
@@ -951,11 +827,7 @@
 "airplane-seat-assignment-probability":{
     "id": "1227",
     "name": "airplane-seat-assignment-probability",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -963,18 +835,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1227.airplane-seat-assignment-probability.md",
     "code": [
         {
@@ -1002,11 +864,7 @@
 "binary-tree-maximum-path-sum":{
     "id": "124",
     "name": "binary-tree-maximum-path-sum",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -1014,15 +872,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "递归",
+            "link": null
+        },
+        {
+            "text": "理解题目中的path定义",
             "link": null
         }
     ],
@@ -1041,11 +898,7 @@
 "valid-palindrome":{
     "id": "125",
     "name": "valid-palindrome",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -1053,15 +906,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "双指针",
             "link": null
         }
     ],
@@ -1080,11 +928,7 @@
 "shift-2d-grid":{
     "id": "1260",
     "name": "shift-2d-grid",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -1092,18 +936,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1260.shift-2d-grid.md",
     "code": [
         {
@@ -1119,11 +953,7 @@
 "find-elements-in-a-contaminated-binary-tree":{
     "id": "1261",
     "name": "find-elements-in-a-contaminated-binary-tree",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -1131,18 +961,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1261.find-elements-in-a-contaminated-binary-tree.md",
     "code": [
         {
@@ -1162,11 +982,7 @@
 "greatest-sum-divisible-by-three":{
     "id": "1262",
     "name": "greatest-sum-divisible-by-three",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -1174,15 +990,18 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "贪婪法",
+            "link": null
+        },
+        {
+            "text": "状态机",
+            "link": null
+        },
+        {
+            "text": "数学分析",
             "link": null
         }
     ],
@@ -1213,11 +1032,7 @@
 "longest-consecutive-sequence":{
     "id": "128",
     "name": "longest-consecutive-sequence",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -1225,15 +1040,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "空间换时间",
             "link": null
         }
     ],
@@ -1252,11 +1062,7 @@
 "sum-root-to-leaf-numbers":{
     "id": "129",
     "name": "sum-root-to-leaf-numbers",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -1264,15 +1070,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "递归分析",
             "link": null
         }
     ],
@@ -1295,11 +1096,7 @@
 "maximum-number-of-occurrences-of-a-substring":{
     "id": "1297",
     "name": "maximum-number-of-occurrences-of-a-substring",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -1307,15 +1104,18 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "滑动窗口",
+            "link": null
+        },
+        {
+            "text": "识别题目干扰信息",
+            "link": null
+        },
+        {
+            "text": "看题目限制条件，对于本题有用的信息是`1<=maxLetters<=26`",
             "link": null
         }
     ],
@@ -1338,11 +1138,7 @@
 "surrounded-regions":{
     "id": "130",
     "name": "surrounded-regions",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -1350,15 +1146,18 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "二维数组DFS解题模板",
+            "link": null
+        },
+        {
+            "text": "转化问题为`连通区域问题`",
+            "link": null
+        },
+        {
+            "text": "直接mutate原数组，节省空间",
             "link": null
         }
     ],
@@ -1377,11 +1176,7 @@
 "palindrome-partitioning":{
     "id": "131",
     "name": "palindrome-partitioning",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -1389,15 +1184,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "回溯法",
             "link": null
         }
     ],
@@ -1416,11 +1206,7 @@
 "xor-queries-of-a-subarray":{
     "id": "1310",
     "name": "xor-queries-of-a-subarray",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -1428,15 +1214,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "异或的性质x^y^x=y",
+            "link": null
+        },
+        {
+            "text": "前缀表达式",
             "link": null
         }
     ],
@@ -1463,11 +1248,7 @@
 "remove-palindromic-subsequences":{
     "id": "1332",
     "name": "remove-palindromic-subsequences",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -1475,18 +1256,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1332.remove-palindromic-subsequences.md",
     "code": [
         {
@@ -1502,11 +1273,7 @@
 "find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance":{
     "id": "1334",
     "name": "find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -1514,18 +1281,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1334.find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance.md",
     "code": [
         {
@@ -1537,11 +1294,7 @@
 "single-number":{
     "id": "136",
     "name": "single-number",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -1549,15 +1302,18 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "1.异或的性质两个数字异或的结果`a^b`是将a和b的二进制每一位进行运算，得出的数字。运算的逻辑是如果同一位的数字相同则为0，不同则为12.异或的规律",
+            "link": null
+        },
+        {
+            "text": "任何数和本身异或则为`0`",
+            "link": null
+        },
+        {
+            "text": "任何数和0异或是`本身`3.很多人只是记得异或的性质和规律，但是缺乏对其本质的理解，导致很难想到这种解法（我本人也没想到）4.bit运算",
             "link": null
         }
     ],
@@ -1576,11 +1332,7 @@
 "find-the-longest-substring-containing-vowels-in-even-counts":{
     "id": "1371",
     "name": "find-the-longest-substring-containing-vowels-in-even-counts",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -1588,15 +1340,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "前缀和",
+            "link": null
+        },
+        {
+            "text": "状态压缩",
             "link": null
         }
     ],
@@ -1623,11 +1374,7 @@
 "word-break":{
     "id": "139",
     "name": "word-break",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -1635,18 +1382,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/139.word-break.md",
     "code": [
         {
@@ -1658,11 +1395,7 @@
 "binary-tree-preorder-traversal":{
     "id": "144",
     "name": "binary-tree-preorder-traversal",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -1670,15 +1403,22 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "二叉树的基本操作（遍历）>不同的遍历算法差异还是蛮大的",
+            "link": null
+        },
+        {
+            "text": "如果非递归的话利用栈来简化操作",
+            "link": null
+        },
+        {
+            "text": "如果数据规模不大的话，建议使用递归",
+            "link": null
+        },
+        {
+            "text": "递归的问题需要注意两点，一个是终止条件，一个如何缩小规模1.终止条件，自然是当前这个元素是null（链表也是一样）2.由于二叉树本身就是一个递归结构，每次处理一个子树其实就是缩小了规模，难点在于如何合并结果，这里的合并结果其实就是`mid.concat(left).concat(right)`,mid是一个具体的节点，left和right`递归求出即可`",
             "link": null
         }
     ],
@@ -1693,11 +1433,7 @@
 "form-largest-integer-with-digits-that-add-up-to-target":{
     "id": "1449",
     "name": "form-largest-integer-with-digits-that-add-up-to-target",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -1705,18 +1441,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1449.form-largest-integer-with-digits-that-add-up-to-target.md",
     "code": [
         {
@@ -1756,11 +1482,7 @@
 "binary-tree-postorder-traversal":{
     "id": "145",
     "name": "binary-tree-postorder-traversal",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -1768,15 +1490,22 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "二叉树的基本操作（遍历）>不同的遍历算法差异还是蛮大的",
+            "link": null
+        },
+        {
+            "text": "如果非递归的话利用栈来简化操作",
+            "link": null
+        },
+        {
+            "text": "如果数据规模不大的话，建议使用递归",
+            "link": null
+        },
+        {
+            "text": "递归的问题需要注意两点，一个是终止条件，一个如何缩小规模1.终止条件，自然是当前这个元素是null（链表也是一样）2.由于二叉树本身就是一个递归结构，每次处理一个子树其实就是缩小了规模，难点在于如何合并结果，这里的合并结果其实就是`left.concat(right).concat(mid)`,mid是一个具体的节点，left和right`递归求出即可`",
             "link": null
         }
     ],
@@ -1791,11 +1520,7 @@
 "lru-cache":{
     "id": "146",
     "name": "lru-cache",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -1803,15 +1528,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "队列简化操作",
+            "link": null
+        },
+        {
+            "text": "队列的操作是这道题的灵魂，很容易少考虑情况",
             "link": null
         }
     ],
@@ -1826,11 +1550,7 @@
 "3-sum":{
     "id": "15",
     "name": "3-sum",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -1838,15 +1558,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "排序之后，用双指针",
+            "link": null
+        },
+        {
+            "text": "分治",
             "link": null
         }
     ],
@@ -1861,11 +1580,7 @@
 "evaluate-reverse-polish-notation":{
     "id": "150",
     "name": "evaluate-reverse-polish-notation",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -1873,15 +1588,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "1.栈的基本用法2.如果你用的是JS的话，需要注意/和其他很多语言是不一样的3.如果你用的是JS的话，需要先将字符串转化为数字。否则有很多意想不到的结果4.操作符的顺序应该是先出栈的是第二位，后出栈的是第一位。这在不符合交换律的操作中很重要，比如减法和除法。",
             "link": null
         }
     ],
@@ -1896,11 +1606,7 @@
 "maximum-product-subarray":{
     "id": "152",
     "name": "maximum-product-subarray",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -1908,15 +1614,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "同时记录乘积最大值和乘积最小值",
             "link": null
         }
     ],
@@ -1943,11 +1644,7 @@
 "min-stack":{
     "id": "155",
     "name": "min-stack",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -1955,15 +1652,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "最小栈存储的不应该是真实值，而是真实值和min的差值",
+            "link": null
+        },
+        {
+            "text": "top的时候涉及到对数据的还原，这里千万注意是**上一个**最小值",
             "link": null
         }
     ],
@@ -1990,11 +1686,7 @@
 "two-sum-ii-input-array-is-sorted":{
     "id": "167",
     "name": "two-sum-ii-input-array-is-sorted",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -2002,15 +1694,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "解析无",
             "link": null
         }
     ],
@@ -2029,11 +1716,7 @@
 "majority-element":{
     "id": "169",
     "name": "majority-element",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -2041,15 +1724,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "投票算法",
             "link": null
         }
     ],
@@ -2068,11 +1746,7 @@
 "Letter-Combinations-of-a-Phone-Number":{
     "id": "17",
     "name": "Letter-Combinations-of-a-Phone-Number",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -2080,15 +1754,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "利用回溯思想解题，在for循环中调用递归。",
             "link": null
         }
     ],
@@ -2103,11 +1772,7 @@
 "factorial-trailing-zeroes":{
     "id": "172",
     "name": "factorial-trailing-zeroes",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -2115,15 +1780,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "数论",
             "link": null
         }
     ],
@@ -2142,11 +1802,7 @@
 "removeNthNodeFromEndofList":{
     "id": "19",
     "name": "removeNthNodeFromEndofList",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -2154,15 +1810,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "解析1.链表这种数据结构的特点和使用2.使用双指针3.使用一个dummyHead简化操作",
             "link": null
         }
     ],
@@ -2181,11 +1832,7 @@
 "reverse-bits":{
     "id": "190",
     "name": "reverse-bits",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -2193,15 +1840,18 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "解析1.可以用任何数字和1进行位运算的结果都取决于该数字最后一位的特性简化操作和提高性能eg:",
+            "link": null
+        },
+        {
+            "text": "n&1===1,说明n的最后一位是1",
+            "link": null
+        },
+        {
+            "text": "n&1===0,说明n的最后一位是02.对于JS，ES规范在之前很多版本都是没有无符号整形的，转化为无符号，可以用一个trick`n>>>0`3.双\"指针\"模型4.bit运算",
             "link": null
         }
     ],
@@ -2220,11 +1870,7 @@
 "number-of-1-bits":{
     "id": "191",
     "name": "number-of-1-bits",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -2232,15 +1878,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "解析1.`n&(n",
+            "link": null
+        },
+        {
+            "text": "1)`可以`消除`n最后的一个1的原理简化操作2.bit运算",
             "link": null
         }
     ],
@@ -2267,11 +1912,7 @@
 "house-robber":{
     "id": "198",
     "name": "house-robber",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -2279,18 +1920,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/198.house-robber.md",
     "code": [
         {
@@ -2310,11 +1941,7 @@
 "binary-tree-right-side-view":{
     "id": "199",
     "name": "binary-tree-right-side-view",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -2322,15 +1949,30 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "队列",
+            "link": null
+        },
+        {
+            "text": "队列中用Null(一个特殊元素)来划分每层",
+            "link": null
+        },
+        {
+            "text": "树的基本操作",
+            "link": null
+        },
+        {
+            "text": "遍历",
+            "link": null
+        },
+        {
+            "text": "层次遍历（BFS）",
+            "link": null
+        },
+        {
+            "text": "二叉树的右视图可以看作是层次遍历每次只取每一层的最右边的元素",
             "link": null
         }
     ],
@@ -2345,11 +1987,7 @@
 "addTwoNumbers":{
     "id": "2",
     "name": "addTwoNumbers",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -2359,13 +1997,12 @@
     ],
     "pre": [
         {
-            "text": "辅助栈",
-            "link": null
+            "text": "\n\n- 链表\n\n"
         }
     ],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "解析1.链表这种数据结构的特点和使用2.用一个carried变量来实现进位的功能，每次相加之后计算carried，并用于下一位的计算",
             "link": null
         }
     ],
@@ -2384,11 +2021,7 @@
 "validParentheses":{
     "id": "20",
     "name": "validParentheses",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -2396,15 +2029,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "解析1.栈的基本特点和操作2.如果你用的是JS没有现成的栈，可以用数组来模拟入：push出：pop>入：push出shift就是队列",
             "link": null
         }
     ],
@@ -2419,11 +2047,7 @@
 "number-of-islands":{
     "id": "200",
     "name": "number-of-islands",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -2431,15 +2055,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "二维数组DFS解题模板",
+            "link": null
+        },
+        {
+            "text": "将已经访问的元素置为0，省去visited的空间开销",
             "link": null
         }
     ],
@@ -2458,11 +2081,7 @@
 "bitwise-and-of-numbers-range":{
     "id": "201",
     "name": "bitwise-and-of-numbers-range",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -2470,15 +2089,18 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "n个连续数字求与的时候，前m位都是1",
+            "link": null
+        },
+        {
+            "text": "可以用递归实现，个人认为比较难想到",
+            "link": null
+        },
+        {
+            "text": "bit运算代码：```js(n>m)?(rangeBitwiseAnd(m/2,n/2)<<1):m;```>每次问题规模缩小一半，这是二分法吗？",
             "link": null
         }
     ],
@@ -2505,11 +2127,7 @@
 "remove-linked-list-elements":{
     "id": "203",
     "name": "remove-linked-list-elements",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -2517,15 +2135,18 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "链表的基本操作（删除指定节点）",
+            "link": null
+        },
+        {
+            "text": "虚拟节点dummy简化操作>其实设置dummy节点就是为了处理特殊位置（头节点），这这道题就是如果头节点是给定的需要删除的节点呢？为了保证代码逻辑的一致性，即不需要为头节点特殊定制逻辑，才采用的虚拟节点。",
+            "link": null
+        },
+        {
+            "text": "如果连续两个节点都是要删除的节点，这个情况容易被忽略。eg:```js//只有下个节点不是要删除的节点才更新currentif(!next||next.val!==val){current=next;}```",
             "link": null
         }
     ],
@@ -2548,11 +2169,7 @@
 "reverse-linked-list":{
     "id": "206",
     "name": "reverse-linked-list",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -2560,15 +2177,18 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "链表的基本操作（交换）",
+            "link": null
+        },
+        {
+            "text": "虚拟节点dummy简化操作",
+            "link": null
+        },
+        {
+            "text": "注意更新current和pre的位置，否则有可能出现溢出",
             "link": null
         }
     ],
@@ -2607,11 +2227,7 @@
 "implement-trie-prefix-tree":{
     "id": "208",
     "name": "implement-trie-prefix-tree",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -2619,15 +2235,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "前缀树",
+            "link": null
+        },
+        {
+            "text": "核心逻辑```jsconstc=word[i];constcurrent=computeIndex(c)if(!ws.children[current]){ws.children[current]=newTrieNode(c);}ws=ws.children[current];//深度递增}```",
             "link": null
         }
     ],
@@ -2654,11 +2269,7 @@
 "minimum-size-subarray-sum":{
     "id": "209",
     "name": "minimum-size-subarray-sum",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -2666,15 +2277,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "滑动窗口简化操作(滑窗口适合用于求解这种要求`连续`的题目)",
             "link": null
         }
     ],
@@ -2697,11 +2303,7 @@
 "MergeTwoSortedLists":{
     "id": "21",
     "name": "MergeTwoSortedLists",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -2709,15 +2311,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "掌握链表数据结构",
+            "link": null
+        },
+        {
+            "text": "考虑边界情况",
             "link": null
         }
     ],
@@ -2732,11 +2333,7 @@
 "add-and-search-word-data-structure-design":{
     "id": "211",
     "name": "add-and-search-word-data-structure-design",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -2744,15 +2341,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "前缀树（也叫字典树），英文名Trie（读作tree或者try）",
             "link": null
         }
     ],
@@ -2779,11 +2371,7 @@
 "word-search-ii":{
     "id": "212",
     "name": "word-search-ii",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -2791,15 +2379,18 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "前缀树（也叫字典树），英文名Trie（读作tree或者try）",
+            "link": null
+        },
+        {
+            "text": "DFS",
+            "link": null
+        },
+        {
+            "text": "hashmap结合dfs记录访问过的元素的时候，注意结束之后需要将hashmap的值重置。（下方代码的`delseen[(i,j)]`）",
             "link": null
         }
     ],
@@ -2818,11 +2409,7 @@
 "kth-largest-element-in-an-array":{
     "id": "215",
     "name": "kth-largest-element-in-an-array",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -2830,15 +2417,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "分析1.直接排序很简单2.堆（Heap）主要是要维护一个K大小的小顶堆，扫描一遍数组，最后堆顶元素即是所求。3.QuickSelect,关键是是取pivot，对数组区间做partition，比较pivot的位置，类似二分，取pivot左边或右边继续递归查找。",
             "link": null
         }
     ],
@@ -2861,11 +2443,7 @@
 "contains-duplicate-ii":{
     "id": "219",
     "name": "contains-duplicate-ii",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -2873,15 +2451,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "解析无",
             "link": null
         }
     ],
@@ -2900,11 +2473,7 @@
 "GenerateParentheses":{
     "id": "22",
     "name": "GenerateParentheses",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -2912,15 +2481,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "当l<r时记得剪枝",
             "link": null
         }
     ],
@@ -2935,11 +2499,7 @@
 "maximal-square":{
     "id": "221",
     "name": "maximal-square",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -2947,15 +2507,26 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "DP",
+            "link": null
+        },
+        {
+            "text": "递归公式可以利用dp[i",
+            "link": null
+        },
+        {
+            "text": "1][j]和dp[i][j",
+            "link": null
+        },
+        {
+            "text": "1]的计算结果，而不用重新计算",
+            "link": null
+        },
+        {
+            "text": "空间复杂度可以降低到O(n),n为列数",
             "link": null
         }
     ],
@@ -2974,11 +2545,7 @@
 "invert-binary-tree":{
     "id": "226",
     "name": "invert-binary-tree",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -2986,15 +2553,18 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "递归简化操作",
+            "link": null
+        },
+        {
+            "text": "如果树很高，建议使用栈来代替递归",
+            "link": null
+        },
+        {
+            "text": "这道题目对顺序没要求的，因此队列数组操作都是一样的，无任何区别",
             "link": null
         }
     ],
@@ -3013,11 +2583,7 @@
 "majority-element-ii":{
     "id": "229",
     "name": "majority-element-ii",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -3025,15 +2591,18 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "摩尔投票法",
+            "link": null
+        },
+        {
+            "text": "两个counter",
+            "link": null
+        },
+        {
+            "text": "最后得到的只是出现次数最多的两个数字，有可能不满足出现次数大于1/3",
             "link": null
         }
     ],
@@ -3052,11 +2621,7 @@
 "merge-k-sorted-lists":{
     "id": "23",
     "name": "merge-k-sorted-lists",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -3064,15 +2629,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "分治",
+            "link": null
+        },
+        {
+            "text": "归并排序(mergesort)",
             "link": null
         }
     ],
@@ -3087,11 +2651,7 @@
 "kth-smallest-element-in-a-bst":{
     "id": "230",
     "name": "kth-smallest-element-in-a-bst",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -3099,15 +2659,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "中序遍历",
             "link": null
         }
     ],
@@ -3130,11 +2685,7 @@
 "implement-queue-using-stacks":{
     "id": "232",
     "name": "implement-queue-using-stacks",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -3142,15 +2693,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "在push的时候利用辅助栈(双栈)",
             "link": null
         }
     ],
@@ -3173,11 +2719,7 @@
 "lowest-common-ancestor-of-a-binary-tree":{
     "id": "236",
     "name": "lowest-common-ancestor-of-a-binary-tree",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -3185,15 +2727,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "用递归的思路去思考树",
             "link": null
         }
     ],
@@ -3212,11 +2749,7 @@
 "product-of-array-except-self":{
     "id": "238",
     "name": "product-of-array-except-self",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -3224,15 +2757,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "两次遍历，一次正向，一次反向。",
+            "link": null
+        },
+        {
+            "text": "维护一个数组，第i项代表前i个元素（不包括i）的乘积",
             "link": null
         }
     ],
@@ -3247,11 +2779,7 @@
 "sliding-window-maximum":{
     "id": "239",
     "name": "sliding-window-maximum",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -3259,15 +2787,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "双端队列简化时间复杂度",
+            "link": null
+        },
+        {
+            "text": "滑动窗口",
             "link": null
         }
     ],
@@ -3294,11 +2821,7 @@
 "swapNodesInPairs":{
     "id": "24",
     "name": "swapNodesInPairs",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -3306,15 +2829,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "解析1.链表这种数据结构的特点和使用2.dummyHead简化操作",
             "link": null
         }
     ],
@@ -3333,11 +2851,7 @@
 "search-a-2-d-matrix-ii":{
     "id": "240",
     "name": "search-a-2-d-matrix-ii",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -3345,15 +2859,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "从角落开始遍历，利用递增的特性简化时间复杂度",
             "link": null
         }
     ],
@@ -3372,11 +2881,7 @@
 "reverse-nodes-in-k-groups-cn":{
     "id": "25",
     "name": "reverse-nodes-in-k-groups-cn",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -3384,15 +2889,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "分析1.创建一个dummynode2.对链表以k为单位进行分组，记录每一组的起始和最后节点位置3.对每一组进行翻转，更换起始和最后的位置4.返回`dummy.next`.",
             "link": null
         }
     ],
@@ -3415,11 +2915,7 @@
 "reverse-nodes-in-k-groups-en":{
     "id": "25",
     "name": "reverse-nodes-in-k-groups-en",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -3427,18 +2923,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/25.reverse-nodes-in-k-groups-en.md",
     "code": [
         {
@@ -3454,11 +2940,7 @@
 "remove-duplicates-from-sorted-array":{
     "id": "26",
     "name": "remove-duplicates-from-sorted-array",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -3466,15 +2948,18 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "双指针这道题如果不要求，O(n)的时间复杂度，O(1)的空间复杂度的话，会很简单。但是这道题是要求的，这种题的思路一般都是采用双指针",
+            "link": null
+        },
+        {
+            "text": "如果是数据是无序的，就不可以用这种方式了，从这里也可以看出排序在算法中的基础性和重要性。",
+            "link": null
+        },
+        {
+            "text": "注意nums为空时的边界条件。",
             "link": null
         }
     ],
@@ -3497,11 +2982,7 @@
 "ugly-number":{
     "id": "263",
     "name": "ugly-number",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -3509,15 +2990,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "数论",
+            "link": null
+        },
+        {
+            "text": "因数分解",
             "link": null
         }
     ],
@@ -3540,11 +3020,7 @@
 "perfect-squares":{
     "id": "279",
     "name": "perfect-squares",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -3552,15 +3028,22 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "如果用递归+缓存，缓存的设计很重要我的做法是key就是n，value是以n为起点，到达底端的深度。下次取出缓存的时候用当前的level+存的深度就是我们想要的level.",
+            "link": null
+        },
+        {
+            "text": "使用动态规划的核心点还是选和不选的问题```jsfor(leti=1;i<=n;i++){for(letj=1;j*j<=i;j++){//不选（dp[i]）还是选（dp[i",
+            "link": null
+        },
+        {
+            "text": "j*j]）dp[i]=Math.min(dp[i],dp[i",
+            "link": null
+        },
+        {
+            "text": "j*j]+1);}}```",
             "link": null
         }
     ],
@@ -3583,11 +3066,7 @@
 "move-zeroes":{
     "id": "283",
     "name": "move-zeroes",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -3595,15 +3074,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "解析无",
             "link": null
         }
     ],
@@ -3622,11 +3096,7 @@
 "divide-two-integers":{
     "id": "29",
     "name": "divide-two-integers",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -3634,15 +3104,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "二分查找",
+            "link": null
+        },
+        {
+            "text": "正负数的判断中，这样判断更简单。```jsconstisNegative=dividend>0!==divisor>0;```",
             "link": null
         }
     ],
@@ -3669,11 +3138,7 @@
 "find-median-from-data-stream":{
     "id": "295",
     "name": "find-median-from-data-stream",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -3681,15 +3146,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "用两个堆（一个大顶堆，一个小顶堆）来简化时间复杂度",
+            "link": null
+        },
+        {
+            "text": "用优先级队列简化操作>JavaScript不像Java，C++等语言都有`优先级队列`中这种数据结构，因此大家可以使用社区的实现>个人认为没有非要纠结于优先级队列怎么实现，至少这道题不是考这个的>优先级队列的实现个人认为已经超过了这道题想考察的范畴",
             "link": null
         }
     ],
@@ -3716,11 +3180,7 @@
 "longestSubstringWithoutRepeatingCharacters":{
     "id": "3",
     "name": "longestSubstringWithoutRepeatingCharacters",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -3728,15 +3188,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "1.用一个mapper记录出现过并且没有被删除的字符2.用一个滑动窗口记录当前index开始的最大的不重复的字符序列3.用res去记录目前位置最大的长度，每次滑动窗口更新就去决定是否需要更新res",
             "link": null
         }
     ],
@@ -3755,11 +3210,7 @@
 "substring-with-concatenation-of-all-words":{
     "id": "30",
     "name": "substring-with-concatenation-of-all-words",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -3767,15 +3218,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "Counter",
             "link": null
         }
     ],
@@ -3790,11 +3236,7 @@
 "remove-invalid-parentheses":{
     "id": "301",
     "name": "remove-invalid-parentheses",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -3802,15 +3244,18 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "广度优先遍历",
+            "link": null
+        },
+        {
+            "text": "使用队列简化操作",
+            "link": null
+        },
+        {
+            "text": "使用一个visited的mapper，来避免遍历同样的字符串",
             "link": null
         }
     ],
@@ -3825,11 +3270,7 @@
 "best-time-to-buy-and-sell-stock-with-cooldown":{
     "id": "309",
     "name": "best-time-to-buy-and-sell-stock-with-cooldown",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -3837,15 +3278,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "多状态动态规划",
             "link": null
         }
     ],
@@ -3860,11 +3296,7 @@
 "next-permutation":{
     "id": "31",
     "name": "next-permutation",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -3872,15 +3304,18 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "写几个例子通常会帮助理解问题的规律",
+            "link": null
+        },
+        {
+            "text": "在有序数组中首尾指针不断交换位置即可实现reverse",
+            "link": null
+        },
+        {
+            "text": "找到从右边起`第一个大于nums[i]的`，并将其和nums[i]进行交换",
             "link": null
         }
     ],
@@ -3903,11 +3338,7 @@
 "burst-balloons":{
     "id": "312",
     "name": "burst-balloons",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -3915,18 +3346,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/312.burst-balloons.md",
     "code": [
         {
@@ -3942,11 +3363,7 @@
 "longest-valid-parentheses":{
     "id": "32",
     "name": "longest-valid-parentheses",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -3954,15 +3371,46 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "解析1.第3点特征,需要检查的字符是s[i",
+            "link": null
+        },
+        {
+            "text": "1]和s[i",
+            "link": null
+        },
+        {
+            "text": "2",
+            "link": null
+        },
+        {
+            "text": "dp[i",
+            "link": null
+        },
+        {
+            "text": "1]],根据定义可知:i",
+            "link": null
+        },
+        {
+            "text": "1>=dp[i",
+            "link": null
+        },
+        {
+            "text": "1],但是i",
+            "link": null
+        },
+        {
+            "text": "2不一定大于dp[i",
+            "link": null
+        },
+        {
+            "text": "1],因此,需要检查越界;3.第4点特征最容易遗漏,还有就是不需要检查越界,因为根据定义可知:i>=dp[i],所以dp[i",
+            "link": null
+        },
+        {
+            "text": "dp[i]]的边界情况是dp[0];",
             "link": null
         }
     ],
@@ -3981,11 +3429,7 @@
 "coin-change":{
     "id": "322",
     "name": "coin-change",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -3993,15 +3437,26 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "动态规划",
+            "link": null
+        },
+        {
+            "text": "子问题用dp[i]来表示组成i块钱，需要最少的硬币数，那么1.第j个硬币我可以选择不拿这个时候，硬币数=dp[i]2.第j个硬币我可以选择拿这个时候，硬币数=dp[i",
+            "link": null
+        },
+        {
+            "text": "coins[j]]+1",
+            "link": null
+        },
+        {
+            "text": "和背包问题不同，硬币是可以拿任意个",
+            "link": null
+        },
+        {
+            "text": "对于每一个dp[i]我们都选择遍历一遍coin，不断更新dp[i]",
             "link": null
         }
     ],
@@ -4024,11 +3479,7 @@
 "odd-even-linked-list":{
     "id": "328",
     "name": "odd-even-linked-list",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -4036,15 +3487,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "用虚拟节点来简化操作",
+            "link": null
+        },
+        {
+            "text": "循环的结束条件设置为`odd&&odd.next&&even&&even.next`,不应该是`odd&&even`,否则需要记录一下奇数节点的最后一个节点，复杂了操作",
             "link": null
         }
     ],
@@ -4059,11 +3509,7 @@
 "search-in-rotated-sorted-array":{
     "id": "33",
     "name": "search-in-rotated-sorted-array",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -4071,15 +3517,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "二分法",
+            "link": null
+        },
+        {
+            "text": "找出有序区间，然后根据target是否在有序区间舍弃一半元素",
             "link": null
         }
     ],
@@ -4098,11 +3543,7 @@
 "increasing-triplet-subsequence":{
     "id": "334",
     "name": "increasing-triplet-subsequence",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -4110,15 +3551,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "维护三个变量，分别记录最小值，第二小值，第三小值。只要我们能够填满这三个变量就返回true，否则返回false",
             "link": null
         }
     ],
@@ -4133,11 +3569,7 @@
 "self-crossing":{
     "id": "335",
     "name": "self-crossing",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -4145,15 +3577,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "一定要画图辅助",
+            "link": null
+        },
+        {
+            "text": "对于这种$O(1)$空间复杂度有固定的套路。常见的有：1.直接修改原数组2.滑动窗口（当前状态并不是和之前所有状态有关，而是仅和某几个有关）。我们采用的是滑动窗口。但是难点就在于我们怎么知道当前状态和哪几个有关。对于这道题来说，画图或许可以帮助你打开思路。另外面试的时候说出$O(N)$的思路也不失为一个帮助你冷静分析问题的手段。",
             "link": null
         }
     ],
@@ -4168,11 +3599,7 @@
 "power-of-four":{
     "id": "342",
     "name": "power-of-four",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -4180,15 +3607,18 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "数论",
+            "link": null
+        },
+        {
+            "text": "2的幂次方特点（数学性质以及二进制表示）",
+            "link": null
+        },
+        {
+            "text": "4的幂次方特点（数学性质以及二进制表示）",
             "link": null
         }
     ],
@@ -4215,11 +3645,7 @@
 "integer-break":{
     "id": "343",
     "name": "integer-break",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -4227,15 +3653,22 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "数学抽象",
+            "link": null
+        },
+        {
+            "text": "递归分析",
+            "link": null
+        },
+        {
+            "text": "记忆化递归",
+            "link": null
+        },
+        {
+            "text": "动态规划",
             "link": null
         }
     ],
@@ -4266,11 +3699,7 @@
 "intersection-of-two-arrays":{
     "id": "349",
     "name": "intersection-of-two-arrays",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -4278,15 +3707,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "解析无",
             "link": null
         }
     ],
@@ -4305,11 +3729,7 @@
 "water-and-jug-problem":{
     "id": "365",
     "name": "water-and-jug-problem",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -4317,18 +3737,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/365.water-and-jug-problem.md",
     "code": [
         {
@@ -4352,11 +3762,7 @@
 "sum-of-two-integers":{
     "id": "371",
     "name": "sum-of-two-integers",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -4364,15 +3770,18 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "位运算",
+            "link": null
+        },
+        {
+            "text": "异或是一种不进位的加减法",
+            "link": null
+        },
+        {
+            "text": "求与之后左移一位来可以表示进位",
             "link": null
         }
     ],
@@ -4387,11 +3796,7 @@
 "kth-smallest-element-in-a-sorted-matrix":{
     "id": "378",
     "name": "kth-smallest-element-in-a-sorted-matrix",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -4399,15 +3804,18 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "二分查找",
+            "link": null
+        },
+        {
+            "text": "有序矩阵的套路（文章末尾还有一道有序矩阵的题目）",
+            "link": null
+        },
+        {
+            "text": "堆（优先级队列）",
             "link": null
         }
     ],
@@ -4422,11 +3830,7 @@
 "insert-delete-getrandom-o1":{
     "id": "380",
     "name": "insert-delete-getrandom-o1",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -4434,15 +3838,22 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "数组",
+            "link": null
+        },
+        {
+            "text": "哈希表",
+            "link": null
+        },
+        {
+            "text": "数组+哈希表",
+            "link": null
+        },
+        {
+            "text": "基本算法时间复杂度分析",
             "link": null
         }
     ],
@@ -4457,11 +3868,7 @@
 "combination-sum":{
     "id": "39",
     "name": "combination-sum",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -4469,15 +3876,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "回溯法",
+            "link": null
+        },
+        {
+            "text": "backtrack解题公式",
             "link": null
         }
     ],
@@ -4496,11 +3902,7 @@
 "median-of-two-sorted-array":{
     "id": "4",
     "name": "median-of-two-sorted-array",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -4508,15 +3910,22 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "分析1.暴力求解，在线性时间内merge两个排好序的数组成一个数组。2.二分查找，关键点在于",
+            "link": null
+        },
+        {
+            "text": "要partition两个排好序的数组成左右两等份，partition需要满足`len(Aleft)+len(Bleft)=(m+n+1)/2",
+            "link": null
+        },
+        {
+            "text": "m是数组A的长度，n是数组B的长度`",
+            "link": null
+        },
+        {
+            "text": "并且partition后A左边最大(`maxLeftA`),A右边最小（`minRightA`),B左边最大（`maxLeftB`),B右边最小（`minRightB`)满足`(maxLeftA<=minRightB&&maxLeftB<=minRightA)`有了这两个条件，那么median就在这四个数中，根据奇数或者是偶数，```奇数：median=max(maxLeftA,maxLeftB)偶数：median=(max(maxLeftA,maxLeftB)+min(minRightA,minRightB))/2```",
             "link": null
         }
     ],
@@ -4543,11 +3952,7 @@
 "combination-sum-ii":{
     "id": "40",
     "name": "combination-sum-ii",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -4555,15 +3960,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "回溯法",
+            "link": null
+        },
+        {
+            "text": "backtrack解题公式",
             "link": null
         }
     ],
@@ -4582,11 +3986,7 @@
 "partition-equal-subset-sum":{
     "id": "416",
     "name": "partition-equal-subset-sum",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -4594,18 +3994,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/416.partition-equal-subset-sum.md",
     "code": [
         {
@@ -4633,11 +4023,7 @@
 "trapping-rain-water":{
     "id": "42",
     "name": "trapping-rain-water",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -4645,15 +4031,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "建模`h[i]=Math.min(左边柱子最大值,右边柱子最大值)`(h为下雨之后的水位)",
             "link": null
         }
     ],
@@ -4676,11 +4057,7 @@
 "path-sum-iii":{
     "id": "437",
     "name": "path-sum-iii",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -4688,15 +4065,26 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "通过hashmap，以时间换空间",
+            "link": null
+        },
+        {
+            "text": "对于这种连续的元素求和问题，有一个共同的思路，可以参考[这道题目](./560.subarray",
+            "link": null
+        },
+        {
+            "text": "sum",
+            "link": null
+        },
+        {
+            "text": "equals",
+            "link": null
+        },
+        {
+            "text": "k.md)",
             "link": null
         }
     ],
@@ -4715,11 +4103,7 @@
 "add-two-numbers-ii":{
     "id": "445",
     "name": "add-two-numbers-ii",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -4727,15 +4111,22 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "栈的基本操作",
+            "link": null
+        },
+        {
+            "text": "carried变量记录进位",
+            "link": null
+        },
+        {
+            "text": "循环的终止条件设置成`stack.length>0`可以简化操作",
+            "link": null
+        },
+        {
+            "text": "注意特殊情况，比如1+99=100",
             "link": null
         }
     ],
@@ -4754,11 +4145,7 @@
 "4-sum-ii":{
     "id": "454",
     "name": "4-sum-ii",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -4766,15 +4153,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "空间换时间",
+            "link": null
+        },
+        {
+            "text": "两两分组，求出两两结合能够得出的可能数，然后合并即可。",
             "link": null
         }
     ],
@@ -4793,11 +4179,7 @@
 "AssignCookies":{
     "id": "455",
     "name": "AssignCookies",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -4805,15 +4187,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "将需求因子g和s分别从小到大进行排序，使用贪心思想，配合双指针，每个饼干只尝试一次，成功则换下一个孩子来尝试。",
             "link": null
         }
     ],
@@ -4828,11 +4205,7 @@
 "permutations":{
     "id": "46",
     "name": "permutations",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -4840,15 +4213,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "回溯法",
+            "link": null
+        },
+        {
+            "text": "backtrack解题公式",
             "link": null
         }
     ],
@@ -4863,11 +4235,7 @@
 "lfu-cache":{
     "id": "460",
     "name": "lfu-cache",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -4875,15 +4243,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "分析用两个`Map`分别保存`nodeMap{key,node}`和`freqMap{frequent,DoublyLinkedList}`。实现`get`和`put`操作都是`O(1)`的时间复杂度。可以用Java自带的一些数据结构，比如HashLinkedHashSet，这样就不需要自己自建Node，DoublelyLinkedList。可以很大程度的缩减代码量。",
             "link": null
         }
     ],
@@ -4898,11 +4261,7 @@
 "permutations-ii":{
     "id": "47",
     "name": "permutations-ii",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -4910,15 +4269,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "回溯法",
+            "link": null
+        },
+        {
+            "text": "backtrack解题公式",
             "link": null
         }
     ],
@@ -4933,11 +4291,7 @@
 "concatenated-words":{
     "id": "472",
     "name": "concatenated-words",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -4945,15 +4299,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "分析",
+            "link": null
+        },
+        {
+            "text": "前缀树",
             "link": null
         }
     ],
@@ -4968,11 +4321,7 @@
 "ones-and-zeros-en":{
     "id": "474",
     "name": "ones-and-zeros-en",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -4980,18 +4329,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/474.ones-and-zeros-en.md",
     "code": [
         {
@@ -5027,11 +4366,7 @@
 "rotate-image":{
     "id": "48",
     "name": "rotate-image",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -5039,15 +4374,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "矩阵旋转操作",
             "link": null
         }
     ],
@@ -5066,11 +4396,7 @@
 "group-anagrams":{
     "id": "49",
     "name": "group-anagrams",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -5078,15 +4404,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "桶排序",
             "link": null
         }
     ],
@@ -5105,11 +4426,7 @@
 "reverse-pairs":{
     "id": "493",
     "name": "reverse-pairs",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -5117,15 +4434,22 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "归并排序",
+            "link": null
+        },
+        {
+            "text": "逆序数",
+            "link": null
+        },
+        {
+            "text": "分治",
+            "link": null
+        },
+        {
+            "text": "识别考点，其他非重点可以使用语言内置方法",
             "link": null
         }
     ],
@@ -5148,11 +4472,7 @@
 "target-sum":{
     "id": "494",
     "name": "target-sum",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -5160,15 +4480,18 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "对元素进行分组，分组的依据是符号，是`+`或者`",
+            "link": null
+        },
+        {
+            "text": "`",
+            "link": null
+        },
+        {
+            "text": "通过数学公式推导可以简化我们的求解过程，这需要一点`数学知识和数学意识`",
             "link": null
         }
     ],
@@ -5183,11 +4506,7 @@
 "longest-palindromic-substring":{
     "id": "5",
     "name": "longest-palindromic-substring",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -5195,15 +4514,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "”延伸“（extend）",
             "link": null
         }
     ],
@@ -5226,11 +4540,7 @@
 "pow-x-n":{
     "id": "50",
     "name": "pow-x-n",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -5238,15 +4548,26 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "超时分析",
+            "link": null
+        },
+        {
+            "text": "hashtable",
+            "link": null
+        },
+        {
+            "text": "数学分析",
+            "link": null
+        },
+        {
+            "text": "位运算",
+            "link": null
+        },
+        {
+            "text": "二进制转十进制",
             "link": null
         }
     ],
@@ -5273,11 +4594,7 @@
 "Find-Mode-in-Binary-Search-Tree":{
     "id": "501",
     "name": "Find-Mode-in-Binary-Search-Tree",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -5285,18 +4602,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/501.Find-Mode-in-Binary-Search-Tree.md",
     "code": [
         {
@@ -5308,11 +4615,7 @@
 "longest-palindromic-subsequence":{
     "id": "516",
     "name": "longest-palindromic-subsequence",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -5320,15 +4623,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "”延伸“（extend）",
             "link": null
         }
     ],
@@ -5347,11 +4645,7 @@
 "coin-change-2":{
     "id": "518",
     "name": "coin-change-2",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -5359,15 +4653,78 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "动态规划",
+            "link": null
+        },
+        {
+            "text": "子问题用dp[i]来表示组成i块钱，需要最少的硬币数，那么1.第j个硬币我可以选择不拿这个时候，组成数=dp[i]2.第j个硬币我可以选择拿这个时候，组成数=dp[i",
+            "link": null
+        },
+        {
+            "text": "coins[j]]+dp[i]",
+            "link": null
+        },
+        {
+            "text": "和01背包问题不同，硬币是可以拿任意个，属于完全背包问题",
+            "link": null
+        },
+        {
+            "text": "对于每一个dp[i]我们都选择遍历一遍coin，不断更新dp[i]eg:```jsif(amount===0)return1;constdp=[Array(amount+1).fill(1)];for(leti=1;i<amount+1;i++){dp[i]=Array(coins.length+1).fill(0);for(letj=1;j<coins.length+1;j++){//从1开始可以简化运算if(i",
+            "link": null
+        },
+        {
+            "text": "coins[j",
+            "link": null
+        },
+        {
+            "text": "1]>=0){//注意这里是coins[j",
+            "link": null
+        },
+        {
+            "text": "1]而不是coins[j]dp[i][j]=dp[i][j",
+            "link": null
+        },
+        {
+            "text": "1]+dp[i",
+            "link": null
+        },
+        {
+            "text": "coins[j",
+            "link": null
+        },
+        {
+            "text": "1]][j];//由于可以重复使用硬币所以这里是j不是j",
+            "link": null
+        },
+        {
+            "text": "1}else{dp[i][j]=dp[i][j",
+            "link": null
+        },
+        {
+            "text": "1];}}}returndp[dp.length",
+            "link": null
+        },
+        {
+            "text": "1][coins.length];```",
+            "link": null
+        },
+        {
+            "text": "当我们选择一维数组去解的时候，内外循环将会对结果造成影响![](https://tva1.sinaimg.cn/large/0082zybply1gcb7fjfon6j30j00bddh2.jpg)eg:```js//这种答案是不对的。//原因在于比如amount=5,coins=[1,2,5]//这种算法会将[1,2,2][2,1,2][2,2,1]算成不同的if(amount===0)return1;constdp=[1].concat(Array(amount).fill(0));for(leti=1;i<amount+1;i++){for(letj=0;j<coins.length;j++){if(i",
+            "link": null
+        },
+        {
+            "text": "coins[j]>=0){dp[i]=dp[i]+dp[i",
+            "link": null
+        },
+        {
+            "text": "coins[j]];}}}returndp[dp.length",
+            "link": null
+        },
+        {
+            "text": "1];//正确的写法应该是内外循环调换一下,具体可以看下方代码区```",
             "link": null
         }
     ],
@@ -5398,11 +4755,7 @@
 "N-Queens-II":{
     "id": "52",
     "name": "N-Queens-II",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -5410,15 +4763,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "位运算",
+            "link": null
+        },
+        {
+            "text": "DFS（深度优先搜索）",
             "link": null
         }
     ],
@@ -5433,11 +4785,7 @@
 "maximum-sum-subarray-cn":{
     "id": "53",
     "name": "maximum-sum-subarray-cn",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -5445,15 +4793,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "分析1.暴力解，列举所有组合子序列首尾位置的组合，求解最大的子序列和,优化可以预先处理，得到前缀和2.分治法，每次从中间位置把数组分为左右中三部分，分别求出左右中（这里中是包括中间元素的子序列）最大和。对左右分别深度递归，三者中最大值即为当前最大子序列和。3.动态规划，找到状态转移方程，求到当前位置最大和。",
             "link": null
         }
     ],
@@ -5512,11 +4855,7 @@
 "maximum-sum-subarray-en":{
     "id": "53",
     "name": "maximum-sum-subarray-en",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -5524,18 +4863,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/53.maximum-sum-subarray-en.md",
     "code": [
         {
@@ -5591,11 +4920,7 @@
 "friend-circles-en":{
     "id": "547",
     "name": "friend-circles-en",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -5603,18 +4928,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/547.friend-circles-en.md",
     "code": [
         {
@@ -5634,11 +4949,7 @@
 "friend-circles":{
     "id": "547",
     "name": "friend-circles",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -5646,18 +4957,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/547.friend-circles.md",
     "code": [
         {
@@ -5669,11 +4970,7 @@
 "jump-game":{
     "id": "55",
     "name": "jump-game",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -5681,15 +4978,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "建模(记录和更新当前位置能够到达的最大的索引即可)",
             "link": null
         }
     ],
@@ -5704,11 +4996,7 @@
 "merge-intervals":{
     "id": "56",
     "name": "merge-intervals",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -5716,15 +5004,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "对数组进行排序简化操作",
+            "link": null
+        },
+        {
+            "text": "如果不排序，需要借助一些hack,这里不介绍了",
             "link": null
         }
     ],
@@ -5739,11 +5026,7 @@
 "subarray-sum-equals-k":{
     "id": "560",
     "name": "subarray-sum-equals-k",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -5751,15 +5034,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "前缀和",
+            "link": null
+        },
+        {
+            "text": "可以利用hashmap记录和的累加值来避免重复计算",
             "link": null
         }
     ],
@@ -5786,11 +5068,7 @@
 "distribute-candies":{
     "id": "575",
     "name": "distribute-candies",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -5798,15 +5076,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "这是一道逻辑题目，因此如果逻辑分析清楚了，代码是自然而然的",
             "link": null
         }
     ],
@@ -5825,11 +5098,7 @@
 "permutation-sequence":{
     "id": "60",
     "name": "permutation-sequence",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -5837,15 +5106,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "找规律",
+            "link": null
+        },
+        {
+            "text": "排列组合",
             "link": null
         }
     ],
@@ -5860,11 +5128,7 @@
 "find-duplicate-file-in-system":{
     "id": "609",
     "name": "find-duplicate-file-in-system",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -5872,15 +5136,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "hashtable",
             "link": null
         }
     ],
@@ -5895,11 +5154,7 @@
 "unique-paths":{
     "id": "62",
     "name": "unique-paths",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -5907,15 +5162,18 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "记忆化递归",
+            "link": null
+        },
+        {
+            "text": "基本动态规划问题",
+            "link": null
+        },
+        {
+            "text": "空间复杂度可以进一步优化到O(n),这会是一个考点",
             "link": null
         }
     ],
@@ -5946,11 +5204,7 @@
 "accounts-merge":{
     "id": "721",
     "name": "accounts-merge",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -5958,18 +5212,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/721.accounts-merge.md",
     "code": [
         {
@@ -5981,11 +5225,7 @@
 "set-matrix-zeroes":{
     "id": "73",
     "name": "set-matrix-zeroes",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -5993,15 +5233,18 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "使用第一行和第一列来替代我们m+n数组",
+            "link": null
+        },
+        {
+            "text": "先记录下”第一行和第一列是否全是0“这样的一个数据，否则会因为后续对第一行第一列的更新造成数据丢失",
+            "link": null
+        },
+        {
+            "text": "最后更新第一行第一列",
             "link": null
         }
     ],
@@ -6028,11 +5271,7 @@
 "sort-colors":{
     "id": "75",
     "name": "sort-colors",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -6040,15 +5279,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "荷兰国旗问题",
+            "link": null
+        },
+        {
+            "text": "countingsort",
             "link": null
         }
     ],
@@ -6058,11 +5296,7 @@
 "subsets-en":{
     "id": "78",
     "name": "subsets-en",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -6070,18 +5304,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/78.subsets-en.md",
     "code": [
         {
@@ -6093,11 +5317,7 @@
 "subsets":{
     "id": "78",
     "name": "subsets",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -6105,15 +5325,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "回溯法",
+            "link": null
+        },
+        {
+            "text": "backtrack解题公式",
             "link": null
         }
     ],
@@ -6128,11 +5347,7 @@
 "word-search-en":{
     "id": "79",
     "name": "word-search-en",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -6140,18 +5355,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/79.word-search-en.md",
     "code": [
         {
@@ -6171,11 +5376,7 @@
 "word-search":{
     "id": "79",
     "name": "word-search",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -6183,15 +5384,22 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "分析",
+            "link": null
+        },
+        {
+            "text": "遍历二维数组的每一个点，找到起始点相同的字符，做DFS",
+            "link": null
+        },
+        {
+            "text": "DFS过程中，要记录已经访问过的节点，防止重复遍历，这里（JavaCode中）用`*`表示当前已经访问过，也可以用Set或者是boolean[][]数组记录访问过的节点位置。",
+            "link": null
+        },
+        {
+            "text": "是否匹配当前单词中的字符，不符合回溯，这里记得把当前`*`重新设为当前字符。如果用Set或者是boolean[][]数组，记得把当前位置重设为没有访问过。",
             "link": null
         }
     ],
@@ -6214,11 +5422,7 @@
 "remove-duplicates-from-sorted-array-ii":{
     "id": "80",
     "name": "remove-duplicates-from-sorted-array-ii",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -6226,15 +5430,22 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "分析",
+            "link": null
+        },
+        {
+            "text": "快慢指针",
+            "link": null
+        },
+        {
+            "text": "读写指针",
+            "link": null
+        },
+        {
+            "text": "删除排序问题",
             "link": null
         }
     ],
@@ -6249,11 +5460,7 @@
 "short-encoding-of-words":{
     "id": "820",
     "name": "short-encoding-of-words",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -6261,15 +5468,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "前缀树",
+            "link": null
+        },
+        {
+            "text": "去重",
             "link": null
         }
     ],
@@ -6284,11 +5490,7 @@
 "largest-rectangle-in-histogram":{
     "id": "84",
     "name": "largest-rectangle-in-histogram",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -6296,18 +5498,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/84.largest-rectangle-in-histogram.md",
     "code": [
         {
@@ -6335,11 +5527,7 @@
 "maximal-rectangle":{
     "id": "85",
     "name": "maximal-rectangle",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -6347,18 +5535,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/85.maximal-rectangle.md",
     "code": [
         {
@@ -6370,11 +5548,7 @@
 "partition-list":{
     "id": "86",
     "name": "partition-list",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -6382,15 +5556,18 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "链表的基本操作（遍历）",
+            "link": null
+        },
+        {
+            "text": "虚拟节点dummy简化操作",
+            "link": null
+        },
+        {
+            "text": "遍历完成之后记得`currentL1.next=null;`否则会内存溢出>如果单纯的遍历是不需要上面操作的，但是我们的遍历会导致currentL1.next和currentL2.next中有且仅有一个不是null，如果不这么操作的话会导致两个链表成环，造成溢出。",
             "link": null
         }
     ],
@@ -6409,11 +5586,7 @@
 "walking-robot-simulation":{
     "id": "874",
     "name": "walking-robot-simulation",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -6421,15 +5594,18 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "理解题意，这道题容易理解错题意，求解为`最终位置距离原点的距离`",
+            "link": null
+        },
+        {
+            "text": "建立坐标系",
+            "link": null
+        },
+        {
+            "text": "使用集合简化线形查找的时间复杂度。",
             "link": null
         }
     ],
@@ -6444,11 +5620,7 @@
 "koko-eating-bananas":{
     "id": "875",
     "name": "koko-eating-bananas",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -6456,15 +5628,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "二分查找",
             "link": null
         }
     ],
@@ -6479,11 +5646,7 @@
 "stone-game":{
     "id": "877",
     "name": "stone-game",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -6491,15 +5654,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "可以用DP（动态规划）",
+            "link": null
+        },
+        {
+            "text": "可以从数学的角度去分析>......(😅)",
             "link": null
         }
     ],
@@ -6514,11 +5676,7 @@
 "merge-sorted-array":{
     "id": "88",
     "name": "merge-sorted-array",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -6526,15 +5684,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "从后往前比较，并从后往前插入",
             "link": null
         }
     ],
@@ -6561,11 +5714,7 @@
 "super-egg-drop":{
     "id": "887",
     "name": "super-egg-drop",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -6573,15 +5722,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "dp建模思路要发生变化,即`dp[M][K]meansthat,givenKeggsandMmoves，whatisthemaximumnumberoffloorthatwecancheck.`",
             "link": null
         }
     ],
@@ -6600,11 +5744,7 @@
 "maximum-frequency-stack":{
     "id": "895",
     "name": "maximum-frequency-stack",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -6612,15 +5752,18 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "栈的基本性质",
+            "link": null
+        },
+        {
+            "text": "hashtable的基本性质",
+            "link": null
+        },
+        {
+            "text": "push和pop的时候同时更新fraq，max_fraq和fraq_stack。",
             "link": null
         }
     ],
@@ -6635,11 +5778,7 @@
 "subsets-ii-en":{
     "id": "90",
     "name": "subsets-ii-en",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -6647,18 +5786,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/90.subsets-ii-en.md",
     "code": [
         {
@@ -6670,11 +5799,7 @@
 "subsets-ii":{
     "id": "90",
     "name": "subsets-ii",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -6682,15 +5807,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "回溯法",
+            "link": null
+        },
+        {
+            "text": "backtrack解题公式",
             "link": null
         }
     ],
@@ -6705,11 +5829,7 @@
 "rle-iterator":{
     "id": "900",
     "name": "rle-iterator",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -6717,18 +5837,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/900.rle-iterator.md",
     "code": [
         {
@@ -6740,11 +5850,7 @@
 "decode-ways":{
     "id": "91",
     "name": "decode-ways",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -6752,15 +5858,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "爬楼梯问题（我把这种题目统称为爬楼梯问题）",
             "link": null
         }
     ],
@@ -6775,11 +5876,7 @@
 "sort-an-array":{
     "id": "912",
     "name": "sort-an-array",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -6787,15 +5884,14 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "排序算法",
+            "link": null
+        },
+        {
+            "text": "注意题目的限制条件从而选择合适的算法",
             "link": null
         }
     ],
@@ -6814,11 +5910,7 @@
 "reverse-linked-list-ii":{
     "id": "92",
     "name": "reverse-linked-list-ii",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -6826,15 +5918,22 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "链表的基本操作",
+            "link": null
+        },
+        {
+            "text": "考虑特殊情况m是1或者n是链表长度的情况，我们可以采用虚拟节点dummy简化操作",
+            "link": null
+        },
+        {
+            "text": "用四个变量记录特殊节点，然后操作这四个节点使之按照一定方式连接即可。",
+            "link": null
+        },
+        {
+            "text": "注意更新current和pre的位置，否则有可能出现溢出",
             "link": null
         }
     ],
@@ -6865,11 +5964,7 @@
 "knight-dialer":{
     "id": "935",
     "name": "knight-dialer",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -6877,18 +5972,8 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/935.knight-dialer.md",
     "code": [
         {
@@ -6904,11 +5989,7 @@
 "binary-tree-inorder-traversal":{
     "id": "94",
     "name": "binary-tree-inorder-traversal",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -6916,15 +5997,22 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "二叉树的基本操作（遍历）>不同的遍历算法差异还是蛮大的",
+            "link": null
+        },
+        {
+            "text": "如果非递归的话利用栈来简化操作",
+            "link": null
+        },
+        {
+            "text": "如果数据规模不大的话，建议使用递归",
+            "link": null
+        },
+        {
+            "text": "递归的问题需要注意两点，一个是终止条件，一个如何缩小规模1.终止条件，自然是当前这个元素是null（链表也是一样）2.由于二叉树本身就是一个递归结构，每次处理一个子树其实就是缩小了规模，难点在于如何合并结果，这里的合并结果其实就是`left.concat(mid).concat(right)`,mid是一个具体的节点，left和right`递归求出即可`",
             "link": null
         }
     ],
@@ -6951,11 +6039,7 @@
 "unique-binary-search-trees-ii":{
     "id": "95",
     "name": "unique-binary-search-trees-ii",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -6963,15 +6047,10 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "分治法",
             "link": null
         }
     ],
@@ -6981,11 +6060,7 @@
 "unique-binary-search-trees":{
     "id": "96",
     "name": "unique-binary-search-trees",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -6993,15 +6068,18 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "分治法",
+            "link": null
+        },
+        {
+            "text": "笛卡尔积",
+            "link": null
+        },
+        {
+            "text": "记忆化递归",
             "link": null
         }
     ],
@@ -7016,11 +6094,7 @@
 "validate-binary-search-tree":{
     "id": "98",
     "name": "validate-binary-search-tree",
-    "company": [
-        {
-            "name": "阿里巴巴"
-        }
-    ],
+    "company": [],
     "tags": [
         {
             "id": "recursion",
@@ -7028,15 +6102,18 @@
             "link": null
         }
     ],
-    "pre": [
-        {
-            "text": "辅助栈",
-            "link": null
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
-            "text": "辅助栈",
+            "text": "二叉树的基本操作（遍历）",
+            "link": null
+        },
+        {
+            "text": "中序遍历一个二叉查找树（BST）的结果是一个有序数组",
+            "link": null
+        },
+        {
+            "text": "如果一个树遍历的结果是有序数组，那么他也是一个二叉查找树(BST)",
             "link": null
         }
     ],

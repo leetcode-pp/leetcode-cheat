@@ -25,7 +25,7 @@
 ```
 
 ## 爬虫
-- npm run crawl
+- sudo npm run crawl
 - 此命令会先从github上拉取问题列表，将文件名解析成数组，然后根据问题名称循环拉取与之对应的markdown文件（此过程会先查找本地是否存在，如果存在则跳过）
 - 问题拉取完成后，根据markdown匹配正则，转化成所需的json文件
 

@@ -21,7 +21,8 @@ const Utils = {
 
    getSatelliteDataReg() {
       return {
-         pre: /(?:前置知识)([\s\S]*)(?:##)/g
+         pre: /(?<=## 前置知识)([\s\S]*?)(?=##)/g,
+         keyPoints: /(?<=## 关键点)([\s\S]*?)(?=##)/
       }
    },
 
@@ -45,7 +46,7 @@ const Utils = {
     * @memberof Utils
     */
    getKeyMatterReg() {
-      return /(?:# 关键点)([.|[\r\n]]*?)(?:#)/g
+      return /(?<=关键点)([.|[\r\n]]*?)(?:#)/g
    },
 
 

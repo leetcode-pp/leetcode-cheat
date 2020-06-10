@@ -18,6 +18,7 @@ const genertateLeetcodeToJson = () => {
 
     let languageResloved = []
     let preKnowledge = []
+    let keyPoints = []
     let markdown
 
     try {
@@ -33,6 +34,7 @@ const genertateLeetcodeToJson = () => {
 
       Logger.error(`读取${filename}失败`, error)
     }
+
 
 
     /**
@@ -52,64 +54,48 @@ const genertateLeetcodeToJson = () => {
         })
 
       })
+    })
+    markdown.replace(Utils.getSatelliteDataReg().pre, (noUseMatch, $1) => {
 
-      markdown.replace(Utils.getSatelliteDataReg().pre, (noUseMatch, $1) => {
-
-        preKnowledge.push({
-          text: $1,
-        })
-        console.log('前置知识:', $1)
-
+      preKnowledge.push({
+        text: $1,
       })
+    })
 
-
-      /**
-       *  TODO 这边解析字段不全 
-       */
-
-      const [questionID, name,] = filename.split('.')
-
-      let oCustomStruct = {
-        id: questionID,
-        name,
-        company: [
-          {
-            name: "阿里巴巴",
-          }
-        ],
-        // todo
-        tags: [
-          {
-            id: "recursion",
-            text: "递归",
-            link: null,
-          }
-        ],
-        pre: [
-          {
-            text: "辅助栈",
-            link: null,
-          }
-        ],
-        keyPoints: [
-          {
-            text: "辅助栈",
-            link: null,
-          },
-        ],
-        solution: `https://github.com/azl397985856/leetcode/blob/master/problems/${filename}`,
-        code: languageResloved,
-      }
-
-
-
-      Logger.success(`开始生成 "${filename}"`)
-
-      Utils.writeFileSync('spider/yield-db-json', `${filename.slice(0, -3)}.json`, JSON.stringify(oCustomStruct, null, 2))
-
-      Logger.success(`生成 "${filename}" 完毕`)
+    markdown.replace(Utils.getSatelliteDataReg().keyPoints, (noUseMatch, $1) => {
+      keyPoints = $1.replace(/\s/g, '').split('-').filter(s => (s && s !== '解析')).map(s => ({ text: s, link: null }))
 
     })
+
+    /**
+     *  TODO 这边解析字段不全 
+     */
+
+    const [questionID, name,] = filename.split('.')
+
+    let oCustomStruct = {
+      id: questionID,
+      name,
+      company: [
+      ],
+      // todo
+      tags: [
+      ],
+      pre: preKnowledge,
+      keyPoints,
+      solution: `https://github.com/azl397985856/leetcode/blob/master/problems/${filename}`,
+      code: languageResloved,
+    }
+
+
+
+    Logger.success(`开始生成 "${filename}"`)
+
+    Utils.writeFileSync('spider/yield-db-json', `${filename.slice(0, -3)}.json`, JSON.stringify(oCustomStruct, null, 2))
+
+    Logger.success(`生成 "${filename}" 完毕`)
+
+
 
   })
 
