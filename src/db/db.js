@@ -13,21 +13,25 @@ const tags = {
   recursion: {
     id: "recursion",
     text: "递归",
+    color: "#f50",
     link: null,
   },
   queue: {
     id: "queue",
     text: "队列",
+    color: "#108ee9",
     link: null,
   },
 
   stack: {
     id: "stack",
+    color: "#87d068",
     text: "栈",
     link: null,
   },
   design: {
     id: "design",
+    color: "#2db7f5",
     text: "设计题",
     link: null,
   },

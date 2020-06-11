@@ -4,30 +4,29 @@
     "id": "1",
     "name": "TwoSum",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [
         {
-            "text": "\n\n- 哈希表\n\n"
+            "text": "\n\n- 哈希表\n\n",
+            "link": null,
+            "color": "red"
         }
     ],
     "keyPoints": [
         {
             "text": "求和转换为求差",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "借助Map结构将数组中每个元素及其索引相互对应",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "以空间换时间，将查找时间从O(N)降低到O(1)",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1.TwoSum.md",
@@ -42,13 +41,7 @@
     "id": "101",
     "name": "symmetric-tree",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/101.symmetric-tree.md",
@@ -71,18 +64,13 @@
     "id": "1011",
     "name": "capacity-to-ship-packages-within-d-days-cn",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "能够识别出是给定的有限序列查找一个数字（二分查找），要求你对二分查找以及变体十分熟悉",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1011.capacity-to-ship-packages-within-d-days-cn.md",
@@ -105,13 +93,7 @@
     "id": "1011",
     "name": "capacity-to-ship-packages-within-d-days-en",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1011.capacity-to-ship-packages-within-d-days-en.md",
@@ -134,22 +116,18 @@
     "id": "1014",
     "name": "best-sightseeing-pair",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "空间换时间",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "dp空间优化",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1014.best-sightseeing-pair.md",
@@ -176,18 +154,13 @@
     "id": "1015",
     "name": "smallest-integer-divisible-by-k",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "数学（无限循环与循环节）",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1015.smallest-integer-divisible-by-k.md",
@@ -202,22 +175,18 @@
     "id": "1019",
     "name": "next-greater-node-in-linked-list",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "单调栈（单调递减栈）",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "单调栈的代码模板",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1019.next-greater-node-in-linked-list.md",
@@ -236,38 +205,38 @@
     "id": "102",
     "name": "binary-tree-level-order-traversal",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "队列",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "队列中用Null(一个特殊元素)来划分每层",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "树的基本操作",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "遍历",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "层次遍历（BFS）",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "注意塞入null的时候，判断一下当前队列是否为空，不然会无限循环",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/102.binary-tree-level-order-traversal.md",
@@ -286,18 +255,13 @@
     "id": "1020",
     "name": "number-of-enclaves",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "visited记录访问过的节点，防止重复计算",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1020.number-of-enclaves.md",
@@ -316,30 +280,28 @@
     "id": "1023",
     "name": "camelcase-matching",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "双指针",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "字符串匹配",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "子序列",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "子串",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1023.camelcase-matching.md",
@@ -358,34 +320,33 @@
     "id": "103",
     "name": "binary-tree-zigzag-level-order-traversal",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "队列",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "队列中用Null(一个特殊元素)来划分每层",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "树的基本操作",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "遍历",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "层次遍历（BFS）",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/103.binary-tree-zigzag-level-order-traversal.md",
@@ -400,22 +361,18 @@
     "id": "1031",
     "name": "maximum-sum-of-two-non-overlapping-subarrays",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "解析1.注意图中描述的都是A[i",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "1],而不是A[i],因为basecase为空数组,而不是A[0];2.求解图中ASUM数组的时候,注意定义的是ASUM[i]=sum(A[0:i]),因此当i等于0时,A[0:0]为空数组,即:ASUM[0]为0,而ASUM[1]才等于A[0];3.求解图中MAXL数组时,注意i<L时,没有意义,因为长度不够,所以从i=L时才开始求解;4.求解图中MAXM数组时,也一样,要从i=M时才开始求解;5.求解图中SUMM数组时,因为我们需要一个L子数组和一个M子数组,因此长度要大于等于L+M才有意义,所以要从i=L+M时开始求解.",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1031.maximum-sum-of-two-non-overlapping-subarrays.md",
@@ -430,34 +387,33 @@
     "id": "104",
     "name": "maximum-depth-of-binary-tree",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "队列",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "队列中用Null(一个特殊元素)来划分每层，或者在对每层进行迭代之前保存当前队列元素的个数（即当前层所含元素个数）",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "树的基本操作",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "遍历",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "层次遍历（BFS）",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/104.maximum-depth-of-binary-tree.md",
@@ -480,13 +436,7 @@
     "id": "105",
     "name": "Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/105.Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal.md",
@@ -505,18 +455,13 @@
     "id": "11",
     "name": "container-with-most-water",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "双指针优化时间复杂度",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/11.container-with-most-water.md",
@@ -535,30 +480,28 @@
     "id": "1104",
     "name": "path-in-zigzag-labelled-binary-tree",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "满二叉树的性质：1.最小值是`2**(level",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "1)`，最大值是`2**level",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "1`，其中level是树的深度。2.假如父节点的索引为i，那么左子节点就是2\\*i，右边子节点就是2\\*i+1。3.假如子节点的索引是i，那么父节点的索引就是i//2。",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "先思考一般情况（不是之字形），然后通过观察找出规律",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1104.path-in-zigzag-labelled-binary-tree.md",
@@ -573,22 +516,18 @@
     "id": "113",
     "name": "path-sum-ii",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "回溯法",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "backtrack解题公式",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/113.path-sum-ii.md",
@@ -607,18 +546,13 @@
     "id": "1131",
     "name": "maximum-of-absolute-value-expression",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "数学分析",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1131.maximum-of-absolute-value-expression.md",
@@ -637,18 +571,13 @@
     "id": "1168",
     "name": "optimize-water-distribution-in-a-village-cn",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "分析1.构建图，得出所有边2.对所有边排序3.遍历所有的边（从小到大）4.对于每条边，检查是否已经连通，若没有连通，加上边上的值，连通两个节点。若已连通，跳过。",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1168.optimize-water-distribution-in-a-village-cn.md",
@@ -667,13 +596,7 @@
     "id": "1168",
     "name": "optimize-water-distribution-in-a-village-en",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1168.optimize-water-distribution-in-a-village-en.md",
@@ -692,26 +615,23 @@
     "id": "1186",
     "name": "maximum-subarray-sum-with-one-deletion",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "空间换时间",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "头尾双数组",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "动态规划",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1186.maximum-subarray-sum-with-one-deletion.md",
@@ -734,18 +654,13 @@
     "id": "121",
     "name": "best-time-to-buy-and-sell-stock",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "这类题只要你在心中（或者别的地方）画出上面这种图就很容易解决",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/121.best-time-to-buy-and-sell-stock.md",
@@ -768,18 +683,13 @@
     "id": "1218",
     "name": "longest-arithmetic-subsequence-of-given-difference",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "将`以每一个元素结尾的最长等差子序列的长度`统统存起来",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1218.longest-arithmetic-subsequence-of-given-difference.md",
@@ -798,18 +708,13 @@
     "id": "122",
     "name": "best-time-to-buy-and-sell-stock-ii",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "这类题只要你在心中（或者别的地方）画出上面这种图就很容易解决",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/122.best-time-to-buy-and-sell-stock-ii.md",
@@ -828,13 +733,7 @@
     "id": "1227",
     "name": "airplane-seat-assignment-probability",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1227.airplane-seat-assignment-probability.md",
@@ -865,22 +764,18 @@
     "id": "124",
     "name": "binary-tree-maximum-path-sum",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "递归",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "理解题目中的path定义",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/124.binary-tree-maximum-path-sum.md",
@@ -899,18 +794,13 @@
     "id": "125",
     "name": "valid-palindrome",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "双指针",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/125.valid-palindrome.md",
@@ -929,13 +819,7 @@
     "id": "1260",
     "name": "shift-2d-grid",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1260.shift-2d-grid.md",
@@ -954,13 +838,7 @@
     "id": "1261",
     "name": "find-elements-in-a-contaminated-binary-tree",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1261.find-elements-in-a-contaminated-binary-tree.md",
@@ -983,26 +861,23 @@
     "id": "1262",
     "name": "greatest-sum-divisible-by-three",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "贪婪法",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "状态机",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "数学分析",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1262.greatest-sum-divisible-by-three.md",
@@ -1033,18 +908,13 @@
     "id": "128",
     "name": "longest-consecutive-sequence",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "空间换时间",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/128.longest-consecutive-sequence.md",
@@ -1063,18 +933,13 @@
     "id": "129",
     "name": "sum-root-to-leaf-numbers",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "递归分析",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/129.sum-root-to-leaf-numbers.md",
@@ -1097,26 +962,23 @@
     "id": "1297",
     "name": "maximum-number-of-occurrences-of-a-substring",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "滑动窗口",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "识别题目干扰信息",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "看题目限制条件，对于本题有用的信息是`1<=maxLetters<=26`",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1297.maximum-number-of-occurrences-of-a-substring.md",
@@ -1139,26 +1001,23 @@
     "id": "130",
     "name": "surrounded-regions",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "二维数组DFS解题模板",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "转化问题为`连通区域问题`",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "直接mutate原数组，节省空间",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/130.surrounded-regions.md",
@@ -1177,18 +1036,13 @@
     "id": "131",
     "name": "palindrome-partitioning",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "回溯法",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/131.palindrome-partitioning.md",
@@ -1207,22 +1061,18 @@
     "id": "1310",
     "name": "xor-queries-of-a-subarray",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "异或的性质x^y^x=y",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "前缀表达式",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1310.xor-queries-of-a-subarray.md",
@@ -1249,13 +1099,7 @@
     "id": "1332",
     "name": "remove-palindromic-subsequences",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1332.remove-palindromic-subsequences.md",
@@ -1274,13 +1118,7 @@
     "id": "1334",
     "name": "find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1334.find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance.md",
@@ -1295,26 +1133,23 @@
     "id": "136",
     "name": "single-number",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "1.异或的性质两个数字异或的结果`a^b`是将a和b的二进制每一位进行运算，得出的数字。运算的逻辑是如果同一位的数字相同则为0，不同则为12.异或的规律",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "任何数和本身异或则为`0`",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "任何数和0异或是`本身`3.很多人只是记得异或的性质和规律，但是缺乏对其本质的理解，导致很难想到这种解法（我本人也没想到）4.bit运算",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/136.single-number.md",
@@ -1333,22 +1168,18 @@
     "id": "1371",
     "name": "find-the-longest-substring-containing-vowels-in-even-counts",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "前缀和",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "状态压缩",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1371.find-the-longest-substring-containing-vowels-in-even-counts.md",
@@ -1375,13 +1206,7 @@
     "id": "139",
     "name": "word-break",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/139.word-break.md",
@@ -1396,30 +1221,28 @@
     "id": "144",
     "name": "binary-tree-preorder-traversal",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "二叉树的基本操作（遍历）>不同的遍历算法差异还是蛮大的",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "如果非递归的话利用栈来简化操作",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "如果数据规模不大的话，建议使用递归",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "递归的问题需要注意两点，一个是终止条件，一个如何缩小规模1.终止条件，自然是当前这个元素是null（链表也是一样）2.由于二叉树本身就是一个递归结构，每次处理一个子树其实就是缩小了规模，难点在于如何合并结果，这里的合并结果其实就是`mid.concat(left).concat(right)`,mid是一个具体的节点，left和right`递归求出即可`",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/144.binary-tree-preorder-traversal.md",
@@ -1434,13 +1257,7 @@
     "id": "1449",
     "name": "form-largest-integer-with-digits-that-add-up-to-target",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1449.form-largest-integer-with-digits-that-add-up-to-target.md",
@@ -1483,30 +1300,28 @@
     "id": "145",
     "name": "binary-tree-postorder-traversal",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "二叉树的基本操作（遍历）>不同的遍历算法差异还是蛮大的",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "如果非递归的话利用栈来简化操作",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "如果数据规模不大的话，建议使用递归",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "递归的问题需要注意两点，一个是终止条件，一个如何缩小规模1.终止条件，自然是当前这个元素是null（链表也是一样）2.由于二叉树本身就是一个递归结构，每次处理一个子树其实就是缩小了规模，难点在于如何合并结果，这里的合并结果其实就是`left.concat(right).concat(mid)`,mid是一个具体的节点，left和right`递归求出即可`",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/145.binary-tree-postorder-traversal.md",
@@ -1521,22 +1336,18 @@
     "id": "146",
     "name": "lru-cache",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "队列简化操作",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "队列的操作是这道题的灵魂，很容易少考虑情况",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/146.lru-cache.md",
@@ -1551,22 +1362,18 @@
     "id": "15",
     "name": "3-sum",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "排序之后，用双指针",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "分治",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/15.3-sum.md",
@@ -1581,18 +1388,13 @@
     "id": "150",
     "name": "evaluate-reverse-polish-notation",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "1.栈的基本用法2.如果你用的是JS的话，需要注意/和其他很多语言是不一样的3.如果你用的是JS的话，需要先将字符串转化为数字。否则有很多意想不到的结果4.操作符的顺序应该是先出栈的是第二位，后出栈的是第一位。这在不符合交换律的操作中很重要，比如减法和除法。",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/150.evaluate-reverse-polish-notation.md",
@@ -1607,18 +1409,13 @@
     "id": "152",
     "name": "maximum-product-subarray",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "同时记录乘积最大值和乘积最小值",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/152.maximum-product-subarray.md",
@@ -1645,22 +1442,18 @@
     "id": "155",
     "name": "min-stack",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "最小栈存储的不应该是真实值，而是真实值和min的差值",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "top的时候涉及到对数据的还原，这里千万注意是**上一个**最小值",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/155.min-stack.md",
@@ -1687,18 +1480,13 @@
     "id": "167",
     "name": "two-sum-ii-input-array-is-sorted",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "解析无",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/167.two-sum-ii-input-array-is-sorted.md",
@@ -1717,18 +1505,13 @@
     "id": "169",
     "name": "majority-element",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "投票算法",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/169.majority-element.md",
@@ -1747,18 +1530,13 @@
     "id": "17",
     "name": "Letter-Combinations-of-a-Phone-Number",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "利用回溯思想解题，在for循环中调用递归。",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/17.Letter-Combinations-of-a-Phone-Number.md",
@@ -1773,18 +1551,13 @@
     "id": "172",
     "name": "factorial-trailing-zeroes",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "数论",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/172.factorial-trailing-zeroes.md",
@@ -1803,18 +1576,13 @@
     "id": "19",
     "name": "removeNthNodeFromEndofList",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "解析1.链表这种数据结构的特点和使用2.使用双指针3.使用一个dummyHead简化操作",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/19.removeNthNodeFromEndofList.md",
@@ -1833,26 +1601,23 @@
     "id": "190",
     "name": "reverse-bits",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "解析1.可以用任何数字和1进行位运算的结果都取决于该数字最后一位的特性简化操作和提高性能eg:",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "n&1===1,说明n的最后一位是1",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "n&1===0,说明n的最后一位是02.对于JS，ES规范在之前很多版本都是没有无符号整形的，转化为无符号，可以用一个trick`n>>>0`3.双\"指针\"模型4.bit运算",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/190.reverse-bits.md",
@@ -1871,22 +1636,18 @@
     "id": "191",
     "name": "number-of-1-bits",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "解析1.`n&(n",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "1)`可以`消除`n最后的一个1的原理简化操作2.bit运算",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/191.number-of-1-bits.md",
@@ -1913,13 +1674,7 @@
     "id": "198",
     "name": "house-robber",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/198.house-robber.md",
@@ -1942,38 +1697,38 @@
     "id": "199",
     "name": "binary-tree-right-side-view",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "队列",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "队列中用Null(一个特殊元素)来划分每层",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "树的基本操作",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "遍历",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "层次遍历（BFS）",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "二叉树的右视图可以看作是层次遍历每次只取每一层的最右边的元素",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/199.binary-tree-right-side-view.md",
@@ -1988,22 +1743,19 @@
     "id": "2",
     "name": "addTwoNumbers",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [
         {
-            "text": "\n\n- 链表\n\n"
+            "text": "\n\n- 链表\n\n",
+            "link": null,
+            "color": "red"
         }
     ],
     "keyPoints": [
         {
             "text": "解析1.链表这种数据结构的特点和使用2.用一个carried变量来实现进位的功能，每次相加之后计算carried，并用于下一位的计算",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/2.addTwoNumbers.md",
@@ -2022,18 +1774,13 @@
     "id": "20",
     "name": "validParentheses",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "解析1.栈的基本特点和操作2.如果你用的是JS没有现成的栈，可以用数组来模拟入：push出：pop>入：push出shift就是队列",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/20.validParentheses.md",
@@ -2048,22 +1795,18 @@
     "id": "200",
     "name": "number-of-islands",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "二维数组DFS解题模板",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "将已经访问的元素置为0，省去visited的空间开销",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/200.number-of-islands.md",
@@ -2082,26 +1825,23 @@
     "id": "201",
     "name": "bitwise-and-of-numbers-range",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "n个连续数字求与的时候，前m位都是1",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "可以用递归实现，个人认为比较难想到",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "bit运算代码：```js(n>m)?(rangeBitwiseAnd(m/2,n/2)<<1):m;```>每次问题规模缩小一半，这是二分法吗？",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/201.bitwise-and-of-numbers-range.md",
@@ -2128,26 +1868,23 @@
     "id": "203",
     "name": "remove-linked-list-elements",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "链表的基本操作（删除指定节点）",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "虚拟节点dummy简化操作>其实设置dummy节点就是为了处理特殊位置（头节点），这这道题就是如果头节点是给定的需要删除的节点呢？为了保证代码逻辑的一致性，即不需要为头节点特殊定制逻辑，才采用的虚拟节点。",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "如果连续两个节点都是要删除的节点，这个情况容易被忽略。eg:```js//只有下个节点不是要删除的节点才更新currentif(!next||next.val!==val){current=next;}```",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/203.remove-linked-list-elements.md",
@@ -2170,26 +1907,23 @@
     "id": "206",
     "name": "reverse-linked-list",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "链表的基本操作（交换）",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "虚拟节点dummy简化操作",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "注意更新current和pre的位置，否则有可能出现溢出",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/206.reverse-linked-list.md",
@@ -2228,22 +1962,18 @@
     "id": "208",
     "name": "implement-trie-prefix-tree",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "前缀树",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "核心逻辑```jsconstc=word[i];constcurrent=computeIndex(c)if(!ws.children[current]){ws.children[current]=newTrieNode(c);}ws=ws.children[current];//深度递增}```",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/208.implement-trie-prefix-tree.md",
@@ -2270,18 +2000,13 @@
     "id": "209",
     "name": "minimum-size-subarray-sum",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "滑动窗口简化操作(滑窗口适合用于求解这种要求`连续`的题目)",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/209.minimum-size-subarray-sum.md",
@@ -2304,22 +2029,18 @@
     "id": "21",
     "name": "MergeTwoSortedLists",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "掌握链表数据结构",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "考虑边界情况",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/21.MergeTwoSortedLists.md",
@@ -2334,18 +2055,13 @@
     "id": "211",
     "name": "add-and-search-word-data-structure-design",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "前缀树（也叫字典树），英文名Trie（读作tree或者try）",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/211.add-and-search-word-data-structure-design.md",
@@ -2372,26 +2088,23 @@
     "id": "212",
     "name": "word-search-ii",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "前缀树（也叫字典树），英文名Trie（读作tree或者try）",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "DFS",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "hashmap结合dfs记录访问过的元素的时候，注意结束之后需要将hashmap的值重置。（下方代码的`delseen[(i,j)]`）",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/212.word-search-ii.md",
@@ -2410,18 +2123,13 @@
     "id": "215",
     "name": "kth-largest-element-in-an-array",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "分析1.直接排序很简单2.堆（Heap）主要是要维护一个K大小的小顶堆，扫描一遍数组，最后堆顶元素即是所求。3.QuickSelect,关键是是取pivot，对数组区间做partition，比较pivot的位置，类似二分，取pivot左边或右边继续递归查找。",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/215.kth-largest-element-in-an-array.md",
@@ -2444,18 +2152,13 @@
     "id": "219",
     "name": "contains-duplicate-ii",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "解析无",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/219.contains-duplicate-ii.md",
@@ -2474,18 +2177,13 @@
     "id": "22",
     "name": "GenerateParentheses",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "当l<r时记得剪枝",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/22.GenerateParentheses.md",
@@ -2500,34 +2198,33 @@
     "id": "221",
     "name": "maximal-square",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "DP",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "递归公式可以利用dp[i",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "1][j]和dp[i][j",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "1]的计算结果，而不用重新计算",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "空间复杂度可以降低到O(n),n为列数",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/221.maximal-square.md",
@@ -2546,26 +2243,23 @@
     "id": "226",
     "name": "invert-binary-tree",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "递归简化操作",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "如果树很高，建议使用栈来代替递归",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "这道题目对顺序没要求的，因此队列数组操作都是一样的，无任何区别",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/226.invert-binary-tree.md",
@@ -2584,26 +2278,23 @@
     "id": "229",
     "name": "majority-element-ii",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "摩尔投票法",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "两个counter",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "最后得到的只是出现次数最多的两个数字，有可能不满足出现次数大于1/3",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/229.majority-element-ii.md",
@@ -2622,22 +2313,18 @@
     "id": "23",
     "name": "merge-k-sorted-lists",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "分治",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "归并排序(mergesort)",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/23.merge-k-sorted-lists.md",
@@ -2652,18 +2339,13 @@
     "id": "230",
     "name": "kth-smallest-element-in-a-bst",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "中序遍历",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/230.kth-smallest-element-in-a-bst.md",
@@ -2686,18 +2368,13 @@
     "id": "232",
     "name": "implement-queue-using-stacks",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "在push的时候利用辅助栈(双栈)",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/232.implement-queue-using-stacks.md",
@@ -2720,18 +2397,13 @@
     "id": "236",
     "name": "lowest-common-ancestor-of-a-binary-tree",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "用递归的思路去思考树",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/236.lowest-common-ancestor-of-a-binary-tree.md",
@@ -2750,22 +2422,18 @@
     "id": "238",
     "name": "product-of-array-except-self",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "两次遍历，一次正向，一次反向。",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "维护一个数组，第i项代表前i个元素（不包括i）的乘积",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/238.product-of-array-except-self.md",
@@ -2780,22 +2448,18 @@
     "id": "239",
     "name": "sliding-window-maximum",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "双端队列简化时间复杂度",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "滑动窗口",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/239.sliding-window-maximum.md",
@@ -2822,18 +2486,13 @@
     "id": "24",
     "name": "swapNodesInPairs",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "解析1.链表这种数据结构的特点和使用2.dummyHead简化操作",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/24.swapNodesInPairs.md",
@@ -2852,18 +2511,13 @@
     "id": "240",
     "name": "search-a-2-d-matrix-ii",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "从角落开始遍历，利用递增的特性简化时间复杂度",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/240.search-a-2-d-matrix-ii.md",
@@ -2882,18 +2536,13 @@
     "id": "25",
     "name": "reverse-nodes-in-k-groups-cn",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "分析1.创建一个dummynode2.对链表以k为单位进行分组，记录每一组的起始和最后节点位置3.对每一组进行翻转，更换起始和最后的位置4.返回`dummy.next`.",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/25.reverse-nodes-in-k-groups-cn.md",
@@ -2916,13 +2565,7 @@
     "id": "25",
     "name": "reverse-nodes-in-k-groups-en",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/25.reverse-nodes-in-k-groups-en.md",
@@ -2941,26 +2584,23 @@
     "id": "26",
     "name": "remove-duplicates-from-sorted-array",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "双指针这道题如果不要求，O(n)的时间复杂度，O(1)的空间复杂度的话，会很简单。但是这道题是要求的，这种题的思路一般都是采用双指针",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "如果是数据是无序的，就不可以用这种方式了，从这里也可以看出排序在算法中的基础性和重要性。",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "注意nums为空时的边界条件。",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/26.remove-duplicates-from-sorted-array.md",
@@ -2983,22 +2623,18 @@
     "id": "263",
     "name": "ugly-number",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "数论",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "因数分解",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/263.ugly-number.md",
@@ -3021,30 +2657,28 @@
     "id": "279",
     "name": "perfect-squares",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "如果用递归+缓存，缓存的设计很重要我的做法是key就是n，value是以n为起点，到达底端的深度。下次取出缓存的时候用当前的level+存的深度就是我们想要的level.",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "使用动态规划的核心点还是选和不选的问题```jsfor(leti=1;i<=n;i++){for(letj=1;j*j<=i;j++){//不选（dp[i]）还是选（dp[i",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "j*j]）dp[i]=Math.min(dp[i],dp[i",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "j*j]+1);}}```",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/279.perfect-squares.md",
@@ -3067,18 +2701,13 @@
     "id": "283",
     "name": "move-zeroes",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "解析无",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/283.move-zeroes.md",
@@ -3097,22 +2726,18 @@
     "id": "29",
     "name": "divide-two-integers",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "二分查找",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "正负数的判断中，这样判断更简单。```jsconstisNegative=dividend>0!==divisor>0;```",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/29.divide-two-integers.md",
@@ -3139,22 +2764,18 @@
     "id": "295",
     "name": "find-median-from-data-stream",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "用两个堆（一个大顶堆，一个小顶堆）来简化时间复杂度",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "用优先级队列简化操作>JavaScript不像Java，C++等语言都有`优先级队列`中这种数据结构，因此大家可以使用社区的实现>个人认为没有非要纠结于优先级队列怎么实现，至少这道题不是考这个的>优先级队列的实现个人认为已经超过了这道题想考察的范畴",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/295.find-median-from-data-stream.md",
@@ -3181,18 +2802,13 @@
     "id": "3",
     "name": "longestSubstringWithoutRepeatingCharacters",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "1.用一个mapper记录出现过并且没有被删除的字符2.用一个滑动窗口记录当前index开始的最大的不重复的字符序列3.用res去记录目前位置最大的长度，每次滑动窗口更新就去决定是否需要更新res",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/3.longestSubstringWithoutRepeatingCharacters.md",
@@ -3211,18 +2827,13 @@
     "id": "30",
     "name": "substring-with-concatenation-of-all-words",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "Counter",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/30.substring-with-concatenation-of-all-words.md",
@@ -3237,26 +2848,23 @@
     "id": "301",
     "name": "remove-invalid-parentheses",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "广度优先遍历",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "使用队列简化操作",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "使用一个visited的mapper，来避免遍历同样的字符串",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/301.remove-invalid-parentheses.md",
@@ -3271,18 +2879,13 @@
     "id": "309",
     "name": "best-time-to-buy-and-sell-stock-with-cooldown",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "多状态动态规划",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/309.best-time-to-buy-and-sell-stock-with-cooldown.md",
@@ -3297,26 +2900,23 @@
     "id": "31",
     "name": "next-permutation",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "写几个例子通常会帮助理解问题的规律",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "在有序数组中首尾指针不断交换位置即可实现reverse",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "找到从右边起`第一个大于nums[i]的`，并将其和nums[i]进行交换",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/31.next-permutation.md",
@@ -3339,13 +2939,7 @@
     "id": "312",
     "name": "burst-balloons",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/312.burst-balloons.md",
@@ -3364,54 +2958,58 @@
     "id": "32",
     "name": "longest-valid-parentheses",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "解析1.第3点特征,需要检查的字符是s[i",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "1]和s[i",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "2",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "dp[i",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "1]],根据定义可知:i",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "1>=dp[i",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "1],但是i",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "2不一定大于dp[i",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "1],因此,需要检查越界;3.第4点特征最容易遗漏,还有就是不需要检查越界,因为根据定义可知:i>=dp[i],所以dp[i",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "dp[i]]的边界情况是dp[0];",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/32.longest-valid-parentheses.md",
@@ -3430,34 +3028,33 @@
     "id": "322",
     "name": "coin-change",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "动态规划",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "子问题用dp[i]来表示组成i块钱，需要最少的硬币数，那么1.第j个硬币我可以选择不拿这个时候，硬币数=dp[i]2.第j个硬币我可以选择拿这个时候，硬币数=dp[i",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "coins[j]]+1",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "和背包问题不同，硬币是可以拿任意个",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "对于每一个dp[i]我们都选择遍历一遍coin，不断更新dp[i]",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/322.coin-change.md",
@@ -3480,22 +3077,18 @@
     "id": "328",
     "name": "odd-even-linked-list",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "用虚拟节点来简化操作",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "循环的结束条件设置为`odd&&odd.next&&even&&even.next`,不应该是`odd&&even`,否则需要记录一下奇数节点的最后一个节点，复杂了操作",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/328.odd-even-linked-list.md",
@@ -3510,22 +3103,18 @@
     "id": "33",
     "name": "search-in-rotated-sorted-array",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "二分法",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "找出有序区间，然后根据target是否在有序区间舍弃一半元素",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/33.search-in-rotated-sorted-array.md",
@@ -3544,18 +3133,13 @@
     "id": "334",
     "name": "increasing-triplet-subsequence",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "维护三个变量，分别记录最小值，第二小值，第三小值。只要我们能够填满这三个变量就返回true，否则返回false",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/334.increasing-triplet-subsequence.md",
@@ -3570,22 +3154,18 @@
     "id": "335",
     "name": "self-crossing",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "一定要画图辅助",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "对于这种$O(1)$空间复杂度有固定的套路。常见的有：1.直接修改原数组2.滑动窗口（当前状态并不是和之前所有状态有关，而是仅和某几个有关）。我们采用的是滑动窗口。但是难点就在于我们怎么知道当前状态和哪几个有关。对于这道题来说，画图或许可以帮助你打开思路。另外面试的时候说出$O(N)$的思路也不失为一个帮助你冷静分析问题的手段。",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/335.self-crossing.md",
@@ -3600,26 +3180,23 @@
     "id": "342",
     "name": "power-of-four",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "数论",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "2的幂次方特点（数学性质以及二进制表示）",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "4的幂次方特点（数学性质以及二进制表示）",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/342.power-of-four.md",
@@ -3646,30 +3223,28 @@
     "id": "343",
     "name": "integer-break",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "数学抽象",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "递归分析",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "记忆化递归",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "动态规划",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/343.integer-break.md",
@@ -3700,18 +3275,13 @@
     "id": "349",
     "name": "intersection-of-two-arrays",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "解析无",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/349.intersection-of-two-arrays.md",
@@ -3730,13 +3300,7 @@
     "id": "365",
     "name": "water-and-jug-problem",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/365.water-and-jug-problem.md",
@@ -3763,26 +3327,23 @@
     "id": "371",
     "name": "sum-of-two-integers",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "位运算",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "异或是一种不进位的加减法",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "求与之后左移一位来可以表示进位",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/371.sum-of-two-integers.md",
@@ -3797,26 +3358,23 @@
     "id": "378",
     "name": "kth-smallest-element-in-a-sorted-matrix",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "二分查找",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "有序矩阵的套路（文章末尾还有一道有序矩阵的题目）",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "堆（优先级队列）",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/378.kth-smallest-element-in-a-sorted-matrix.md",
@@ -3831,30 +3389,28 @@
     "id": "380",
     "name": "insert-delete-getrandom-o1",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "数组",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "哈希表",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "数组+哈希表",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "基本算法时间复杂度分析",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/380.insert-delete-getrandom-o1.md",
@@ -3869,22 +3425,18 @@
     "id": "39",
     "name": "combination-sum",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "回溯法",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "backtrack解题公式",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/39.combination-sum.md",
@@ -3903,30 +3455,28 @@
     "id": "4",
     "name": "median-of-two-sorted-array",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "分析1.暴力求解，在线性时间内merge两个排好序的数组成一个数组。2.二分查找，关键点在于",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "要partition两个排好序的数组成左右两等份，partition需要满足`len(Aleft)+len(Bleft)=(m+n+1)/2",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "m是数组A的长度，n是数组B的长度`",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "并且partition后A左边最大(`maxLeftA`),A右边最小（`minRightA`),B左边最大（`maxLeftB`),B右边最小（`minRightB`)满足`(maxLeftA<=minRightB&&maxLeftB<=minRightA)`有了这两个条件，那么median就在这四个数中，根据奇数或者是偶数，```奇数：median=max(maxLeftA,maxLeftB)偶数：median=(max(maxLeftA,maxLeftB)+min(minRightA,minRightB))/2```",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/4.median-of-two-sorted-array.md",
@@ -3953,22 +3503,18 @@
     "id": "40",
     "name": "combination-sum-ii",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "回溯法",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "backtrack解题公式",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/40.combination-sum-ii.md",
@@ -3987,13 +3533,7 @@
     "id": "416",
     "name": "partition-equal-subset-sum",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/416.partition-equal-subset-sum.md",
@@ -4024,18 +3564,13 @@
     "id": "42",
     "name": "trapping-rain-water",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "建模`h[i]=Math.min(左边柱子最大值,右边柱子最大值)`(h为下雨之后的水位)",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/42.trapping-rain-water.md",
@@ -4058,34 +3593,33 @@
     "id": "437",
     "name": "path-sum-iii",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "通过hashmap，以时间换空间",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "对于这种连续的元素求和问题，有一个共同的思路，可以参考[这道题目](./560.subarray",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "sum",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "equals",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "k.md)",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/437.path-sum-iii.md",
@@ -4104,30 +3638,28 @@
     "id": "445",
     "name": "add-two-numbers-ii",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "栈的基本操作",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "carried变量记录进位",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "循环的终止条件设置成`stack.length>0`可以简化操作",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "注意特殊情况，比如1+99=100",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/445.add-two-numbers-ii.md",
@@ -4146,22 +3678,18 @@
     "id": "454",
     "name": "4-sum-ii",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "空间换时间",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "两两分组，求出两两结合能够得出的可能数，然后合并即可。",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/454.4-sum-ii.md",
@@ -4180,18 +3708,13 @@
     "id": "455",
     "name": "AssignCookies",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "将需求因子g和s分别从小到大进行排序，使用贪心思想，配合双指针，每个饼干只尝试一次，成功则换下一个孩子来尝试。",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/455.AssignCookies.md",
@@ -4206,22 +3729,18 @@
     "id": "46",
     "name": "permutations",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "回溯法",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "backtrack解题公式",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/46.permutations.md",
@@ -4236,18 +3755,13 @@
     "id": "460",
     "name": "lfu-cache",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "分析用两个`Map`分别保存`nodeMap{key,node}`和`freqMap{frequent,DoublyLinkedList}`。实现`get`和`put`操作都是`O(1)`的时间复杂度。可以用Java自带的一些数据结构，比如HashLinkedHashSet，这样就不需要自己自建Node，DoublelyLinkedList。可以很大程度的缩减代码量。",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/460.lfu-cache.md",
@@ -4262,22 +3776,18 @@
     "id": "47",
     "name": "permutations-ii",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "回溯法",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "backtrack解题公式",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/47.permutations-ii.md",
@@ -4292,22 +3802,18 @@
     "id": "472",
     "name": "concatenated-words",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "分析",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "前缀树",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/472.concatenated-words.md",
@@ -4322,13 +3828,7 @@
     "id": "474",
     "name": "ones-and-zeros-en",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/474.ones-and-zeros-en.md",
@@ -4367,18 +3867,13 @@
     "id": "48",
     "name": "rotate-image",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "矩阵旋转操作",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/48.rotate-image.md",
@@ -4397,18 +3892,13 @@
     "id": "49",
     "name": "group-anagrams",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "桶排序",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/49.group-anagrams.md",
@@ -4427,30 +3917,28 @@
     "id": "493",
     "name": "reverse-pairs",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "归并排序",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "逆序数",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "分治",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "识别考点，其他非重点可以使用语言内置方法",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/493.reverse-pairs.md",
@@ -4473,26 +3961,23 @@
     "id": "494",
     "name": "target-sum",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "对元素进行分组，分组的依据是符号，是`+`或者`",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "`",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "通过数学公式推导可以简化我们的求解过程，这需要一点`数学知识和数学意识`",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/494.target-sum.md",
@@ -4507,18 +3992,13 @@
     "id": "5",
     "name": "longest-palindromic-substring",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "”延伸“（extend）",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/5.longest-palindromic-substring.md",
@@ -4541,34 +4021,33 @@
     "id": "50",
     "name": "pow-x-n",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "超时分析",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "hashtable",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "数学分析",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "位运算",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "二进制转十进制",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/50.pow-x-n.md",
@@ -4595,13 +4074,7 @@
     "id": "501",
     "name": "Find-Mode-in-Binary-Search-Tree",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/501.Find-Mode-in-Binary-Search-Tree.md",
@@ -4616,18 +4089,13 @@
     "id": "516",
     "name": "longest-palindromic-subsequence",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "”延伸“（extend）",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/516.longest-palindromic-subsequence.md",
@@ -4646,86 +4114,98 @@
     "id": "518",
     "name": "coin-change-2",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "动态规划",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "子问题用dp[i]来表示组成i块钱，需要最少的硬币数，那么1.第j个硬币我可以选择不拿这个时候，组成数=dp[i]2.第j个硬币我可以选择拿这个时候，组成数=dp[i",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "coins[j]]+dp[i]",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "和01背包问题不同，硬币是可以拿任意个，属于完全背包问题",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "对于每一个dp[i]我们都选择遍历一遍coin，不断更新dp[i]eg:```jsif(amount===0)return1;constdp=[Array(amount+1).fill(1)];for(leti=1;i<amount+1;i++){dp[i]=Array(coins.length+1).fill(0);for(letj=1;j<coins.length+1;j++){//从1开始可以简化运算if(i",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "coins[j",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "1]>=0){//注意这里是coins[j",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "1]而不是coins[j]dp[i][j]=dp[i][j",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "1]+dp[i",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "coins[j",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "1]][j];//由于可以重复使用硬币所以这里是j不是j",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "1}else{dp[i][j]=dp[i][j",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "1];}}}returndp[dp.length",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "1][coins.length];```",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "当我们选择一维数组去解的时候，内外循环将会对结果造成影响![](https://tva1.sinaimg.cn/large/0082zybply1gcb7fjfon6j30j00bddh2.jpg)eg:```js//这种答案是不对的。//原因在于比如amount=5,coins=[1,2,5]//这种算法会将[1,2,2][2,1,2][2,2,1]算成不同的if(amount===0)return1;constdp=[1].concat(Array(amount).fill(0));for(leti=1;i<amount+1;i++){for(letj=0;j<coins.length;j++){if(i",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "coins[j]>=0){dp[i]=dp[i]+dp[i",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "coins[j]];}}}returndp[dp.length",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "1];//正确的写法应该是内外循环调换一下,具体可以看下方代码区```",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/518.coin-change-2.md",
@@ -4756,22 +4236,18 @@
     "id": "52",
     "name": "N-Queens-II",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "位运算",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "DFS（深度优先搜索）",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/52.N-Queens-II.md",
@@ -4786,18 +4262,13 @@
     "id": "53",
     "name": "maximum-sum-subarray-cn",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "分析1.暴力解，列举所有组合子序列首尾位置的组合，求解最大的子序列和,优化可以预先处理，得到前缀和2.分治法，每次从中间位置把数组分为左右中三部分，分别求出左右中（这里中是包括中间元素的子序列）最大和。对左右分别深度递归，三者中最大值即为当前最大子序列和。3.动态规划，找到状态转移方程，求到当前位置最大和。",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/53.maximum-sum-subarray-cn.md",
@@ -4856,13 +4327,7 @@
     "id": "53",
     "name": "maximum-sum-subarray-en",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/53.maximum-sum-subarray-en.md",
@@ -4921,13 +4386,7 @@
     "id": "547",
     "name": "friend-circles-en",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/547.friend-circles-en.md",
@@ -4950,13 +4409,7 @@
     "id": "547",
     "name": "friend-circles",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/547.friend-circles.md",
@@ -4971,18 +4424,13 @@
     "id": "55",
     "name": "jump-game",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "建模(记录和更新当前位置能够到达的最大的索引即可)",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/55.jump-game.md",
@@ -4997,22 +4445,18 @@
     "id": "56",
     "name": "merge-intervals",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "对数组进行排序简化操作",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "如果不排序，需要借助一些hack,这里不介绍了",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/56.merge-intervals.md",
@@ -5027,22 +4471,18 @@
     "id": "560",
     "name": "subarray-sum-equals-k",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "前缀和",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "可以利用hashmap记录和的累加值来避免重复计算",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/560.subarray-sum-equals-k.md",
@@ -5069,18 +4509,13 @@
     "id": "575",
     "name": "distribute-candies",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "这是一道逻辑题目，因此如果逻辑分析清楚了，代码是自然而然的",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/575.distribute-candies.md",
@@ -5099,22 +4534,18 @@
     "id": "60",
     "name": "permutation-sequence",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "找规律",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "排列组合",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/60.permutation-sequence.md",
@@ -5129,18 +4560,13 @@
     "id": "609",
     "name": "find-duplicate-file-in-system",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "hashtable",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/609.find-duplicate-file-in-system.md",
@@ -5155,26 +4581,23 @@
     "id": "62",
     "name": "unique-paths",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "记忆化递归",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "基本动态规划问题",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "空间复杂度可以进一步优化到O(n),这会是一个考点",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/62.unique-paths.md",
@@ -5205,13 +4628,7 @@
     "id": "721",
     "name": "accounts-merge",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/721.accounts-merge.md",
@@ -5226,26 +4643,23 @@
     "id": "73",
     "name": "set-matrix-zeroes",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "使用第一行和第一列来替代我们m+n数组",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "先记录下”第一行和第一列是否全是0“这样的一个数据，否则会因为后续对第一行第一列的更新造成数据丢失",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "最后更新第一行第一列",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/73.set-matrix-zeroes.md",
@@ -5272,22 +4686,18 @@
     "id": "75",
     "name": "sort-colors",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "荷兰国旗问题",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "countingsort",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/75.sort-colors.md",
@@ -5297,13 +4707,7 @@
     "id": "78",
     "name": "subsets-en",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/78.subsets-en.md",
@@ -5318,22 +4722,18 @@
     "id": "78",
     "name": "subsets",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "回溯法",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "backtrack解题公式",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/78.subsets.md",
@@ -5348,13 +4748,7 @@
     "id": "79",
     "name": "word-search-en",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/79.word-search-en.md",
@@ -5377,30 +4771,28 @@
     "id": "79",
     "name": "word-search",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "分析",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "遍历二维数组的每一个点，找到起始点相同的字符，做DFS",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "DFS过程中，要记录已经访问过的节点，防止重复遍历，这里（JavaCode中）用`*`表示当前已经访问过，也可以用Set或者是boolean[][]数组记录访问过的节点位置。",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "是否匹配当前单词中的字符，不符合回溯，这里记得把当前`*`重新设为当前字符。如果用Set或者是boolean[][]数组，记得把当前位置重设为没有访问过。",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/79.word-search.md",
@@ -5423,30 +4815,28 @@
     "id": "80",
     "name": "remove-duplicates-from-sorted-array-ii",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "分析",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "快慢指针",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "读写指针",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "删除排序问题",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/80.remove-duplicates-from-sorted-array-ii.md",
@@ -5461,22 +4851,18 @@
     "id": "820",
     "name": "short-encoding-of-words",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "前缀树",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "去重",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/820.short-encoding-of-words.md",
@@ -5491,13 +4877,7 @@
     "id": "84",
     "name": "largest-rectangle-in-histogram",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/84.largest-rectangle-in-histogram.md",
@@ -5528,13 +4908,7 @@
     "id": "85",
     "name": "maximal-rectangle",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/85.maximal-rectangle.md",
@@ -5549,26 +4923,23 @@
     "id": "86",
     "name": "partition-list",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "链表的基本操作（遍历）",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "虚拟节点dummy简化操作",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "遍历完成之后记得`currentL1.next=null;`否则会内存溢出>如果单纯的遍历是不需要上面操作的，但是我们的遍历会导致currentL1.next和currentL2.next中有且仅有一个不是null，如果不这么操作的话会导致两个链表成环，造成溢出。",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/86.partition-list.md",
@@ -5587,26 +4958,23 @@
     "id": "874",
     "name": "walking-robot-simulation",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "理解题意，这道题容易理解错题意，求解为`最终位置距离原点的距离`",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "建立坐标系",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "使用集合简化线形查找的时间复杂度。",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/874.walking-robot-simulation.md",
@@ -5621,18 +4989,13 @@
     "id": "875",
     "name": "koko-eating-bananas",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "二分查找",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/875.koko-eating-bananas.md",
@@ -5647,22 +5010,18 @@
     "id": "877",
     "name": "stone-game",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "可以用DP（动态规划）",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "可以从数学的角度去分析>......(😅)",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/877.stone-game.md",
@@ -5677,18 +5036,13 @@
     "id": "88",
     "name": "merge-sorted-array",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "从后往前比较，并从后往前插入",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/88.merge-sorted-array.md",
@@ -5715,18 +5069,13 @@
     "id": "887",
     "name": "super-egg-drop",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "dp建模思路要发生变化,即`dp[M][K]meansthat,givenKeggsandMmoves，whatisthemaximumnumberoffloorthatwecancheck.`",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/887.super-egg-drop.md",
@@ -5745,26 +5094,23 @@
     "id": "895",
     "name": "maximum-frequency-stack",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "栈的基本性质",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "hashtable的基本性质",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "push和pop的时候同时更新fraq，max_fraq和fraq_stack。",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/895.maximum-frequency-stack.md",
@@ -5779,13 +5125,7 @@
     "id": "90",
     "name": "subsets-ii-en",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/90.subsets-ii-en.md",
@@ -5800,22 +5140,18 @@
     "id": "90",
     "name": "subsets-ii",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "回溯法",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "backtrack解题公式",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/90.subsets-ii.md",
@@ -5830,13 +5166,7 @@
     "id": "900",
     "name": "rle-iterator",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/900.rle-iterator.md",
@@ -5851,18 +5181,13 @@
     "id": "91",
     "name": "decode-ways",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "爬楼梯问题（我把这种题目统称为爬楼梯问题）",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/91.decode-ways.md",
@@ -5877,22 +5202,18 @@
     "id": "912",
     "name": "sort-an-array",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "排序算法",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "注意题目的限制条件从而选择合适的算法",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/912.sort-an-array.md",
@@ -5911,30 +5232,28 @@
     "id": "92",
     "name": "reverse-linked-list-ii",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "链表的基本操作",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "考虑特殊情况m是1或者n是链表长度的情况，我们可以采用虚拟节点dummy简化操作",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "用四个变量记录特殊节点，然后操作这四个节点使之按照一定方式连接即可。",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "注意更新current和pre的位置，否则有可能出现溢出",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/92.reverse-linked-list-ii.md",
@@ -5965,13 +5284,7 @@
     "id": "935",
     "name": "knight-dialer",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/935.knight-dialer.md",
@@ -5990,30 +5303,28 @@
     "id": "94",
     "name": "binary-tree-inorder-traversal",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "二叉树的基本操作（遍历）>不同的遍历算法差异还是蛮大的",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "如果非递归的话利用栈来简化操作",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "如果数据规模不大的话，建议使用递归",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "递归的问题需要注意两点，一个是终止条件，一个如何缩小规模1.终止条件，自然是当前这个元素是null（链表也是一样）2.由于二叉树本身就是一个递归结构，每次处理一个子树其实就是缩小了规模，难点在于如何合并结果，这里的合并结果其实就是`left.concat(mid).concat(right)`,mid是一个具体的节点，left和right`递归求出即可`",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/94.binary-tree-inorder-traversal.md",
@@ -6040,18 +5351,13 @@
     "id": "95",
     "name": "unique-binary-search-trees-ii",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "分治法",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/95.unique-binary-search-trees-ii.md",
@@ -6061,26 +5367,23 @@
     "id": "96",
     "name": "unique-binary-search-trees",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "分治法",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "笛卡尔积",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "记忆化递归",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/96.unique-binary-search-trees.md",
@@ -6095,26 +5398,23 @@
     "id": "98",
     "name": "validate-binary-search-tree",
     "company": [],
-    "tags": [
-        {
-            "id": "recursion",
-            "text": "递归",
-            "link": null
-        }
-    ],
+    "tags": [],
     "pre": [],
     "keyPoints": [
         {
             "text": "二叉树的基本操作（遍历）",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "中序遍历一个二叉查找树（BST）的结果是一个有序数组",
-            "link": null
+            "link": null,
+            "color": "blue"
         },
         {
             "text": "如果一个树遍历的结果是有序数组，那么他也是一个二叉查找树(BST)",
-            "link": null
+            "link": null,
+            "color": "blue"
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/98.validate-binary-search-tree.md",

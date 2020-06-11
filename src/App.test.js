@@ -1,9 +1,15 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import App from './App';
+// import React from "react";
+// import { render } from "@testing-library/react";
+// import App from "./App";
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test("#cold hello world", () => {
+  expect(true).toBe(true);
+});
+
+test("#hot hello world", () => {
+  expect(false).toBe(false);
+});
+
+test("#cold hello world", () => {
+  expect(true).toBe(true);
 });

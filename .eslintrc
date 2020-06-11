@@ -1,0 +1,10 @@
+{
+  "extends": ["react-app"],
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module"
+  },
+  "rules": {
+    "quotes": ["error", "double"]
+  }
+}

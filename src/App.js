@@ -12,18 +12,21 @@ import "./App.css";
 
 const { TabPane } = Tabs;
 const { Panel } = Collapse;
-const { problems, tags: tagMapper } = db;
-const dataSource = Object.values(problems);
 
 const formatCodeToMarkDown = (code,lang) => `\`\`\`${lang}\n${code}\`\`\`\n`
 
-function TagOrLink({ link, text }) {
+const { problems } = db;
+const dataSource = Object.values(problems);
+
+function TagOrLink({ link, text, style, color }) {
   return link !== null ? (
     <a className="link" href={link} rel="noopener noreferrer" target="_blank">
       <Button type="link">{text}</Button>
     </a>
   ) : (
-    <Tag color="orange">{text}</Tag>
+    <div style={style}>
+      <Tag color={color}>{text}</Tag>
+    </div>
   );
 }
 
@@ -31,7 +34,8 @@ const columns = [
   {
     title: "题目",
     dataIndex: "name",
-    key: "name",
+    width: "300",
+    align: "center",
     render: (name, row) => (
       <a
         className="link"
@@ -48,13 +52,25 @@ const columns = [
   {
     title: "标签",
     dataIndex: "tags",
-    key: "tags",
+    align: "center",
     render: (tags) => (
-      <>
+      <div>
         {tags.map((tag) => {
-          return <TagOrLink text={tagMapper[tag.id].text} link={tag.link} />;
+          return (
+            <TagOrLink
+              style={{
+                width: "100px",
+                display: "inline-block",
+                margin: "4px 0",
+              }}
+              key={tag.id}
+              text={tag.text}
+              link={tag.link}
+              color={tag.color}
+            />
+          );
         })}
-      </>
+      </div>
     ),
   },
 ];
@@ -80,13 +96,13 @@ function App() {
       {show ? (
         <Tabs defaultActiveKey="0">
           <TabPane tab="前置知识" key="0">
-            {problems[problemId].pre.map(({ link, text }) => (
-              <TagOrLink text={text} link={link} />
+            {problems[problemId].pre.map(({ id, link, text, color }) => (
+              <TagOrLink key={id} text={text} link={link} color={color} />
             ))}
           </TabPane>
           <TabPane tab="关键点" key="1">
-            {problems[problemId].keyPoints.map(({ link, text }) => (
-              <TagOrLink text={text} link={link} />
+            {problems[problemId].keyPoints.map(({ id, link, text, color }) => (
+              <TagOrLink key={text} text={text} link={link} color={color} />
             ))}
           </TabPane>
           <TabPane tab="题解" key="2">
@@ -103,8 +119,8 @@ function App() {
             <div className="code-block">
               <Collapse>
               {problems[problemId].code.map((c) => (
-                <Panel header={
-                  <div className="row" style={{ marginTop: "10px" }}>
+                 <Panel>
+                <div key={c.text} className="row" style={{ marginTop: "10px" }}>
                   <span className="language language-js">{c.language}</span>
                   <Button
                     type="primary"

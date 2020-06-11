@@ -59,11 +59,13 @@ const genertateLeetcodeToJson = () => {
 
       preKnowledge.push({
         text: $1,
+        link: null,
+        color:'red'
       })
     })
 
     markdown.replace(Utils.getSatelliteDataReg().keyPoints, (noUseMatch, $1) => {
-      keyPoints = $1.replace(/\s/g, '').split('-').filter(s => (s && s !== '解析')).map(s => ({ text: s, link: null }))
+      keyPoints = $1.replace(/\s/g, '').split('-').filter(s => (s && s !== '解析')).map(s => ({ text: s, link: null, color:'blue' }))
 
     })
 

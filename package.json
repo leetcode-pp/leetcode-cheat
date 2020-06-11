@@ -15,14 +15,12 @@
     "react-scripts": "3.4.1"
   },
   "scripts": {
+    "lint": "eslint src",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "crawl": "node scripts/curlleetcode.js && node scripts/generateleetcode.js"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [
