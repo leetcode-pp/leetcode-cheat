@@ -119,22 +119,23 @@ function App() {
             <div className="code-block">
               <Collapse>
               {problems[problemId].code.map((c) => (
-                 <Panel>
-                <div key={c.text} className="row" style={{ marginTop: "10px" }}>
-                  <span className="language language-js">{c.language}</span>
-                  <Button
-                    type="primary"
-                    size="small"
-                    onClick={() =>
-                      copy(c.text, () => {
-                        message.success("复制成功～");
-                      })
-                    }
-                  >
-                    复制
-                  </Button>
-                </div>
-                }>
+                 <Panel header={
+                  <div key={c.text} className="row" style={{ marginTop: "10px" }}>
+                    <span className="language language-js">{c.language}</span>
+                    <Button
+                      type="primary"
+                      size="small"
+                      onClick={() =>
+                        copy(c.text, () => {
+                          message.success("复制成功～");
+                        })
+                      }
+                    >
+                      复制
+                    </Button>
+                  </div>
+                 }>
+                
                   <div dangerouslySetInnerHTML={{__html: marked(formatCodeToMarkDown(c.text,c.language), {renderer: new marked.Renderer(),
                       highlight: function() {
                         const validLanguage =c.language
