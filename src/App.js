@@ -3,6 +3,7 @@ import { Tabs, Tag, Button, Table, Empty, message } from "antd";
 
 import { copy } from "./utils";
 import db from "./db/db";
+import { LEETCODE_CN_URL, LEETCODE_URL } from "./constant/index";
 
 import "antd/dist/antd.css";
 import "./App.css";
@@ -11,13 +12,17 @@ const { TabPane } = Tabs;
 const { problems } = db;
 const dataSource = Object.values(problems);
 
+function inLeetCodeWebsite(url) {
+  return [LEETCODE_CN_URL, LEETCODE_URL].some((u) => url.includes(u));
+}
+
 function TagOrLink({ link, text, style, color }) {
   return link !== null ? (
-    <a className="link" href={link} rel="noopener noreferrer" target="_blank">
-      <Button type="link">{text}</Button>
-    </a>
+    <Button type="link" href={link} target="_blank">
+      {text}
+    </Button>
   ) : (
-    <div style={style}>
+    <div style={{ display: "inline-block", ...style }}>
       <Tag color={color}>{text}</Tag>
     </div>
   );
@@ -30,16 +35,13 @@ const columns = [
     width: "300",
     align: "center",
     render: (name, row) => (
-      <a
-        className="link"
-        href={`https://leetcode-cn.com/problems/${name}/`}
-        rel="noopener noreferrer"
+      <Button
+        type="link"
+        href={`${LEETCODE_CN_URL}/problems/${name}/`}
         target="_blank"
       >
-        <Button type="link">
-          {row.id}.{name}
-        </Button>
-      </a>
+        {row.id}.{name}
+      </Button>
     ),
   },
   {
@@ -77,35 +79,49 @@ function App() {
       const match = currentUrl.match(/problems\/(.+?)\//);
       const problemId = match && match[1];
       setProblemId(problemId);
-      setShow(!!problems[problemId]);
+      setHasSolution(!!problems[problemId]);
+      setInLeetCode(inLeetCodeWebsite(currentUrl));
     });
 
   const [problemId, setProblemId] = useState("");
-  const [show, setShow] = useState(false);
+  const [hasSolution, setHasSolution] = useState(false);
+  const [inLeetCode, setInLeetCode] = useState(false);
+
+  if (!inLeetCode)
+    return (
+      <div className="container" style={{ textAlign: "center" }}>
+        <div>快打开力扣，开始刷题吧～</div>
+        <Button type="link" href={LEETCODE_CN_URL} target="_blank">
+          力扣中国
+        </Button>
+        <Button type="link" href={LEETCODE_URL} target="_blank">
+          力扣国际
+        </Button>
+      </div>
+    );
 
   return (
     <div className="container">
-      {show ? (
+      {hasSolution ? (
         <Tabs defaultActiveKey="0">
           <TabPane tab="前置知识" key="0">
-            {problems[problemId].pre.map(({ id, link, text, tag }) => (
-              <TagOrLink key={id} text={text} link={link} color={tag.color} />
+            {problems[problemId].pre.map(({ id, link, text, color }) => (
+              <TagOrLink key={id} text={text} link={link} color={color} />
             ))}
           </TabPane>
           <TabPane tab="关键点" key="1">
-            {problems[problemId].keyPoints.map(({ id, link, text, tag }) => (
-              <TagOrLink key={text} text={text} link={link} color={tag.color} />
+            {problems[problemId].keyPoints.map(({ id, link, text, color }) => (
+              <TagOrLink key={text} text={text} link={link} color={color} />
             ))}
           </TabPane>
           <TabPane tab="题解" key="2">
-            <a
-              className="link nav"
+            <Button
+              type="link"
               href={problems[problemId].solution}
-              rel="noopener noreferrer"
               target="_blank"
             >
-              <Button type="link">前往题解</Button>
-            </a>
+              前往题解
+            </Button>
           </TabPane>
           <TabPane tab="代码" key="3">
             <div className="code-block">
