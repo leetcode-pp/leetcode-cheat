@@ -12,9 +12,9 @@ const {
 
 const genertateLeetcodeToJson = () => {
 
-  const rowMarkdowns = Utils.getDirsFileName(RAW_MARKDOWN_OUTPUT_DIR).filter(name => !name.endsWith(ENGLISH_MARKDOWN_SIGN))
+  const rawMarkdowns = Utils.getDirsFileName(RAW_MARKDOWN_OUTPUT_DIR).filter(name => !name.endsWith(ENGLISH_MARKDOWN_SIGN))
 
-  rowMarkdowns.forEach(filename => {
+  rawMarkdowns.forEach(filename => {
 
     let languageResloved = []
     let preKnowledge = []
@@ -108,7 +108,7 @@ const generateCollectionIndexFile = () => {
   Logger.success('开始生产index文件')
   const jsonsName = Utils.getDirsFileName(DB_JSON_OUTPUT_DIR)
 
-  let sRootContent = `
+  let rootContent = `
     export const db_collection = {
        ${ jsonsName.reduce((acc, next) => {
     return acc + ('"' + next.split('.')[1] + '":' + JSON.stringify(require('../spider/yield-db-json/' + next), null, 4) + ',\n')
@@ -116,7 +116,7 @@ const generateCollectionIndexFile = () => {
      }
    `
 
-  Utils.writeFileSync('src/db', 'root.db.js', sRootContent)
+  Utils.writeFileSync('src/db', 'root.db.js', rootContent)
   Logger.success('index文件生成完毕')
 
 }

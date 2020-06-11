@@ -17,13 +17,13 @@ module.exports = {
      *  是否启用强制更新
      *  如开启，会跳过读取本地缓存，拉取最新文件
      */
-    IS_FORCE_UPDATE_MODE: false,
+    IS_FORCE_UPDATE_MODE: true,
     
     /**
      * 请求处理频率 ms
      */
     REQUEST_RATE: 300,
-    
+
     /**
      * markdown输出目录
      */

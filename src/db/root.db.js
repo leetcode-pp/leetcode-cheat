@@ -42,7 +42,13 @@
     "name": "symmetric-tree",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 二叉树\n- 递归\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/101.symmetric-tree.md",
     "code": [
@@ -65,7 +71,13 @@
     "name": "capacity-to-ship-packages-within-d-days-cn",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 二分法\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "能够识别出是给定的有限序列查找一个数字（二分查找），要求你对二分查找以及变体十分熟悉",
@@ -117,7 +129,13 @@
     "name": "best-sightseeing-pair",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 动态规划\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "空间换时间",
@@ -155,7 +173,13 @@
     "name": "smallest-integer-divisible-by-k",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "数学（无限循环与循环节）",
@@ -176,7 +200,13 @@
     "name": "next-greater-node-in-linked-list",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 链表\n- 栈\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "单调栈（单调递减栈）",
@@ -206,7 +236,13 @@
     "name": "binary-tree-level-order-traversal",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 队列\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "队列",
@@ -256,7 +292,13 @@
     "name": "number-of-enclaves",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- DFS\n- hashset\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "visited记录访问过的节点，防止重复计算",
@@ -281,7 +323,13 @@
     "name": "camelcase-matching",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 双指针\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "双指针",
@@ -321,7 +369,13 @@
     "name": "binary-tree-zigzag-level-order-traversal",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 队列\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "队列",
@@ -362,7 +416,13 @@
     "name": "maximum-sum-of-two-non-overlapping-subarrays",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 数组\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "解析1.注意图中描述的都是A[i",
@@ -388,7 +448,13 @@
     "name": "maximum-depth-of-binary-tree",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 递归\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "队列",
@@ -437,7 +503,13 @@
     "name": "Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 二叉树\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/105.Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal.md",
     "code": [
@@ -456,7 +528,13 @@
     "name": "container-with-most-water",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 双指针\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "双指针优化时间复杂度",
@@ -468,11 +546,11 @@
     "code": [
         {
             "language": "js",
-            "text": "\n   // 这个解法比较暴力，效率比较低\n    // 时间复杂度是O(n^2)\n    let max = 0;\n    for(let i = 0; i < height.length; i++) {\n        for(let j = i + 1; j < height.length; j++) {\n            const currentArea = Math.abs(i - j) * Math.min(height[i], height[j]);\n            if (currentArea > max) {\n                max = currentArea;\n            }\n        }\n    }\n    return max;\n\n"
+            "text": "\n// 这个解法比较暴力，效率比较低\n// 时间复杂度是O(n^2)\nlet max = 0;\nfor (let i = 0; i < height.length; i++) {\n  for (let j = i + 1; j < height.length; j++) {\n    const currentArea = Math.abs(i - j) * Math.min(height[i], height[j]);\n    if (currentArea > max) {\n      max = currentArea;\n    }\n  }\n}\nreturn max;\n"
         },
         {
             "language": "js",
-            "text": "\n/**\n * @param {number[]} height\n * @return {number}\n */\nvar maxArea = function(height) {\n    if (!height || height.length <= 1) return 0;\n    \n    let leftPos = 0;\n    let rightPos = height.length - 1;\n    let max = 0;\n    while(leftPos < rightPos) {\n        \n        const currentArea = Math.abs(leftPos - rightPos) * Math.min(height[leftPos] , height[rightPos]);\n        if (currentArea > max) {\n            max = currentArea;\n        }\n        // 更新小的\n        if (height[leftPos] < height[rightPos]) {\n            leftPos++;\n        } else { // 如果相等就随便了\n            rightPos--;\n        }\n    }\n\n    return max;\n};\n"
+            "text": "\n/**\n * @param {number[]} height\n * @return {number}\n */\nvar maxArea = function (height) {\n  if (!height || height.length <= 1) return 0;\n\n  let leftPos = 0;\n  let rightPos = height.length - 1;\n  let max = 0;\n  while (leftPos < rightPos) {\n    const currentArea =\n      Math.abs(leftPos - rightPos) *\n      Math.min(height[leftPos], height[rightPos]);\n    if (currentArea > max) {\n      max = currentArea;\n    }\n    // 更新小的\n    if (height[leftPos] < height[rightPos]) {\n      leftPos++;\n    } else {\n      // 如果相等就随便了\n      rightPos--;\n    }\n  }\n\n  return max;\n};\n"
         }
     ]
 },
@@ -481,7 +559,13 @@
     "name": "path-in-zigzag-labelled-binary-tree",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 二叉树\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "满二叉树的性质：1.最小值是`2**(level",
@@ -517,7 +601,13 @@
     "name": "path-sum-ii",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 回溯法\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "回溯法",
@@ -547,7 +637,13 @@
     "name": "maximum-of-absolute-value-expression",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 数组\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "数学分析",
@@ -572,7 +668,13 @@
     "name": "optimize-water-distribution-in-a-village-cn",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 图\n- 最小生成树\n\nexample 1 pic:\n\n![example 1](../assets/problems/1168.optimize-water-distribution-in-a-village-example1.png)\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "分析1.构建图，得出所有边2.对所有边排序3.遍历所有的边（从小到大）4.对于每条边，检查是否已经连通，若没有连通，加上边上的值，连通两个节点。若已连通，跳过。",
@@ -616,7 +718,13 @@
     "name": "maximum-subarray-sum-with-one-deletion",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 数组\n- 动态规划\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "空间换时间",
@@ -655,7 +763,13 @@
     "name": "best-time-to-buy-and-sell-stock",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 数组\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "这类题只要你在心中（或者别的地方）画出上面这种图就很容易解决",
@@ -684,7 +798,13 @@
     "name": "longest-arithmetic-subsequence-of-given-difference",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 数组\n- 动态规划\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "将`以每一个元素结尾的最长等差子序列的长度`统统存起来",
@@ -709,7 +829,13 @@
     "name": "best-time-to-buy-and-sell-stock-ii",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 数组\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "这类题只要你在心中（或者别的地方）画出上面这种图就很容易解决",
@@ -734,7 +860,13 @@
     "name": "airplane-seat-assignment-probability",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 记忆化搜索\n- 动态规划\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1227.airplane-seat-assignment-probability.md",
     "code": [
@@ -765,7 +897,13 @@
     "name": "binary-tree-maximum-path-sum",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 递归\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "递归",
@@ -795,7 +933,13 @@
     "name": "valid-palindrome",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 回文\n- 双指针\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "双指针",
@@ -820,7 +964,13 @@
     "name": "shift-2d-grid",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 数组\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1260.shift-2d-grid.md",
     "code": [
@@ -839,7 +989,13 @@
     "name": "find-elements-in-a-contaminated-binary-tree",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 二进制\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1261.find-elements-in-a-contaminated-binary-tree.md",
     "code": [
@@ -862,7 +1018,13 @@
     "name": "greatest-sum-divisible-by-three",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 数组\n- 回溯法\n- 排序\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "贪婪法",
@@ -909,7 +1071,13 @@
     "name": "longest-consecutive-sequence",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- hashmap\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "空间换时间",
@@ -934,7 +1102,13 @@
     "name": "sum-root-to-leaf-numbers",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 递归\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "递归分析",
@@ -963,7 +1137,13 @@
     "name": "maximum-number-of-occurrences-of-a-substring",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 字符串\n- 滑动窗口\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "滑动窗口",
@@ -1002,7 +1182,13 @@
     "name": "surrounded-regions",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- DFS\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "二维数组DFS解题模板",
@@ -1037,7 +1223,13 @@
     "name": "palindrome-partitioning",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 回溯法\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "回溯法",
@@ -1062,7 +1254,13 @@
     "name": "xor-queries-of-a-subarray",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 前缀和\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "异或的性质x^y^x=y",
@@ -1100,7 +1298,13 @@
     "name": "remove-palindromic-subsequences",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 回文\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1332.remove-palindromic-subsequences.md",
     "code": [
@@ -1119,7 +1323,13 @@
     "name": "find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 动态规划\n- Floyd-Warshall\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1334.find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance.md",
     "code": [
@@ -1134,7 +1344,13 @@
     "name": "single-number",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 位运算\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "1.异或的性质两个数字异或的结果`a^b`是将a和b的二进制每一位进行运算，得出的数字。运算的逻辑是如果同一位的数字相同则为0，不同则为12.异或的规律",
@@ -1169,7 +1385,13 @@
     "name": "find-the-longest-substring-containing-vowels-in-even-counts",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 前缀和\n- 状态压缩\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "前缀和",
@@ -1207,7 +1429,13 @@
     "name": "word-break",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 动态规划\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/139.word-break.md",
     "code": [
@@ -1222,7 +1450,13 @@
     "name": "binary-tree-preorder-traversal",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 递归\n- 栈\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "二叉树的基本操作（遍历）>不同的遍历算法差异还是蛮大的",
@@ -1258,7 +1492,13 @@
     "name": "form-largest-integer-with-digits-that-add-up-to-target",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 数组\n- 动态规划\n-背包问题\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1449.form-largest-integer-with-digits-that-add-up-to-target.md",
     "code": [
@@ -1301,7 +1541,13 @@
     "name": "binary-tree-postorder-traversal",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 栈\n- 递归\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "二叉树的基本操作（遍历）>不同的遍历算法差异还是蛮大的",
@@ -1337,7 +1583,13 @@
     "name": "lru-cache",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 队列\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "队列简化操作",
@@ -1363,7 +1615,13 @@
     "name": "3-sum",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 排序\n- 双指针\n- 分治\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "排序之后，用双指针",
@@ -1380,7 +1638,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n\n/*\n * @lc app=leetcode id=15 lang=javascript\n *\n * [15] 3Sum\n *\n * https://leetcode.com/problems/3sum/description/\n *\n * algorithms\n * Medium (23.51%)\n * Total Accepted:    531.5K\n * Total Submissions: 2.2M\n * Testcase Example:  '[-1,0,1,2,-1,-4]'\n *\n * Given an array nums of n integers, are there elements a, b, c in nums such\n * that a + b + c = 0? Find all unique triplets in the array which gives the\n * sum of zero.\n *\n * Note:\n *\n * The solution set must not contain duplicate triplets.\n *\n * Example:\n *\n *\n * Given array nums = [-1, 0, 1, 2, -1, -4],\n *\n * A solution set is:\n * [\n * ⁠ [-1, 0, 1],\n * ⁠ [-1, -1, 2]\n * ]\n *\n *\n */\n/**\n * @param {number[]} nums\n * @return {number[][]}\n */\nvar threeSum = function(nums) {\n  if (nums.length < 3) return [];\n  const list = [];\n  nums.sort((a, b) => a - b);\n  for (let i = 0; i < nums.length; i++) {\n    //nums is sorted,so it's impossible to have a sum = 0\n    if (nums[i] > 0) break;\n    // skip duplicated result without set\n    if (i > 0 && nums[i] === nums[i - 1]) continue;\n    let left = i + 1;\n    let right = nums.length - 1;\n   \n    // for each index i\n    // we want to find the triplet [i, left, right] which sum to 0\n    while (left < right) {\n      // since left < right, and left > i, no need to compare i === left and i === right.\n      if (nums[left] + nums[right] + nums[i] === 0) {\n        list.push([nums[left], nums[right], nums[i]]);\n        // skip duplicated result without set\n        while(nums[left] === nums[left + 1]) {\n            left++;\n        }\n        left++;\n        // skip duplicated result without set\n        while(nums[right] === nums[right - 1]) {\n            right--;\n        }\n        right--;\n        continue;\n      } else if (nums[left] + nums[right] + nums[i] > 0) {\n        right--;\n      } else {\n        left++;\n      }\n    }\n  }\n  return list;\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=15 lang=javascript\n *\n * [15] 3Sum\n *\n * https://leetcode.com/problems/3sum/description/\n *\n * algorithms\n * Medium (23.51%)\n * Total Accepted:    531.5K\n * Total Submissions: 2.2M\n * Testcase Example:  '[-1,0,1,2,-1,-4]'\n *\n * Given an array nums of n integers, are there elements a, b, c in nums such\n * that a + b + c = 0? Find all unique triplets in the array which gives the\n * sum of zero.\n *\n * Note:\n *\n * The solution set must not contain duplicate triplets.\n *\n * Example:\n *\n *\n * Given array nums = [-1, 0, 1, 2, -1, -4],\n *\n * A solution set is:\n * [\n * ⁠ [-1, 0, 1],\n * ⁠ [-1, -1, 2]\n * ]\n *\n *\n */\n/**\n * @param {number[]} nums\n * @return {number[][]}\n */\nvar threeSum = function (nums) {\n  if (nums.length < 3) return [];\n  const list = [];\n  nums.sort((a, b) => a - b);\n  for (let i = 0; i < nums.length; i++) {\n    //nums is sorted,so it's impossible to have a sum = 0\n    if (nums[i] > 0) break;\n    // skip duplicated result without set\n    if (i > 0 && nums[i] === nums[i - 1]) continue;\n    let left = i + 1;\n    let right = nums.length - 1;\n\n    // for each index i\n    // we want to find the triplet [i, left, right] which sum to 0\n    while (left < right) {\n      // since left < right, and left > i, no need to compare i === left and i === right.\n      if (nums[left] + nums[right] + nums[i] === 0) {\n        list.push([nums[left], nums[right], nums[i]]);\n        // skip duplicated result without set\n        while (nums[left] === nums[left + 1]) {\n          left++;\n        }\n        left++;\n        // skip duplicated result without set\n        while (nums[right] === nums[right - 1]) {\n          right--;\n        }\n        right--;\n        continue;\n      } else if (nums[left] + nums[right] + nums[i] > 0) {\n        right--;\n      } else {\n        left++;\n      }\n    }\n  }\n  return list;\n};\n"
         }
     ]
 },
@@ -1389,7 +1647,13 @@
     "name": "evaluate-reverse-polish-notation",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 栈\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "1.栈的基本用法2.如果你用的是JS的话，需要注意/和其他很多语言是不一样的3.如果你用的是JS的话，需要先将字符串转化为数字。否则有很多意想不到的结果4.操作符的顺序应该是先出栈的是第二位，后出栈的是第一位。这在不符合交换律的操作中很重要，比如减法和除法。",
@@ -1410,7 +1674,13 @@
     "name": "maximum-product-subarray",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 滑动窗口\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "同时记录乘积最大值和乘积最小值",
@@ -1443,7 +1713,13 @@
     "name": "min-stack",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 差值法\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "最小栈存储的不应该是真实值，而是真实值和min的差值",
@@ -1481,10 +1757,16 @@
     "name": "two-sum-ii-input-array-is-sorted",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 双指针\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
-            "text": "解析无",
+            "text": "由于是有序的，因此双指针更好",
             "link": null,
             "color": "blue"
         }
@@ -1493,7 +1775,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=167 lang=javascript\n *\n * [167] Two Sum II - Input array is sorted\n *\n * https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/\n *\n * algorithms\n * Easy (49.46%)\n * Total Accepted:    221.8K\n * Total Submissions: 447K\n * Testcase Example:  '[2,7,11,15]\\n9'\n *\n * Given an array of integers that is already sorted in ascending order, find\n * two numbers such that they add up to a specific target number.\n *\n * The function twoSum should return indices of the two numbers such that they\n * add up to the target, where index1 must be less than index2.\n *\n * Note:\n *\n *\n * Your returned answers (both index1 and index2) are not zero-based.\n * You may assume that each input would have exactly one solution and you may\n * not use the same element twice.\n *\n *\n * Example:\n *\n *\n * Input: numbers = [2,7,11,15], target = 9\n * Output: [1,2]\n * Explanation: The sum of 2 and 7 is 9. Therefore index1 = 1, index2 = 2.\n *\n */\n/**\n * @param {number[]} numbers\n * @param {number} target\n * @return {number[]}\n */\nvar twoSum = function(numbers, target) {\n    const visited = {} // 记录出现的数字， 空间复杂度N\n\n    for (let index = 0; index < numbers.length; index++) {\n        const element = numbers[index];\n        if (visited[target - element] !== void 0) {\n            return [visited[target - element], index + 1]\n        }\n        visited[element] = index + 1;\n    }\n    return [];\n};\n"
+            "text": "\n/**\n * @param {number[]} numbers\n * @param {number} target\n * @return {number[]}\n */\nvar twoSum = function(numbers, target) {\n    const visited = {} // 记录出现的数字， 空间复杂度N\n\n    for (let index = 0; index < numbers.length; index++) {\n        const element = numbers[index];\n        if (visited[target - element] !== void 0) {\n            return [visited[target - element], index + 1]\n        }\n        visited[element] = index + 1;\n    }\n    return [];\n};\n"
         },
         {
             "language": "py",
@@ -1506,7 +1788,13 @@
     "name": "majority-element",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 投票算法\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "投票算法",
@@ -1531,10 +1819,21 @@
     "name": "Letter-Combinations-of-a-Phone-Number",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 回溯\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
-            "text": "利用回溯思想解题，在for循环中调用递归。",
+            "text": "回溯",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "回溯模板",
             "link": null,
             "color": "blue"
         }
@@ -1543,7 +1842,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/**\n * @param {string} digits\n * @return {string[]}\n */\nconst letterCombinations = function (digits) {\n    if (!digits) {\n        return [];\n    }\n    const len = digits.length;\n    const map = new Map();\n    map.set('2', 'abc');\n    map.set('3', 'def');\n    map.set('4', 'ghi');\n    map.set('5', 'jkl');\n    map.set('6', 'mno');\n    map.set('7', 'pqrs');\n    map.set('8', 'tuv');\n    map.set('9', 'wxyz');\n    const result = [];\n\n    function generate(i, str) {\n        if (i == len) {\n            result.push(str);\n            return;\n        }\n        const tmp = map.get(digits[i]);\n        for (let r = 0; r < tmp.length; r++) {\n            generate(i + 1, str + tmp[r]);\n        }\n    }\n    generate(0, '');\n    return result;\n};\n"
+            "text": "\n/**\n * @param {string} digits\n * @return {string[]}\n */\nconst letterCombinations = function (digits) {\n  if (!digits) {\n    return [];\n  }\n  const len = digits.length;\n  const map = new Map();\n  map.set(\"2\", \"abc\");\n  map.set(\"3\", \"def\");\n  map.set(\"4\", \"ghi\");\n  map.set(\"5\", \"jkl\");\n  map.set(\"6\", \"mno\");\n  map.set(\"7\", \"pqrs\");\n  map.set(\"8\", \"tuv\");\n  map.set(\"9\", \"wxyz\");\n  const result = [];\n\n  function generate(i, str) {\n    if (i == len) {\n      result.push(str);\n      return;\n    }\n    const tmp = map.get(digits[i]);\n    for (let r = 0; r < tmp.length; r++) {\n      generate(i + 1, str + tmp[r]);\n    }\n  }\n  generate(0, \"\");\n  return result;\n};\n"
         }
     ]
 },
@@ -1552,7 +1851,13 @@
     "name": "factorial-trailing-zeroes",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 递归\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "数论",
@@ -1577,7 +1882,13 @@
     "name": "removeNthNodeFromEndofList",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 链表\n- 双指针\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "解析1.链表这种数据结构的特点和使用2.使用双指针3.使用一个dummyHead简化操作",
@@ -1593,7 +1904,7 @@
         },
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=19 lang=javascript\n *\n * [19] Remove Nth Node From End of List\n *\n * https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/\n *\n * algorithms\n * Medium (34.03%)\n * Total Accepted:    360.1K\n * Total Submissions: 1.1M\n * Testcase Example:  '[1,2,3,4,5]\\n2'\n *\n * Given a linked list, remove the n-th node from the end of list and return\n * its head.\n * \n * Example:\n * \n * \n * Given linked list: 1->2->3->4->5, and n = 2.\n * \n * After removing the second node from the end, the linked list becomes\n * 1->2->3->5.\n * \n * \n * Note:\n * \n * Given n will always be valid.\n * \n * Follow up:\n * \n * Could you do this in one pass?\n * \n */\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} head\n * @param {number} n\n * @return {ListNode}\n */\nvar removeNthFromEnd = function(head, n) {\n  let i = -1;\n  const noop = {\n    next: null\n  };\n\n  const dummyHead = new ListNode(); // 增加一个dummyHead 简化操作\n  dummyHead.next = head;\n\n  let currentP1 = dummyHead;\n  let currentP2 = dummyHead;\n\n  \n  while (currentP1) {\n\n    if (i === n) {\n      currentP2 = currentP2.next;\n    }\n\n    if (i !== n) {\n        i++;\n    }\n    \n    currentP1 = currentP1.next;\n  }\n\n  currentP2.next = ((currentP2 || noop).next || noop).next;\n\n  return dummyHead.next;\n};\n\n"
+            "text": "\n/*\n * @lc app=leetcode id=19 lang=javascript\n *\n * [19] Remove Nth Node From End of List\n *\n * https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/\n *\n * algorithms\n * Medium (34.03%)\n * Total Accepted:    360.1K\n * Total Submissions: 1.1M\n * Testcase Example:  '[1,2,3,4,5]\\n2'\n *\n * Given a linked list, remove the n-th node from the end of list and return\n * its head.\n *\n * Example:\n *\n *\n * Given linked list: 1->2->3->4->5, and n = 2.\n *\n * After removing the second node from the end, the linked list becomes\n * 1->2->3->5.\n *\n *\n * Note:\n *\n * Given n will always be valid.\n *\n * Follow up:\n *\n * Could you do this in one pass?\n *\n */\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} head\n * @param {number} n\n * @return {ListNode}\n */\nvar removeNthFromEnd = function (head, n) {\n  let i = -1;\n  const noop = {\n    next: null,\n  };\n\n  const dummyHead = new ListNode(); // 增加一个dummyHead 简化操作\n  dummyHead.next = head;\n\n  let currentP1 = dummyHead;\n  let currentP2 = dummyHead;\n\n  while (currentP1) {\n    if (i === n) {\n      currentP2 = currentP2.next;\n    }\n\n    if (i !== n) {\n      i++;\n    }\n\n    currentP1 = currentP1.next;\n  }\n\n  currentP2.next = ((currentP2 || noop).next || noop).next;\n\n  return dummyHead.next;\n};\n"
         }
     ]
 },
@@ -1602,7 +1913,13 @@
     "name": "reverse-bits",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 双指针\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "解析1.可以用任何数字和1进行位运算的结果都取决于该数字最后一位的特性简化操作和提高性能eg:",
@@ -1637,7 +1954,13 @@
     "name": "number-of-1-bits",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 位运算\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "解析1.`n&(n",
@@ -1675,7 +1998,13 @@
     "name": "house-robber",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 动态规划\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/198.house-robber.md",
     "code": [
@@ -1698,7 +2027,13 @@
     "name": "binary-tree-right-side-view",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 队列\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "队列",
@@ -1775,7 +2110,13 @@
     "name": "validParentheses",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 栈\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "解析1.栈的基本特点和操作2.如果你用的是JS没有现成的栈，可以用数组来模拟入：push出：pop>入：push出shift就是队列",
@@ -1787,7 +2128,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/**\n * @param {string} s\n * @return {boolean}\n */\nvar isValid = function(s) {\n    let valid = true;\n    const stack = [];\n    const mapper = {\n        '{': \"}\",\n        \"[\": \"]\",\n        \"(\": \")\"\n    }\n    \n    for(let i in s) {\n        const v = s[i];\n        if (['(', '[', '{'].indexOf(v) > -1) {\n            stack.push(v);\n        } else {\n            const peak = stack.pop();\n            if (v !== mapper[peak]) {\n                return false;\n            }\n        }\n    }\n\n    if (stack.length > 0) return false;\n\n    return valid;\n};\n"
+            "text": "\n/**\n * @param {string} s\n * @return {boolean}\n */\nvar isValid = function (s) {\n  let valid = true;\n  const stack = [];\n  const mapper = {\n    \"{\": \"}\",\n    \"[\": \"]\",\n    \"(\": \")\",\n  };\n\n  for (let i in s) {\n    const v = s[i];\n    if ([\"(\", \"[\", \"{\"].indexOf(v) > -1) {\n      stack.push(v);\n    } else {\n      const peak = stack.pop();\n      if (v !== mapper[peak]) {\n        return false;\n      }\n    }\n  }\n\n  if (stack.length > 0) return false;\n\n  return valid;\n};\n"
         }
     ]
 },
@@ -1796,7 +2137,13 @@
     "name": "number-of-islands",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- DFS\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "二维数组DFS解题模板",
@@ -1826,7 +2173,13 @@
     "name": "bitwise-and-of-numbers-range",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 位运算\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "n个连续数字求与的时候，前m位都是1",
@@ -1869,7 +2222,13 @@
     "name": "remove-linked-list-elements",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 链表\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "链表的基本操作（删除指定节点）",
@@ -1908,7 +2267,13 @@
     "name": "reverse-linked-list",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 链表\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "链表的基本操作（交换）",
@@ -1963,7 +2328,13 @@
     "name": "implement-trie-prefix-tree",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 前缀树\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "前缀树",
@@ -2001,7 +2372,13 @@
     "name": "minimum-size-subarray-sum",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 滑动窗口\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "滑动窗口简化操作(滑窗口适合用于求解这种要求`连续`的题目)",
@@ -2030,7 +2407,13 @@
     "name": "MergeTwoSortedLists",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 递归\n- 链表\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "掌握链表数据结构",
@@ -2038,7 +2421,7 @@
             "color": "blue"
         },
         {
-            "text": "考虑边界情况",
+            "text": "考虑边界情况2",
             "link": null,
             "color": "blue"
         }
@@ -2047,7 +2430,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} l1\n * @param {ListNode} l2\n * @return {ListNode}\n */\nconst mergeTwoLists = function (l1, l2) {\n    if (l1 === null) {\n        return l2;\n    }\n    if (l2 === null) {\n        return l1;\n    }\n    if (l1.val < l2.val) {\n        l1.next = mergeTwoLists(l1.next, l2);\n        return l1;\n    } else {\n        l2.next = mergeTwoLists(l1, l2.next);\n        return l2;\n    }\n};\n"
+            "text": "\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} l1\n * @param {ListNode} l2\n * @return {ListNode}\n */\nconst mergeTwoLists = function (l1, l2) {\n  if (l1 === null) {\n    return l2;\n  }\n  if (l2 === null) {\n    return l1;\n  }\n  if (l1.val < l2.val) {\n    l1.next = mergeTwoLists(l1.next, l2);\n    return l1;\n  } else {\n    l2.next = mergeTwoLists(l1, l2.next);\n    return l2;\n  }\n};\n"
         }
     ]
 },
@@ -2056,7 +2439,13 @@
     "name": "add-and-search-word-data-structure-design",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 前缀树\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "前缀树（也叫字典树），英文名Trie（读作tree或者try）",
@@ -2089,7 +2478,13 @@
     "name": "word-search-ii",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 前缀树\n- DFS\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "前缀树（也叫字典树），英文名Trie（读作tree或者try）",
@@ -2124,7 +2519,13 @@
     "name": "kth-largest-element-in-an-array",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 堆\n- Quick Select\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "分析1.直接排序很简单2.堆（Heap）主要是要维护一个K大小的小顶堆，扫描一遍数组，最后堆顶元素即是所求。3.QuickSelect,关键是是取pivot，对数组区间做partition，比较pivot的位置，类似二分，取pivot左边或右边继续递归查找。",
@@ -2153,7 +2554,13 @@
     "name": "contains-duplicate-ii",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- hashmap\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "解析无",
@@ -2178,7 +2585,13 @@
     "name": "GenerateParentheses",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- DFS\n- 回溯法\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "当l<r时记得剪枝",
@@ -2190,7 +2603,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/**\n * @param {number} n\n * @return {string[]}\n * @param l 左括号已经用了几个\n * @param r 右括号已经用了几个\n * @param str 当前递归得到的拼接字符串结果\n * @param res 结果集\n */\nconst generateParenthesis = function (n) {\n    const res = [];\n\n    function dfs(l, r, str) {\n        if (l == n && r == n) {\n            return res.push(str);\n        }\n        // l 小于 r 时不满足条件 剪枝\n        if (l < r) {\n            return;\n        }\n        // l 小于 n 时可以插入左括号，最多可以插入 n 个\n        if (l < n) {\n            dfs(l + 1, r, str + '(');\n        }\n        // r < l 时 可以插入右括号\n        if (r < l) {\n            dfs(l, r + 1, str + ')');\n        }\n    }\n    dfs(0, 0, '');\n    return res;\n};\n"
+            "text": "\n/**\n * @param {number} n\n * @return {string[]}\n * @param l 左括号已经用了几个\n * @param r 右括号已经用了几个\n * @param str 当前递归得到的拼接字符串结果\n * @param res 结果集\n */\nconst generateParenthesis = function (n) {\n  const res = [];\n\n  function dfs(l, r, str) {\n    if (l == n && r == n) {\n      return res.push(str);\n    }\n    // l 小于 r 时不满足条件 剪枝\n    if (l < r) {\n      return;\n    }\n    // l 小于 n 时可以插入左括号，最多可以插入 n 个\n    if (l < n) {\n      dfs(l + 1, r, str + \"(\");\n    }\n    // r < l 时 可以插入右括号\n    if (r < l) {\n      dfs(l, r + 1, str + \")\");\n    }\n  }\n  dfs(0, 0, \"\");\n  return res;\n};\n"
         }
     ]
 },
@@ -2199,7 +2612,13 @@
     "name": "maximal-square",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 动态规划\n- 递归\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "DP",
@@ -2244,7 +2663,13 @@
     "name": "invert-binary-tree",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 递归\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "递归简化操作",
@@ -2279,7 +2704,13 @@
     "name": "majority-element-ii",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 摩尔投票法\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "摩尔投票法",
@@ -2314,7 +2745,13 @@
     "name": "merge-k-sorted-lists",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 链表\n- 归并排序\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "分治",
@@ -2340,7 +2777,13 @@
     "name": "kth-smallest-element-in-a-bst",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 中序遍历\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "中序遍历",
@@ -2369,7 +2812,13 @@
     "name": "implement-queue-using-stacks",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 栈\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "在push的时候利用辅助栈(双栈)",
@@ -2398,7 +2847,13 @@
     "name": "lowest-common-ancestor-of-a-binary-tree",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 递归\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "用递归的思路去思考树",
@@ -2423,7 +2878,13 @@
     "name": "product-of-array-except-self",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 数组\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "两次遍历，一次正向，一次反向。",
@@ -2449,7 +2910,13 @@
     "name": "sliding-window-maximum",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 队列\n- 滑动窗口\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "双端队列简化时间复杂度",
@@ -2487,7 +2954,13 @@
     "name": "swapNodesInPairs",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 链表\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "解析1.链表这种数据结构的特点和使用2.dummyHead简化操作",
@@ -2512,7 +2985,13 @@
     "name": "search-a-2-d-matrix-ii",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 数组\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "从角落开始遍历，利用递增的特性简化时间复杂度",
@@ -2537,7 +3016,13 @@
     "name": "reverse-nodes-in-k-groups-cn",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 链表\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "分析1.创建一个dummynode2.对链表以k为单位进行分组，记录每一组的起始和最后节点位置3.对每一组进行翻转，更换起始和最后的位置4.返回`dummy.next`.",
@@ -2585,7 +3070,13 @@
     "name": "remove-duplicates-from-sorted-array",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 数组\n- 双指针\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "双指针这道题如果不要求，O(n)的时间复杂度，O(1)的空间复杂度的话，会很简单。但是这道题是要求的，这种题的思路一般都是采用双指针",
@@ -2624,7 +3115,13 @@
     "name": "ugly-number",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 因数分解\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "数论",
@@ -2658,7 +3155,13 @@
     "name": "perfect-squares",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 递归\n- 动态规划\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "如果用递归+缓存，缓存的设计很重要我的做法是key就是n，value是以n为起点，到达底端的深度。下次取出缓存的时候用当前的level+存的深度就是我们想要的level.",
@@ -2702,7 +3205,13 @@
     "name": "move-zeroes",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 数组\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "解析无",
@@ -2727,7 +3236,13 @@
     "name": "divide-two-integers",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 二分法\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "二分查找",
@@ -2765,7 +3280,13 @@
     "name": "find-median-from-data-stream",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 堆\n- 队列\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "用两个堆（一个大顶堆，一个小顶堆）来简化时间复杂度",
@@ -2803,7 +3324,13 @@
     "name": "longestSubstringWithoutRepeatingCharacters",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 哈希表\n- [滑动窗口](https://github.com/azl397985856/leetcode/blob/master/thinkings/slide-window.md)\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "1.用一个mapper记录出现过并且没有被删除的字符2.用一个滑动窗口记录当前index开始的最大的不重复的字符序列3.用res去记录目前位置最大的长度，每次滑动窗口更新就去决定是否需要更新res",
@@ -2813,10 +3340,6 @@
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/3.longestSubstringWithoutRepeatingCharacters.md",
     "code": [
-        {
-            "language": "js",
-            "text": "\n/**\n * @param {string} s\n * @return {number}\n */\nvar lengthOfLongestSubstring = function(s) {\n  const mapper = {}; // 记录已经出现过的charactor\n  let res = 0;\n  let slidingWindow = [];\n\n  for (let c of s) {\n    if (mapper[c]) {\n      // 已经出现过了\n      // 则删除\n      const delIndex = slidingWindow.findIndex(_c => _c === c);\n\n      for (let i = 0; i < delIndex; i++) {\n        mapper[slidingWindow[i]] = false;\n      }\n\n      slidingWindow = slidingWindow.slice(delIndex + 1).concat(c);\n    } else {\n      // 新字符\n      if (slidingWindow.push(c) > res) {\n        res = slidingWindow.length;\n      }\n    }\n    mapper[c] = true;\n  }\n  return res;\n};\n"
-        },
         {
             "language": "py",
             "text": "\nfrom collections import defaultdict\n\n\nclass Solution:\n    def lengthOfLongestSubstring(self, s: str) -> int:\n        l = 0\n        ans = 0\n        counter = defaultdict(lambda: 0)\n\n        for r in range(len(s)):\n            while counter.get(s[r], 0) != 0:\n                counter[s[l]] = counter.get(s[l], 0) - 1\n                l += 1\n            counter[s[r]] += 1\n            ans = max(ans, r - l + 1)\n\n        return ans\n"
@@ -2828,7 +3351,13 @@
     "name": "substring-with-concatenation-of-all-words",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 字符串\n- 数组\n- 哈希表\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "Counter",
@@ -2849,7 +3378,13 @@
     "name": "remove-invalid-parentheses",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- BFS\n- 队列\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "广度优先遍历",
@@ -2880,7 +3415,13 @@
     "name": "best-time-to-buy-and-sell-stock-with-cooldown",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 动态规划\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "多状态动态规划",
@@ -2901,7 +3442,13 @@
     "name": "next-permutation",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 回溯法\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "写几个例子通常会帮助理解问题的规律",
@@ -2940,7 +3487,13 @@
     "name": "burst-balloons",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 回溯法\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/312.burst-balloons.md",
     "code": [
@@ -2959,7 +3512,13 @@
     "name": "longest-valid-parentheses",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 动态规划\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "解析1.第3点特征,需要检查的字符是s[i",
@@ -3029,7 +3588,13 @@
     "name": "coin-change",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 贪心算法\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "动态规划",
@@ -3078,7 +3643,13 @@
     "name": "odd-even-linked-list",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 链表\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "用虚拟节点来简化操作",
@@ -3104,7 +3675,13 @@
     "name": "search-in-rotated-sorted-array",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 数组\n- 二分法\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "二分法",
@@ -3134,7 +3711,13 @@
     "name": "increasing-triplet-subsequence",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 双指针\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "维护三个变量，分别记录最小值，第二小值，第三小值。只要我们能够填满这三个变量就返回true，否则返回false",
@@ -3155,7 +3738,13 @@
     "name": "self-crossing",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 滑动窗口\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "一定要画图辅助",
@@ -3181,7 +3770,13 @@
     "name": "power-of-four",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 数论\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "数论",
@@ -3224,7 +3819,13 @@
     "name": "integer-break",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 递归\n- 动态规划\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "数学抽象",
@@ -3276,7 +3877,13 @@
     "name": "intersection-of-two-arrays",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- hashtable\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "解析无",
@@ -3301,7 +3908,13 @@
     "name": "water-and-jug-problem",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- BFS\n- 最大公约数\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/365.water-and-jug-problem.md",
     "code": [
@@ -3328,7 +3941,13 @@
     "name": "sum-of-two-integers",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 位运算\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "位运算",
@@ -3359,7 +3978,13 @@
     "name": "kth-smallest-element-in-a-sorted-matrix",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 二分查找\n- 堆\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "二分查找",
@@ -3390,7 +4015,13 @@
     "name": "insert-delete-getrandom-o1",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 数组\n- 哈希表\n  \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "数组",
@@ -3426,7 +4057,13 @@
     "name": "combination-sum",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 回溯法\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "回溯法",
@@ -3456,7 +4093,13 @@
     "name": "median-of-two-sorted-array",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 中位数\n- 分治法\n- 二分查找\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "分析1.暴力求解，在线性时间内merge两个排好序的数组成一个数组。2.二分查找，关键点在于",
@@ -3491,11 +4134,11 @@
         },
         {
             "language": "js",
-            "text": " []\n/**\n * @param {number[]} nums1\n * @param {number[]} nums2\n * @return {number}\n */\nvar findMedianSortedArrays = function(nums1, nums2) {\n  // 归并排序\n  const merged = []\n  let i = 0\n  let j = 0\n  while(i < nums1.length && j < nums2.length) {\n    if (nums1[i] < nums2[j]) {\n      merged.push(nums1[i++])\n    } else {\n      merged.push(nums2[j++])\n    }\n  }\n  while(i < nums1.length) {\n    merged.push(nums1[i++])\n  }\n  while(j < nums2.length) {\n    merged.push(nums2[j++])\n  }\n\n  const { length } = merged\n  return length % 2 === 1\n    ? merged[Math.floor(length / 2)]\n    : (merged[length / 2] + merged[length / 2 - 1]) / 2\n};\n"
+            "text": " []\n/**\n * @param {number[]} nums1\n * @param {number[]} nums2\n * @return {number}\n */\nvar findMedianSortedArrays = function (nums1, nums2) {\n  // 归并排序\n  const merged = [];\n  let i = 0;\n  let j = 0;\n  while (i < nums1.length && j < nums2.length) {\n    if (nums1[i] < nums2[j]) {\n      merged.push(nums1[i++]);\n    } else {\n      merged.push(nums2[j++]);\n    }\n  }\n  while (i < nums1.length) {\n    merged.push(nums1[i++]);\n  }\n  while (j < nums2.length) {\n    merged.push(nums2[j++]);\n  }\n\n  const { length } = merged;\n  return length % 2 === 1\n    ? merged[Math.floor(length / 2)]\n    : (merged[length / 2] + merged[length / 2 - 1]) / 2;\n};\n"
         },
         {
             "language": "js",
-            "text": " []\n/**\n * 二分解法\n * @param {number[]} nums1\n * @param {number[]} nums2\n * @return {number}\n */\nvar findMedianSortedArrays = function(nums1, nums2) {\n  // make sure to do binary search for shorten array\n  if (nums1.length > nums2.length) {\n    [nums1, nums2] = [nums2, nums1]\n  }\n  const m = nums1.length\n  const n = nums2.length\n  let low = 0\n  let high = m\n  while(low <= high) {\n    const i = low + Math.floor((high - low) / 2)\n    const j = Math.floor((m + n + 1) / 2) - i\n\n    const maxLeftA = i === 0 ? -Infinity : nums1[i-1]\n    const minRightA = i === m ? Infinity : nums1[i]\n    const maxLeftB = j === 0 ? -Infinity : nums2[j-1]\n    const minRightB = j === n ? Infinity : nums2[j]\n\n    if (maxLeftA <= minRightB && minRightA >= maxLeftB) {\n      return (m + n) % 2 === 1\n        ? Math.max(maxLeftA, maxLeftB)\n        : (Math.max(maxLeftA, maxLeftB) + Math.min(minRightA, minRightB)) / 2\n    } else if (maxLeftA > minRightB) {\n      high = i - 1\n    } else {\n      low = low + 1\n    }\n  }\n};\n"
+            "text": " []\n/**\n * 二分解法\n * @param {number[]} nums1\n * @param {number[]} nums2\n * @return {number}\n */\nvar findMedianSortedArrays = function (nums1, nums2) {\n  // make sure to do binary search for shorten array\n  if (nums1.length > nums2.length) {\n    [nums1, nums2] = [nums2, nums1];\n  }\n  const m = nums1.length;\n  const n = nums2.length;\n  let low = 0;\n  let high = m;\n  while (low <= high) {\n    const i = low + Math.floor((high - low) / 2);\n    const j = Math.floor((m + n + 1) / 2) - i;\n\n    const maxLeftA = i === 0 ? -Infinity : nums1[i - 1];\n    const minRightA = i === m ? Infinity : nums1[i];\n    const maxLeftB = j === 0 ? -Infinity : nums2[j - 1];\n    const minRightB = j === n ? Infinity : nums2[j];\n\n    if (maxLeftA <= minRightB && minRightA >= maxLeftB) {\n      return (m + n) % 2 === 1\n        ? Math.max(maxLeftA, maxLeftB)\n        : (Math.max(maxLeftA, maxLeftB) + Math.min(minRightA, minRightB)) / 2;\n    } else if (maxLeftA > minRightB) {\n      high = i - 1;\n    } else {\n      low = low + 1;\n    }\n  }\n};\n"
         }
     ]
 },
@@ -3504,7 +4147,13 @@
     "name": "combination-sum-ii",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 回溯法\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "回溯法",
@@ -3534,7 +4183,13 @@
     "name": "partition-equal-subset-sum",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- DFS\n- 动态规划\n \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/416.partition-equal-subset-sum.md",
     "code": [
@@ -3594,7 +4249,13 @@
     "name": "path-sum-iii",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- hashmap\n \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "通过hashmap，以时间换空间",
@@ -3639,7 +4300,13 @@
     "name": "add-two-numbers-ii",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 链表\n- 栈\n \n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "栈的基本操作",
@@ -3679,7 +4346,13 @@
     "name": "4-sum-ii",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- hashTable\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "空间换时间",
@@ -3709,7 +4382,13 @@
     "name": "AssignCookies",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 贪心算法\n- 双指针求解\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "将需求因子g和s分别从小到大进行排序，使用贪心思想，配合双指针，每个饼干只尝试一次，成功则换下一个孩子来尝试。",
@@ -3730,7 +4409,13 @@
     "name": "permutations",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 回溯法\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "回溯法",
@@ -3747,7 +4432,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=46 lang=javascript\n *\n * [46] Permutations\n *\n * https://leetcode.com/problems/permutations/description/\n *\n * algorithms\n * Medium (53.60%)\n * Total Accepted:    344.6K\n * Total Submissions: 642.9K\n * Testcase Example:  '[1,2,3]'\n *\n * Given a collection of distinct integers, return all possible permutations.\n *\n * Example:\n *\n *\n * Input: [1,2,3]\n * Output:\n * [\n * ⁠ [1,2,3],\n * ⁠ [1,3,2],\n * ⁠ [2,1,3],\n * ⁠ [2,3,1],\n * ⁠ [3,1,2],\n * ⁠ [3,2,1]\n * ]\n *\n *\n */\nfunction backtrack(list, tempList, nums) {\n    if (tempList.length === nums.length) return list.push([...tempList]);\n    for(let i = 0; i < nums.length; i++) {\n        if (tempList.includes(nums[i])) continue;\n        tempList.push(nums[i]);\n        backtrack(list, tempList, nums);\n        tempList.pop();\n    }\n}\n/**\n * @param {number[]} nums\n * @return {number[][]}\n */\nvar permute = function(nums) {\n    const list = [];\n    backtrack(list, [], nums)\n    return list\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=46 lang=javascript\n *\n * [46] Permutations\n *\n * https://leetcode.com/problems/permutations/description/\n *\n * algorithms\n * Medium (53.60%)\n * Total Accepted:    344.6K\n * Total Submissions: 642.9K\n * Testcase Example:  '[1,2,3]'\n *\n * Given a collection of distinct integers, return all possible permutations.\n *\n * Example:\n *\n *\n * Input: [1,2,3]\n * Output:\n * [\n * ⁠ [1,2,3],\n * ⁠ [1,3,2],\n * ⁠ [2,1,3],\n * ⁠ [2,3,1],\n * ⁠ [3,1,2],\n * ⁠ [3,2,1]\n * ]\n *\n *\n */\nfunction backtrack(list, tempList, nums) {\n  if (tempList.length === nums.length) return list.push([...tempList]);\n  for (let i = 0; i < nums.length; i++) {\n    if (tempList.includes(nums[i])) continue;\n    tempList.push(nums[i]);\n    backtrack(list, tempList, nums);\n    tempList.pop();\n  }\n}\n/**\n * @param {number[]} nums\n * @return {number[][]}\n */\nvar permute = function (nums) {\n  const list = [];\n  backtrack(list, [], nums);\n  return list;\n};\n"
         }
     ]
 },
@@ -3756,7 +4441,13 @@
     "name": "lfu-cache",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 链表\n- HashMap\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "分析用两个`Map`分别保存`nodeMap{key,node}`和`freqMap{frequent,DoublyLinkedList}`。实现`get`和`put`操作都是`O(1)`的时间复杂度。可以用Java自带的一些数据结构，比如HashLinkedHashSet，这样就不需要自己自建Node，DoublelyLinkedList。可以很大程度的缩减代码量。",
@@ -3777,7 +4468,13 @@
     "name": "permutations-ii",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 回溯法\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "回溯法",
@@ -3794,7 +4491,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=47 lang=javascript\n *\n * [47] Permutations II\n *\n * https://leetcode.com/problems/permutations-ii/description/\n *\n * algorithms\n * Medium (39.29%)\n * Total Accepted:    234.1K\n * Total Submissions: 586.2K\n * Testcase Example:  '[1,1,2]'\n *\n * Given a collection of numbers that might contain duplicates, return all\n * possible unique permutations.\n *\n * Example:\n *\n *\n * Input: [1,1,2]\n * Output:\n * [\n * ⁠ [1,1,2],\n * ⁠ [1,2,1],\n * ⁠ [2,1,1]\n * ]\n *\n *\n */\nfunction backtrack(list, nums, tempList, visited) {\n  if (tempList.length === nums.length) return list.push([...tempList]);\n  for (let i = 0; i < nums.length; i++) {\n    // 和46.permutations的区别是这道题的nums是可以重复的\n    // 我们需要过滤这种情况\n    if (visited[i]) continue; // 不能用tempList.includes(nums[i])了，因为有重复\n    // visited[i - 1] 这个判断容易忽略\n    if (i > 0 && nums[i] === nums[i - 1] && visited[i - 1]) continue;\n\n    visited[i] = true;\n    tempList.push(nums[i]);\n    backtrack(list, nums, tempList, visited);\n    visited[i] = false;\n    tempList.pop();\n  }\n}\n/**\n * @param {number[]} nums\n * @return {number[][]}\n */\nvar permuteUnique = function(nums) {\n  const list = [];\n  backtrack(list, nums.sort((a, b) => a - b), [], []);\n  return list;\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=47 lang=javascript\n *\n * [47] Permutations II\n *\n * https://leetcode.com/problems/permutations-ii/description/\n *\n * algorithms\n * Medium (39.29%)\n * Total Accepted:    234.1K\n * Total Submissions: 586.2K\n * Testcase Example:  '[1,1,2]'\n *\n * Given a collection of numbers that might contain duplicates, return all\n * possible unique permutations.\n *\n * Example:\n *\n *\n * Input: [1,1,2]\n * Output:\n * [\n * ⁠ [1,1,2],\n * ⁠ [1,2,1],\n * ⁠ [2,1,1]\n * ]\n *\n *\n */\nfunction backtrack(list, nums, tempList, visited) {\n  if (tempList.length === nums.length) return list.push([...tempList]);\n  for (let i = 0; i < nums.length; i++) {\n    // 和46.permutations的区别是这道题的nums是可以重复的\n    // 我们需要过滤这种情况\n    if (visited[i]) continue; // 不能用tempList.includes(nums[i])了，因为有重复\n    // visited[i - 1] 这个判断容易忽略\n    if (i > 0 && nums[i] === nums[i - 1] && visited[i - 1]) continue;\n\n    visited[i] = true;\n    tempList.push(nums[i]);\n    backtrack(list, nums, tempList, visited);\n    visited[i] = false;\n    tempList.pop();\n  }\n}\n/**\n * @param {number[]} nums\n * @return {number[][]}\n */\nvar permuteUnique = function (nums) {\n  const list = [];\n  backtrack(\n    list,\n    nums.sort((a, b) => a - b),\n    [],\n    []\n  );\n  return list;\n};\n"
         }
     ]
 },
@@ -3803,7 +4500,13 @@
     "name": "concatenated-words",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 前缀树\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "分析",
@@ -3868,7 +4571,13 @@
     "name": "rotate-image",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 原地算法\n- 矩阵\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "矩阵旋转操作",
@@ -3880,11 +4589,11 @@
     "code": [
         {
             "language": "js",
-            "text": "\nvar rotate = function(matrix) {\n  // 时间复杂度O(n^2) 空间复杂度O(n)\n  const oMatrix = JSON.parse(JSON.stringify(matrix)); // clone\n  const n = oMatrix.length;\n  for (let i = 0; i < n; i++) {\n    for (let j = 0; j < n; j++) {\n      matrix[j][n - i - 1] = oMatrix[i][j];\n    }\n  }\n};\n"
+            "text": "\nvar rotate = function (matrix) {\n  // 时间复杂度O(n^2) 空间复杂度O(n)\n  const oMatrix = JSON.parse(JSON.stringify(matrix)); // clone\n  const n = oMatrix.length;\n  for (let i = 0; i < n; i++) {\n    for (let j = 0; j < n; j++) {\n      matrix[j][n - i - 1] = oMatrix[i][j];\n    }\n  }\n};\n"
         },
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=48 lang=javascript\n *\n * [48] Rotate Image\n */\n/**\n * @param {number[][]} matrix\n * @return {void} Do not return anything, modify matrix in-place instead.\n */\nvar rotate = function(matrix) {\n  // 时间复杂度O(n^2) 空间复杂度O(1)\n\n  // 做法： 先沿着对角线翻转，然后沿着水平线翻转\n  const n = matrix.length;\n  function swap(arr, [i, j], [m, n]) {\n    const temp = arr[i][j];\n    arr[i][j] = arr[m][n];\n    arr[m][n] = temp;\n  }\n  for (let i = 0; i < n - 1; i++) {\n    for (let j = 0; j < n - i; j++) {\n      swap(matrix, [i, j], [n - j - 1, n - i - 1]);\n    }\n  }\n\n  for (let i = 0; i < n / 2; i++) {\n    for (let j = 0; j < n; j++) {\n      swap(matrix, [i, j], [n - i - 1, j]);\n    }\n  }\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=48 lang=javascript\n *\n * [48] Rotate Image\n */\n/**\n * @param {number[][]} matrix\n * @return {void} Do not return anything, modify matrix in-place instead.\n */\nvar rotate = function (matrix) {\n  // 时间复杂度O(n^2) 空间复杂度O(1)\n\n  // 做法： 先沿着对角线翻转，然后沿着水平线翻转\n  const n = matrix.length;\n  function swap(arr, [i, j], [m, n]) {\n    const temp = arr[i][j];\n    arr[i][j] = arr[m][n];\n    arr[m][n] = temp;\n  }\n  for (let i = 0; i < n - 1; i++) {\n    for (let j = 0; j < n - i; j++) {\n      swap(matrix, [i, j], [n - j - 1, n - i - 1]);\n    }\n  }\n\n  for (let i = 0; i < n / 2; i++) {\n    for (let j = 0; j < n; j++) {\n      swap(matrix, [i, j], [n - i - 1, j]);\n    }\n  }\n};\n"
         }
     ]
 },
@@ -3893,7 +4602,13 @@
     "name": "group-anagrams",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 哈希表\n- 排序\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "桶排序",
@@ -3905,11 +4620,11 @@
     "code": [
         {
             "language": "js",
-            "text": "\nvar groupAnagrams = function(strs) {\n  const hashTable = {};\n\n  function sort(str) {\n    return str\n      .split(\"\")\n      .sort()\n      .join(\"\");\n  }\n\n  // 这个方法需要排序，因此不是很优，但是很直观，容易想到\n  for (let i = 0; i < strs.length; i++) {\n    const str = strs[i];\n    const key = sort(str);\n    if (!hashTable[key]) {\n      hashTable[key] = [str];\n    } else {\n      hashTable[key].push(str);\n    }\n  }\n\n  return Object.values(hashTable);\n};\n"
+            "text": "\nvar groupAnagrams = function (strs) {\n  const hashTable = {};\n\n  function sort(str) {\n    return str.split(\"\").sort().join(\"\");\n  }\n\n  // 这个方法需要排序，因此不是很优，但是很直观，容易想到\n  for (let i = 0; i < strs.length; i++) {\n    const str = strs[i];\n    const key = sort(str);\n    if (!hashTable[key]) {\n      hashTable[key] = [str];\n    } else {\n      hashTable[key].push(str);\n    }\n  }\n\n  return Object.values(hashTable);\n};\n"
         },
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=49 lang=javascript\n *\n * [49] Group Anagrams\n */\n/**\n * @param {string[]} strs\n * @return {string[][]}\n */\nvar groupAnagrams = function(strs) {\n  // 类似桶排序\n\n  let counts = [];\n  const hashTable = {};\n  for (let i = 0; i < strs.length; i++) {\n    const str = strs[i];\n    counts = Array(26).fill(0);\n    for (let j = 0; j < str.length; j++) {\n      counts[str[j].charCodeAt(0) - \"a\".charCodeAt(0)]++;\n    }\n    const key = counts.join(\"\");\n    if (!hashTable[key]) {\n      hashTable[key] = [str];\n    } else {\n      hashTable[key].push(str);\n    }\n  }\n\n  return Object.values(hashTable);\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=49 lang=javascript\n *\n * [49] Group Anagrams\n */\n/**\n * @param {string[]} strs\n * @return {string[][]}\n */\nvar groupAnagrams = function (strs) {\n  // 类似桶排序\n\n  let counts = [];\n  const hashTable = {};\n  for (let i = 0; i < strs.length; i++) {\n    const str = strs[i];\n    counts = Array(26).fill(0);\n    for (let j = 0; j < str.length; j++) {\n      counts[str[j].charCodeAt(0) - \"a\".charCodeAt(0)]++;\n    }\n    const key = counts.join(\"\");\n    if (!hashTable[key]) {\n      hashTable[key] = [str];\n    } else {\n      hashTable[key].push(str);\n    }\n  }\n\n  return Object.values(hashTable);\n};\n"
         }
     ]
 },
@@ -3918,7 +4633,13 @@
     "name": "reverse-pairs",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 归并排序\n- 逆序数\n- 分治\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "归并排序",
@@ -3962,7 +4683,13 @@
     "name": "target-sum",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 动态规划\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "对元素进行分组，分组的依据是符号，是`+`或者`",
@@ -3993,7 +4720,13 @@
     "name": "longest-palindromic-substring",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 回文\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "”延伸“（extend）",
@@ -4009,11 +4742,11 @@
         },
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=5 lang=javascript\n *\n * [5] Longest Palindromic Substring\n */\n/**\n * @param {string} s\n * @return {string}\n */\nvar longestPalindrome = function(s) {\n  // babad\n  // tag : dp\n  if (!s || s.length === 0) return \"\";\n  let res = s[0];\n\n  const dp = [];\n\n  // 倒着遍历简化操作， 这么做的原因是dp[i][..]依赖于dp[i + 1][..]\n  for (let i = s.length - 1; i >= 0; i--) {\n    dp[i] = [];\n    for (let j = i; j < s.length; j++) {\n      if (j - i === 0) dp[i][j] = true;\n      // specail case 1\n      else if (j - i === 1 && s[i] === s[j]) dp[i][j] = true;\n      // specail case 2\n      else if (s[i] === s[j] && dp[i + 1][j - 1]) {\n        // state transition\n        dp[i][j] = true;\n      }\n\n      if (dp[i][j] && j - i + 1 > res.length) {\n        // update res\n        res = s.slice(i, j + 1);\n      }\n    }\n  }\n\n  return res;\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=5 lang=javascript\n *\n * [5] Longest Palindromic Substring\n */\n/**\n * @param {string} s\n * @return {string}\n */\nvar longestPalindrome = function (s) {\n  // babad\n  // tag : dp\n  if (!s || s.length === 0) return \"\";\n  let res = s[0];\n\n  const dp = [];\n\n  // 倒着遍历简化操作， 这么做的原因是dp[i][..]依赖于dp[i + 1][..]\n  for (let i = s.length - 1; i >= 0; i--) {\n    dp[i] = [];\n    for (let j = i; j < s.length; j++) {\n      if (j - i === 0) dp[i][j] = true;\n      // specail case 1\n      else if (j - i === 1 && s[i] === s[j]) dp[i][j] = true;\n      // specail case 2\n      else if (s[i] === s[j] && dp[i + 1][j - 1]) {\n        // state transition\n        dp[i][j] = true;\n      }\n\n      if (dp[i][j] && j - i + 1 > res.length) {\n        // update res\n        res = s.slice(i, j + 1);\n      }\n    }\n  }\n\n  return res;\n};\n"
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def longestPalindrome(self, s: str) -> str:\n        n = len(s)\n        if n == 0:\n            return \"\"\n        res = s[0]\n        def extend(i, j, s):\n            while(i >= 0 and j < len(s) and s[i] == s[j]):\n                i -= 1\n                j += 1\n            return s[i + 1:j]\n\n        for i in range(n - 1):\n            e1 = extend(i, i, s)\n            e2 = extend(i, i + 1, s) \n            if max(len(e1), len(e2)) > len(res):\n                res = e1 if len(e1) > len(e2) else e2\n        return res\n"
+            "text": "\nclass Solution:\n    def longestPalindrome(self, s: str) -> str:\n        n = len(s)\n        if n == 0:\n            return \"\"\n        res = s[0]\n        def extend(i, j, s):\n            while(i >= 0 and j < len(s) and s[i] == s[j]):\n                i -= 1\n                j += 1\n            return s[i + 1:j]\n\n        for i in range(n - 1):\n            e1 = extend(i, i, s)\n            e2 = extend(i, i + 1, s)\n            if max(len(e1), len(e2)) > len(res):\n                res = e1 if len(e1) > len(e2) else e2\n        return res\n"
         }
     ]
 },
@@ -4022,7 +4755,13 @@
     "name": "pow-x-n",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 递归\n- 位运算\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "超时分析",
@@ -4090,7 +4829,13 @@
     "name": "longest-palindromic-subsequence",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 动态规划\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "”延伸“（extend）",
@@ -4115,7 +4860,13 @@
     "name": "coin-change-2",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 动态规划\n- 背包问题\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "动态规划",
@@ -4410,7 +5161,13 @@
     "name": "friend-circles",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 并查集\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/547.friend-circles.md",
     "code": [
@@ -4425,7 +5182,13 @@
     "name": "jump-game",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 贪心\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "建模(记录和更新当前位置能够到达的最大的索引即可)",
@@ -4437,7 +5200,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/**\n * @param {number[]} nums\n * @return {boolean}\n */\nvar canJump = function(nums) {\n  let max = 0; // 能够走到的数组下标\n\n  for(let i = 0; i < nums.length; i++) {\n      if (max < i) return false; // 当前这一步都走不到，后面更走不到了\n      max = Math.max(nums[i] + i, max);\n  }\n\n  return max >= nums.length - 1\n};\n\n"
+            "text": "\n/**\n * @param {number[]} nums\n * @return {boolean}\n */\nvar canJump = function (nums) {\n  let max = 0; // 能够走到的数组下标\n\n  for (let i = 0; i < nums.length; i++) {\n    if (max < i) return false; // 当前这一步都走不到，后面更走不到了\n    max = Math.max(nums[i] + i, max);\n  }\n\n  return max >= nums.length - 1;\n};\n"
         }
     ]
 },
@@ -4446,7 +5209,13 @@
     "name": "merge-intervals",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 排序\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "对数组进行排序简化操作",
@@ -4463,7 +5232,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n\n\n/*\n * @lc app=leetcode id=56 lang=javascript\n *\n * [56] Merge Intervals\n */\n/**\n * @param {number[][]} intervals\n * @return {number[][]}\n */\n\nfunction intersected(a, b) {\n  if (a[0] > b[1] || a[1] < b[0]) return false;\n  return true;\n}\n\nfunction mergeTwo(a, b) {\n  return [Math.min(a[0], b[0]), Math.max(a[1], b[1])];\n}\nvar merge = function(intervals) {\n  // 这种算法需要先排序\n  intervals.sort((a, b) => a[0] - b[0]);\n  for (let i = 0; i < intervals.length - 1; i++) {\n    const cur = intervals[i];\n    const next = intervals[i + 1];\n\n    if (intersected(cur, next)) {\n      intervals[i] = undefined;\n      intervals[i + 1] = mergeTwo(cur, next);\n    }\n  }\n  return intervals.filter(q => q);\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=56 lang=javascript\n *\n * [56] Merge Intervals\n */\n/**\n * @param {number[][]} intervals\n * @return {number[][]}\n */\n\nfunction intersected(a, b) {\n  if (a[0] > b[1] || a[1] < b[0]) return false;\n  return true;\n}\n\nfunction mergeTwo(a, b) {\n  return [Math.min(a[0], b[0]), Math.max(a[1], b[1])];\n}\nvar merge = function (intervals) {\n  // 这种算法需要先排序\n  intervals.sort((a, b) => a[0] - b[0]);\n  for (let i = 0; i < intervals.length - 1; i++) {\n    const cur = intervals[i];\n    const next = intervals[i + 1];\n\n    if (intersected(cur, next)) {\n      intervals[i] = undefined;\n      intervals[i + 1] = mergeTwo(cur, next);\n    }\n  }\n  return intervals.filter((q) => q);\n};\n"
         }
     ]
 },
@@ -4472,7 +5241,13 @@
     "name": "subarray-sum-equals-k",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 哈希表\n- 前缀和\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "前缀和",
@@ -4510,7 +5285,13 @@
     "name": "distribute-candies",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 数组\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "这是一道逻辑题目，因此如果逻辑分析清楚了，代码是自然而然的",
@@ -4535,7 +5316,13 @@
     "name": "permutation-sequence",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 数学\n- 回溯\n- factorial\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "找规律",
@@ -4561,7 +5348,13 @@
     "name": "find-duplicate-file-in-system",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 哈希表\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "hashtable",
@@ -4582,7 +5375,13 @@
     "name": "unique-paths",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 动态规划\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "记忆化递归",
@@ -4604,19 +5403,19 @@
     "code": [
         {
             "language": "js",
-            "text": "\n const dp = [];\n  for (let i = 0; i < m + 1; i++) {\n    dp[i] = [];\n    dp[i][0] = 0;\n  }\n  for (let i = 0; i < n + 1; i++) {\n    dp[0][i] = 0;\n  }\n  for (let i = 1; i < m + 1; i++) {\n    for(let j = 1; j < n + 1; j++) {\n        dp[i][j] = j === 1 ? 1 : dp[i - 1][j] + dp[i][j - 1]; // 转移方程\n    }\n  }\n\n  return dp[m][n];\n\n"
+            "text": "\nconst dp = [];\nfor (let i = 0; i < m + 1; i++) {\n  dp[i] = [];\n  dp[i][0] = 0;\n}\nfor (let i = 0; i < n + 1; i++) {\n  dp[0][i] = 0;\n}\nfor (let i = 1; i < m + 1; i++) {\n  for (let j = 1; j < n + 1; j++) {\n    dp[i][j] = j === 1 ? 1 : dp[i - 1][j] + dp[i][j - 1]; // 转移方程\n  }\n}\n\nreturn dp[m][n];\n"
         },
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=62 lang=javascript\n *\n * [62] Unique Paths\n *\n * https://leetcode.com/problems/unique-paths/description/\n */\n/**\n * @param {number} m\n * @param {number} n\n * @return {number}\n */\nvar uniquePaths = function(m, n) {\n  const dp = Array(n).fill(1);\n  \n  for(let i = 1; i < m; i++) {\n    for(let j = 1; j < n; j++) {\n      dp[j] = dp[j] + dp[j - 1];\n    } \n  }\n\n  return dp[n - 1];\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=62 lang=javascript\n *\n * [62] Unique Paths\n *\n * https://leetcode.com/problems/unique-paths/description/\n */\n/**\n * @param {number} m\n * @param {number} n\n * @return {number}\n */\nvar uniquePaths = function (m, n) {\n  const dp = Array(n).fill(1);\n\n  for (let i = 1; i < m; i++) {\n    for (let j = 1; j < n; j++) {\n      dp[j] = dp[j] + dp[j - 1];\n    }\n  }\n\n  return dp[n - 1];\n};\n"
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def uniquePaths(self, m: int, n: int) -> int:\n        d = [[1] * n for _ in range(m)]\n\n        for col in range(1, m):\n            for row in range(1, n):\n                d[col][row] = d[col - 1][row] + d[col][row - 1]\n\n        return d[m - 1][n - 1]\n "
+            "text": "\nclass Solution:\n    def uniquePaths(self, m: int, n: int) -> int:\n        d = [[1] * n for _ in range(m)]\n\n        for col in range(1, m):\n            for row in range(1, n):\n                d[col][row] = d[col - 1][row] + d[col][row - 1]\n\n        return d[m - 1][n - 1]\n"
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    visited = dict()\n\n    def uniquePaths(self, m: int, n: int) -> int:\n        if (m, n) in self.visited:\n            return self.visited[(m, n)]\n        if m == 1 or n == 1:\n            return 1\n        cnt = self.uniquePaths(m - 1, n) + self.uniquePaths(m, n - 1)\n        self.visited[(m, n)] = cnt\n        return cnt\n "
+            "text": "\nclass Solution:\n    visited = dict()\n\n    def uniquePaths(self, m: int, n: int) -> int:\n        if (m, n) in self.visited:\n            return self.visited[(m, n)]\n        if m == 1 or n == 1:\n            return 1\n        cnt = self.uniquePaths(m - 1, n) + self.uniquePaths(m, n - 1)\n        self.visited[(m, n)] = cnt\n        return cnt\n"
         },
         {
             "language": "py",
@@ -4629,7 +5428,13 @@
     "name": "accounts-merge",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 并查集\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/721.accounts-merge.md",
     "code": [
@@ -4644,7 +5449,13 @@
     "name": "set-matrix-zeroes",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 状态压缩\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "使用第一行和第一列来替代我们m+n数组",
@@ -4666,15 +5477,15 @@
     "code": [
         {
             "language": "js",
-            "text": "\nvar setZeroes = function(matrix) {\n  if (matrix.length === 0) return matrix;\n  const m = matrix.length;\n  const n = matrix[0].length;\n  const zeroes = Array(m + n).fill(false);\n\n  for (let i = 0; i < m; i++) {\n    for (let j = 0; j < n; j++) {\n      const item = matrix[i][j];\n\n      if (item === 0) {\n        zeroes[i] = true;\n        zeroes[m + j] = true;\n      }\n    }\n  }\n\n  for (let i = 0; i < m; i++) {\n    if (zeroes[i]) {\n      matrix[i] = Array(n).fill(0);\n    }\n  }\n\n  for (let i = 0; i < n; i++) {\n    if (zeroes[m + i]) {\n      for (let j = 0; j < m; j++) {\n        matrix[j][i] = 0;\n      }\n    }\n  }\n\n  return matrix;\n};\n"
+            "text": "\nvar setZeroes = function (matrix) {\n  if (matrix.length === 0) return matrix;\n  const m = matrix.length;\n  const n = matrix[0].length;\n  const zeroes = Array(m + n).fill(false);\n\n  for (let i = 0; i < m; i++) {\n    for (let j = 0; j < n; j++) {\n      const item = matrix[i][j];\n\n      if (item === 0) {\n        zeroes[i] = true;\n        zeroes[m + j] = true;\n      }\n    }\n  }\n\n  for (let i = 0; i < m; i++) {\n    if (zeroes[i]) {\n      matrix[i] = Array(n).fill(0);\n    }\n  }\n\n  for (let i = 0; i < n; i++) {\n    if (zeroes[m + i]) {\n      for (let j = 0; j < m; j++) {\n        matrix[j][i] = 0;\n      }\n    }\n  }\n\n  return matrix;\n};\n"
         },
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=73 lang=javascript\n *\n * [73] Set Matrix Zeroes\n */\n/**\n * @param {number[][]} matrix\n * @return {void} Do not return anything, modify matrix in-place instead.\n */\nvar setZeroes = function(matrix) {\n  if (matrix.length === 0) return matrix;\n  const m = matrix.length;\n  const n = matrix[0].length;\n\n  // 时间复杂度 O(m * n), 空间复杂度 O(1)\n  let firstRow = false; // 第一行是否应该全部为0\n  let firstCol = false; // 第一列是否应该全部为0\n\n  for (let i = 0; i < m; i++) {\n    for (let j = 0; j < n; j++) {\n      const item = matrix[i][j];\n      if (item === 0) {\n        if (i === 0) {\n          firstRow = true;\n        }\n        if (j === 0) {\n          firstCol = true;\n        }\n        matrix[0][j] = 0;\n        matrix[i][0] = 0;\n      }\n    }\n  }\n\n  for (let i = 1; i < m; i++) {\n    for (let j = 1; j < n; j++) {\n      const item = matrix[i][j];\n      if (matrix[0][j] == 0 || matrix[i][0] == 0) {\n        matrix[i][j] = 0;\n      }\n    }\n  }\n\n  // 最后处理第一行和第一列\n\n  if (firstRow) {\n    for (let i = 0; i < n; i++) {\n      matrix[0][i] = 0;\n    }\n  }\n\n  if (firstCol) {\n    for (let i = 0; i < m; i++) {\n      matrix[i][0] = 0;\n    }\n  }\n\n  return matrix;\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=73 lang=javascript\n *\n * [73] Set Matrix Zeroes\n */\n/**\n * @param {number[][]} matrix\n * @return {void} Do not return anything, modify matrix in-place instead.\n */\nvar setZeroes = function (matrix) {\n  if (matrix.length === 0) return matrix;\n  const m = matrix.length;\n  const n = matrix[0].length;\n\n  // 时间复杂度 O(m * n), 空间复杂度 O(1)\n  let firstRow = false; // 第一行是否应该全部为0\n  let firstCol = false; // 第一列是否应该全部为0\n\n  for (let i = 0; i < m; i++) {\n    for (let j = 0; j < n; j++) {\n      const item = matrix[i][j];\n      if (item === 0) {\n        if (i === 0) {\n          firstRow = true;\n        }\n        if (j === 0) {\n          firstCol = true;\n        }\n        matrix[0][j] = 0;\n        matrix[i][0] = 0;\n      }\n    }\n  }\n\n  for (let i = 1; i < m; i++) {\n    for (let j = 1; j < n; j++) {\n      const item = matrix[i][j];\n      if (matrix[0][j] == 0 || matrix[i][0] == 0) {\n        matrix[i][j] = 0;\n      }\n    }\n  }\n\n  // 最后处理第一行和第一列\n\n  if (firstRow) {\n    for (let i = 0; i < n; i++) {\n      matrix[0][i] = 0;\n    }\n  }\n\n  if (firstCol) {\n    for (let i = 0; i < m; i++) {\n      matrix[i][0] = 0;\n    }\n  }\n\n  return matrix;\n};\n"
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def setZeroes(self, matrix: List[List[int]]) -> None:\n        \"\"\"\n        Do not return anything, modify matrix in-place instead.\n        \"\"\"\n        def setRowZeros(matrix: List[List[int]], i:int) -> None:\n            C = len(matrix[0])\n            matrix[i] = [0] * C\n        \n        def setColZeros(matrix: List[List[int]], j:int) -> None:\n            R = len(matrix)\n            for i in range(R):\n                matrix[i][j] = 0\n            \n        isCol = False\n        R = len(matrix)\n        C = len(matrix[0])\n        \n        for i in range(R):\n            if matrix[i][0] == 0:\n                isCol = True\n            for j in range(1, C):\n                if matrix[i][j] == 0:\n                    matrix[i][0] = 0\n                    matrix[0][j] = 0\n        for j in range(1, C):\n            if matrix[0][j] == 0:\n                setColZeros(matrix, j)\n                \n        for i in range(R):\n            if matrix[i][0] == 0:\n                setRowZeros(matrix, i)\n        \n        if isCol:\n            setColZeros(matrix, 0)\n\n"
+            "text": "\nclass Solution:\n    def setZeroes(self, matrix: List[List[int]]) -> None:\n        \"\"\"\n        Do not return anything, modify matrix in-place instead.\n        \"\"\"\n        def setRowZeros(matrix: List[List[int]], i:int) -> None:\n            C = len(matrix[0])\n            matrix[i] = [0] * C\n\n        def setColZeros(matrix: List[List[int]], j:int) -> None:\n            R = len(matrix)\n            for i in range(R):\n                matrix[i][j] = 0\n\n        isCol = False\n        R = len(matrix)\n        C = len(matrix[0])\n\n        for i in range(R):\n            if matrix[i][0] == 0:\n                isCol = True\n            for j in range(1, C):\n                if matrix[i][j] == 0:\n                    matrix[i][0] = 0\n                    matrix[0][j] = 0\n        for j in range(1, C):\n            if matrix[0][j] == 0:\n                setColZeros(matrix, j)\n\n        for i in range(R):\n            if matrix[i][0] == 0:\n                setRowZeros(matrix, i)\n\n        if isCol:\n            setColZeros(matrix, 0)\n\n"
         },
         {
             "language": "py",
@@ -4687,7 +5498,13 @@
     "name": "sort-colors",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- [荷兰国旗问题](https://en.wikipedia.org/wiki/Dutch_national_flag_problem)\n- 排序\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "荷兰国旗问题",
@@ -4701,7 +5518,12 @@
         }
     ],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/75.sort-colors.md",
-    "code": []
+    "code": [
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def sortColors(self, nums: List[int]) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        p0 = cur = 0\n        p2 = len(nums) - 1\n\n        while cur <= p2:\n            if nums[cur] == 0:\n                nums[cur], nums[p0] = nums[p0], nums[cur]\n                p0 += 1\n                cur += 1\n            elif nums[cur] == 2:\n                nums[cur], nums[p2] = nums[p2], nums[cur]\n                p2 -= 1\n            else:\n                cur += 1\n"
+        }
+    ]
 },
 "subsets-en":{
     "id": "78",
@@ -4723,7 +5545,13 @@
     "name": "subsets",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 回溯\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "回溯法",
@@ -4740,7 +5568,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n\n/*\n * @lc app=leetcode id=78 lang=javascript\n *\n * [78] Subsets\n *\n * https://leetcode.com/problems/subsets/description/\n *\n * algorithms\n * Medium (51.19%)\n * Total Accepted:    351.6K\n * Total Submissions: 674.8K\n * Testcase Example:  '[1,2,3]'\n *\n * Given a set of distinct integers, nums, return all possible subsets (the\n * power set).\n * \n * Note: The solution set must not contain duplicate subsets.\n * \n * Example:\n * \n * \n * Input: nums = [1,2,3]\n * Output:\n * [\n * ⁠ [3],\n * [1],\n * [2],\n * [1,2,3],\n * [1,3],\n * [2,3],\n * [1,2],\n * []\n * ]\n * \n */\nfunction backtrack(list, tempList, nums, start) {\n    list.push([...tempList]);\n    for(let i = start; i < nums.length; i++) {\n        tempList.push(nums[i]);\n        backtrack(list, tempList, nums, i + 1);\n        tempList.pop();\n    }\n}\n/**\n * @param {number[]} nums\n * @return {number[][]}\n */\nvar subsets = function(nums) {\n    const list = [];\n    backtrack(list, [], nums, 0);\n    return list;\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=78 lang=javascript\n *\n * [78] Subsets\n *\n * https://leetcode.com/problems/subsets/description/\n *\n * algorithms\n * Medium (51.19%)\n * Total Accepted:    351.6K\n * Total Submissions: 674.8K\n * Testcase Example:  '[1,2,3]'\n *\n * Given a set of distinct integers, nums, return all possible subsets (the\n * power set).\n *\n * Note: The solution set must not contain duplicate subsets.\n *\n * Example:\n *\n *\n * Input: nums = [1,2,3]\n * Output:\n * [\n * ⁠ [3],\n * [1],\n * [2],\n * [1,2,3],\n * [1,3],\n * [2,3],\n * [1,2],\n * []\n * ]\n *\n */\nfunction backtrack(list, tempList, nums, start) {\n  list.push([...tempList]);\n  for (let i = start; i < nums.length; i++) {\n    tempList.push(nums[i]);\n    backtrack(list, tempList, nums, i + 1);\n    tempList.pop();\n  }\n}\n/**\n * @param {number[]} nums\n * @return {number[][]}\n */\nvar subsets = function (nums) {\n  const list = [];\n  backtrack(list, [], nums, 0);\n  return list;\n};\n"
         }
     ]
 },
@@ -4772,7 +5600,13 @@
     "name": "word-search",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 回溯\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "分析",
@@ -4799,15 +5633,15 @@
     "code": [
         {
             "language": "java",
-            "text": "\npublic class LC79WordSearch {\n  public boolean exist(char[][] board, String word) {\n    if (board == null || board.length == 0 || board[0].length == 0\n        || word == null || word.length() == 0) return true;\n    int rows = board.length;\n    int cols = board[0].length;\n    for (int r = 0; r < rows; r++) {\n      for (int c = 0; c < cols; c++) {\n        // scan board, start with word first character \n        if (board[r][c] == word.charAt(0)) {\n          if (helper(board, word, r, c, 0)) {\n            return true;\n          }\n        }\n      }\n    }\n    return false;\n  }\n  \n  private boolean helper(char[][] board, String word, int r, int c, int start) {\n    // already match word all characters, return true\n    if (start == word.length()) return true;\n    if (!isValid(board, r, c) ||\n        board[r][c] != word.charAt(start)) return false;\n    // mark visited\n    board[r][c] = '*';\n    boolean res = helper(board, word, r - 1, c, start + 1) // 上\n        ||  helper(board, word, r + 1, c, start + 1)       // 下\n        ||  helper(board, word, r, c - 1, start + 1)       // 左\n        ||  helper(board, word, r, c + 1, start + 1);      // 右\n    // backtracking to start position\n    board[r][c] = word.charAt(start);\n    return res;\n  }\n  \n  private boolean isValid(char[][] board, int r, int c) {\n    return r >= 0 && r < board.length && c >= 0 && c < board[0].length;\n  }\n}\n"
+            "text": "\npublic class LC79WordSearch {\n  public boolean exist(char[][] board, String word) {\n    if (board == null || board.length == 0 || board[0].length == 0\n        || word == null || word.length() == 0) return true;\n    int rows = board.length;\n    int cols = board[0].length;\n    for (int r = 0; r < rows; r++) {\n      for (int c = 0; c < cols; c++) {\n        // scan board, start with word first character\n        if (board[r][c] == word.charAt(0)) {\n          if (helper(board, word, r, c, 0)) {\n            return true;\n          }\n        }\n      }\n    }\n    return false;\n  }\n\n  private boolean helper(char[][] board, String word, int r, int c, int start) {\n    // already match word all characters, return true\n    if (start == word.length()) return true;\n    if (!isValid(board, r, c) ||\n        board[r][c] != word.charAt(start)) return false;\n    // mark visited\n    board[r][c] = '*';\n    boolean res = helper(board, word, r - 1, c, start + 1) // 上\n        ||  helper(board, word, r + 1, c, start + 1)       // 下\n        ||  helper(board, word, r, c - 1, start + 1)       // 左\n        ||  helper(board, word, r, c + 1, start + 1);      // 右\n    // backtracking to start position\n    board[r][c] = word.charAt(start);\n    return res;\n  }\n\n  private boolean isValid(char[][] board, int r, int c) {\n    return r >= 0 && r < board.length && c >= 0 && c < board[0].length;\n  }\n}\n"
         },
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=79 lang=javascript\n *\n * [79] Word Search\n */\nfunction DFS(board, row, col, rows, cols, word, cur) {\n  // 边界检查\n  if (row >= rows || row < 0) return false;\n  if (col >= cols || col < 0) return false;\n\n  const item = board[row][col];\n\n  if (item !== word[cur]) return false;\n\n  if (cur + 1 === word.length) return true;\n\n  // 如果你用hashmap记录访问的字母， 那么你需要每次backtrack的时候手动清除hashmap，并且需要额外的空间\n  // 这里我们使用一个little trick\n  \n  board[row][col] = null;\n\n  // 上下左右\n  const res =\n    DFS(board, row + 1, col, rows, cols, word, cur + 1) ||\n    DFS(board, row - 1, col, rows, cols, word, cur + 1) ||\n    DFS(board, row, col - 1, rows, cols, word, cur + 1) ||\n    DFS(board, row, col + 1, rows, cols, word, cur + 1);\n\n  board[row][col] = item;\n\n  return res;\n}\n/**\n * @param {character[][]} board\n * @param {string} word\n * @return {boolean}\n */\nvar exist = function(board, word) {\n  if (word.length === 0) return true;\n  if (board.length === 0) return false;\n\n  const rows = board.length;\n  const cols = board[0].length;\n\n  for (let i = 0; i < rows; i++) {\n    for (let j = 0; j < cols; j++) {\n      const hit = DFS(board, i, j, rows, cols, word, 0);\n      if (hit) return true;\n    }\n  }\n  return false;\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=79 lang=javascript\n *\n * [79] Word Search\n */\nfunction DFS(board, row, col, rows, cols, word, cur) {\n  // 边界检查\n  if (row >= rows || row < 0) return false;\n  if (col >= cols || col < 0) return false;\n\n  const item = board[row][col];\n\n  if (item !== word[cur]) return false;\n\n  if (cur + 1 === word.length) return true;\n\n  // 如果你用hashmap记录访问的字母， 那么你需要每次backtrack的时候手动清除hashmap，并且需要额外的空间\n  // 这里我们使用一个little trick\n\n  board[row][col] = null;\n\n  // 上下左右\n  const res =\n    DFS(board, row + 1, col, rows, cols, word, cur + 1) ||\n    DFS(board, row - 1, col, rows, cols, word, cur + 1) ||\n    DFS(board, row, col - 1, rows, cols, word, cur + 1) ||\n    DFS(board, row, col + 1, rows, cols, word, cur + 1);\n\n  board[row][col] = item;\n\n  return res;\n}\n/**\n * @param {character[][]} board\n * @param {string} word\n * @return {boolean}\n */\nvar exist = function (board, word) {\n  if (word.length === 0) return true;\n  if (board.length === 0) return false;\n\n  const rows = board.length;\n  const cols = board[0].length;\n\n  for (let i = 0; i < rows; i++) {\n    for (let j = 0; j < cols; j++) {\n      const hit = DFS(board, i, j, rows, cols, word, 0);\n      if (hit) return true;\n    }\n  }\n  return false;\n};\n"
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def exist(self, board: List[List[str]], word: str) -> bool:\n        m = len(board)\n        n = len(board[0])\n        \n        def dfs(board, r, c, word, index):\n            if index == len(word):\n                return True\n            if r < 0 or r >= m or c < 0 or c >= n or board[r][c] != word[index]:\n                return False\n            board[r][c] = '*'\n            res = dfs(board, r - 1, c, word, index + 1) or dfs(board, r + 1, c, word, index + 1) or dfs(board, r, c - 1, word, index + 1) or dfs(board, r, c + 1, word, index + 1)\n            board[r][c] = word[index]\n            return res\n        \n        for r in range(m):\n            for c in range(n):\n                if board[r][c] == word[0]:\n                    if dfs(board, r, c, word, 0):\n                        return True\n"
+            "text": "\nclass Solution:\n    def exist(self, board: List[List[str]], word: str) -> bool:\n        m = len(board)\n        n = len(board[0])\n\n        def dfs(board, r, c, word, index):\n            if index == len(word):\n                return True\n            if r < 0 or r >= m or c < 0 or c >= n or board[r][c] != word[index]:\n                return False\n            board[r][c] = '*'\n            res = dfs(board, r - 1, c, word, index + 1) or dfs(board, r + 1, c, word, index + 1) or dfs(board, r, c - 1, word, index + 1) or dfs(board, r, c + 1, word, index + 1)\n            board[r][c] = word[index]\n            return res\n\n        for r in range(m):\n            for c in range(n):\n                if board[r][c] == word[0]:\n                    if dfs(board, r, c, word, 0):\n                        return True\n"
         }
     ]
 },
@@ -4816,7 +5650,13 @@
     "name": "remove-duplicates-from-sorted-array-ii",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 双指针\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "分析",
@@ -4852,7 +5692,13 @@
     "name": "short-encoding-of-words",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 前缀树\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "前缀树",
@@ -4878,7 +5724,13 @@
     "name": "largest-rectangle-in-histogram",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 单调栈\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/84.largest-rectangle-in-histogram.md",
     "code": [
@@ -4900,7 +5752,7 @@
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def largestRectangleArea(self, heights: List[int]) -> int:\n        n, heights, st, ans = len(heights),[0] + heights + [0], [], 0\n        for i in range(n + 2):\n            while st and heights[st[-1]] > heights[i]:\n                a = heights[st[-1]]\n                # 如果没有前面的哨兵，这里可能会越界。\n                st.pop()\n                ans = max(ans, a * (i - 1 - st[-1]))\n            st.append(i)\n        return ans\n "
+            "text": "\nclass Solution:\n    def largestRectangleArea(self, heights: List[int]) -> int:\n        n, heights, st, ans = len(heights),[0] + heights + [0], [], 0\n        for i in range(n + 2):\n            while st and heights[st[-1]] > heights[i]:\n                a = heights[st[-1]]\n                # 如果没有前面的哨兵，这里可能会越界。\n                st.pop()\n                ans = max(ans, a * (i - 1 - st[-1]))\n            st.append(i)\n        return ans\n"
         }
     ]
 },
@@ -4909,7 +5761,13 @@
     "name": "maximal-rectangle",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 单调栈\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/85.maximal-rectangle.md",
     "code": [
@@ -4924,7 +5782,13 @@
     "name": "partition-list",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 链表\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "链表的基本操作（遍历）",
@@ -4937,7 +5801,7 @@
             "color": "blue"
         },
         {
-            "text": "遍历完成之后记得`currentL1.next=null;`否则会内存溢出>如果单纯的遍历是不需要上面操作的，但是我们的遍历会导致currentL1.next和currentL2.next中有且仅有一个不是null，如果不这么操作的话会导致两个链表成环，造成溢出。",
+            "text": "遍历完成之后记得`currentL1.next=null;`否则会内存溢出>如果单纯的遍历是不需要上面操作的，但是我们的遍历会导致currentL1.next和currentL2.next>中有且仅有一个不是null，如果不这么操作的话会导致两个链表成环，造成溢出。",
             "link": null,
             "color": "blue"
         }
@@ -4946,11 +5810,11 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=86 lang=javascript\n *\n * [86] Partition List\n *\n * https://leetcode.com/problems/partition-list/description/\n *\n * algorithms\n * Medium (36.41%)\n * Total Accepted:    155.1K\n * Total Submissions: 425.1K\n * Testcase Example:  '[1,4,3,2,5,2]\\n3'\n *\n * Given a linked list and a value x, partition it such that all nodes less\n * than x come before nodes greater than or equal to x.\n * \n * You should preserve the original relative order of the nodes in each of the\n * two partitions.\n * \n * Example:\n * \n * \n * Input: head = 1->4->3->2->5->2, x = 3\n * Output: 1->2->2->4->3->5\n * \n * \n */\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} head\n * @param {number} x\n * @return {ListNode}\n */\nvar partition = function(head, x) {\n    const dummyHead1 = {\n        next: null\n    }\n    const dummyHead2 = {\n        next: null\n    }\n    \n    let current = {\n        next: head\n    };\n    let currentL1 = dummyHead1;\n    let currentL2 = dummyHead2;\n    while(current.next) {\n        current = current.next;\n        if (current.val < x) {\n            currentL1.next = current;\n            currentL1 = current;\n        } else {\n            currentL2.next = current;\n            currentL2 = current;\n        }\n    }\n    \n    currentL2.next = null;\n \n    currentL1.next = dummyHead2.next;\n\n    return dummyHead1.next;\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=86 lang=javascript\n *\n * [86] Partition List\n *\n * https://leetcode.com/problems/partition-list/description/\n *\n * algorithms\n * Medium (36.41%)\n * Total Accepted:    155.1K\n * Total Submissions: 425.1K\n * Testcase Example:  '[1,4,3,2,5,2]\\n3'\n *\n * Given a linked list and a value x, partition it such that all nodes less\n * than x come before nodes greater than or equal to x.\n *\n * You should preserve the original relative order of the nodes in each of the\n * two partitions.\n *\n * Example:\n *\n *\n * Input: head = 1->4->3->2->5->2, x = 3\n * Output: 1->2->2->4->3->5\n *\n *\n */\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} head\n * @param {number} x\n * @return {ListNode}\n */\nvar partition = function (head, x) {\n  const dummyHead1 = {\n    next: null,\n  };\n  const dummyHead2 = {\n    next: null,\n  };\n\n  let current = {\n    next: head,\n  };\n  let currentL1 = dummyHead1;\n  let currentL2 = dummyHead2;\n  while (current.next) {\n    current = current.next;\n    if (current.val < x) {\n      currentL1.next = current;\n      currentL1 = current;\n    } else {\n      currentL2.next = current;\n      currentL2 = current;\n    }\n  }\n\n  currentL2.next = null;\n\n  currentL1.next = dummyHead2.next;\n\n  return dummyHead1.next;\n};\n"
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def partition(self, head: ListNode, x: int) -> ListNode:\n        \"\"\"在原链表操作，思路基本一致，只是通过指针进行区分而已\"\"\"\n        # 在链表最前面设定一个初始node作为锚点，方便返回最后的结果\n        first_node = ListNode(0)\n        first_node.next = head\n        # 设计三个指针，一个指向小于x的最后一个节点，即前后分离点\n        # 一个指向当前遍历节点的前一个节点\n        # 一个指向当前遍历的节点\n        sep_node = first_node\n        pre_node = first_node\n        current_node = head\n        \n        while current_node is not None:\n            if current_node.val < x:\n                # 注意有可能出现前一个节点就是分离节点的情况\n                if pre_node is sep_node:\n                    pre_node = current_node\n                    sep_node = current_node\n                    current_node = current_node.next\n                else:\n                    # 这段次序比较烧脑\n                    pre_node.next = current_node.next\n                    current_node.next = sep_node.next\n                    sep_node.next = current_node\n                    sep_node = current_node\n                    current_node = pre_node.next\n            else:\n                pre_node = current_node\n                current_node = pre_node.next\n        \n        return first_node.next\n"
+            "text": "\nclass Solution:\n    def partition(self, head: ListNode, x: int) -> ListNode:\n        \"\"\"在原链表操作，思路基本一致，只是通过指针进行区分而已\"\"\"\n        # 在链表最前面设定一个初始node作为锚点，方便返回最后的结果\n        first_node = ListNode(0)\n        first_node.next = head\n        # 设计三个指针，一个指向小于x的最后一个节点，即前后分离点\n        # 一个指向当前遍历节点的前一个节点\n        # 一个指向当前遍历的节点\n        sep_node = first_node\n        pre_node = first_node\n        current_node = head\n\n        while current_node is not None:\n            if current_node.val < x:\n                # 注意有可能出现前一个节点就是分离节点的情况\n                if pre_node is sep_node:\n                    pre_node = current_node\n                    sep_node = current_node\n                    current_node = current_node.next\n                else:\n                    # 这段次序比较烧脑\n                    pre_node.next = current_node.next\n                    current_node.next = sep_node.next\n                    sep_node.next = current_node\n                    sep_node = current_node\n                    current_node = pre_node.next\n            else:\n                pre_node = current_node\n                current_node = pre_node.next\n\n        return first_node.next\n"
         }
     ]
 },
@@ -4959,7 +5823,13 @@
     "name": "walking-robot-simulation",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 哈希表\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "理解题意，这道题容易理解错题意，求解为`最终位置距离原点的距离`",
@@ -4990,7 +5860,13 @@
     "name": "koko-eating-bananas",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 二分查找\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "二分查找",
@@ -5002,7 +5878,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=875 lang=javascript\n *\n * [875] Koko Eating Bananas\n *\n * https://leetcode.com/problems/koko-eating-bananas/description/\n *\n * algorithms\n * Medium (44.51%)\n * Total Accepted:    11.3K\n * Total Submissions: 24.8K\n * Testcase Example:  '[3,6,7,11]\\n8'\n *\n * Koko loves to eat bananas.  There are N piles of bananas, the i-th pile has\n * piles[i] bananas.  The guards have gone and will come back in H hours.\n * \n * Koko can decide her bananas-per-hour eating speed of K.  Each hour, she\n * chooses some pile of bananas, and eats K bananas from that pile.  If the\n * pile has less than K bananas, she eats all of them instead, and won't eat\n * any more bananas during this hour.\n * \n * Koko likes to eat slowly, but still wants to finish eating all the bananas\n * before the guards come back.\n * \n * Return the minimum integer K such that she can eat all the bananas within H\n * hours.\n * \n * \n * \n * \n * \n * \n * \n * Example 1:\n * \n * \n * Input: piles = [3,6,7,11], H = 8\n * Output: 4\n * \n * \n * \n * Example 2:\n * \n * \n * Input: piles = [30,11,23,4,20], H = 5\n * Output: 30\n * \n * \n * \n * Example 3:\n * \n * \n * Input: piles = [30,11,23,4,20], H = 6\n * Output: 23\n * \n * \n * \n * \n * Note:\n * \n * \n * 1 <= piles.length <= 10^4\n * piles.length <= H <= 10^9\n * 1 <= piles[i] <= 10^9\n * \n * \n * \n * \n * \n */\n\n function canEatAllBananas(piles, H, mid) {\n     let h = 0;\n     for(let pile of piles) {\n        h += Math.ceil(pile / mid);\n     }\n\n     return h <= H;\n }\n/**\n * @param {number[]} piles\n * @param {number} H\n * @return {number}\n */\nvar minEatingSpeed = function(piles, H) {\n    let lo = 1,\n    hi = Math.max(...piles);\n\n    while(lo <= hi) {\n        let mid = lo + ((hi - lo) >> 1);\n        if (canEatAllBananas(piles, H, mid)) {\n            hi = mid - 1;\n        } else {\n            lo = mid + 1;\n        }\n    }\n\n    return lo; //  不能选择hi\n};\n"
+            "text": "\n\nfunction canEatAllBananas(piles, H, mid) {\n     let h = 0;\n     for(let pile of piles) {\n        h += Math.ceil(pile / mid);\n     }\n\n     return h <= H;\n }\n/**\n * @param {number[]} piles\n * @param {number} H\n * @return {number}\n */\nvar minEatingSpeed = function(piles, H) {\n    let lo = 1,\n    hi = Math.max(...piles);\n\n    while(lo <= hi) {\n        let mid = lo + ((hi - lo) >> 1);\n        if (canEatAllBananas(piles, H, mid)) {\n            hi = mid - 1;\n        } else {\n            lo = mid + 1;\n        }\n    }\n\n    return lo; //  不能选择hi\n};\n"
         }
     ]
 },
@@ -5011,7 +5887,13 @@
     "name": "stone-game",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 动态规划\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "可以用DP（动态规划）",
@@ -5037,7 +5919,13 @@
     "name": "merge-sorted-array",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 归并排序\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "从后往前比较，并从后往前插入",
@@ -5049,7 +5937,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n  // 这种解法连m都用不到\n  // 这显然不是出题人的意思\n  if (n === 0) return;\n  let current2 = 0;\n  for(let i = nums1.length - 1; i >= nums1.length - n ; i--) {\n      nums1[i] = nums2[current2++];\n  }\n  nums1.sort((a, b) => a - b); // 当然你可以自己写排序，这里懒得写了，因为已经偏离了题目本身\n\n"
+            "text": "\n// 这种解法连m都用不到\n// 这显然不是出题人的意思\nif (n === 0) return;\nlet current2 = 0;\nfor (let i = nums1.length - 1; i >= nums1.length - n; i--) {\n  nums1[i] = nums2[current2++];\n}\nnums1.sort((a, b) => a - b); // 当然你可以自己写排序，这里懒得写了，因为已经偏离了题目本身\n"
         },
         {
             "language": "js",
@@ -5057,7 +5945,7 @@
         },
         {
             "language": "js",
-            "text": "\nvar merge = function(nums1, m, nums2, n) {\n  // 设置一个指针，指针初始化指向nums1的末尾（根据#62，应该是index为 m+n-1 的位置，因为nums1的长度有可能更长）\n  // 然后不断左移指针更新元素\n  let current = m + n - 1;\n\n  while (current >= 0) {\n    // 没必要继续了\n    if (n === 0) return;\n\n    // 为了方便大家理解，这里代码有点赘余\n    if (m < 1) {\n      nums1[current--] = nums2[--n];\n      continue;\n    }\n\n    if (n < 1) {\n      nums1[current--] = nums1[--m];\n      continue;\n    }\n    // 取大的填充 nums1的末尾\n    // 然后更新 m 或者 n\n    if (nums1[m - 1] > nums2[n - 1]) {\n      nums1[current--] = nums1[--m];\n    } else {\n      nums1[current--] = nums2[--n];\n    }\n  }\n};\n"
+            "text": "\nvar merge = function (nums1, m, nums2, n) {\n  // 设置一个指针，指针初始化指向nums1的末尾（根据#62，应该是index为 m+n-1 的位置，因为nums1的长度有可能更长）\n  // 然后不断左移指针更新元素\n  let current = m + n - 1;\n\n  while (current >= 0) {\n    // 没必要继续了\n    if (n === 0) return;\n\n    // 为了方便大家理解，这里代码有点赘余\n    if (m < 1) {\n      nums1[current--] = nums2[--n];\n      continue;\n    }\n\n    if (n < 1) {\n      nums1[current--] = nums1[--m];\n      continue;\n    }\n    // 取大的填充 nums1的末尾\n    // 然后更新 m 或者 n\n    if (nums1[m - 1] > nums2[n - 1]) {\n      nums1[current--] = nums1[--m];\n    } else {\n      nums1[current--] = nums2[--n];\n    }\n  }\n};\n"
         },
         {
             "language": "py",
@@ -5070,7 +5958,13 @@
     "name": "super-egg-drop",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 动态规划\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "dp建模思路要发生变化,即`dp[M][K]meansthat,givenKeggsandMmoves，whatisthemaximumnumberoffloorthatwecancheck.`",
@@ -5095,7 +5989,13 @@
     "name": "maximum-frequency-stack",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 栈\n- 哈希表\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "栈的基本性质",
@@ -5141,7 +6041,13 @@
     "name": "subsets-ii",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 回溯\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "回溯法",
@@ -5158,7 +6064,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n\n\n/*\n * @lc app=leetcode id=90 lang=javascript\n *\n * [90] Subsets II\n *\n * https://leetcode.com/problems/subsets-ii/description/\n *\n * algorithms\n * Medium (41.53%)\n * Total Accepted:    197.1K\n * Total Submissions: 469.1K\n * Testcase Example:  '[1,2,2]'\n *\n * Given a collection of integers that might contain duplicates, nums, return\n * all possible subsets (the power set).\n * \n * Note: The solution set must not contain duplicate subsets.\n * \n * Example:\n * \n * \n * Input: [1,2,2]\n * Output:\n * [\n * ⁠ [2],\n * ⁠ [1],\n * ⁠ [1,2,2],\n * ⁠ [2,2],\n * ⁠ [1,2],\n * ⁠ []\n * ]\n * \n * \n */\nfunction backtrack(list, tempList, nums, start) {\n    list.push([...tempList]);\n    for(let i = start; i < nums.length; i++) {\n        // 和78.subsets的区别在于这道题nums可以有重复\n        // 因此需要过滤这种情况\n        if (i > start && nums[i] === nums[i - 1]) continue;\n        tempList.push(nums[i]);\n        backtrack(list, tempList, nums, i + 1)\n        tempList.pop();\n    }\n}\n/**\n * @param {number[]} nums\n * @return {number[][]}\n */\nvar subsetsWithDup = function(nums) {\n    const list = [];\n    backtrack(list, [], nums.sort((a, b) => a - b), 0, [])\n    return list;\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=90 lang=javascript\n *\n * [90] Subsets II\n *\n * https://leetcode.com/problems/subsets-ii/description/\n *\n * algorithms\n * Medium (41.53%)\n * Total Accepted:    197.1K\n * Total Submissions: 469.1K\n * Testcase Example:  '[1,2,2]'\n *\n * Given a collection of integers that might contain duplicates, nums, return\n * all possible subsets (the power set).\n *\n * Note: The solution set must not contain duplicate subsets.\n *\n * Example:\n *\n *\n * Input: [1,2,2]\n * Output:\n * [\n * ⁠ [2],\n * ⁠ [1],\n * ⁠ [1,2,2],\n * ⁠ [2,2],\n * ⁠ [1,2],\n * ⁠ []\n * ]\n *\n *\n */\nfunction backtrack(list, tempList, nums, start) {\n  list.push([...tempList]);\n  for (let i = start; i < nums.length; i++) {\n    // 和78.subsets的区别在于这道题nums可以有重复\n    // 因此需要过滤这种情况\n    if (i > start && nums[i] === nums[i - 1]) continue;\n    tempList.push(nums[i]);\n    backtrack(list, tempList, nums, i + 1);\n    tempList.pop();\n  }\n}\n/**\n * @param {number[]} nums\n * @return {number[][]}\n */\nvar subsetsWithDup = function (nums) {\n  const list = [];\n  backtrack(\n    list,\n    [],\n    nums.sort((a, b) => a - b),\n    0,\n    []\n  );\n  return list;\n};\n"
         }
     ]
 },
@@ -5167,7 +6073,13 @@
     "name": "rle-iterator",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/900.rle-iterator.md",
     "code": [
@@ -5182,7 +6094,13 @@
     "name": "decode-ways",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 爬楼梯问题\n- 动态规划\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "爬楼梯问题（我把这种题目统称为爬楼梯问题）",
@@ -5194,7 +6112,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n\n\n/*\n * @lc app=leetcode id=91 lang=javascript\n *\n * [91] Decode Ways\n *\n * https://leetcode.com/problems/decode-ways/description/\n *\n * algorithms\n * Medium (21.93%)\n * Total Accepted:    254.4K\n * Total Submissions: 1.1M\n * Testcase Example:  '\"12\"'\n *\n * A message containing letters from A-Z is being encoded to numbers using the\n * following mapping:\n *\n *\n * 'A' -> 1\n * 'B' -> 2\n * ...\n * 'Z' -> 26\n *\n *\n * Given a non-empty string containing only digits, determine the total number\n * of ways to decode it.\n *\n * Example 1:\n *\n *\n * Input: \"12\"\n * Output: 2\n * Explanation: It could be decoded as \"AB\" (1 2) or \"L\" (12).\n *\n *\n * Example 2:\n *\n *\n * Input: \"226\"\n * Output: 3\n * Explanation: It could be decoded as \"BZ\" (2 26), \"VF\" (22 6), or \"BBF\" (2 2\n * 6).\n *\n */\n/**\n * @param {string} s\n * @return {number}\n */\nvar numDecodings = function(s) {\n  if (s == null || s.length == 0) {\n    return 0;\n  }\n  const dp = Array(s.length + 1).fill(0);\n  dp[0] = 1;\n  dp[1] = s[0] !== \"0\" ? 1 : 0;\n  for (let i = 2; i < s.length + 1; i++) {\n     const one = +s.slice(i - 1, i);\n     const two = +s.slice(i - 2, i);\n\n    if (two >= 10 && two <= 26) {\n      dp[i] = dp[i - 2];\n    }\n\n    if (one >= 1 && one <= 9) {\n      dp[i] += dp[i - 1];\n    }\n  }\n\n  return dp[dp.length - 1];\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=91 lang=javascript\n *\n * [91] Decode Ways\n *\n * https://leetcode.com/problems/decode-ways/description/\n *\n * algorithms\n * Medium (21.93%)\n * Total Accepted:    254.4K\n * Total Submissions: 1.1M\n * Testcase Example:  '\"12\"'\n *\n * A message containing letters from A-Z is being encoded to numbers using the\n * following mapping:\n *\n *\n * 'A' -> 1\n * 'B' -> 2\n * ...\n * 'Z' -> 26\n *\n *\n * Given a non-empty string containing only digits, determine the total number\n * of ways to decode it.\n *\n * Example 1:\n *\n *\n * Input: \"12\"\n * Output: 2\n * Explanation: It could be decoded as \"AB\" (1 2) or \"L\" (12).\n *\n *\n * Example 2:\n *\n *\n * Input: \"226\"\n * Output: 3\n * Explanation: It could be decoded as \"BZ\" (2 26), \"VF\" (22 6), or \"BBF\" (2 2\n * 6).\n *\n */\n/**\n * @param {string} s\n * @return {number}\n */\nvar numDecodings = function (s) {\n  if (s == null || s.length == 0) {\n    return 0;\n  }\n  const dp = Array(s.length + 1).fill(0);\n  dp[0] = 1;\n  dp[1] = s[0] !== \"0\" ? 1 : 0;\n  for (let i = 2; i < s.length + 1; i++) {\n    const one = +s.slice(i - 1, i);\n    const two = +s.slice(i - 2, i);\n\n    if (two >= 10 && two <= 26) {\n      dp[i] = dp[i - 2];\n    }\n\n    if (one >= 1 && one <= 9) {\n      dp[i] += dp[i - 1];\n    }\n  }\n\n  return dp[dp.length - 1];\n};\n"
         }
     ]
 },
@@ -5203,7 +6121,13 @@
     "name": "sort-an-array",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 数组\n- 排序\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "排序算法",
@@ -5233,7 +6157,13 @@
     "name": "reverse-linked-list-ii",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 链表\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "链表的基本操作",
@@ -5260,7 +6190,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=92 lang=javascript\n *\n * [92] Reverse Linked List II\n *\n * https://leetcode.com/problems/reverse-linked-list-ii/description/\n */\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} head\n * @param {number} m\n * @param {number} n\n * @return {ListNode}\n */\nvar reverseBetween = function(head, m, n) {\n    // 虚拟节点，简化操作\n    const dummyHead = {\n        next: head\n    }\n\n    let cur = dummyHead.next; // 当前遍历的节点\n    let pre = cur; // 因为要反转，因此我们需要记住前一个节点\n    let index = 0; // 链表索引，用来判断是否是特殊位置（头尾位置）\n\n    // 上面提到的四个特殊节点\n    let p1 = p2 = p3 = p4 = null\n\n    while(cur) {\n        const next = cur.next;\n        index++;\n\n        // 对 (m - n) 范围内的节点进行反转\n        if (index > m && index <= n) {           \n            cur.next = pre;\n        }\n\n        // 下面四个if都是边界, 用于更新四个特殊节点的值\n        if (index === m - 1) {\n            p1 = cur;\n        }\n        if (index === m) {\n            p2 = cur;\n        }\n\n        if (index === n) {\n            p3 = cur;\n        }\n\n        if (index === n + 1) {\n            p4 = cur;;\n        }\n\n        pre = cur;\n\n        cur = next;\n    }\n\n    // 两个链表合并起来\n    (p1 || dummyHead).next = p3; // 特殊情况需要考虑\n    p2.next = p4;\n\n    return dummyHead.next;\n};\n\n"
+            "text": "\n/*\n * @lc app=leetcode id=92 lang=javascript\n *\n * [92] Reverse Linked List II\n *\n * https://leetcode.com/problems/reverse-linked-list-ii/description/\n */\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} head\n * @param {number} m\n * @param {number} n\n * @return {ListNode}\n */\nvar reverseBetween = function (head, m, n) {\n  // 虚拟节点，简化操作\n  const dummyHead = {\n    next: head,\n  };\n\n  let cur = dummyHead.next; // 当前遍历的节点\n  let pre = cur; // 因为要反转，因此我们需要记住前一个节点\n  let index = 0; // 链表索引，用来判断是否是特殊位置（头尾位置）\n\n  // 上面提到的四个特殊节点\n  let p1 = (p2 = p3 = p4 = null);\n\n  while (cur) {\n    const next = cur.next;\n    index++;\n\n    // 对 (m - n) 范围内的节点进行反转\n    if (index > m && index <= n) {\n      cur.next = pre;\n    }\n\n    // 下面四个if都是边界, 用于更新四个特殊节点的值\n    if (index === m - 1) {\n      p1 = cur;\n    }\n    if (index === m) {\n      p2 = cur;\n    }\n\n    if (index === n) {\n      p3 = cur;\n    }\n\n    if (index === n + 1) {\n      p4 = cur;\n    }\n\n    pre = cur;\n\n    cur = next;\n  }\n\n  // 两个链表合并起来\n  (p1 || dummyHead).next = p3; // 特殊情况需要考虑\n  p2.next = p4;\n\n  return dummyHead.next;\n};\n"
         },
         {
             "language": "cpp",
@@ -5272,11 +6202,11 @@
         },
         {
             "language": "py",
-            "text": "\n class Solution:\n    def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:\n        pre = None\n        cur = head\n        i = 0\n        p1 = p2 = p3 = p4 = None\n        dummy = ListNode(0)\n        dummy.next = head\n\n        # ...\n\n        if p1:\n            p1.next = p3\n        else:\n            dummy.next = p3\n        if p2:\n            p2.next = p4\n\n        return dummy.next\n "
+            "text": "\nclass Solution:\n   def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:\n       pre = None\n       cur = head\n       i = 0\n       p1 = p2 = p3 = p4 = None\n       dummy = ListNode(0)\n       dummy.next = head\n\n       # ...\n\n       if p1:\n           p1.next = p3\n       else:\n           dummy.next = p3\n       if p2:\n           p2.next = p4\n\n       return dummy.next\n"
         },
         {
             "language": "py",
-            "text": "\n     while cur:\n            i += 1\n            if i == m - 1:\n                p1 = cur\n            next = cur.next\n            if m < i <= n:\n                cur.next = pre\n\n            if i == m:\n                p2 = cur\n                p2.next = None\n\n            if i == n:\n                p3 = cur\n\n            if i == n + 1:\n                p4 = cur\n\n            pre = cur\n            cur = next\n "
+            "text": "\n    while cur:\n           i += 1\n           if i == m - 1:\n               p1 = cur\n           next = cur.next\n           if m < i <= n:\n               cur.next = pre\n\n           if i == m:\n               p2 = cur\n               p2.next = None\n\n           if i == n:\n               p3 = cur\n\n           if i == n + 1:\n               p4 = cur\n\n           pre = cur\n           cur = next\n"
         }
     ]
 },
@@ -5285,7 +6215,13 @@
     "name": "knight-dialer",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- DFS\n- 记忆化搜索\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [],
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/935.knight-dialer.md",
     "code": [
@@ -5304,7 +6240,13 @@
     "name": "binary-tree-inorder-traversal",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 二叉树\n- 递归\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "二叉树的基本操作（遍历）>不同的遍历算法差异还是蛮大的",
@@ -5331,7 +6273,7 @@
     "code": [
         {
             "language": "java",
-            "text": "\n/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode(int x) { val = x; }\n * }\n */\nclass Solution {\n    List<Integer> res = new LinkedList<>();\n    public List<Integer> inorderTraversal(TreeNode root) {\n        inorder(root);\n        return res;\n    }\n    \n    public void inorder (TreeNode root) {\n        if (root == null) return;\n        \n        inorder(root.left);\n        \n        res.add(root.val);\n        \n        inorder(root.right);\n    }\n}\n"
+            "text": "\n/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode(int x) { val = x; }\n * }\n */\nclass Solution {\n    List<Integer> res = new LinkedList<>();\n    public List<Integer> inorderTraversal(TreeNode root) {\n        inorder(root);\n        return res;\n    }\n\n    public void inorder (TreeNode root) {\n        if (root == null) return;\n\n        inorder(root.left);\n\n        res.add(root.val);\n\n        inorder(root.right);\n    }\n}\n"
         },
         {
             "language": "java",
@@ -5339,7 +6281,7 @@
         },
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=94 lang=javascript\n *\n * [94] Binary Tree Inorder Traversal\n *\n * https://leetcode.com/problems/binary-tree-inorder-traversal/description/\n *\n * algorithms\n * Medium (55.22%)\n * Total Accepted:    422.4K\n * Total Submissions: 762.1K\n * Testcase Example:  '[1,null,2,3]'\n *\n * Given a binary tree, return the inorder traversal of its nodes' values.\n * \n * Example:\n * \n * \n * Input: [1,null,2,3]\n * ⁠  1\n * ⁠   \\\n * ⁠    2\n * ⁠   /\n * ⁠  3\n * \n * Output: [1,3,2]\n * \n * Follow up: Recursive solution is trivial, could you do it iteratively?\n * \n */\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @return {number[]}\n */\nvar inorderTraversal = function(root) {\n    // 1. Recursive solution\n    // if (!root) return [];\n    // const left = root.left ? inorderTraversal(root.left) : [];\n    // const right = root.right ? inorderTraversal(root.right) : [];\n    // return left.concat([root.val]).concat(right);\n\n    // 2. iterative solutuon\n    if (!root) return [];\n    const stack = [root];\n    const ret = [];\n    let left = root.left;\n\n    let item = null; // stack 中弹出的当前项\n\n    while(left) {\n        stack.push(left);\n        left = left.left;\n    }\n    \n    while(item = stack.pop()) {\n        ret.push(item.val);\n        let t = item.right;\n\n        while(t) {\n            stack.push(t);\n            t = t.left;     \n        }\n    }\n\n    return ret;\n\n};\n\n"
+            "text": "\n/*\n * @lc app=leetcode id=94 lang=javascript\n *\n * [94] Binary Tree Inorder Traversal\n *\n * https://leetcode.com/problems/binary-tree-inorder-traversal/description/\n *\n * algorithms\n * Medium (55.22%)\n * Total Accepted:    422.4K\n * Total Submissions: 762.1K\n * Testcase Example:  '[1,null,2,3]'\n *\n * Given a binary tree, return the inorder traversal of its nodes' values.\n *\n * Example:\n *\n *\n * Input: [1,null,2,3]\n * ⁠  1\n * ⁠   \\\n * ⁠    2\n * ⁠   /\n * ⁠  3\n *\n * Output: [1,3,2]\n *\n * Follow up: Recursive solution is trivial, could you do it iteratively?\n *\n */\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @return {number[]}\n */\nvar inorderTraversal = function (root) {\n  // 1. Recursive solution\n  // if (!root) return [];\n  // const left = root.left ? inorderTraversal(root.left) : [];\n  // const right = root.right ? inorderTraversal(root.right) : [];\n  // return left.concat([root.val]).concat(right);\n\n  // 2. iterative solutuon\n  if (!root) return [];\n  const stack = [root];\n  const ret = [];\n  let left = root.left;\n\n  let item = null; // stack 中弹出的当前项\n\n  while (left) {\n    stack.push(left);\n    left = left.left;\n  }\n\n  while ((item = stack.pop())) {\n    ret.push(item.val);\n    let t = item.right;\n\n    while (t) {\n      stack.push(t);\n      t = t.left;\n    }\n  }\n\n  return ret;\n};\n"
         },
         {
             "language": "cpp",
@@ -5352,7 +6294,13 @@
     "name": "unique-binary-search-trees-ii",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 二叉搜索树\n- 分治\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "分治法",
@@ -5368,7 +6316,13 @@
     "name": "unique-binary-search-trees",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 二叉搜索树\n- 分治\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "分治法",
@@ -5399,7 +6353,13 @@
     "name": "validate-binary-search-tree",
     "company": [],
     "tags": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": "\n\n- 中序遍历\n\n",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "二叉树的基本操作（遍历）",
@@ -5425,19 +6385,19 @@
         },
         {
             "language": "java",
-            "text": "\n/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode(int x) { val = x; }\n * }\n */\nclass Solution {    \n    public boolean isValidBST(TreeNode root) {\n        return helper(root, null, null);\n    }\n\n    private boolean helper(TreeNode root, Integer lower, Integer higher) {\n        if (root == null) return true;\n\n        if (lower != null && root.val <= lower) return false;\n        if (higher != null && root.val >= higher) return false;\n\n        if (!helper(root.left, lower, root.val)) return false;\n        if (!helper(root.right, root.val, higher)) return false;\n\n        return true;\n    }\n}\n"
+            "text": "\n/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode(int x) { val = x; }\n * }\n */\nclass Solution {\n    public boolean isValidBST(TreeNode root) {\n        return helper(root, null, null);\n    }\n\n    private boolean helper(TreeNode root, Integer lower, Integer higher) {\n        if (root == null) return true;\n\n        if (lower != null && root.val <= lower) return false;\n        if (higher != null && root.val >= higher) return false;\n\n        if (!helper(root.left, lower, root.val)) return false;\n        if (!helper(root.right, root.val, higher)) return false;\n\n        return true;\n    }\n}\n"
         },
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=98 lang=javascript\n *\n * [98] Validate Binary Search Tree\n */\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @return {boolean}\n */\nvar isValidBST = function(root) {\n    if (root === null) return true;\n    if (root.left === null && root.right === null) return true;\n    const stack = [root];\n    let cur = root;\n    let pre = null;\n\n    function insertAllLefts(cur) {\n        while(cur && cur.left) {\n            const l = cur.left;\n            stack.push(l);\n            cur = l;\n        }\n    }\n    insertAllLefts(cur);\n\n    while(cur = stack.pop()) {\n        if (pre && cur.val <= pre.val) return false;\n        const r = cur.right;\n\n        if (r) {\n            stack.push(r);\n            insertAllLefts(r);\n        }\n        pre = cur;\n    }\n\n    return true;\n};\n\n"
+            "text": "\n/*\n * @lc app=leetcode id=98 lang=javascript\n *\n * [98] Validate Binary Search Tree\n */\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @return {boolean}\n */\nvar isValidBST = function (root) {\n  if (root === null) return true;\n  if (root.left === null && root.right === null) return true;\n  const stack = [root];\n  let cur = root;\n  let pre = null;\n\n  function insertAllLefts(cur) {\n    while (cur && cur.left) {\n      const l = cur.left;\n      stack.push(l);\n      cur = l;\n    }\n  }\n  insertAllLefts(cur);\n\n  while ((cur = stack.pop())) {\n    if (pre && cur.val <= pre.val) return false;\n    const r = cur.right;\n\n    if (r) {\n      stack.push(r);\n      insertAllLefts(r);\n    }\n    pre = cur;\n  }\n\n  return true;\n};\n"
         },
         {
             "language": "js",
-            "text": "\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @return {boolean}\n */\nvar isValidBST = function (root) {\n    if (!root) return true;\n    return valid(root);\n};\n\nfunction valid(root, min = -Infinity, max = Infinity) {\n    if (!root) return true;\n    const val = root.val;\n    if (val <= min) return false;\n    if (val >= max) return false;\n    return valid(root.left, min, val) && valid(root.right, val, max)\n}\n"
+            "text": "\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @return {boolean}\n */\nvar isValidBST = function (root) {\n  if (!root) return true;\n  return valid(root);\n};\n\nfunction valid(root, min = -Infinity, max = Infinity) {\n  if (!root) return true;\n  const val = root.val;\n  if (val <= min) return false;\n  if (val >= max) return false;\n  return valid(root.left, min, val) && valid(root.right, val, max);\n}\n"
         },
         {
             "language": "cpp",
-            "text": "\n// 递归\nclass Solution {\npublic:\n    bool isValidBST(TreeNode* root) {\n        TreeNode* prev = nullptr;\n        return validateBstInorder(root, prev);\n    }\n    \nprivate:\n    bool validateBstInorder(TreeNode* root, TreeNode*& prev) {\n        if (root == nullptr) return true;\n        if (!validateBstInorder(root->left, prev)) return false;\n        if (prev != nullptr && prev->val >= root->val) return false;\n        prev = root;\n        return validateBstInorder(root->right, prev);\n    }\n};\n\n// 迭代\nclass Solution {\npublic:\n    bool isValidBST(TreeNode* root) {\n        auto s = vector<TreeNode*>();\n        TreeNode* prev = nullptr;\n        while (root != nullptr || !s.empty()) {\n            while (root != nullptr) {\n                s.push_back(root);\n                root = root->left;\n            }\n            root = s.back();\n            s.pop_back();\n            if (prev != nullptr && prev->val >= root->val) return false;\n            prev = root;\n            root = root->right;\n        }\n        return true;\n    }\n};\n"
+            "text": "\n// 递归\nclass Solution {\npublic:\n    bool isValidBST(TreeNode* root) {\n        TreeNode* prev = nullptr;\n        return validateBstInorder(root, prev);\n    }\n\nprivate:\n    bool validateBstInorder(TreeNode* root, TreeNode*& prev) {\n        if (root == nullptr) return true;\n        if (!validateBstInorder(root->left, prev)) return false;\n        if (prev != nullptr && prev->val >= root->val) return false;\n        prev = root;\n        return validateBstInorder(root->right, prev);\n    }\n};\n\n// 迭代\nclass Solution {\npublic:\n    bool isValidBST(TreeNode* root) {\n        auto s = vector<TreeNode*>();\n        TreeNode* prev = nullptr;\n        while (root != nullptr || !s.empty()) {\n            while (root != nullptr) {\n                s.push_back(root);\n                root = root->left;\n            }\n            root = s.back();\n            s.pop_back();\n            if (prev != nullptr && prev->val >= root->val) return false;\n            prev = root;\n            root = root->right;\n        }\n        return true;\n    }\n};\n"
         }
     ]
 },

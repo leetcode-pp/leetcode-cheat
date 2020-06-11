@@ -1,8 +1,11 @@
 const fs = require('fs')
+const request = require('request')
 const { resolve: pathResolve } = require('path')
 const mkdirp = require('mkdirp')
 
 const PROJECT_ROOT = pathResolve(__dirname, '../')
+
+const isFun = input => typeof input === 'function'
 
 const Utils = {
 
@@ -17,6 +20,30 @@ const Utils = {
     */
    genCodeRegByLang(lang) {
       return new RegExp(`(?:\`\`\`${lang})((.|[\r\n])*?)(?:\`\`\`)`, 'g')
+   },
+
+
+   httpGet( url,{ beforeRequest, onSuccess, onError,} = {}) {
+      return new Promise((ok, unExpect) => {
+         isFun(beforeRequest) && beforeRequest()
+         beforeRequest
+         request({
+            method:'GET',
+            url,
+            encoding:null
+         },  (error, response, body) => {
+            if (error) {
+
+               unExpect(error)
+               isFun(onError) && onError()
+
+            } else {
+
+               isFun(onSuccess) && onSuccess()
+               ok(body)
+            }
+        })
+      })
    },
 
    getSatelliteDataReg() {

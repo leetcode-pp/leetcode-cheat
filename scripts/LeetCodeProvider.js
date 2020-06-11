@@ -5,74 +5,45 @@ const Iconv = require('iconv-lite')
 const cheerio = require('cheerio')
 
 const Logger = require('./logger')
+const Utils = require('./utils')
 const { PROBLEMS_URL, QUESTION_DOM_SELECTOR, BASE_MARKDWON_DOWNLOAD_URL, ENGLISH_MARKDOWN_SIGN } = require('./constants')
 
-const LeetCodeProvider =  {
-
+module.exports = LeetCodeProvider = {
 
 
 
     getProblemsTitle() {
-        return new Promise((ok, unExpect) => {
+       
+        return Utils.httpGet(PROBLEMS_URL)
+        .then((body)=> {
+            let aProblemTitles = []
+            let sHtml = Iconv.decode(body, 'utf-8').toString()
+            cheerio.load(sHtml)(QUESTION_DOM_SELECTOR).each((idx, ele) => aProblemTitles.push(ele.attribs['title']))
+            Logger.success('获取问题列表成功')
 
-            Logger.success('正在获取问题列表...')
-
-            request({
-                method: 'GET',
-                url: PROBLEMS_URL,
-                encoding: null
-            },
-                (error, response, body) => {
-                    if (error) {
-
-                        unExpect(Logger.error('获取问题列表失败', error) && error)
-
-                    } else {
-
-                        let aProblemTitles = []
-
-                        let sHtml = Iconv.decode(body, 'utf-8').toString()
-
-                        cheerio.load(sHtml)(QUESTION_DOM_SELECTOR).each((idx, ele) => aProblemTitles.push(ele.attribs['title']))
-
-                        Logger.success('获取问题列表成功')
-
-                        ok(aProblemTitles.filter(name => !name.endsWith(ENGLISH_MARKDOWN_SIGN)))
-                    }
-                })
-
+            return aProblemTitles.filter(name => !name.endsWith(ENGLISH_MARKDOWN_SIGN))
+        })
+        .catch(error => {
+            Logger.error('获取问题列表失败', error) 
         })
     },
 
+
+
+
     getProblemDetail(problemNameWithExt) {
 
-        return new Promise((ok, unExpect) => {
+        return Utils.httpGet(`${BASE_MARKDWON_DOWNLOAD_URL}${problemNameWithExt}`)
+        .then(body => {
 
-            Logger.success('正在抓取问题:', problemNameWithExt)
-
-            request({
-                method: 'GET',
-                url: `${BASE_MARKDWON_DOWNLOAD_URL}${problemNameWithExt}`,
-                encoding: null
-            },
-                (error, response, body) => {
-                    if (error) {
-
-                        unExpect(Logger.error(`抓取问题 "${problemNameWithExt}" 失败`, error) && error)
-
-                    } else {
-
-                        let markdown = Iconv.decode(body, 'utf-8').toString()
-
-                        Logger.success(`抓取问题 "${problemNameWithExt}" 成功！`)
-
-                        ok(markdown)
-                    }
-
-                })
+            let markdown = Iconv.decode(body, 'utf-8').toString()
+            Logger.success(`抓取问题 "${problemNameWithExt}" 成功！`)
+            return markdown
+        })
+        .catch(error => {
+            Logger.error(`抓取问题 "${problemNameWithExt}" 失败`, error)
         })
     }
 
 }
 
-module.exports = LeetCodeProvider
