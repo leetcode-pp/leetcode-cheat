@@ -11,8 +11,9 @@ const {
 
 
 const genertateLeetcodeToJson = () => {
+  console.time('genertateLeetcodeToJson');
 
-  const rawMarkdowns = Utils.getDirsFileName(RAW_MARKDOWN_OUTPUT_DIR).filter(name => !name.endsWith(ENGLISH_MARKDOWN_SIGN))
+  const rawMarkdowns = Utils.getDirsFileNameSync(RAW_MARKDOWN_OUTPUT_DIR).filter(name => !name.endsWith(ENGLISH_MARKDOWN_SIGN))
 
   rawMarkdowns.forEach(filename => {
 
@@ -80,9 +81,6 @@ const genertateLeetcodeToJson = () => {
       name,
       company: [
       ],
-      // todo
-      tags: [
-      ],
       pre: preKnowledge,
       keyPoints,
       solution: `https://github.com/azl397985856/leetcode/blob/master/problems/${filename}`,
@@ -93,10 +91,11 @@ const genertateLeetcodeToJson = () => {
 
     Logger.success(`开始生成 "${filename}"`)
 
-    Utils.writeFileSync('spider/yield-db-json', `${filename.slice(0, -3)}.json`, JSON.stringify(oCustomStruct, null, 2))
+    Utils.writeFileSync('spider/yield-db-json', `${name}.json`, JSON.stringify(oCustomStruct, null, 2))
 
     Logger.success(`生成 "${filename}" 完毕`)
-
+    console.timeEnd('genertateLeetcodeToJson')
+   
 
 
   })
@@ -106,7 +105,8 @@ const genertateLeetcodeToJson = () => {
 
 const generateCollectionIndexFile = () => {
   Logger.success('开始生产index文件')
-  const jsonsName = Utils.getDirsFileName(DB_JSON_OUTPUT_DIR)
+  console.time('generateCollectionIndexFile')
+  const jsonsName = Utils.getDirsFileNameSync(DB_JSON_OUTPUT_DIR)
 
   let rootContent = `
     export const db_collection = {
@@ -118,6 +118,7 @@ const generateCollectionIndexFile = () => {
 
   Utils.writeFileSync('src/db', 'root.db.js', rootContent)
   Logger.success('index文件生成完毕')
+  console.timeEnd('generateCollectionIndexFile')
 
 }
 

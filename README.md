@@ -15,7 +15,7 @@
 |---yield-db-json 从markdown中提取标题、tag、公司、各语言题解生产的json
 |-src 源代码  
 |-scripts
-|---constants.js 脚本常量
+|--- constants.js 脚本常量
 |--- curl-leetcode.js 爬虫请求逻辑
 |--- LeeCodeProvider.js 爬虫基类
 |--- Logger.js 日志辅助类
@@ -25,9 +25,8 @@
 ```
 
 ## 爬虫
-- sudo npm run crawl
-- 此命令会先从github上拉取问题列表，将文件名解析成数组，然后根据问题名称循环拉取与之对应的markdown文件（此过程会先查找本地是否存在，如果存在则跳过）
-- 问题拉取完成后，根据markdown匹配正则，转化成所需的json文件
+- npm run crawl 此命令会先从github上拉取问题列表，将文件名解析成数组，然后根据问题名称循   环拉取与之对应的markdown文件（此过程会先查找本地是否存在，如果存在则跳过）
+  问题拉取完成后，根据markdown匹配正则，转化成所需的json文件
 
 
 

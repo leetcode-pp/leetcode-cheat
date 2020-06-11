@@ -18,7 +18,7 @@ Utils.mkdirSync(RAW_MARKDOWN_OUTPUT_DIR)
 
 const getProblemDetail = (questionsName, requsetNumber) => {
 
-    const cachedFilesName = Utils.getDirsFileName(RAW_MARKDOWN_OUTPUT_DIR)
+    const cachedFilesName = Utils.getDirsFileNameSync(RAW_MARKDOWN_OUTPUT_DIR)
 
     if (!IS_FORCE_UPDATE_MODE && cachedFilesName.includes(questionsName[requsetNumber])) {
 

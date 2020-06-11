@@ -16,12 +16,12 @@ module.exports = LeetCodeProvider = {
        
         return Utils.httpGet(PROBLEMS_URL)
         .then((body)=> {
-            let aProblemTitles = []
+            let titles = []
             let sHtml = Iconv.decode(body, 'utf-8').toString()
-            cheerio.load(sHtml)(QUESTION_DOM_SELECTOR).each((idx, ele) => aProblemTitles.push(ele.attribs['title']))
+            cheerio.load(sHtml)(QUESTION_DOM_SELECTOR).each((idx, ele) => titles.push(ele.attribs['title']))
             Logger.success('获取问题列表成功')
 
-            return aProblemTitles.filter(name => !name.endsWith(ENGLISH_MARKDOWN_SIGN))
+            return titles.filter(name => !name.endsWith(ENGLISH_MARKDOWN_SIGN))
         })
         .catch(error => {
             Logger.error('获取问题列表失败', error) 

@@ -24,7 +24,7 @@ const Utils = {
 
 
    httpGet( url,{ beforeRequest, onSuccess, onError,} = {}) {
-      return new Promise((ok, unExpect) => {
+      return new Promise((resolve, reject) => {
          isFun(beforeRequest) && beforeRequest()
          beforeRequest
          request({
@@ -34,13 +34,13 @@ const Utils = {
          },  (error, response, body) => {
             if (error) {
 
-               unExpect(error)
+               reject(error)
                isFun(onError) && onError()
 
             } else {
 
                isFun(onSuccess) && onSuccess()
-               ok(body)
+               resolve(body)
             }
         })
       })
@@ -98,7 +98,7 @@ const Utils = {
     * @returns Array<string>
     * @memberof Utils
     */
-   getDirsFileName(dir) {
+   getDirsFileNameSync(dir) {
       return fs.readdirSync(pathResolve(PROJECT_ROOT, dir), { encoding: 'utf8' })
    },
 

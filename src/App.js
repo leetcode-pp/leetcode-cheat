@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Tabs, Tag, Button, Table, Empty, message,Collapse } from "antd";
 import marked from 'marked'
 import hljs from 'highlight.js'
