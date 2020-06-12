@@ -1,5 +1,6 @@
-import decodeWays from "./91.decode-ways";
-import implementQueueUsingStacks from "./232.implement-queue-using-stacks";
+// import decodeWays from "./91.decode-ways";
+// import implementQueueUsingStacks from "./232.implement-queue-using-stacks";
+import { db_collection } from './root.db'
 
 const tags = {
   dp: {
@@ -42,13 +43,9 @@ const company = {
   },
 };
 
-const problems = {
-  "decode-ways": decodeWays({ tags, company }),
-  "implement-queue-using-stacks": implementQueueUsingStacks({ tags, company }),
-};
 
 export default {
-  problems,
+  problems: db_collection,
   tags,
   company,
 };

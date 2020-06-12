@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { Tabs, Tag, Button, Table, Empty, message } from "antd";
+import { Tabs, Tag, Button, Table, Empty, message,Collapse } from "antd";
+import marked from 'marked'
+import hljs from 'highlight.js'
+import 'highlight.js/styles/github.css'
 
 import { copy } from "./utils";
 import db from "./db/db";
@@ -9,6 +12,10 @@ import "antd/dist/antd.css";
 import "./App.css";
 
 const { TabPane } = Tabs;
+const { Panel } = Collapse;
+
+const formatCodeToMarkDown = (code,lang) => `\`\`\`${lang}\n${code}\`\`\`\n`
+
 const { problems } = db;
 const dataSource = Object.values(problems);
 
@@ -100,6 +107,7 @@ function App() {
       </div>
     );
 
+
   return (
     <div className="container">
       {hasSolution ? (
@@ -125,22 +133,46 @@ function App() {
           </TabPane>
           <TabPane tab="代码" key="3">
             <div className="code-block">
+              <Collapse>
               {problems[problemId].code.map((c) => (
-                <div key={c.text} className="row" style={{ marginTop: "10px" }}>
-                  <span className="language language-js">{c.language}</span>
-                  <Button
-                    type="primary"
-                    size="small"
-                    onClick={() =>
-                      copy(c.text, () => {
-                        message.success("复制成功～");
-                      })
-                    }
-                  >
-                    复制
-                  </Button>
-                </div>
+                 <Panel header={
+                  <div key={c.text} className="row" style={{ marginTop: "10px" }}>
+                    <span className="language language-js">{c.language}</span>
+                    <Button
+                      type="primary"
+                      size="small"
+                      onClick={() =>
+                        copy(c.text, () => {
+                          message.success("复制成功～");
+                        })
+                      }
+                    >
+                      复制
+                    </Button>
+                  </div>
+                 }>
+                
+                  <div dangerouslySetInnerHTML={{__html: marked(formatCodeToMarkDown(c.text,c.language), {renderer: new marked.Renderer(),
+                      highlight: function() {
+                        const validLanguage =c.language
+                        return hljs.highlight(validLanguage, c.text).value;
+                      },
+                      pedantic: false,
+                      gfm: true,
+                      langPrefix: c.language,
+                      breaks: false,
+                      sanitize: false,
+                      smartLists: true,
+                      smartypants: false,
+                      xhtml: false
+                    })}}>
+                      </div>
+                     
+                    
+               
+                </Panel>
               ))}
+              </Collapse>
             </div>
           </TabPane>
           <TabPane tab="公司" key="4">
