@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { Tabs, Tag, Button, Table, Empty, message, Collapse } from "antd";
 import marked from "marked";
 import hljs from "highlight.js";
@@ -6,7 +6,7 @@ import "highlight.js/styles/github.css";
 
 import { copy } from "./utils";
 import db from "./db/db";
-import { LEETCODE_CN_URL, LEETCODE_URL } from "./constant/index";
+import { LEETCODE_CN_URL, LEETCODE_URL, ISSUES_URL } from "./constant/index";
 
 import "antd/dist/antd.css";
 import "./App.css";
@@ -118,7 +118,13 @@ function App() {
           </TabPane>
           <TabPane tab="关键点" key="1">
             {problems[problemId].keyPoints.map(({ id, link, text, color }) => (
-              <TagOrLink key={text} text={text} link={link} color={color} />
+              <TagOrLink
+                key={text}
+                text={text}
+                link={link}
+                color={color}
+                style={{ marginBottom: 6 }}
+              />
             ))}
           </TabPane>
           <TabPane tab="题解" key="2">
@@ -147,11 +153,12 @@ function App() {
                         <Button
                           type="primary"
                           size="small"
-                          onClick={() =>
+                          onClick={(e) => {
+                            e.stopPropagation();
                             copy(c.text, () => {
                               message.success("复制成功～");
-                            })
-                          }
+                            });
+                          }}
                         >
                           复制
                         </Button>
@@ -187,7 +194,14 @@ function App() {
             </div>
           </TabPane>
           <TabPane tab="公司" key="4">
-            {problems[problemId].company.map((c) => c.name).join("，")}
+            {problems[problemId].company.map((c) => c.name).join("，") || (
+              <Fragment>
+                暂无公司资料，
+                <a href={ISSUES_URL} target="_blank">
+                  点击反馈
+                </a>
+              </Fragment>
+            )}
           </TabPane>
           <TabPane
             tab="可视化调试（敬请期待）"
