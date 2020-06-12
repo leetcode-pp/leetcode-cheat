@@ -1,130 +1,128 @@
-const Utils = require('./utils')
-const Logger = require('./logger')
+const Utils = require("./utils");
+const Logger = require("./logger");
 const {
   SUPPORT_LANGUAGE,
   DB_JSON_OUTPUT_DIR,
   RAW_MARKDOWN_OUTPUT_DIR,
-  ENGLISH_MARKDOWN_SIGN
-} = require('./constants')
-
-
-
+  ENGLISH_MARKDOWN_SIGN,
+} = require("./constants");
 
 const genertateLeetcodeToJson = () => {
-  console.time('genertateLeetcodeToJson');
+  console.time("genertateLeetcodeToJson");
 
-  const rawMarkdowns = Utils.getDirsFileNameSync(RAW_MARKDOWN_OUTPUT_DIR).filter(name => !name.endsWith(ENGLISH_MARKDOWN_SIGN))
+  const rawMarkdowns = Utils.getDirsFileNameSync(
+    RAW_MARKDOWN_OUTPUT_DIR
+  ).filter((name) => !name.endsWith(ENGLISH_MARKDOWN_SIGN));
 
-  rawMarkdowns.forEach(filename => {
-
-    let languageResloved = []
-    let preKnowledge = []
-    let keyPoints = []
-    let markdown
+  rawMarkdowns.forEach((filename) => {
+    let languageResloved = [];
+    let preKnowledge = [];
+    let keyPoints = [];
+    let markdown;
 
     try {
+      Logger.success(`开始读取${filename}`);
 
-      Logger.success(`开始读取${filename}`)
+      markdown = Utils.readFileSync(RAW_MARKDOWN_OUTPUT_DIR, filename);
 
-      markdown = Utils.readFileSync(RAW_MARKDOWN_OUTPUT_DIR, filename)
-
-      Logger.success(`读取${filename}完毕`)
-
+      Logger.success(`读取${filename}完毕`);
+    } catch (error) {
+      Logger.error(`读取${filename}失败`, error);
     }
-    catch (error) {
-
-      Logger.error(`读取${filename}失败`, error)
-    }
-
-
 
     /**
-     *  以下替换是为了统一markdown语言标识    
-    */
-    markdown = markdown.replace(/```javascript/g, '```js')
-    markdown = markdown.replace(/```python/g, '```py')
-    markdown = markdown.replace(/```c\+\+/g, '```cpp')
+     *  以下替换是为了统一markdown语言标识
+     */
+    markdown = markdown.replace(/```javascript/g, "```js");
+    markdown = markdown.replace(/```python/g, "```py");
+    markdown = markdown.replace(/```c\+\+/g, "```cpp");
 
-    SUPPORT_LANGUAGE.forEach(lang => {
-
+    SUPPORT_LANGUAGE.forEach((lang) => {
       markdown.replace(Utils.genCodeRegByLang(lang), (noUseMatch, $1) => {
-
         languageResloved.push({
           language: lang,
           text: $1,
-        })
-
-      })
-    })
+        });
+      });
+    });
     markdown.replace(Utils.getSatelliteDataReg().pre, (noUseMatch, $1) => {
-
       preKnowledge.push({
         text: $1,
         link: null,
-        color:'red'
-      })
-    })
+        color: "red",
+      });
+    });
 
-    markdown.replace(Utils.getSatelliteDataReg().keyPoints, (noUseMatch, $1) => {
-      keyPoints = $1.replace(/\s/g, '').split('-').filter(s => (s && s !== '解析')).map(s => ({ text: s, link: null, color:'blue' }))
-
-    })
+    markdown.replace(
+      Utils.getSatelliteDataReg().keyPoints,
+      (noUseMatch, $1) => {
+        keyPoints = $1
+          .replace(/\s/g, "")
+          .split("-")
+          .filter((s) => s && s !== "解析")
+          .map((s) => ({ text: s, link: null, color: "blue" }));
+      }
+    );
 
     /**
-     *  TODO 这边解析字段不全 
+     *  TODO 这边解析字段不全
      */
 
-    const [questionID, name,] = filename.split('.')
+    const [questionID, name] = filename.split(".");
 
     let oCustomStruct = {
       id: questionID,
       name,
-      company: [
-      ],
+      company: [],
       pre: preKnowledge,
       keyPoints,
       solution: `https://github.com/azl397985856/leetcode/blob/master/problems/${filename}`,
       code: languageResloved,
-    }
+    };
 
+    Logger.success(`开始生成 "${filename}"`);
 
+    Utils.writeFileSync(
+      "spider/yield-db-json",
+      `${name}.json`,
+      JSON.stringify(oCustomStruct, null, 2)
+    );
 
-    Logger.success(`开始生成 "${filename}"`)
-
-    Utils.writeFileSync('spider/yield-db-json', `${name}.json`, JSON.stringify(oCustomStruct, null, 2))
-
-    Logger.success(`生成 "${filename}" 完毕`)
-    console.timeEnd('genertateLeetcodeToJson')
-   
-
-
-  })
-
-}
-
+    Logger.success(`生成 "${filename}" 完毕`);
+    console.timeEnd("genertateLeetcodeToJson");
+  });
+};
 
 const generateCollectionIndexFile = () => {
-  Logger.success('开始生产index文件')
-  console.time('generateCollectionIndexFile')
-  const jsonsName = Utils.getDirsFileNameSync(DB_JSON_OUTPUT_DIR)
+  Logger.success("开始生产index文件");
+  console.time("generateCollectionIndexFile");
+  const jsonsName = Utils.getDirsFileNameSync(DB_JSON_OUTPUT_DIR);
 
   let rootContent = `
     export const db_collection = {
-       ${ jsonsName.reduce((acc, next) => {
-    return acc + ('"' + next.split('.')[1] + '":' + JSON.stringify(require('../spider/yield-db-json/' + next), null, 4) + ',\n')
-  }, '')}
+       ${jsonsName.reduce((acc, next) => {
+         return (
+           acc +
+           ('"' +
+             next.split(".")[1] +
+             '":' +
+             JSON.stringify(
+               require("../spider/yield-db-json/" + next),
+               null,
+               4
+             ) +
+             ",\n")
+         );
+       }, "")}
      }
-   `
+   `;
 
-  Utils.writeFileSync('src/db', 'root.db.js', rootContent)
-  Logger.success('index文件生成完毕')
-  console.timeEnd('generateCollectionIndexFile')
+  Utils.writeFileSync("src/db", "root.db.js", rootContent);
+  Logger.success("index文件生成完毕");
+  console.timeEnd("generateCollectionIndexFile");
+};
 
-}
+Utils.mkdirSync(DB_JSON_OUTPUT_DIR);
 
-
-
-Utils.mkdirSync(DB_JSON_OUTPUT_DIR)
-
-genertateLeetcodeToJson()
-generateCollectionIndexFile()
+genertateLeetcodeToJson();
+generateCollectionIndexFile();

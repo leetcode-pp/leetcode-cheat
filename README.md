@@ -13,7 +13,7 @@
 |-spider 爬虫抓取和转化后的相关文件
 |---raw-markdown 由github上抓到的题解markdown原文件
 |---yield-db-json 从markdown中提取标题、tag、公司、各语言题解生产的json
-|-src 源代码  
+|-src 源代码
 |-scripts
 |--- constants.js 脚本常量
 |--- curl-leetcode.js 爬虫请求逻辑
@@ -24,18 +24,14 @@
 |---App.js 主逻辑都在这里
 ```
 
-## 爬虫
-- npm run crawl 此命令会先从github上拉取问题列表，将文件名解析成数组，然后根据问题名称循   环拉取与之对应的markdown文件（此过程会先查找本地是否存在，如果存在则跳过）
-  问题拉取完成后，根据markdown匹配正则，转化成所需的json文件
-
-
+- [爬虫相关](./scripts/README.MD)
 
 ## 构建
+
 - npm run build
 - 然后将 build 文件夹的内容添加到扩展中即可，具体方式见上面的`功能介绍`。
 
 > 以后每次执行 npm run build， 插件会自动刷新，无需手动加载。
-
 
 ## 计划
 

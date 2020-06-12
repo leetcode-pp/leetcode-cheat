@@ -1,0 +1,19 @@
+## 爬虫
+
+### 使用
+
+```
+- npm run crawl
+```
+
+### 原理
+
+此命令会：
+
+- 先从 github 上拉取题解列表，将文件名解析成数组
+- 然后根据题解名称循环拉取与之对应的 markdown 文件（此过程会先查找本地是否存在，如果存在则跳过）
+- 问题拉取完成后，根据 markdown 匹配正则，转化成所需的 json 文件
+
+### 架构图
+
+![](https://tva1.sinaimg.cn/large/007S8ZIlly1gfpjc8au5fj30np0okjuc.jpg)
