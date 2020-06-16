@@ -37,7 +37,12 @@
 
 - [ ] 完善题目，优先级比较高的是 91 的这些题目，按照现有的两个题目的标准进行完善。
 - [ ] 标签完善。目前很多标签是没有对应的讲解的，比如递归，队列等。
+- [ ] [可视化调试](./src/visualDebug/README.md)
 
 ## 参考
 
 - [chrome 扩展开发官方文档](https://developer.chrome.com/extensions)
+
+## License
+
+[Apache-2.0](./LICENSE.txt)
