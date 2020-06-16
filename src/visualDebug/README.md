@@ -56,13 +56,13 @@ class Solution:
 
         for i in range(n):
             # @pointer(nums)
-            # 看到上面的注解会插入一行
+            # 3. 看到上面的注解会插入一行
             left = i + 1
             drawGraph({ pointer: {
                 nums: left
             }}, nums, target)
             # @pointer(nums)
-            # 看到上面的注解会插入一行
+            # 4. 看到上面的注解会插入一行
             right = n - 1
             drawGraph({ pointer: {
                 nums: right
@@ -81,14 +81,35 @@ class Solution:
         return res
 ```
 
+第一步之后大概会生成这样的图：
+
+![](https://tva1.sinaimg.cn/large/007S8ZIlly1gfu805nd4mj30ol07taag.jpg)
+
+第二步之后大概会生成这样的图：
+
+![](https://tva1.sinaimg.cn/large/007S8ZIlly1gfu7zjlxbfj30lr056wes.jpg)
+
+第三步之后大概会生成这样的图：
+
+![](https://tva1.sinaimg.cn/large/007S8ZIlly1gfu813p4tij30m208d74s.jpg)
+
+第四步之后大概会生成这样的图：
+
+![](https://tva1.sinaimg.cn/large/007S8ZIlly1gfu81iyc9rj30qh0an750.jpg)
+
+之后每次当 left 和 right 发生变化的时候更新图片（指针变化）即可。
+
 drawGraph 的伪代码：
 
 ```py
+def makeObseravle(any, cb):
+    if changed(any): cb
 def draw(options, shape):
     if is_array(shape) {
         pointer = options.pointer[shape.getName()]
         if :
             pointTo(shape, pointer)
+            makeObseravle(pointer, draw)
     }
     if ...
 def drawGraph(options, ...shapes):
