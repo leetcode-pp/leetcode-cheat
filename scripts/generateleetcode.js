@@ -4,16 +4,13 @@ const {
   SUPPORT_LANGUAGE,
   DB_JSON_OUTPUT_DIR,
   RAW_MARKDOWN_OUTPUT_DIR,
-  ENGLISH_MARKDOWN_SIGN
 } = require('./constants')
 
 
 
 
 const genertateLeetcodeToJson = () => {
-  console.time('genertateLeetcodeToJson');
-
-  const rawMarkdowns = Utils.getDirsFileNameSync(RAW_MARKDOWN_OUTPUT_DIR).filter(name => !name.endsWith(ENGLISH_MARKDOWN_SIGN))
+  // console.time("genertateLeetcodeToJson");
 
   rawMarkdowns.forEach(filename => {
 
@@ -58,6 +55,7 @@ const genertateLeetcodeToJson = () => {
     })
     markdown.replace(Utils.getSatelliteDataReg().pre, (noUseMatch, $1) => {
 
+      console.log($1.replace(/[\s\r\n]/g, '').replace(/-/g,'').split('-'))
       preKnowledge.push({
         text: $1,
         link: null,
