@@ -1,12 +1,14 @@
+const Iconv = require("iconv-lite");
+const cheerio = require("cheerio");
 
-
-const request = require('request')
-const Iconv = require('iconv-lite')
-const cheerio = require('cheerio')
-
-const Logger = require('./logger')
-const Utils = require('./utils')
-const { PROBLEMS_URL, QUESTION_DOM_SELECTOR, BASE_MARKDWON_DOWNLOAD_URL, ENGLISH_MARKDOWN_SIGN } = require('./constants')
+const Logger = require("./logger");
+const Utils = require("./utils");
+const {
+  PROBLEMS_URL,
+  QUESTION_DOM_SELECTOR,
+  BASE_MARKDWON_DOWNLOAD_URL,
+  ENGLISH_MARKDOWN_SIGN,
+} = require("./constants");
 
 module.exports = LeetCodeProvider = {
   getProblemsTitle() {

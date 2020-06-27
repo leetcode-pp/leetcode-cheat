@@ -1,20 +1,21 @@
-const LeetCodeProvider = require('./leetcodeprovider')
+const LeetCodeProvider = require("./leetcodeprovider");
 
-const Logger = require('./logger')
+const Logger = require("./logger");
 
-const Utils = require('./utils')
+const Utils = require("./utils");
 
-
-const { RAW_MARKDOWN_OUTPUT_DIR, REQUEST_RATE, IS_FORCE_UPDATE_MODE } = require('./constants')
-
+const {
+  RAW_MARKDOWN_OUTPUT_DIR,
+  REQUEST_RATE,
+  IS_FORCE_UPDATE_MODE,
+} = require("./constants");
 
 /**
  * 当前请求问题索引
  */
-let requsetNumber = 0
+let requsetNumber = 0;
 
-
-Utils.mkdirSync(RAW_MARKDOWN_OUTPUT_DIR)
+Utils.mkdirSync(RAW_MARKDOWN_OUTPUT_DIR);
 
 const getProblemDetail = (questionsName, requsetNumber) => {
   const cachedFilesName = Utils.getDirsFileNameSync(RAW_MARKDOWN_OUTPUT_DIR);
@@ -31,7 +32,6 @@ const getProblemDetail = (questionsName, requsetNumber) => {
   } else {
     questionsName[requsetNumber] &&
       LeetCodeProvider.getProblemDetail(questionsName[requsetNumber])
-
         .then((markDown) => {
           if (markDown) {
             Logger.success(
@@ -51,17 +51,16 @@ const getProblemDetail = (questionsName, requsetNumber) => {
             Logger.error(`获取${questionsName[requsetNumber]} markdown 失败!`);
           }
         })
-    }
+        .catch(Logger.error)
+        .then(() => {
+          setTimeout(() => {
+            questionsName[requsetNumber] &&
+              getProblemDetail(questionsName, requsetNumber);
+          }, REQUEST_RATE);
+        });
+  }
+};
 
-}
-
-
-LeetCodeProvider.getProblemsTitle().then(questionsName => {
-
-    getProblemDetail(questionsName, requsetNumber)
-
-})
-
-
-
-
+LeetCodeProvider.getProblemsTitle().then((questionsName) => {
+  getProblemDetail(questionsName, requsetNumber);
+});

@@ -1,6 +1,4 @@
-// import decodeWays from "./91.decode-ways";
-// import implementQueueUsingStacks from "./232.implement-queue-using-stacks";
-import { db_collection } from './root.db'
+import { db_collection } from "./root.db";
 
 const tags = {
   dp: {
@@ -42,7 +40,6 @@ const company = {
     name: "阿里巴巴",
   },
 };
-
 
 export default {
   problems: db_collection,
