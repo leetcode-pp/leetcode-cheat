@@ -10,7 +10,7 @@ const {
 
 
 const genertateLeetcodeToJson = () => {
-  // console.time("genertateLeetcodeToJson");
+  console.time("genertateLeetcodeToJson");
 
   const rawMarkdowns = Utils.getDirsFileNameSync(
     RAW_MARKDOWN_OUTPUT_DIR
