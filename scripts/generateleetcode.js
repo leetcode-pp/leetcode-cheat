@@ -4,8 +4,10 @@ const {
   SUPPORT_LANGUAGE,
   DB_JSON_OUTPUT_DIR,
   RAW_MARKDOWN_OUTPUT_DIR,
-  ENGLISH_MARKDOWN_SIGN,
-} = require("./constants");
+} = require('./constants')
+
+
+
 
 const genertateLeetcodeToJson = () => {
   console.time("genertateLeetcodeToJson");
@@ -46,8 +48,9 @@ const genertateLeetcodeToJson = () => {
       });
     });
     markdown.replace(Utils.getSatelliteDataReg().pre, (noUseMatch, $1) => {
+
       preKnowledge.push({
-        text: $1,
+        text: $1.replace('-',''),
         link: null,
         color: "red",
       });

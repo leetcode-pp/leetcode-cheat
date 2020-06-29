@@ -33,7 +33,7 @@ module.exports = {
   /**
    *  抓取页面问题内容的dom元素选择器
    */
-  QUESTION_DOM_SELECTOR: ".js-navigation-item .content .js-navigation-open",
+  QUESTION_DOM_SELECTOR: ".position-relative.js-navigation-item .js-navigation-open",
 
   /**
    *  markdwon下载地址
