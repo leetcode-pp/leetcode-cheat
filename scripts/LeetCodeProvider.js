@@ -1,4 +1,3 @@
-const request = require("request");
 const Iconv = require("iconv-lite");
 const cheerio = require("cheerio");
 
@@ -21,8 +20,10 @@ module.exports = LeetCodeProvider = {
           .load(sHtml)(QUESTION_DOM_SELECTOR)
           .each((idx, ele) => titles.push(ele.attribs["title"]));
         Logger.success("获取问题列表成功");
-
-        return titles.filter((name) => !name.endsWith(ENGLISH_MARKDOWN_SIGN));
+        /** 
+         *  由于QUESTION_DOM_SELECTOR 所选择的结构包含非问题标签，获取title会是undefined，在此需将其过滤掉
+        */
+        return titles.filter(Boolean).filter((name) => !name.endsWith(ENGLISH_MARKDOWN_SIGN));
       })
       .catch((error) => {
         Logger.error("获取问题列表失败", error);
@@ -41,3 +42,5 @@ module.exports = LeetCodeProvider = {
       });
   },
 };
+
+LeetCodeProvider.getProblemsTitle()
