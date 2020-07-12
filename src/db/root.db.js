@@ -3,7 +3,7 @@
        "TwoSum":{
     "id": "1",
     "name": "TwoSum",
-    "company": [],
+    "company": ["百度", "字节", "百度", "腾讯"],
     "tags": [],
     "pre": [
         {
@@ -526,7 +526,7 @@
 "container-with-most-water":{
     "id": "11",
     "name": "container-with-most-water",
-    "company": [],
+    "company": ["字节"],
     "tags": [],
     "pre": [
         {
@@ -895,7 +895,7 @@
 "binary-tree-maximum-path-sum":{
     "id": "124",
     "name": "binary-tree-maximum-path-sum",
-    "company": [],
+    "company": ["字节"],
     "tags": [],
     "pre": [
         {
@@ -1581,7 +1581,7 @@
 "lru-cache":{
     "id": "146",
     "name": "lru-cache",
-    "company": [],
+    "company": ["百度", "字节"],
     "tags": [],
     "pre": [
         {
@@ -1613,7 +1613,7 @@
 "3-sum":{
     "id": "15",
     "name": "3-sum",
-    "company": [],
+    "company": ["阿里", "字节"],
     "tags": [],
     "pre": [
         {
@@ -2077,7 +2077,7 @@
 "addTwoNumbers":{
     "id": "2",
     "name": "addTwoNumbers",
-    "company": [],
+    "company": ["阿里","百度","腾讯"],
     "tags": [],
     "pre": [
         {
@@ -2265,7 +2265,7 @@
 "reverse-linked-list":{
     "id": "206",
     "name": "reverse-linked-list",
-    "company": [],
+    "company": ["阿里", "百度", "腾讯"],
     "tags": [],
     "pre": [
         {
@@ -2405,7 +2405,7 @@
 "MergeTwoSortedLists":{
     "id": "21",
     "name": "MergeTwoSortedLists",
-    "company": [],
+    "company": ["阿里", "字节", "腾讯"],
     "tags": [],
     "pre": [
         {
@@ -3353,7 +3353,7 @@
 "longestSubstringWithoutRepeatingCharacters":{
     "id": "3",
     "name": "longestSubstringWithoutRepeatingCharacters",
-    "company": [],
+    "company": ["阿里", "字节", "腾讯"],
     "tags": [],
     "pre": [
         {
@@ -4157,7 +4157,7 @@
 "median-of-two-sorted-array":{
     "id": "4",
     "name": "median-of-two-sorted-array",
-    "company": [],
+    "company": ["阿里", "百度", "腾讯"],
     "tags": [],
     "pre": [
         {
@@ -4284,7 +4284,7 @@
 "trapping-rain-water":{
     "id": "42",
     "name": "trapping-rain-water",
-    "company": [],
+    "company": ["字节"],
     "tags": [],
     "pre": [],
     "keyPoints": [
@@ -4784,7 +4784,7 @@
 "longest-palindromic-substring":{
     "id": "5",
     "name": "longest-palindromic-substring",
-    "company": [],
+    "company": ["阿里", "百度", "腾讯"],
     "tags": [],
     "pre": [
         {
@@ -5078,7 +5078,7 @@
 "maximum-sum-subarray-cn":{
     "id": "53",
     "name": "maximum-sum-subarray-cn",
-    "company": [],
+    "company": ["阿里", "百度", "字节", "腾讯"],
     "tags": [],
     "pre": [],
     "keyPoints": [
