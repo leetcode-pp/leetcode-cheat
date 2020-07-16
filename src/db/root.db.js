@@ -1525,7 +1525,7 @@
     "code": [
         {
             "language": "java",
-            "text": "\nclass Solution {\n    public int findTheLongestSubstring(String s) {\n\n        int len = s.length();\n\n        if (len == 0)\n            return 0;\n\n        int[][] preSum = new int[len][5];\n        int start = getIndex(s.charAt(0));\n        if (start != -1)\n            preSum[0][start]++;\n\n        // preSum\n        for (int i = 1; i < len; i++) {\n\n            int idx = getIndex(s.charAt(i));\n\n            for (int j = 0; j < 5; j++) {\n\n                if (idx == j)\n                    preSum[i][j] = preSum[i - 1][j] + 1;\n                else\n                    preSum[i][j] = preSum[i - 1][j];\n            }\n        }\n\n        for (int i = len - 1; i >= 0; i--) {\n\n            for (int j = 0; j < len - i; j++) {\n                if (checkValid(preSum, s, i, i + j))\n                    return i + 1\n            }\n        }\n        return 0\n    }\n\n\n    public boolean checkValid(int[][] preSum, String s, int left, int right) {\n\n        int idx = getIndex(s.charAt(left));\n\n        for (int i = 0; i < 5; i++)\n            if (((preSum[right][i] - preSum[left][i] + (idx == i ? 1 : 0)) & 1) == 1)\n                return false;\n\n        return true;\n    }\n    public int getIndex(char ch) {\n\n        if (ch == 'a')\n            return 0;\n        else if (ch == 'e')\n            return 1;\n        else if (ch == 'i')\n            return 2;\n        else if (ch == 'o')\n            return 3;\n        else if (ch == 'u')\n            return 4;\n        else\n            return -1;\n    }\n}\n"
+            "text": "\nclass Solution {\n    public int findTheLongestSubstring(String s) {\n\n        int len = s.length();\n\n        if (len == 0)\n            return 0;\n\n        int[][] preSum = new int[len][5];\n        int start = getIndex(s.charAt(0));\n        if (start != -1)\n            preSum[0][start]++;\n\n        // preSum\n        for (int i = 1; i < len; i++) {\n\n            int idx = getIndex(s.charAt(i));\n\n            for (int j = 0; j < 5; j++) {\n\n                if (idx == j)\n                    preSum[i][j] = preSum[i - 1][j] + 1;\n                else\n                    preSum[i][j] = preSum[i - 1][j];\n            }\n        }\n\n        for (int i = len - 1; i >= 0; i--) {\n\n            for (int j = 0; j < len - i; j++) {\n                if (checkValid(preSum, s, j, i + j))\n                    return i + 1;\n            }\n        }\n        return 0;\n    }\n\n\n    public boolean checkValid(int[][] preSum, String s, int left, int right) {\n\n        int idx = getIndex(s.charAt(left));\n\n        for (int i = 0; i < 5; i++)\n            if (((preSum[right][i] - preSum[left][i] + (idx == i ? 1 : 0)) & 1) == 1)\n                return false;\n\n        return true;\n    }\n    public int getIndex(char ch) {\n\n        if (ch == 'a')\n            return 0;\n        else if (ch == 'e')\n            return 1;\n        else if (ch == 'i')\n            return 2;\n        else if (ch == 'o')\n            return 3;\n        else if (ch == 'u')\n            return 4;\n        else\n            return -1;\n    }\n}\n"
         },
         {
             "language": "py",
@@ -2326,6 +2326,22 @@
         {
             "language": "js",
             "text": "\n/**\n * @param {string} s\n * @return {boolean}\n */\nvar isValid = function (s) {\n  let valid = true;\n  const stack = [];\n  const mapper = {\n    \"{\": \"}\",\n    \"[\": \"]\",\n    \"(\": \")\",\n  };\n\n  for (let i in s) {\n    const v = s[i];\n    if ([\"(\", \"[\", \"{\"].indexOf(v) > -1) {\n      stack.push(v);\n    } else {\n      const peak = stack.pop();\n      if (v !== mapper[peak]) {\n        return false;\n      }\n    }\n  }\n\n  if (stack.length > 0) return false;\n\n  return valid;\n};\n"
+        },
+        {
+            "language": "js",
+            "text": "\nvar isValid = function (s) {\n  while (s.includes(\"[]\") || s.includes(\"()\") || s.includes(\"{}\")) {\n    s = s.replace(\"[]\", \"\").replace(\"()\", \"\").replace(\"{}\", \"\");\n  }\n  s = s.replace(\"[]\", \"\").replace(\"()\", \"\").replace(\"{}\", \"\");\n  return s.length === 0;\n};\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\nclass Solution {\npublic:\n    bool isValid(string s) {\n        int top = -1;\n        for(int i =0;i<s.length();++i){\n            if(top<0 || !isMatch(s[top], s[i])){\n                ++top;\n                s[top] = s[i];\n            }else{\n                --top;\n            }\n        }\n        return top == -1;\n    }\n    bool isMatch(char c1, char c2){\n        if(c1 == '(' && c2 == ')') return true;\n        if(c1 == '[' && c2 == ']') return true;\n        if(c1 == '{' && c2 == '}') return true;\n        return false;\n    }\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\n    class Solution:\n        def isValid(self,s):\n          stack = []\n          map = {\n            \"{\":\"}\",\n            \"[\":\"]\",\n            \"(\":\")\"\n          }\n          for x in s:\n            if x in map:\n              stack.append(map[x])\n            else:\n              if len(stack)!=0:\n                top_element = stack.pop()\n                if x != top_element:\n                  return False\n                else:\n                  continue\n              else:\n                return False\n          return len(stack) == 0\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n     def isValid(self, s):\n\n        while '[]' in s or '()' in s or '{}' in s:\n            s = s.replace('[]','').replace('()','').replace('{}','')\n        return not len(s)\n"
         }
     ]
 },
@@ -2506,11 +2522,6 @@
             "text": " 链表",
             "link": null,
             "color": "red"
-        },
-        {
-            "text": "  ",
-            "link": null,
-            "color": "red"
         }
     ],
     "keyPoints": [
@@ -2538,11 +2549,11 @@
         },
         {
             "language": "js",
-            "text": "\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} head\n * @return {ListNode}\n */\nvar reverseList = function(head) {\n    if (!head || !head.next) return head;\n\n    let cur = head;\n    let pre = null;\n\n    while(cur) {\n        const next = cur.next;\n        cur.next = pre;\n        pre = cur;\n        cur = next;\n    }\n\n    return pre;\n};\n\n"
+            "text": "\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} head\n * @return {ListNode}\n */\nvar reverseList = function (head) {\n  if (!head || !head.next) return head;\n\n  let cur = head;\n  let pre = null;\n\n  while (cur) {\n    const next = cur.next;\n    cur.next = pre;\n    pre = cur;\n    cur = next;\n  }\n\n  return pre;\n};\n"
         },
         {
             "language": "js",
-            "text": "\nvar reverseList = function(head) {\n  // 递归结束条件\n  if (head === null || head.next === null) {\n    return head\n  }\n\n  // 递归反转 子链表\n  let newReverseList = reverseList(head.next)\n  // 获取原来链表的第 2 个节点 newReverseListTail\n  let newReverseListTail = head.next\n  // 调整原来头结点和第 2 个节点的指向\n  newReverseListTail.next = head\n  head.next = null\n\n  // 将调整后的链表返回\n  return newReverseList\n}\n"
+            "text": "\nvar reverseList = function (head) {\n  // 递归结束条件\n  if (head === null || head.next === null) {\n    return head;\n  }\n\n  // 递归反转 子链表\n  let newReverseList = reverseList(head.next);\n  // 获取原来链表的第 2 个节点 newReverseListTail\n  let newReverseListTail = head.next;\n  // 调整原来头结点和第 2 个节点的指向\n  newReverseListTail.next = head;\n  head.next = null;\n\n  // 将调整后的链表返回\n  return newReverseList;\n};\n"
         },
         {
             "language": "cpp",
@@ -3400,7 +3411,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n\n/*\n * @lc app=leetcode id=240 lang=javascript\n *\n * [240] Search a 2D Matrix II\n *\n * https://leetcode.com/problems/search-a-2d-matrix-ii/description/\n *\n * \n */\n/**\n * @param {number[][]} matrix\n * @param {number} target\n * @return {boolean}\n */\nvar searchMatrix = function(matrix, target) {\n    if (!matrix || matrix.length === 0) return 0;\n\n    let colIndex = 0;\n    let rowIndex = matrix.length - 1;\n    while(rowIndex > 0 && target < matrix[rowIndex][colIndex]) {\n        rowIndex --;\n    }\n\n    while(colIndex < matrix[0].length) {\n        if (target === matrix[rowIndex][colIndex]) return true;\n        if (target > matrix[rowIndex][colIndex]) {\n            colIndex ++;\n        } else if (rowIndex > 0){\n            rowIndex --;\n        } else {\n            return false;\n        }\n    }\n\n    return  false;\n};\n"
+            "text": "\n\n/*\n * @lc app=leetcode id=240 lang=javascript\n *\n * [240] Search a 2D Matrix II\n *\n * https://leetcode.com/problems/search-a-2d-matrix-ii/description/\n *\n * \n */\n/**\n * @param {number[][]} matrix\n * @param {number} target\n * @return {boolean}\n */\nvar searchMatrix = function(matrix, target) {\n    if (!matrix || matrix.length === 0) return false;\n\n    let colIndex = 0;\n    let rowIndex = matrix.length - 1;\n    while(rowIndex > 0 && target < matrix[rowIndex][colIndex]) {\n        rowIndex --;\n    }\n\n    while(colIndex < matrix[0].length) {\n        if (target === matrix[rowIndex][colIndex]) return true;\n        if (target > matrix[rowIndex][colIndex]) {\n            colIndex ++;\n        } else if (rowIndex > 0){\n            rowIndex --;\n        } else {\n            return false;\n        }\n    }\n\n    return  false;\n};\n"
         },
         {
             "language": "py",
@@ -3434,11 +3445,15 @@
         },
         {
             "language": "js",
-            "text": "\n/**\n * @param {ListNode} head\n * @param {number} k\n * @return {ListNode}\n */\nvar reverseKGroup = function(head, k) {\n  // 标兵\n  let dummy = new ListNode()\n  dummy.next = head\n  let [start, end] = [dummy, dummy.next]\n  let count = 0\n  while(end) {\n    count++\n    if (count % k === 0) {\n      start = reverseList(start, end.next)\n      end = start.next\n    } else {\n      end = end.next\n    }\n  }\n  return dummy.next\n\n  // 翻转stat -> end的链表\n  function reverseList(start, end) {\n    let [pre, cur] = [start, start.next]\n    const first = cur\n    while(cur !== end) {\n      let next = cur.next\n      cur.next = pre\n      pre = cur\n      cur = next\n    }\n    start.next = pre\n    first.next = cur\n    return first\n  }\n};\n\n"
+            "text": "\n/**\n * @param {ListNode} head\n * @param {number} k\n * @return {ListNode}\n */\nvar reverseKGroup = function (head, k) {\n  // 标兵\n  let dummy = new ListNode();\n  dummy.next = head;\n  let [start, end] = [dummy, dummy.next];\n  let count = 0;\n  while (end) {\n    count++;\n    if (count % k === 0) {\n      start = reverseList(start, end.next);\n      end = start.next;\n    } else {\n      end = end.next;\n    }\n  }\n  return dummy.next;\n\n  // 翻转stat -> end的链表\n  function reverseList(start, end) {\n    let [pre, cur] = [start, start.next];\n    const first = cur;\n    while (cur !== end) {\n      let next = cur.next;\n      cur.next = pre;\n      pre = cur;\n      cur = next;\n    }\n    start.next = pre;\n    first.next = cur;\n    return first;\n  }\n};\n"
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def reverseKGroup(self, head: ListNode, k: int) -> ListNode:\n        if head is None or k < 2:\n            return head\n        dummy = ListNode(0)\n        dummy.next = head\n        start = dummy\n        end = head\n        count = 0\n        while end:\n            count += 1\n            if count % k == 0:\n                start = self.reverse(start, end.next)\n                end = start.next\n            else:\n                end = end.next\n        return dummy.next\n\n    def reverse(self, start, end):\n        prev, curr = start, start.next\n        first = curr\n        while curr != end:\n            temp = curr.next\n            curr.next = prev\n            prev = curr\n            curr = temp\n        start.next = prev\n        first.next = curr\n        return first\n"
+            "text": "\nclass Solution:\n    def reverseKGroup(self, head: ListNode, k: int) -> ListNode:\n        if head is None or k < 2:\n            return head\n        dummy = ListNode(0)\n        dummy.next = head\n        start = dummy\n        end = head\n        count = 0\n        while end:\n            count += 1\n            if count % k == 0:\n                start = self.reverse(start, end.next)\n                # end 调到下一个\n                end = start.next\n            else:\n                end = end.next\n        return dummy.next\n    # (start, end） 左右都开放\n\n    def reverse(self, start, end):\n        prev, curr = start, start.next\n        first = curr\n        # 反转\n        while curr != end:\n            next = curr.next\n            curr.next = prev\n            prev = curr\n            curr = next\n        # 将反转后的链表添加到原链表中\n        start.next = prev\n        first.next = end\n        # 返回反转前的头， 也就是反转后的尾部\n        return first\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def reverseKGroup(self, head: ListNode, k: int) -> ListNode:\n        if head is None or k < 2:\n            return head\n        dummy = ListNode(0)\n        dummy.next = head\n        pre = dummy\n        cur = head\n        count = 0\n        while cur:\n            count += 1\n            if count % k == 0:\n                pre = self.reverse(pre, cur.next)\n                # end 调到下一个位置\n                cur = pre.next\n            else:\n                cur = cur.next\n        return dummy.next\n    # (p1, p4） 左右都开放\n\n    def reverse(self, p1, p4):\n        prev, curr = p1, p1.next\n        p2 = curr\n        # 反转\n        while curr != p4:\n            next = curr.next\n            curr.next = prev\n            prev = curr\n            curr = next\n        # 将反转后的链表添加到原链表中\n        # prev 相当于 p3\n        p1.next = prev\n        p2.next = p4\n        # 返回反转前的头， 也就是反转后的尾部\n        return p2\n\n# @lc code=end\n\n"
         }
     ]
 },
@@ -4044,7 +4059,7 @@
             "color": "blue"
         },
         {
-            "text": "1],因此,需要检查越界;3.第4点特征最容易遗漏,还有就是不需要检查越界,因为根据定义可知:i>=dp[i],所以dp[i",
+            "text": "1],因此,需要检查越界;2.第4点特征最容易遗漏,还有就是不需要检查越界,因为根据定义可知:i>=dp[i],所以dp[i",
             "link": null,
             "color": "blue"
         },
@@ -4057,12 +4072,32 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/32.longest-valid-parentheses.md",
     "code": [
         {
+            "language": "java",
+            "text": "\npublic class Solution {\n    public int longestValidParentheses(String s) {\n        int left = 0, right = 0, maxlength = 0;\n        for (int i = 0; i < s.length(); i++) {\n            if (s.charAt(i) == '(') {\n                left++;\n            } else {\n                right++;\n            }\n            if (left == right) {\n                maxlength = Math.max(maxlength, left + right);\n            }\n            if (right > left) {\n                left = right = 0;\n            }\n        }\n        left = right = 0;\n        for (int i = s.length() - 1; i >= 0; i--) {\n            if (s.charAt(i) == '(') {\n                left++;\n            } else {\n                right++;\n            }\n            if (left == right) {\n                maxlength = Math.max(maxlength, left + right);\n            }\n            if (left > right) {\n                left = right = 0;\n            }\n        }\n        return maxlength;\n    }\n}\n"
+        },
+        {
             "language": "js",
-            "text": "\n// 用栈来解\nvar longestValidParentheses = function(s) {\n  let stack = new Array()\n  let longest = 0\n  stack.push(-1)\n  for(let i = 0; i < s.length; i++) {\n    if (s[i] === '(') {\n      stack.push(i)\n    } else {\n      stack.pop()\n      if (stack.length === 0) {\n        stack.push(i)\n      } else {\n        longest = Math.max(longest, i - stack[stack.length - 1])\n      }\n    }\n  }\n  return longest\n};\n"
+            "text": "\n// 用栈来解\nvar longestValidParentheses = function (s) {\n  let stack = new Array();\n  let longest = 0;\n  stack.push(-1);\n  for (let i = 0; i < s.length; i++) {\n    if (s[i] === \"(\") {\n      stack.push(i);\n    } else {\n      stack.pop();\n      if (stack.length === 0) {\n        stack.push(i);\n      } else {\n        longest = Math.max(longest, i - stack[stack.length - 1]);\n      }\n    }\n  }\n  return longest;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def longestValidParentheses(self, s: str) -> int:\n        n = len(s)\n        ans = 0\n\n        def validCnt(start):\n            # cnt 为 ) 的数量减去 ( 的数量\n            cnt = 0\n            ans = 0\n            for i in range(start, n):\n                if s[i] == '(':\n                    cnt += 1\n                if s[i] == ')':\n                    cnt -= 1\n                if cnt < 0:\n                    return i - start\n                if cnt == 0:\n                    ans = max(ans, i - start + 1)\n            return ans\n        for i in range(n):\n            ans = max(ans, validCnt(i))\n\n        return ans\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def longestValidParentheses(self, s: str) -> int:\n        if not s:\n            return 0\n        res = 0\n        stack = [-1]\n        for i in range(len(s)):\n            if s[i] == \"(\":\n                stack.append(i)\n            else:\n                stack.pop()\n                if not stack:\n                    stack.append(i)\n                else:\n                    res = max(res, i - stack[-1])\n        return res\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def longestValidParentheses(self, s: str) -> int:\n        ans = l = r = 0\n        for c in s:\n            if c == '(':\n                l += 1\n            else:\n                r += 1\n            if l == r:\n                ans = max(ans, l + r)\n            if r > l:\n                l = r = 0\n        l = r = 0\n        for c in s[::-1]:\n            if c == '(':\n                l += 1\n            else:\n                r += 1\n            if l == r:\n                ans = max(ans, l + r)\n            if r < l:\n                l = r = 0\n\n        return ans\n"
         },
         {
             "language": "py",
             "text": "\ns = '(())())'\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def longestValidParentheses(self, s: str) -> int:\n        mlen = 0\n        slen = len(s)\n        dp = [0] * (slen + 1)\n        for i in range(1, len(s) + 1):\n            # 有效的括号对不可能会以'('结尾的\n            if s[i - 1] == '(':\n                continue\n\n            left_paren = i - 2 - dp[i - 1]\n            if left_paren >= 0 and s[left_paren] == '(':\n                dp[i] = dp[i - 1] + 2\n\n                # 拼接有效括号对\n                if dp[i - dp[i]]:\n                    dp[i] += dp[i - dp[i]]\n\n                # 更新最大有效扩对长度\n                if dp[i] > mlen:\n                    mlen = dp[i]\n\n        return mlen\n"
         }
     ]
 },
@@ -4756,7 +4791,23 @@
     "id": "42",
     "name": "trapping-rain-water",
     "company": [],
-    "pre": [],
+    "pre": [
+        {
+            "text": " 空间换时间",
+            "link": null,
+            "color": "red"
+        },
+        {
+            "text": " 双指针",
+            "link": null,
+            "color": "red"
+        },
+        {
+            "text": " 单调栈",
+            "link": null,
+            "color": "red"
+        }
+    ],
     "keyPoints": [
         {
             "text": "建模`h[i]=Math.min(左边柱子最大值,右边柱子最大值)`(h为下雨之后的水位)",
@@ -4768,15 +4819,27 @@
     "code": [
         {
             "language": "js",
-            "text": "\n\nfor(let i = 0; i < height.length; i++) {\n    area += (h[i] - height[i]) * 1; // h为下雨之后的水位\n}\n\n"
+            "text": "\nfor (let i = 0; i < height.length; i++) {\n  area += (h[i] - height[i]) * 1; // h为下雨之后的水位\n}\n"
         },
         {
             "language": "js",
-            "text": "\n\n/*\n * @lc app=leetcode id=42 lang=javascript\n *\n * [42] Trapping Rain Water\n *\n */\n/**\n * @param {number[]} height\n * @return {number}\n */\nvar trap = function(height) {\n    let max = 0;\n    let volumn = 0;\n    const leftMax = [];\n    const rightMax = [];\n\n    for(let i = 0; i < height.length; i++) {\n        leftMax[i] = max = Math.max(height[i], max);\n    }\n\n    max = 0;\n\n    for(let i = height.length - 1; i >= 0; i--) {\n        rightMax[i] = max = Math.max(height[i], max);\n    }\n\n    for(let i = 0; i < height.length; i++) {\n        volumn = volumn +  Math.min(leftMax[i], rightMax[i]) - height[i]\n    }\n\n    return volumn;\n};\n\n"
+            "text": "\n/*\n * @lc app=leetcode id=42 lang=javascript\n *\n * [42] Trapping Rain Water\n *\n */\n/**\n * @param {number[]} height\n * @return {number}\n */\nvar trap = function (height) {\n  let max = 0;\n  let volume = 0;\n  const leftMax = [];\n  const rightMax = [];\n\n  for (let i = 0; i < height.length; i++) {\n    leftMax[i] = max = Math.max(height[i], max);\n  }\n\n  max = 0;\n\n  for (let i = height.length - 1; i >= 0; i--) {\n    rightMax[i] = max = Math.max(height[i], max);\n  }\n\n  for (let i = 0; i < height.length; i++) {\n    volume = volume + Math.min(leftMax[i], rightMax[i]) - height[i];\n  }\n\n  return volume;\n};\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\nint trap(vector<int>& heights)\n{\n\tif(heights == null)\n\t\treturn 0;\n    int ans = 0;\n    int size = heights.size();\n    vector<int> left_max(size), right_max(size);\n    left_max[0] = heights[0];\n    for (int i = 1; i < size; i++) {\n        left_max[i] = max(heights[i], left_max[i - 1]);\n    }\n    right_max[size - 1] = heights[size - 1];\n    for (int i = size - 2; i >= 0; i--) {\n        right_max[i] = max(heights[i], right_max[i + 1]);\n    }\n    for (int i = 1; i < size - 1; i++) {\n        ans += min(left_max[i], right_max[i]) - heights[i];\n    }\n    return ans;\n}\n\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\n\nclass Solution {\npublic:\n    int trap(vector<int>& heights)\n{\n    int left = 0, right = heights.size() - 1;\n    int ans = 0;\n    int left_max = 0, right_max = 0;\n    while (left < right) {\n        if (heights[left] < heights[right]) {\n            heights[left] >= left_max ? (left_max = heights[left]) : ans += (left_max - heights[left]);\n            ++left;\n        }\n        else {\n            heights[right] >= right_max ? (right_max = heights[right]) : ans += (right_max - heights[right]);\n            --right;\n        }\n    }\n    return ans;\n}\n\n};\n"
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def trap(self, heights: List[int]) -> int:\n        n = len(heights)\n        l, r = [0] * (n + 1), [0] * (n + 1)\n        ans = 0\n        for i in range(1, len(heights) + 1):\n            l[i] = max(l[i - 1], heights[i - 1])\n        for i in range(len(heights) - 1, 0, -1):\n            r[i] = max(r[i + 1], heights[i])\n        for i in range(len(heights)):\n            ans += max(0, min(l[i + 1], r[i]) - heights[i])\n        return ans     \n"
+            "text": "\nclass Solution:\n    def trap(self, heights: List[int]) -> int:\n        n = len(heights)\n        l, r = [0] * (n + 1), [0] * (n + 1)\n        ans = 0\n        for i in range(1, len(heights) + 1):\n            l[i] = max(l[i - 1], heights[i - 1])\n        for i in range(len(heights) - 1, 0, -1):\n            r[i] = max(r[i + 1], heights[i])\n        for i in range(len(heights)):\n            ans += max(0, min(l[i + 1], r[i]) - heights[i])\n        return ans\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def trap(self, heights: List[int]) -> int:\n        n = len(heights)\n        l_max = r_max = 0\n        l, r = 0, n - 1\n        ans = 0\n        while l < r:\n            if heights[l] < heights[r]:\n                if heights[l] < l_max:\n                    ans += l_max - heights[l]\n                else:\n                    l_max = heights[l]\n                l += 1\n            else:\n                if heights[r] < r_max:\n                    ans += r_max - heights[r]\n                else:\n                    r_max = heights[r]\n                r -= 1\n        return ans\n"
         }
     ]
 },
@@ -5999,6 +6062,87 @@
         }
     ]
 },
+"unique-paths-ii":{
+    "id": "63",
+    "name": "unique-paths-ii",
+    "company": [],
+    "pre": [
+        {
+            "text": " 动态规划",
+            "link": null,
+            "color": "red"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "记忆化递归",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "基本动态规划问题",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "空间复杂度可以进一步优化到O(n),这会是一个考点",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/63.unique-paths-ii.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:\n        m = len(obstacleGrid)\n        n = len(obstacleGrid[0])\n        if obstacleGrid[0][0]:\n            return 0\n\n        dp = [[0] * (n + 1) for _ in range(m + 1)]\n        dp[1][1] = 1\n\n        for i in range(1, m + 1):\n            for j in range(1, n + 1):\n                if i == 1 and j == 1:\n                    continue\n                if obstacleGrid[i - 1][j - 1] == 0:\n                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1]\n                else:\n                    dp[i][j] = 0\n        return dp[m][n]\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:\n        m = len(obstacleGrid)\n        n = len(obstacleGrid[0])\n        if obstacleGrid[0][0]:\n            return 0\n\n        dp = [0] * (n + 1)\n        dp[1] = 1\n        for i in range(1, m + 1):\n            for j in range(1, n + 1):\n                if obstacleGrid[i - 1][j - 1] == 0:\n                    dp[j] += dp[j - 1]\n                else:\n                    dp[j] = 0\n        return dp[-1]\n"
+        }
+    ]
+},
+"maximum-length-of-repeated-subarray":{
+    "id": "718",
+    "name": "maximum-length-of-repeated-subarray",
+    "company": [],
+    "pre": [
+        {
+            "text": " 哈希表",
+            "link": null,
+            "color": "red"
+        },
+        {
+            "text": " 数组",
+            "link": null,
+            "color": "red"
+        },
+        {
+            "text": " 二分查找",
+            "link": null,
+            "color": "red"
+        },
+        {
+            "text": " 动态规划",
+            "link": null,
+            "color": "red"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "dp建模套路",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/718.maximum-length-of-repeated-subarray.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def findLength(self, A, B):\n        m, n = len(A), len(B)\n        ans = 0\n        dp = [[0 for _ in range(n + 1)] for _ in range(m + 1)]\n        for i in range(1, m + 1):\n            for j in range(1, n + 1):\n                if A[i - 1] == B[j - 1]:\n                    dp[i][j] = dp[i - 1][j - 1] + 1\n                    ans = max(ans, dp[i][j])\n        return ans\n"
+        }
+    ]
+},
 "accounts-merge":{
     "id": "721",
     "name": "accounts-merge",
@@ -6148,6 +6292,42 @@
         }
     ]
 },
+"is-graph-bipartite":{
+    "id": "785",
+    "name": "is-graph-bipartite",
+    "company": [],
+    "pre": [
+        {
+            "text": " 图的遍历",
+            "link": null,
+            "color": "red"
+        },
+        {
+            "text": " DFS",
+            "link": null,
+            "color": "red"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "图的建立和遍历",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "colors数组",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/785.is-graph-bipartite.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def dfs(self, grid, colors, i, color, N):\n        colors[i] = color\n        for j in range(N):\n            if grid[i][j] == 1:\n                if colors[j] == color:\n                    return False\n                if colors[j] == 0 and not self.dfs(grid, colors, j, -1 * color, N):\n                    return False\n        return True\n\n    def isBipartite(self, graph: List[List[int]]) -> bool:\n        N = len(graph)\n        grid = [[0] * N for _ in range(N)]\n        colors = [0] * N\n        for i in range(N):\n            for j in graph[i]:\n                grid[i][j] = 1\n        for i in range(N):\n            if colors[i] == 0 and not self.dfs(grid, colors, i, 1, N):\n                return False\n        return True\n"
+        }
+    ]
+},
 "word-search-en":{
     "id": "79",
     "name": "word-search-en",
@@ -6158,7 +6338,7 @@
     "code": [
         {
             "language": "java",
-            "text": "\npublic class LC79WordSearch {\n  public boolean exist(char[][] board, String word) {\n    if (board == null || board.length == 0 || board[0].length == 0\n        || word == null || word.length() == 0) return true;\n    int rows = board.length;\n    int cols = board[0].length;\n    for (int r = 0; r < rows; r++) {\n      for (int c = 0; c < cols; c++) {\n        // scan board, start with word first character \n        if (board[r][c] == word.charAt(0)) {\n          if (helper(board, word, r, c, 0)) {\n            return true;\n          }\n        }\n      }\n    }\n    return false;\n  }\n  \n  private boolean helper(char[][] board, String word, int r, int c, int start) {\n    // already match word all characters, return true\n    if (start == word.length()) return true;\n    if (!isValid(board, r, c) ||\n        board[r][c] != word.charAt(start)) return false;\n    // mark visited\n    board[r][c] = '*';\n    boolean res = helper(board, word, r + 1, c, start + 1)\n        ||  helper(board, word, r, c + 1, start + 1)\n        ||  helper(board, word, r - 1, c, start + 1)\n        ||  helper(board, word, r, c - 1, start + 1);\n    // backtracking to start position\n    board[r][c] = word.charAt(start);\n    return res;\n  }\n  \n  private boolean isValid(char[][] board, int r, int c) {\n    return r >= 0 && r < board.length && c >= 0 && c < board[0].length;\n  }\n}\n"
+            "text": "\npublic class LC79WordSearch {\n  public boolean exist(char[][] board, String word) {\n    if (board == null || word == null) return false;\n    if (word.length() == 0) return true;\n    if (board.length == 0) return false;\n    int rows = board.length;\n    int cols = board[0].length;\n    for (int r = 0; r < rows; r++) {\n      for (int c = 0; c < cols; c++) {\n        // scan board, start with word first character \n        if (board[r][c] == word.charAt(0)) {\n          if (helper(board, word, r, c, 0)) {\n            return true;\n          }\n        }\n      }\n    }\n    return false;\n  }\n  \n  private boolean helper(char[][] board, String word, int r, int c, int start) {\n    // already match word all characters, return true\n    if (start == word.length()) return true;\n    if (!isValid(board, r, c) ||\n        board[r][c] != word.charAt(start)) return false;\n    // mark visited\n    board[r][c] = '*';\n    boolean res = helper(board, word, r + 1, c, start + 1)\n        ||  helper(board, word, r, c + 1, start + 1)\n        ||  helper(board, word, r - 1, c, start + 1)\n        ||  helper(board, word, r, c - 1, start + 1);\n    // backtracking to start position\n    board[r][c] = word.charAt(start);\n    return res;\n  }\n  \n  private boolean isValid(char[][] board, int r, int c) {\n    return r >= 0 && r < board.length && c >= 0 && c < board[0].length;\n  }\n}\n"
         },
         {
             "language": "js",
@@ -6207,7 +6387,7 @@
     "code": [
         {
             "language": "java",
-            "text": "\npublic class LC79WordSearch {\n  public boolean exist(char[][] board, String word) {\n    if (board == null || board.length == 0 || board[0].length == 0\n        || word == null || word.length() == 0) return true;\n    int rows = board.length;\n    int cols = board[0].length;\n    for (int r = 0; r < rows; r++) {\n      for (int c = 0; c < cols; c++) {\n        // scan board, start with word first character\n        if (board[r][c] == word.charAt(0)) {\n          if (helper(board, word, r, c, 0)) {\n            return true;\n          }\n        }\n      }\n    }\n    return false;\n  }\n\n  private boolean helper(char[][] board, String word, int r, int c, int start) {\n    // already match word all characters, return true\n    if (start == word.length()) return true;\n    if (!isValid(board, r, c) ||\n        board[r][c] != word.charAt(start)) return false;\n    // mark visited\n    board[r][c] = '*';\n    boolean res = helper(board, word, r - 1, c, start + 1) // 上\n        ||  helper(board, word, r + 1, c, start + 1)       // 下\n        ||  helper(board, word, r, c - 1, start + 1)       // 左\n        ||  helper(board, word, r, c + 1, start + 1);      // 右\n    // backtracking to start position\n    board[r][c] = word.charAt(start);\n    return res;\n  }\n\n  private boolean isValid(char[][] board, int r, int c) {\n    return r >= 0 && r < board.length && c >= 0 && c < board[0].length;\n  }\n}\n"
+            "text": "\npublic class LC79WordSearch {\n  public boolean exist(char[][] board, String word) {\n    if (board == null || word == null) return false;\n    if (word.length() == 0) return true;\n    if (board.length == 0) return false;\n    int rows = board.length;\n    int cols = board[0].length;\n    for (int r = 0; r < rows; r++) {\n      for (int c = 0; c < cols; c++) {\n        // scan board, start with word first character\n        if (board[r][c] == word.charAt(0)) {\n          if (helper(board, word, r, c, 0)) {\n            return true;\n          }\n        }\n      }\n    }\n    return false;\n  }\n\n  private boolean helper(char[][] board, String word, int r, int c, int start) {\n    // already match word all characters, return true\n    if (start == word.length()) return true;\n    if (!isValid(board, r, c) ||\n        board[r][c] != word.charAt(start)) return false;\n    // mark visited\n    board[r][c] = '*';\n    boolean res = helper(board, word, r - 1, c, start + 1) // 上\n        ||  helper(board, word, r + 1, c, start + 1)       // 下\n        ||  helper(board, word, r, c - 1, start + 1)       // 左\n        ||  helper(board, word, r, c + 1, start + 1);      // 右\n    // backtracking to start position\n    board[r][c] = word.charAt(start);\n    return res;\n  }\n\n  private boolean isValid(char[][] board, int r, int c) {\n    return r >= 0 && r < board.length && c >= 0 && c < board[0].length;\n  }\n}\n"
         },
         {
             "language": "js",
@@ -6444,8 +6624,24 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/875.koko-eating-bananas.md",
     "code": [
         {
+            "language": "java",
+            "text": "\npublic int binarySearch(int[] nums, int target) {\n    // 左右都闭合的区间 [l, r]\n    int left = 0; \n    int right = nums.length - 1;\n\n    while(left <= right) {\n        int mid = left + (right - left) / 2;\n        if(nums[mid] == target)\n            return mid; \n        else if (nums[mid] < target)\n\t\t\t// 搜索区间变为 [mid+1, right]\n            left = mid + 1;\n        else if (nums[mid] > target)\n            // 搜索区间变为 [left, mid - 1]\n            right = mid - 1;\n    }\n    return -1;\n}\n"
+        },
+        {
+            "language": "java",
+            "text": "\npublic int binarySearchLeft(int[] nums, int target) {\n\t// 搜索区间为 [left, right]\n    int left = 0;\n    int right = nums.length - 1;\n    while (left <= right) {\n        int mid = left + (right - left) / 2;\n        if (nums[mid] < target) {\n            // 搜索区间变为 [mid+1, right]\n            left = mid + 1;\n        } else if (nums[mid] > target) {\n            // 搜索区间变为 [left, mid-1]\n            right = mid - 1;\n        } else if (nums[mid] == target) {\n            // 收缩右边界\n            right = mid - 1;\n        }\n    }\n    // 检查是否越界\n    if (left >= nums.length || nums[left] != target)\n        return -1;\n    return left;\n}\n"
+        },
+        {
+            "language": "java",
+            "text": "\npublic int binarySearchRight(int[] nums, int target) {\n\t// 搜索区间为 [left, right]\n    int left = 0\n    int right = nums.length - 1;\n    while (left <= right) {\n        int mid = left + (right - left) / 2;\n        if (nums[mid] < target) {\n\t\t\t// 搜索区间变为 [mid+1, right]\n            left = mid + 1;\n        } else if (nums[mid] > target) {\n\t\t\t// 搜索区间变为 [left, mid-1]\n            right = mid - 1;\n        } else if (nums[mid] == target) {\n            // 收缩左边界\n            left = mid + 1;\n        }\n    }\n    // 检查是否越界\n    if (right < 0 || nums[right] != target)\n        return -1;\n    return right;\n}\n"
+        },
+        {
             "language": "js",
-            "text": "\n\nfunction canEatAllBananas(piles, H, mid) {\n     let h = 0;\n     for(let pile of piles) {\n        h += Math.ceil(pile / mid);\n     }\n\n     return h <= H;\n }\n/**\n * @param {number[]} piles\n * @param {number} H\n * @return {number}\n */\nvar minEatingSpeed = function(piles, H) {\n    let lo = 1,\n    hi = Math.max(...piles);\n\n    while(lo <= hi) {\n        let mid = lo + ((hi - lo) >> 1);\n        if (canEatAllBananas(piles, H, mid)) {\n            hi = mid - 1;\n        } else {\n            lo = mid + 1;\n        }\n    }\n\n    return lo; //  不能选择hi\n};\n"
+            "text": "\n\nfunction canEatAllBananas(piles, H, mid) {\n     let h = 0;\n     for(let pile of piles) {\n        h += Math.ceil(pile / mid);\n     }\n\n     return h <= H;\n }\n/**\n * @param {number[]} piles\n * @param {number} H\n * @return {number}\n */\nvar minEatingSpeed = function(piles, H) {\n    let lo = 1,\n    hi = Math.max(...piles);\n    // [l, r) ， 左闭右开的好处是如果能找到，那么返回 l 和 r 都是一样的，因为最终 l 等于 r。\n    while(lo <= hi) {\n        let mid = lo + ((hi - lo) >> 1);\n        if (canEatAllBananas(piles, H, mid)) {\n            hi = mid - 1;\n        } else {\n            lo = mid + 1;\n        }\n    }\n\n    return lo; //  不能选择hi\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def canEatAllBananas(self, piles, H, K):\n        t = 0\n        for pile in piles:\n            t += math.ceil(pile / K)\n        return t <= H\n    def minEatingSpeed(self, piles: List[int], H: int) -> int:\n        l, r = 1, max(piles)\n        # [l, r) ， 左闭右开的好处是如果能找到，那么返回 l 和 r 都是一样的，因为最终 l 等于 r。 \n        while l < r:\n            mid = (l + r) >> 1\n            if self.canEatAllBananas(piles, H, mid):\n                r = mid\n            else:\n                l = mid + 1\n        return l\n\n"
         }
     ]
 },
@@ -6515,6 +6711,60 @@
         {
             "language": "py",
             "text": "\nclass Solution:\n    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:\n        \"\"\"\n        Do not return anything, modify nums1 in-place instead.\n        \"\"\"\n        # 整体思路相似，只不过没有使用 current 指针记录当前填补位置\n        while m > 0 and n > 0:\n            if nums1[m-1] <= nums2[n-1]:\n                nums1[m+n-1] = nums2[n-1]\n                n -= 1\n            else:\n                nums1[m+n-1] = nums1[m-1]\n                m -=1\n        \"\"\"\n        由于没有使用 current，第一步比较结束后有两种情况:\n            1. 指针 m>0，n=0，此时不需要做任何处理\n            2. 指针 n>0，m=0，此时需要将 nums2 指针左侧元素全部拷贝到 nums1 的前 n 位\n        \"\"\"\n        if n > 0:\n            nums1[:n] = nums2[:n]\n"
+        }
+    ]
+},
+"possible-bipartition":{
+    "id": "886",
+    "name": "possible-bipartition",
+    "company": [],
+    "pre": [
+        {
+            "text": " 图的遍历",
+            "link": null,
+            "color": "red"
+        },
+        {
+            "text": " DFS",
+            "link": null,
+            "color": "red"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "二分图",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "染色法",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "图的建立和遍历",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "colors数组",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/886.possible-bipartition.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n        graph = [[0] * N for i in range(N)]\n        for a, b in dislikes:\n            graph[a - 1][b - 1] = 1\n            graph[b - 1][a - 1] = 1\n"
+        },
+        {
+            "language": "py",
+            "text": "\n# 其中j 表示当前是第几个人，N表示总人数。 dfs的功能就是根据colors和graph分配组，true表示可以分，false表示不可以，具体代码见代码区。\nif colors[j] == 0 and not self.dfs(graph, colors, j, -1 * color, N)\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def dfs(self, graph, colors, i, color, N):\n        colors[i] = color\n        for j in range(N):\n            # dislike eachother\n            if graph[i][j] == 1:\n                if colors[j] == color:\n                    return False\n                if colors[j] == 0 and not self.dfs(graph, colors, j, -1 * color, N):\n                    return False\n        return True\n\n    def possibleBipartition(self, N: int, dislikes: List[List[int]]) -> bool:\n        graph = [[0] * N for i in range(N)]\n        colors = [0] * N\n        for a, b in dislikes:\n            graph[a - 1][b - 1] = 1\n            graph[b - 1][a - 1] = 1\n        for i in range(N):\n            if colors[i] == 0 and not self.dfs(graph, colors, i, 1, N):\n                return False\n        return True\n\n"
         }
     ]
 },
@@ -6732,6 +6982,11 @@
     ],
     "keyPoints": [
         {
+            "text": "四点法",
+            "link": null,
+            "color": "blue"
+        },
+        {
             "text": "链表的基本操作",
             "link": null,
             "color": "blue"
@@ -6759,16 +7014,12 @@
             "text": "\n/*\n * @lc app=leetcode id=92 lang=javascript\n *\n * [92] Reverse Linked List II\n *\n * https://leetcode.com/problems/reverse-linked-list-ii/description/\n */\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} head\n * @param {number} m\n * @param {number} n\n * @return {ListNode}\n */\nvar reverseBetween = function (head, m, n) {\n  // 虚拟节点，简化操作\n  const dummyHead = {\n    next: head,\n  };\n\n  let cur = dummyHead.next; // 当前遍历的节点\n  let pre = cur; // 因为要反转，因此我们需要记住前一个节点\n  let index = 0; // 链表索引，用来判断是否是特殊位置（头尾位置）\n\n  // 上面提到的四个特殊节点\n  let p1 = (p2 = p3 = p4 = null);\n\n  while (cur) {\n    const next = cur.next;\n    index++;\n\n    // 对 (m - n) 范围内的节点进行反转\n    if (index > m && index <= n) {\n      cur.next = pre;\n    }\n\n    // 下面四个if都是边界, 用于更新四个特殊节点的值\n    if (index === m - 1) {\n      p1 = cur;\n    }\n    if (index === m) {\n      p2 = cur;\n    }\n\n    if (index === n) {\n      p3 = cur;\n    }\n\n    if (index === n + 1) {\n      p4 = cur;\n    }\n\n    pre = cur;\n\n    cur = next;\n  }\n\n  // 两个链表合并起来\n  (p1 || dummyHead).next = p3; // 特殊情况需要考虑\n  p2.next = p4;\n\n  return dummyHead.next;\n};\n"
         },
         {
-            "language": "cpp",
-            "text": "\n/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     ListNode *next;\n *     ListNode(int x) : val(x), next(NULL) {}\n * };\n */\nclass Solution {\npublic:\n    ListNode* reverseBetween(ListNode* head, int s, int e) {\n        if (s == e) return head;\n        ListNode* prev = nullptr;\n        auto cur = head;\n        for (int i = 1; i < s; ++i) {\n            prev = cur;\n            cur = cur->next;\n        }\n        // 此时各指针指向：\n        // x -> x -> x -> x  -> 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> x -> x -> x ->\n        // ^head          ^prev ^cur\n        ListNode* p = nullptr;\n        auto c = cur;\n        auto tail = c;\n        ListNode* n = nullptr;\n        for (int i = s; i <= e; ++i) {\n            n = c->next;\n            c->next = p;\n            p = c;\n            c = n;\n        }\n        // 此时各指针指向：\n        // x -> x -> x -> x     8 -> 7 -> 6 -> 5 -> 4 -> 3 -> 2 -> 1     x -> x -> x ->\n        // ^head          ^prev ^p                                 ^cur  ^c\n        //                                                         ^tail\n        if (prev != nullptr) { // 若指向前一个节点的指针不为空，则说明s在链表中间（不是头节点）\n            prev->next = p;\n            cur->next = c;\n            return head;\n        } else {\n            if (tail != nullptr) tail->next = c;\n            return p;\n        }\n    }\n};\n"
+            "language": "py",
+            "text": "\nclass Solution:\n    def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:\n        pre = None\n        cur = head\n        i = 0\n        p1 = p2 = p3 = p4 = None\n        # 一坨逻辑\n        if p1:\n            p1.next = p3\n        else:\n            dummy.next = p3\n        if p2:\n            p2.next = p4\n        return head\n"
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:\n        pre = None\n        cur = head\n        i = 0\n        p1 = p2 = p3 = p4 = None\n        # ...\n        if p1:\n            p1.next = p3\n        else:\n            dummy.next = p3\n        if p2:\n            p2.next = p4\n        return head\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n   def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:\n       pre = None\n       cur = head\n       i = 0\n       p1 = p2 = p3 = p4 = None\n       dummy = ListNode(0)\n       dummy.next = head\n\n       # ...\n\n       if p1:\n           p1.next = p3\n       else:\n           dummy.next = p3\n       if p2:\n           p2.next = p4\n\n       return dummy.next\n"
+            "text": "\nclass Solution:\n   def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:\n       pre = None\n       cur = head\n       i = 0\n       p1 = p2 = p3 = p4 = None\n       dummy = ListNode(0)\n       dummy.next = head\n       # 一坨逻辑\n       if p1:\n           p1.next = p3\n       else:\n           dummy.next = p3\n       if p2:\n           p2.next = p4\n\n       return dummy.next\n"
         },
         {
             "language": "py",
@@ -6855,7 +7106,7 @@
         },
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=94 lang=javascript\n *\n * [94] Binary Tree Inorder Traversal\n *\n * https://leetcode.com/problems/binary-tree-inorder-traversal/description/\n *\n * algorithms\n * Medium (55.22%)\n * Total Accepted:    422.4K\n * Total Submissions: 762.1K\n * Testcase Example:  '[1,null,2,3]'\n *\n * Given a binary tree, return the inorder traversal of its nodes' values.\n *\n * Example:\n *\n *\n * Input: [1,null,2,3]\n * ⁠  1\n * ⁠   \\\n * ⁠    2\n * ⁠   /\n * ⁠  3\n *\n * Output: [1,3,2]\n *\n * Follow up: Recursive solution is trivial, could you do it iteratively?\n *\n */\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @return {number[]}\n */\nvar inorderTraversal = function (root) {\n  // 1. Recursive solution\n  // if (!root) return [];\n  // const left = root.left ? inorderTraversal(root.left) : [];\n  // const right = root.right ? inorderTraversal(root.right) : [];\n  // return left.concat([root.val]).concat(right);\n\n  // 2. iterative solutuon\n  if (!root) return [];\n  const stack = [root];\n  const ret = [];\n  let left = root.left;\n\n  let item = null; // stack 中弹出的当前项\n\n  while (left) {\n    stack.push(left);\n    left = left.left;\n  }\n\n  while ((item = stack.pop())) {\n    ret.push(item.val);\n    let t = item.right;\n\n    while (t) {\n      stack.push(t);\n      t = t.left;\n    }\n  }\n\n  return ret;\n};\n"
+            "text": "\n/**\n * @param {TreeNode} root\n * @return {number[]}\n */\nvar inorderTraversal = function (root) {\n  // 1. Recursive solution\n  // if (!root) return [];\n  // const left = root.left ? inorderTraversal(root.left) : [];\n  // const right = root.right ? inorderTraversal(root.right) : [];\n  // return left.concat([root.val]).concat(right);\n\n  // 2. iterative solutuon\n  if (!root) return [];\n  const stack = [root];\n  const ret = [];\n  let left = root.left;\n\n  let item = null; // stack 中弹出的当前项\n\n  while (left) {\n    stack.push(left);\n    left = left.left;\n  }\n\n  while ((item = stack.pop())) {\n    ret.push(item.val);\n    let t = item.right;\n\n    while (t) {\n      stack.push(t);\n      t = t.left;\n    }\n  }\n\n  return ret;\n};\n"
         },
         {
             "language": "cpp",
