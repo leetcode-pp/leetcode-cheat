@@ -7,7 +7,7 @@ const {
   PROBLEMS_URL,
   QUESTION_DOM_SELECTOR,
   BASE_MARKDWON_DOWNLOAD_URL,
-  ENGLISH_MARKDOWN_SIGN,
+  CRAWL_IGNORE_SUFFIX,
 } = require("./constants");
 
 module.exports = LeetCodeProvider = {
@@ -24,7 +24,7 @@ module.exports = LeetCodeProvider = {
         /** 
          *  由于QUESTION_DOM_SELECTOR 所选择的结构包含非问题标签，获取title会是undefined，在此需将其过滤掉
         */
-        return titles.filter(Boolean).filter((name) => !name.endsWith(ENGLISH_MARKDOWN_SIGN));
+        return titles.filter(Boolean).filter((name) => !CRAWL_IGNORE_SUFFIX.some(suffix => name.endsWith(suffix)));
       })
       .catch((error) => {
         Logger.error("获取问题列表失败", error);

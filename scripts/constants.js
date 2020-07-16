@@ -55,7 +55,7 @@ module.exports = {
   /**
    * 过滤英文文档末尾标识
    */
-  ENGLISH_MARKDOWN_SIGN: ".en.md",
+  CRAWL_IGNORE_SUFFIX: [".en.md", "-en.md"],
 
   /**
    * 爬虫抓取同一文件时的最大失败次数(多为网络原因导致, 切换到gitee源)

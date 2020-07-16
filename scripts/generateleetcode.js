@@ -4,7 +4,7 @@ const {
   SUPPORT_LANGUAGE,
   DB_JSON_OUTPUT_DIR,
   RAW_MARKDOWN_OUTPUT_DIR,
-  ENGLISH_MARKDOWN_SIGN
+  CRAWL_IGNORE_SUFFIX
 } = require("./constants");
 
 const genertateLeetcodeToJson = () => {
@@ -12,7 +12,7 @@ const genertateLeetcodeToJson = () => {
 
   const rawMarkdowns = Utils.getDirsFileNameSync(
     RAW_MARKDOWN_OUTPUT_DIR
-  ).filter(name => !name.endsWith(ENGLISH_MARKDOWN_SIGN));
+  ).filter(name => !CRAWL_IGNORE_SUFFIX.some(suffix => name.endsWith(suffix)));
 
   rawMarkdowns.forEach(filename => {
     let languageResloved = [];
