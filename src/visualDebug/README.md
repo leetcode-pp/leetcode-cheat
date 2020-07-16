@@ -146,3 +146,8 @@ digraph MyGraph {
 生成：
 
 ![](https://tva1.sinaimg.cn/large/007S8ZIlly1gfu7oww70dj30fn04bt91.jpg)
+
+## 参考
+
+- [ncona](https://ncona.com/2020/06/create-diagrams-with-code-using-graphviz/)
+- [gdbgui](https://github.com/cs01/gdbgui)
