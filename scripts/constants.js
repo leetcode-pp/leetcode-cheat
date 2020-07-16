@@ -1,4 +1,11 @@
 module.exports = {
+  
+  /**
+   *  爬取的数据源站点 github | gitee
+   */
+  
+  CRAWL_SITE: "github",
+
   /**
    *  需解析的语言类型
    */
@@ -45,4 +52,9 @@ module.exports = {
    * 过滤英文文档末尾标识
    */
   ENGLISH_MARKDOWN_SIGN: ".en.md",
+
+  /**
+   * 爬虫抓取同一文件时的最大失败次数(多为网络原因导致)
+   */
+  MAX_CRAWL_RETRY_NUMBER : 100
 };

@@ -4,19 +4,17 @@ const {
   SUPPORT_LANGUAGE,
   DB_JSON_OUTPUT_DIR,
   RAW_MARKDOWN_OUTPUT_DIR,
-} = require('./constants')
-
-
-
+  ENGLISH_MARKDOWN_SIGN
+} = require("./constants");
 
 const genertateLeetcodeToJson = () => {
   console.time("genertateLeetcodeToJson");
 
   const rawMarkdowns = Utils.getDirsFileNameSync(
     RAW_MARKDOWN_OUTPUT_DIR
-  ).filter((name) => !name.endsWith(ENGLISH_MARKDOWN_SIGN));
+  ).filter(name => !name.endsWith(ENGLISH_MARKDOWN_SIGN));
 
-  rawMarkdowns.forEach((filename) => {
+  rawMarkdowns.forEach(filename => {
     let languageResloved = [];
     let preKnowledge = [];
     let keyPoints = [];
@@ -39,21 +37,25 @@ const genertateLeetcodeToJson = () => {
     markdown = markdown.replace(/```python/g, "```py");
     markdown = markdown.replace(/```c\+\+/g, "```cpp");
 
-    SUPPORT_LANGUAGE.forEach((lang) => {
+    SUPPORT_LANGUAGE.forEach(lang => {
       markdown.replace(Utils.genCodeRegByLang(lang), (noUseMatch, $1) => {
         languageResloved.push({
           language: lang,
-          text: $1,
+          text: $1
         });
       });
     });
     markdown.replace(Utils.getSatelliteDataReg().pre, (noUseMatch, $1) => {
-
-      preKnowledge.push({
-        text: $1.replace('-',''),
-        link: null,
-        color: "red",
-      });
+      $1.replace(/-/g, "")
+        .split("\n")
+        .filter(Boolean)
+        .forEach(preTagName => {
+          preKnowledge.push({
+            text: preTagName,
+            link: null,
+            color: "red"
+          });
+        });
     });
 
     markdown.replace(
@@ -62,8 +64,8 @@ const genertateLeetcodeToJson = () => {
         keyPoints = $1
           .replace(/\s/g, "")
           .split("-")
-          .filter((s) => s && s !== "解析")
-          .map((s) => ({ text: s, link: null, color: "blue" }));
+          .filter(s => s && s !== "解析")
+          .map(s => ({ text: s, link: null, color: "blue" }));
       }
     );
 
@@ -80,20 +82,22 @@ const genertateLeetcodeToJson = () => {
       pre: preKnowledge,
       keyPoints,
       solution: `https://github.com/azl397985856/leetcode/blob/master/problems/${filename}`,
-      code: languageResloved,
+      code: languageResloved
     };
+
+    console.log(oCustomStruct);
 
     Logger.success(`开始生成 "${filename}"`);
 
     Utils.writeFileSync(
       "spider/yield-db-json",
-      `${name}.json`,
+      `${filename}.json`,
       JSON.stringify(oCustomStruct, null, 2)
     );
 
     Logger.success(`生成 "${filename}" 完毕`);
-    console.timeEnd("genertateLeetcodeToJson");
   });
+  console.timeEnd("genertateLeetcodeToJson");
 };
 
 const generateCollectionIndexFile = () => {
