@@ -4,7 +4,7 @@ const {
   SUPPORT_LANGUAGE,
   DB_JSON_OUTPUT_DIR,
   RAW_MARKDOWN_OUTPUT_DIR,
-  ENGLISH_MARKDOWN_SIGN
+  ENGLISH_MARKDOWN_SIGN,
 } = require("./constants");
 
 const genertateLeetcodeToJson = () => {
@@ -12,9 +12,9 @@ const genertateLeetcodeToJson = () => {
 
   const rawMarkdowns = Utils.getDirsFileNameSync(
     RAW_MARKDOWN_OUTPUT_DIR
-  ).filter(name => !name.endsWith(ENGLISH_MARKDOWN_SIGN));
+  ).filter((name) => !name.endsWith(ENGLISH_MARKDOWN_SIGN));
 
-  rawMarkdowns.forEach(filename => {
+  rawMarkdowns.forEach((filename) => {
     let languageResloved = [];
     let preKnowledge = [];
     let keyPoints = [];
@@ -37,11 +37,11 @@ const genertateLeetcodeToJson = () => {
     markdown = markdown.replace(/```python/g, "```py");
     markdown = markdown.replace(/```c\+\+/g, "```cpp");
 
-    SUPPORT_LANGUAGE.forEach(lang => {
+    SUPPORT_LANGUAGE.forEach((lang) => {
       markdown.replace(Utils.genCodeRegByLang(lang), (noUseMatch, $1) => {
         languageResloved.push({
           language: lang,
-          text: $1
+          text: $1,
         });
       });
     });
@@ -49,11 +49,11 @@ const genertateLeetcodeToJson = () => {
       $1.replace(/-/g, "")
         .split("\n")
         .filter(Boolean)
-        .forEach(preTagName => {
+        .forEach((preTagName) => {
           preKnowledge.push({
             text: preTagName,
             link: null,
-            color: "red"
+            color: "red",
           });
         });
     });
@@ -64,8 +64,8 @@ const genertateLeetcodeToJson = () => {
         keyPoints = $1
           .replace(/\s/g, "")
           .split("-")
-          .filter(s => s && s !== "解析")
-          .map(s => ({ text: s, link: null, color: "blue" }));
+          .filter((s) => s && s !== "解析")
+          .map((s) => ({ text: s, link: null, color: "blue" }));
       }
     );
 
@@ -81,8 +81,9 @@ const genertateLeetcodeToJson = () => {
       company: [],
       pre: preKnowledge,
       keyPoints,
+      giteeSolution: `https://gitee.com/golong/leetcode/blob/master/problems/${filename}`,
       solution: `https://github.com/azl397985856/leetcode/blob/master/problems/${filename}`,
-      code: languageResloved
+      code: languageResloved,
     };
 
     console.log(oCustomStruct);

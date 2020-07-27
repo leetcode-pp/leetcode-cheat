@@ -147,7 +147,13 @@ digraph MyGraph {
 
 ![](https://tva1.sinaimg.cn/large/007S8ZIlly1gfu7oww70dj30fn04bt91.jpg)
 
+## 扩展
+
+- 支持用户手写表达式，类似力扣的“树的可视化”
+- 支持自定义样式扩展，类似 markdown-nice
+
 ## 参考
 
 - [ncona](https://ncona.com/2020/06/create-diagrams-with-code-using-graphviz/)
 - [gdbgui](https://github.com/cs01/gdbgui)
+- [traceId-spanId 全链路追踪](https://gist.github.com/azl397985856/2f5bf2c8fb6640d37eec1319faf3b5ec)

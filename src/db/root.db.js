@@ -1,42 +1,6 @@
 
     export const db_collection = {
-       "TwoSum":{
-    "id": "1",
-    "name": "TwoSum",
-    "company": [],
-    "pre": [
-        {
-            "text": " 哈希表",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "求和转换为求差",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "借助Map结构将数组中每个元素及其索引相互对应",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "以空间换时间，将查找时间从O(N)降低到O(1)",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1.TwoSum.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/**\n * @param {number[]} nums\n * @param {number} target\n * @return {number[]}\n */\nconst twoSum = function (nums, target) {\n  const map = new Map();\n  for (let i = 0; i < nums.length; i++) {\n    const diff = target - nums[i];\n    if (map.has(diff)) {\n      return [map.get(diff), i];\n    }\n    map.set(nums[i], i);\n  }\n};\n"
-        }
-    ]
-},
-"two-sum":{
+       "two-sum":{
     "id": "1",
     "name": "two-sum",
     "company": [],
@@ -64,6 +28,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1.two-sum.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1.two-sum.md",
     "code": [
         {
@@ -89,6 +54,7 @@
         }
     ],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/101.symmetric-tree.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/101.symmetric-tree.md",
     "code": [
         {
@@ -123,6 +89,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1011.capacity-to-ship-packages-within-d-days-cn.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1011.capacity-to-ship-packages-within-d-days-cn.md",
     "code": [
         {
@@ -145,6 +112,7 @@
     "company": [],
     "pre": [],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1011.capacity-to-ship-packages-within-d-days-en.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1011.capacity-to-ship-packages-within-d-days-en.md",
     "code": [
         {
@@ -184,6 +152,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1014.best-sightseeing-pair.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1014.best-sightseeing-pair.md",
     "code": [
         {
@@ -216,6 +185,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1015.smallest-integer-divisible-by-k.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1015.smallest-integer-divisible-by-k.md",
     "code": [
         {
@@ -252,6 +222,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1019.next-greater-node-in-linked-list.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1019.next-greater-node-in-linked-list.md",
     "code": [
         {
@@ -307,6 +278,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/102.binary-tree-level-order-traversal.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/102.binary-tree-level-order-traversal.md",
     "code": [
         {
@@ -342,6 +314,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1020.number-of-enclaves.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1020.number-of-enclaves.md",
     "code": [
         {
@@ -387,6 +360,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1023.camelcase-matching.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1023.camelcase-matching.md",
     "code": [
         {
@@ -437,6 +411,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/103.binary-tree-zigzag-level-order-traversal.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/103.binary-tree-zigzag-level-order-traversal.md",
     "code": [
         {
@@ -468,6 +443,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1031.maximum-sum-of-two-non-overlapping-subarrays.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1031.maximum-sum-of-two-non-overlapping-subarrays.md",
     "code": [
         {
@@ -514,6 +490,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/104.maximum-depth-of-binary-tree.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/104.maximum-depth-of-binary-tree.md",
     "code": [
         {
@@ -542,6 +519,7 @@
         }
     ],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/105.Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/105.Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal.md",
     "code": [
         {
@@ -582,6 +560,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/108.convert-sorted-array-to-binary-search-tree.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/108.convert-sorted-array-to-binary-search-tree.md",
     "code": [
         {
@@ -616,6 +595,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/11.container-with-most-water.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/11.container-with-most-water.md",
     "code": [
         {
@@ -665,6 +645,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1104.path-in-zigzag-labelled-binary-tree.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1104.path-in-zigzag-labelled-binary-tree.md",
     "code": [
         {
@@ -696,6 +677,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/113.path-sum-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/113.path-sum-ii.md",
     "code": [
         {
@@ -726,6 +708,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1131.maximum-of-absolute-value-expression.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1131.maximum-of-absolute-value-expression.md",
     "code": [
         {
@@ -771,6 +754,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1168.optimize-water-distribution-in-a-village-cn.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1168.optimize-water-distribution-in-a-village-cn.md",
     "code": [
         {
@@ -789,6 +773,7 @@
     "company": [],
     "pre": [],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1168.optimize-water-distribution-in-a-village-en.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1168.optimize-water-distribution-in-a-village-en.md",
     "code": [
         {
@@ -834,6 +819,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1186.maximum-subarray-sum-with-one-deletion.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1186.maximum-subarray-sum-with-one-deletion.md",
     "code": [
         {
@@ -868,6 +854,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/121.best-time-to-buy-and-sell-stock.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/121.best-time-to-buy-and-sell-stock.md",
     "code": [
         {
@@ -907,6 +894,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1218.longest-arithmetic-subsequence-of-given-difference.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1218.longest-arithmetic-subsequence-of-given-difference.md",
     "code": [
         {
@@ -937,6 +925,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/122.best-time-to-buy-and-sell-stock-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/122.best-time-to-buy-and-sell-stock-ii.md",
     "code": [
         {
@@ -966,6 +955,7 @@
         }
     ],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1227.airplane-seat-assignment-probability.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1227.airplane-seat-assignment-probability.md",
     "code": [
         {
@@ -1013,6 +1003,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/124.binary-tree-maximum-path-sum.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/124.binary-tree-maximum-path-sum.md",
     "code": [
         {
@@ -1052,6 +1043,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/125.valid-palindrome.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/125.valid-palindrome.md",
     "code": [
         {
@@ -1076,6 +1068,7 @@
         }
     ],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1260.shift-2d-grid.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1260.shift-2d-grid.md",
     "code": [
         {
@@ -1100,6 +1093,7 @@
         }
     ],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1261.find-elements-in-a-contaminated-binary-tree.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1261.find-elements-in-a-contaminated-binary-tree.md",
     "code": [
         {
@@ -1154,6 +1148,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1262.greatest-sum-divisible-by-three.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1262.greatest-sum-divisible-by-three.md",
     "code": [
         {
@@ -1196,6 +1191,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/128.longest-consecutive-sequence.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/128.longest-consecutive-sequence.md",
     "code": [
         {
@@ -1226,6 +1222,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/129.sum-root-to-leaf-numbers.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/129.sum-root-to-leaf-numbers.md",
     "code": [
         {
@@ -1275,6 +1272,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1297.maximum-number-of-occurrences-of-a-substring.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1297.maximum-number-of-occurrences-of-a-substring.md",
     "code": [
         {
@@ -1319,6 +1317,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/130.surrounded-regions.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/130.surrounded-regions.md",
     "code": [
         {
@@ -1349,6 +1348,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/131.palindrome-partitioning.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/131.palindrome-partitioning.md",
     "code": [
         {
@@ -1384,6 +1384,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1310.xor-queries-of-a-subarray.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1310.xor-queries-of-a-subarray.md",
     "code": [
         {
@@ -1416,6 +1417,7 @@
         }
     ],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1332.remove-palindromic-subsequences.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1332.remove-palindromic-subsequences.md",
     "code": [
         {
@@ -1445,6 +1447,7 @@
         }
     ],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1334.find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1334.find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance.md",
     "code": [
         {
@@ -1481,6 +1484,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/136.single-number.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/136.single-number.md",
     "code": [
         {
@@ -1521,6 +1525,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1371.find-the-longest-substring-containing-vowels-in-even-counts.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1371.find-the-longest-substring-containing-vowels-in-even-counts.md",
     "code": [
         {
@@ -1553,6 +1558,7 @@
         }
     ],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/139.word-break.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/139.word-break.md",
     "code": [
         {
@@ -1599,6 +1605,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/144.binary-tree-preorder-traversal.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/144.binary-tree-preorder-traversal.md",
     "code": [
         {
@@ -1629,6 +1636,7 @@
         }
     ],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1449.form-largest-integer-with-digits-that-add-up-to-target.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1449.form-largest-integer-with-digits-that-add-up-to-target.md",
     "code": [
         {
@@ -1703,6 +1711,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/145.binary-tree-postorder-traversal.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/145.binary-tree-postorder-traversal.md",
     "code": [
         {
@@ -1734,6 +1743,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/146.lru-cache.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/146.lru-cache.md",
     "code": [
         {
@@ -1775,6 +1785,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/15.3-sum.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/15.3-sum.md",
     "code": [
         {
@@ -1801,6 +1812,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/150.evaluate-reverse-polish-notation.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/150.evaluate-reverse-polish-notation.md",
     "code": [
         {
@@ -1827,6 +1839,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/152.maximum-product-subarray.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/152.maximum-product-subarray.md",
     "code": [
         {
@@ -1875,6 +1888,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/155.min-stack.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/155.min-stack.md",
     "code": [
         {
@@ -1913,6 +1927,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/167.two-sum-ii-input-array-is-sorted.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/167.two-sum-ii-input-array-is-sorted.md",
     "code": [
         {
@@ -1948,6 +1963,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/169.majority-element.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/169.majority-element.md",
     "code": [
         {
@@ -1983,6 +1999,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/17.Letter-Combinations-of-a-Phone-Number.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/17.Letter-Combinations-of-a-Phone-Number.md",
     "code": [
         {
@@ -2014,6 +2031,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/172.factorial-trailing-zeroes.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/172.factorial-trailing-zeroes.md",
     "code": [
         {
@@ -2049,6 +2067,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/19.removeNthNodeFromEndofList.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/19.removeNthNodeFromEndofList.md",
     "code": [
         {
@@ -2094,6 +2113,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/190.reverse-bits.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/190.reverse-bits.md",
     "code": [
         {
@@ -2134,6 +2154,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/191.number-of-1-bits.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/191.number-of-1-bits.md",
     "code": [
         {
@@ -2171,6 +2192,7 @@
         }
     ],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/198.house-robber.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/198.house-robber.md",
     "code": [
         {
@@ -2235,6 +2257,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/199.binary-tree-right-side-view.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/199.binary-tree-right-side-view.md",
     "code": [
         {
@@ -2261,37 +2284,8 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/2.add-two-numbers.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/2.add-two-numbers.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} l1\n * @param {ListNode} l2\n * @return {ListNode}\n */\nvar addTwoNumbers = function (l1, l2) {\n  if (l1 === null || l2 === null) return null;\n\n  // 使用dummyHead可以简化对链表的处理，dummyHead.next指向新链表\n  let dummyHead = new ListNode(0);\n  let cur1 = l1;\n  let cur2 = l2;\n  let cur = dummyHead; // cur用于计算新链表\n  let carry = 0; // 进位标志\n\n  while (cur1 !== null || cur2 !== null) {\n    let val1 = cur1 !== null ? cur1.val : 0;\n    let val2 = cur2 !== null ? cur2.val : 0;\n    let sum = val1 + val2 + carry;\n    let newNode = new ListNode(sum % 10); // sum%10取模结果范围为0~9，即为当前节点的值\n    carry = sum >= 10 ? 1 : 0; // sum>=10，carry=1，表示有进位\n    cur.next = newNode;\n    cur = cur.next;\n\n    if (cur1 !== null) {\n      cur1 = cur1.next;\n    }\n\n    if (cur2 !== null) {\n      cur2 = cur2.next;\n    }\n  }\n\n  if (carry > 0) {\n    // 如果最后还有进位，新加一个节点\n    cur.next = new ListNode(carry);\n  }\n\n  return dummyHead.next;\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\n/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     ListNode *next;\n *     ListNode(int x) : val(x), next(NULL) {}\n * };\n */\nclass Solution {\npublic:\n    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {\n        ListNode* ret = nullptr;\n        ListNode* cur = nullptr;\n        int carry = 0;\n        while (l1 != nullptr || l2 != nullptr || carry != 0) {\n            carry += (l1 == nullptr ? 0 : l1->val) + (l2 == nullptr ? 0 : l2->val);\n            auto temp = new ListNode(carry % 10);\n            carry /= 10;\n            if (ret == nullptr) {\n                ret = temp;\n                cur = ret;\n            }\n            else {\n                cur->next = temp;\n                cur = cur->next;\n            }\n            l1 = l1 == nullptr ? nullptr : l1->next;\n            l2 = l2 == nullptr ? nullptr : l2->next;\n        }\n        return ret;\n    }\n};\n"
-        }
-    ]
-},
-"addTwoNumbers":{
-    "id": "2",
-    "name": "addTwoNumbers",
-    "company": [],
-    "pre": [
-        {
-            "text": " 链表",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "解析1.链表这种数据结构的特点和使用2.用一个carried变量来实现进位的功能，每次相加之后计算carried，并用于下一位的计算",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/2.addTwoNumbers.md",
     "code": [
         {
             "language": "js",
@@ -2321,6 +2315,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/20.valid-parentheses.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/20.valid-parentheses.md",
     "code": [
         {
@@ -2342,32 +2337,6 @@
         {
             "language": "py",
             "text": "\nclass Solution:\n     def isValid(self, s):\n\n        while '[]' in s or '()' in s or '{}' in s:\n            s = s.replace('[]','').replace('()','').replace('{}','')\n        return not len(s)\n"
-        }
-    ]
-},
-"validParentheses":{
-    "id": "20",
-    "name": "validParentheses",
-    "company": [],
-    "pre": [
-        {
-            "text": " 栈",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "解析1.栈的基本特点和操作2.如果你用的是JS没有现成的栈，可以用数组来模拟入：push出：pop>入：push出shift就是队列",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/20.validParentheses.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/**\n * @param {string} s\n * @return {boolean}\n */\nvar isValid = function (s) {\n  let valid = true;\n  const stack = [];\n  const mapper = {\n    \"{\": \"}\",\n    \"[\": \"]\",\n    \"(\": \")\",\n  };\n\n  for (let i in s) {\n    const v = s[i];\n    if ([\"(\", \"[\", \"{\"].indexOf(v) > -1) {\n      stack.push(v);\n    } else {\n      const peak = stack.pop();\n      if (v !== mapper[peak]) {\n        return false;\n      }\n    }\n  }\n\n  if (stack.length > 0) return false;\n\n  return valid;\n};\n"
         }
     ]
 },
@@ -2399,6 +2368,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/200.number-of-islands.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/200.number-of-islands.md",
     "code": [
         {
@@ -2444,6 +2414,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/201.bitwise-and-of-numbers-range.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/201.bitwise-and-of-numbers-range.md",
     "code": [
         {
@@ -2497,6 +2468,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/203.remove-linked-list-elements.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/203.remove-linked-list-elements.md",
     "code": [
         {
@@ -2541,6 +2513,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/206.reverse-linked-list.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/206.reverse-linked-list.md",
     "code": [
         {
@@ -2601,6 +2574,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/208.implement-trie-prefix-tree.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/208.implement-trie-prefix-tree.md",
     "code": [
         {
@@ -2644,6 +2618,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/209.minimum-size-subarray-sum.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/209.minimum-size-subarray-sum.md",
     "code": [
         {
@@ -2657,42 +2632,6 @@
         {
             "language": "py",
             "text": "\n\nclass Solution:\n    def minSubArrayLen(self, s: int, nums: List[int]) -> int:\n        l = total = 0\n        ans = len(nums) + 1\n        for r in range(len(nums)):\n            total += nums[r]\n            while total >= s:\n                ans = min(ans, r - l + 1)\n                total -= nums[l]\n                l += 1\n        return  0 if ans == len(nums) + 1 else ans\n"
-        }
-    ]
-},
-"MergeTwoSortedLists":{
-    "id": "21",
-    "name": "MergeTwoSortedLists",
-    "company": [],
-    "pre": [
-        {
-            "text": " 递归",
-            "link": null,
-            "color": "red"
-        },
-        {
-            "text": " 链表",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "掌握链表数据结构",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "考虑边界情况2",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/21.MergeTwoSortedLists.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} l1\n * @param {ListNode} l2\n * @return {ListNode}\n */\nconst mergeTwoLists = function (l1, l2) {\n  if (l1 === null) {\n    return l2;\n  }\n  if (l2 === null) {\n    return l1;\n  }\n  if (l1.val < l2.val) {\n    l1.next = mergeTwoLists(l1.next, l2);\n    return l1;\n  } else {\n    l2.next = mergeTwoLists(l1, l2.next);\n    return l2;\n  }\n};\n"
         }
     ]
 },
@@ -2724,6 +2663,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/21.merge-two-sorted-lists.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/21.merge-two-sorted-lists.md",
     "code": [
         {
@@ -2755,6 +2695,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/211.add-and-search-word-data-structure-design.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/211.add-and-search-word-data-structure-design.md",
     "code": [
         {
@@ -2813,6 +2754,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/212.word-search-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/212.word-search-ii.md",
     "code": [
         {
@@ -2853,6 +2795,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/215.kth-largest-element-in-an-array.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/215.kth-largest-element-in-an-array.md",
     "code": [
         {
@@ -2892,6 +2835,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/219.contains-duplicate-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/219.contains-duplicate-ii.md",
     "code": [
         {
@@ -2901,37 +2845,6 @@
         {
             "language": "py",
             "text": "\nclass Solution:\n    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:\n        d = {}\n        for index, num in enumerate(nums):\n            if num in d and index - d[num] <= k:\n                return True\n            d[num] = index\n        return False\n"
-        }
-    ]
-},
-"GenerateParentheses":{
-    "id": "22",
-    "name": "GenerateParentheses",
-    "company": [],
-    "pre": [
-        {
-            "text": " DFS",
-            "link": null,
-            "color": "red"
-        },
-        {
-            "text": " 回溯法",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "当l<r时记得剪枝",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/22.GenerateParentheses.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/**\n * @param {number} n\n * @return {string[]}\n * @param l 左括号已经用了几个\n * @param r 右括号已经用了几个\n * @param str 当前递归得到的拼接字符串结果\n * @param res 结果集\n */\nconst generateParenthesis = function (n) {\n  const res = [];\n\n  function dfs(l, r, str) {\n    if (l == n && r == n) {\n      return res.push(str);\n    }\n    // l 小于 r 时不满足条件 剪枝\n    if (l < r) {\n      return;\n    }\n    // l 小于 n 时可以插入左括号，最多可以插入 n 个\n    if (l < n) {\n      dfs(l + 1, r, str + \"(\");\n    }\n    // r < l 时 可以插入右括号\n    if (r < l) {\n      dfs(l, r + 1, str + \")\");\n    }\n  }\n  dfs(0, 0, \"\");\n  return res;\n};\n"
         }
     ]
 },
@@ -2958,6 +2871,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/22.generate-parentheses.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/22.generate-parentheses.md",
     "code": [
         {
@@ -3014,6 +2928,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/221.maximal-square.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/221.maximal-square.md",
     "code": [
         {
@@ -3059,6 +2974,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/226.invert-binary-tree.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/226.invert-binary-tree.md",
     "code": [
         {
@@ -3104,6 +3020,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/229.majority-element-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/229.majority-element-ii.md",
     "code": [
         {
@@ -3144,6 +3061,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/23.merge-k-sorted-lists.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/23.merge-k-sorted-lists.md",
     "code": [
         {
@@ -3175,6 +3093,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/230.kth-smallest-element-in-a-bst.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/230.kth-smallest-element-in-a-bst.md",
     "code": [
         {
@@ -3214,6 +3133,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/232.implement-queue-using-stacks.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/232.implement-queue-using-stacks.md",
     "code": [
         {
@@ -3253,6 +3173,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/236.lowest-common-ancestor-of-a-binary-tree.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/236.lowest-common-ancestor-of-a-binary-tree.md",
     "code": [
         {
@@ -3293,6 +3214,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/238.product-of-array-except-self.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/238.product-of-array-except-self.md",
     "code": [
         {
@@ -3334,6 +3256,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/239.sliding-window-maximum.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/239.sliding-window-maximum.md",
     "code": [
         {
@@ -3372,6 +3295,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/24.swapNodesInPairs.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/24.swapNodesInPairs.md",
     "code": [
         {
@@ -3407,6 +3331,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/240.search-a-2-d-matrix-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/240.search-a-2-d-matrix-ii.md",
     "code": [
         {
@@ -3437,6 +3362,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/25.reverse-nodes-in-k-groups-cn.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/25.reverse-nodes-in-k-groups-cn.md",
     "code": [
         {
@@ -3463,6 +3389,7 @@
     "company": [],
     "pre": [],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/25.reverse-nodes-in-k-groups-en.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/25.reverse-nodes-in-k-groups-en.md",
     "code": [
         {
@@ -3508,6 +3435,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/26.remove-duplicates-from-sorted-array.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/26.remove-duplicates-from-sorted-array.md",
     "code": [
         {
@@ -3552,6 +3480,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/263.ugly-number.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/263.ugly-number.md",
     "code": [
         {
@@ -3611,6 +3540,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/279.perfect-squares.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/279.perfect-squares.md",
     "code": [
         {
@@ -3650,6 +3580,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/283.move-zeroes.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/283.move-zeroes.md",
     "code": [
         {
@@ -3685,6 +3616,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/29.divide-two-integers.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/29.divide-two-integers.md",
     "code": [
         {
@@ -3738,6 +3670,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/295.find-median-from-data-stream.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/295.find-median-from-data-stream.md",
     "code": [
         {
@@ -3781,38 +3714,8 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/3.longest-substring-without-repeating-characters.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/3.longest-substring-without-repeating-characters.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nfrom collections import defaultdict\n\n\nclass Solution:\n    def lengthOfLongestSubstring(self, s: str) -> int:\n        l = 0\n        ans = 0\n        counter = defaultdict(lambda: 0)\n\n        for r in range(len(s)):\n            while counter.get(s[r], 0) != 0:\n                counter[s[l]] = counter.get(s[l], 0) - 1\n                l += 1\n            counter[s[r]] += 1\n            ans = max(ans, r - l + 1)\n\n        return ans\n"
-        }
-    ]
-},
-"longestSubstringWithoutRepeatingCharacters":{
-    "id": "3",
-    "name": "longestSubstringWithoutRepeatingCharacters",
-    "company": [],
-    "pre": [
-        {
-            "text": " 哈希表",
-            "link": null,
-            "color": "red"
-        },
-        {
-            "text": " [滑动窗口](https://github.com/azl397985856/leetcode/blob/master/thinkings/slidewindow.md)",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "1.用一个mapper记录出现过并且没有被删除的字符2.用一个滑动窗口记录当前index开始的最大的不重复的字符序列3.用res去记录目前位置最大的长度，每次滑动窗口更新就去决定是否需要更新res",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/3.longestSubstringWithoutRepeatingCharacters.md",
     "code": [
         {
             "language": "py",
@@ -3848,6 +3751,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/30.substring-with-concatenation-of-all-words.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/30.substring-with-concatenation-of-all-words.md",
     "code": [
         {
@@ -3894,6 +3798,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/301.remove-invalid-parentheses.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/301.remove-invalid-parentheses.md",
     "code": [
         {
@@ -3925,6 +3830,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/309.best-time-to-buy-and-sell-stock-with-cooldown.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/309.best-time-to-buy-and-sell-stock-with-cooldown.md",
     "code": [
         {
@@ -3961,6 +3867,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/31.next-permutation.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/31.next-permutation.md",
     "code": [
         {
@@ -3994,6 +3901,7 @@
         }
     ],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/312.burst-balloons.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/312.burst-balloons.md",
     "code": [
         {
@@ -4069,6 +3977,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/32.longest-valid-parentheses.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/32.longest-valid-parentheses.md",
     "code": [
         {
@@ -4144,6 +4053,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/322.coin-change.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/322.coin-change.md",
     "code": [
         {
@@ -4188,6 +4098,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/328.odd-even-linked-list.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/328.odd-even-linked-list.md",
     "code": [
         {
@@ -4224,6 +4135,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/33.search-in-rotated-sorted-array.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/33.search-in-rotated-sorted-array.md",
     "code": [
         {
@@ -4254,6 +4166,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/334.increasing-triplet-subsequence.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/334.increasing-triplet-subsequence.md",
     "code": [
         {
@@ -4285,6 +4198,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/335.self-crossing.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/335.self-crossing.md",
     "code": [
         {
@@ -4321,6 +4235,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/342.power-of-four.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/342.power-of-four.md",
     "code": [
         {
@@ -4379,6 +4294,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/343.integer-break.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/343.integer-break.md",
     "code": [
         {
@@ -4421,6 +4337,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/349.intersection-of-two-arrays.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/349.intersection-of-two-arrays.md",
     "code": [
         {
@@ -4450,6 +4367,7 @@
         }
     ],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/365.water-and-jug-problem.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/365.water-and-jug-problem.md",
     "code": [
         {
@@ -4503,6 +4421,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/371.sum-of-two-integers.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/371.sum-of-two-integers.md",
     "code": [
         {
@@ -4549,6 +4468,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/378.kth-smallest-element-in-a-sorted-matrix.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/378.kth-smallest-element-in-a-sorted-matrix.md",
     "code": [
         {
@@ -4600,6 +4520,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/380.insert-delete-getrandom-o1.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/380.insert-delete-getrandom-o1.md",
     "code": [
         {
@@ -4631,6 +4552,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/39.combination-sum.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/39.combination-sum.md",
     "code": [
         {
@@ -4686,6 +4608,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/4.median-of-two-sorted-array.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/4.median-of-two-sorted-array.md",
     "code": [
         {
@@ -4729,6 +4652,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/40.combination-sum-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/40.combination-sum-ii.md",
     "code": [
         {
@@ -4763,6 +4687,7 @@
         }
     ],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/416.partition-equal-subset-sum.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/416.partition-equal-subset-sum.md",
     "code": [
         {
@@ -4815,6 +4740,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/42.trapping-rain-water.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/42.trapping-rain-water.md",
     "code": [
         {
@@ -4886,6 +4812,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/437.path-sum-iii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/437.path-sum-iii.md",
     "code": [
         {
@@ -4941,6 +4868,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/445.add-two-numbers-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/445.add-two-numbers-ii.md",
     "code": [
         {
@@ -4976,6 +4904,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/454.4-sum-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/454.4-sum-ii.md",
     "code": [
         {
@@ -5011,6 +4940,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/455.AssignCookies.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/455.AssignCookies.md",
     "code": [
         {
@@ -5042,6 +4972,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/46.permutations.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/46.permutations.md",
     "code": [
         {
@@ -5073,6 +5004,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/460.lfu-cache.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/460.lfu-cache.md",
     "code": [
         {
@@ -5104,6 +5036,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/47.permutations-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/47.permutations-ii.md",
     "code": [
         {
@@ -5135,6 +5068,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/472.concatenated-words.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/472.concatenated-words.md",
     "code": [
         {
@@ -5149,6 +5083,7 @@
     "company": [],
     "pre": [],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/474.ones-and-zeros-en.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/474.ones-and-zeros-en.md",
     "code": [
         {
@@ -5204,6 +5139,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/48.rotate-image.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/48.rotate-image.md",
     "code": [
         {
@@ -5239,6 +5175,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/49.group-anagrams.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/49.group-anagrams.md",
     "code": [
         {
@@ -5294,6 +5231,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/493.reverse-pairs.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/493.reverse-pairs.md",
     "code": [
         {
@@ -5338,6 +5276,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/494.target-sum.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/494.target-sum.md",
     "code": [
         {
@@ -5364,6 +5303,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/5.longest-palindromic-substring.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/5.longest-palindromic-substring.md",
     "code": [
         {
@@ -5423,6 +5363,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/50.pow-x-n.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/50.pow-x-n.md",
     "code": [
         {
@@ -5449,6 +5390,7 @@
     "company": [],
     "pre": [],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/501.Find-Mode-in-Binary-Search-Tree.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/501.Find-Mode-in-Binary-Search-Tree.md",
     "code": [
         {
@@ -5475,6 +5417,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/516.longest-palindromic-subsequence.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/516.longest-palindromic-subsequence.md",
     "code": [
         {
@@ -5595,6 +5538,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/518.coin-change-2.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/518.coin-change-2.md",
     "code": [
         {
@@ -5636,6 +5580,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/52.N-Queens-II.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/52.N-Queens-II.md",
     "code": [
         {
@@ -5656,6 +5601,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/53.maximum-sum-subarray-cn.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/53.maximum-sum-subarray-cn.md",
     "code": [
         {
@@ -5714,6 +5660,7 @@
     "company": [],
     "pre": [],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/53.maximum-sum-subarray-en.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/53.maximum-sum-subarray-en.md",
     "code": [
         {
@@ -5772,6 +5719,7 @@
     "company": [],
     "pre": [],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/547.friend-circles-en.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/547.friend-circles-en.md",
     "code": [
         {
@@ -5800,6 +5748,7 @@
         }
     ],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/547.friend-circles.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/547.friend-circles.md",
     "code": [
         {
@@ -5826,6 +5775,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/55.jump-game.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/55.jump-game.md",
     "code": [
         {
@@ -5857,6 +5807,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/56.merge-intervals.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/56.merge-intervals.md",
     "code": [
         {
@@ -5893,6 +5844,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/560.subarray-sum-equals-k.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/560.subarray-sum-equals-k.md",
     "code": [
         {
@@ -5931,6 +5883,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/575.distribute-candies.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/575.distribute-candies.md",
     "code": [
         {
@@ -5976,6 +5929,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/60.permutation-sequence.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/60.permutation-sequence.md",
     "code": [
         {
@@ -6002,6 +5956,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/609.find-duplicate-file-in-system.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/609.find-duplicate-file-in-system.md",
     "code": [
         {
@@ -6038,6 +5993,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/62.unique-paths.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/62.unique-paths.md",
     "code": [
         {
@@ -6090,6 +6046,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/63.unique-paths-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/63.unique-paths-ii.md",
     "code": [
         {
@@ -6135,6 +6092,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/718.maximum-length-of-repeated-subarray.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/718.maximum-length-of-repeated-subarray.md",
     "code": [
         {
@@ -6155,6 +6113,7 @@
         }
     ],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/721.accounts-merge.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/721.accounts-merge.md",
     "code": [
         {
@@ -6191,6 +6150,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/73.set-matrix-zeroes.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/73.set-matrix-zeroes.md",
     "code": [
         {
@@ -6239,6 +6199,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/75.sort-colors.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/75.sort-colors.md",
     "code": [
         {
@@ -6253,6 +6214,7 @@
     "company": [],
     "pre": [],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/78.subsets-en.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/78.subsets-en.md",
     "code": [
         {
@@ -6284,6 +6246,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/78.subsets.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/78.subsets.md",
     "code": [
         {
@@ -6320,6 +6283,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/785.is-graph-bipartite.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/785.is-graph-bipartite.md",
     "code": [
         {
@@ -6334,6 +6298,7 @@
     "company": [],
     "pre": [],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/79.word-search-en.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/79.word-search-en.md",
     "code": [
         {
@@ -6383,6 +6348,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/79.word-search.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/79.word-search.md",
     "code": [
         {
@@ -6432,6 +6398,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/80.remove-duplicates-from-sorted-array-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/80.remove-duplicates-from-sorted-array-ii.md",
     "code": [
         {
@@ -6463,6 +6430,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/820.short-encoding-of-words.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/820.short-encoding-of-words.md",
     "code": [
         {
@@ -6483,6 +6451,7 @@
         }
     ],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/84.largest-rectangle-in-histogram.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/84.largest-rectangle-in-histogram.md",
     "code": [
         {
@@ -6519,6 +6488,7 @@
         }
     ],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/85.maximal-rectangle.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/85.maximal-rectangle.md",
     "code": [
         {
@@ -6555,6 +6525,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/86.partition-list.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/86.partition-list.md",
     "code": [
         {
@@ -6595,6 +6566,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/874.walking-robot-simulation.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/874.walking-robot-simulation.md",
     "code": [
         {
@@ -6621,6 +6593,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/875.koko-eating-bananas.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/875.koko-eating-bananas.md",
     "code": [
         {
@@ -6668,6 +6641,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/877.stone-game.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/877.stone-game.md",
     "code": [
         {
@@ -6694,6 +6668,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/88.merge-sorted-array.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/88.merge-sorted-array.md",
     "code": [
         {
@@ -6752,6 +6727,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/886.possible-bipartition.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/886.possible-bipartition.md",
     "code": [
         {
@@ -6786,6 +6762,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/887.super-egg-drop.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/887.super-egg-drop.md",
     "code": [
         {
@@ -6831,6 +6808,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/895.maximum-frequency-stack.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/895.maximum-frequency-stack.md",
     "code": [
         {
@@ -6845,6 +6823,7 @@
     "company": [],
     "pre": [],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/90.subsets-ii-en.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/90.subsets-ii-en.md",
     "code": [
         {
@@ -6876,6 +6855,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/90.subsets-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/90.subsets-ii.md",
     "code": [
         {
@@ -6890,6 +6870,7 @@
     "company": [],
     "pre": [],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/900.rle-iterator.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/900.rle-iterator.md",
     "code": [
         {
@@ -6921,6 +6902,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/91.decode-ways.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/91.decode-ways.md",
     "code": [
         {
@@ -6957,6 +6939,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/912.sort-an-array.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/912.sort-an-array.md",
     "code": [
         {
@@ -7007,6 +6990,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/92.reverse-linked-list-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/92.reverse-linked-list-ii.md",
     "code": [
         {
@@ -7044,6 +7028,7 @@
         }
     ],
     "keyPoints": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/935.knight-dialer.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/935.knight-dialer.md",
     "code": [
         {
@@ -7094,6 +7079,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/94.binary-tree-inorder-traversal.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/94.binary-tree-inorder-traversal.md",
     "code": [
         {
@@ -7137,6 +7123,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/95.unique-binary-search-trees-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/95.unique-binary-search-trees-ii.md",
     "code": []
 },
@@ -7173,6 +7160,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/96.unique-binary-search-trees.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/96.unique-binary-search-trees.md",
     "code": [
         {
@@ -7209,6 +7197,7 @@
             "color": "blue"
         }
     ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/98.validate-binary-search-tree.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/98.validate-binary-search-tree.md",
     "code": [
         {

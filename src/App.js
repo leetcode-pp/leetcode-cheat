@@ -53,11 +53,11 @@ const columns = [
   },
   {
     title: "标签",
-    dataIndex: "tags",
+    dataIndex: "pre",
     align: "center",
     render: (tags) => (
       <div>
-        {tags.map((tag) => {
+        {(tags || []).map((tag) => {
           return (
             <TagOrLink
               style={{
@@ -92,7 +92,7 @@ function App() {
 
   const [problemId, setProblemId] = useState("");
   const [hasSolution, setHasSolution] = useState(false);
-  const [inLeetCode, setInLeetCode] = useState(false);
+  const [inLeetCode, setInLeetCode] = useState(true);
 
   if (!inLeetCode)
     return (
@@ -133,7 +133,15 @@ function App() {
               href={problems[problemId].solution}
               target="_blank"
             >
-              前往题解
+              前往 github 题解（国外）
+            </Button>
+
+            <Button
+              type="link"
+              href={problems[problemId].giteeSolution}
+              target="_blank"
+            >
+              前往 gitee 题解（国内）
             </Button>
           </TabPane>
           <TabPane tab="代码" key="3">
