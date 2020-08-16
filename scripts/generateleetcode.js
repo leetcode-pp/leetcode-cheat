@@ -1,5 +1,4 @@
 const Utils = require("./utils");
-const commonUtils = require("../src/utils.js");
 const Logger = require("./logger");
 const {
   SUPPORT_LANGUAGE,
@@ -7,6 +6,11 @@ const {
   RAW_MARKDOWN_OUTPUT_DIR,
   CRAWL_IGNORE_SUFFIX,
 } = require("./constants");
+
+const COMPANY_MAPPER = {
+  阿里: "阿里巴巴",
+  字节: "字节跳动",
+};
 
 const genertateLeetcodeToJson = () => {
   console.time("genertateLeetcodeToJson");
@@ -62,46 +66,53 @@ const genertateLeetcodeToJson = () => {
           const match = /\[(.+)\]\((.+)\)/.exec(preTagName);
           if (match) {
             // 形式1
-
             preKnowledge.push({
               text: match[1],
               link: match[2],
-              color: commonUtils.geColor(match[1]),
+              color: Utils.getColor(match[1]),
             });
           } else {
             // 形式 2
             preKnowledge.push({
               text: preTagName,
               link: null,
-              color: commonUtils.geColor(preTagName),
+              color: Utils.getColor(preTagName),
             });
           }
         });
     });
     // 解析公司
-    markdown.replace(Utils.getSatelliteDataReg().company, (noUseMatch, $1) => {
-      $1.replace(/^-/gm, "")
-        .split("\n")
-        .map((company) => company.trim())
-        .filter(Boolean)
-        .forEach((company) => {
-          // 形式1： 百度，阿里
-          // 形式2: 百度
-          const match = /、/.exec(company);
-          if (match) {
-            // 形式1
-
-            companies = companies.concat(
-              company.split("、").map((c) => ({ name: c }))
-            );
-          } else {
-            // 形式 2
-            companies.push({
-              name: company,
-            });
-          }
-        });
-    });
+    markdown.replace(
+      Utils.getSatelliteDataReg().companies,
+      (noUseMatch, $1) => {
+        $1.replace(/^-/gm, "")
+          .split("\n")
+          .map((company) => company.trim())
+          .filter(Boolean)
+          .filter((company) => company !== "暂无")
+          .map((company) => {
+            // 统一公司名字
+            if (company in COMPANY_MAPPER) return COMPANY_MAPPER[company];
+            return company;
+          })
+          .forEach((company) => {
+            // 形式1： 百度，阿里
+            // 形式2: 百度
+            const match = /u3001/.exec(company);
+            if (match) {
+              // 形式1
+              companies = companies.concat(
+                company.split("\u3001").map((c) => ({ name: c }))
+              );
+            } else {
+              // 形式 2
+              companies.push({
+                name: company,
+              });
+            }
+          });
+      }
+    );
     // 解析关键点
     markdown.replace(
       Utils.getSatelliteDataReg().keyPoints,
@@ -109,7 +120,7 @@ const genertateLeetcodeToJson = () => {
         keyPoints = $1
           .replace(/\s/g, "")
           .split("-")
-          .filter((s) => s && s !== "解析")
+          .filter((s) => s && s !== "\u89e3\u6790")
           .map((s) => ({ text: s, link: null, color: "blue" }));
       }
     );
@@ -123,7 +134,6 @@ const genertateLeetcodeToJson = () => {
     let oCustomStruct = {
       id: questionID,
       name,
-      company: [],
       pre: preKnowledge,
       keyPoints,
       companies,
@@ -148,7 +158,7 @@ const genertateLeetcodeToJson = () => {
 };
 
 const generateCollectionIndexFile = () => {
-  Logger.success("开始生产index文件");
+  Logger.success("\u5f00\u59cb\u751f\u4ea7index\u6587\u4ef6");
   console.time("generateCollectionIndexFile");
   const jsonsName = Utils.getDirsFileNameSync(DB_JSON_OUTPUT_DIR).sort(
     (a, b) => {
@@ -179,7 +189,7 @@ const generateCollectionIndexFile = () => {
    `;
 
   Utils.writeFileSync("src/db", "root.db.js", rootContent);
-  Logger.success("index文件生成完毕");
+  Logger.success("index\u6587\u4ef6\u751f\u6210\u5b8c\u6bd5");
   console.timeEnd("generateCollectionIndexFile");
 };
 

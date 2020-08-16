@@ -140,6 +140,14 @@ function App() {
             ))}
           </TabPane>
           <TabPane tab="公司" key="4">
+            {problems[problemId].companies.length === 0 && (
+              <Fragment>
+                暂无公司资料，
+                <a href={CONTRIBUTE_COMPANY_URL} target="_blank">
+                  点击反馈
+                </a>
+              </Fragment>
+            )}
             {problems[problemId].companies.map(({ name }) => (
               <TagOrLink
                 key={name}
@@ -148,14 +156,7 @@ function App() {
                 color={getColor(name)}
                 style={{ marginBottom: 6 }}
               />
-            )) || (
-              <Fragment>
-                暂无公司资料，
-                <a href={CONTRIBUTE_COMPANY_URL} target="_blank">
-                  点击反馈
-                </a>
-              </Fragment>
-            )}
+            ))}
           </TabPane>
           <TabPane tab="题解" key="2">
             <Button

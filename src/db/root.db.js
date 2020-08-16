@@ -3,7 +3,6 @@
        "two-sum":{
     "id": "1",
     "name": "two-sum",
-    "company": [],
     "pre": [
         {
             "text": "哈希表",
@@ -30,7 +29,7 @@
     ],
     "companies": [
         {
-            "name": "字节"
+            "name": "字节跳动"
         },
         {
             "name": "百度"
@@ -87,7 +86,6 @@
 "add-two-numbers":{
     "id": "2",
     "name": "add-two-numbers",
-    "company": [],
     "pre": [
         {
             "text": "链表",
@@ -104,7 +102,7 @@
     ],
     "companies": [
         {
-            "name": "阿里"
+            "name": "阿里巴巴"
         },
         {
             "name": "百度"
@@ -129,7 +127,6 @@
 "longest-substring-without-repeating-characters":{
     "id": "3",
     "name": "longest-substring-without-repeating-characters",
-    "company": [],
     "pre": [
         {
             "text": "哈希表",
@@ -151,10 +148,10 @@
     ],
     "companies": [
         {
-            "name": "阿里"
+            "name": "阿里巴巴"
         },
         {
-            "name": "字节"
+            "name": "字节跳动"
         },
         {
             "name": "腾讯"
@@ -172,7 +169,6 @@
 "median-of-two-sorted-array":{
     "id": "4",
     "name": "median-of-two-sorted-array",
-    "company": [],
     "pre": [
         {
             "text": "中位数",
@@ -214,7 +210,7 @@
     ],
     "companies": [
         {
-            "name": "阿里"
+            "name": "阿里巴巴"
         },
         {
             "name": "百度"
@@ -247,7 +243,6 @@
 "longest-palindromic-substring":{
     "id": "5",
     "name": "longest-palindromic-substring",
-    "company": [],
     "pre": [
         {
             "text": "回文",
@@ -264,7 +259,7 @@
     ],
     "companies": [
         {
-            "name": "阿里"
+            "name": "阿里巴巴"
         },
         {
             "name": "百度"
@@ -293,7 +288,6 @@
 "container-with-most-water":{
     "id": "11",
     "name": "container-with-most-water",
-    "company": [],
     "pre": [
         {
             "text": "双指针",
@@ -310,7 +304,16 @@
     ],
     "companies": [
         {
-            "name": "字节"
+            "name": "字节跳动"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "阿里巴巴"
         }
     ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/11.container-with-most-water.md",
@@ -333,7 +336,6 @@
 "3-sum":{
     "id": "15",
     "name": "3-sum",
-    "company": [],
     "pre": [
         {
             "text": "排序",
@@ -365,10 +367,10 @@
     ],
     "companies": [
         {
-            "name": "阿里"
+            "name": "阿里巴巴"
         },
         {
-            "name": "字节"
+            "name": "字节跳动"
         }
     ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/15.3-sum.md",
@@ -383,7 +385,6 @@
 "Letter-Combinations-of-a-Phone-Number":{
     "id": "17",
     "name": "Letter-Combinations-of-a-Phone-Number",
-    "company": [],
     "pre": [
         {
             "text": "回溯",
@@ -403,7 +404,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        },
+        {
+            "name": "腾讯"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/17.Letter-Combinations-of-a-Phone-Number.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/17.Letter-Combinations-of-a-Phone-Number.md",
     "code": [
@@ -416,7 +430,6 @@
 "removeNthNodeFromEndofList":{
     "id": "19",
     "name": "removeNthNodeFromEndofList",
-    "company": [],
     "pre": [
         {
             "text": "链表",
@@ -436,7 +449,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/19.removeNthNodeFromEndofList.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/19.removeNthNodeFromEndofList.md",
     "code": [
@@ -453,7 +479,6 @@
 "valid-parentheses":{
     "id": "20",
     "name": "valid-parentheses",
-    "company": [],
     "pre": [
         {
             "text": "栈",
@@ -469,6 +494,18 @@
         }
     ],
     "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "字节跳动"
+        },
         {
             "name": "airbnb"
         },
@@ -522,7 +559,6 @@
 "merge-two-sorted-lists":{
     "id": "21",
     "name": "merge-two-sorted-lists",
-    "company": [],
     "pre": [
         {
             "text": "递归",
@@ -549,10 +585,10 @@
     ],
     "companies": [
         {
-            "name": "阿里"
+            "name": "阿里巴巴"
         },
         {
-            "name": "字节"
+            "name": "字节跳动"
         },
         {
             "name": "腾讯"
@@ -582,7 +618,6 @@
 "generate-parentheses":{
     "id": "22",
     "name": "generate-parentheses",
-    "company": [],
     "pre": [
         {
             "text": "DFS",
@@ -602,7 +637,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/22.generate-parentheses.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/22.generate-parentheses.md",
     "code": [
@@ -615,7 +663,6 @@
 "merge-k-sorted-lists":{
     "id": "23",
     "name": "merge-k-sorted-lists",
-    "company": [],
     "pre": [
         {
             "text": "链表",
@@ -640,7 +687,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/23.merge-k-sorted-lists.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/23.merge-k-sorted-lists.md",
     "code": [
@@ -653,7 +713,6 @@
 "swapNodesInPairs":{
     "id": "24",
     "name": "swapNodesInPairs",
-    "company": [],
     "pre": [
         {
             "text": "链表",
@@ -668,7 +727,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/24.swapNodesInPairs.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/24.swapNodesInPairs.md",
     "code": [
@@ -685,7 +757,6 @@
 "reverse-nodes-in-k-groups-cn":{
     "id": "25",
     "name": "reverse-nodes-in-k-groups-cn",
-    "company": [],
     "pre": [
         {
             "text": "链表",
@@ -700,7 +771,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/25.reverse-nodes-in-k-groups-cn.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/25.reverse-nodes-in-k-groups-cn.md",
     "code": [
@@ -725,7 +809,6 @@
 "remove-duplicates-from-sorted-array":{
     "id": "26",
     "name": "remove-duplicates-from-sorted-array",
-    "company": [],
     "pre": [
         {
             "text": "数组",
@@ -757,6 +840,18 @@
     ],
     "companies": [
         {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        },
+        {
             "name": "bloomberg"
         },
         {
@@ -786,7 +881,6 @@
 "divide-two-integers":{
     "id": "29",
     "name": "divide-two-integers",
-    "company": [],
     "pre": [
         {
             "text": "二分法",
@@ -806,7 +900,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/29.divide-two-integers.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/29.divide-two-integers.md",
     "code": [
@@ -831,7 +938,6 @@
 "substring-with-concatenation-of-all-words":{
     "id": "30",
     "name": "substring-with-concatenation-of-all-words",
-    "company": [],
     "pre": [
         {
             "text": "字符串",
@@ -856,7 +962,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/30.substring-with-concatenation-of-all-words.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/30.substring-with-concatenation-of-all-words.md",
     "code": [
@@ -869,7 +988,6 @@
 "next-permutation":{
     "id": "31",
     "name": "next-permutation",
-    "company": [],
     "pre": [
         {
             "text": "回溯法",
@@ -894,7 +1012,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/31.next-permutation.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/31.next-permutation.md",
     "code": [
@@ -915,7 +1046,6 @@
 "longest-valid-parentheses":{
     "id": "32",
     "name": "longest-valid-parentheses",
-    "company": [],
     "pre": [
         {
             "text": "动态规划",
@@ -975,7 +1105,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/32.longest-valid-parentheses.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/32.longest-valid-parentheses.md",
     "code": [
@@ -1012,7 +1155,6 @@
 "search-in-rotated-sorted-array":{
     "id": "33",
     "name": "search-in-rotated-sorted-array",
-    "company": [],
     "pre": [
         {
             "text": "数组",
@@ -1037,7 +1179,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/33.search-in-rotated-sorted-array.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/33.search-in-rotated-sorted-array.md",
     "code": [
@@ -1054,7 +1209,6 @@
 "combination-sum":{
     "id": "39",
     "name": "combination-sum",
-    "company": [],
     "pre": [
         {
             "text": "回溯法",
@@ -1074,7 +1228,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/39.combination-sum.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/39.combination-sum.md",
     "code": [
@@ -1091,7 +1258,6 @@
 "combination-sum-ii":{
     "id": "40",
     "name": "combination-sum-ii",
-    "company": [],
     "pre": [
         {
             "text": "回溯法",
@@ -1111,7 +1277,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/40.combination-sum-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/40.combination-sum-ii.md",
     "code": [
@@ -1128,7 +1307,6 @@
 "trapping-rain-water":{
     "id": "42",
     "name": "trapping-rain-water",
-    "company": [],
     "pre": [
         {
             "text": "空间换时间",
@@ -1155,7 +1333,16 @@
     ],
     "companies": [
         {
-            "name": "字节"
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
         }
     ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/42.trapping-rain-water.md",
@@ -1190,7 +1377,6 @@
 "permutations":{
     "id": "46",
     "name": "permutations",
-    "company": [],
     "pre": [
         {
             "text": "回溯法",
@@ -1210,7 +1396,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/46.permutations.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/46.permutations.md",
     "code": [
@@ -1223,7 +1422,6 @@
 "permutations-ii":{
     "id": "47",
     "name": "permutations-ii",
-    "company": [],
     "pre": [
         {
             "text": "回溯法",
@@ -1243,7 +1441,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/47.permutations-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/47.permutations-ii.md",
     "code": [
@@ -1256,7 +1467,6 @@
 "rotate-image":{
     "id": "48",
     "name": "rotate-image",
-    "company": [],
     "pre": [
         {
             "text": "原地算法",
@@ -1276,7 +1486,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/48.rotate-image.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/48.rotate-image.md",
     "code": [
@@ -1293,7 +1516,6 @@
 "group-anagrams":{
     "id": "49",
     "name": "group-anagrams",
-    "company": [],
     "pre": [
         {
             "text": "哈希表",
@@ -1313,7 +1535,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/49.group-anagrams.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/49.group-anagrams.md",
     "code": [
@@ -1330,7 +1565,6 @@
 "pow-x-n":{
     "id": "50",
     "name": "pow-x-n",
-    "company": [],
     "pre": [
         {
             "text": "递归",
@@ -1370,7 +1604,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/50.pow-x-n.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/50.pow-x-n.md",
     "code": [
@@ -1395,7 +1642,6 @@
 "N-Queens-II":{
     "id": "52",
     "name": "N-Queens-II",
-    "company": [],
     "pre": [
         {
             "text": "回溯",
@@ -1420,7 +1666,17 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/52.N-Queens-II.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/52.N-Queens-II.md",
     "code": [
@@ -1433,7 +1689,6 @@
 "maximum-sum-subarray-cn":{
     "id": "53",
     "name": "maximum-sum-subarray-cn",
-    "company": [],
     "pre": [
         {
             "text": "滑动窗口",
@@ -1455,13 +1710,13 @@
     ],
     "companies": [
         {
-            "name": "阿里"
+            "name": "阿里巴巴"
         },
         {
             "name": "百度"
         },
         {
-            "name": "字节"
+            "name": "字节跳动"
         },
         {
             "name": "腾讯"
@@ -1532,7 +1787,6 @@
 "jump-game":{
     "id": "55",
     "name": "jump-game",
-    "company": [],
     "pre": [
         {
             "text": "贪心",
@@ -1547,7 +1801,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/55.jump-game.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/55.jump-game.md",
     "code": [
@@ -1560,7 +1827,6 @@
 "merge-intervals":{
     "id": "56",
     "name": "merge-intervals",
-    "company": [],
     "pre": [
         {
             "text": "排序",
@@ -1580,7 +1846,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/56.merge-intervals.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/56.merge-intervals.md",
     "code": [
@@ -1593,7 +1872,6 @@
 "permutation-sequence":{
     "id": "60",
     "name": "permutation-sequence",
-    "company": [],
     "pre": [
         {
             "text": "数学",
@@ -1625,6 +1903,15 @@
     ],
     "companies": [
         {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        },
+        {
             "name": "Twitter"
         }
     ],
@@ -1640,7 +1927,6 @@
 "unique-paths":{
     "id": "62",
     "name": "unique-paths",
-    "company": [],
     "pre": [
         {
             "text": "动态规划",
@@ -1665,7 +1951,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/62.unique-paths.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/62.unique-paths.md",
     "code": [
@@ -1694,7 +1993,6 @@
 "unique-paths-ii":{
     "id": "63",
     "name": "unique-paths-ii",
-    "company": [],
     "pre": [
         {
             "text": "动态规划",
@@ -1719,7 +2017,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/63.unique-paths-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/63.unique-paths-ii.md",
     "code": [
@@ -1736,7 +2047,6 @@
 "set-matrix-zeroes":{
     "id": "73",
     "name": "set-matrix-zeroes",
-    "company": [],
     "pre": [
         {
             "text": "状态压缩",
@@ -1761,7 +2071,17 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/73.set-matrix-zeroes.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/73.set-matrix-zeroes.md",
     "code": [
@@ -1786,7 +2106,6 @@
 "sort-colors":{
     "id": "75",
     "name": "sort-colors",
-    "company": [],
     "pre": [
         {
             "text": "荷兰国旗问题",
@@ -1811,7 +2130,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/75.sort-colors.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/75.sort-colors.md",
     "code": [
@@ -1824,7 +2156,6 @@
 "subsets":{
     "id": "78",
     "name": "subsets",
-    "company": [],
     "pre": [
         {
             "text": "回溯",
@@ -1844,7 +2175,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/78.subsets.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/78.subsets.md",
     "code": [
@@ -1857,7 +2201,6 @@
 "word-search":{
     "id": "79",
     "name": "word-search",
-    "company": [],
     "pre": [
         {
             "text": "回溯",
@@ -1887,7 +2230,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/79.word-search.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/79.word-search.md",
     "code": [
@@ -1908,7 +2264,6 @@
 "remove-duplicates-from-sorted-array-ii":{
     "id": "80",
     "name": "remove-duplicates-from-sorted-array-ii",
-    "company": [],
     "pre": [
         {
             "text": "双指针",
@@ -1938,7 +2293,17 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/80.remove-duplicates-from-sorted-array-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/80.remove-duplicates-from-sorted-array-ii.md",
     "code": [
@@ -1951,7 +2316,6 @@
 "largest-rectangle-in-histogram":{
     "id": "84",
     "name": "largest-rectangle-in-histogram",
-    "company": [],
     "pre": [
         {
             "text": "单调栈",
@@ -1960,7 +2324,20 @@
         }
     ],
     "keyPoints": [],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/84.largest-rectangle-in-histogram.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/84.largest-rectangle-in-histogram.md",
     "code": [
@@ -1989,7 +2366,6 @@
 "maximal-rectangle":{
     "id": "85",
     "name": "maximal-rectangle",
-    "company": [],
     "pre": [
         {
             "text": "单调栈",
@@ -1998,7 +2374,20 @@
         }
     ],
     "keyPoints": [],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/85.maximal-rectangle.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/85.maximal-rectangle.md",
     "code": [
@@ -2011,7 +2400,6 @@
 "partition-list":{
     "id": "86",
     "name": "partition-list",
-    "company": [],
     "pre": [
         {
             "text": "链表",
@@ -2036,7 +2424,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/86.partition-list.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/86.partition-list.md",
     "code": [
@@ -2053,7 +2454,6 @@
 "merge-sorted-array":{
     "id": "88",
     "name": "merge-sorted-array",
-    "company": [],
     "pre": [
         {
             "text": "归并排序",
@@ -2069,6 +2469,18 @@
         }
     ],
     "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        },
         {
             "name": "loomberg"
         },
@@ -2103,7 +2515,6 @@
 "subsets-ii":{
     "id": "90",
     "name": "subsets-ii",
-    "company": [],
     "pre": [
         {
             "text": "回溯",
@@ -2123,7 +2534,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/90.subsets-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/90.subsets-ii.md",
     "code": [
@@ -2136,7 +2560,6 @@
 "decode-ways":{
     "id": "91",
     "name": "decode-ways",
-    "company": [],
     "pre": [
         {
             "text": "爬楼梯问题",
@@ -2156,7 +2579,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/91.decode-ways.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/91.decode-ways.md",
     "code": [
@@ -2169,7 +2605,6 @@
 "reverse-linked-list-ii":{
     "id": "92",
     "name": "reverse-linked-list-ii",
-    "company": [],
     "pre": [
         {
             "text": "链表",
@@ -2204,7 +2639,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/92.reverse-linked-list-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/92.reverse-linked-list-ii.md",
     "code": [
@@ -2229,7 +2677,6 @@
 "binary-tree-inorder-traversal":{
     "id": "94",
     "name": "binary-tree-inorder-traversal",
-    "company": [],
     "pre": [
         {
             "text": "二叉树",
@@ -2264,7 +2711,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/94.binary-tree-inorder-traversal.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/94.binary-tree-inorder-traversal.md",
     "code": [
@@ -2289,7 +2749,6 @@
 "unique-binary-search-trees-ii":{
     "id": "95",
     "name": "unique-binary-search-trees-ii",
-    "company": [],
     "pre": [
         {
             "text": "二叉搜索树",
@@ -2309,7 +2768,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/95.unique-binary-search-trees-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/95.unique-binary-search-trees-ii.md",
     "code": []
@@ -2317,7 +2789,6 @@
 "unique-binary-search-trees":{
     "id": "96",
     "name": "unique-binary-search-trees",
-    "company": [],
     "pre": [
         {
             "text": "二叉搜索树",
@@ -2347,7 +2818,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/96.unique-binary-search-trees.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/96.unique-binary-search-trees.md",
     "code": [
@@ -2360,7 +2844,6 @@
 "validate-binary-search-tree":{
     "id": "98",
     "name": "validate-binary-search-tree",
-    "company": [],
     "pre": [
         {
             "text": "中序遍历",
@@ -2385,7 +2868,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/98.validate-binary-search-tree.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/98.validate-binary-search-tree.md",
     "code": [
@@ -2414,7 +2910,6 @@
 "symmetric-tree":{
     "id": "101",
     "name": "symmetric-tree",
-    "company": [],
     "pre": [
         {
             "text": "二叉树",
@@ -2429,6 +2924,18 @@
     ],
     "keyPoints": [],
     "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        },
         {
             "name": "bloomberg"
         },
@@ -2459,7 +2966,6 @@
 "binary-tree-level-order-traversal":{
     "id": "102",
     "name": "binary-tree-level-order-traversal",
-    "company": [],
     "pre": [
         {
             "text": "队列",
@@ -2499,7 +3005,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/102.binary-tree-level-order-traversal.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/102.binary-tree-level-order-traversal.md",
     "code": [
@@ -2516,7 +3035,6 @@
 "binary-tree-zigzag-level-order-traversal":{
     "id": "103",
     "name": "binary-tree-zigzag-level-order-traversal",
-    "company": [],
     "pre": [
         {
             "text": "队列",
@@ -2551,7 +3069,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/103.binary-tree-zigzag-level-order-traversal.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/103.binary-tree-zigzag-level-order-traversal.md",
     "code": [
@@ -2564,7 +3095,6 @@
 "maximum-depth-of-binary-tree":{
     "id": "104",
     "name": "maximum-depth-of-binary-tree",
-    "company": [],
     "pre": [
         {
             "text": "递归",
@@ -2601,6 +3131,18 @@
     ],
     "companies": [
         {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        },
+        {
             "name": "apple"
         },
         {
@@ -2633,7 +3175,6 @@
 "Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal":{
     "id": "105",
     "name": "Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal",
-    "company": [],
     "pre": [
         {
             "text": "二叉树",
@@ -2642,7 +3183,20 @@
         }
     ],
     "keyPoints": [],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/105.Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/105.Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal.md",
     "code": [
@@ -2659,7 +3213,6 @@
 "convert-sorted-array-to-binary-search-tree":{
     "id": "108",
     "name": "convert-sorted-array-to-binary-search-tree",
-    "company": [],
     "pre": [
         {
             "text": "二叉搜索树",
@@ -2685,6 +3238,18 @@
         }
     ],
     "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        },
         {
             "name": "airbnb"
         }
@@ -2717,7 +3282,6 @@
 "path-sum-ii":{
     "id": "113",
     "name": "path-sum-ii",
-    "company": [],
     "pre": [
         {
             "text": "回溯法",
@@ -2737,7 +3301,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/113.path-sum-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/113.path-sum-ii.md",
     "code": [
@@ -2754,7 +3331,6 @@
 "best-time-to-buy-and-sell-stock":{
     "id": "121",
     "name": "best-time-to-buy-and-sell-stock",
-    "company": [],
     "pre": [
         {
             "text": "数组",
@@ -2770,6 +3346,18 @@
         }
     ],
     "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        },
         {
             "name": "amazon"
         },
@@ -2810,7 +3398,6 @@
 "best-time-to-buy-and-sell-stock-ii":{
     "id": "122",
     "name": "best-time-to-buy-and-sell-stock-ii",
-    "company": [],
     "pre": [
         {
             "text": "数组",
@@ -2826,6 +3413,18 @@
         }
     ],
     "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        },
         {
             "name": "bloomberg"
         }
@@ -2850,7 +3449,6 @@
 "binary-tree-maximum-path-sum":{
     "id": "124",
     "name": "binary-tree-maximum-path-sum",
-    "company": [],
     "pre": [
         {
             "text": "递归",
@@ -2872,7 +3470,16 @@
     ],
     "companies": [
         {
-            "name": "字节"
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
         }
     ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/124.binary-tree-maximum-path-sum.md",
@@ -2895,7 +3502,6 @@
 "valid-palindrome":{
     "id": "125",
     "name": "valid-palindrome",
-    "company": [],
     "pre": [
         {
             "text": "回文",
@@ -2916,6 +3522,18 @@
         }
     ],
     "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        },
         {
             "name": "facebook"
         },
@@ -2945,7 +3563,6 @@
 "longest-consecutive-sequence":{
     "id": "128",
     "name": "longest-consecutive-sequence",
-    "company": [],
     "pre": [
         {
             "text": "hashmap",
@@ -2960,7 +3577,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/128.longest-consecutive-sequence.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/128.longest-consecutive-sequence.md",
     "code": [
@@ -2977,7 +3607,6 @@
 "sum-root-to-leaf-numbers":{
     "id": "129",
     "name": "sum-root-to-leaf-numbers",
-    "company": [],
     "pre": [
         {
             "text": "递归",
@@ -2992,7 +3621,17 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/129.sum-root-to-leaf-numbers.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/129.sum-root-to-leaf-numbers.md",
     "code": [
@@ -3013,7 +3652,6 @@
 "surrounded-regions":{
     "id": "130",
     "name": "surrounded-regions",
-    "company": [],
     "pre": [
         {
             "text": "DFS",
@@ -3038,7 +3676,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/130.surrounded-regions.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/130.surrounded-regions.md",
     "code": [
@@ -3055,7 +3706,6 @@
 "palindrome-partitioning":{
     "id": "131",
     "name": "palindrome-partitioning",
-    "company": [],
     "pre": [
         {
             "text": "回溯法",
@@ -3070,7 +3720,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/131.palindrome-partitioning.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/131.palindrome-partitioning.md",
     "code": [
@@ -3087,7 +3750,6 @@
 "single-number":{
     "id": "136",
     "name": "single-number",
-    "company": [],
     "pre": [
         {
             "text": "位运算",
@@ -3114,10 +3776,16 @@
     ],
     "companies": [
         {
-            "name": "airbnb"
+            "name": "阿里巴巴"
         },
         {
-            "name": "palantir"
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
         }
     ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/136.single-number.md",
@@ -3140,7 +3808,6 @@
 "word-break":{
     "id": "139",
     "name": "word-break",
-    "company": [],
     "pre": [
         {
             "text": "动态规划",
@@ -3149,7 +3816,20 @@
         }
     ],
     "keyPoints": [],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/139.word-break.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/139.word-break.md",
     "code": [
@@ -3162,7 +3842,6 @@
 "binary-tree-preorder-traversal":{
     "id": "144",
     "name": "binary-tree-preorder-traversal",
-    "company": [],
     "pre": [
         {
             "text": "递归",
@@ -3197,7 +3876,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/144.binary-tree-preorder-traversal.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/144.binary-tree-preorder-traversal.md",
     "code": [
@@ -3210,7 +3902,6 @@
 "binary-tree-postorder-traversal":{
     "id": "145",
     "name": "binary-tree-postorder-traversal",
-    "company": [],
     "pre": [
         {
             "text": "栈",
@@ -3245,7 +3936,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/145.binary-tree-postorder-traversal.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/145.binary-tree-postorder-traversal.md",
     "code": [
@@ -3258,7 +3962,6 @@
 "lru-cache":{
     "id": "146",
     "name": "lru-cache",
-    "company": [],
     "pre": [
         {
             "text": "队列",
@@ -3280,10 +3983,16 @@
     ],
     "companies": [
         {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
             "name": "百度"
         },
         {
-            "name": "字节"
+            "name": "字节跳动"
         }
     ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/146.lru-cache.md",
@@ -3298,7 +4007,6 @@
 "evaluate-reverse-polish-notation":{
     "id": "150",
     "name": "evaluate-reverse-polish-notation",
-    "company": [],
     "pre": [
         {
             "text": "栈",
@@ -3313,7 +4021,14 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/150.evaluate-reverse-polish-notation.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/150.evaluate-reverse-polish-notation.md",
     "code": [
@@ -3326,7 +4041,6 @@
 "maximum-product-subarray":{
     "id": "152",
     "name": "maximum-product-subarray",
-    "company": [],
     "pre": [
         {
             "text": "滑动窗口",
@@ -3341,7 +4055,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/152.maximum-product-subarray.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/152.maximum-product-subarray.md",
     "code": [
@@ -3366,7 +4093,6 @@
 "min-stack":{
     "id": "155",
     "name": "min-stack",
-    "company": [],
     "pre": [
         {
             "text": "栈",
@@ -3441,7 +4167,6 @@
 "two-sum-ii-input-array-is-sorted":{
     "id": "167",
     "name": "two-sum-ii-input-array-is-sorted",
-    "company": [],
     "pre": [
         {
             "text": "双指针",
@@ -3457,6 +4182,18 @@
         }
     ],
     "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        },
         {
             "name": "amazon"
         }
@@ -3485,7 +4222,6 @@
 "majority-element":{
     "id": "169",
     "name": "majority-element",
-    "company": [],
     "pre": [
         {
             "text": "投票算法",
@@ -3501,6 +4237,18 @@
         }
     ],
     "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        },
         {
             "name": "adobe"
         },
@@ -3524,7 +4272,6 @@
 "factorial-trailing-zeroes":{
     "id": "172",
     "name": "factorial-trailing-zeroes",
-    "company": [],
     "pre": [
         {
             "text": "递归",
@@ -3540,6 +4287,15 @@
         }
     ],
     "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
         {
             "name": "bloomberg"
         }
@@ -3560,7 +4316,6 @@
 "reverse-bits":{
     "id": "190",
     "name": "reverse-bits",
-    "company": [],
     "pre": [
         {
             "text": "双指针",
@@ -3587,6 +4342,15 @@
     ],
     "companies": [
         {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
             "name": "airbnb"
         },
         {
@@ -3609,7 +4373,6 @@
 "number-of-1-bits":{
     "id": "191",
     "name": "number-of-1-bits",
-    "company": [],
     "pre": [
         {
             "text": "位运算",
@@ -3630,6 +4393,18 @@
         }
     ],
     "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        },
         {
             "name": "apple"
         },
@@ -3661,7 +4436,6 @@
 "house-robber":{
     "id": "198",
     "name": "house-robber",
-    "company": [],
     "pre": [
         {
             "text": "动态规划",
@@ -3671,6 +4445,18 @@
     ],
     "keyPoints": [],
     "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        },
         {
             "name": "airbnb"
         },
@@ -3698,7 +4484,6 @@
 "binary-tree-right-side-view":{
     "id": "199",
     "name": "binary-tree-right-side-view",
-    "company": [],
     "pre": [
         {
             "text": "队列",
@@ -3738,7 +4523,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/199.binary-tree-right-side-view.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/199.binary-tree-right-side-view.md",
     "code": [
@@ -3751,7 +4549,6 @@
 "number-of-islands":{
     "id": "200",
     "name": "number-of-islands",
-    "company": [],
     "pre": [
         {
             "text": "DFS",
@@ -3771,7 +4568,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/200.number-of-islands.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/200.number-of-islands.md",
     "code": [
@@ -3788,7 +4598,6 @@
 "bitwise-and-of-numbers-range":{
     "id": "201",
     "name": "bitwise-and-of-numbers-range",
-    "company": [],
     "pre": [
         {
             "text": "位运算",
@@ -3813,7 +4622,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/201.bitwise-and-of-numbers-range.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/201.bitwise-and-of-numbers-range.md",
     "code": [
@@ -3838,7 +4660,6 @@
 "remove-linked-list-elements":{
     "id": "203",
     "name": "remove-linked-list-elements",
-    "company": [],
     "pre": [
         {
             "text": "链表",
@@ -3863,7 +4684,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/203.remove-linked-list-elements.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/203.remove-linked-list-elements.md",
     "code": [
@@ -3884,7 +4718,6 @@
 "reverse-linked-list":{
     "id": "206",
     "name": "reverse-linked-list",
-    "company": [],
     "pre": [
         {
             "text": "链表",
@@ -3911,7 +4744,7 @@
     ],
     "companies": [
         {
-            "name": "阿里"
+            "name": "阿里巴巴"
         },
         {
             "name": "百度"
@@ -3992,7 +4825,6 @@
 "implement-trie-prefix-tree":{
     "id": "208",
     "name": "implement-trie-prefix-tree",
-    "company": [],
     "pre": [
         {
             "text": "前缀树",
@@ -4007,7 +4839,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/208.implement-trie-prefix-tree.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/208.implement-trie-prefix-tree.md",
     "code": [
@@ -4028,7 +4873,6 @@
 "minimum-size-subarray-sum":{
     "id": "209",
     "name": "minimum-size-subarray-sum",
-    "company": [],
     "pre": [
         {
             "text": "滑动窗口",
@@ -4043,7 +4887,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/209.minimum-size-subarray-sum.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/209.minimum-size-subarray-sum.md",
     "code": [
@@ -4064,7 +4921,6 @@
 "add-and-search-word-data-structure-design":{
     "id": "211",
     "name": "add-and-search-word-data-structure-design",
-    "company": [],
     "pre": [
         {
             "text": "前缀树",
@@ -4079,7 +4935,14 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/211.add-and-search-word-data-structure-design.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/211.add-and-search-word-data-structure-design.md",
     "code": [
@@ -4104,7 +4967,6 @@
 "word-search-ii":{
     "id": "212",
     "name": "word-search-ii",
-    "company": [],
     "pre": [
         {
             "text": "前缀树",
@@ -4134,7 +4996,14 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/212.word-search-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/212.word-search-ii.md",
     "code": [
@@ -4151,7 +5020,6 @@
 "kth-largest-element-in-an-array":{
     "id": "215",
     "name": "kth-largest-element-in-an-array",
-    "company": [],
     "pre": [
         {
             "text": "堆",
@@ -4171,7 +5039,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/215.kth-largest-element-in-an-array.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/215.kth-largest-element-in-an-array.md",
     "code": [
@@ -4192,7 +5073,6 @@
 "contains-duplicate-ii":{
     "id": "219",
     "name": "contains-duplicate-ii",
-    "company": [],
     "pre": [
         {
             "text": "hashmap",
@@ -4209,10 +5089,16 @@
     ],
     "companies": [
         {
-            "name": "airbnb"
+            "name": "阿里巴巴"
         },
         {
-            "name": "palantir"
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
         }
     ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/219.contains-duplicate-ii.md",
@@ -4231,7 +5117,6 @@
 "maximal-square":{
     "id": "221",
     "name": "maximal-square",
-    "company": [],
     "pre": [
         {
             "text": "动态规划",
@@ -4271,7 +5156,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/221.maximal-square.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/221.maximal-square.md",
     "code": [
@@ -4288,7 +5186,6 @@
 "invert-binary-tree":{
     "id": "226",
     "name": "invert-binary-tree",
-    "company": [],
     "pre": [
         {
             "text": "递归",
@@ -4313,7 +5210,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/226.invert-binary-tree.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/226.invert-binary-tree.md",
     "code": [
@@ -4330,7 +5240,6 @@
 "majority-element-ii":{
     "id": "229",
     "name": "majority-element-ii",
-    "company": [],
     "pre": [
         {
             "text": "摩尔投票法",
@@ -4355,7 +5264,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/229.majority-element-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/229.majority-element-ii.md",
     "code": [
@@ -4372,7 +5294,6 @@
 "kth-smallest-element-in-a-bst":{
     "id": "230",
     "name": "kth-smallest-element-in-a-bst",
-    "company": [],
     "pre": [
         {
             "text": "中序遍历",
@@ -4387,7 +5308,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/230.kth-smallest-element-in-a-bst.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/230.kth-smallest-element-in-a-bst.md",
     "code": [
@@ -4408,7 +5342,6 @@
 "implement-queue-using-stacks":{
     "id": "232",
     "name": "implement-queue-using-stacks",
-    "company": [],
     "pre": [
         {
             "text": "栈",
@@ -4424,6 +5357,18 @@
         }
     ],
     "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        },
         {
             "name": "bloomberg"
         },
@@ -4451,7 +5396,6 @@
 "lowest-common-ancestor-of-a-binary-tree":{
     "id": "236",
     "name": "lowest-common-ancestor-of-a-binary-tree",
-    "company": [],
     "pre": [
         {
             "text": "递归",
@@ -4466,7 +5410,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/236.lowest-common-ancestor-of-a-binary-tree.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/236.lowest-common-ancestor-of-a-binary-tree.md",
     "code": [
@@ -4483,7 +5440,6 @@
 "product-of-array-except-self":{
     "id": "238",
     "name": "product-of-array-except-self",
-    "company": [],
     "pre": [
         {
             "text": "数组",
@@ -4503,7 +5459,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/238.product-of-array-except-self.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/238.product-of-array-except-self.md",
     "code": [
@@ -4516,7 +5485,6 @@
 "sliding-window-maximum":{
     "id": "239",
     "name": "sliding-window-maximum",
-    "company": [],
     "pre": [
         {
             "text": "队列",
@@ -4541,7 +5509,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/239.sliding-window-maximum.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/239.sliding-window-maximum.md",
     "code": [
@@ -4566,7 +5547,6 @@
 "search-a-2-d-matrix-ii":{
     "id": "240",
     "name": "search-a-2-d-matrix-ii",
-    "company": [],
     "pre": [
         {
             "text": "数组",
@@ -4581,7 +5561,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/240.search-a-2-d-matrix-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/240.search-a-2-d-matrix-ii.md",
     "code": [
@@ -4598,7 +5591,6 @@
 "ugly-number":{
     "id": "263",
     "name": "ugly-number",
-    "company": [],
     "pre": [
         {
             "text": "数学",
@@ -4623,7 +5615,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/263.ugly-number.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/263.ugly-number.md",
     "code": [
@@ -4644,7 +5649,6 @@
 "perfect-squares":{
     "id": "279",
     "name": "perfect-squares",
-    "company": [],
     "pre": [
         {
             "text": "递归",
@@ -4679,7 +5683,17 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/279.perfect-squares.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/279.perfect-squares.md",
     "code": [
@@ -4700,7 +5714,6 @@
 "move-zeroes":{
     "id": "283",
     "name": "move-zeroes",
-    "company": [],
     "pre": [
         {
             "text": "数组",
@@ -4721,6 +5734,18 @@
         }
     ],
     "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        },
         {
             "name": "bloomberg"
         },
@@ -4748,7 +5773,6 @@
 "find-median-from-data-stream":{
     "id": "295",
     "name": "find-median-from-data-stream",
-    "company": [],
     "pre": [
         {
             "text": "堆",
@@ -4773,7 +5797,17 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/295.find-median-from-data-stream.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/295.find-median-from-data-stream.md",
     "code": [
@@ -4798,7 +5832,6 @@
 "remove-invalid-parentheses":{
     "id": "301",
     "name": "remove-invalid-parentheses",
-    "company": [],
     "pre": [
         {
             "text": "BFS",
@@ -4828,7 +5861,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/301.remove-invalid-parentheses.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/301.remove-invalid-parentheses.md",
     "code": [
@@ -4841,7 +5887,6 @@
 "best-time-to-buy-and-sell-stock-with-cooldown":{
     "id": "309",
     "name": "best-time-to-buy-and-sell-stock-with-cooldown",
-    "company": [],
     "pre": [
         {
             "text": "动态规划",
@@ -4856,7 +5901,17 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/309.best-time-to-buy-and-sell-stock-with-cooldown.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/309.best-time-to-buy-and-sell-stock-with-cooldown.md",
     "code": [
@@ -4869,7 +5924,6 @@
 "burst-balloons":{
     "id": "312",
     "name": "burst-balloons",
-    "company": [],
     "pre": [
         {
             "text": "回溯法",
@@ -4883,7 +5937,20 @@
         }
     ],
     "keyPoints": [],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/312.burst-balloons.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/312.burst-balloons.md",
     "code": [
@@ -4904,7 +5971,6 @@
 "coin-change":{
     "id": "322",
     "name": "coin-change",
-    "company": [],
     "pre": [
         {
             "text": "贪心算法",
@@ -4939,7 +6005,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        },
+        {
+            "name": "阿里巴巴（盒马生鲜）"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/322.coin-change.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/322.coin-change.md",
     "code": [
@@ -4960,7 +6039,6 @@
 "odd-even-linked-list":{
     "id": "328",
     "name": "odd-even-linked-list",
-    "company": [],
     "pre": [
         {
             "text": "链表",
@@ -4980,7 +6058,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/328.odd-even-linked-list.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/328.odd-even-linked-list.md",
     "code": [
@@ -4993,7 +6084,6 @@
 "increasing-triplet-subsequence":{
     "id": "334",
     "name": "increasing-triplet-subsequence",
-    "company": [],
     "pre": [
         {
             "text": "双指针",
@@ -5008,7 +6098,14 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/334.increasing-triplet-subsequence.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/334.increasing-triplet-subsequence.md",
     "code": [
@@ -5021,7 +6118,6 @@
 "self-crossing":{
     "id": "335",
     "name": "self-crossing",
-    "company": [],
     "pre": [
         {
             "text": "滑动窗口",
@@ -5054,7 +6150,6 @@
 "house-robber-iii":{
     "id": "337",
     "name": "house-robber-iii",
-    "company": [],
     "pre": [
         {
             "text": "二叉树",
@@ -5074,7 +6169,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/337.house-robber-iii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/337.house-robber-iii.md",
     "code": [
@@ -5099,7 +6207,6 @@
 "power-of-four":{
     "id": "342",
     "name": "power-of-four",
-    "company": [],
     "pre": [
         {
             "text": "数论",
@@ -5125,6 +6232,9 @@
         }
     ],
     "companies": [
+        {
+            "name": "百度"
+        },
         {
             "name": "twosigma"
         }
@@ -5153,7 +6263,6 @@
 "integer-break":{
     "id": "343",
     "name": "integer-break",
-    "company": [],
     "pre": [
         {
             "text": "递归",
@@ -5188,7 +6297,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/343.integer-break.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/343.integer-break.md",
     "code": [
@@ -5217,7 +6339,6 @@
 "intersection-of-two-arrays":{
     "id": "349",
     "name": "intersection-of-two-arrays",
-    "company": [],
     "pre": [
         {
             "text": "hashtable",
@@ -5232,7 +6353,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/349.intersection-of-two-arrays.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/349.intersection-of-two-arrays.md",
     "code": [
@@ -5249,7 +6383,6 @@
 "water-and-jug-problem":{
     "id": "365",
     "name": "water-and-jug-problem",
-    "company": [],
     "pre": [
         {
             "text": "BFS",
@@ -5263,7 +6396,17 @@
         }
     ],
     "keyPoints": [],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/365.water-and-jug-problem.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/365.water-and-jug-problem.md",
     "code": [
@@ -5288,7 +6431,6 @@
 "sum-of-two-integers":{
     "id": "371",
     "name": "sum-of-two-integers",
-    "company": [],
     "pre": [
         {
             "text": "位运算",
@@ -5313,7 +6455,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/371.sum-of-two-integers.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/371.sum-of-two-integers.md",
     "code": [
@@ -5338,7 +6493,6 @@
 "kth-smallest-element-in-a-sorted-matrix":{
     "id": "378",
     "name": "kth-smallest-element-in-a-sorted-matrix",
-    "company": [],
     "pre": [
         {
             "text": "二分查找",
@@ -5368,7 +6522,17 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/378.kth-smallest-element-in-a-sorted-matrix.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/378.kth-smallest-element-in-a-sorted-matrix.md",
     "code": [
@@ -5381,7 +6545,6 @@
 "insert-delete-getrandom-o1":{
     "id": "380",
     "name": "insert-delete-getrandom-o1",
-    "company": [],
     "pre": [
         {
             "text": "数组",
@@ -5416,7 +6579,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/380.insert-delete-getrandom-o1.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/380.insert-delete-getrandom-o1.md",
     "code": [
@@ -5429,7 +6605,6 @@
 "partition-equal-subset-sum":{
     "id": "416",
     "name": "partition-equal-subset-sum",
-    "company": [],
     "pre": [
         {
             "text": "DFS",
@@ -5443,7 +6618,20 @@
         }
     ],
     "keyPoints": [],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/416.partition-equal-subset-sum.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/416.partition-equal-subset-sum.md",
     "code": [
@@ -5472,7 +6660,6 @@
 "path-sum-iii":{
     "id": "437",
     "name": "path-sum-iii",
-    "company": [],
     "pre": [
         {
             "text": "hashmap",
@@ -5507,7 +6694,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/437.path-sum-iii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/437.path-sum-iii.md",
     "code": [
@@ -5524,7 +6724,6 @@
 "add-two-numbers-ii":{
     "id": "445",
     "name": "add-two-numbers-ii",
-    "company": [],
     "pre": [
         {
             "text": "链表",
@@ -5559,7 +6758,17 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/445.add-two-numbers-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/445.add-two-numbers-ii.md",
     "code": [
@@ -5576,7 +6785,6 @@
 "4-sum-ii":{
     "id": "454",
     "name": "4-sum-ii",
-    "company": [],
     "pre": [
         {
             "text": "hashTable",
@@ -5596,7 +6804,14 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/454.4-sum-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/454.4-sum-ii.md",
     "code": [
@@ -5613,7 +6828,6 @@
 "AssignCookies":{
     "id": "455",
     "name": "AssignCookies",
-    "company": [],
     "pre": [
         {
             "text": "贪心算法",
@@ -5633,7 +6847,17 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/455.AssignCookies.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/455.AssignCookies.md",
     "code": [
@@ -5646,7 +6870,6 @@
 "lfu-cache":{
     "id": "460",
     "name": "lfu-cache",
-    "company": [],
     "pre": [
         {
             "text": "链表",
@@ -5666,7 +6889,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/460.lfu-cache.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/460.lfu-cache.md",
     "code": [
@@ -5679,7 +6915,6 @@
 "concatenated-words":{
     "id": "472",
     "name": "concatenated-words",
-    "company": [],
     "pre": [
         {
             "text": "前缀树",
@@ -5699,7 +6934,14 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/472.concatenated-words.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/472.concatenated-words.md",
     "code": [
@@ -5712,7 +6954,6 @@
 "reverse-pairs":{
     "id": "493",
     "name": "reverse-pairs",
-    "company": [],
     "pre": [
         {
             "text": "归并排序",
@@ -5752,7 +6993,17 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/493.reverse-pairs.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/493.reverse-pairs.md",
     "code": [
@@ -5773,7 +7024,6 @@
 "target-sum":{
     "id": "494",
     "name": "target-sum",
-    "company": [],
     "pre": [
         {
             "text": "动态规划",
@@ -5798,7 +7048,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/494.target-sum.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/494.target-sum.md",
     "code": [
@@ -5811,7 +7074,6 @@
 "Find-Mode-in-Binary-Search-Tree":{
     "id": "501",
     "name": "Find-Mode-in-Binary-Search-Tree",
-    "company": [],
     "pre": [],
     "keyPoints": [],
     "companies": [],
@@ -5827,7 +7089,6 @@
 "longest-palindromic-subsequence":{
     "id": "516",
     "name": "longest-palindromic-subsequence",
-    "company": [],
     "pre": [
         {
             "text": "动态规划",
@@ -5842,7 +7103,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/516.longest-palindromic-subsequence.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/516.longest-palindromic-subsequence.md",
     "code": [
@@ -5859,7 +7133,6 @@
 "coin-change-2":{
     "id": "518",
     "name": "coin-change-2",
-    "company": [],
     "pre": [
         {
             "text": "动态规划",
@@ -5964,7 +7237,17 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/518.coin-change-2.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/518.coin-change-2.md",
     "code": [
@@ -5993,7 +7276,6 @@
 "friend-circles":{
     "id": "547",
     "name": "friend-circles",
-    "company": [],
     "pre": [
         {
             "text": "并查集",
@@ -6002,7 +7284,20 @@
         }
     ],
     "keyPoints": [],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/547.friend-circles.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/547.friend-circles.md",
     "code": [
@@ -6015,7 +7310,6 @@
 "subarray-sum-equals-k":{
     "id": "560",
     "name": "subarray-sum-equals-k",
-    "company": [],
     "pre": [
         {
             "text": "哈希表",
@@ -6040,7 +7334,17 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/560.subarray-sum-equals-k.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/560.subarray-sum-equals-k.md",
     "code": [
@@ -6065,7 +7369,6 @@
 "distribute-candies":{
     "id": "575",
     "name": "distribute-candies",
-    "company": [],
     "pre": [
         {
             "text": "数组",
@@ -6080,7 +7383,14 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/575.distribute-candies.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/575.distribute-candies.md",
     "code": [
@@ -6097,7 +7407,6 @@
 "find-duplicate-file-in-system":{
     "id": "609",
     "name": "find-duplicate-file-in-system",
-    "company": [],
     "pre": [
         {
             "text": "哈希表",
@@ -6125,7 +7434,6 @@
 "valid-triangle-number":{
     "id": "611",
     "name": "valid-triangle-number",
-    "company": [],
     "pre": [
         {
             "text": "排序",
@@ -6160,7 +7468,17 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/611.valid-triangle-number.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/611.valid-triangle-number.md",
     "code": [
@@ -6189,7 +7507,6 @@
 "maximum-length-of-repeated-subarray":{
     "id": "718",
     "name": "maximum-length-of-repeated-subarray",
-    "company": [],
     "pre": [
         {
             "text": "哈希表",
@@ -6219,7 +7536,20 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/718.maximum-length-of-repeated-subarray.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/718.maximum-length-of-repeated-subarray.md",
     "code": [
@@ -6232,7 +7562,6 @@
 "accounts-merge":{
     "id": "721",
     "name": "accounts-merge",
-    "company": [],
     "pre": [
         {
             "text": "并查集",
@@ -6241,7 +7570,11 @@
         }
     ],
     "keyPoints": [],
-    "companies": [],
+    "companies": [
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/721.accounts-merge.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/721.accounts-merge.md",
     "code": [
@@ -6254,7 +7587,6 @@
 "is-graph-bipartite":{
     "id": "785",
     "name": "is-graph-bipartite",
-    "company": [],
     "pre": [
         {
             "text": "图的遍历",
@@ -6292,7 +7624,6 @@
 "short-encoding-of-words":{
     "id": "820",
     "name": "short-encoding-of-words",
-    "company": [],
     "pre": [
         {
             "text": "前缀树",
@@ -6312,7 +7643,14 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/820.short-encoding-of-words.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/820.short-encoding-of-words.md",
     "code": [
@@ -6325,7 +7663,6 @@
 "walking-robot-simulation":{
     "id": "874",
     "name": "walking-robot-simulation",
-    "company": [],
     "pre": [
         {
             "text": "hashtable",
@@ -6363,7 +7700,6 @@
 "koko-eating-bananas":{
     "id": "875",
     "name": "koko-eating-bananas",
-    "company": [],
     "pre": [
         {
             "text": "二分查找",
@@ -6378,7 +7714,11 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/875.koko-eating-bananas.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/875.koko-eating-bananas.md",
     "code": [
@@ -6407,7 +7747,6 @@
 "stone-game":{
     "id": "877",
     "name": "stone-game",
-    "company": [],
     "pre": [
         {
             "text": "动态规划",
@@ -6427,7 +7766,14 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/877.stone-game.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/877.stone-game.md",
     "code": [
@@ -6440,7 +7786,6 @@
 "possible-bipartition":{
     "id": "886",
     "name": "possible-bipartition",
-    "company": [],
     "pre": [
         {
             "text": "图的遍历",
@@ -6496,7 +7841,6 @@
 "super-egg-drop":{
     "id": "887",
     "name": "super-egg-drop",
-    "company": [],
     "pre": [
         {
             "text": "动态规划",
@@ -6528,7 +7872,6 @@
 "maximum-frequency-stack":{
     "id": "895",
     "name": "maximum-frequency-stack",
-    "company": [],
     "pre": [
         {
             "text": "栈",
@@ -6571,7 +7914,6 @@
 "rle-iterator":{
     "id": "900",
     "name": "rle-iterator",
-    "company": [],
     "pre": [
         {
             "text": "哈夫曼编码和游程编码",
@@ -6593,7 +7935,6 @@
 "sort-an-array":{
     "id": "912",
     "name": "sort-an-array",
-    "company": [],
     "pre": [
         {
             "text": "数组",
@@ -6618,7 +7959,17 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/912.sort-an-array.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/912.sort-an-array.md",
     "code": [
@@ -6635,7 +7986,6 @@
 "knight-dialer":{
     "id": "935",
     "name": "knight-dialer",
-    "company": [],
     "pre": [
         {
             "text": "DFS",
@@ -6666,7 +8016,6 @@
 "capacity-to-ship-packages-within-d-days-cn":{
     "id": "1011",
     "name": "capacity-to-ship-packages-within-d-days-cn",
-    "company": [],
     "pre": [
         {
             "text": "二分法",
@@ -6681,7 +8030,11 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1011.capacity-to-ship-packages-within-d-days-cn.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1011.capacity-to-ship-packages-within-d-days-cn.md",
     "code": [
@@ -6702,7 +8055,6 @@
 "best-sightseeing-pair":{
     "id": "1014",
     "name": "best-sightseeing-pair",
-    "company": [],
     "pre": [
         {
             "text": "动态规划",
@@ -6722,7 +8074,14 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1014.best-sightseeing-pair.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1014.best-sightseeing-pair.md",
     "code": [
@@ -6747,7 +8106,6 @@
 "smallest-integer-divisible-by-k":{
     "id": "1015",
     "name": "smallest-integer-divisible-by-k",
-    "company": [],
     "pre": [
         {
             "text": "循环节",
@@ -6775,7 +8133,6 @@
 "next-greater-node-in-linked-list":{
     "id": "1019",
     "name": "next-greater-node-in-linked-list",
-    "company": [],
     "pre": [
         {
             "text": "链表",
@@ -6800,7 +8157,14 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1019.next-greater-node-in-linked-list.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1019.next-greater-node-in-linked-list.md",
     "code": [
@@ -6817,7 +8181,6 @@
 "number-of-enclaves":{
     "id": "1020",
     "name": "number-of-enclaves",
-    "company": [],
     "pre": [
         {
             "text": "DFS",
@@ -6854,7 +8217,6 @@
 "camelcase-matching":{
     "id": "1023",
     "name": "camelcase-matching",
-    "company": [],
     "pre": [
         {
             "text": "双指针",
@@ -6901,7 +8263,6 @@
 "maximum-sum-of-two-non-overlapping-subarrays":{
     "id": "1031",
     "name": "maximum-sum-of-two-non-overlapping-subarrays",
-    "company": [],
     "pre": [
         {
             "text": "数组",
@@ -6921,7 +8282,11 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1031.maximum-sum-of-two-non-overlapping-subarrays.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1031.maximum-sum-of-two-non-overlapping-subarrays.md",
     "code": [
@@ -6934,7 +8299,6 @@
 "stream-of-characters":{
     "id": "1032",
     "name": "stream-of-characters",
-    "company": [],
     "pre": [
         {
             "text": "前缀树",
@@ -6954,7 +8318,11 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1032.stream-of-characters.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1032.stream-of-characters.md",
     "code": [
@@ -6975,7 +8343,6 @@
 "path-in-zigzag-labelled-binary-tree":{
     "id": "1104",
     "name": "path-in-zigzag-labelled-binary-tree",
-    "company": [],
     "pre": [
         {
             "text": "二叉树",
@@ -7018,7 +8385,6 @@
 "maximum-of-absolute-value-expression":{
     "id": "1131",
     "name": "maximum-of-absolute-value-expression",
-    "company": [],
     "pre": [
         {
             "text": "数组",
@@ -7033,7 +8399,17 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1131.maximum-of-absolute-value-expression.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1131.maximum-of-absolute-value-expression.md",
     "code": [
@@ -7050,7 +8426,6 @@
 "optimize-water-distribution-in-a-village-cn":{
     "id": "1168",
     "name": "optimize-water-distribution-in-a-village-cn",
-    "company": [],
     "pre": [
         {
             "text": "图",
@@ -7087,7 +8462,6 @@
 "maximum-subarray-sum-with-one-deletion":{
     "id": "1186",
     "name": "maximum-subarray-sum-with-one-deletion",
-    "company": [],
     "pre": [
         {
             "text": "数组",
@@ -7117,7 +8491,11 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1186.maximum-subarray-sum-with-one-deletion.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1186.maximum-subarray-sum-with-one-deletion.md",
     "code": [
@@ -7138,7 +8516,6 @@
 "longest-arithmetic-subsequence-of-given-difference":{
     "id": "1218",
     "name": "longest-arithmetic-subsequence-of-given-difference",
-    "company": [],
     "pre": [
         {
             "text": "数组",
@@ -7158,7 +8535,11 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "腾讯"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1218.longest-arithmetic-subsequence-of-given-difference.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1218.longest-arithmetic-subsequence-of-given-difference.md",
     "code": [
@@ -7175,7 +8556,6 @@
 "airplane-seat-assignment-probability":{
     "id": "1227",
     "name": "airplane-seat-assignment-probability",
-    "company": [],
     "pre": [
         {
             "text": "记忆化搜索",
@@ -7189,7 +8569,11 @@
         }
     ],
     "keyPoints": [],
-    "companies": [],
+    "companies": [
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1227.airplane-seat-assignment-probability.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1227.airplane-seat-assignment-probability.md",
     "code": [
@@ -7218,7 +8602,6 @@
 "shift-2d-grid":{
     "id": "1260",
     "name": "shift-2d-grid",
-    "company": [],
     "pre": [
         {
             "text": "数组",
@@ -7232,7 +8615,11 @@
         }
     ],
     "keyPoints": [],
-    "companies": [],
+    "companies": [
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1260.shift-2d-grid.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1260.shift-2d-grid.md",
     "code": [
@@ -7249,7 +8636,6 @@
 "find-elements-in-a-contaminated-binary-tree":{
     "id": "1261",
     "name": "find-elements-in-a-contaminated-binary-tree",
-    "company": [],
     "pre": [
         {
             "text": "二进制",
@@ -7279,7 +8665,6 @@
 "greatest-sum-divisible-by-three":{
     "id": "1262",
     "name": "greatest-sum-divisible-by-three",
-    "company": [],
     "pre": [
         {
             "text": "数组",
@@ -7314,7 +8699,11 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1262.greatest-sum-divisible-by-three.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1262.greatest-sum-divisible-by-three.md",
     "code": [
@@ -7343,7 +8732,6 @@
 "maximum-number-of-occurrences-of-a-substring":{
     "id": "1297",
     "name": "maximum-number-of-occurrences-of-a-substring",
-    "company": [],
     "pre": [
         {
             "text": "字符串",
@@ -7373,7 +8761,11 @@
             "color": "blue"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1297.maximum-number-of-occurrences-of-a-substring.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1297.maximum-number-of-occurrences-of-a-substring.md",
     "code": [
@@ -7394,7 +8786,6 @@
 "xor-queries-of-a-subarray":{
     "id": "1310",
     "name": "xor-queries-of-a-subarray",
-    "company": [],
     "pre": [
         {
             "text": "前缀和",
@@ -7439,7 +8830,6 @@
 "remove-palindromic-subsequences":{
     "id": "1332",
     "name": "remove-palindromic-subsequences",
-    "company": [],
     "pre": [
         {
             "text": "回文",
@@ -7471,7 +8861,6 @@
 "find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance":{
     "id": "1334",
     "name": "find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance",
-    "company": [],
     "pre": [
         {
             "text": "动态规划",
@@ -7498,7 +8887,6 @@
 "find-the-longest-substring-containing-vowels-in-even-counts":{
     "id": "1371",
     "name": "find-the-longest-substring-containing-vowels-in-even-counts",
-    "company": [],
     "pre": [
         {
             "text": "前缀和",
@@ -7548,7 +8936,6 @@
 "form-largest-integer-with-digits-that-add-up-to-target":{
     "id": "1449",
     "name": "form-largest-integer-with-digits-that-add-up-to-target",
-    "company": [],
     "pre": [
         {
             "text": "数组",

@@ -7,12 +7,12 @@ logger.level = "debug";
 logger.category = "LeetCode";
 
 const Logger = {
-  success(...args) {
-    logger.info(...args);
-  },
-  error(...args) {
-    logger.error(...args);
-  },
+	success(...args) {
+		logger.info(...args);
+	},
+	error(...args) {
+		logger.error(...args);
+	},
 };
 
 module.exports = Logger;
