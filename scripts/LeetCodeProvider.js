@@ -12,7 +12,7 @@ const {
 
 module.exports = LeetCodeProvider = {
   getProblemsTitle() {
-    Logger.success('开始抓取问题列表。。。。')
+    Logger.success("开始抓取问题列表。。。。");
     return Utils.httpGet(PROBLEMS_URL)
       .then((body) => {
         let titles = [];
@@ -20,11 +20,17 @@ module.exports = LeetCodeProvider = {
         cheerio
           .load(sHtml)(QUESTION_DOM_SELECTOR)
           .each((idx, ele) => titles.push(ele.attribs["title"]));
-           Logger.success("获取问题列表成功");
-        /** 
+        Logger.success("获取问题列表成功");
+        /**
          *  由于QUESTION_DOM_SELECTOR 所选择的结构包含非问题标签，获取title会是undefined，在此需将其过滤掉
-        */
-        return titles.filter(Boolean).filter((name) => !CRAWL_IGNORE_SUFFIX.some(suffix => name.endsWith(suffix)));
+         */
+
+        return titles
+          .filter(Boolean)
+          .filter(
+            (name) =>
+              !CRAWL_IGNORE_SUFFIX.some((suffix) => name.endsWith(suffix))
+          );
       })
       .catch((error) => {
         Logger.error("获取问题列表失败", error);
@@ -44,4 +50,4 @@ module.exports = LeetCodeProvider = {
   },
 };
 
-LeetCodeProvider.getProblemsTitle()
+LeetCodeProvider.getProblemsTitle();

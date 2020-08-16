@@ -147,6 +147,43 @@ digraph MyGraph {
 
 ![](https://tva1.sinaimg.cn/large/007S8ZIlly1gfu7oww70dj30fn04bt91.jpg)
 
+## 详细流程
+
+- 分析代码，在合适位置插入语句
+- 这些插入的语句是我们预先定义好的代码。 比如 ：
+
+```js
+list = [];
+function draw_array(inputs, pointers, value, label = "target") {
+  list.push(`<Layout flex={[1, 1]}>
+        <Array inputs={${inputs}} pointers={${pointers}} />
+        <SingleValue label="${label}" value="${value}" />
+      </Layout>`);
+}
+```
+
+- 当代码提交运行的时候， 会不断调用 draw_array, 每个 draw_array 都对应生成一个图片，这样用户就能看到一张张连续的图片了。
+
+> 这个 list 数组保存的一个个 DSL， 其会被最终渲染为图片。
+
+## list 如何转换为图片序列
+
+```js
+function parse(list) {
+  for (const snapshoot of list) {
+    const jsx = JSXParser(snapshoot);
+    const type = jsx.type;
+    const props = jsx.props;
+    const children = jsx.children || [];
+    parse(children);
+  }
+}
+```
+
+- [JSXParser](https://github.com/RubyLouvre/jsx-parser)
+
+然后就可以使用 React 自定义组件来完成了，具体的组件定义在[index.js](./index.js) 中。
+
 ## 扩展
 
 - 支持用户手写表达式，类似力扣的“树的可视化”

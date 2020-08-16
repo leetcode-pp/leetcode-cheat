@@ -4,9 +4,14 @@ import marked from "marked";
 import hljs from "highlight.js";
 import "highlight.js/styles/github.css";
 
-import { copy } from "./utils";
+import { copy, getColor } from "./utils";
 import db from "./db/db";
-import { LEETCODE_CN_URL, LEETCODE_URL, ISSUES_URL } from "./constant/index";
+import {
+  LEETCODE_CN_URL,
+  LEETCODE_URL,
+  ISSUES_URL,
+  CONTRIBUTE_COMPANY_URL,
+} from "./constant/index";
 
 import "antd/dist/antd.css";
 import "./App.css";
@@ -22,7 +27,6 @@ const dataSource = Object.values(problems);
 function inLeetCodeWebsite(url) {
   return [LEETCODE_CN_URL, LEETCODE_URL].some((u) => url.includes(u));
 }
-
 function TagOrLink({ link, text, style, color }) {
   return link !== null ? (
     <Button type="link" href={link} target="_blank">
@@ -117,6 +121,14 @@ function App() {
             ))}
           </TabPane>
           <TabPane tab="关键点" key="1">
+            {problems[problemId].keyPoints.length === 0 && (
+              <Fragment>
+                暂无关键点，
+                <a href={ISSUES_URL} target="_blank">
+                  点击反馈
+                </a>
+              </Fragment>
+            )}
             {problems[problemId].keyPoints.map(({ id, link, text, color }) => (
               <TagOrLink
                 key={text}
@@ -126,6 +138,24 @@ function App() {
                 style={{ marginBottom: 6 }}
               />
             ))}
+          </TabPane>
+          <TabPane tab="公司" key="4">
+            {problems[problemId].companies.map(({ name }) => (
+              <TagOrLink
+                key={name}
+                text={name}
+                link={null}
+                color={getColor(name)}
+                style={{ marginBottom: 6 }}
+              />
+            )) || (
+              <Fragment>
+                暂无公司资料，
+                <a href={CONTRIBUTE_COMPANY_URL} target="_blank">
+                  点击反馈
+                </a>
+              </Fragment>
+            )}
           </TabPane>
           <TabPane tab="题解" key="2">
             <Button
@@ -201,16 +231,7 @@ function App() {
               </Collapse>
             </div>
           </TabPane>
-          <TabPane tab="公司" key="4">
-            {problems[problemId].company.map((c) => c.name).join("，") || (
-              <Fragment>
-                暂无公司资料，
-                <a href={ISSUES_URL} target="_blank">
-                  点击反馈
-                </a>
-              </Fragment>
-            )}
-          </TabPane>
+
           <TabPane
             tab="可视化调试（敬请期待）"
             key="5"

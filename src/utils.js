@@ -1,4 +1,4 @@
-function copy(text, cb) {
+export function copy(text, cb) {
   //Create a textbox field where we can insert text to.
   var copyFrom = document.createElement("textarea");
 
@@ -26,6 +26,22 @@ function copy(text, cb) {
   if (cb instanceof Function) cb();
 }
 
-module.exports = {
-  copy,
-};
+const COLORS = [
+  "magenta",
+  "red",
+  "volcano",
+  "orange",
+  "gold",
+  "lime",
+  "green",
+  "cyan",
+  "blue",
+  "geekblue",
+  "purple",
+];
+
+export function getColor(text) {
+  let ans = 0;
+  for (const c of text) ans += c.charCodeAt();
+  return COLORS[ans % COLORS.length];
+}
