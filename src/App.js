@@ -238,6 +238,23 @@ function App() {
             key="5"
             disabled={true}
           ></TabPane>
+
+          <TabPane tab="我要反馈" key="6">
+            <div>当前版本： V 0.1.0</div>
+            <a
+              href={ISSUES_URL}
+              target="_blank"
+              style={{ marginRight: "20px" }}
+            >
+              我想反馈问题
+            </a>
+            <a
+              href="https://tva1.sinaimg.cn/large/007S8ZIlly1gfcuzagjalj30p00dwabs.jpg"
+              target="_blank"
+            >
+              关注更新
+            </a>
+          </TabPane>
         </Tabs>
       ) : (
         <div>
