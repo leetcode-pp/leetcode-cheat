@@ -249,6 +249,13 @@ function App() {
               我想反馈问题
             </a>
             <a
+              href={CONTRIBUTE_COMPANY_URL}
+              target="_blank"
+              style={{ marginRight: "20px" }}
+            >
+              我想贡献公司和岗位信息（免费获得题目咨询服务）
+            </a>
+            <a
               href="https://tva1.sinaimg.cn/large/007S8ZIlly1gfcuzagjalj30p00dwabs.jpg"
               target="_blank"
             >
