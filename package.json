@@ -17,6 +17,7 @@
     "rome": "^10.0.4-beta"
   },
   "scripts": {
+    "release": "zip leetcode-cheat.zip build/ && mv leetcode-cheat.zip ../leetcode-cheat-release/ && git commit -am 'feat: release' && git push",
     "lint": "eslint src",
     "start": "react-scripts start",
     "build": "react-scripts build",
