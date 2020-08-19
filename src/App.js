@@ -129,15 +129,11 @@ function App() {
                 </a>
               </Fragment>
             )}
-            {problems[problemId].keyPoints.map(({ id, link, text, color }) => (
-              <TagOrLink
-                key={text}
-                text={text}
-                link={link}
-                color={color}
-                style={{ marginBottom: 6 }}
-              />
-            ))}
+            <ul>
+              {problems[problemId].keyPoints.map(({ id, link, text }) => (
+                <li key={id}>{link ? <a href={link}>text</a> : text}</li>
+              ))}
+            </ul>
           </TabPane>
           <TabPane tab="公司" key="4">
             {problems[problemId].companies.length === 0 && (

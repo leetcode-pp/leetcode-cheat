@@ -23,7 +23,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "crawl": "node scripts/curlLeetcode.js && node scripts/generateLeetcode.js",
-    "clean": "rm -f src/db/root.db.js"
+    "clean": "rm -f src/db/root.db.js && rm -rf spider/"
   },
   "browserslist": {
     "production": [

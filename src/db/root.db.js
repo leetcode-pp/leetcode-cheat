@@ -166,9 +166,9 @@
         }
     ]
 },
-"median-of-two-sorted-array":{
+"median-of-two-sorted-arrays":{
     "id": "4",
-    "name": "median-of-two-sorted-array",
+    "name": "median-of-two-sorted-arrays",
     "pre": [
         {
             "text": "中位数",
@@ -219,8 +219,8 @@
             "name": "腾讯"
         }
     ],
-    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/4.median-of-two-sorted-array.md",
-    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/4.median-of-two-sorted-array.md",
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/4.median-of-two-sorted-arrays.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/4.median-of-two-sorted-arrays.md",
     "code": [
         {
             "language": "java",
@@ -333,9 +333,9 @@
         }
     ]
 },
-"3-sum":{
+"3sum":{
     "id": "15",
-    "name": "3-sum",
+    "name": "3sum",
     "pre": [
         {
             "text": "排序",
@@ -373,8 +373,8 @@
             "name": "字节跳动"
         }
     ],
-    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/15.3-sum.md",
-    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/15.3-sum.md",
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/15.3sum.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/15.3sum.md",
     "code": [
         {
             "language": "js",
@@ -7068,21 +7068,6 @@
         {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=494 lang=javascript\n *\n * [494] Target Sum\n *\n */\n// 这个是我们熟悉的问题了\n// 我们这里需要求解的是nums里面有多少种可以组成target的方式\nvar sumCount = function(nums, target) {\n  // 这里通过观察，我们没必要使用二维数组去存储这些计算结果\n  // 使用一维数组可以有效节省空间\n  const dp = Array(target + 1).fill(0);\n  dp[0] = 1;\n  for (let i = 0; i < nums.length; i++) {\n    for (let j = target; j >= nums[i]; j--) {\n      dp[j] += dp[j - nums[i]];\n    }\n  }\n  return dp[target];\n};\nconst add = nums => nums.reduce((a, b) => (a += b), 0);\n/**\n * @param {number[]} nums\n * @param {number} S\n * @return {number}\n */\nvar findTargetSumWays = function(nums, S) {\n  const sum = add(nums);\n  if (sum < S) return 0;\n  if ((S + sum) % 2 === 1) return 0;\n  return sumCount(nums, (S + sum) >> 1);\n};\n"
-        }
-    ]
-},
-"Find-Mode-in-Binary-Search-Tree":{
-    "id": "501",
-    "name": "Find-Mode-in-Binary-Search-Tree",
-    "pre": [],
-    "keyPoints": [],
-    "companies": [],
-    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/501.Find-Mode-in-Binary-Search-Tree.md",
-    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/501.Find-Mode-in-Binary-Search-Tree.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\n/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode(int x) { val = x; }\n * }\n */\nclass Solution {   \n    List<Integer> list = new ArrayList<> ();\n    TreeNode preNode = null;\n    int max = 0, count = 0;\n    \n    public int[] findMode(TreeNode root) {\n        helper(root);\n        int[] res = new int[list.size()];\n        for (int i=0; i<res.length; i++) {\n            res[i] = list.get(i);\n        }\n        return res;\n    }\n    \n    private void helper (TreeNode root) {\n        if (root == null) return;\n        helper(root.left);\n        \n        if (preNode != null && root.val == preNode.val) {\n            count++;\n        } else {\n            count = 1;\n        }\n        \n        if (count > max) {\n            list.clear();\n            list.add(root.val);\n            max = count;\n        } else if (max == count) {\n            list.add(root.val);            \n        }\n        preNode = root;\n        helper(root.right);\n    }\n}\n"
         }
     ]
 },
