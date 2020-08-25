@@ -21,7 +21,7 @@ const { Panel } = Collapse;
 
 const formatCodeToMarkDown = (code, lang) => `\`\`\`${lang}\n${code}\`\`\`\n`;
 
-const { problems } = db;
+const { problems, company } = db;
 const dataSource = Object.values(problems);
 
 function inLeetCodeWebsite(url) {
@@ -144,15 +144,25 @@ function App() {
                 </a>
               </Fragment>
             )}
-            {problems[problemId].companies.map(({ name }) => (
-              <TagOrLink
-                key={name}
-                text={name}
-                link={null}
-                color={getColor(name)}
-                style={{ marginBottom: 6 }}
-              />
-            ))}
+            <Collapse>
+              {problems[problemId].companies.map(({ name }) => (
+                <Panel header={name} key={name}>
+                  <ul>
+                    {company[name].map((id) => (
+                      <li>
+                        <Button
+                          type="link"
+                          href={`${LEETCODE_CN_URL}/problems/${id}`}
+                          target="_blank"
+                        >
+                          {id}
+                        </Button>
+                      </li>
+                    ))}
+                  </ul>
+                </Panel>
+              ))}
+            </Collapse>
           </TabPane>
           <TabPane tab="题解" key="2">
             <Button
