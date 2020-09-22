@@ -184,6 +184,85 @@ function parse(list) {
 
 然后就可以使用 React 自定义组件来完成了，具体的组件定义在[index.js](./index.js) 中。
 
+## 更新（2020-09-22）
+
+由于有了一个功能很好的 VSCODE 插件， 因此考虑直接集成。 https://hediet.github.io/visualization/?darkTheme=1
+
+以树的可视化调试为例：
+
+```
+
+{
+    "kind": { "graph": true },
+    "nodes": [
+        { "id": "1", "label": "1" },
+        { "id": "2", "label": "2", "color": "orange" },
+        { "id": "3", "label": "3" }
+    ],
+    "edges": [
+        { "from": "1", "to": "2", "color": "red" },
+        { "from": "1", "to": "3" }
+    ]
+}
+```
+
+will render:
+
+![](https://tva1.sinaimg.cn/large/007S8ZIlly1giz7wiwrrej30e108emxi.jpg)
+
+因此我们的目标就是:
+
+1. 将 LeetCode 的测试用例， 比如 [1,2, null, 3, 4] 转化为树结构，树的定义：
+
+```py
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+```
+2.  将树转化为形如：
+
+```js
+{
+    "kind": { "graph": true },
+    "nodes": [
+        { "id": "1", "label": "1" },
+        { "id": "2", "label": "2", "color": "orange" },
+        { "id": "3", "label": "3" }
+    ],
+    "edges": [
+        { "from": "1", "to": "2", "color": "red" },
+        { "from": "1", "to": "3" }
+    ]
+}
+```
+
+的数据结构
+
+3. 在用户代码前后加预处理代码，比如：
+
+```py
+# this class below
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        if (root.val - p.val) * (root.val - q.val) <= 0:
+            return root
+        if p.val < root.val:
+            return self.lowestCommonAncestor(root.left, p, q)
+        return self.lowestCommonAncestor(root.right, p, q)
+        
+# this line below，其中这三个参数应该是从测试用例转化过来的
+Solution().lowestCommonAncestor(root, p,q)
+```
+4. 用户输入自定义的用例，也可以完成转化并执行
 ## 扩展
 
 - 支持用户手写表达式，类似力扣的“树的可视化”
