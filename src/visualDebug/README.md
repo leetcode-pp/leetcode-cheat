@@ -186,7 +186,7 @@ function parse(list) {
 
 ## 更新（2020-09-22）
 
-由于有了一个功能很好的 VSCODE 插件， 因此考虑直接集成。 https://hediet.github.io/visualization/?darkTheme=1
+由于有了一个功能很好的 VSCODE 插件， 因此考虑直接集成。 https://hediet.github.io/visualization/
 
 以树的可视化调试为例：
 
@@ -273,3 +273,4 @@ Solution().lowestCommonAncestor(root, p,q)
 - [ncona](https://ncona.com/2020/06/create-diagrams-with-code-using-graphviz/)
 - [gdbgui](https://github.com/cs01/gdbgui)
 - [traceId-spanId 全链路追踪](https://gist.github.com/azl397985856/2f5bf2c8fb6640d37eec1319faf3b5ec)
+- [vscode debug visualization](https://hediet.github.io/visualization/)
