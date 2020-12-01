@@ -1,42 +1,25 @@
-import React, { useState, Fragment } from "react";
-import { Tabs, Tag, Button, Table, Empty, message, Collapse } from "antd";
-import marked from "marked";
-import hljs from "highlight.js";
+import React, { useState } from "react";
+import { Button, Table, Empty, Collapse, Tabs } from "antd";
+
 import "highlight.js/styles/github.css";
 
-import { copy, getColor } from "./utils";
 import db from "./db/db";
-import {
-  LEETCODE_CN_URL,
-  LEETCODE_URL,
-  ISSUES_URL,
-  CONTRIBUTE_COMPANY_URL,
-} from "./constant/index";
+import { LEETCODE_CN_URL, LEETCODE_URL } from "./constant/index";
+import ProblemDetail from "./Detail";
+import TagOrLink from "./TagOrLink";
+import tempaltes from "./codeTemplates/index";
+import Codes from "./codes";
 
 import "antd/dist/antd.css";
 import "./App.css";
 
+const { problems } = db;
 const { TabPane } = Tabs;
 const { Panel } = Collapse;
-
-const formatCodeToMarkDown = (code, lang) => `\`\`\`${lang}\n${code}\`\`\`\n`;
-
-const { problems, company } = db;
 const dataSource = Object.values(problems);
 
 function inLeetCodeWebsite(url) {
   return [LEETCODE_CN_URL, LEETCODE_URL].some((u) => url.includes(u));
-}
-function TagOrLink({ link, text, style, color }) {
-  return link !== null ? (
-    <Button type="link" href={link} target="_blank">
-      {text}
-    </Button>
-  ) : (
-    <div style={{ display: "inline-block", ...style }}>
-      <Tag color={color}>{text}</Tag>
-    </div>
-  );
 }
 
 const columns = [
@@ -69,7 +52,7 @@ const columns = [
                 display: "inline-block",
                 margin: "4px 0",
               }}
-              key={tag.id}
+              key={tag.text}
               text={tag.text}
               link={tag.link}
               color={tag.color}
@@ -80,6 +63,8 @@ const columns = [
     ),
   },
 ];
+
+const pages = ["allSolutions", "templates", "detail"];
 
 function App() {
   // eslint-disable-next-line
@@ -94,195 +79,104 @@ function App() {
       setInLeetCode(inLeetCodeWebsite(currentUrl));
     });
 
-  const [problemId, setProblemId] = useState("");
-  const [hasSolution, setHasSolution] = useState(false);
+  // const [problemId, setProblemId] = useState("");
+  const [problemId, setProblemId] = useState("two-sum");
+
+  // const [hasSolution, setHasSolution] = useState(false);
+  const [hasSolution, setHasSolution] = useState(true);
+  const [page, setPage] = useState("");
   const [inLeetCode, setInLeetCode] = useState(true);
 
-  if (!inLeetCode)
-    return (
-      <div className="container" style={{ textAlign: "center" }}>
-        <div>快打开力扣，开始刷题吧～</div>
-        <Button type="link" href={LEETCODE_CN_URL} target="_blank">
-          力扣中国
-        </Button>
-        <Button type="link" href={LEETCODE_URL} target="_blank">
-          力扣国际
-        </Button>
-      </div>
-    );
+  if (!inLeetCode) return window.open(LEETCODE_CN_URL + "/problemset/all/");
 
   return (
     <div className="container">
-      {hasSolution ? (
-        <Tabs defaultActiveKey="0">
-          <TabPane tab="前置知识" key="0">
-            {problems[problemId].pre.map(({ id, link, text, color }) => (
-              <TagOrLink key={id} text={text} link={link} color={color} />
-            ))}
-          </TabPane>
-          <TabPane tab="关键点" key="1">
-            {problems[problemId].keyPoints.length === 0 && (
-              <Fragment>
-                暂无关键点，
-                <a href={ISSUES_URL} target="_blank">
-                  点击反馈
-                </a>
-              </Fragment>
-            )}
-            <ul>
-              {problems[problemId].keyPoints.map(({ id, link, text }) => (
-                <li key={id}>{link ? <a href={link}>text</a> : text}</li>
-              ))}
-            </ul>
-          </TabPane>
-          <TabPane tab="公司" key="4">
-            {problems[problemId].companies.length === 0 && (
-              <Fragment>
-                暂无公司资料，
-                <a href={CONTRIBUTE_COMPANY_URL} target="_blank">
-                  点击反馈
-                </a>
-              </Fragment>
-            )}
-            <Collapse>
-              {problems[problemId].companies.map(({ name }) => (
-                <Panel header={name} key={name}>
-                  <ul>
-                    {company[name].map((id) => (
-                      <li>
-                        <Button
-                          type="link"
-                          href={`${LEETCODE_CN_URL}/problems/${id}`}
-                          target="_blank"
-                        >
-                          {id}
-                        </Button>
-                      </li>
-                    ))}
-                  </ul>
-                </Panel>
-              ))}
-            </Collapse>
-          </TabPane>
-          <TabPane tab="题解" key="2">
-            <Button
-              type="link"
-              href={problems[problemId].solution}
-              target="_blank"
-            >
-              前往 github 题解（国外）
+      <div>
+        <div className="guide">
+          {page !== "" ? (
+            <Button type="link" onClick={() => setPage("")}>
+              回到首页
             </Button>
-
-            <Button
-              type="link"
-              href={problems[problemId].giteeSolution}
-              target="_blank"
-            >
-              前往 gitee 题解（国内）
+          ) : (
+            ""
+          )}
+          {hasSolution && page === "" ? (
+            <Button type="link" onClick={() => setPage("detail")}>
+              查看本题题解
             </Button>
-          </TabPane>
-          <TabPane tab="代码" key="3">
-            <div className="code-block">
-              <Collapse>
-                {problems[problemId].code.map((c) => (
-                  <Panel
-                    header={
-                      <div
-                        key={c.text}
-                        className="row"
-                        style={{ marginTop: "10px" }}
-                      >
-                        <span className="language language-js">
-                          {c.language}
-                        </span>
-                        <Button
-                          type="primary"
-                          size="small"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            copy(c.text, () => {
-                              message.success("复制成功～");
-                            });
-                          }}
-                        >
-                          复制
-                        </Button>
-                      </div>
-                    }
-                  >
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: marked(
-                          formatCodeToMarkDown(c.text, c.language),
-                          {
-                            renderer: new marked.Renderer(),
-                            highlight: function () {
-                              const validLanguage = c.language;
-                              return hljs.highlight(validLanguage, c.text)
-                                .value;
-                            },
-                            pedantic: false,
-                            gfm: true,
-                            langPrefix: c.language,
-                            breaks: false,
-                            sanitize: false,
-                            smartLists: true,
-                            smartypants: false,
-                            xhtml: false,
-                          }
-                        ),
-                      }}
-                    ></div>
-                  </Panel>
-                ))}
-              </Collapse>
-            </div>
-          </TabPane>
+          ) : (
+            ""
+          )}
 
-          <TabPane
-            tab="可视化调试（敬请期待）"
-            key="5"
-            disabled={true}
-          ></TabPane>
+          {!hasSolution && page !== "allSolutions" && (
+            <Button type="link" onClick={() => setPage("allSolutions")}>
+              本题暂未被力扣加加收录，点击查看所有已收录题目~
+            </Button>
+          )}
 
-          <TabPane tab="我要反馈" key="6">
-            <div>当前版本： V 0.1.0</div>
-            <a
-              href={ISSUES_URL}
-              target="_blank"
-              style={{ marginRight: "20px" }}
-            >
-              我想反馈问题
-            </a>
-            <a
-              href={CONTRIBUTE_COMPANY_URL}
-              target="_blank"
-              style={{ marginRight: "20px" }}
-            >
-              我想贡献公司和岗位信息（免费获得题目咨询服务）
-            </a>
-            <a
-              href="https://tva1.sinaimg.cn/large/007S8ZIlly1gfcuzagjalj30p00dwabs.jpg"
-              target="_blank"
-            >
-              关注更新
-            </a>
-          </TabPane>
-        </Tabs>
-      ) : (
-        <div>
-          <Empty description="正在撰写题解...">
-            <div className="row" style={{ marginTop: "20px" }}>
-              所有已收录的题目
-            </div>
-            <Table
-              pagination={{ hideOnSinglePage: true }}
-              dataSource={dataSource}
-              columns={columns}
-            />
-          </Empty>
+          <div style={page === "" ? {} : { display: "none" }}>
+            <h2 style={{ display: "flex", justifyContent: "center" }}>
+              代码模板(内测中)
+            </h2>
+            <Tabs>
+              {tempaltes.map((tempalte) => (
+                <TabPane tab={tempalte.title} key={tempalte.title}>
+                  建议先学会之后再用模板。 如果你还不会的话，可以看看我的
+                  <Button type="link" href={tempalte.link} target="_blank">
+                    文章
+                  </Button>
+                  哦~
+                  {tempalte.list.map(({ text, problems, codes }) => (
+                    <Collapse>
+                      <Panel header={<div>{text}</div>} key={text}>
+                        <div>
+                          推荐题目：
+                          <ul>
+                            {problems.map((problem) => (
+                              <li>
+                                <Button type="text">{problem.title}</Button>
+                                <Button
+                                  onClick={(e) => e.stopPropagation()}
+                                  type="link"
+                                  href={`${LEETCODE_CN_URL}/problems/${problem.id}`}
+                                  target="_blank"
+                                  size="small"
+                                  style={{ marginLeft: "10px" }}
+                                >
+                                  去默写
+                                </Button>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <Codes codes={codes} />
+                      </Panel>
+                    </Collapse>
+                  ))}
+                </TabPane>
+              ))}
+
+              <TabPane tab="更多模板后续陆续更新" key="more" disabled></TabPane>
+            </Tabs>
+          </div>
         </div>
-      )}
+
+        {page === "detail" && <ProblemDetail problemId={problemId} />}
+      </div>
+
+      <div style={page === "allSolutions" ? {} : { display: "none" }}>
+        <Empty description="正在撰写题解...">
+          <div className="row" style={{ marginTop: "20px" }}>
+            所有已收录的题目
+          </div>
+          <Table
+            pagination={{ hideOnSinglePage: true }}
+            dataSource={dataSource}
+            rowKey="id"
+            columns={columns}
+          />
+        </Empty>
+      </div>
     </div>
   );
 }
