@@ -79,11 +79,11 @@ function App() {
       setInLeetCode(inLeetCodeWebsite(currentUrl));
     });
 
-  // const [problemId, setProblemId] = useState("");
-  const [problemId, setProblemId] = useState("two-sum");
+  const [problemId, setProblemId] = useState("");
+  // const [problemId, setProblemId] = useState("two-sum");
 
-  // const [hasSolution, setHasSolution] = useState(false);
-  const [hasSolution, setHasSolution] = useState(true);
+  const [hasSolution, setHasSolution] = useState(false);
+  // const [hasSolution, setHasSolution] = useState(true);
   const [page, setPage] = useState("");
   const [inLeetCode, setInLeetCode] = useState(true);
 
