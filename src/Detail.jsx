@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
-import { Button, Tabs, Collapse, message } from "antd";
-import marked from "marked";
-import hljs from "highlight.js";
+import { Button, Tabs, Collapse } from "antd";
+
 import "highlight.js/styles/github.css";
 
 import {
@@ -10,14 +9,12 @@ import {
   CONTRIBUTE_COMPANY_URL,
 } from "./constant/index";
 import db from "./db/db";
-import { copy } from "./utils";
+
 import Codes from "./codes";
 import TagOrLink from "./TagOrLink";
 
 const { TabPane } = Tabs;
 const { Panel } = Collapse;
-
-const formatCodeToMarkDown = (code, lang) => `\`\`\`${lang}\n${code}\`\`\`\n`;
 
 const { problems, company } = db;
 
