@@ -1914,7 +1914,7 @@
     "pre": [
         {
             "text": "贪心",
-            "link": "../thinkings/greedy.md",
+            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/greedy.md",
             "color": "purple"
         }
     ],
@@ -2146,7 +2146,7 @@
         },
         {
             "text": "动态规划",
-            "link": "../thinkings/dynamic-programming.md",
+            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/dynamic-programming.md",
             "color": "red"
         }
     ],
@@ -5357,7 +5357,7 @@
     "pre": [
         {
             "text": "前缀树",
-            "link": "../thinkings/trie.md",
+            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/trie.md",
             "color": "purple"
         }
     ],
@@ -5405,7 +5405,7 @@
     "pre": [
         {
             "text": "滑动窗口",
-            "link": "../thinkings/slide-window.md",
+            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/slide-window.md",
             "color": "purple"
         }
     ],
@@ -5453,7 +5453,7 @@
     "pre": [
         {
             "text": "前缀树",
-            "link": "../thinkings/trie.md",
+            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/trie.md",
             "color": "purple"
         }
     ],
@@ -5499,17 +5499,17 @@
     "pre": [
         {
             "text": "前缀树",
-            "link": "../thinkings/trie.md",
+            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/trie.md",
             "color": "purple"
         },
         {
             "text": "深度优先遍历",
-            "link": "../thinkings/DFS.md",
+            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/DFS.md",
             "color": "geekblue"
         },
         {
             "text": "小岛专题",
-            "link": "../thinkings/island.md",
+            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/island.md",
             "color": "purple"
         },
         {
@@ -6071,11 +6071,11 @@
     "code": [
         {
             "language": "js",
-            "text": "\nvar maxSlidingWindow = function(nums, k) {\n  // bad 时间复杂度O(n * k)\n  if (nums.length === 0 || k === 0) return [];\n  let slideWindow = [];\n  const ret = [];\n  for (let i = 0; i < nums.length - k + 1; i++) {\n    for (let j = 0; j < k; j++) {\n      slideWindow.push(nums[i + j]);\n    }\n    ret.push(Math.max(...slideWindow));\n    slideWindow = [];\n  }\n  return ret;\n};\n"
+            "text": "\nvar maxSlidingWindow = function (nums, k) {\n  // bad 时间复杂度O(n * k)\n  if (nums.length === 0 || k === 0) return [];\n  let slideWindow = [];\n  const ret = [];\n  for (let i = 0; i < nums.length - k + 1; i++) {\n    for (let j = 0; j < k; j++) {\n      slideWindow.push(nums[i + j]);\n    }\n    ret.push(Math.max(...slideWindow));\n    slideWindow = [];\n  }\n  return ret;\n};\n"
         },
         {
             "language": "js",
-            "text": "\nvar maxSlidingWindow = function(nums, k) {\n  // 双端队列优化时间复杂度, 时间复杂度O(n)\n  const deque = []; // 存放在接下来的滑动窗口可能成为最大值的数\n  const ret = [];\n  for (let i = 0; i < nums.length; i++) {\n    // 清空失效元素\n    while (deque[0] < i - k + 1) {\n      deque.shift();\n    }\n\n    while (nums[deque[deque.length - 1]] < nums[i]) {\n      deque.pop();\n    }\n\n    deque.push(i);\n\n    if (i >= k - 1) {\n      ret.push(nums[deque[0]]);\n    }\n  }\n  return ret;\n};\n"
+            "text": "\nvar maxSlidingWindow = function (nums, k) {\n  // 双端队列优化时间复杂度, 时间复杂度O(n)\n  const deque = []; // 存放在接下来的滑动窗口可能成为最大值的数\n  const ret = [];\n  for (let i = 0; i < nums.length; i++) {\n    // 清空失效元素\n    while (deque[0] < i - k + 1) {\n      deque.shift();\n    }\n\n    while (nums[deque[deque.length - 1]] < nums[i]) {\n      deque.pop();\n    }\n\n    deque.push(i);\n\n    if (i >= k - 1) {\n      ret.push(nums[deque[0]]);\n    }\n  }\n  return ret;\n};\n"
         },
         {
             "language": "py",
@@ -6083,7 +6083,7 @@
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:\n        deque, res, n = [], [], len(nums)\n        for i in range(n):\n            while deque and deque[0] < i - k + 1:\n                deque.pop(0)\n            while deque and nums[i] > nums[deque[-1]]:\n                deque.pop(-1)\n            deque.append(i)\n            if i >= k - 1: res.append(nums[deque[0]])\n        return res\n\n\n"
+            "text": "\nclass Solution:\n    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:\n        deque, res, n = collections.deque(), [], len(nums)\n        for i in range(n):\n            # 移除前面实现的元素，整因为如此，才需要双端队列\n            while deque and deque[0] < i - k + 1:\n                deque.popleft()\n            # 下面三行，类似单调递增栈\n            while deque and nums[i] > nums[deque[-1]]:\n                deque.pop()\n            deque.append(i)\n            if i >= k - 1:\n                res.append(nums[deque[0]])\n        return res\n"
         }
     ]
 },
@@ -6719,7 +6719,7 @@
             "color": "blue"
         },
         {
-            "text": "对于这种$O(1)$空间复杂度有固定的套路。常见的有：1.直接修改原数组2.滑动窗口（当前状态并不是和之前所有状态有关，而是仅和某几个有关）。我们采用的是滑动窗口。但是难点就在于我们怎么知道当前状态和哪几个有关。对于这道题来说，画图或许可以帮助你打开思路。另外面试的时候说出$O(N)$的思路也不失为一个帮助你冷静分析问题的手段。",
+            "text": "对于这种$$O(1)$$空间复杂度有固定的套路。常见的有：1.直接修改原数组2.滑动窗口（当前状态并不是和之前所有状态有关，而是仅和某几个有关）。我们采用的是滑动窗口。但是难点就在于我们怎么知道当前状态和哪几个有关。对于这道题来说，画图或许可以帮助你打开思路。另外面试的时候说出$$O(N)$$的思路也不失为一个帮助你冷静分析问题的手段。",
             "link": null,
             "color": "blue"
         }
@@ -7511,7 +7511,7 @@
     "pre": [
         {
             "text": "前缀树",
-            "link": "../thinkings/trie.md",
+            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/trie.md",
             "color": "purple"
         }
     ],
@@ -8443,7 +8443,7 @@
     "pre": [
         {
             "text": "前缀树",
-            "link": "../thinkings/trie.md",
+            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/trie.md",
             "color": "purple"
         }
     ],
@@ -8899,7 +8899,7 @@
     "pre": [
         {
             "text": "滑动窗口",
-            "link": "../thinkings/slide-window.md",
+            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/slide-window.md",
             "color": "purple"
         }
     ],
@@ -9284,7 +9284,7 @@
     "pre": [
         {
             "text": "前缀树",
-            "link": "../thinkings/trie.md",
+            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/trie.md",
             "color": "purple"
         }
     ],
@@ -9846,7 +9846,7 @@
     "pre": [
         {
             "text": "前缀和",
-            "link": "../thinkings/prefix.md",
+            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/prefix.md",
             "color": "cyan"
         }
     ],
@@ -9951,7 +9951,7 @@
     "pre": [
         {
             "text": "前缀和",
-            "link": "../thinkings/prefix.md",
+            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/prefix.md",
             "color": "cyan"
         },
         {
@@ -10139,7 +10139,7 @@
         },
         {
             "text": "深度优先遍历",
-            "link": "../thinkings/DFS.md",
+            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/DFS.md",
             "color": "geekblue"
         },
         {
@@ -10183,7 +10183,7 @@
         },
         {
             "text": "二叉树的遍历",
-            "link": "../thinkings/binary-tree-traversal.md",
+            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/binary-tree-traversal.md",
             "color": "red"
         }
     ],

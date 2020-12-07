@@ -66,9 +66,13 @@ const genertateLeetcodeToJson = () => {
           const match = /\[(.+)\]\((.+)\)/.exec(preTagName);
           if (match) {
             // 形式1
+            // 有可能有相对定位的文件（比如 ../thinkings），需要特别处理
             preKnowledge.push({
               text: match[1],
-              link: match[2],
+              link: match[2].replace(
+                "../thinkings/",
+                "https://github.com/azl397985856/leetcode/blob/master/thinkings/"
+              ),
               color: Utils.getColor(match[1]),
             });
           } else {

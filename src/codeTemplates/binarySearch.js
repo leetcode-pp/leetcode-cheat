@@ -216,6 +216,64 @@ module.exports = {
         },
       ],
     },
+    {
+      text: "寻找最左插入位置",
+      codes: [
+        {
+          language: "py",
+          text: `
+      def bisect_left(nums, x):
+        # 内置 api
+        bisect.bisect_left(nums, x)
+        # 手写
+        l, r = 0, len(nums) - 1
+        while l < r:
+            mid = (l + r) // 2
+            if nums[mid] < x:
+                l = mid + 1
+            else:
+                r = mid
+        # 由于 l 和 r 相等，因此返回谁都无所谓。
+        return l
+        `,
+        },
+      ],
+      problems: [
+        {
+          id: "random-pick-with-weight",
+          title: "528. 按权重随机选择",
+        },
+      ],
+    },
+    {
+      text: "寻找最右插入位置",
+      codes: [
+        {
+          language: "py",
+          text: `
+      def bisect_right(nums, x):
+        # 内置 api
+        bisect.bisect_right(nums, x)
+        # 手写
+        l, r = 0, len(nums) - 1
+        while l < r:
+            mid = (l + r) // 2
+            if nums[mid] > x:
+                r = mid
+            else:
+                l = mid + 1
+        # 由于 l 和 r 相等，因此返回谁都无所谓。
+        return l
+        `,
+        },
+      ],
+      problems: [
+        {
+          id: "find-first-and-last-position-of-element-in-sorted-array",
+          title: "34. 在排序数组中查找元素的第一个和最后一个位置",
+        },
+      ],
+    },
   ],
   link:
     "https://github.com/azl397985856/leetcode/blob/master/91/binary-search.md",

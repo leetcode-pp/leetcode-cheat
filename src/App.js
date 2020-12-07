@@ -4,16 +4,20 @@ import { Button, Table, Empty, Collapse, Tabs } from "antd";
 import "highlight.js/styles/github.css";
 
 import db from "./db/db";
-import { LEETCODE_CN_URL, LEETCODE_URL } from "./constant/index";
+import {
+  LEETCODE_CN_URL,
+  LEETCODE_URL,
+  CONTRIBUTE_PROGRAMMING_LANGUAGE_URL,
+} from "./constant/index";
 import ProblemDetail from "./Detail";
 import TagOrLink from "./TagOrLink";
 import tempaltes from "./codeTemplates/index";
 import Codes from "./codes";
 import { bfs } from "./utils";
-import drawTree from "canvas-binary-tree";
+// import drawTree from "canvas-binary-tree";
 import "antd/dist/antd.css";
 import "./App.css";
-import { data as a } from "./db/binary-tree";
+// import { data as a } from "./db/binary-tree";
 
 const { problems } = db;
 const { TabPane } = Tabs;
@@ -94,13 +98,14 @@ function App() {
 
   //   drawTree(canvas, bfs([1, 2, 2, 3, 1, 2, 2, 323213213232329]));
   // }, 1000);
-  console.log(a);
+  // console.log(a);
 
   return (
     <div className="container">
       <div
         className="tree-vis"
         style={{
+          display: "none",
           position: "fixed",
           zIndex: 99,
           top: 0,
@@ -110,9 +115,7 @@ function App() {
           backgroundColor: "rgba(0,0,0,.4)",
         }}
       >
-        <div>
-          <pre>{a}</pre>
-        </div>
+        <div>{/* <pre>{a}</pre> */}</div>
         <canvas width="1000" height="1000" id="canvas"></canvas>
       </div>
 
@@ -175,6 +178,12 @@ function App() {
                           </ul>
                         </div>
                         <Codes codes={codes} />
+                        <Button
+                          type="link"
+                          href={CONTRIBUTE_PROGRAMMING_LANGUAGE_URL}
+                        >
+                          纠错 or 贡献其他语言
+                        </Button>
                       </Panel>
                     </Collapse>
                   ))}

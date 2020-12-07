@@ -107,7 +107,7 @@ export default function Detail({ problemId }) {
       ></TabPane>
 
       <TabPane tab="我要反馈" key="feedback">
-        <div>当前版本： V 0.2.0</div>
+        <div>当前版本： V 0.2.1</div>
         <a
           href={ISSUES_URL}
           target="_blank"
