@@ -1,5 +1,8 @@
-module.exports = {
+import bfsLogo from "../imgs/bfs.svg";
+
+export default {
   title: "BFS",
+  logo: bfsLogo,
   list: [
     {
       text: "带层信息",

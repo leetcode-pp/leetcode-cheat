@@ -4,6 +4,9 @@ import { Button, Table, Empty, Collapse, Tabs } from "antd";
 import "highlight.js/styles/github.css";
 
 import db from "./db/db";
+import collectionLogo from "./imgs/collection.svg";
+import viewLogo from "./imgs/view.svg";
+
 import {
   LEETCODE_CN_URL,
   LEETCODE_URL,
@@ -19,7 +22,7 @@ import "antd/dist/antd.css";
 import "./App.css";
 // import { data as a } from "./db/binary-tree";
 
-const { problems } = db;
+const { problems, selected } = db;
 const { TabPane } = Tabs;
 const { Panel } = Collapse;
 const dataSource = Object.values(problems);
@@ -80,14 +83,21 @@ function App() {
       const problemId = match && match[1];
       setProblemId(problemId);
       setHasSolution(!!problems[problemId]);
+      setInSelected(!!selected[problemId]);
       setInLeetCode(inLeetCodeWebsite(currentUrl));
     });
 
+  // setTimeout(() => {
+  //   setProblemId("uncrossed-lines");
+  //   // setProblemId("two-sum");
+  //   setInSelected(!!selected[problemId]);
+  //   setHasSolution(!!problems[problemId]);
+  // }, 1000);
+
   const [problemId, setProblemId] = useState("");
-  // const [problemId, setProblemId] = useState("two-sum");
 
   const [hasSolution, setHasSolution] = useState(false);
-  // const [hasSolution, setHasSolution] = useState(true);
+  const [inSelected, setInSelected] = useState(false); // 是否被精选题解（其实就是合集）收录
   const [page, setPage] = useState("");
   const [inLeetCode, setInLeetCode] = useState(true);
 
@@ -131,24 +141,60 @@ function App() {
           {hasSolution && page === "" ? (
             <Button type="link" onClick={() => setPage("detail")}>
               查看本题题解
+              <img
+                src={viewLogo}
+                className="problem-icon"
+                style={{ margin: "0 0 0 10px" }}
+              />
             </Button>
           ) : (
             ""
           )}
 
-          {!hasSolution && page !== "allSolutions" && (
-            <Button type="link" onClick={() => setPage("allSolutions")}>
-              本题暂未被力扣加加收录，点击查看所有已收录题目~
-            </Button>
-          )}
+          {!hasSolution &&
+            page !== "allSolutions" &&
+            (inSelected ? (
+              <Button
+                type="link"
+                target="_blank"
+                href={selected[problemId].url}
+              >
+                该题已被收录到精选合集《{selected[problemId].title}》点击查看
+                <img
+                  src={collectionLogo}
+                  className="problem-icon"
+                  style={{ margin: "0 0 0 10px" }}
+                />
+              </Button>
+            ) : (
+              <Button type="link" onClick={() => setPage("allSolutions")}>
+                本题暂未被力扣加加收录，点击查看所有已收录题目~
+              </Button>
+            ))}
 
           <div style={page === "" ? {} : { display: "none" }}>
             <h2 style={{ display: "flex", justifyContent: "center" }}>
-              代码模板(内测中)
+              代码模板
             </h2>
             <Tabs>
               {tempaltes.map((tempalte) => (
-                <TabPane tab={tempalte.title} key={tempalte.title}>
+                <TabPane
+                  tab={
+                    <div>
+                      {tempalte.title}
+                      <img
+                        style={
+                          tempalte.logo
+                            ? { margin: "0 0 0 10px" }
+                            : { display: "none" }
+                        }
+                        src={tempalte.logo}
+                        className="problem-icon"
+                      />
+                    </div>
+                  }
+                  key={tempalte.title}
+                >
                   {tempalte.link && (
                     <div>
                       建议先学会之后再用模板。 如果你还不会的话，可以看看我的

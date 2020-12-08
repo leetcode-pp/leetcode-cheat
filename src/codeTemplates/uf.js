@@ -1,5 +1,8 @@
-module.exports = {
+import ufLogo from "../imgs/uf.svg";
+
+export default {
   title: "并查集",
+  logo: ufLogo,
   list: [
     {
       text: "乞丐版",
@@ -46,7 +49,7 @@ class UF:
       ],
     },
     {
-      text: "带路径压缩（递归）",
+      text: "带路径压缩（迭代）",
       problems: [
         {
           title: "547. 朋友圈",
@@ -101,7 +104,7 @@ class UF:
     },
 
     {
-      text: "带路径压缩（迭代）",
+      text: "带路径压缩（递归）",
       problems: [
         {
           title: "547. 朋友圈",

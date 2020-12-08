@@ -1,5 +1,7 @@
-module.exports = {
+import windowLogo from "../imgs/window.svg";
+export default {
   title: "滑动窗口",
+  logo: windowLogo,
   list: [
     {
       text: "固定窗口（伪代码）",

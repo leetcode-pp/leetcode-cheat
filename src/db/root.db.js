@@ -10167,6 +10167,40 @@
         }
     ]
 },
+"minimum-operations-to-reduce-x-to-zero":{
+    "id": "1658",
+    "name": "minimum-operations-to-reduce-x-to-zero",
+    "pre": [
+        {
+            "text": "堆",
+            "link": null,
+            "color": "green"
+        },
+        {
+            "text": "滑动窗口",
+            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/slide-window.md",
+            "color": "purple"
+        }
+    ],
+    "keyPoints": [],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1658.minimum-operations-to-reduce-x-to-zero.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1658.minimum-operations-to-reduce-x-to-zero.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def minOperations(self, nums: List[int], x: int) -> int:\n        # 看数据范围，这种方法铁定超时（指数复杂度）\n        h = [(0, 0, len(nums) - 1, x)]\n        while h:\n            moves,l,r,remain = heapq.heappop(h)\n            if remain == 0: return moves\n            if l + 1 < len(nums): heapq.heappush(h, (moves + 1, l + 1,r, remain-nums[l]))\n            if r > 0: heapq.heappush(h, (moves + 1, l,r-1, remain-nums[r]))\n        return -1\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def minOperations(self, nums: List[int], x: int) -> int:\n        n = len(nums)\n\n        @lru_cache(None)\n        def dp(l, r, x):\n            if x == 0:\n                return 0\n            if x < 0 or r < 0 or l > len(nums) - 1:\n                return n + 1\n            return 1 + min(dp(l + 1, r, x - nums[l]), dp(l, r - 1, x - nums[r]))\n\n        ans = dp(0, len(nums) - 1, x)\n        return -1 if ans > n else ans\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def minOperations(self, nums: List[int], x: int) -> int:\n        # 逆向求解，滑动窗口\n        i = 0\n        target = sum(nums) - x\n        win = 0\n        ans = len(nums)\n        if target == 0: return ans\n        for j in range(len(nums)):\n            win += nums[j]\n            while i < j and win > target:\n                win -= nums[i]\n                i += 1\n            if win == target:\n                ans = min(ans, len(nums) - (j - i + 1))\n        return -1 if ans == len(nums) else ans\n\n"
+        }
+    ]
+},
 "md":{
     "id": "binode-lcci",
     "name": "md",

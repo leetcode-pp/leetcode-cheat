@@ -1,5 +1,8 @@
-module.exports = {
+import treeLogo from "../imgs/tree.svg";
+
+export default {
   title: "前缀树",
+  logo: treeLogo,
   list: [
     {
       text: "标准前缀树",

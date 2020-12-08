@@ -1,5 +1,8 @@
-module.exports = {
+import halfLogo from "../imgs/half.svg";
+
+export default {
   title: "二分法",
+  logo: halfLogo,
   list: [
     {
       text: "查找一个数",

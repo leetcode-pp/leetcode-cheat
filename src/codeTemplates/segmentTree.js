@@ -1,3 +1,5 @@
+import segmentLogo from "../imgs/segment.svg";
+
 const pyCode = `
 class SegmentTree:
     def __init__(self, data:List[int]): 
@@ -83,8 +85,9 @@ class SegmentTree:
         self.tree[tree_index] = self.tree[left] + self.tree[right]
 `;
 
-module.exports = {
+export default {
   title: "线段树",
+  logo: segmentLogo,
   list: [
     {
       text: "区间和线段树",
