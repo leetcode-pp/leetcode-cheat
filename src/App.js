@@ -149,11 +149,15 @@ function App() {
             <Tabs>
               {tempaltes.map((tempalte) => (
                 <TabPane tab={tempalte.title} key={tempalte.title}>
-                  建议先学会之后再用模板。 如果你还不会的话，可以看看我的
-                  <Button type="link" href={tempalte.link} target="_blank">
-                    文章
-                  </Button>
-                  哦~
+                  {tempalte.link && (
+                    <div>
+                      建议先学会之后再用模板。 如果你还不会的话，可以看看我的
+                      <Button type="link" href={tempalte.link} target="_blank">
+                        文章
+                      </Button>
+                      哦~
+                    </div>
+                  )}
                   {tempalte.list.map(({ text, problems, codes }) => (
                     <Collapse>
                       <Panel header={<div>{text}</div>} key={text}>
