@@ -10,6 +10,12 @@
   "icons": {
     "128": "logo.png"
   },
+  "content_scripts": [
+    {
+      "matches": ["*://leetcode-cn.com/*", "*://leetcode.com/*"],
+      "js": ["main.js"]
+    }
+  ],
   "permissions": ["tabs"],
   "content_security_policy": "script-src 'self' 'sha256-9HcBuUP35aPkU0991A4mASdsuifTkUlifJ7elThz6Ow=' 'sha256-0Jo/EYaXS11i7poc/P9fGcq/o6P0djny2JW6WivTVVw='; object-src 'self'"
 }

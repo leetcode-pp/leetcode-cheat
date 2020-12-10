@@ -12,6 +12,7 @@ import {
   LEETCODE_URL,
   CONTRIBUTE_PROGRAMMING_LANGUAGE_URL,
 } from "./constant/index";
+import TestCase from "./testCase";
 import ProblemDetail from "./Detail";
 import TagOrLink from "./TagOrLink";
 import tempaltes from "./codeTemplates/index";
@@ -171,6 +172,8 @@ function App() {
                 本题暂未被力扣加加收录，点击查看所有已收录题目~
               </Button>
             ))}
+
+          <TestCase />
 
           <div style={page === "" ? {} : { display: "none" }}>
             <h2 style={{ display: "flex", justifyContent: "center" }}>
