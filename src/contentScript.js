@@ -1,6 +1,6 @@
 import { message } from "antd";
 // import "./content.css";
-import { copyToClipboard } from "./utils";
+import { copyToClipboard, 不讲武德 } from "./utils";
 
 // testcase eg: `bottom = "BCD", allowed = ["BCG", "CDE", "GEA", "FFF"], c = [1,2,3], d = 2`
 function normalize(testCase) {
@@ -68,13 +68,14 @@ function getProviedTestCases() {
     for (let prefix of possiblePrefixs) {
       for (var i = 0; i < pres.length; ++i) {
         if (pres[i].innerText.includes(prefix)) {
-          console.log(
-            pres[i].innerText.match(new RegExp(`${prefix}(.*)输出`, "s"))
-          );
           const testcase = pres[i].innerText.match(
-            new RegExp(`${prefix}(.*?)输出`, "mgs")
-          )[1];
-          ans.push(normalize(testcase));
+            new RegExp(`${prefix}(.*)输出`, "s")
+          );
+          console.log(testcase);
+          if (testcase.length <= 1) {
+            return 不讲武德();
+          }
+          ans.push(normalize(testcase[1]));
         }
       }
       if (ans.length > 0) return ans;
@@ -92,11 +93,7 @@ function insertButton() {
       copyButton.style["margin-left"] = "10px";
       copyButton.onclick = () => {
         const cases = getProviedTestCases();
-        if (cases.filter(Boolean).length === 0)
-          return message.error({
-            content:
-              "力扣不讲武德，不套路出牌。不过没关系啊，你反馈给我，我下次一定全部防出去啊！",
-          });
+        if (cases.filter(Boolean).length === 0) return 不讲武德();
         copyToClipboard(cases.join("\n"));
         message.success({
           content: "复制成功~",

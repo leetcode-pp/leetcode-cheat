@@ -1,3 +1,7 @@
+import React from "react";
+import { Button, message } from "antd";
+import { ISSUES_URL } from "./constant/index";
+
 function TreeNode(value) {
   return {
     left: null,
@@ -90,6 +94,20 @@ export function buildRandomTree({
     return root;
   }
   return dfs({ upper, lower });
+}
+
+export function 不讲武德() {
+  return message.error({
+    content: (
+      <>
+        力扣不讲武德，不套路出牌。不过没关系啊，你
+        <Button type="link" href={ISSUES_URL} target="_blank">
+          反馈
+        </Button>
+        给我，下次一定全部防出去！
+      </>
+    ),
+  });
 }
 
 export function deserialise_bfs(nodes) {
