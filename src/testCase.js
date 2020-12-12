@@ -10,6 +10,8 @@ import {
 
 const { Option } = Select;
 
+/*global chrome*/
+
 // TODO referrence 支持 ， 比如 k 是在数组大小范围内动态的
 
 function isNull(c) {
@@ -126,8 +128,23 @@ function gussType(input) {
   return "single";
 }
 
-function getProviedTestCases() {
-  const pres = document.getElementsByTagName("pre");
+function t() {
+  return new Promise((r) => {
+    chrome.tabs.query({ active: true }, function (tabs) {
+      var tab = tabs[0];
+
+      chrome.tabs.executeScript(
+        tab.id,
+        {
+          code: 'document.getElementsByTagName("pre")',
+        },
+        r
+      );
+    });
+  });
+}
+
+function getProviedTestCases(pres) {
   const ans = [];
   for (var i = 0; i < pres.length; ++i) {
     if (pres[i].innerText.includes("输入：")) {
@@ -234,12 +251,16 @@ export default function TestCase() {
       <Button
         type="primary"
         onClick={() => {
-          const cases = getProviedTestCases();
-          const ans = cases.map(normalize).join("\n");
-          console.log(cases, ans);
-          if (ans) {
-            if (copyToClipboard(ans)) message.success("复制成功");
-          }
+          t().then((elements) => {
+            alert(JSON.stringify(elements));
+            const cases = getProviedTestCases(elements);
+            const ans = cases.map(normalize).join("\n");
+            console.log(cases, ans);
+            alert(elements);
+            if (ans) {
+              if (copyToClipboard(ans)) message.success("复制成功");
+            }
+          });
         }}
       >
         获取所有测试用例
