@@ -252,11 +252,10 @@ export default function TestCase() {
         type="primary"
         onClick={() => {
           t().then((elements) => {
-            alert(JSON.stringify(elements));
             const cases = getProviedTestCases(elements);
             const ans = cases.map(normalize).join("\n");
             console.log(cases, ans);
-            alert(elements);
+
             if (ans) {
               if (copyToClipboard(ans)) message.success("复制成功");
             }

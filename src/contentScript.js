@@ -1,15 +1,24 @@
 import { message } from "antd";
 // import "./content.css";
 import { copyToClipboard, 不讲武德 } from "./utils";
+import zenAble from "./zen/zenMode";
+
+// if (testCase[i] === '"') {
+//   while (i < testCase.length && testCase[i] !== '"') {
+//     stack.push(testCase[i]);
+//   }
+//   stack.push("\n");
+// } else
 
 // testcase eg: `bottom = "BCD", allowed = ["BCG", "CDE", "GEA", "FFF"], c = [1,2,3], d = 2`
 function normalize(testCase) {
-  testCase = testCase.replace(/\n/g, "").replace("&nbsp;", "");
-  console.log(testCase);
+  testCase = testCase.trim().replace(/\n/g, "").replace("&nbsp;", "");
+
   // 单一参数
+  // console.log(testCase);
   if (!testCase.includes("=")) {
     // 数组直接返回
-    if (testCase.includes("[")) {
+    if (testCase.includes("[") || testCase.includes('"')) {
       return testCase;
     } else {
       // 输入: 3, 2, 0, 0
@@ -58,6 +67,14 @@ function normalize(testCase) {
   return stack.join("");
 }
 
+function extractTestCase(text, prefix) {
+  const testCase = text.match(new RegExp(`${prefix}(.*)输出`, "s"));
+  if (!testCase || testCase.length <= 1) {
+    return text.match(new RegExp(`${prefix}(.*)$`, "s"));
+  }
+  return testCase;
+}
+
 function getProviedTestCases() {
   const possibleTags = ["pre", "p"];
   const possiblePrefixs = ["输入：", "输入:"];
@@ -68,12 +85,10 @@ function getProviedTestCases() {
     for (let prefix of possiblePrefixs) {
       for (var i = 0; i < pres.length; ++i) {
         if (pres[i].innerText.includes(prefix)) {
-          const testcase = pres[i].innerText.match(
-            new RegExp(`${prefix}(.*)输出`, "s")
-          );
-          console.log(testcase);
-          if (testcase.length <= 1) {
-            return 不讲武德();
+          const testcase = extractTestCase(pres[i].innerText, prefix);
+          if (!testcase || testcase.length <= 1) {
+            不讲武德();
+            return [];
           }
           ans.push(normalize(testcase[1]));
         }
@@ -100,15 +115,20 @@ function insertButton() {
         });
       };
       buttons[i].parentElement.prepend(copyButton);
-      break;
+      return true;
     }
   }
+  return false;
 }
 let inserted = false;
 const timerId = setInterval(() => {
   if (inserted) return clearInterval(timerId);
-  insertButton();
-  inserted = true;
+  if (insertButton()) {
+    window.location.title = "";
+    inserted = true;
+    // 可进入禅定模式
+    zenAble();
+  }
 }, 1000);
 
 // class Main extends React.Component {
