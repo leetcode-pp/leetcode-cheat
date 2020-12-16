@@ -100,7 +100,7 @@ export function 不讲武德() {
   return message.error({
     content: (
       <>
-        力扣不讲武德，不套路出牌。不过没关系啊，你
+        力扣不讲武德，不按套路出牌。不过没关系啊，你
         <Button type="link" href={ISSUES_URL} target="_blank">
           反馈
         </Button>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Table, Empty, Collapse, Tabs } from "antd";
+import { Button, Table, Empty, Tabs } from "antd";
 
 import "highlight.js/styles/github.css";
 
@@ -7,25 +7,24 @@ import db from "./db/db";
 import collectionLogo from "./imgs/collection.svg";
 import viewLogo from "./imgs/view.svg";
 
-import {
-  LEETCODE_CN_URL,
-  LEETCODE_URL,
-  CONTRIBUTE_PROGRAMMING_LANGUAGE_URL,
-} from "./constant/index";
+import { LEETCODE_CN_URL, LEETCODE_URL } from "./constant/index";
 // import TestCase from "./testCase";
 import ProblemDetail from "./Detail";
+import Roadmap from "./roadmap/roadmap.jsx";
 import TagOrLink from "./TagOrLink";
 import tempaltes from "./codeTemplates/index";
-import Codes from "./codes";
+
 // import { bfs } from "./utils";
 // import drawTree from "canvas-binary-tree";
 import "antd/dist/antd.css";
 import "./App.css";
+import CodeTemplates from "./codeTemplates/codeTemplate";
 // import { data as a } from "./db/binary-tree";
 
 const { problems, selected } = db;
+
 const { TabPane } = Tabs;
-const { Panel } = Collapse;
+
 const dataSource = Object.values(problems);
 
 function inLeetCodeWebsite(url) {
@@ -172,78 +171,6 @@ function App() {
                 本题暂未被力扣加加收录，点击查看所有已收录题目~
               </Button>
             ))}
-
-          <div style={page === "" ? {} : { display: "none" }}>
-            <h2 style={{ display: "flex", justifyContent: "center" }}>
-              代码模板
-            </h2>
-            <Tabs>
-              {tempaltes.map((tempalte) => (
-                <TabPane
-                  tab={
-                    <div>
-                      {tempalte.title}
-                      <img
-                        style={
-                          tempalte.logo
-                            ? { margin: "0 0 0 10px" }
-                            : { display: "none" }
-                        }
-                        src={tempalte.logo}
-                        className="problem-icon"
-                      />
-                    </div>
-                  }
-                  key={tempalte.title}
-                >
-                  {tempalte.link && (
-                    <div>
-                      建议先学会之后再用模板。 如果你还不会的话，可以看看我的
-                      <Button type="link" href={tempalte.link} target="_blank">
-                        文章
-                      </Button>
-                      哦~
-                    </div>
-                  )}
-                  {tempalte.list.map(({ text, problems, codes }) => (
-                    <Collapse>
-                      <Panel header={<div>{text}</div>} key={text}>
-                        <div>
-                          推荐题目：
-                          <ul>
-                            {problems.map((problem) => (
-                              <li>
-                                <Button type="text">{problem.title}</Button>
-                                <Button
-                                  onClick={(e) => e.stopPropagation()}
-                                  type="link"
-                                  href={`${LEETCODE_CN_URL}/problems/${problem.id}`}
-                                  target="_blank"
-                                  size="small"
-                                  style={{ marginLeft: "10px" }}
-                                >
-                                  去默写
-                                </Button>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                        <Codes codes={codes} />
-                        <Button
-                          type="link"
-                          href={CONTRIBUTE_PROGRAMMING_LANGUAGE_URL}
-                        >
-                          纠错 or 贡献其他语言
-                        </Button>
-                      </Panel>
-                    </Collapse>
-                  ))}
-                </TabPane>
-              ))}
-
-              <TabPane tab="更多模板后续陆续更新" key="more" disabled></TabPane>
-            </Tabs>
-          </div>
         </div>
 
         {page === "detail" && <ProblemDetail problemId={problemId} />}
@@ -262,6 +189,15 @@ function App() {
           />
         </Empty>
       </div>
+
+      <Tabs type="card">
+        <TabPane key="roadmap" tab="学习路线">
+          <Roadmap />
+        </TabPane>
+        <TabPane key="app" tab="代码模板">
+          <CodeTemplates page={page} tempaltes={tempaltes}></CodeTemplates>
+        </TabPane>
+      </Tabs>
     </div>
   );
 }
