@@ -14,7 +14,6 @@ const { Panel } = Collapse;
 export default function CodeTemplate({ page, tempaltes }) {
   return (
     <div style={page === "" ? {} : { display: "none" }}>
-      <h2 style={{ display: "flex", justifyContent: "center" }}>代码模板</h2>
       <Tabs>
         {tempaltes.map((tempalte) => (
           <TabPane

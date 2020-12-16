@@ -17,7 +17,7 @@ export default function Codes({ codes, renderHeader }) {
         <Panel
           key={c.text}
           header={
-            <div className="row" style={{ marginTop: "10px" }}>
+            <div className="row">
               <span className="language language-js">{c.language}</span>
               <Button
                 type="primary"

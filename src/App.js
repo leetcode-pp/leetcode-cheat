@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Table, Empty, Tabs } from "antd";
+import { Button, Table, Empty, Tabs, Image } from "antd";
 
 import "highlight.js/styles/github.css";
 
@@ -13,6 +13,7 @@ import ProblemDetail from "./Detail";
 import Roadmap from "./roadmap/roadmap.jsx";
 import TagOrLink from "./TagOrLink";
 import tempaltes from "./codeTemplates/index";
+import checkUpdate from "./checkUpdates";
 
 // import { bfs } from "./utils";
 // import drawTree from "canvas-binary-tree";
@@ -87,12 +88,12 @@ function App() {
       setInLeetCode(inLeetCodeWebsite(currentUrl));
     });
 
-  // setTimeout(() => {
-  //   setProblemId("uncrossed-lines");
-  //   // setProblemId("two-sum");
-  //   setInSelected(!!selected[problemId]);
-  //   setHasSolution(!!problems[problemId]);
-  // }, 1000);
+  setTimeout(() => {
+    // setProblemId("uncrossed-lines");
+    setProblemId("two-sum");
+    // setInSelected(!!selected[problemId]);
+    setHasSolution(!!problems[problemId]);
+  }, 1000);
 
   const [problemId, setProblemId] = useState("");
 
@@ -129,7 +130,7 @@ function App() {
         <canvas width="1000" height="1000" id="canvas"></canvas>
       </div>
 
-      <div>
+      <div className="guide-wrapper">
         <div className="guide">
           {page !== "" ? (
             <Button type="link" onClick={() => setPage("")}>
@@ -172,7 +173,6 @@ function App() {
               </Button>
             ))}
         </div>
-
         {page === "detail" && <ProblemDetail problemId={problemId} />}
       </div>
 
@@ -190,14 +190,39 @@ function App() {
         </Empty>
       </div>
 
-      <Tabs type="card">
-        <TabPane key="roadmap" tab="学习路线">
-          <Roadmap />
-        </TabPane>
-        <TabPane key="app" tab="代码模板">
-          <CodeTemplates page={page} tempaltes={tempaltes}></CodeTemplates>
-        </TabPane>
-      </Tabs>
+      {page === "" && (
+        <Tabs type="card">
+          <TabPane key="roadmap" tab="学习路线">
+            <Roadmap />
+          </TabPane>
+          <TabPane key="app" tab="代码模板">
+            <CodeTemplates page={page} tempaltes={tempaltes}></CodeTemplates>
+          </TabPane>
+          <TabPane key="checkUpdate" tab="检查更新">
+            <div>
+              一般只要你开启了自动更新，那么当插件更新之后
+              chrome会在五个小时以内自动更新。
+              如果你想第一时间更新，或者您禁用了自动更新，都可以在这里检测最新版。
+            </div>
+            <Button
+              style={{ margin: "20px 0 0 20px" }}
+              type="primary"
+              onClick={checkUpdate}
+            >
+              检查更新
+            </Button>
+          </TabPane>
+          <TabPane key="about" tab="关于我">
+            <div>
+              作者是一个 Github 40K star 的前端架构师，leetcode 刷题插件
+              leetcode-cheatsheet
+              作者，掌握各种算法套路，写了十几万字的算法刷题套路电子书，公众号回复
+              <b>电子书</b>获取。
+              <Image src="https://tva1.sinaimg.cn/large/007S8ZIlly1gfcuzagjalj30p00dwabs.jpg"></Image>
+            </div>
+          </TabPane>
+        </Tabs>
+      )}
     </div>
   );
 }

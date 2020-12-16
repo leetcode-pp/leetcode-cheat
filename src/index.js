@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 // import App from "./visualDebug/index";
 import App from "./App";
+import "./checkUpdates";
 
 import * as serviceWorker from "./serviceWorker";
 
