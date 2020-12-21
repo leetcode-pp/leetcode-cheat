@@ -32,7 +32,10 @@ class UF:
     parent = {}
     cnt = 0
     def __init__(self, M):
-        # 初始化 parent 和 cnt
+        # 初始化 parent，size 和 cnt
+        for i in range(M):
+            self.parent[i] = i
+            self.cnt += 1
 
     def find(self, x):
         while x != self.parent[x]:
@@ -77,14 +80,23 @@ class UF:
     size = {}
     cnt = 0
     def __init__(self, M):
-        # 初始化 parent，size 和 cnt
-
+      # 初始化 parent，size 和 cnt
+      for i in range(M):
+          self.parent[i] = i
+          self.size[i] = 1
+          self.cnt += 1
     def find(self, x):
-        while x != self.parent[x]:
-            x = self.parent[x]
-            # 路径压缩
-            self.parent[x] = self.parent[self.parent[x]];
-        return x
+      # 根节点
+      r = x
+      while r != parent[r]:
+          r = parent[r]
+      k = x
+      while k != r:
+          # 暂存parent[k]的父节点
+          j = parent[k]
+          parent[k] = r
+          k = j
+      return r
     def union(self, p, q):
         if self.connected(p, q): return
         # 小的树挂到大的树上， 使树尽量平衡
@@ -129,21 +141,20 @@ class UF:
           text: `
 class UF:
     parent = {}
-    def __init__(self, equations):
-        # 做一些初始化操作
-
+    size = {}
+    cnt = 0
+    def __init__(self, M):
+        # 初始化 parent，size 和 cnt
+        for i in range(M):
+            self.parent[i] = i
+            self.size[i] = 1
+            self.cnt += 1
     def find(self, x):
-        # 根节点
-        r = x
-        while r != parent[r]:
-            r = parent[r]
-        k = x
-        while k != r:
-            # 暂存parent[k]的父节点
-            j = parent[k]
-            parent[k] = r
-            k = j
-        return r
+      while x != self.parent[x]:
+          x = self.parent[x]
+          # 路径压缩
+          self.parent[x] = self.parent[self.parent[x]];
+      return x
     def union(self, p, q):
         if self.connected(p, q): return
         self.parent[self.find(p)] = self.find(q)

@@ -203,6 +203,11 @@ const items = [
         link: "https://leetcode-cn.com/problems/number-of-digit-one/",
       },
       {
+        text: "357. 计算各个位数不同的数字个数",
+        link:
+          "https://leetcode-cn.com/problems/count-numbers-with-unique-digits/",
+      },
+      {
         text: "902. 最大为 N 的数字组合",
         link:
           "https://leetcode-cn.com/problems/numbers-at-most-n-given-digit-set/",
