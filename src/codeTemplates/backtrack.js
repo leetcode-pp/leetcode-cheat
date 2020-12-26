@@ -1,4 +1,5 @@
 module.exports = {
+  logo: require("../imgs/backtrack.svg"),
   title: "回溯",
   list: [
     {

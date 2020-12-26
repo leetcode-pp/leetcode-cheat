@@ -88,12 +88,12 @@ function App() {
       setInLeetCode(inLeetCodeWebsite(currentUrl));
     });
 
-  setTimeout(() => {
-    // setProblemId("uncrossed-lines");
-    setProblemId("two-sum");
-    // setInSelected(!!selected[problemId]);
-    setHasSolution(!!problems[problemId]);
-  }, 1000);
+  // setTimeout(() => {
+  //   // setProblemId("uncrossed-lines");
+  //   setProblemId("two-sum");
+  //   // setInSelected(!!selected[problemId]);
+  //   setHasSolution(!!problems[problemId]);
+  // }, 1000);
 
   const [problemId, setProblemId] = useState("");
 
@@ -192,11 +192,11 @@ function App() {
 
       {page === "" && (
         <Tabs type="card">
-          <TabPane key="roadmap" tab="学习路线">
-            <Roadmap />
-          </TabPane>
           <TabPane key="app" tab="代码模板">
             <CodeTemplates page={page} tempaltes={tempaltes}></CodeTemplates>
+          </TabPane>
+          <TabPane key="roadmap" tab="学习路线">
+            <Roadmap />
           </TabPane>
           <TabPane key="checkUpdate" tab="检查更新">
             <div>

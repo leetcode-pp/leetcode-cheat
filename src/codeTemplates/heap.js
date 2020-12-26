@@ -266,11 +266,17 @@ public class MinHeap {
 
 `;
 module.exports = {
+  logo: require("../imgs/heap.svg"),
   title: "堆",
   list: [
     {
       text: "小顶堆",
-      problems: [],
+      problems: [
+        {
+          title: "1046. 最后一块石头的重量(这道题需要用大顶堆，不过都差不多)",
+          id: "last-stone-weight",
+        },
+      ],
       codes: [
         {
           language: "js",

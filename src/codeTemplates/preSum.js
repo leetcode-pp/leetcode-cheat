@@ -31,10 +31,16 @@ pre[x2][y2] + pre[x1-1][y1-1] - pre[x1-1][y2] - pre[x2][y2-1]
 
 module.exports = {
   title: "前缀和",
+  logo: require("../imgs/preSum.svg"),
   list: [
     {
       text: "一维前缀和",
-      problems: [],
+      problems: [
+        {
+          title: "1480. 一维数组的动态和",
+          id: "running-sum-of-1d-array",
+        },
+      ],
       codes: [
         {
           language: "js",
@@ -48,7 +54,12 @@ module.exports = {
     },
     {
       text: "二维前缀和",
-      problems: [],
+      problems: [
+        {
+          title: "1314. 矩阵区域和",
+          id: "matrix-block-sum",
+        },
+      ],
       codes: [
         {
           language: "py",
