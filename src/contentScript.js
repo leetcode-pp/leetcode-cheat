@@ -68,11 +68,14 @@ function normalize(testCase) {
 }
 
 function extractTestCase(text, prefix) {
-  const testCase = text.match(new RegExp(`${prefix}(.*)输出`, "s"));
-  if (!testCase || testCase.length <= 1) {
-    return text.match(new RegExp(`${prefix}(.*)$`, "s"));
+  const possiblePrefixs = ["输出", "返回", ""];
+  for (let tag of possiblePrefixs) {
+    const testCase = text.match(new RegExp(`${prefix}(.*)${tag}`, "s"));
+    if (testCase && testCase.length > 1) {
+      return testCase;
+    }
   }
-  return testCase;
+  return [];
 }
 
 function getProviedTestCases() {

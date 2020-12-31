@@ -20,6 +20,7 @@ import checkUpdate from "./checkUpdates";
 import "antd/dist/antd.css";
 import "./App.css";
 import CodeTemplates from "./codeTemplates/codeTemplate";
+import ComplexityRating from './complexityRating/index'
 // import { data as a } from "./db/binary-tree";
 
 const { problems, selected } = db;
@@ -194,6 +195,9 @@ function App() {
         <Tabs type="card">
           <TabPane key="app" tab="代码模板">
             <CodeTemplates page={page} tempaltes={tempaltes}></CodeTemplates>
+          </TabPane>
+          <TabPane key="complexityRating" tab="复杂度速查">
+            <ComplexityRating />
           </TabPane>
           <TabPane key="roadmap" tab="学习路线">
             <Roadmap />

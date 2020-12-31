@@ -1682,7 +1682,7 @@
         },
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=49 lang=javascript\n *\n * [49] Group Anagrams\n */\n/**\n * @param {string[]} strs\n * @return {string[][]}\n */\nvar groupAnagrams = function (strs) {\n  // 类似桶排序\n\n  let counts = [];\n  const hashTable = {};\n  for (let i = 0; i < strs.length; i++) {\n    const str = strs[i];\n    counts = Array(26).fill(0);\n    for (let j = 0; j < str.length; j++) {\n      counts[str[j].charCodeAt(0) - \"a\".charCodeAt(0)]++;\n    }\n    const key = counts.join(\"\");\n    if (!hashTable[key]) {\n      hashTable[key] = [str];\n    } else {\n      hashTable[key].push(str);\n    }\n  }\n\n  return Object.values(hashTable);\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=49 lang=javascript\n *\n * [49] Group Anagrams\n */\n/**\n * @param {string[]} strs\n * @return {string[][]}\n */\nvar groupAnagrams = function (strs) {\n  // 类似桶排序\n\n  let counts = [];\n  const hashTable = {};\n  for (let i = 0; i < strs.length; i++) {\n    const str = strs[i];\n    counts = Array(26).fill(0);\n    for (let j = 0; j < str.length; j++) {\n      counts[str[j].charCodeAt(0) - \"a\".charCodeAt(0)]++;\n    }\n    const key = counts.join(\"-\");\n    if (!hashTable[key]) {\n      hashTable[key] = [str];\n    } else {\n      hashTable[key].push(str);\n    }\n  }\n\n  return Object.values(hashTable);\n};\n"
         }
     ]
 },
@@ -2625,7 +2625,7 @@
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def largestRectangleArea(self, heights: List[int]) -> int:\n        n, heights, st, ans = len(heights),[0] + heights + [0], [], 0\n        for i in range(n + 2):\n            while st and heights[st[-1]] > heights[i]:\n                a = heights[st[-1]]\n                # 如果没有前面的哨兵，这里可能会越界。\n                st.pop()\n                ans = max(ans, a * (i - 1 - st[-1]))\n            st.append(i)\n        return ans\n"
+            "text": "\nclass Solution:\n    def largestRectangleArea(self, heights: List[int]) -> int:\n        n, heights, st, ans = len(heights),[0] + heights + [0], [], 0\n        for i in range(n + 2):\n            while st and heights[st[-1]] > heights[i]:\n                a = heights[st[-1]]\n                st.pop()\n                # 如果没有前面的哨兵，这里的 st[-1] 可能会越界。\n                ans = max(ans, a * (i - 1 - st[-1]))\n            st.append(i)\n        return ans\n"
         }
     ]
 },
@@ -5780,6 +5780,62 @@
         }
     ]
 },
+"basic-calculator-ii":{
+    "id": "227",
+    "name": "basic-calculator-ii",
+    "pre": [
+        {
+            "text": "栈",
+            "link": null,
+            "color": "red"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "记录pre_flag，即上一次出现的操作符",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "使用哨兵简化操作。一个是s的$，另一个是pre_flag的+",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/227.basic-calculator-ii.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/227.basic-calculator-ii.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n1 + 2\n"
+        },
+        {
+            "language": "py",
+            "text": "\n+ 1 + 2\n# 可看成\n(+1)(+2)\n"
+        },
+        {
+            "language": "py",
+            "text": "\n(-1)(+2)(+3)(-4)\n"
+        },
+        {
+            "language": "py",
+            "text": "\n(5) / (2)\n"
+        },
+        {
+            "language": "py",
+            "text": "\n(3) * (4)\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def calculate(self, s: str) -> int:\n        stack = []\n        s += '$'\n        pre_flag = '+'\n        num = 0\n\n        for c in s:\n            if c.isdigit():\n                num = num * 10 + int(c)\n            elif c == ' ': continue\n            else:\n                if pre_flag == '+':\n                    stack.append(num)\n                elif pre_flag == '-':\n                    stack.append(-num)\n                elif pre_flag == '*':\n                    stack.append(stack.pop() * num)\n                elif pre_flag == '/':\n                    stack.append(int(stack.pop() / num))\n                pre_flag = c\n                num = 0\n        return sum(stack)\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def calculate(self, s: str) -> int:\n        def dfs(s, start):\n            stack = []\n            pre_flag = '+'\n            num = 0\n            i = start\n            while i < len(s):\n                c = s[i]\n                if  c == ' ':\n                    i += 1\n                    continue\n                elif c == '(':\n                    i, num = dfs(s, i+1)\n                elif c.isdigit():\n                    num = num * 10 + int(c)\n                else:\n                    if pre_flag == '+':\n                        stack.append(num)\n                    elif pre_flag == '-':\n                        stack.append(-num)\n                    if c == ')': break\n                    pre_flag = c\n                    num = 0\n                i += 1\n            return i, sum(stack)\n        s += '$'\n        return dfs(s, 0)[1]\n\n"
+        }
+    ]
+},
 "majority-element-ii":{
     "id": "229",
     "name": "majority-element-ii",
@@ -5830,7 +5886,7 @@
         },
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=229 lang=javascript\n *\n * [229] Majority Element II\n */\n/**\n * @param {number[]} nums\n * @return {number[]}\n */\nvar majorityElement = function(nums) {\n  const res = [];\n  const len = nums.length;\n  let n1 = null,\n    n2 = null,\n    cnt1 = 0,\n    cnt2 = 0;\n\n  for (let i = 0; i < len; i++) {\n    if (n1 === nums[i]) {\n      cnt1++;\n    } else if (n2 === nums[i]) {\n      cnt2++;\n    } else if (cnt1 === 0) {\n      n1 = nums[i];\n      cnt1++;\n    } else if (cnt2 === 0) {\n      n2 = nums[i];\n      cnt2++;\n    } else {\n      cnt1--;\n      cnt2--;\n    }\n  }\n\n  cnt1 = 0;\n  cnt2 = 0;\n\n  for (let i = 0; i < len; i++) {\n    if (n1 === nums[i]) {\n      cnt1++;\n    } else if (n2 === nums[i]) {\n      cnt2++;\n    }\n  }\n\n  if (cnt1 > (len / 3) >>> 0) {\n    res.push(n1);\n  }\n  if (cnt2 > (len / 3) >>> 0) {\n    res.push(n2);\n  }\n\n  return res;\n};\n\n"
+            "text": "\n/*\n * @lc app=leetcode id=229 lang=javascript\n *\n * [229] Majority Element II\n */\n/**\n * @param {number[]} nums\n * @return {number[]}\n */\nvar majorityElement = function (nums) {\n  const res = [];\n  const len = nums.length;\n  let n1 = null,\n    n2 = null,\n    cnt1 = 0,\n    cnt2 = 0;\n\n  for (let i = 0; i < len; i++) {\n    if (n1 === nums[i]) {\n      cnt1++;\n    } else if (n2 === nums[i]) {\n      cnt2++;\n    } else if (cnt1 === 0) {\n      n1 = nums[i];\n      cnt1++;\n    } else if (cnt2 === 0) {\n      n2 = nums[i];\n      cnt2++;\n    } else {\n      cnt1--;\n      cnt2--;\n    }\n  }\n\n  cnt1 = 0;\n  cnt2 = 0;\n\n  for (let i = 0; i < len; i++) {\n    if (n1 === nums[i]) {\n      cnt1++;\n    } else if (n2 === nums[i]) {\n      cnt2++;\n    }\n  }\n\n  if (cnt1 > (len / 3) >>> 0) {\n    res.push(n1);\n  }\n  if (cnt2 > (len / 3) >>> 0) {\n    res.push(n2);\n  }\n\n  return res;\n};\n"
         }
     ]
 },
@@ -6368,15 +6424,19 @@
         },
         {
             "language": "js",
-            "text": "\n/**\n * initialize your data structure here.\n */\nvar MedianFinder = function() {\n  this.maxHeap = [];\n  this.minHeap = [];\n};\n\nfunction minHeapify() {\n  this.minHeap.unshift(null);\n  const a = this.minHeap;\n\n  // 为了方便大家理解，这里选用了粗暴的实现\n  // 时间复杂度为O(n)\n  // 其实可以降到O(logn)， 具体细节我不想在这里讲解和实现\n  for (let i = a.length - 1; i >> 1 > 0; i--) {\n    // 自下往上堆化\n    if (a[i] < a[i >> 1]) { // 如果子元素更小，则交换位置\n      const temp = a[i];\n      this.minHeap[i] = a[i >> 1];\n      this.minHeap[i >> 1] = temp;\n    }\n  }\n  this.minHeap.shift(null);\n}\n\nfunction maxHeapify() {\n  this.maxHeap.unshift(null);\n  const a = this.maxHeap;\n\n  // 为了方便大家理解，这里选用了粗暴的实现\n  // 时间复杂度为O(n)\n  // 其实可以降到O(logn)， 具体细节我不想在这里讲解和实现\n  for (let i = a.length - 1; i >> 1 > 0; i--) {\n    // 自下往上堆化\n    if (a[i] > a[i >> 1]) { // 如果子元素更大，则交换位置\n      const temp = a[i];\n      this.maxHeap[i] = a[i >> 1];\n      this.maxHeap[i >> 1] = temp;\n    }\n  }\n  this.maxHeap.shift(null);\n}\n\n/**\n * @param {number} num\n * @return {void}\n */\nMedianFinder.prototype.addNum = function(num) {\n  // 为了大家容易理解，这部分代码写的比较冗余\n\n  // 插入\n  if (num >= (this.minHeap[0] || Number.MIN_VALUE)) {\n    this.minHeap.push(num);\n  } else {\n    this.maxHeap.push(num);\n  }\n  // 调整两个堆的节点数量平衡\n  // 使得大顶堆的数量最多大于小顶堆一个， 且一定不小于小顶堆数量\n  if (this.maxHeap.length > this.minHeap.length + 1) {\n    // 大顶堆的堆顶元素移动到小顶堆\n    this.minHeap.push(this.maxHeap.shift());\n  }\n\n  if (this.minHeap.length > this.maxHeap.length) {\n    // 小顶堆的堆顶元素移动到大顶堆\n    this.maxHeap.push(this.minHeap.shift());\n  }\n\n  // 调整堆顶元素\n  if (this.maxHeap[0] > this.minHeap[0]) {\n    const temp = this.maxHeap[0];\n    this.maxHeap[0] = this.minHeap[0];\n    this.minHeap[0] = temp;\n  }\n\n  // 堆化\n  maxHeapify.call(this);\n  minHeapify.call(this);\n};\n\n/**\n * @return {number}\n */\nMedianFinder.prototype.findMedian = function() {\n  if ((this.maxHeap.length + this.minHeap.length) % 2 === 0) {\n    return (this.minHeap[0] + this.maxHeap[0]) / 2;\n  } else {\n    return this.maxHeap[0];\n  }\n};\n\n/**\n * Your MedianFinder object will be instantiated and called as such:\n * var obj = new MedianFinder()\n * obj.addNum(num)\n * var param_2 = obj.findMedian()\n */\n"
+            "text": "\n/**\n * initialize your data structure here.\n */\nvar MedianFinder = function () {\n  this.maxHeap = [];\n  this.minHeap = [];\n};\n\nfunction minHeapify() {\n  this.minHeap.unshift(null);\n  const a = this.minHeap;\n\n  // 为了方便大家理解，这里选用了粗暴的实现\n  // 时间复杂度为O(n)\n  // 其实可以降到O(logn)， 具体细节我不想在这里讲解和实现\n  for (let i = a.length - 1; i >> 1 > 0; i--) {\n    // 自下往上堆化\n    if (a[i] < a[i >> 1]) {\n      // 如果子元素更小，则交换位置\n      const temp = a[i];\n      this.minHeap[i] = a[i >> 1];\n      this.minHeap[i >> 1] = temp;\n    }\n  }\n  this.minHeap.shift(null);\n}\n\nfunction maxHeapify() {\n  this.maxHeap.unshift(null);\n  const a = this.maxHeap;\n\n  // 为了方便大家理解，这里选用了粗暴的实现\n  // 时间复杂度为O(n)\n  // 其实可以降到O(logn)， 具体细节我不想在这里讲解和实现\n  for (let i = a.length - 1; i >> 1 > 0; i--) {\n    // 自下往上堆化\n    if (a[i] > a[i >> 1]) {\n      // 如果子元素更大，则交换位置\n      const temp = a[i];\n      this.maxHeap[i] = a[i >> 1];\n      this.maxHeap[i >> 1] = temp;\n    }\n  }\n  this.maxHeap.shift(null);\n}\n\n/**\n * @param {number} num\n * @return {void}\n */\nMedianFinder.prototype.addNum = function (num) {\n  // 为了大家容易理解，这部分代码写的比较冗余\n\n  // 插入\n  if (num >= (this.minHeap[0] || Number.MIN_VALUE)) {\n    this.minHeap.push(num);\n  } else {\n    this.maxHeap.push(num);\n  }\n  // 调整两个堆的节点数量平衡\n  // 使得大顶堆的数量最多大于小顶堆一个， 且一定不小于小顶堆数量\n  if (this.maxHeap.length > this.minHeap.length + 1) {\n    // 大顶堆的堆顶元素移动到小顶堆\n    this.minHeap.push(this.maxHeap.shift());\n  }\n\n  if (this.minHeap.length > this.maxHeap.length) {\n    // 小顶堆的堆顶元素移动到大顶堆\n    this.maxHeap.push(this.minHeap.shift());\n  }\n\n  // 调整堆顶元素\n  if (this.maxHeap[0] > this.minHeap[0]) {\n    const temp = this.maxHeap[0];\n    this.maxHeap[0] = this.minHeap[0];\n    this.minHeap[0] = temp;\n  }\n\n  // 堆化\n  maxHeapify.call(this);\n  minHeapify.call(this);\n};\n\n/**\n * @return {number}\n */\nMedianFinder.prototype.findMedian = function () {\n  if ((this.maxHeap.length + this.minHeap.length) % 2 === 0) {\n    return (this.minHeap[0] + this.maxHeap[0]) / 2;\n  } else {\n    return this.maxHeap[0];\n  }\n};\n\n/**\n * Your MedianFinder object will be instantiated and called as such:\n * var obj = new MedianFinder()\n * obj.addNum(num)\n * var param_2 = obj.findMedian()\n */\n"
         },
         {
             "language": "js",
-            "text": "\n\nthis.heap.unshift(null);\n// ....\nthis.heap.shift(null);\n\n"
+            "text": "\nthis.heap.unshift(null);\n// ....\nthis.heap.shift(null);\n"
         },
         {
             "language": "js",
-            "text": "\nvar MedianFinder = function() {\n  this.maxHeap = new PriorityQueue((a, b) => a - b);\n  this.minHeap = new PriorityQueue((a, b) => b - a);\n};\n\n/**\n * @param {number} num\n * @return {void}\n */\nMedianFinder.prototype.addNum = function(num) {\n    // 我们的目标就是建立两个堆，一个大顶堆，一个小顶堆\n    // 结合中位数的特点\n    // 这两个堆需要满足:\n    // 1. 大顶堆元素都比小顶堆小（由于堆的特点其实只要比较堆顶即可）\n    // 2. 大顶堆元素不小于小顶堆，且最多比小顶堆多一个元素\n\n    // 满足上面两个条件的话，如果想要找到中位数，就比较简单了\n    // 如果两个堆数量相等（本质是总数为偶数）, 就两个堆顶元素的平均数\n    // 如果两个堆数量不相等（本质是总数为奇数）， 就取大顶堆的堆顶元素\n\n    // 问题如果保证满足上述两个特点\n\n    // 1. 保证第一点\n    this.maxHeap.enq(num);\n    // 由于小顶堆的所有数都来自大顶堆的堆顶元素（最大值）\n    // 因此可以保证第一点\n    this.minHeap.enq(this.maxHeap.deq());\n\n    // 2. 保证第二点\n    if (this.maxHeap.size() < this.minHeap.size()){\n        this.maxHeap.enq(this.minHeap.deq());\n    }\n};\n\n/**\n * @return {number}\n */\nMedianFinder.prototype.findMedian = function() {\n    if (this.maxHeap.size() == this.minHeap.size()) return (this.maxHeap.peek() + this.minHeap.peek()) /  2.0;\n    else return this.maxHeap.peek();\n};\n\n/**\n * Your MedianFinder object will be instantiated and called as such:\n * var obj = new MedianFinder()\n * obj.addNum(num)\n * var param_2 = obj.findMedian()\n */\n\n"
+            "text": "\nvar MedianFinder = function () {\n  this.maxHeap = new PriorityQueue((a, b) => a - b);\n  this.minHeap = new PriorityQueue((a, b) => b - a);\n};\n\n/**\n * @param {number} num\n * @return {void}\n */\nMedianFinder.prototype.addNum = function (num) {\n  // 我们的目标就是建立两个堆，一个大顶堆，一个小顶堆\n  // 结合中位数的特点\n  // 这两个堆需要满足:\n  // 1. 大顶堆元素都比小顶堆小（由于堆的特点其实只要比较堆顶即可）\n  // 2. 大顶堆元素不小于小顶堆，且最多比小顶堆多一个元素\n\n  // 满足上面两个条件的话，如果想要找到中位数，就比较简单了\n  // 如果两个堆数量相等（本质是总数为偶数）, 就两个堆顶元素的平均数\n  // 如果两个堆数量不相等（本质是总数为奇数）， 就取大顶堆的堆顶元素\n\n  // 问题如果保证满足上述两个特点\n\n  // 1. 保证第一点\n  this.maxHeap.enq(num);\n  // 由于小顶堆的所有数都来自大顶堆的堆顶元素（最大值）\n  // 因此可以保证第一点\n  this.minHeap.enq(this.maxHeap.deq());\n\n  // 2. 保证第二点\n  if (this.maxHeap.size() < this.minHeap.size()) {\n    this.maxHeap.enq(this.minHeap.deq());\n  }\n};\n\n/**\n * @return {number}\n */\nMedianFinder.prototype.findMedian = function () {\n  if (this.maxHeap.size() == this.minHeap.size())\n    return (this.maxHeap.peek() + this.minHeap.peek()) / 2.0;\n  else return this.maxHeap.peek();\n};\n\n/**\n * Your MedianFinder object will be instantiated and called as such:\n * var obj = new MedianFinder()\n * obj.addNum(num)\n * var param_2 = obj.findMedian()\n */\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\nclass MedianFinder {\npublic:\n    /** initialize your data structure here. */\n    MedianFinder() {\n\n    }\n\n    void addNum(int num) {\n        if (big_queue.empty()) {\n            big_queue.push(num);\n            return;\n        }\n        if (big_queue.size() == small_queue.size()) {\n            if (num <= big_queue.top()) {\n                big_queue.push(num);\n            } else {\n                small_queue.push(num);\n            }\n        } else if (big_queue.size() > small_queue.size()) {\n            if (big_queue.top() > num) {\n                small_queue.push(big_queue.top());\n                big_queue.pop();\n                big_queue.push(num);\n            } else {\n                small_queue.push(num);\n            }\n        } else if (big_queue.size() < small_queue.size()) {\n            if (small_queue.top() > num) {\n                big_queue.push(num);\n            } else {\n                big_queue.push(small_queue.top());\n                small_queue.pop();\n                small_queue.push(num);\n            }\n        }\n    }\n\n    double findMedian() {\n        if (big_queue.size() == small_queue.size()) {\n            return (big_queue.top() + small_queue.top()) * 0.5;\n        }\n        if (big_queue.size() < small_queue.size()) {\n            return small_queue.top();\n        }\n        return big_queue.top();\n    }\n\nprivate:\n    std::priority_queue<int, std::vector<int>, std::greater<int>> small_queue;  // 最小堆\n    std::priority_queue<int> big_queue; // 最大堆\n};\n"
         }
     ]
 },
@@ -7505,6 +7565,108 @@
         }
     ]
 },
+"can-i-win":{
+    "id": "464",
+    "name": "can-i-win",
+    "pre": [
+        {
+            "text": "动态规划",
+            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/dynamic-programming.md \"动态规划\"",
+            "color": "red"
+        },
+        {
+            "text": "回溯",
+            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/backtrack.md",
+            "color": "green"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "分析",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "回溯",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "动态规划",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "状态压缩",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "linkedin"
+        }
+    ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/464.can-i-win.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/464.can-i-win.md",
+    "code": [
+        {
+            "language": "java",
+            "text": "\npublic class Solution {\n    public boolean canIWin(int maxChoosableInteger, int desiredTotal) {\n\n        if (maxChoosableInteger >= desiredTotal) return true;\n        if ((1 + maxChoosableInteger) * maxChoosableInteger / 2 < desiredTotal) return false;\n\n        Boolean[] dp = new Boolean[(1 << maxChoosableInteger) - 1];\n        return dfs(maxChoosableInteger, desiredTotal, 0, dp);\n    }\n\n    private boolean dfs(int maxChoosableInteger, int desiredTotal, int state, Boolean[] dp) {\n        if (dp[state] != null)\n            return dp[state];\n        for (int i = 1; i <= maxChoosableInteger; i++){\n            int tmp = (1 << (i - 1));\n            if ((tmp & state) == 0){\n                if (desiredTotal - i <= 0 || !dfs(maxChoosableInteger, desiredTotal - i, tmp|state, dp)) {\n                    dp[state] = true;\n                    return true;\n                }\n            }\n        }\n        dp[state] = false;\n        return false;\n    }\n}\n"
+        },
+        {
+            "language": "js",
+            "text": "\nvar canIWin = function (maxChoosableInteger, desiredTotal) {\n  // 直接获胜\n  if (maxChoosableInteger >= desiredTotal) return true;\n\n  // 全部拿完也无法到达\n  var sum = (maxChoosableInteger * (maxChoosableInteger + 1)) / 2;\n  if (desiredTotal > sum) return false;\n\n  // 记忆化\n  var dp = {};\n\n  /**\n   * @param {number} total 剩余的数量\n   * @param {number} state 使用二进制位表示抽过的状态\n   */\n  function f(total, state) {\n    // 有缓存\n    if (dp[state] !== undefined) return dp[state];\n\n    for (var i = 1; i <= maxChoosableInteger; i++) {\n      var curr = 1 << i;\n      // 已经抽过这个数\n      if (curr & state) continue;\n      // 直接获胜\n      if (i >= total) return (dp[state] = true);\n      // 可以让对方输\n      if (!f(total - i, state | curr)) return (dp[state] = true);\n    }\n\n    // 没有任何让对方输的方法\n    return (dp[state] = false);\n  }\n\n  return f(desiredTotal, 0);\n};\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\nclass Solution {\npublic:\n    bool canIWin(int maxChoosableInteger, int desiredTotal) {\n        int sum = (1+maxChoosableInteger)*maxChoosableInteger/2;\n        if(sum < desiredTotal){\n            return false;\n        }\n        unordered_map<int,int> d;\n        return dfs(maxChoosableInteger,0,desiredTotal,0,d);\n    }\n\n    bool dfs(int n,int s,int t,int S,unordered_map<int,int>& d){\n        if(d[S]) return  d[S];\n        int& ans = d[S];\n\n        if(s >= t){\n            return ans = true;\n        }\n        if(S == (((1 << n)-1) << 1)){\n            return ans = false;\n        }\n\n        for(int m = 1;m <=n;++m){\n            if(S & (1 << m)){\n                continue;\n            }\n            int nextS = S|(1 << m);\n            if(s+m >= t){\n                return ans = true;\n            }\n            bool r1 = dfs(n,s+m,t,nextS,d);\n            if(!r1){\n                return ans = true;\n            }\n        }\n        return ans = false;\n    }\n};\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\ndef canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:\n        # acc 表示当前累计的数字和\n        def dfs(acc):\n            if acc >= desiredTotal:\n                return False\n            for n in range(1, maxChoosableInteger + 1):\n                # 对方有一种情况赢不了，我就选这个数字就能赢了，返回 true，代表可以赢。\n                if not backtrack(acc + n):\n                    return True\n            return False\n\n        # 初始化集合，用于保存当前已经选择过的数。\n        return dfs(0)\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:\n        if desiredTotal <= maxChoosableInteger:\n            return True\n        if sum(range(maxChoosableInteger + 1)) < desiredTotal:\n            return False\n        # picked 用于保存当前已经选择过的数。\n        # acc 表示当前累计的数字和\n        def backtrack(picked, acc):\n            if acc >= desiredTotal:\n                return False\n            if len(picked) == maxChoosableInteger:\n                # 说明全部都被选了，没得选了，返回 False， 代表输了。\n                return False\n            for n in range(1, maxChoosableInteger + 1):\n                if n not in picked:\n                    picked.add(n)\n                    # 对方有一种情况赢不了，我就选这个数字就能赢了，返回 true，代表可以赢。\n                    if not backtrack(picked, acc + n):\n                        picked.remove(n)\n                        return True\n                    picked.remove(n)\n            return False\n\n        # 初始化集合，用于保存当前已经选择过的数。\n        return backtrack(set(), 0)\n"
+        },
+        {
+            "language": "py",
+            "text": "\n1 << a\n"
+        },
+        {
+            "language": "py",
+            "text": "\na | b\n"
+        },
+        {
+            "language": "py",
+            "text": "\nseen = 0b0000000\na = 0b0000001\nb = ob0000010\n\nseen |= a 后，  seen 为 0b0000001\nseen |= b 后，  seen 为 0b0000011\n"
+        },
+        {
+            "language": "py",
+            "text": "\na & b\n"
+        },
+        {
+            "language": "py",
+            "text": "\nmask = 0b0000010\na & mask == 1 说明 a 在第二位（从低到高）是 1\na & mask == 0 说明 a 在第二位（从低到高）是 0\n"
+        },
+        {
+            "language": "py",
+            "text": "\npicked == (1 << (maxChoosableInteger + 1)) - 1\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:\n        if desiredTotal <= maxChoosableInteger:\n            return True\n        if sum(range(maxChoosableInteger + 1)) < desiredTotal:\n            return False\n\n        @lru_cache(None)\n        def dp(picked, acc):\n            if acc >= desiredTotal:\n                return False\n            if picked == (1 << (maxChoosableInteger + 1)) - 1:\n                return False\n            for n in range(1, maxChoosableInteger + 1):\n                if picked & 1 << n == 0:\n                    if not dp(picked | 1 << n, acc + n):\n                        return True\n            return False\n\n        return dp(0, 0)\n"
+        }
+    ]
+},
 "concatenated-words":{
     "id": "472",
     "name": "concatenated-words",
@@ -7808,91 +7970,6 @@
     "keyPoints": [
         {
             "text": "动态规划",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "子问题用dp[i]来表示组成i块钱，需要最少的硬币数，那么1.第j个硬币我可以选择不拿这个时候，组成数=dp[i]2.第j个硬币我可以选择拿这个时候，组成数=dp[i",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "coins[j]]+dp[i]",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "和01背包问题不同，硬币是可以拿任意个，属于完全背包问题",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "对于每一个dp[i]我们都选择遍历一遍coin，不断更新dp[i]eg:```jsif(amount===0)return1;constdp=[Array(amount+1).fill(1)];for(leti=1;i<amount+1;i++){dp[i]=Array(coins.length+1).fill(0);for(letj=1;j<coins.length+1;j++){//从1开始可以简化运算if(i",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "coins[j",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "1]>=0){//注意这里是coins[j",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "1]而不是coins[j]dp[i][j]=dp[i][j",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "1]+dp[i",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "coins[j",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "1]][j];//由于可以重复使用硬币所以这里是j不是j",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "1}else{dp[i][j]=dp[i][j",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "1];}}}returndp[dp.length",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "1][coins.length];```",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "当我们选择一维数组去解的时候，内外循环将会对结果造成影响![](https://tva1.sinaimg.cn/large/007S8ZIlly1ghluafxrm4j30j00bdmxx.jpg)eg:```js//这种答案是不对的。//原因在于比如amount=5,coins=[1,2,5]//这种算法会将[1,2,2][2,1,2][2,2,1]算成不同的if(amount===0)return1;constdp=[1].concat(Array(amount).fill(0));for(leti=1;i<amount+1;i++){for(letj=0;j<coins.length;j++){if(i",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "coins[j]>=0){dp[i]=dp[i]+dp[i",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "coins[j]];}}}returndp[dp.length",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "1];//正确的写法应该是内外循环调换一下,具体可以看下方代码区```",
             "link": null,
             "color": "blue"
         }
@@ -10128,6 +10205,56 @@
         }
     ]
 },
+"shortest-subarray-to-be-removed-to-make-array-sorted":{
+    "id": "1574",
+    "name": "shortest-subarray-to-be-removed-to-make-array-sorted",
+    "pre": [
+        {
+            "text": "双指针",
+            "link": null,
+            "color": "green"
+        },
+        {
+            "text": "滑动窗口",
+            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/slide-window.md \"滑动窗口\"",
+            "color": "purple"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "画图",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "边界条件的考察（比如+1",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "1等号）",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1574.shortest-subarray-to-be-removed-to-make-array-sorted.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1574.shortest-subarray-to-be-removed-to-make-array-sorted.md",
+    "code": [
+        {
+            "language": "java",
+            "text": "\nans = cnt = 1\nfor(int i = 1; i < A.length; i++ ) {\n    if (A[i] >= A[i - 1]) {\n        cnt++\n    }\n    else {\n        ans = max(ans, cnt)\n        cnt = 1\n    }\n}\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\nclass Solution {\npublic:\n    int findLengthOfShortestSubarray(vector<int>& A) {\n        int N = A.size(), left = 0, right = N - 1;\n        while (left + 1 < N && A[left] <= A[left + 1]) ++left;\n        if (left == A.size() - 1) return 0;\n        while (right > left && A[right - 1] <= A[right]) --right;\n        int ans = min(N - left - 1, right), i = 0, j = right;\n        while (i <= left && j < N) {\n            if (A[j] >= A[i]) {\n                ans = min(ans, j - i - 1);\n                ++i;\n            } else ++j;\n        }\n        return ans;\n    }\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def findLengthOfShortestSubarray(self, A: List[int]) -> int:\n        n = len(A)\n        l, r = 0, n - 1\n\n        while l < n - 1 and A[l] <= A[l + 1]:\n            l += 1\n        if l == n - 1:\n            return 0\n        while r > 0 and A[r] >= A[r - 1]:\n            r -= 1\n        ans = min(r, n - l - 1)\n        i = 0\n        while i <= l and r < n:\n            if A[i] <= A[r]:\n                # delete i + 1 ~ r - 1\n                ans = min(ans, r - i - 1)\n                i += 1\n            else:\n                # extend the sliding window\n                r += 1\n        return ans\n\n"
+        }
+    ]
+},
 "path-with-minimum-effort":{
     "id": "1631",
     "name": "path-with-minimum-effort",
@@ -10144,7 +10271,7 @@
         },
         {
             "text": "二分查找",
-            "link": "../91/binary-search.md",
+            "link": "https://github.com/azl397985856/leetcode/blob/master/91/binary-search.md",
             "color": "magenta"
         }
     ],
@@ -10198,6 +10325,42 @@
         {
             "language": "py",
             "text": "\nclass Solution:\n    def minOperations(self, nums: List[int], x: int) -> int:\n        # 逆向求解，滑动窗口\n        i = 0\n        target = sum(nums) - x\n        win = 0\n        ans = len(nums)\n        if target == 0: return ans\n        for j in range(len(nums)):\n            win += nums[j]\n            while i < j and win > target:\n                win -= nums[i]\n                i += 1\n            if win == target:\n                ans = min(ans, len(nums) - (j - i + 1))\n        return -1 if ans == len(nums) else ans\n\n"
+        }
+    ]
+},
+"maximum-xor-with-an-element-from-array":{
+    "id": "5640",
+    "name": "maximum-xor-with-an-element-from-array",
+    "pre": [
+        {
+            "text": "异或",
+            "link": null,
+            "color": "geekblue"
+        },
+        {
+            "text": "位运算",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "剪枝",
+            "link": null,
+            "color": "gold"
+        },
+        {
+            "text": "双指针",
+            "link": null,
+            "color": "green"
+        }
+    ],
+    "keyPoints": [],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/5640.maximum-xor-with-an-element-from-array.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/5640.maximum-xor-with-an-element-from-array.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def maximizeXor(self, nums: List[int], queries: List[List[int]]) -> List[int]:\n        def solve(x, m, s, e):\n            if nums[0] > m: return -1\n            max_v = 0\n            for i in range(31, -1, -1):\n                if nums[s] & (1<<i) == nums[e] & (1<<i):\n                    max_v += nums[s] & (1<<i)\n                elif nums[dp[i][e]] <= m and x ^ nums[s] < x ^ nums[e]:\n                    max_v += nums[e] & (1<<i)\n                    # 直接移动较小指针（s）到 dp[i][e]，其他不可能是答案\n                    s = dp[i][e]\n                else:\n                    max_v += nums[s] & (1<<i)\n                    # 直接移动较小指针（e）到 dp[i][e] - 1，其他不可能是答案\n                    e = dp[i][e] - 1\n\n            return max_v ^ x\n\n        nums.sort()\n        n = len(nums)\n        #  dp[i][j] 是和 nums[j] 第 i 位相等的最小的数组下标\n        dp = [[0 for _ in range(n)] for _ in range(32)]\n        for i in range(32):\n            for j in range(n):\n                if j == 0 or (nums[j] & (1<<i)) != (nums[j-1] & (1<<i)): dp[i][j] = j\n                else: dp[i][j] = dp[i][j-1]\n        return [solve(x, m, 0, n-1) for x,m in queries]\n"
         }
     ]
 },
@@ -10293,6 +10456,31 @@
         {
             "language": "py",
             "text": "\nclass Solution:\n    def getKthMagicNumber(self, k: int) -> int:\n        p3 = p5 = p7 = 0\n        state = [1] + [0] * (k - 1)\n\n        for i in range(1, k):\n            state[i] = min(state[p3] * 3, state[p5] * 5, state[p7] * 7)\n            if 3 * state[p3] == state[i]: p3 += 1\n            if 5 * state[p5] == state[i]: p5 += 1\n            if 7 * state[p7] == state[i]: p7 += 1\n        return state[-1]\n"
+        }
+    ]
+},
+"md":{
+    "id": "max-black-square-lcci",
+    "name": "md",
+    "pre": [
+        {
+            "text": "动态规划",
+            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/dynamic-programming.md \"动态规划\"",
+            "color": "red"
+        }
+    ],
+    "keyPoints": [],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/max-black-square-lcci.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/max-black-square-lcci.md",
+    "code": [
+        {
+            "language": "java",
+            "text": "\nclass Solution {\n    public int[] findSquare(int[][] matrix) {\n        int [] res = new int [0];\n        int [][][] dp = new int [2][matrix.length+1][matrix[0].length+1];\n        int max = 0\n        for(int i=1;i<=matrix.length;i++){\n            for(int j=1;j<=matrix[0].length;j++){\n                if(matrix[i-1][j-1]==0){\n                    dp[0][i][j] = dp[0][i-1][j]+1;\n                    dp[1][i][j] = dp[1][i][j-1]+1;\n                    int bound = Math.min(dp[0][i][j], dp[1][i][j]);\n                    for(int k=0;k<bound;k++){\n                        if(dp[1][i-k][j]>=k+1&&dp[0][i][j-k]>=k+1){\n                            if(k+1>max){\n                                res = new int [3];\n                                max = k+1;\n                                res[0] = i-k-1;\n                                res[1] = j-k-1;\n                                res[2] = max;\n                            }\n                        }\n                    }\n                }\n            }\n        }\n        return res;\n    }\n}\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def findSquare(self, matrix: List[List[int]]) -> List[int]:\n        n = len(matrix)\n        dp = [[[0, 0] for _ in range(n + 1)] for _ in range(n + 1)]\n        ans = []\n        for i in range(1, n + 1):\n            for j in range(1, n + 1):\n                if matrix[i - 1][j - 1] == 0:\n                    dp[i][j][0] = dp[i-1][j][0] + 1\n                    dp[i][j][1] = dp[i][j-1][1] + 1\n                    upper = min(dp[i][j][0], dp[i][j][1])\n                    for k in range(upper):\n                        if min(dp[i-k][j][1], dp[i][j-k][0]) >= k + 1:\n                            if not ans or k + 1 > ans[2]:\n                                ans = [i-k-1, j-k-1, k + 1]\n\n        return ans\n"
         }
     ]
 },

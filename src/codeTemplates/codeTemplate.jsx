@@ -11,9 +11,9 @@ import {
 const { TabPane } = Tabs;
 const { Panel } = Collapse;
 
-export default function CodeTemplate({ page, tempaltes }) {
+export default function CodeTemplate({ tempaltes }) {
   return (
-    <div style={page === "" ? {} : { display: "none" }}>
+    <div >
       <Tabs>
         {tempaltes.map((tempalte) => (
           <TabPane
