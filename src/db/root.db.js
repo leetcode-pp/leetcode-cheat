@@ -3960,12 +3960,20 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/128.longest-consecutive-sequence.md",
     "code": [
         {
+            "language": "java",
+            "text": "\nclass Solution {\n    public int longestConsecutive(int[] nums) {\n        Set<Integer> set = new HashSet<Integer>();\n        int ans = 0;\n        for (int num : nums) {\n            set.add(num);\n        }\n        for(int i = 0;i < nums.length; i ++) {\n            int x = nums[i];\n            // 说明x是连续序列的开头元素\n            if  (!set.contains(x - 1)) {\n                while(set.contains(x + 1)) {\n                    x ++;\n                }\n            }\n            ans = Math.max(ans, x - nums[i] + 1);\n        }\n        return ans;\n        \n    }\n}\n"
+        },
+        {
             "language": "js",
             "text": "\nif (nums.length === 0) return 0;\nlet count = 1;\nlet maxCount = 1;\n// 这里其实可以不需要排序，这么做只不过是为了方便理解\nnums = [...new Set(nums)].sort((a, b) => a - b);\nfor (let i = 0; i < nums.length - 1; i++) {\n  if (nums[i + 1] - nums[i] === 1) {\n    count++;\n  } else {\n    if (count > maxCount) {\n      maxCount = count;\n    }\n    count = 1;\n  }\n}\nreturn Math.max(count, maxCount);\n"
         },
         {
             "language": "js",
-            "text": "\n/**\n * @param {number[]} nums\n * @return {number}\n */\nvar longestConsecutive = function(nums) {\n  set = new Set(nums);\n  let max = 0;\n  let temp = 0;\n  set.forEach(x => {\n    // 说明x是连续序列的开头元素\n    if (!set.has(x - 1)) {\n      temp = x + 1;\n      while (set.has(y)) {\n        temp = temp + 1;\n      }\n      max = Math.max(max, y - x); // y - x 就是从x开始到最后有多少连续的数字\n    }\n  });\n  return max;\n};\n"
+            "text": "\n/**\n * @param {number[]} nums\n * @return {number}\n */\nvar longestConsecutive = function(nums) {\n  set = new Set(nums);\n  let max = 0;\n  let temp = 0;\n  set.forEach(x => {\n    // 说明x是连续序列的开头元素。加这个条件相当于剪枝的作用，否则时间复杂度会退化到 N ^ 2\n    if (!set.has(x - 1)) {\n      temp = x + 1;\n      while (set.has(y)) {\n        temp = temp + 1;\n      }\n      max = Math.max(max, y - x); // y - x 就是从x开始到最后有多少连续的数字\n    }\n  });\n  return max;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def longestConsecutive(self, A: List[int]) -> int:\n        seen = set(A)\n        ans = 0\n        for a in A:\n            t = a\n            #  if 的作用是剪枝\n            if t + 1 not in seen:\n                while t - 1 in seen:\n                    t -= 1\n            ans = max(ans, a - t + 1)\n        return ans\n"
         }
     ]
 },
@@ -6728,6 +6736,42 @@
         }
     ]
 },
+"patching-array":{
+    "id": "330",
+    "name": "patching-array",
+    "pre": [
+        {
+            "text": "贪心",
+            "link": null,
+            "color": "purple"
+        },
+        {
+            "text": "前缀和",
+            "link": null,
+            "color": "cyan"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "维护端点信息，并用前缀和更新",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/330.patching-array.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/330.patching-array.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def minPatches(self, nums: List[int], n: int) -> int:\n        furthest = i = ans = 0\n        while furthest < n:\n            # 可覆盖到，直接用前缀和更新区间\n            if i < len(nums) and nums[i] <= furthest + 1:\n                furthest += nums[i] #  [1, furthest] -> [1, furthest + nums[i]]\n                i += 1\n            else:\n                # 不可覆盖到，增加一个数 furthest + 1，并用前缀和更新区间\n                furthest = 2 * furthest + 1 # [1, furthest] -> [1, furthest + furthest + 1]\n                ans += 1\n        return ans\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def minPatches(self, nums: List[int], n: int) -> int:\n        furthest, i, ans = 1, 0, 0\n        # 结束条件也要相应改变\n        while furthest <= n:\n            if i < len(nums) and nums[i] <= furthest:\n                furthest += nums[i] #  [1, furthest) -> [1, furthest + nums[i])\n                i += 1\n            else:\n                furthest = 2 * furthest # [1, furthest) -> [1, furthest + furthest)\n                ans += 1\n        return ans\n"
+        }
+    ]
+},
 "increasing-triplet-subsequence":{
     "id": "334",
     "name": "increasing-triplet-subsequence",
@@ -6758,7 +6802,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n\n\n/*\n * @lc app=leetcode id=334 lang=javascript\n *\n * [334] Increasing Triplet Subsequence\n *\n * https://leetcode.com/problems/increasing-triplet-subsequence/description/\n *\n * algorithms\n * Medium (39.47%)\n * Total Accepted:    89.6K\n * Total Submissions: 226.6K\n * Testcase Example:  '[1,2,3,4,5]'\n *\n * Given an unsorted array return whether an increasing subsequence of length 3\n * exists or not in the array.\n * \n * Formally the function should:\n * \n * Return true if there exists i, j, k \n * such that arr[i] < arr[j] < arr[k] given 0 ≤ i < j < k ≤ n-1 else return\n * false.\n * \n * Note: Your algorithm should run in O(n) time complexity and O(1) space\n * complexity.\n * \n * \n * Example 1:\n * \n * \n * Input: [1,2,3,4,5]\n * Output: true\n * \n * \n *\n * Example 2:\n * \n * \n * Input: [5,4,3,2,1]\n * Output: false\n * \n * \n * \n */\n/**\n * @param {number[]} nums\n * @return {boolean}\n */\nvar increasingTriplet = function(nums) {\n    if (nums.length < 3) return false;\n    let n1 = Number.MAX_VALUE;\n    let n2 = Number.MAX_VALUE;\n\n    for(let i = 0; i < nums.length; i++) {\n        if (nums[i] <= n1) {\n            n1 = nums[i]\n        } else if (nums[i] <= n2) {\n            n2 = nums[i]\n        } else {\n            return true;\n        }\n    }\n\n    return false;\n};\n"
+            "text": "\n/*\n/**\n * @param {number[]} nums\n * @return {boolean}\n */\nvar increasingTriplet = function(nums) {\n    if (nums.length < 3) return false;\n    let n1 = Number.MAX_VALUE;\n    let n2 = Number.MAX_VALUE;\n\n    for(let i = 0; i < nums.length; i++) {\n        if (nums[i] <= n1) {\n            n1 = nums[i]\n        } else if (nums[i] <= n2) {\n            n2 = nums[i]\n        } else {\n            return true;\n        }\n    }\n\n    return false;\n};\n"
         }
     ]
 },
@@ -7255,6 +7299,57 @@
         }
     ]
 },
+"binary-watch":{
+    "id": "401",
+    "name": "binary-watch",
+    "pre": [
+        {
+            "text": "笛卡尔积",
+            "link": null,
+            "color": "red"
+        },
+        {
+            "text": "回溯",
+            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/backtrack.md",
+            "color": "green"
+        }
+    ],
+    "keyPoints": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/401.binary-watch.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/401.binary-watch.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n# 枚举小时\nfor a in possible_number(i):\n    # 小时确定了，分就是 num - i\n    for b in possible_number(num - i, True):\n        ans.add(str(a) + \":\" + str(b).rjust(2, '0'))\n"
+        },
+        {
+            "language": "py",
+            "text": "\nfor i in range(min(4, num + 1)):\n    for a in possible_number(i):\n        for b in possible_number(num - i, True):\n            ans.add(str(a) + \":\" + str(b).rjust(2, '0'))\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def readBinaryWatch(self, num: int) -> List[str]:\n        def possible_number(count, minute=False):\n            if count == 0: return [0]\n            if minute:\n                return filter(lambda a: a < 60, map(sum, combinations([1, 2, 4, 8, 16, 32], count)))\n            return filter(lambda a: a < 12, map(sum, combinations([1, 2, 4, 8], count)))\n        ans = set()\n        for i in range(min(4, num + 1)):\n            for a in possible_number(i):\n                for b in possible_number(num - i, True):\n                    ans.add(str(a) + \":\" + str(b).rjust(2, '0'))\n        return list(ans)\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def readBinaryWatch(self, num: int) -> List[str]:\n        return [str(a) + \":\" + str(b).rjust(2, '0') for a in range(12) for b in range(60) if (bin(a)+bin(b)).count('1') == num]\n"
+        }
+    ]
+},
 "partition-equal-subset-sum":{
     "id": "416",
     "name": "partition-equal-subset-sum",
@@ -7631,7 +7726,7 @@
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:\n        # acc 表示当前累计的数字和\n        def dfs(acc):\n            if acc >= desiredTotal:\n                return False\n            for n in range(1, maxChoosableInteger + 1):\n                # 对方有一种情况赢不了，我就选这个数字就能赢了，返回 true，代表可以赢。\n                if not backtrack(acc + n):\n                    return True\n            return False\n\n        # 初始化集合，用于保存当前已经选择过的数。\n        return dfs(0)\n"
+            "text": "\nclass Solution:\n    def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:\n        # acc 表示当前累计的数字和\n        def dfs(acc):\n            if acc >= desiredTotal:\n                return False\n            for n in range(1, maxChoosableInteger + 1):\n                # 对方有一种情况赢不了，我就选这个数字就能赢了，返回 true，代表可以赢。\n                if not dfs(acc + n):\n                    return True\n            return False\n\n        # 初始化集合，用于保存当前已经选择过的数。\n        return dfs(0)\n"
         },
         {
             "language": "py",
@@ -10102,6 +10197,27 @@
         {
             "language": "py",
             "text": "\nclass CustomStack:\n\n    def __init__(self, size: int):\n        self.st = []\n        self.cnt = 0\n        self.size = size\n        self.incrementals = []\n\n    def push(self, x: int) -> None:\n        if self.cnt < self.size:\n            self.st.append(x)\n            self.incrementals.append(0)\n            self.cnt += 1\n\n\n    def pop(self) -> int:\n        if self.cnt == 0: return -1\n        self.cnt -= 1\n        if self.cnt >= 1:\n            self.incrementals[-2] += self.incrementals[-1]\n        return self.st.pop() + self.incrementals.pop()\n\n\n    def increment(self, k: int, val: int) -> None:\n        if self.incrementals:\n            self.incrementals[min(self.cnt, k) - 1] += val\n"
+        }
+    ]
+},
+"jump-game-iv":{
+    "id": "1435",
+    "name": "jump-game-iv",
+    "pre": [
+        {
+            "text": "BFS",
+            "link": null,
+            "color": "purple"
+        }
+    ],
+    "keyPoints": [],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1435.jump-game-iv.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1435.jump-game-iv.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def minJumps(self, A: List[int]) -> int:\n        dic = collections.defaultdict(list)\n        n = len(A)\n\n        for i, a in enumerate(A):\n            dic[a].append(i)\n        visited = set([0])\n        q = collections.deque([0])\n        steps = 0\n\n        while q:\n            for _ in range(len(q)):\n                i = q.popleft()\n                visited.add(i)\n                if i == n - 1: return steps\n                for neibor in dic[A[i]] + [i - 1, i + 1]:\n                    if 0 <= neibor < n and neibor not in visited:\n                        q.append(neibor)\n                # 剪枝\n                dic[A[i]] = []\n            steps += 1\n        return -1\n"
         }
     ]
 },
