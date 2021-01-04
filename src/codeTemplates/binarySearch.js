@@ -112,16 +112,16 @@ export default {
           language: "py",
           text: `
           def binarySearchLeft(nums, target):
-          # 左右都闭合的区间 [l, r]
-          l, r = 0, len(nums) - 1
-          while l <= r:
-              mid = (l + r) >> 1
-              # 搜索区间变为 [mid+1, right]
-              if nums[mid] < target: l = mid + 1
-              # 搜索区间变为 [left, mid - 1]
-              if nums[mid] >= target: r = mid - 1
-          if l >= len(nums) or nums[l] != target: return -1
-          return l`,
+            # 左右都闭合的区间 [l, r]
+            l, r = 0, len(nums) - 1
+            while l <= r:
+                mid = (l + r) >> 1
+                # 搜索区间变为 [mid+1, right]
+                if nums[mid] < target: l = mid + 1
+                # 搜索区间变为 [left, mid - 1]
+                if nums[mid] >= target: r = mid - 1
+            if l >= len(nums) or nums[l] != target: return -1
+            return l`,
         },
         {
           language: "js",
@@ -195,7 +195,7 @@ export default {
                     # 搜索区间变为 [left, mid - 1]
                     if nums[mid] > target: r = mid - 1
                 if r < 0 or nums[r] != target: return -1
-            return r`,
+                return r`,
         },
         {
           language: "js",
