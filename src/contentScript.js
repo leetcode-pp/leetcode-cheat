@@ -68,7 +68,15 @@ function normalize(testCase) {
 }
 
 function extractTestCase(text, prefix) {
-  const possiblePrefixs = ["输出", "返回", ""];
+  const possiblePrefixs = [
+    "输出",
+    "返回",
+    "Output",
+    "output",
+    "Return",
+    "return",
+    "",
+  ];
   for (let tag of possiblePrefixs) {
     const testCase = text.match(new RegExp(`${prefix}(.*)${tag}`, "s"));
     if (testCase && testCase.length > 1) {
@@ -80,7 +88,7 @@ function extractTestCase(text, prefix) {
 
 function getProviedTestCases() {
   const possibleTags = ["pre", "p"];
-  const possiblePrefixs = ["输入：", "输入:"];
+  const possiblePrefixs = ["输入：", "输入:", "Input:", "input:"];
   const ans = [];
   for (let tag of possibleTags) {
     const pres = document.querySelectorAll(tag);
