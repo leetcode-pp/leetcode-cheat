@@ -240,6 +240,32 @@ export default {
         return l
         `,
         },
+        {
+          language: "JS",
+          text: `
+/**
+ * @author suukii
+ * @description 寻找最左插入位置
+ * @param {number[]} nums 
+ * @param {number} x 
+ * @returns {number}
+ */
+function searchInsertLeft(nums, x) {
+  // 题意转换一下，其实就是寻找第一个“大于等于” x 的数字，返回它的下标
+  let left = 0;
+  let right = nums.length - 1;
+
+  while (left <= right) {
+    const mid = Math.floor(left + (right - left) / 2);
+
+    if (nums[mid] >= x) right = mid - 1;
+    if (nums[mid] < x) left = mid + 1;
+  }
+
+  return left;
+}
+          `,
+        },
       ],
       problems: [
         {
@@ -268,6 +294,31 @@ export default {
         # 由于 l 和 r 相等，因此返回谁都无所谓。
         return l
         `,
+        },
+        {
+          language: "JS",
+          text: `
+/**@author suukii
+ * @description 寻找最右插入位置
+ * @param {number[]} nums 
+ * @param {number} x 
+ * @returns {number}
+ */
+function searchInsertRight(nums, x) {
+  // 题意转换一下，其实就是寻找第一个“大于” x 的数字，返回它的下标
+  let left = 0;
+  let right = nums.length - 1;
+
+  while (left <= right) {
+    const mid = Math.floor(left + (right - left) / 2);
+
+    if (nums[mid] > x) right = mid - 1;
+    if (nums[mid] <= x) left = mid + 1;
+  }
+
+  return left;
+}
+          `,
         },
       ],
       problems: [
