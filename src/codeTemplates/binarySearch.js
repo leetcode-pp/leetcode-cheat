@@ -69,6 +69,28 @@ export default {
                 return -1;
             }`,
         },
+        {
+          language: "cpp",
+          text: `
+          int binarySearch(vector<int>& nums, int target){
+            if(nums.size() == 0)
+              return -1;
+          
+            int left = 0, right = nums.size() - 1;
+            while(left <= right){
+              int mid = left + ((right - left) >> 1);
+              if(nums[mid] == target){ return mid; }
+              // 搜索区间变为 [mid+1, right]
+              else if(nums[mid] < target)
+            left = mid + 1;
+              // 搜索区间变为 [left, mid - 1]
+              else
+            right = mid - 1;
+            }
+            return -1;
+          }
+          `,
+        },
       ],
     },
     {
@@ -142,6 +164,34 @@ export default {
             if (left >= nums.length || nums[left] != target) return -1;
             return left;
           }`,
+        },
+        {
+          language: "cpp",
+          text: `
+          int binarySearchLeft(vector<int>& nums, int target) {
+            // 搜索区间为 [left, right]
+              int left = 0, right = nums.size() - 1;
+              while (left <= right) {
+                  int mid = left + ((right - left) >> 1);
+                  if (nums[mid] == target) {
+                      // 收缩右边界
+                      right = mid - 1;
+                  }
+                  if (nums[mid] < target) {
+                      // 搜索区间变为 [mid+1, right]
+                      left = mid + 1;
+                  }
+                  if (nums[mid] > target) {
+                      // 搜索区间变为 [left, mid-1]
+                      right = mid - 1;
+                  }
+              }
+              // 检查是否越界
+              if (left >= nums.size() || nums[left] != target)
+                  return -1;
+              return left;
+          }
+          `,
         },
       ],
     },
@@ -217,6 +267,35 @@ export default {
             return right;
           }`,
         },
+        {
+          language: "cpp",
+          text: `
+          int binarySearchRight(vector<int>& nums, int target) {
+            // 搜索区间为 [left, right]
+              int left = 0, right = nums.size() - 1;
+              while (left <= right) {
+                  int mid = left + ((right - left) >> 1);
+                   if (nums[mid] == target) {
+                      // 收缩左边界
+                      left = mid + 1;
+                  }
+                  if (nums[mid] < target) {
+                // 搜索区间变为 [mid+1, right]
+                      left = mid + 1;
+                  }
+                  if (nums[mid] > target) {
+                // 搜索区间变为 [left, mid-1]
+                      right = mid - 1;
+                  }
+              }
+              // 检查是否越界
+              if (right < 0 || nums[right] != target)
+                  return -1;
+              return right;
+          }
+          
+          `,
+        },
       ],
     },
     {
@@ -225,19 +304,16 @@ export default {
         {
           language: "py",
           text: `
-      def bisect_left(nums, x):
-        # 内置 api
-        bisect.bisect_left(nums, x)
-        # 手写
-        l, r = 0, len(nums) - 1
-        while l < r:
-            mid = (l + r) // 2
-            if nums[mid] < x:
-                l = mid + 1
-            else:
-                r = mid
-        # 由于 l 和 r 相等，因此返回谁都无所谓。
-        return l
+        def bisect_left(nums, x):
+          # 内置 api
+          bisect.bisect_left(nums, x)
+          # 手写
+          l, r = 0, len(A) - 1
+          while l <= r:
+              mid = (l + r) // 2
+              if A[mid] >= x: r = mid - 1
+              else: l = mid + 1
+          return l
         `,
         },
         {
@@ -280,19 +356,16 @@ function searchInsertLeft(nums, x) {
         {
           language: "py",
           text: `
-      def bisect_right(nums, x):
-        # 内置 api
-        bisect.bisect_right(nums, x)
-        # 手写
-        l, r = 0, len(nums) - 1
-        while l < r:
-            mid = (l + r) // 2
-            if nums[mid] > x:
-                r = mid
-            else:
-                l = mid + 1
-        # 由于 l 和 r 相等，因此返回谁都无所谓。
-        return l
+        def bisect_right(nums, x):
+          # 内置 api
+          bisect.bisect_right(nums, x)
+          # 手写
+          l, r = 0, len(A) - 1
+          while l <= r:
+              mid = (l + r) // 2
+              if A[mid] <= x: l = mid + 1
+              else: r = mid - 1
+          return l
         `,
         },
         {
