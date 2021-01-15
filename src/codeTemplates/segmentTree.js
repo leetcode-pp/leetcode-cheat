@@ -88,6 +88,7 @@ class SegmentTree:
 export default {
   title: "线段树",
   logo: segmentLogo,
+  link: "https://oi-wiki.org/ds/seg/",
   list: [
     {
       text: "区间和线段树",
@@ -108,6 +109,73 @@ export default {
         },
       ],
     },
+    {
+      text: "计数线段树",
+      problems: [
+        {
+          id: "create-sorted-array-through-instructions",
+          title: "1649. 通过指令创建有序数组",
+        },
+      ],
+      codes: [
+        {
+          language: "py",
+          text: `
+class SegmentTree:
+  def __init__(self, upper, lower):
+      """
+      data:传入的数组
+      """
+      self.lower = lower
+      self.upper = upper
+      #  申请4倍data长度的空间来存线段树节点
+      self.tree = [0] * (4 * (upper - lower + 1))  # 索引i的左孩子索引为2i+1，右孩子为2i+2
+
+  # 本质就是一个自底向上的更新过程
+  # 因此可以使用后序遍历，即在函数返回的时候更新父节点。
+  def update(self, tree_index, l, r, index):
+      """
+      tree_index:某个根节点索引
+      l, r : 此根节点代表区间的左右边界
+      index : 更新的值的索引
+      """
+      if l > index or r < index:
+          return
+      self.tree[tree_index] += 1
+      if l == r:
+          return
+      mid = (l + r) // 2
+      left, right = tree_index * 2 + 1, tree_index * 2 + 2
+      self.update(left, l, mid, index)
+      self.update(right, mid + 1, r, index)
+
+  def updateCount(self, index: int):
+      self.update(0, self.lower, self.upper, index)
+
+  def query(self, tree_index: int, l: int, r: int, ql: int, qr: int) -> int:
+      """
+      递归查询区间[ql,..,qr]的值
+      tree_index : 某个根节点的索引
+      l, r : 该节点表示的区间的左右边界
+      ql, qr: 待查询区间的左右边界
+      """
+      if qr < l or ql > r:
+          return 0
+      # l 和 r 在 [ql, qr] 内
+      if ql <= l and qr >= r:
+          return self.tree[tree_index]
+      mid = (l + r) // 2
+      left, right = tree_index * 2 + 1, tree_index * 2 + 2
+      return self.query(left, l, mid, ql, qr) + self.query(right, mid + 1, r, ql, qr)
+
+  def queryCount(self, ql: int, qr: int) -> int:
+      """
+      返回区间[ql,..,qr]的计数信息
+      """
+      return self.query(0, self.lower, self.upper, ql, qr)
+          `,
+        },
+      ],
+    },
   ],
-  link: "",
 };

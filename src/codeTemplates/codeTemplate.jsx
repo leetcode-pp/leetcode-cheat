@@ -13,7 +13,7 @@ const { Panel } = Collapse;
 
 export default function CodeTemplate({ tempaltes }) {
   return (
-    <div >
+    <div>
       <Tabs>
         {tempaltes.map((tempalte) => (
           <TabPane
@@ -35,7 +35,7 @@ export default function CodeTemplate({ tempaltes }) {
           >
             {tempalte.link && (
               <div>
-                建议先学会之后再用模板。 如果你还不会的话，可以看看我的
+                建议先学会之后再用模板。 如果你还不会的话，可以看看这篇
                 <Button type="link" href={tempalte.link} target="_blank">
                   文章
                 </Button>
