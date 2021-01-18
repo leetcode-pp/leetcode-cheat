@@ -64,7 +64,10 @@ export function serialise_bfs(root) {
 
   return ans.slice(0, -1) + "]";
 }
-
+export function isInExtension() {
+  // eslint-disable-next-line
+  return !chrome.storage;
+}
 export function buildRandomTree({
   amount = 10,
   upper = 10,

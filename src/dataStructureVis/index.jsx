@@ -1,7 +1,16 @@
 import React, { useEffect, useState, createRef } from "react";
 import Excalidraw from "@excalidraw/excalidraw";
-import { Button, Select, Input, List, Typography, message, Modal } from "antd";
-import { uuidv4 } from "../utils";
+import {
+  Button,
+  Select,
+  Input,
+  List,
+  Typography,
+  message,
+  Modal,
+  Popconfirm,
+} from "antd";
+import { uuidv4, isInExtension } from "../utils";
 import treeLevel2 from "../db/dataStructureVis/tree-level-2";
 import treeLevel3 from "../db/dataStructureVis/tree-level-3";
 import treeLevel4 from "../db/dataStructureVis/tree-level-4";
@@ -23,7 +32,7 @@ const InitialData = {
   elements: [],
   appState: {},
 };
-function saveScene(title, elements) {
+function saveScene({ title, elements, customTypeName }) {
   return getStorage("customDrawings").then((res) => {
     const { result } = res;
     const currentElements = result.value || [];
@@ -32,7 +41,7 @@ function saveScene(title, elements) {
       currentElements.concat({
         id: uuidv4(),
         title,
-        typeName: "自定义",
+        typeName: customTypeName,
         data: elements,
       })
     )
@@ -214,7 +223,8 @@ export default function DataStrutureVis() {
   const [dataSource, setDataSource] = useState(initialDataSource);
   const [modalVisible, setModalVisible] = useState(false);
   const [fullScreenMode, setFullScreenMode] = useState(false);
-  const [offsetTop, setOffsetTop] = useState(400);
+  const [offsetTop, setOffsetTop] = useState(420);
+  const [customTypeName, setCustomTypeName] = useState("自定义");
 
   const onResize = () => {
     setDimensions({
@@ -259,65 +269,79 @@ export default function DataStrutureVis() {
   const { width, height } = dimensions;
 
   return (
-    <div className="App">
-      <div style={fullScreenMode ? { display: "none" } : {}}>
-        <div>
-          暂不支持编辑功能。如果需要编辑，可通过先“使用”再“保存”，最后“删除”原有的数据，从而间接实现。
-        </div>
-        {/* <Select value={type} style={{ width: 120 }} onChange={setType}>
+    <div>
+      {isInExtension() ? (
+        <>
+          <div style={fullScreenMode ? { display: "none" } : {}}>
+            <div>
+              暂不支持编辑功能。如果需要编辑，可通过先“使用”再“保存”，最后“删除”原有的数据，从而间接实现。
+            </div>
+            {/* <Select value={type} style={{ width: 120 }} onChange={setType}>
         <Option value="array">数组</Option>
         <Option value="linked-list">链表</Option>
         <Option value="tree" disabled>
           树
         </Option>
       </Select> */}
-        {/* <Input value={value} onChange={(e) => setValue(e.target.value)}></Input> */}
-        {/* <Select value={depth} style={{ width: 120 }} onChange={setDepth}>
+            {/* <Input value={value} onChange={(e) => setValue(e.target.value)}></Input> */}
+            {/* <Select value={depth} style={{ width: 120 }} onChange={setDepth}>
         <Option value="1">一层</Option>
         <Option value="2">两层</Option>
         <Option value="3">三层</Option>
         <Option value="4">四层</Option>
         <Option value="5">五层</Option>
       </Select> */}
-        <Modal
-          title="输入标题"
-          visible={modalVisible}
-          onOk={() => {
-            saveScene(title, elements).then((d) => {
-              setModalVisible(false);
-              setType("custom");
-              setDataSource({
-                ...dataSource,
-                custom: d,
-              });
-            });
-          }}
-          onCancel={() => setModalVisible(false)}
-        >
-          <Input
-            placeholder="无标题"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </Modal>
-        <List
-          style={{ height: "230px", overflow: "scroll" }}
-          header={
-            <Select value={type} style={{ width: 120 }} onChange={setType}>
-              <Option value="presets">预设</Option>
-              <Option value="custom">自定义</Option>
-            </Select>
-          }
-          bordered
-          dataSource={dataSource[type]}
-          renderItem={(item) => (
-            <List.Item>
-              <Typography.Text mark>【{item.typeName}】</Typography.Text>
-              {item.title}
-              <Button type="link" onClick={() => updateScene(item.data)}>
-                去使用
-              </Button>
-              {/* <Button
+            <Modal
+              title="请完善信息"
+              visible={modalVisible}
+              onOk={() => {
+                saveScene({ title, elements, customTypeName }).then((d) => {
+                  setModalVisible(false);
+                  setType("custom");
+                  setDataSource({
+                    ...dataSource,
+                    custom: d,
+                  });
+                });
+              }}
+              onCancel={() => setModalVisible(false)}
+            >
+              标题：
+              <Input
+                placeholder="无标题"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+              <div style={{ margin: "10px 0 0 0 " }}>
+                类别：
+                <Input
+                  placeholder="自定义"
+                  value={customTypeName}
+                  onChange={(e) => setCustomTypeName(e.target.value)}
+                />
+              </div>
+            </Modal>
+
+            <List
+              style={{ height: "230px", overflow: "scroll" }}
+              header={
+                <Select value={type} style={{ width: 120 }} onChange={setType}>
+                  <Option value="presets">预设</Option>
+                  <Option value="custom">自定义</Option>
+                </Select>
+              }
+              bordered
+              dataSource={dataSource[type]}
+              renderItem={(item) => (
+                <List.Item>
+                  {item.typeName && (
+                    <Typography.Text mark>【{item.typeName}】</Typography.Text>
+                  )}
+                  {item.title}
+                  <Button type="link" onClick={() => updateScene(item.data)}>
+                    去使用
+                  </Button>
+                  {/* <Button
               style={type === "presets" ? { display: "none" } : {}}
               type="link"
               onClick={() => {
@@ -326,50 +350,52 @@ export default function DataStrutureVis() {
             >
               编辑名称
             </Button> */}
-              <Button
-                style={type === "presets" ? { display: "none" } : {}}
-                type="link"
-                danger
-                onClick={() => {
-                  deleteCustomDrawing(item.id).then((d) =>
-                    setDataSource({
-                      ...dataSource,
-                      custom: d,
-                    })
-                  );
-                }}
-              >
-                删除
-              </Button>
-            </List.Item>
-          )}
-        />
+                  <Popconfirm
+                    title="确认要删除么？"
+                    onConfirm={() =>
+                      deleteCustomDrawing(item.id).then((d) =>
+                        setDataSource({
+                          ...dataSource,
+                          custom: d,
+                        })
+                      )
+                    }
+                    okText="是"
+                    cancelText="否"
+                  >
+                    <Button
+                      style={type === "presets" ? { display: "none" } : {}}
+                      type="link"
+                      danger
+                    >
+                      删除
+                    </Button>
+                  </Popconfirm>
+                </List.Item>
+              )}
+            />
 
-        <Button
-          type="primary"
-          className="update-scene"
-          onClick={() => setModalVisible(true)}
-        >
-          保存
-        </Button>
+            <Button
+              type="primary"
+              className="update-scene"
+              onClick={() => setModalVisible(true)}
+            >
+              保存
+            </Button>
 
-        <Button
-          className="update-scene"
-          onClick={() => {
-            // eslint-disable-next-line
-            chrome.windows.create({
-              state: "fullscreen",
-              url: window.location.url,
-            });
-            // document.documentElement.requestFullscreen();
-          }}
-        >
-          全屏模式(退出请按 ESC)
-        </Button>
-        {/* <Button type="primary" className="update-scene" onClick={updateScene}>
+            <Button
+              style={{ margin: "0 0 0 10px" }}
+              className="update-scene"
+              onClick={() => {
+                document.documentElement.requestFullscreen();
+              }}
+            >
+              全屏模式(退出请按 ESC)
+            </Button>
+            {/* <Button type="primary" className="update-scene" onClick={updateScene}>
         快速生成
       </Button> */}
-        {/* <button
+            {/* <button
         className="reset-scene"
         onClick={() => {
           excalidrawRef.current.resetScene();
@@ -377,19 +403,28 @@ export default function DataStrutureVis() {
       >
         清空
       </button> */}
-      </div>
-      <div className="excalidraw-wrapper">
-        <Excalidraw
-          ref={excalidrawRef}
-          offsetTop={offsetTop}
-          width={width}
-          height={height}
-          initialData={InitialData}
-          onChange={onChange}
-          user={{ name: "力扣加加" }}
-          //   onPointerUpdate={(payload) => console.log(payload)}
-        />
-      </div>
+          </div>
+          <div className="excalidraw-wrapper">
+            <Excalidraw
+              ref={excalidrawRef}
+              offsetTop={offsetTop}
+              width={width}
+              height={height}
+              initialData={InitialData}
+              onChange={onChange}
+              user={{ name: "力扣加加" }}
+              //   onPointerUpdate={(payload) => console.log(payload)}
+            />
+          </div>
+        </>
+      ) : (
+        <Button
+          type="link"
+          href="https://leetcode-pp.github.io/leetcode-cheat/"
+        >
+          去网站使用
+        </Button>
+      )}
     </div>
   );
 }

@@ -15,7 +15,7 @@ import TagOrLink from "./TagOrLink";
 import tempaltes from "./codeTemplates/index";
 import checkUpdate from "./checkUpdates";
 
-// import { bfs } from "./utils";
+import { isInExtension } from "./utils";
 // import drawTree from "canvas-binary-tree";
 import "antd/dist/antd.css";
 import "./App.css";
@@ -131,69 +131,72 @@ function App() {
         <div>{/* <pre>{a}</pre> */}</div>
         <canvas width="1000" height="1000" id="canvas"></canvas>
       </div>
+      {isInExtension() && (
+        <>
+          <div className="guide-wrapper">
+            <div className="guide">
+              {page !== "" ? (
+                <Button type="link" onClick={() => setPage("")}>
+                  回到首页
+                </Button>
+              ) : (
+                ""
+              )}
+              {hasSolution && page === "" ? (
+                <Button type="link" onClick={() => setPage("detail")}>
+                  查看本题题解
+                  <img
+                    src={viewLogo}
+                    alt="view-solution"
+                    className="problem-icon"
+                    style={{ margin: "0 0 0 10px" }}
+                  />
+                </Button>
+              ) : (
+                ""
+              )}
 
-      <div className="guide-wrapper">
-        <div className="guide">
-          {page !== "" ? (
-            <Button type="link" onClick={() => setPage("")}>
-              回到首页
-            </Button>
-          ) : (
-            ""
-          )}
-          {hasSolution && page === "" ? (
-            <Button type="link" onClick={() => setPage("detail")}>
-              查看本题题解
-              <img
-                src={viewLogo}
-                alt="view-solution"
-                className="problem-icon"
-                style={{ margin: "0 0 0 10px" }}
-              />
-            </Button>
-          ) : (
-            ""
-          )}
-
-          {!hasSolution &&
-            page !== "allSolutions" &&
-            (inSelected ? (
-              <Button
-                type="link"
-                target="_blank"
-                href={selected[problemId].url}
-              >
-                该题已被收录到精选合集《{selected[problemId].title}》点击查看
-                <img
-                  alt="view-solutions"
-                  src={collectionLogo}
-                  className="problem-icon"
-                  style={{ margin: "0 0 0 10px" }}
-                />
-              </Button>
-            ) : (
-              <Button type="link" onClick={() => setPage("allSolutions")}>
-                本题暂未被力扣加加收录，点击查看所有已收录题目~
-              </Button>
-            ))}
-        </div>
-        {page === "detail" && <ProblemDetail problemId={problemId} />}
-      </div>
-
-      <div style={page === "allSolutions" ? {} : { display: "none" }}>
-        <Empty description="正在撰写题解...">
-          <div className="row" style={{ marginTop: "20px" }}>
-            所有已收录的题目
+              {!hasSolution &&
+                page !== "allSolutions" &&
+                (inSelected ? (
+                  <Button
+                    type="link"
+                    target="_blank"
+                    href={selected[problemId].url}
+                  >
+                    该题已被收录到精选合集《{selected[problemId].title}
+                    》点击查看
+                    <img
+                      alt="view-solutions"
+                      src={collectionLogo}
+                      className="problem-icon"
+                      style={{ margin: "0 0 0 10px" }}
+                    />
+                  </Button>
+                ) : (
+                  <Button type="link" onClick={() => setPage("allSolutions")}>
+                    本题暂未被力扣加加收录，点击查看所有已收录题目~
+                  </Button>
+                ))}
+            </div>
+            {page === "detail" && <ProblemDetail problemId={problemId} />}
           </div>
-          <Table
-            pagination={{ hideOnSinglePage: true }}
-            dataSource={dataSource}
-            rowKey="id"
-            columns={columns}
-          />
-        </Empty>
-      </div>
 
+          <div style={page === "allSolutions" ? {} : { display: "none" }}>
+            <Empty description="正在撰写题解...">
+              <div className="row" style={{ marginTop: "20px" }}>
+                所有已收录的题目
+              </div>
+              <Table
+                pagination={{ hideOnSinglePage: true }}
+                dataSource={dataSource}
+                rowKey="id"
+                columns={columns}
+              />
+            </Empty>
+          </div>
+        </>
+      )}
       {page === "" && (
         <Tabs type="card">
           <TabPane key="code-template" tab="代码模板">
@@ -208,20 +211,23 @@ function App() {
           <TabPane key="roadmap" tab="学习路线">
             <Roadmap />
           </TabPane>
-          <TabPane key="checkUpdate" tab="检查更新">
-            <div>
-              一般只要你开启了自动更新，那么当插件更新之后
-              chrome会在五个小时以内自动更新。
-              如果你想第一时间更新，或者您禁用了自动更新，都可以在这里检测最新版。
-            </div>
-            <Button
-              style={{ margin: "20px 0 0 20px" }}
-              type="primary"
-              onClick={checkUpdate}
-            >
-              检查更新
-            </Button>
-          </TabPane>
+          {isInExtension() && (
+            <TabPane key="checkUpdate" tab="检查更新">
+              <div>
+                一般只要你开启了自动更新，那么当插件更新之后
+                chrome会在五个小时以内自动更新。
+                如果你想第一时间更新，或者您禁用了自动更新，都可以在这里检测最新版。
+              </div>
+              <Button
+                style={{ margin: "20px 0 0 20px" }}
+                type="primary"
+                onClick={checkUpdate}
+              >
+                检查更新
+              </Button>
+            </TabPane>
+          )}
+
           <TabPane key="about" tab="关于我">
             <div>
               作者是一个 Github 40K star 的前端架构师，leetcode 刷题插件
