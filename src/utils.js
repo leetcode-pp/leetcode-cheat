@@ -66,7 +66,7 @@ export function serialise_bfs(root) {
 }
 export function isInExtension() {
   // eslint-disable-next-line
-  return !chrome.storage;
+  return chrome.storage;
 }
 export function buildRandomTree({
   amount = 10,
