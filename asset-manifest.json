@@ -1,0 +1,32 @@
+{
+  "files": {
+    "content.js": "/static/js/content.js",
+    "content.js.map": "/static/js/content.js.map",
+    "main.css": "/static/css/main.css",
+    "main.js": "/static/js/main.js",
+    "main.js.map": "/static/js/main.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.b7fc2e985b0f44c2e7a7fed8c2e5dbd2.js": "/precache-manifest.b7fc2e985b0f44c2e7a7fed8c2e5dbd2.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.css.map": "/static/css/main.css.map",
+    "static/js/content.js.LICENSE.txt": "/static/js/content.js.LICENSE.txt",
+    "static/js/main.js.LICENSE.txt": "/static/js/main.js.LICENSE.txt",
+    "static/media/backtrack.svg": "/static/media/backtrack.cf55209a.svg",
+    "static/media/bfs.svg": "/static/media/bfs.afdef661.svg",
+    "static/media/collection.svg": "/static/media/collection.309574ec.svg",
+    "static/media/half.svg": "/static/media/half.8a1d5a9c.svg",
+    "static/media/heap.svg": "/static/media/heap.096d4381.svg",
+    "static/media/index.less": "/static/media/index.4ba161fc.less",
+    "static/media/preSum.svg": "/static/media/preSum.c46f4bab.svg",
+    "static/media/segment.svg": "/static/media/segment.898267a9.svg",
+    "static/media/sqrt.svg": "/static/media/sqrt.3f15bd86.svg",
+    "static/media/tree.svg": "/static/media/tree.1b289fc6.svg",
+    "static/media/uf.svg": "/static/media/uf.b7241116.svg",
+    "static/media/view.svg": "/static/media/view.d44e31d9.svg",
+    "static/media/window.svg": "/static/media/window.849c4a15.svg"
+  },
+  "entrypoints": [
+    "static/css/main.css",
+    "static/js/main.js"
+  ]
+}
