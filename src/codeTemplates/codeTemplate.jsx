@@ -21,6 +21,7 @@ export default function CodeTemplate({ tempaltes }) {
               <div>
                 {tempalte.title}
                 <img
+                  alt={tempalte.title}
                   style={
                     tempalte.logo
                       ? { margin: "0 0 0 10px" }

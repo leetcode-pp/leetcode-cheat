@@ -243,7 +243,7 @@ export default function DataStrutureVis() {
     });
 
     return () => window.removeEventListener("resize", onResize);
-  }, []);
+  }, [dataSource]);
 
   const updateScene = (data) => {
     const sceneData = {

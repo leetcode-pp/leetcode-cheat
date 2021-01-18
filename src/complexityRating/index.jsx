@@ -74,7 +74,7 @@ const data = [
   },
 ];
 
-export default function ComplexityRating({}) {
+export default function ComplexityRating() {
   return (
     <div>
       <Button
@@ -86,7 +86,10 @@ export default function ComplexityRating({}) {
       </Button>
 
       <div>
-        <img src="https://tva1.sinaimg.cn/large/0081Kckwly1gm6x8pzqotj30ad03q3ye.jpg" />
+        <img
+          alt="2^n"
+          src="https://tva1.sinaimg.cn/large/0081Kckwly1gm6x8pzqotj30ad03q3ye.jpg"
+        />
       </div>
 
       <Table columns={columns} dataSource={data} />
