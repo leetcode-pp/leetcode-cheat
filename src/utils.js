@@ -65,8 +65,7 @@ export function serialise_bfs(root) {
   return ans.slice(0, -1) + "]";
 }
 export function isInExtension() {
-  // eslint-disable-next-line
-  return chrome.storage;
+  return process.env.REACT_APP_BUILD_TARGET === "extension";
 }
 export function buildRandomTree({
   amount = 10,
