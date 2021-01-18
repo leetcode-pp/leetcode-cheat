@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { db_collection } from "./root.db";
 
 // const tags = {

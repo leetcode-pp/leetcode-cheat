@@ -110,8 +110,8 @@ function gussType(input) {
   if (!input) return "";
   const parts = input.split(" ");
   if (parts.length > 1) return "multi";
-  if (input.length > 1 && input[0] == "[" && input[input.length - 1] == "]") {
-    if (input[1] == "[") return "";
+  if (input.length > 1 && input[0] === "[" && input[input.length - 1] === "]") {
+    if (input[1] === "[") return "";
     const v = input.slice(1, -1);
     if (isNaN(v[0])) return "";
     const items = v.split(",");
@@ -136,7 +136,7 @@ function t() {
       chrome.tabs.executeScript(
         tab.id,
         {
-          code: 'document.getElementsByTagName("pre")',
+          code: "document.getElementsByTagName('pre')",
         },
         r
       );
@@ -213,7 +213,7 @@ export default function TestCase() {
         </div>
 
         <pre>
-          {Array.isArray(testCases) && testCases.length == 0
+          {Array.isArray(testCases) && testCases.length === 0
             ? "不支持的数据格式。目前只支持：单个值,数组，链表，树。"
             : testCases.join("\r\n")}
         </pre>

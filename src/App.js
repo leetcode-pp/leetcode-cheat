@@ -7,7 +7,7 @@ import db from "./db/db";
 import collectionLogo from "./imgs/collection.svg";
 import viewLogo from "./imgs/view.svg";
 
-import { LEETCODE_CN_URL, LEETCODE_URL } from "./constant/index";
+import { LEETCODE_CN_URL } from "./constant/index";
 // import TestCase from "./testCase";
 import ProblemDetail from "./Detail";
 import Roadmap from "./roadmap/roadmap.jsx";
@@ -30,9 +30,9 @@ const { TabPane } = Tabs;
 
 const dataSource = Object.values(problems);
 
-function inLeetCodeWebsite(url) {
-  return [LEETCODE_CN_URL, LEETCODE_URL].some((u) => url.includes(u));
-}
+// function inLeetCodeWebsite(url) {
+//   return [LEETCODE_CN_URL, LEETCODE_URL].some((u) => url.includes(u));
+// }
 
 const columns = [
   {
@@ -87,7 +87,7 @@ function App() {
       setProblemId(problemId);
       setHasSolution(!!problems[problemId]);
       setInSelected(!!selected[problemId]);
-      setInLeetCode(inLeetCodeWebsite(currentUrl));
+      // setInLeetCode(inLeetCodeWebsite(currentUrl));
     });
 
   // setTimeout(() => {
@@ -102,7 +102,7 @@ function App() {
   const [hasSolution, setHasSolution] = useState(false);
   const [inSelected, setInSelected] = useState(false); // 是否被精选题解（其实就是合集）收录
   const [page, setPage] = useState("");
-  const [inLeetCode, setInLeetCode] = useState(true);
+  // const [inLeetCode, setInLeetCode] = useState(true);
 
   // if (!inLeetCode) return window.open(LEETCODE_CN_URL + "/problemset/all/");
 
@@ -146,6 +146,7 @@ function App() {
               查看本题题解
               <img
                 src={viewLogo}
+                alt="view-solution"
                 className="problem-icon"
                 style={{ margin: "0 0 0 10px" }}
               />
@@ -164,6 +165,7 @@ function App() {
               >
                 该题已被收录到精选合集《{selected[problemId].title}》点击查看
                 <img
+                  alt="view-solutions"
                   src={collectionLogo}
                   className="problem-icon"
                   style={{ margin: "0 0 0 10px" }}

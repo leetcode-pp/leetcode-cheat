@@ -28,7 +28,8 @@ const columns = [
     title: "算法可接受时间复杂度",
     align: "center",
     render: (t) => {
-      if (t === "O(sqrt(n))") return <img src={require("../imgs/sqrt.svg")} />;
+      if (t === "O(sqrt(n))")
+        return <img alt="O(sqrt(n))" src={require("../imgs/sqrt.svg")} />;
       return t;
     },
   },

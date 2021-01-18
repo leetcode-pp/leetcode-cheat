@@ -18,6 +18,7 @@ function normalize(testCase) {
   // console.log(testCase);
   if (!testCase.includes("=")) {
     // 数组直接返回
+    // eslint-disable-next-line
     if (testCase.includes("[") || testCase.includes('"')) {
       return testCase;
     } else {
@@ -25,7 +26,7 @@ function normalize(testCase) {
       // 输入: 0.0625
 
       const parts = testCase.split(",");
-      if (parts.length == 0) return parts.join("");
+      if (parts.length === 0) return parts.join("");
       return parts.join("\n");
     }
   }
@@ -38,11 +39,11 @@ function normalize(testCase) {
     // skip =
     i += 1;
 
-    while (i < testCase.length && testCase[i] !== "[" && testCase[i] != ",") {
+    while (i < testCase.length && testCase[i] !== "[" && testCase[i] !== ",") {
       stack.push(testCase[i]);
       i += 1;
     }
-    if (testCase[i] == ",") {
+    if (testCase[i] === ",") {
       // skip ,
       i += 1;
       stack.push("\n");
@@ -54,7 +55,7 @@ function normalize(testCase) {
         cnt += testCase[i] === "[";
         cnt -= testCase[i] === "]";
         i += 1;
-        if (cnt == 0) {
+        if (cnt === 0) {
           if (i !== testCase.length) {
             stack.push("\n");
           }
