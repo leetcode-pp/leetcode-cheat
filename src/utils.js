@@ -110,6 +110,14 @@ export function 不讲武德() {
   });
 }
 
+export function uuidv4() {
+  return "xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+    var r = (Math.random() * 16) | 0,
+      v = c == "x" ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+}
+
 export function deserialise_bfs(nodes) {
   if (nodes.length === 0 || nodes[0] === "null") return null;
   const root = TreeNode(nodes[0]);

@@ -20,7 +20,8 @@ import checkUpdate from "./checkUpdates";
 import "antd/dist/antd.css";
 import "./App.css";
 import CodeTemplates from "./codeTemplates/codeTemplate";
-import ComplexityRating from './complexityRating/index'
+import ComplexityRating from "./complexityRating/index";
+import DataStrutureVis from "./dataStructureVis/index";
 // import { data as a } from "./db/binary-tree";
 
 const { problems, selected } = db;
@@ -103,7 +104,7 @@ function App() {
   const [page, setPage] = useState("");
   const [inLeetCode, setInLeetCode] = useState(true);
 
-  if (!inLeetCode) return window.open(LEETCODE_CN_URL + "/problemset/all/");
+  // if (!inLeetCode) return window.open(LEETCODE_CN_URL + "/problemset/all/");
 
   // setTimeout(() => {
   //   const canvas = document.querySelector("#canvas");
@@ -193,8 +194,11 @@ function App() {
 
       {page === "" && (
         <Tabs type="card">
-          <TabPane key="app" tab="代码模板">
+          <TabPane key="code-template" tab="代码模板">
             <CodeTemplates page={page} tempaltes={tempaltes}></CodeTemplates>
+          </TabPane>
+          <TabPane key="data-structure-vis" tab="数据结构可视化">
+            <DataStrutureVis></DataStrutureVis>
           </TabPane>
           <TabPane key="complexityRating" tab="复杂度速查">
             <ComplexityRating />
