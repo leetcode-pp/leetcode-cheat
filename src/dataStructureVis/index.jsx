@@ -270,7 +270,7 @@ export default function DataStrutureVis() {
 
   return (
     <div>
-      {isInExtension() ? (
+      {!isInExtension() ? (
         <>
           <div style={fullScreenMode ? { display: "none" } : {}}>
             <div>
