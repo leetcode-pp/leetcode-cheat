@@ -26,8 +26,8 @@ import board1 from "../db/dataStructureVis/board-1.js";
 
 // import treeLevel5 from "../db/dataStructureVis/tree-level-5";
 
-import "@excalidraw/excalidraw/dist/excalidraw.min.css";
-import "@excalidraw/excalidraw/dist/fonts.min.css";
+// import "@excalidraw/excalidraw/dist/excalidraw.min.css";
+// import "@excalidraw/excalidraw/dist/fonts.min.css";
 import "./index.css";
 
 const { Option } = Select;
@@ -265,7 +265,7 @@ export default function DataStrutureVis() {
     });
 
     return () => window.removeEventListener("resize", onResize);
-  }, [dataSource]);
+  }, [dataSource, activeKey]);
 
   const updateScene = ({
     data,
