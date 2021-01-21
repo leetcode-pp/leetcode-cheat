@@ -275,7 +275,7 @@ export default function DataStrutureVis() {
   }) => {
     const { x = 0, y = 0 } = pointer;
     console.log(pointer);
-    if (x != 0 || y != 0) {
+    if (x !== 0 || y !== 0) {
       // 将 data 中的坐标整体偏移(x,y)
       data = data.map((el) => ({ ...el, x: el.x + x, y: el.y + y }));
     }
