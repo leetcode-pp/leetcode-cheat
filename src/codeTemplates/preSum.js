@@ -23,7 +23,7 @@ m,n = len(matrix), len(matrix[0])
 pre = [[0 for _ in range(n + 1)] for _ in range(m + 1)]
 for i in range(1, m+1):
     for j in range(1, n +1):
-        pre[i][j] = pre[i-1][j]+ pre[i][j-1] - dp[i-1][j-1] + matrix[i][j]
+        pre[i][j] = pre[i-1][j]+ pre[i][j-1] - pre[i-1][j-1] + matrix[i-1][j-1]
 
 # 使用，等价于以(x1,y1)为矩阵左上角以(x2,y2)为矩阵右下角的所有格子的和
 pre[x2][y2] + pre[x1-1][y1-1] - pre[x1-1][y2] - pre[x2][y2-1]
