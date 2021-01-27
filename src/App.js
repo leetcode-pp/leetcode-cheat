@@ -22,6 +22,7 @@ import "./App.css";
 import CodeTemplates from "./codeTemplates/codeTemplate";
 import ComplexityRating from "./complexityRating/index";
 import DataStrutureVis from "./dataStructureVis/index";
+import SolutionTemplate from "./solutionTemplate/index";
 // import { data as a } from "./db/binary-tree";
 
 const { problems, selected } = db;
@@ -204,6 +205,9 @@ function App() {
           </TabPane>
           <TabPane key="data-structure-vis" tab="数据结构可视化">
             <DataStrutureVis></DataStrutureVis>
+          </TabPane>
+          <TabPane key="solution-template" tab="题解模板">
+            <SolutionTemplate></SolutionTemplate>
           </TabPane>
           <TabPane key="complexityRating" tab="复杂度速查">
             <ComplexityRating />

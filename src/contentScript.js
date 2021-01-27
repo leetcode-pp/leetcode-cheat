@@ -127,6 +127,20 @@ function insertButton() {
         });
       };
       buttons[i].parentElement.prepend(copyButton);
+      const writeSolutionButton = buttons[i].cloneNode(true);
+      writeSolutionButton.innerText = "写题解";
+      writeSolutionButton.style["margin-left"] = "10px";
+      writeSolutionButton.onclick = () => {
+        // d: "<a href="/problems/remove-max-number-of-edges-to-keep-graph-fully-traversable/">1579. 保证图可完全遍历</a>"
+        const d = document.querySelector(`[data-cypress="QuestionTitle"]`)
+          .innerHTML;
+        const title = d.match(/(\d+\. .+)(?=\<)/)[1];
+        const link = d.match(/href="(.*?)"/)[1];
+        window.open(
+          `https://leetcode-pp.github.io/leetcode-cheat/?link=${link}&title=${title}`
+        );
+      };
+      buttons[i].parentElement.prepend(writeSolutionButton);
       return true;
     }
   }
