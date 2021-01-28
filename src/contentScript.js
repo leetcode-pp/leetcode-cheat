@@ -135,7 +135,7 @@ function insertButton() {
         const d = document.querySelector(`[data-cypress="QuestionTitle"]`)
           .innerHTML;
         const title = d.match(/(\d+\. .+)(?=<)/)[1];
-        const link = "https://leetcode-cn.com" + d.match(/href="(.*?)"/)[1];
+        const link = window.location.origin + d.match(/href="(.*?)"/)[1];
         const language = document.querySelector("#lang-select").innerText;
         // let code = document.querySelector(
         //   ".monaco-scrollable-element,.editor-scrollable"
