@@ -201,8 +201,8 @@ function App() {
         </>
       )}
       {page === "" && (
-        <Tabs type="card" activeKey={tab}>
-          <TabPane key="code-template" tab="代码模板" onTabClick={setTab}>
+        <Tabs type="card" activeKey={tab} onChange={setTab}>
+          <TabPane key="code-template" tab="代码模板">
             <CodeTemplates tempaltes={tempaltes}></CodeTemplates>
           </TabPane>
           <TabPane key="data-structure-vis" tab="数据结构可视化">
