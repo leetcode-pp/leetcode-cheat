@@ -206,9 +206,12 @@ function App() {
           <TabPane key="data-structure-vis" tab="数据结构可视化">
             <DataStrutureVis></DataStrutureVis>
           </TabPane>
-          <TabPane key="solution-template" tab="题解模板">
-            <SolutionTemplate></SolutionTemplate>
-          </TabPane>
+          {!isInExtension() && (
+            <TabPane key="solution-template" tab="题解模板">
+              <SolutionTemplate></SolutionTemplate>
+            </TabPane>
+          )}
+
           <TabPane key="complexityRating" tab="复杂度速查">
             <ComplexityRating />
           </TabPane>

@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Radio, Row, Col, Input, Select, message, Button } from "antd";
+import {
+  Radio,
+  Row,
+  Col,
+  Input,
+  Select,
+  message,
+  Button,
+  Checkbox,
+} from "antd";
 import ReactMarkdown from "react-markdown";
 import Tex from "@matejmazur/react-katex";
 import RemarkMathPlugin from "remark-math";
@@ -12,15 +21,32 @@ import CodeBlock from "../CodeBlock";
 const { TextArea } = Input;
 const { Option } = Select;
 
+const slogan = `
+更多题解可以访问我的 LeetCode 题解仓库：https://github.com/azl397985856/leetcode 。 目前已经 40K star 啦。
+
+关注公众号力扣加加，努力用清晰直白的语言还原解题思路，并且有大量图解，手把手教你识别套路，高效刷题。
+
+![](https://tva1.sinaimg.cn/large/007S8ZIlly1gfcuzagjalj30p00dwabs.jpg)`;
+
 function displayLanguage(language) {
   const m = {
     python: "Python",
+    python3: "Python3",
     java: "Java",
     cpp: "CPP",
     javascript: "JavaScript",
     go: "Go",
+    c: "C",
+    "c#": "C#",
+    ruby: "Ruby",
+    swift: "Swift",
+    scala: "Scala",
+    kotlin: "Kotlin",
+    rust: "Rust",
+    php: "PHP",
+    typescript: "TypeScript",
   };
-  return m[language] || "Python";
+  return m[language] || "Python3";
 }
 
 function getTemplate({
@@ -29,7 +55,8 @@ function getTemplate({
   desc = "",
   pre = "",
   company = "",
-  language = "Python3",
+  language = "python3",
+  code = "",
   keyword = "",
   time,
   space,
@@ -66,7 +93,8 @@ ${desc}
 
 ${displayLanguage(language)} Code:
 
-\`\`\`${language}
+\`\`\`${language === "python3" ? "python" : language}
+${code}
 
 \`\`\`
 
@@ -78,16 +106,7 @@ ${displayLanguage(language)} Code:
 - 时间复杂度：$O(${time})$
 - 空间复杂度：$O(${space})$
 
-${
-  isLucifer
-    ? `
-更多题解可以访问我的 LeetCode 题解仓库：https://github.com/azl397985856/leetcode 。 目前已经 40K star 啦。
-
-关注公众号力扣加加，努力用清晰直白的语言还原解题思路，并且有大量图解，手把手教你识别套路，高效刷题。
-
-![](https://tva1.sinaimg.cn/large/007S8ZIlly1gfcuzagjalj30p00dwabs.jpg)`
-    : ""
-}
+${isLucifer ? slogan : ""}
 `;
 }
 function Template({ onChange, template }) {
@@ -155,13 +174,16 @@ const formulas = [
     logo: require("../imgs/formula/sqrt.svg"),
   },
 ];
-const link = getUrlParameter("link");
-const title = getUrlParameter("title");
+const link = getUrlParameter("link") || "";
+const title = getUrlParameter("title") || "";
+const code = getUrlParameter("code") || "";
+const initialLanguage = getUrlParameter("language")?.toLowerCase() || "python3";
 
 export default function SolutionTemplate() {
-  const [language, setLanguage] = useState("python");
+  const [language, setLanguage] = useState(initialLanguage);
   const [time, setTime] = useState("n");
   const [space, setSpace] = useState("n");
+  const [isLucifer, setIsLucifer] = useState(false);
   const [template, setTemplate] = useState(
     getTemplate({
       time,
@@ -169,6 +191,7 @@ export default function SolutionTemplate() {
       language,
       link,
       title,
+      code,
     })
   );
 
@@ -178,8 +201,8 @@ export default function SolutionTemplate() {
         <>
           <ul>
             <li>
-              后续考虑支持直接根据 LeetCode
-              网站内容自动填充题目信息，代码等，无需用户再次手动输入。
+              由于浏览器 url 传参限制，题目信息暂时不会带过来。另外如果代码大于
+              2000 字符，也不会带过来。
             </li>
             <li>后续考虑支持更多主题，以及用户自定义主题功能~</li>
           </ul>
@@ -204,11 +227,21 @@ export default function SolutionTemplate() {
                 );
               }}
             >
+              <Option value="python3">Python3</Option>
               <Option value="python">Python</Option>
               <Option value="javascript">JavaScript</Option>
               <Option value="cpp">CPP</Option>
               <Option value="java">Java</Option>
               <Option value="go">Go</Option>
+              <Option value="c">C</Option>
+              <Option value="c#">C#</Option>
+              <Option value="ruby">Ruby</Option>
+              <Option value="swift">Swift</Option>
+              <Option value="scala">Scala</Option>
+              <Option value="kotlin">Kotlin</Option>
+              <Option value="rust">Rust</Option>
+              <Option value="php">PHP</Option>
+              <Option value="typescript">TypeScript</Option>
             </Select>
           </div>
           <div className="line">
@@ -246,7 +279,7 @@ export default function SolutionTemplate() {
               }}
             />
           </div>
-          <div style={{ margin: "10px 0" }}>
+          <div className="line">
             空间复杂度：
             <Complexities
               value={space}
@@ -261,6 +294,25 @@ export default function SolutionTemplate() {
                 );
               }}
             />
+          </div>
+          <div className="line">
+            lucifer 专属：
+            <Checkbox
+              checked={isLucifer}
+              onChange={(e) => {
+                const v = e.target.checked;
+                setIsLucifer(v);
+                if (v) {
+                  if (template.includes(slogan)) return;
+                  setTemplate(template + slogan);
+                } else {
+                  if (!template.includes(slogan)) return;
+                  setTemplate(template.replace(slogan, ""));
+                }
+              }}
+            >
+              是否是 lucifer
+            </Checkbox>
           </div>
           <Row>
             <Col span="12">
@@ -284,7 +336,8 @@ export default function SolutionTemplate() {
                 onChange={(e) => setTemplate(e.target.value)}
               />
             </Col>
-            <Col span="12">
+            <Col span="2"></Col>
+            <Col span="10" style={{ marginTop: "20px" }}>
               <div>预览:</div>
               <MarkdownRender source={template}></MarkdownRender>
             </Col>
