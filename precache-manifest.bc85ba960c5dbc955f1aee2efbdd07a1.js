@@ -4,11 +4,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/leetcode-cheat/index.html"
   },
   {
-    "revision": "24bcba069979b435e9fc",
+    "revision": "0dffd7903d25aae17d06",
     "url": "/leetcode-cheat/static/css/main.css"
   },
   {
-    "revision": "ec3035ccb319ad5373b3",
+    "revision": "da5ea27ff15298c1d0e8",
     "url": "/leetcode-cheat/static/js/content.js"
   },
   {
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/leetcode-cheat/static/js/content.js.LICENSE.txt"
   },
   {
-    "revision": "24bcba069979b435e9fc",
+    "revision": "0dffd7903d25aae17d06",
     "url": "/leetcode-cheat/static/js/main.js"
   },
   {
