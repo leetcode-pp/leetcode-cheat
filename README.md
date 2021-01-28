@@ -2,7 +2,7 @@
 
 功能介绍：
 
-- [刷题效率低？或许你就差这么一个插件](https://lucifer.ren/blog/2020/06/06/algo-chrome-extension/)
+- [刷题效率低？或许你就差这么一个插件](https://lucifer.ren/blog/2020/08/16/leetcode-cheat/)
 
 ## 开发
 
