@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": ">=14.4.0"
+    "node": "14.4.0"
   },
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
