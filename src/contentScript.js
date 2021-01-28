@@ -137,15 +137,35 @@ function insertButton() {
         const title = d.match(/(\d+\. .+)(?=<)/)[1];
         const link = window.location.origin + d.match(/href="(.*?)"/)[1];
         const language = document.querySelector("#lang-select").innerText;
-        // let code = document.querySelector(
-        //   ".monaco-scrollable-element,.editor-scrollable"
-        // ).innerText;
+        let code = document.querySelector(
+          ".monaco-scrollable-element,.editor-scrollable"
+        ).innerText;
 
-        // const desc = document.querySelector("#question-detail-main-tabs")
-        //   .children[1].children[0].children[1].innerText;
-        window.open(
-          `https://leetcode-pp.github.io/leetcode-cheat/?link=${link}&title=${title}&language=${language}&tab=solution-template`
-        );
+        const desc = document.querySelector("#question-detail-main-tabs")
+          .children[1].children[0].children[1].innerText;
+        fetch("https://api.github.com/repos/azl397985856/stash/issues", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "token f4fed02e90310c97be2c51b5b97b1f5b3ad91a23",
+          },
+          body: JSON.stringify({
+            title: `此 issue 由 leetcode-cheatsheet 插件自动生成于 ${new Date().toDateString()}`,
+            body: JSON.stringify({
+              title,
+              link,
+              language,
+              code,
+              desc,
+            }),
+          }),
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            window.open(
+              `https://leetcode-pp.github.io/leetcode-cheat/?issue_number=${res.number}&tab=solution-template`
+            );
+          });
       };
 
       buttons[i].parentElement.prepend(writeSolutionButton);

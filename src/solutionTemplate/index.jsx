@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Radio,
   Row,
@@ -182,10 +182,6 @@ const formulas = [
     logo: require("../imgs/formula/sqrt.svg"),
   },
 ];
-const link = getUrlParameter("link") || "";
-const title = getUrlParameter("title") || "";
-const code = getUrlParameter("code") || "";
-const initialLanguage = getUrlParameter("language")?.toLowerCase() || "python3";
 
 const saveDraft = debounce(
   (v) =>
@@ -196,7 +192,7 @@ const saveDraft = debounce(
 );
 
 export default function SolutionTemplate() {
-  const [language, setLanguage] = useState(initialLanguage);
+  const [language, setLanguage] = useState("");
   const [time, setTime] = useState("n");
   const [space, setSpace] = useState("n");
   const [isLucifer, setIsLucifer] = useState(false);
@@ -205,11 +201,39 @@ export default function SolutionTemplate() {
       time,
       space,
       language,
-      link,
-      title,
-      code,
     })
   );
+  useEffect(() => {
+    fetch(
+      `https://api.github.com/repos/azl397985856/stash/issues/${getUrlParameter(
+        "issue_number"
+      )}`,
+      {
+        headers: {
+          accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: "token f4fed02e90310c97be2c51b5b97b1f5b3ad91a23",
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => JSON.parse(res.body))
+      .then((res) => {
+        const { link, title, code, language, desc } = res;
+        setLanguage(language?.toLowerCase());
+        setTemplate(
+          getTemplate({
+            desc,
+            time,
+            space,
+            language: language?.toLowerCase(),
+            link,
+            title,
+            code,
+          })
+        );
+      });
+  }, []);
 
   return (
     <>
@@ -220,8 +244,8 @@ export default function SolutionTemplate() {
               题解每五秒备份一次，如果你不小心刷新了浏览器可以点击下方的恢复按钮还原。由于是覆盖式备份，因此仅会保存最后一次编辑的内容。
             </li>
             <li>
-              由于浏览器 url
-              传参限制，题目信息和代码暂时不会自动带过来，后续考虑使用服务器转存实现自动带入的功能。
+              自动带入功能使用了 Github API，如果题目信息没有自动带入可能是
+              Github API 调用次数限制。后期考虑搞个服务器给大家存放。
             </li>
             <li>目前公式无法预览，原因暂时不明，不过后期会支持。</li>
             <li>后续考虑提供更多题解模板。</li>
