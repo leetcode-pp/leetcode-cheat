@@ -13,7 +13,14 @@ import ReactMarkdown from "react-markdown";
 import Tex from "@matejmazur/react-katex";
 import RemarkMathPlugin from "remark-math";
 
-import { copyToClipboard, isInExtension, getUrlParameter } from "../utils.js";
+import {
+  copyToClipboard,
+  isInExtension,
+  getUrlParameter,
+  getStorage,
+  setStorage,
+  debounce,
+} from "../utils.js";
 
 import "katex/dist/katex.min.css";
 import CodeBlock from "../CodeBlock";
@@ -180,6 +187,14 @@ const title = getUrlParameter("title") || "";
 const code = getUrlParameter("code") || "";
 const initialLanguage = getUrlParameter("language")?.toLowerCase() || "python3";
 
+const saveDraft = debounce(
+  (v) =>
+    setStorage("solution-backup", {
+      raw: v,
+    }),
+  5000
+);
+
 export default function SolutionTemplate() {
   const [language, setLanguage] = useState(initialLanguage);
   const [time, setTime] = useState("n");
@@ -201,6 +216,9 @@ export default function SolutionTemplate() {
       {!isInExtension() ? (
         <>
           <ul>
+            <li>
+              题解每五秒备份一次，如果你不小心刷新了浏览器可以点击下方的恢复按钮还原。由于是覆盖式备份，因此仅会保存最后一次编辑的内容。
+            </li>
             <li>
               由于浏览器 url
               传参限制，题目信息和代码暂时不会自动带过来，后续考虑使用服务器转存实现自动带入的功能。
@@ -333,10 +351,31 @@ export default function SolutionTemplate() {
                 >
                   点击复制 MarkDown 原文
                 </Button>
+                <Button
+                  style={{ margin: "10px" }}
+                  onClick={() => {
+                    getStorage("solution-backup")
+                      .then((res) => res.result.value)
+                      .then((res) => {
+                        const raw = res.raw;
+                        setTemplate(raw);
+                      })
+                      .catch(() =>
+                        message.error({
+                          content: "没有找到任何备份文件",
+                        })
+                      );
+                  }}
+                >
+                  恢复上次编辑内容
+                </Button>
               </div>
               <Template
                 template={template}
-                onChange={(e) => setTemplate(e.target.value)}
+                onChange={(e) => {
+                  saveDraft(e.target.value);
+                  setTemplate(e.target.value);
+                }}
               />
             </Col>
             <Col span="2"></Col>

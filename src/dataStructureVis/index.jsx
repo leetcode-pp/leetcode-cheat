@@ -14,7 +14,7 @@ import {
   Collapse,
   Menu,
 } from "antd";
-import { uuidv4, isInExtension } from "../utils";
+import { uuidv4, isInExtension, getStorage, setStorage } from "../utils";
 import treeLevel2 from "../db/dataStructureVis/tree-level-2";
 import treeLevel3 from "../db/dataStructureVis/tree-level-3";
 import treeLevel4 from "../db/dataStructureVis/tree-level-4";
@@ -90,53 +90,6 @@ function deleteCustomDrawing(id) {
         });
       })
       .catch((msg) => message.error(msg));
-  });
-}
-
-function getStorage(k) {
-  return new Promise((resolve, reject) => {
-    try {
-      // eslint-disable-next-line
-      if (chrome.storage) {
-        // eslint-disable-next-line
-        chrome.storage.get([k], resolve);
-      } else if (localStorage) {
-        resolve({
-          result: {
-            value: JSON.parse(localStorage.getItem(k)),
-          },
-        });
-      } else {
-        reject("未知错误");
-      }
-    } catch (err) {
-      reject(err);
-    }
-  });
-}
-
-function setStorage(k, v) {
-  return new Promise((resolve, reject) => {
-    try {
-      // eslint-disable-next-line
-      if (chrome.storage) {
-        // eslint-disable-next-line
-        chrome.storage.sync.set(
-          {
-            [k]: v,
-          },
-          resolve
-        );
-      } else if (localStorage) {
-        localStorage.setItem(k, JSON.stringify(v));
-        resolve();
-      } else {
-        reject("您可能禁用了存储功能~");
-      }
-    } catch (err) {
-      console.log(err, k, v);
-      reject("当前没有存储权限，或者存储已达到上限~");
-    }
   });
 }
 
