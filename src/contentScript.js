@@ -137,18 +137,14 @@ function insertButton() {
         const title = d.match(/(\d+\. .+)(?=<)/)[1];
         const link = "https://leetcode-cn.com" + d.match(/href="(.*?)"/)[1];
         const language = document.querySelector("#lang-select").innerText;
-        let code = document.querySelector(
-          ".monaco-scrollable-element,.editor-scrollable"
-        ).innerText;
-
-        if (code.length > 2000) {
-          code = "";
-        }
+        // let code = document.querySelector(
+        //   ".monaco-scrollable-element,.editor-scrollable"
+        // ).innerText;
 
         // const desc = document.querySelector("#question-detail-main-tabs")
         //   .children[1].children[0].children[1].innerText;
         window.open(
-          `https://leetcode-pp.github.io/leetcode-cheat/?link=${link}&title=${title}&language=${language}code=${code}`
+          `https://leetcode-pp.github.io/leetcode-cheat/?link=${link}&title=${title}&language=${language}&tab=solution-template`
         );
       };
 

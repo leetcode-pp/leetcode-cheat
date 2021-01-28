@@ -94,6 +94,7 @@ ${desc}
 ${displayLanguage(language)} Code:
 
 \`\`\`${language === "python3" ? "python" : language}
+
 ${code}
 
 \`\`\`
@@ -201,10 +202,10 @@ export default function SolutionTemplate() {
         <>
           <ul>
             <li>
-              由于浏览器 url 传参限制，题目信息暂时不会带过来。另外如果代码大于
-              2000 字符，也不会带过来。
+              由于浏览器 url
+              传参限制，题目信息和代码暂时不会自动带过来。后续考虑使用服务器转存实现自动带入的功能。
             </li>
-            <li>后续考虑支持更多主题，以及用户自定义主题功能~</li>
+            <li>后续考虑支持更多主题，以及用户自定义主题功能。</li>
           </ul>
           <div className="line">
             编程语言：

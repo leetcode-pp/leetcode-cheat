@@ -15,7 +15,7 @@ import TagOrLink from "./TagOrLink";
 import tempaltes from "./codeTemplates/index";
 import checkUpdate from "./checkUpdates";
 
-import { isInExtension } from "./utils";
+import { isInExtension, getUrlParameter } from "./utils";
 // import drawTree from "canvas-binary-tree";
 import "antd/dist/antd.css";
 import "./App.css";
@@ -76,7 +76,7 @@ const columns = [
     ),
   },
 ];
-
+const initialTab = getUrlParameter("tab") || "code-template";
 function App() {
   // eslint-disable-next-line
   chrome.tabs &&
@@ -103,6 +103,8 @@ function App() {
   const [hasSolution, setHasSolution] = useState(false);
   const [inSelected, setInSelected] = useState(false); // 是否被精选题解（其实就是合集）收录
   const [page, setPage] = useState("");
+  const [tab, setTab] = useState(initialTab);
+
   // const [inLeetCode, setInLeetCode] = useState(true);
 
   // if (!inLeetCode) return window.open(LEETCODE_CN_URL + "/problemset/all/");
@@ -199,9 +201,9 @@ function App() {
         </>
       )}
       {page === "" && (
-        <Tabs type="card">
-          <TabPane key="code-template" tab="代码模板">
-            <CodeTemplates page={page} tempaltes={tempaltes}></CodeTemplates>
+        <Tabs type="card" activeKey={tab}>
+          <TabPane key="code-template" tab="代码模板" onTabClick={setTab}>
+            <CodeTemplates tempaltes={tempaltes}></CodeTemplates>
           </TabPane>
           <TabPane key="data-structure-vis" tab="数据结构可视化">
             <DataStrutureVis></DataStrutureVis>

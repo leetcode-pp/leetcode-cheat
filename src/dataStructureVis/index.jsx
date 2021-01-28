@@ -509,7 +509,7 @@ export default function DataStrutureVis() {
         <Button
           type="link"
           target="_blank"
-          href="https://leetcode-pp.github.io/leetcode-cheat/"
+          href="https://leetcode-pp.github.io/leetcode-cheat/?tab=data-structure-vis"
         >
           去网站使用
         </Button>
