@@ -192,14 +192,20 @@ const saveDraft = debounce(
   5000
 );
 
+const link = getUrlParameter("link") || "";
+const title = getUrlParameter("title") || "";
+const initialLanguage = getUrlParameter("language")?.toLowerCase() || "python3";
+
 export default function SolutionTemplate() {
-  const [language, setLanguage] = useState("python3");
+  const [language, setLanguage] = useState(initialLanguage);
   const [time, setTime] = useState("n");
   const [space, setSpace] = useState("n");
   const [isLucifer, setIsLucifer] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [template, setTemplate] = useState(
     getTemplate({
+      link,
+      title,
       time,
       space,
       language,

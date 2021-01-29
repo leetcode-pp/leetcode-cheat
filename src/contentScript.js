@@ -82,9 +82,21 @@ class SolutionButton extends PureComponent {
                 )
                   .then((res) => res.json())
                   .then((res) => {
-                    window.open(
-                      `https://leetcode-pp.github.io/leetcode-cheat/?issue_number=${res.number}&tab=solution-template`
-                    );
+                    if (res.number) {
+                      window.open(
+                        `https://leetcode-pp.github.io/leetcode-cheat/?issue_number=${res.number}&tab=solution-template`
+                      );
+                    } else {
+                      message.warn({
+                        content:
+                          "使用 Github API 失败，已为您切换为普通模式，普通模式仅可自动带入题目名称，题目地址以及题解语言。",
+                      });
+                      setTimeout(() => {
+                        window.open(
+                          `https://leetcode-pp.github.io/leetcode-cheat/?title=${title}&link=${link}&language=${language}&tab=solution-template`
+                        );
+                      }, 2000);
+                    }
                   });
               });
           }}
