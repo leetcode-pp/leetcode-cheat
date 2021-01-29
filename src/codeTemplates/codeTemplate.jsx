@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Collapse, Tabs } from "antd";
 
-import Codes from "../codes";
+import Codes from "../components/codes";
 
 import {
   LEETCODE_CN_URL,

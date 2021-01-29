@@ -1,8 +1,8 @@
 import React from "react";
 import { Radio, Image } from "antd";
 
-import Codes from "../codes";
-import TagOrLink from "../TagOrLink";
+import Codes from "../components/codes";
+import TagOrLink from "../components/TagOrLink";
 
 const dpSingleCode = `
   dp = [0] * (n + 1)

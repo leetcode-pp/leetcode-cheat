@@ -1,7 +1,105 @@
-import { message } from "antd";
+import React, { PureComponent } from "react";
+import ReactDOM from "react-dom";
+import { message, Button, Dropdown, Menu } from "antd";
 // import "./content.css";
-import { copyToClipboard, 不讲武德 } from "./utils";
+import { copyToClipboard, 不讲武德, getStorage } from "./utils";
 import zenAble from "./zen/zenMode";
+import AccessToken from "./components/AccessToken";
+
+class SolutionButton extends PureComponent {
+  static propTypes = {};
+
+  static defaultProps = {};
+  constructor() {
+    super();
+    this.state = {
+      modalVisible: false,
+    };
+  }
+
+  render() {
+    return (
+      <>
+        <AccessToken
+          visible={this.state.modalVisible}
+          onOk={() =>
+            this.setState({
+              modalVisible: false,
+            })
+          }
+          onCancel={() =>
+            this.setState({
+              modalVisible: false,
+            })
+          }
+        />
+        <Dropdown
+          style={{ marginLeft: "10px" }}
+          type="link"
+          onClick={() => {
+            // d: "<a href="/problems/remove-max-number-of-edges-to-keep-graph-fully-traversable/">1579. 保证图可完全遍历</a>"
+            const d = document.querySelector(`[data-cypress="QuestionTitle"]`)
+              .innerHTML;
+            const title = d.match(/(\d+\. .+)(?=<)/)[1];
+            const link = window.location.origin + d.match(/href="(.*?)"/)[1];
+            const language = document.querySelector("#lang-select").innerText;
+            let code = document.querySelector(
+              ".monaco-scrollable-element,.editor-scrollable"
+            ).innerText;
+
+            const desc = document.querySelector("#question-detail-main-tabs")
+              .children[1].children[0].children[1].innerText;
+            getStorage("leetcode-cheatsheet-token")
+              .then((res) => res.result.value)
+              .then((res) => {
+                if (!res.raw) throw new Error("whatever");
+                return res;
+              })
+              .catch(() => ({
+                raw: "e574bf60b50d8d2d2db2320ee83aba3cd29cecf2",
+              }))
+              .then((res) => {
+                const t = res.raw;
+                fetch(
+                  "https://api.github.com/repos/azl397985856/stash/issues",
+                  {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                      Authorization: `token ${t}`,
+                    },
+                    body: JSON.stringify({
+                      title: `此 issue 由 leetcode-cheatsheet 插件自动生成于 ${new Date().toDateString()}`,
+                      body: JSON.stringify({
+                        title,
+                        link,
+                        language,
+                        code,
+                        desc,
+                      }),
+                    }),
+                  }
+                )
+                  .then((res) => res.json())
+                  .then((res) => {
+                    window.open(
+                      `https://leetcode-pp.github.io/leetcode-cheat/?issue_number=${res.number}&tab=solution-template`
+                    );
+                  });
+              });
+          }}
+          overlay={
+            <Menu onClick={() => this.setState({ modalVisible: true })}>
+              <Menu.Item key="1">填入 access token</Menu.Item>
+            </Menu>
+          }
+        >
+          <Button>写题解</Button>
+        </Dropdown>
+      </>
+    );
+  }
+}
 
 // if (testCase[i] === '"') {
 //   while (i < testCase.length && testCase[i] !== '"') {
@@ -127,46 +225,9 @@ function insertButton() {
         });
       };
       buttons[i].parentElement.prepend(copyButton);
-      const writeSolutionButton = buttons[i].cloneNode(true);
-      writeSolutionButton.innerText = "写题解";
-      writeSolutionButton.style["margin-left"] = "10px";
-      writeSolutionButton.onclick = () => {
-        // d: "<a href="/problems/remove-max-number-of-edges-to-keep-graph-fully-traversable/">1579. 保证图可完全遍历</a>"
-        const d = document.querySelector(`[data-cypress="QuestionTitle"]`)
-          .innerHTML;
-        const title = d.match(/(\d+\. .+)(?=<)/)[1];
-        const link = window.location.origin + d.match(/href="(.*?)"/)[1];
-        const language = document.querySelector("#lang-select").innerText;
-        let code = document.querySelector(
-          ".monaco-scrollable-element,.editor-scrollable"
-        ).innerText;
+      const writeSolutionButton = document.createElement("div");
 
-        const desc = document.querySelector("#question-detail-main-tabs")
-          .children[1].children[0].children[1].innerText;
-        fetch("https://api.github.com/repos/azl397985856/stash/issues", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "token f4fed02e90310c97be2c51b5b97b1f5b3ad91a23",
-          },
-          body: JSON.stringify({
-            title: `此 issue 由 leetcode-cheatsheet 插件自动生成于 ${new Date().toDateString()}`,
-            body: JSON.stringify({
-              title,
-              link,
-              language,
-              code,
-              desc,
-            }),
-          }),
-        })
-          .then((res) => res.json())
-          .then((res) => {
-            window.open(
-              `https://leetcode-pp.github.io/leetcode-cheat/?issue_number=${res.number}&tab=solution-template`
-            );
-          });
-      };
+      ReactDOM.render(<SolutionButton />, writeSolutionButton);
 
       buttons[i].parentElement.prepend(writeSolutionButton);
       return true;

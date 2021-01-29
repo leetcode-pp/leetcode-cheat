@@ -23,7 +23,8 @@ import {
 } from "../utils.js";
 
 import "katex/dist/katex.min.css";
-import CodeBlock from "../CodeBlock";
+import CodeBlock from "../components/CodeBlock";
+import AccessToken from "../components/AccessToken";
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -192,10 +193,11 @@ const saveDraft = debounce(
 );
 
 export default function SolutionTemplate() {
-  const [language, setLanguage] = useState("");
+  const [language, setLanguage] = useState("python3");
   const [time, setTime] = useState("n");
   const [space, setSpace] = useState("n");
   const [isLucifer, setIsLucifer] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
   const [template, setTemplate] = useState(
     getTemplate({
       time,
@@ -204,53 +206,58 @@ export default function SolutionTemplate() {
     })
   );
   useEffect(() => {
-    fetch(
-      `https://api.github.com/repos/azl397985856/stash/issues/${getUrlParameter(
-        "issue_number"
-      )}`,
-      {
-        headers: {
-          accept: "application/json",
-          "Content-Type": "application/json",
-          Authorization: "token f4fed02e90310c97be2c51b5b97b1f5b3ad91a23",
-        },
-      }
-    )
-      .then((res) => res.json())
-      .then((res) => JSON.parse(res.body))
+    getStorage("leetcode-cheatsheet-token")
+      .then((res) => res.result.value)
       .then((res) => {
-        const { link, title, code, language, desc } = res;
-        setLanguage(language?.toLowerCase());
-        setTemplate(
-          getTemplate({
-            desc,
-            time,
-            space,
-            language: language?.toLowerCase(),
-            link,
-            title,
-            code,
-          })
-        );
+        if (!res.raw) throw new Error("whatever");
+        return res;
+      })
+      .catch(() => ({
+        raw: "e574bf60b50d8d2d2db2320ee83aba3cd29cecf2",
+      }))
+      .then((res) => {
+        const t = res.raw;
+        fetch(
+          `https://api.github.com/repos/azl397985856/stash/issues/${getUrlParameter(
+            "issue_number"
+          )}`,
+          {
+            headers: {
+              accept: "application/json",
+              "Content-Type": "application/json",
+              Authorization: `token ${t}`,
+            },
+          }
+        )
+          .then((res) => res.json())
+          .then((res) => JSON.parse(res.body))
+          .then((res) => {
+            const { link, title, code, language, desc } = res;
+            setLanguage(language?.toLowerCase());
+            setTemplate(
+              getTemplate({
+                desc,
+                time,
+                space,
+                language: language?.toLowerCase(),
+                link,
+                title,
+                code,
+              })
+            );
+          });
       });
   }, []);
 
   return (
     <>
+      <AccessToken
+        visible={modalVisible}
+        onOk={() => setModalVisible(false)}
+        onCancel={() => setModalVisible(false)}
+      />
       {!isInExtension() ? (
         <>
-          <ul>
-            <li>
-              题解每五秒备份一次，如果你不小心刷新了浏览器可以点击下方的恢复按钮还原。由于是覆盖式备份，因此仅会保存最后一次编辑的内容。
-            </li>
-            <li>
-              自动带入功能使用了 Github API，如果题目信息没有自动带入可能是
-              Github API 调用次数限制。后期考虑搞个服务器给大家存放。
-            </li>
-            <li>目前公式无法预览，原因暂时不明，不过后期会支持。</li>
-            <li>后续考虑提供更多题解模板。</li>
-            <li>后续考虑支持更多主题，以及用户自定义主题。</li>
-          </ul>
           <div className="line">
             编程语言：
             <Select
@@ -415,9 +422,26 @@ export default function SolutionTemplate() {
           target="_blank"
           href="https://leetcode-pp.github.io/leetcode-cheat/"
         >
-          去网站使用
+          去网站使
         </Button>
       )}
+      <ul>
+        <li>
+          题解每五秒备份一次，如果你不小心刷新了浏览器可以点击下方的恢复按钮还原。由于是覆盖式备份，因此仅会保存最后一次编辑的内容。
+        </li>
+        <li>
+          自动带入功能使用了 Github API，如果题目信息没有自动带入可能是 Github
+          API 调用次数限制，大家可以通过
+          <Button type="link" onClick={() => setModalVisible(true)}>
+            填写 Access Token
+          </Button>
+          解决(注意此网站和力扣数据是隔离，因此填写 token
+          也是独立，互不影响的)。后期考虑搞个服务器给大家存放。
+        </li>
+        <li>目前公式无法预览，原因暂时不明，不过后期会支持。</li>
+        <li>后续考虑提供更多题解模板。</li>
+        <li>后续考虑支持更多主题，以及用户自定义主题。</li>
+      </ul>
     </>
   );
 }

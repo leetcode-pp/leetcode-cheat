@@ -11,7 +11,7 @@ import { LEETCODE_CN_URL } from "./constant/index";
 // import TestCase from "./testCase";
 import ProblemDetail from "./Detail";
 import Roadmap from "./roadmap/roadmap.jsx";
-import TagOrLink from "./TagOrLink";
+import TagOrLink from "./components/TagOrLink";
 import tempaltes from "./codeTemplates/index";
 import checkUpdate from "./checkUpdates";
 

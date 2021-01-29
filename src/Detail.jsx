@@ -10,8 +10,8 @@ import {
 } from "./constant/index";
 import db from "./db/db";
 
-import Codes from "./codes";
-import TagOrLink from "./TagOrLink";
+import Codes from "./components/codes";
+import TagOrLink from "./components/TagOrLink";
 
 const { TabPane } = Tabs;
 const { Panel } = Collapse;
