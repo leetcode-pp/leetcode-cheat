@@ -202,7 +202,7 @@ export default function SolutionTemplate() {
   const [time, setTime] = useState("n");
   const [space, setSpace] = useState("n");
   const [isLucifer, setIsLucifer] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
+  // const [modalVisible, setModalVisible] = useState(false);
   const [template, setTemplate] = useState(
     getTemplate({
       link,

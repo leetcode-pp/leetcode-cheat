@@ -1,6 +1,6 @@
-import React, { PureComponent } from "react";
+// import React, { PureComponent } from "react";
 // import ReactDOM from "react-dom";
-import { message, Button, Dropdown, Menu } from "antd";
+import { message } from "antd";
 // import "./content.css";
 import {
   copyToClipboard,
