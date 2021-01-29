@@ -229,6 +229,7 @@ export default function SolutionTemplate() {
           token: t,
         }).then((res) => {
           const { link, title, code, language, desc } = res;
+          console.log(link);
           setLanguage(language?.toLowerCase());
           setTemplate(
             getTemplate({
@@ -243,7 +244,7 @@ export default function SolutionTemplate() {
           );
         });
       });
-  });
+  }, []);
 
   return (
     <>
