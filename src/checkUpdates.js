@@ -1,21 +1,22 @@
 import { message } from "antd";
-// eslint-disable-next-line
-chrome.runtime.onUpdateAvailable &&
-  // eslint-disable-next-line
-  chrome.runtime.onUpdateAvailable.addListener(function (details) {
-    console.log("updating to version " + details.version);
-    // eslint-disable-next-line
-    chrome.runtime.reload();
-  });
+const chrome = window.chrome;
+if (chrome) {
+  chrome.runtime.onUpdateAvailable &&
+    chrome.runtime.onUpdateAvailable.addListener(function (details) {
+      console.log("updating to version " + details.version);
+
+      chrome.runtime.reload();
+    });
+} else {
+  // 其他浏览器;
+}
 
 export default function checkUpdate() {
-  // eslint-disable-next-line
-  if (!chrome.runtime.requestUpdateCheck) return;
-  // eslint-disable-next-line
   return chrome.runtime.requestUpdateCheck(function (status) {
     if (status === "update_available") {
       message.success({
-        content: "检测到有新版本，您可以去 <a href=\"chrome://extensions/\">扩展中心</a> 手动更新",
+        content:
+          '检测到有新版本，您可以去 <a href="chrome://extensions/">扩展中心</a> 手动更新',
       });
     } else if (status === "no_update") {
       message.success({

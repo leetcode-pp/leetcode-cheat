@@ -287,6 +287,14 @@ export function getCloundStorage(id, { token }) {
       return JSON.parse(response.order.customer).body;
     });
 }
+
+export function debounceComponent(component, wait) {
+  let timerId = null;
+  return (props) => {
+    clearTimeout(timerId);
+    component(props);
+  };
+}
 export function debounce(fn, wait) {
   let callback = fn;
   let timerId = null;

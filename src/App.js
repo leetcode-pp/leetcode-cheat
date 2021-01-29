@@ -30,7 +30,7 @@ const { problems, selected } = db;
 const { TabPane } = Tabs;
 
 const dataSource = Object.values(problems);
-
+const chrome = window.chrome;
 // function inLeetCodeWebsite(url) {
 //   return [LEETCODE_CN_URL, LEETCODE_URL].some((u) => url.includes(u));
 // }
@@ -79,7 +79,8 @@ const columns = [
 const initialTab = getUrlParameter("tab") || "code-template";
 function App() {
   // eslint-disable-next-line
-  chrome.tabs &&
+  chrome &&
+    chrome.tabs &&
     // eslint-disable-next-line
     chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
       const currentUrl = tabs[0].url;

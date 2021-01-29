@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { PureComponent } from "react";
 import {
   Radio,
   Row,
@@ -9,9 +9,6 @@ import {
   Button,
   Checkbox,
 } from "antd";
-import ReactMarkdown from "react-markdown";
-import Tex from "@matejmazur/react-katex";
-import RemarkMathPlugin from "remark-math";
 
 import {
   copyToClipboard,
@@ -23,8 +20,7 @@ import {
   getCloundStorage,
 } from "../utils.js";
 
-import "katex/dist/katex.min.css";
-import CodeBlock from "../components/CodeBlock";
+import MarkdownRender from "../components/MarkdownRender";
 // import AccessToken from "../components/AccessToken";
 
 const { TextArea } = Input;
@@ -120,7 +116,14 @@ ${isLucifer ? slogan : ""}
 `;
 }
 function Template({ onChange, template }) {
-  return <TextArea value={template} autoSize onChange={onChange}></TextArea>;
+  return (
+    <TextArea
+      ref={textAreaRef}
+      value={template}
+      autoSize
+      onChange={onChange}
+    ></TextArea>
+  );
 }
 
 function Complexities({ value, onChange }) {
@@ -136,21 +139,6 @@ function Complexities({ value, onChange }) {
     </Radio.Group>
   );
 }
-
-const MarkdownRender = (props) => {
-  const newProps = {
-    ...props,
-    escapeHtml: false,
-    plugins: [RemarkMathPlugin],
-    renderers: {
-      ...props.renderers,
-      inlineMath: ({ value }) => <Tex math={value} />,
-      math: ({ value }) => <Tex block math={value} />,
-      code: (_props) => <CodeBlock {..._props}></CodeBlock>,
-    },
-  };
-  return <ReactMarkdown {...newProps} />;
-};
 
 const formulas = [
   {
@@ -192,27 +180,67 @@ const saveDraft = debounce(
     }),
   5000
 );
-
 const link = getUrlParameter("link") || "";
 const title = getUrlParameter("title") || "";
 const initialLanguage = getUrlParameter("language")?.toLowerCase() || "python3";
+const textAreaRef = React.createRef();
+export default class SolutionTemplate extends PureComponent {
+  constructor(props) {
+    super(props);
+    // const [language, setLanguage] = useState(initialLanguage);
+    // const [time, setTime] = useState("n");
+    // const [space, setSpace] = useState("n");
+    // const [isLucifer, setIsLucifer] = useState(false);
+    // // const [modalVisible, setModalVisible] = useState(false);
+    // const [template, setTemplate] = useState(
+    //   getTemplate({
+    //     link,
+    //     title,
+    //     time,
+    //     space,
+    //     language,
+    //   })
+    // );
+    this.state = {
+      language: initialLanguage,
+      time: "n",
+      space: "n",
+      isLucifer: false,
+      template: "",
+    };
+    this.setLanguage = (v) =>
+      this.setState({
+        language: v,
+      });
+    this.setTime = (v) =>
+      this.setState({
+        time: v,
+      });
+    this.setSpace = (v) =>
+      this.setState({
+        space: v,
+      });
+    this.setIsLucifer = (v) =>
+      this.setState({
+        isLucifer: v,
+      });
+    this.setTemplate = (v) => {
+      this.setState({
+        template: v,
+      });
+      // textAreaRef.current.value = v;
+    };
+  }
 
-export default function SolutionTemplate() {
-  const [language, setLanguage] = useState(initialLanguage);
-  const [time, setTime] = useState("n");
-  const [space, setSpace] = useState("n");
-  const [isLucifer, setIsLucifer] = useState(false);
-  // const [modalVisible, setModalVisible] = useState(false);
-  const [template, setTemplate] = useState(
-    getTemplate({
-      link,
-      title,
-      time,
-      space,
-      language,
-    })
-  );
-  useEffect(() => {
+  componentDidMount() {
+    this.setTemplate(
+      getTemplate({
+        language: initialLanguage,
+        link,
+        title,
+      })
+    );
+
     getStorage("leetcode-cheatsheet-token")
       .then((res) => res.result.value)
       .then((res) => {
@@ -230,8 +258,8 @@ export default function SolutionTemplate() {
         }).then((res) => {
           const { link, title, code, language, desc } = res;
 
-          setLanguage(language?.toLowerCase());
-          setTemplate(
+          this.setLanguage(language?.toLowerCase());
+          this.setTemplate(
             getTemplate({
               desc,
               language: language?.toLowerCase(),
@@ -242,189 +270,190 @@ export default function SolutionTemplate() {
           );
         });
       });
-  }, []);
-
-  return (
-    <>
-      {/* <AccessToken
+  }
+  render() {
+    const { language, time, space, isLucifer, template } = this.state;
+    return (
+      <>
+        {/* <AccessToken
         visible={modalVisible}
         onOk={() => setModalVisible(false)}
         onCancel={() => setModalVisible(false)}
       /> */}
-      {!isInExtension() ? (
-        <>
-          <div className="line">
-            编程语言：
-            <Select
-              value={language}
-              style={{ width: 120 }}
-              onChange={(v) => {
-                setLanguage(v);
-                setTemplate(
-                  template
-                    .replace(new RegExp(`\`\`\`.+`, "mg"), `\`\`\`${v}`)
-                    .replace(
-                      new RegExp(`语言支持：.+`, "mg"),
-                      `语言支持：${displayLanguage(v)}`
-                    )
-                    .replace(
-                      new RegExp(`.+ Code:`, "mg"),
-                      `${displayLanguage(v)} Code:`
-                    )
+        {!isInExtension() ? (
+          <>
+            <div className="line">
+              编程语言：
+              <Select
+                value={language}
+                style={{ width: 120 }}
+                onChange={(v) => {
+                  this.setLanguage(v);
+                  this.setTemplate(
+                    template
+                      .replace(new RegExp(`\`\`\`.+`, "mg"), `\`\`\`${v}`)
+                      .replace(
+                        new RegExp(`语言支持：.+`, "mg"),
+                        `语言支持：${displayLanguage(v)}`
+                      )
+                      .replace(
+                        new RegExp(`.+ Code:`, "mg"),
+                        `${displayLanguage(v)} Code:`
+                      )
+                  );
+                }}
+              >
+                <Option value="python3">Python3</Option>
+                <Option value="python">Python</Option>
+                <Option value="javascript">JavaScript</Option>
+                <Option value="cpp">CPP</Option>
+                <Option value="java">Java</Option>
+                <Option value="go">Go</Option>
+                <Option value="c">C</Option>
+                <Option value="c#">C#</Option>
+                <Option value="ruby">Ruby</Option>
+                <Option value="swift">Swift</Option>
+                <Option value="scala">Scala</Option>
+                <Option value="kotlin">Kotlin</Option>
+                <Option value="rust">Rust</Option>
+                <Option value="php">PHP</Option>
+                <Option value="typescript">TypeScript</Option>
+              </Select>
+            </div>
+            <div className="line">
+              常用公式（点击可复制）：
+              {formulas.map(({ formula, name, logo }) => {
+                return (
+                  <img
+                    onClick={() => {
+                      copyToClipboard(formula);
+                      message.success({
+                        content: "复制成功~",
+                      });
+                    }}
+                    alt={name}
+                    style={{ margin: "0 0 0 20px" }}
+                    src={logo}
+                    className="problem-icon"
+                  />
                 );
-              }}
-            >
-              <Option value="python3">Python3</Option>
-              <Option value="python">Python</Option>
-              <Option value="javascript">JavaScript</Option>
-              <Option value="cpp">CPP</Option>
-              <Option value="java">Java</Option>
-              <Option value="go">Go</Option>
-              <Option value="c">C</Option>
-              <Option value="c#">C#</Option>
-              <Option value="ruby">Ruby</Option>
-              <Option value="swift">Swift</Option>
-              <Option value="scala">Scala</Option>
-              <Option value="kotlin">Kotlin</Option>
-              <Option value="rust">Rust</Option>
-              <Option value="php">PHP</Option>
-              <Option value="typescript">TypeScript</Option>
-            </Select>
-          </div>
-          <div className="line">
-            常用公式（点击可复制）：
-            {formulas.map(({ formula, name, logo }) => {
-              return (
-                <img
-                  onClick={() => {
-                    copyToClipboard(formula);
-                    message.success({
-                      content: "复制成功~",
-                    });
-                  }}
-                  alt={name}
-                  style={{ margin: "0 0 0 20px" }}
-                  src={logo}
-                  className="problem-icon"
-                />
-              );
-            })}
-          </div>
-          <div className="line">
-            时间复杂度：
-            <Complexities
-              value={time}
-              onChange={(e) => {
-                const v = e.target.value;
-                setTime(v);
-                setTemplate(
-                  template.replace(
-                    new RegExp(`时间复杂度：.+`, "mg"),
-                    `时间复杂度：$O(${v})$`
-                  )
-                );
-              }}
-            />
-          </div>
-          <div className="line">
-            空间复杂度：
-            <Complexities
-              value={space}
-              onChange={(e) => {
-                const v = e.target.value;
-                setSpace(v);
-                setTemplate(
-                  template.replace(
-                    new RegExp(`空间复杂度：.+`, "mg"),
-                    `空间复杂度：$O(${v})$`
-                  )
-                );
-              }}
-            />
-          </div>
-          <div className="line">
-            lucifer 专属：
-            <Checkbox
-              checked={isLucifer}
-              onChange={(e) => {
-                const v = e.target.checked;
-                setIsLucifer(v);
-                if (v) {
-                  if (template.includes(slogan)) return;
-                  setTemplate(template + slogan);
-                } else {
-                  if (!template.includes(slogan)) return;
-                  setTemplate(template.replace(slogan, ""));
-                }
-              }}
-            >
-              是否是 lucifer
-            </Checkbox>
-          </div>
-          <Row>
-            <Col span="12">
-              <div>
-                Markdown:
-                <Button
-                  style={{ margin: "10px" }}
-                  type="primary"
-                  onClick={() => {
-                    copyToClipboard(template);
-                    message.success({
-                      content: "复制成功~",
-                    });
-                  }}
-                >
-                  点击复制 MarkDown 原文
-                </Button>
-                <Button
-                  style={{ margin: "10px" }}
-                  onClick={() => {
-                    getStorage("solution-backup")
-                      .then((res) => res.result.value)
-                      .then((res) => {
-                        const raw = res.raw;
-                        setTemplate(raw);
-                      })
-                      .catch(() =>
-                        message.error({
-                          content: "没有找到任何备份文件",
-                        })
-                      );
-                  }}
-                >
-                  恢复上次编辑内容
-                </Button>
-              </div>
-              <Template
-                template={template}
+              })}
+            </div>
+            <div className="line">
+              时间复杂度：
+              <Complexities
+                value={time}
                 onChange={(e) => {
-                  saveDraft(e.target.value);
-                  setTemplate(e.target.value);
+                  const v = e.target.value;
+                  this.setTime(v);
+                  this.setTemplate(
+                    template.replace(
+                      new RegExp(`时间复杂度：.+`, "mg"),
+                      `时间复杂度：$O(${v})$`
+                    )
+                  );
                 }}
               />
-            </Col>
-            <Col span="2"></Col>
-            <Col span="10" style={{ marginTop: "20px" }}>
-              <div>预览:</div>
-              <MarkdownRender source={template}></MarkdownRender>
-            </Col>
-          </Row>
-        </>
-      ) : (
-        <Button
-          type="link"
-          target="_blank"
-          href="https://leetcode-pp.github.io/leetcode-cheat/"
-        >
-          去网站使
-        </Button>
-      )}
-      <ul>
-        <li>
-          题解每五秒备份一次，如果你不小心刷新了浏览器可以点击下方的恢复按钮还原。由于是覆盖式备份，因此仅会保存最后一次编辑的内容。
-        </li>
-        {/* <li>
+            </div>
+            <div className="line">
+              空间复杂度：
+              <Complexities
+                value={space}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  this.setSpace(v);
+                  this.setTemplate(
+                    template.replace(
+                      new RegExp(`空间复杂度：.+`, "mg"),
+                      `空间复杂度：$O(${v})$`
+                    )
+                  );
+                }}
+              />
+            </div>
+            <div className="line">
+              lucifer 专属：
+              <Checkbox
+                checked={isLucifer}
+                onChange={(e) => {
+                  const v = e.target.checked;
+                  this.setIsLucifer(v);
+                  if (v) {
+                    if (template.includes(slogan)) return;
+                    this.setTemplate(template + slogan);
+                  } else {
+                    if (!template.includes(slogan)) return;
+                    this.setTemplate(template.replace(slogan, ""));
+                  }
+                }}
+              >
+                是否是 lucifer
+              </Checkbox>
+            </div>
+            <Row>
+              <Col span="12">
+                <div>
+                  Markdown:
+                  <Button
+                    style={{ margin: "10px" }}
+                    type="primary"
+                    onClick={() => {
+                      copyToClipboard(template);
+                      message.success({
+                        content: "复制成功~",
+                      });
+                    }}
+                  >
+                    点击复制 MarkDown 原文
+                  </Button>
+                  <Button
+                    style={{ margin: "10px" }}
+                    onClick={() => {
+                      getStorage("solution-backup")
+                        .then((res) => res.result.value)
+                        .then((res) => {
+                          const raw = res.raw;
+                          this.setTemplate(raw);
+                        })
+                        .catch(() =>
+                          message.error({
+                            content: "没有找到任何备份文件",
+                          })
+                        );
+                    }}
+                  >
+                    恢复上次编辑内容
+                  </Button>
+                </div>
+                <Template
+                  template={template}
+                  onChange={(e) => {
+                    saveDraft(e.target.value);
+                    this.setTemplate(e.target.value);
+                  }}
+                />
+              </Col>
+              <Col span="1"></Col>
+              <Col span="11" style={{ marginTop: "20px" }}>
+                <div>预览:</div>
+                <MarkdownRender source={template}></MarkdownRender>
+              </Col>
+            </Row>
+          </>
+        ) : (
+          <Button
+            type="link"
+            target="_blank"
+            href="https://leetcode-pp.github.io/leetcode-cheat/"
+          >
+            去网站使用
+          </Button>
+        )}
+        <ul>
+          <li>
+            题解每五秒备份一次，如果你不小心刷新了浏览器可以点击下方的恢复按钮还原。由于是覆盖式备份，因此仅会保存最后一次编辑的内容。
+          </li>
+          {/* <li>
           自动带入功能使用了 Github API，如果题目信息没有自动带入可能是 Github
           API 调用次数限制，大家可以通过
           <Button type="link" onClick={() => setModalVisible(true)}>
@@ -433,10 +462,11 @@ export default function SolutionTemplate() {
           解决(注意此网站和力扣数据是隔离，因此填写 token
           也是独立，互不影响的)。后期考虑搞个服务器给大家存放。
         </li> */}
-        <li>目前公式无法预览，原因暂时不明，不过后期会支持。</li>
-        <li>后续考虑提供更多题解模板。</li>
-        <li>后续考虑支持更多主题，以及用户自定义主题。</li>
-      </ul>
-    </>
-  );
+          <li>目前公式无法预览，原因暂时不明，不过后期会支持。</li>
+          <li>后续考虑提供更多题解模板。</li>
+          <li>后续考虑支持更多主题，以及用户自定义主题。</li>
+        </ul>
+      </>
+    );
+  }
 }
