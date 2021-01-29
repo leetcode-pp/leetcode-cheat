@@ -67,8 +67,8 @@ function getTemplate({
   language = "python3",
   code = "",
   keyword = "",
-  time,
-  space,
+  time = "n",
+  space = "n",
   isLucifer = false,
 }) {
   return `
@@ -229,13 +229,11 @@ export default function SolutionTemplate() {
           token: t,
         }).then((res) => {
           const { link, title, code, language, desc } = res;
-          console.log(link);
+
           setLanguage(language?.toLowerCase());
           setTemplate(
             getTemplate({
               desc,
-              time,
-              space,
               language: language?.toLowerCase(),
               link,
               title,
