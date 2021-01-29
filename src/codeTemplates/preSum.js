@@ -26,7 +26,7 @@ const pre2dPythonCode = `
           pre[i][j] = pre[i-1][j]+ pre[i][j-1] - pre[i-1][j-1] + matrix[i-1][j-1]
 
   # 使用，等价于以(x1,y1)为矩阵左上角以(x2,y2)为矩阵右下角的所有格子的和
-  pre[x2][y2] + pre[x1-1][y1-1] - pre[x1-1][y2] - pre[x2][y1-1]
+  pre[x2+1][y2+1] + pre[x1][y1] - pre[x1][y2+1] - pre[x2+1][y1]
 `;
 
 module.exports = {

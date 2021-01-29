@@ -20,11 +20,12 @@ import {
   getStorage,
   setStorage,
   debounce,
+  getCloundStorage,
 } from "../utils.js";
 
 import "katex/dist/katex.min.css";
 import CodeBlock from "../components/CodeBlock";
-import AccessToken from "../components/AccessToken";
+// import AccessToken from "../components/AccessToken";
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -223,45 +224,34 @@ export default function SolutionTemplate() {
       }))
       .then((res) => {
         const t = res.raw;
-        fetch(
-          `https://api.github.com/repos/azl397985856/stash/issues/${getUrlParameter(
-            "issue_number"
-          )}`,
-          {
-            headers: {
-              accept: "application/json",
-              "Content-Type": "application/json",
-              Authorization: `token ${t}`,
-            },
-          }
-        )
-          .then((res) => res.json())
-          .then((res) => JSON.parse(res.body))
-          .then((res) => {
-            const { link, title, code, language, desc } = res;
-            setLanguage(language?.toLowerCase());
-            setTemplate(
-              getTemplate({
-                desc,
-                time,
-                space,
-                language: language?.toLowerCase(),
-                link,
-                title,
-                code,
-              })
-            );
-          });
+
+        getCloundStorage(getUrlParameter("issue_number"), {
+          token: t,
+        }).then((res) => {
+          const { link, title, code, language, desc } = res;
+          setLanguage(language?.toLowerCase());
+          setTemplate(
+            getTemplate({
+              desc,
+              time,
+              space,
+              language: language?.toLowerCase(),
+              link,
+              title,
+              code,
+            })
+          );
+        });
       });
   });
 
   return (
     <>
-      <AccessToken
+      {/* <AccessToken
         visible={modalVisible}
         onOk={() => setModalVisible(false)}
         onCancel={() => setModalVisible(false)}
-      />
+      /> */}
       {!isInExtension() ? (
         <>
           <div className="line">
@@ -435,7 +425,7 @@ export default function SolutionTemplate() {
         <li>
           题解每五秒备份一次，如果你不小心刷新了浏览器可以点击下方的恢复按钮还原。由于是覆盖式备份，因此仅会保存最后一次编辑的内容。
         </li>
-        <li>
+        {/* <li>
           自动带入功能使用了 Github API，如果题目信息没有自动带入可能是 Github
           API 调用次数限制，大家可以通过
           <Button type="link" onClick={() => setModalVisible(true)}>
@@ -443,7 +433,7 @@ export default function SolutionTemplate() {
           </Button>
           解决(注意此网站和力扣数据是隔离，因此填写 token
           也是独立，互不影响的)。后期考虑搞个服务器给大家存放。
-        </li>
+        </li> */}
         <li>目前公式无法预览，原因暂时不明，不过后期会支持。</li>
         <li>后续考虑提供更多题解模板。</li>
         <li>后续考虑支持更多主题，以及用户自定义主题。</li>
