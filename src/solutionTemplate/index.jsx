@@ -247,7 +247,7 @@ export default function SolutionTemplate() {
             );
           });
       });
-  }, []);
+  });
 
   return (
     <>
