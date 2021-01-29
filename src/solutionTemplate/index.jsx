@@ -8,6 +8,7 @@ import {
   message,
   Button,
   Checkbox,
+  Spin,
 } from "antd";
 
 import {
@@ -207,6 +208,7 @@ export default class SolutionTemplate extends PureComponent {
       space: "n",
       isLucifer: false,
       template: "",
+      isloading: false,
     };
     this.setLanguage = (v) =>
       this.setState({
@@ -252,27 +254,45 @@ export default class SolutionTemplate extends PureComponent {
       }))
       .then((res) => {
         const t = res.raw;
-
+        this.setState({
+          isloading: true,
+        });
         getCloundStorage(getUrlParameter("issue_number"), {
           token: t,
-        }).then((res) => {
-          const { link, title, code, language, desc } = res;
+        })
+          .then((res) => {
+            const { link, title, code, language, desc } = res;
 
-          this.setLanguage(language?.toLowerCase());
-          this.setTemplate(
-            getTemplate({
-              desc,
-              language: language?.toLowerCase(),
-              link,
-              title,
-              code,
+            this.setLanguage(language?.toLowerCase());
+            this.setTemplate(
+              getTemplate({
+                desc,
+                language: language?.toLowerCase(),
+                link,
+                title,
+                code,
+              })
+            );
+            this.setState({
+              isloading: false,
+            });
+          })
+          .catch(() =>
+            this.setState({
+              isloading: false,
             })
           );
-        });
       });
   }
   render() {
-    const { language, time, space, isLucifer, template } = this.state;
+    const {
+      language,
+      time,
+      space,
+      isLucifer,
+      template,
+      isloading,
+    } = this.state;
     return (
       <>
         {/* <AccessToken
@@ -390,55 +410,58 @@ export default class SolutionTemplate extends PureComponent {
                 是否是 lucifer
               </Checkbox>
             </div>
-            <Row>
-              <Col span="12">
-                <div>
-                  Markdown:
-                  <Button
-                    style={{ margin: "10px" }}
-                    type="primary"
-                    onClick={() => {
-                      copyToClipboard(template);
-                      message.success({
-                        content: "复制成功~",
-                      });
-                    }}
-                  >
-                    点击复制 MarkDown 原文
-                  </Button>
-                  <Button
-                    style={{ margin: "10px" }}
-                    onClick={() => {
-                      getStorage("solution-backup")
-                        .then((res) => res.result.value)
-                        .then((res) => {
-                          const raw = res.raw;
-                          this.setTemplate(raw);
-                        })
-                        .catch(() =>
-                          message.error({
-                            content: "没有找到任何备份文件",
+
+            <Spin spinning={isloading} delay={300}>
+              <Row>
+                <Col span="12">
+                  <div>
+                    Markdown:
+                    <Button
+                      style={{ margin: "10px" }}
+                      type="primary"
+                      onClick={() => {
+                        copyToClipboard(template);
+                        message.success({
+                          content: "复制成功~",
+                        });
+                      }}
+                    >
+                      点击复制 MarkDown 原文
+                    </Button>
+                    <Button
+                      style={{ margin: "10px" }}
+                      onClick={() => {
+                        getStorage("solution-backup")
+                          .then((res) => res.result.value)
+                          .then((res) => {
+                            const raw = res.raw;
+                            this.setTemplate(raw);
                           })
-                        );
+                          .catch(() =>
+                            message.error({
+                              content: "没有找到任何备份文件",
+                            })
+                          );
+                      }}
+                    >
+                      恢复上次编辑内容
+                    </Button>
+                  </div>
+                  <Template
+                    template={template}
+                    onChange={(e) => {
+                      saveDraft(e.target.value);
+                      this.setTemplate(e.target.value);
                     }}
-                  >
-                    恢复上次编辑内容
-                  </Button>
-                </div>
-                <Template
-                  template={template}
-                  onChange={(e) => {
-                    saveDraft(e.target.value);
-                    this.setTemplate(e.target.value);
-                  }}
-                />
-              </Col>
-              <Col span="1"></Col>
-              <Col span="11" style={{ marginTop: "20px" }}>
-                <div>预览:</div>
-                <MarkdownRender source={template}></MarkdownRender>
-              </Col>
-            </Row>
+                  />
+                </Col>
+                <Col span="1"></Col>
+                <Col span="11" style={{ marginTop: "20px" }}>
+                  <div>预览:</div>
+                  <MarkdownRender source={template}></MarkdownRender>
+                </Col>
+              </Row>{" "}
+            </Spin>
           </>
         ) : (
           <Button
