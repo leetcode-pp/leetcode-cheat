@@ -174,6 +174,7 @@ const generateCollectionIndexFile = () => {
   );
 
   let rootContent = `
+/* eslint-disable */
     export const db_collection = {
        ${jsonsName.reduce((acc, next) => {
          return (
