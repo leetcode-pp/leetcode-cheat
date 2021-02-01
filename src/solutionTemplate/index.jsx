@@ -28,7 +28,12 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 const slogan = `
-更多题解可以访问我的 LeetCode 题解仓库：https://github.com/azl397985856/leetcode 。 目前已经 40K star 啦。
+
+> 此题解由 [力扣刷题插件](https://leetcode-pp.github.io/leetcode-cheat/?tab=solution-template) 自动生成。 
+
+力扣的小伙伴可以[关注我](https://leetcode-cn.com/u/fe-lucifer/)，这样就会第一时间收到我的动态啦~
+
+以上就是本文的全部内容了。大家对此有何看法，欢迎给我留言，我有时间都会一一查看回答。更多算法套路可以访问我的 LeetCode 题解仓库：https://github.com/azl397985856/leetcode 。 目前已经 40K star 啦。大家也可以关注我的公众号《力扣加加》带你啃下算法这块硬骨头。
 
 关注公众号力扣加加，努力用清晰直白的语言还原解题思路，并且有大量图解，手把手教你识别套路，高效刷题。
 
@@ -60,7 +65,7 @@ function getTemplate({
   link = "",
   desc = "",
   pre = "",
-  company = "",
+  company = "暂无",
   language = "python3",
   code = "",
   keyword = "",
@@ -257,31 +262,33 @@ export default class SolutionTemplate extends PureComponent {
         this.setState({
           isloading: true,
         });
-        getCloundStorage(getUrlParameter("issue_number"), {
-          token: t,
-        })
-          .then((res) => {
-            const { link, title, code, language, desc } = res;
+        if (getUrlParameter("issue_number")) {
+          getCloundStorage(getUrlParameter("issue_number"), {
+            token: t,
+          })
+            .then((res) => {
+              const { link, title, code, language, desc } = res;
 
-            this.setLanguage(language?.toLowerCase());
-            this.setTemplate(
-              getTemplate({
-                desc,
-                language: language?.toLowerCase(),
-                link,
-                title,
-                code,
+              this.setLanguage(language?.toLowerCase());
+              this.setTemplate(
+                getTemplate({
+                  desc,
+                  language: language?.toLowerCase(),
+                  link,
+                  title,
+                  code,
+                })
+              );
+              this.setState({
+                isloading: false,
+              });
+            })
+            .catch(() =>
+              this.setState({
+                isloading: false,
               })
             );
-            this.setState({
-              isloading: false,
-            });
-          })
-          .catch(() =>
-            this.setState({
-              isloading: false,
-            })
-          );
+        }
       });
   }
   render() {

@@ -183,20 +183,23 @@ function insertButton() {
       buttons[i].parentElement.prepend(copyButton);
 
       // const writeSolutionButton = document.createElement("div");
-      const writeSolutionButton = buttons[i].cloneNode(true);
-      writeSolutionButton.innerText = "写题解";
-      writeSolutionButton.style["margin-left"] = "10px";
+      const writeSolutionButton = document.createElement("a");
+      writeSolutionButton.innerText = "去写题解";
+      writeSolutionButton.style["margin-right"] = "20px";
+      writeSolutionButton.style["line-height"] = "32px";
+      let ele = document.querySelector(`[data-cypress="QuestionTitle"]`);
 
       writeSolutionButton.onclick = () => {
         // d: "<a href="/problems/remove-max-number-of-edges-to-keep-graph-fully-traversable/">1579. 保证图可完全遍历</a>"
-        const ele = document.querySelector(`[data-cypress="QuestionTitle"]`);
+        if (!ele) {
+          ele = document.querySelector(`[data-cypress="QuestionTitle"]`);
+        }
         if (!ele) {
           return message.warn({
             content: "获取题目描述失败，请先切换到题目描述标签",
           });
         }
-        const d = document.querySelector(`[data-cypress="QuestionTitle"]`)
-          .innerHTML;
+        const d = ele.innerHTML;
         const title = d.match(/(\d+\. .+)(?=<)/)[1];
         const link = window.location.origin + d.match(/href="(.*?)"/)[1];
         const language = document.querySelector("#lang-select").innerText;
@@ -206,6 +209,13 @@ function insertButton() {
 
         const desc = document.querySelector("#question-detail-main-tabs")
           .children[1].children[0].children[1].innerText;
+        const hide = message.loading("正在存储题目信息，请稍后~", 0);
+        writeSolutionButton.setAttribute("disabled", true);
+        // Dismiss manually and asynchronously
+        setTimeout(() => {
+          hide();
+          writeSolutionButton.removeAttribute("disabled");
+        }, 30000); // 超时 30s 都没好，那就别转了
         getStorage("leetcode-cheatsheet-token")
           .then((res) => res.result.value)
           .then((res) => {
@@ -229,29 +239,37 @@ function insertButton() {
               {
                 token: t,
               }
-            ).then((res) => {
-              if (res.id) {
-                window.open(
-                  `https://leetcode-pp.github.io/leetcode-cheat/?issue_number=${res.id}&tab=solution-template`
-                );
-              } else {
-                message.warn({
-                  content:
-                    "使用 Github API 失败，已为您切换为普通模式，普通模式仅可自动带入题目名称，题目地址以及题解语言。",
-                });
-                setTimeout(() => {
+            )
+              .then((res) => {
+                hide();
+                writeSolutionButton.removeAttribute("disabled");
+                if (res.id) {
                   window.open(
-                    `https://leetcode-pp.github.io/leetcode-cheat/?title=${title}&link=${link}&language=${language}&tab=solution-template`
+                    `https://leetcode-pp.github.io/leetcode-cheat/?issue_number=${res.id}&tab=solution-template`
                   );
-                }, 2000);
-              }
-            });
+                } else {
+                  message.warn({
+                    content:
+                      "使用 Github API 失败，已为您切换为普通模式，普通模式仅可自动带入题目名称，题目地址以及题解语言。",
+                  });
+                  setTimeout(() => {
+                    window.open(
+                      `https://leetcode-pp.github.io/leetcode-cheat/?title=${title}&link=${link}&language=${language}&tab=solution-template`
+                    );
+                  }, 2000);
+                }
+              })
+              .catch(() => {
+                hide();
+                writeSolutionButton.removeAttribute("disabled");
+              });
           });
       };
 
       // ReactDOM.render(<SolutionButton />, writeSolutionButton);
 
       buttons[i].parentElement.prepend(writeSolutionButton);
+      // ele.appendChild(writeSolutionButton);
       return true;
     }
   }
