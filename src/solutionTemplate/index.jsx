@@ -57,7 +57,8 @@ function displayLanguage(language) {
     php: "PHP",
     typescript: "TypeScript",
   };
-  return m[language] || "Python3";
+  // 如果不在里面，说明给的就是类似 Java 的直接显示的字符串
+  return m[language] || language;
 }
 
 function getTemplate({
@@ -330,21 +331,21 @@ export default class SolutionTemplate extends PureComponent {
                   );
                 }}
               >
-                <Option value="python3">Python3</Option>
-                <Option value="python">Python</Option>
-                <Option value="javascript">JavaScript</Option>
-                <Option value="cpp">CPP</Option>
-                <Option value="java">Java</Option>
-                <Option value="go">Go</Option>
-                <Option value="c">C</Option>
-                <Option value="c#">C#</Option>
-                <Option value="ruby">Ruby</Option>
-                <Option value="swift">Swift</Option>
-                <Option value="scala">Scala</Option>
-                <Option value="kotlin">Kotlin</Option>
-                <Option value="rust">Rust</Option>
-                <Option value="php">PHP</Option>
-                <Option value="typescript">TypeScript</Option>
+                <Option value="Python3">Python3</Option>
+                <Option value="Python">Python</Option>
+                <Option value="JavaScript">JavaScript</Option>
+                <Option value="C++">CPP</Option>
+                <Option value="Java">Java</Option>
+                <Option value="GO">Go</Option>
+                <Option value="C">C</Option>
+                <Option value="C#">C#</Option>
+                <Option value="Ruby">Ruby</Option>
+                <Option value="Swift">Swift</Option>
+                <Option value="Scala">Scala</Option>
+                <Option value="Kotlin">Kotlin</Option>
+                <Option value="Rust">Rust</Option>
+                <Option value="PHP">PHP</Option>
+                <Option value="TypeScript">TypeScript</Option>
               </Select>
             </div>
             <div className="line">
