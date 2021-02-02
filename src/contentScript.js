@@ -187,13 +187,12 @@ function insertButton() {
       writeSolutionButton.innerText = "去写题解";
       writeSolutionButton.style["margin-right"] = "20px";
       writeSolutionButton.style["line-height"] = "32px";
-      let ele = document.querySelector(`[data-cypress="QuestionTitle"]`);
 
       writeSolutionButton.onclick = () => {
         // d: "<a href="/problems/remove-max-number-of-edges-to-keep-graph-fully-traversable/">1579. 保证图可完全遍历</a>"
-        if (!ele) {
-          ele = document.querySelector(`[data-cypress="QuestionTitle"]`);
-        }
+
+        const ele = document.querySelector(`[data-cypress="QuestionTitle"]`);
+
         if (!ele) {
           return message.warn({
             content: "获取题目描述失败，请先切换到题目描述标签",
