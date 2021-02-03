@@ -141,6 +141,7 @@ function Complexities({ value, onChange }) {
       <Radio.Button value="logn">O(logn)</Radio.Button>
       <Radio.Button value="n">O(n)</Radio.Button>
       <Radio.Button value="nlogn">O(nlogn)</Radio.Button>
+      <Radio.Button value="n^2">O(n^2)</Radio.Button>
       <Radio.Button value="2^n">O(2^n)</Radio.Button>
       <Radio.Button value="n!">O(n!)</Radio.Button>
     </Radio.Group>
@@ -260,10 +261,10 @@ export default class SolutionTemplate extends PureComponent {
       }))
       .then((res) => {
         const t = res.raw;
-        this.setState({
-          isloading: true,
-        });
         if (getUrlParameter("issue_number")) {
+          this.setState({
+            isloading: true,
+          });
           getCloundStorage(getUrlParameter("issue_number"), {
             token: t,
           })
