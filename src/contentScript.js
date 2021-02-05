@@ -207,7 +207,12 @@ function insertButton() {
         ).innerText;
 
         const desc = document.querySelector("#question-detail-main-tabs")
-          .children[1].children[0].children[1].innerText;
+          ?.children[1]?.children[0]?.children[1]?.innerText;
+        if (!desc) {
+          return message.warn({
+            content: "获取题目描述失败，请先切换到题目描述标签",
+          });
+        }
         const hide = message.loading("正在存储题目信息，请稍后~", 0);
         writeSolutionButton.setAttribute("disabled", true);
         // Dismiss manually and asynchronously
