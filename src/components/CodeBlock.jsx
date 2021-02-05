@@ -14,7 +14,10 @@ class CodeBlock extends PureComponent {
   };
 
   render() {
-    const { language, value = "" } = this.props;
+    let { language, value = "" } = this.props;
+    console.log(language, value);
+    if (language === "py") language = "python";
+    if (language === "js") language = "javascript";
 
     return (
       <SyntaxHighlighter language={language} style={coy}>

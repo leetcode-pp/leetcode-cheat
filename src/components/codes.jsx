@@ -1,12 +1,9 @@
 import React from "react";
 import { Button, message, Collapse } from "antd";
 
-import marked from "marked";
-import hljs from "highlight.js";
+import CodeBlock from "./CodeBlock";
 
 import { copy } from "../utils";
-
-const formatCodeToMarkDown = (code, lang) => `\`\`\`${lang}\n${code}\`\`\`\n`;
 
 const { Panel } = Collapse;
 
@@ -36,25 +33,7 @@ export default function Codes({ codes, renderHeader }) {
             </div>
           }
         >
-          <div
-            dangerouslySetInnerHTML={{
-              __html: marked(formatCodeToMarkDown(c.text, c.language), {
-                renderer: new marked.Renderer(),
-                highlight: function () {
-                  const validLanguage = c.language;
-                  return hljs.highlight(validLanguage, c.text).value;
-                },
-                pedantic: false,
-                gfm: true,
-                langPrefix: c.language,
-                breaks: false,
-                sanitize: false,
-                smartLists: true,
-                smartypants: false,
-                xhtml: false,
-              }),
-            }}
-          ></div>
+          <CodeBlock value={c.text} language={c.language}></CodeBlock>
         </Panel>
       ))}
     </Collapse>
