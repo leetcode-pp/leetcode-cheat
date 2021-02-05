@@ -4,11 +4,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://cdn.jsdelivr.net/gh/leetcode-pp/leetcode-cheat@gh-pages/index.html"
   },
   {
-    "revision": "9b9eddec9879a152d55d",
+    "revision": "57b6c3c2043c99b3c4a6",
     "url": "https://cdn.jsdelivr.net/gh/leetcode-pp/leetcode-cheat@gh-pages/static/css/main.css"
   },
   {
-    "revision": "a24ccf388ba779e8d9ab",
+    "revision": "9e2beae40f2c00f36b79",
     "url": "https://cdn.jsdelivr.net/gh/leetcode-pp/leetcode-cheat@gh-pages/static/js/content.js"
   },
   {
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://cdn.jsdelivr.net/gh/leetcode-pp/leetcode-cheat@gh-pages/static/js/content.js.LICENSE.txt"
   },
   {
-    "revision": "9b9eddec9879a152d55d",
+    "revision": "57b6c3c2043c99b3c4a6",
     "url": "https://cdn.jsdelivr.net/gh/leetcode-pp/leetcode-cheat@gh-pages/static/js/main.js"
   },
   {
