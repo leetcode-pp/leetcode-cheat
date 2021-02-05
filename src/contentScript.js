@@ -9,6 +9,7 @@ import {
   setCloundStorage,
 } from "./utils";
 import zenAble from "./zen/zenMode";
+
 // import AccessToken from "./components/AccessToken";
 
 // class SolutionButton extends PureComponent {
@@ -202,9 +203,10 @@ function insertButton() {
         const title = d.match(/(\d+\. .+)(?=<)/)[1];
         const link = window.location.origin + d.match(/href="(.*?)"/)[1];
         const language = document.querySelector("#lang-select").innerText;
-        let code = document.querySelector(
-          ".monaco-scrollable-element,.editor-scrollable"
-        ).innerText;
+        // let code = document.querySelector(
+        //   ".monaco-scrollable-element,.editor-scrollable"
+        // ).innerText;
+        const code = window?.monaco?.editor?.getModels()[0]?.getValue();
 
         const desc = document.querySelector("#question-detail-main-tabs")
           ?.children[1]?.children[0]?.children[1]?.innerText;

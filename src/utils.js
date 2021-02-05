@@ -155,6 +155,7 @@ export function deserialise_bfs(nodes) {
     root,
   };
 }
+
 export function copy(text, cb) {
   //Create a textbox field where we can insert text to.
   var copyFrom = document.createElement("textarea");

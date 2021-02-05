@@ -3,6 +3,7 @@ module.exports = function override(config, env) {
   config.entry = {
     main: "./src/index.js",
     content: "./src/contentScript.js",
+    inject: "./src/inject.js",
   };
   config.optimization.runtimeChunk = false;
 

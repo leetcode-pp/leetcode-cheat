@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "leetcode cheatsheet",
   "description": "刷题小助手，made by 力扣加加",
-  "version": "0.8.7",
+  "version": "0.8.8",
   "browser_action": {
     "default_popup": "index.html",
     "default_title": "力扣加加"
@@ -13,9 +13,10 @@
   "content_scripts": [
     {
       "matches": ["*://leetcode-cn.com/*", "*://leetcode.com/*"],
-      "js": ["/static/js/content.js"]
+      "js": ["/static/js/inject.js"]
     }
   ],
+  "web_accessible_resources": ["/static/js/content.js"],
   "permissions": ["tabs"],
   "content_security_policy": "script-src 'self' 'sha256-9HcBuUP35aPkU0991A4mASdsuifTkUlifJ7elThz6Ow=' 'sha256-0Jo/EYaXS11i7poc/P9fGcq/o6P0djny2JW6WivTVVw='; object-src 'self'"
 }
