@@ -309,6 +309,12 @@ export default class SolutionTemplate extends PureComponent {
         onOk={() => setModalVisible(false)}
         onCancel={() => setModalVisible(false)}
       /> */}
+        <Button
+          type="link"
+          href="https://mp.weixin.qq.com/s/mcRFKVWXKmlXaBow6TIwug"
+        >
+          如何使用？
+        </Button>
         {!isInExtension() ? (
           <>
             <div className="line">
