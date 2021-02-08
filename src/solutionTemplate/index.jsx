@@ -271,11 +271,11 @@ export default class SolutionTemplate extends PureComponent {
             .then((res) => {
               const { link, title, code, language, desc } = res;
 
-              this.setLanguage(language?.toLowerCase());
+              this.setLanguage(language);
               this.setTemplate(
                 getTemplate({
                   desc,
-                  language: language?.toLowerCase(),
+                  language,
                   link,
                   title,
                   code,
