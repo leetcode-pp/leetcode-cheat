@@ -13,5 +13,10 @@
       "description": "静态资源存放位置（可使用 cdn 加速）",
       "value": "https://cdn.jsdelivr.net/gh/leetcode-pp/leetcode-cheat@gh-pages/"
     }
-  }
+  },
+  "buildpacks": [
+    {
+      "url": "https://buildpack-registry.s3.amazonaws.com/buildpacks/mars/create-react-app.tgza"
+    }
+  ]
 }
