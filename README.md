@@ -4,6 +4,10 @@
 
 - [刷题效率低？或许你就差这么一个插件](https://lucifer.ren/blog/2020/08/16/leetcode-cheat/)
 
+## 部署到自己的服务器
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 ## 开发
 
 目录结构:
@@ -29,15 +33,16 @@
 ## 构建
 
 - npm run build
-- 然后将 build 文件夹的内容添加到扩展中即可，具体方式见上面的`功能介绍`。
 
-> 以后每次执行 npm run build， 插件会自动刷新，无需手动加载。
+> 然后将 build 文件夹的内容添加到扩展中即可，具体方式见上面的`功能介绍`。以后每次执行 npm run build， 插件会自动刷新，无需手动加载。
+
+- npm run build:web 构建 web 版本的应用，即可直接脱离 chrome 插件的形式存在
 
 ## 计划
 
 - [x] 完善题目，优先级比较高的是 91 的这些题目，按照现有的两个题目的标准进行完善。
-- [ ] 标签完善。目前很多标签是没有对应的讲解的，比如递归，队列等。
-- [ ] 代码模板
+- [x] 标签完善。目前很多标签是没有对应的讲解的，比如递归，队列等。
+- [x] 代码模板
 - [ ] [可视化调试](./src/visualDebug/README.md)
 - [ ] “此题已经收录到了 91” 功能
 
