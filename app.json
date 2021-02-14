@@ -7,7 +7,7 @@
   "env": {
     "REACT_APP_BUILD_TARGET": {
       "description": "枚举值：extension 和 web",
-      "value": null
+      "value": "web"
     },
     "PUBLIC_URL": {
       "description": "静态资源存放位置（可使用 cdn 加速）",
