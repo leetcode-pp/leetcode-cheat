@@ -66,122 +66,122 @@ import zenAble from "./zen/zenMode";
 // } else
 
 // testcase eg: `bottom = "BCD", allowed = ["BCG", "CDE", "GEA", "FFF"], c = [1,2,3], d = 2`
-function normalize(testCase) {
-  testCase = testCase.trim().replace(/\n/g, "").replace("&nbsp;", "");
+// function normalize(testCase) {
+//   testCase = testCase.trim().replace(/\n/g, "").replace("&nbsp;", "");
 
-  // 单一参数
-  // console.log(testCase);
-  if (!testCase.includes("=")) {
-    // 数组直接返回
-    // eslint-disable-next-line
-    if (testCase.includes("[") || testCase.includes('"')) {
-      return testCase;
-    } else {
-      // 输入: 3, 2, 0, 0
-      // 输入: 0.0625
+//   // 单一参数
+//   // console.log(testCase);
+//   if (!testCase.includes("=")) {
+//     // 数组直接返回
+//     // eslint-disable-next-line
+//     if (testCase.includes("[") || testCase.includes('"')) {
+//       return testCase;
+//     } else {
+//       // 输入: 3, 2, 0, 0
+//       // 输入: 0.0625
 
-      const parts = testCase.split(",");
-      if (parts.length === 0) return parts.join("");
-      return parts.join("\n");
-    }
-  }
-  let stack = [];
-  let i = 0;
-  while (i < testCase.length) {
-    while (i < testCase.length && testCase[i] !== "=") {
-      i += 1;
-    }
-    // skip =
-    i += 1;
+//       const parts = testCase.split(",");
+//       if (parts.length === 0) return parts.join("");
+//       return parts.join("\n");
+//     }
+//   }
+//   let stack = [];
+//   let i = 0;
+//   while (i < testCase.length) {
+//     while (i < testCase.length && testCase[i] !== "=") {
+//       i += 1;
+//     }
+//     // skip =
+//     i += 1;
 
-    while (i < testCase.length && testCase[i] !== "[" && testCase[i] !== ",") {
-      stack.push(testCase[i]);
-      i += 1;
-    }
-    if (testCase[i] === ",") {
-      // skip ,
-      i += 1;
-      stack.push("\n");
-    } else {
-      // cnt 左括号[ 与 右括号] 个数的差值
-      let cnt = 0;
-      while (i < testCase.length) {
-        stack.push(testCase[i]);
-        cnt += testCase[i] === "[";
-        cnt -= testCase[i] === "]";
-        i += 1;
-        if (cnt === 0) {
-          if (i !== testCase.length) {
-            stack.push("\n");
-          }
+//     while (i < testCase.length && testCase[i] !== "[" && testCase[i] !== ",") {
+//       stack.push(testCase[i]);
+//       i += 1;
+//     }
+//     if (testCase[i] === ",") {
+//       // skip ,
+//       i += 1;
+//       stack.push("\n");
+//     } else {
+//       // cnt 左括号[ 与 右括号] 个数的差值
+//       let cnt = 0;
+//       while (i < testCase.length) {
+//         stack.push(testCase[i]);
+//         cnt += testCase[i] === "[";
+//         cnt -= testCase[i] === "]";
+//         i += 1;
+//         if (cnt === 0) {
+//           if (i !== testCase.length) {
+//             stack.push("\n");
+//           }
 
-          break;
-        }
-      }
-    }
-  }
-  return stack.join("");
-}
+//           break;
+//         }
+//       }
+//     }
+//   }
+//   return stack.join("");
+// }
 
-function extractTestCase(text, prefix) {
-  const possiblePrefixs = [
-    "输出",
-    "返回",
-    "Output",
-    "output",
-    "Return",
-    "return",
-    "",
-  ];
-  for (let tag of possiblePrefixs) {
-    const testCase = text.match(new RegExp(`${prefix}(.*)${tag}`, "s"));
-    if (testCase && testCase.length > 1) {
-      return testCase;
-    }
-  }
-  return [];
-}
+// function extractTestCase(text, prefix) {
+//   const possiblePrefixs = [
+//     "输出",
+//     "返回",
+//     "Output",
+//     "output",
+//     "Return",
+//     "return",
+//     "",
+//   ];
+//   for (let tag of possiblePrefixs) {
+//     const testCase = text.match(new RegExp(`${prefix}(.*)${tag}`, "s"));
+//     if (testCase && testCase.length > 1) {
+//       return testCase;
+//     }
+//   }
+//   return [];
+// }
 
-function getProviedTestCases() {
-  const possibleTags = ["pre", "p"];
-  const possiblePrefixs = ["输入：", "输入:", "Input:", "input:"];
-  const ans = [];
-  for (let tag of possibleTags) {
-    const pres = document.querySelectorAll(tag);
+// function getProviedTestCases() {
+//   const possibleTags = ["pre", "p"];
+//   const possiblePrefixs = ["输入：", "输入:", "Input:", "input:"];
+//   const ans = [];
+//   for (let tag of possibleTags) {
+//     const pres = document.querySelectorAll(tag);
 
-    for (let prefix of possiblePrefixs) {
-      for (var i = 0; i < pres.length; ++i) {
-        if (pres[i].innerText.includes(prefix)) {
-          const testcase = extractTestCase(pres[i].innerText, prefix);
-          if (!testcase || testcase.length <= 1) {
-            不讲武德();
-            return [];
-          }
-          ans.push(normalize(testcase[1]));
-        }
-      }
-      if (ans.length > 0) return ans;
-    }
-  }
-  return ans;
-}
+//     for (let prefix of possiblePrefixs) {
+//       for (var i = 0; i < pres.length; ++i) {
+//         if (pres[i].innerText.includes(prefix)) {
+//           const testcase = extractTestCase(pres[i].innerText, prefix);
+//           if (!testcase || testcase.length <= 1) {
+//             不讲武德();
+//             return [];
+//           }
+//           ans.push(normalize(testcase[1]));
+//         }
+//       }
+//       if (ans.length > 0) return ans;
+//     }
+//   }
+//   return ans;
+// }
 
 function insertButton() {
   const buttons = document.querySelectorAll("button");
   for (var i = 0; i < buttons.length; ++i) {
     if (buttons[i].innerText.includes("执行代码")) {
-      const copyButton = buttons[i].cloneNode(true);
-      copyButton.innerText = "复制所有内置用例";
-      copyButton.style["margin-left"] = "10px";
-      copyButton.onclick = () => {
-        const cases = getProviedTestCases();
-        if (cases.filter(Boolean).length === 0) return 不讲武德();
-        copyToClipboard(cases.join("\n"));
-        message.success({
-          content: "复制成功~",
-        });
-      };
-      buttons[i].parentElement.prepend(copyButton);
+      // const copyButton = buttons[i].cloneNode(true);
+      // copyButton.innerText = "复制所有内置用例";
+      // copyButton.style["margin-left"] = "10px";
+      // copyButton.onclick = () => {
+      //   const cases = getProviedTestCases();
+      //   if (cases.filter(Boolean).length === 0) return 不讲武德();
+      //   copyToClipboard(cases.join("\n"));
+      //   message.success({
+      //     content: "复制成功~",
+      //   });
+      // };
+      // buttons[i].parentElement.prepend(copyButton);
 
       // const writeSolutionButton = document.createElement("div");
       const writeSolutionButton = document.createElement("a");
