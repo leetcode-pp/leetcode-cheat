@@ -121,11 +121,11 @@
     "code": [
         {
             "language": "java",
-            "text": "\nclass Solution {\n    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {\n        ListNode dummyHead = new ListNode(0);\n        ListNode cur = dummyHead;\n        int carry = 0;\n\n        while(l1 != null || l2 != null)\n        {\n            int sum = carry;\n            if(l1 != null)\n            {\n                sum += l1.val;\n                l1 = l1.next;\n            }\n            if(l2 != null)\n            {\n                sum += l2.val;\n                l2 = l2.next;\n            }\n            // 创建新节点\n            carry = sum / 10;\n            cur.next = new ListNode(sum % 10);\n            cur = cur.next;\n    \n        }\n        if (carry > 0) {\n            cur.next = new ListNode(carry);\n        }\n        return dummyHead.next;\n    }\n}\n\n"
+            "text": "\nclass Solution {\n    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {\n        ListNode dummyHead = new ListNode(0);\n        ListNode cur = dummyHead;\n        int carry = 0;\n\n        while(l1 != null || l2 != null)\n        {\n            int sum = carry;\n            if(l1 != null)\n            {\n                sum += l1.val;\n                l1 = l1.next;\n            }\n            if(l2 != null)\n            {\n                sum += l2.val;\n                l2 = l2.next;\n            }\n            // 创建新节点\n            carry = sum / 10;\n            cur.next = new ListNode(sum % 10);\n            cur = cur.next;\n\n        }\n        if (carry > 0) {\n            cur.next = new ListNode(carry);\n        }\n        return dummyHead.next;\n    }\n}\n\n"
         },
         {
             "language": "js",
-            "text": " \n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} l1\n * @param {ListNode} l2\n * @return {ListNode}\n */\nvar addTwoNumbers = function (l1, l2) {\n  if (l1 === null || l2 === null) return null;\n\n  // 使用dummyHead可以简化对链表的处理，dummyHead.next指向新链表\n  let dummyHead = new ListNode(0);\n  let cur1 = l1;\n  let cur2 = l2;\n  let cur = dummyHead; // cur用于计算新链表\n  let carry = 0; // 进位标志\n\n  while (cur1 !== null || cur2 !== null) {\n    let val1 = cur1 !== null ? cur1.val : 0;\n    let val2 = cur2 !== null ? cur2.val : 0;\n    let sum = val1 + val2 + carry;\n    let newNode = new ListNode(sum % 10); // sum%10取模结果范围为0~9，即为当前节点的值\n    carry = sum >= 10 ? 1 : 0; // sum>=10，carry=1，表示有进位\n    cur.next = newNode;\n    cur = cur.next;\n\n    if (cur1 !== null) {\n      cur1 = cur1.next;\n    }\n\n    if (cur2 !== null) {\n      cur2 = cur2.next;\n    }\n  }\n\n  if (carry > 0) {\n    // 如果最后还有进位，新加一个节点\n    cur.next = new ListNode(carry);\n  }\n\n  return dummyHead.next;\n};\n"
+            "text": "\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} l1\n * @param {ListNode} l2\n * @return {ListNode}\n */\nvar addTwoNumbers = function (l1, l2) {\n  if (l1 === null || l2 === null) return null;\n\n  // 使用dummyHead可以简化对链表的处理，dummyHead.next指向新链表\n  let dummyHead = new ListNode(0);\n  let cur1 = l1;\n  let cur2 = l2;\n  let cur = dummyHead; // cur用于计算新链表\n  let carry = 0; // 进位标志\n\n  while (cur1 !== null || cur2 !== null) {\n    let val1 = cur1 !== null ? cur1.val : 0;\n    let val2 = cur2 !== null ? cur2.val : 0;\n    let sum = val1 + val2 + carry;\n    let newNode = new ListNode(sum % 10); // sum%10取模结果范围为0~9，即为当前节点的值\n    carry = sum >= 10 ? 1 : 0; // sum>=10，carry=1，表示有进位\n    cur.next = newNode;\n    cur = cur.next;\n\n    if (cur1 !== null) {\n      cur1 = cur1.next;\n    }\n\n    if (cur2 !== null) {\n      cur2 = cur2.next;\n    }\n  }\n\n  if (carry > 0) {\n    // 如果最后还有进位，新加一个节点\n    cur.next = new ListNode(carry);\n  }\n\n  return dummyHead.next;\n};\n"
         },
         {
             "language": "cpp",
@@ -180,11 +180,11 @@
     "code": [
         {
             "language": "java",
-            "text": "\nclass Solution {\n    public int lengthOfLongestSubstring(String s) {\n        int ans = 0, start = 0;\n        int n = s.length();\n        // \n        Map<Character, Integer> map = new HashMap<>();\n\n        for(int i=0;i<n;i++)\n        {\n            char alpha = s.charAt(i);\n            if(map.containsKey(alpha))\n            {\n                start = Math.max(start, map.get(alpha)+1);\n            }\n            ans = Math.max(ans, i-start+1);\n            // 字符位置\n            map.put(alpha, i);\n        }\n\n        return ans;\n    }\n}\n"
+            "text": "\nclass Solution {\n    public int lengthOfLongestSubstring(String s) {\n        int ans = 0, start = 0;\n        int n = s.length();\n        //\n        Map<Character, Integer> map = new HashMap<>();\n\n        for(int i=0;i<n;i++)\n        {\n            char alpha = s.charAt(i);\n            if(map.containsKey(alpha))\n            {\n                start = Math.max(start, map.get(alpha)+1);\n            }\n            ans = Math.max(ans, i-start+1);\n            // 字符位置\n            map.put(alpha, i);\n        }\n\n        return ans;\n    }\n}\n"
         },
         {
             "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    int lengthOfLongestSubstring(string s) {\n        \n        int ans = 0, start = 0;\n        int n = s.length();\n        // \n        map<char, int> mp;\n\n        for(int i=0;i<n;i++)\n        {\n            char alpha = s[i];\n            if(mp.count(alpha))\n            {\n                start = max(start, mp[alpha]+1);\n            }\n            ans = max(ans, i-start+1);\n            // 字符位置\n            mp[alpha] = i;\n        }\n\n        return ans;\n    }\n};\n"
+            "text": "\nclass Solution {\npublic:\n    int lengthOfLongestSubstring(string s) {\n\n        int ans = 0, start = 0;\n        int n = s.length();\n        //\n        map<char, int> mp;\n\n        for(int i=0;i<n;i++)\n        {\n            char alpha = s[i];\n            if(mp.count(alpha))\n            {\n                start = max(start, mp[alpha]+1);\n            }\n            ans = max(ans, i-start+1);\n            // 字符位置\n            mp[alpha] = i;\n        }\n\n        return ans;\n    }\n};\n"
         },
         {
             "language": "py",
@@ -945,7 +945,7 @@
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    # 翻转一个子链表，并且返回新的头与尾\n    def reverse(self, head: ListNode, tail: ListNode, terminal):\n        cur = head\n        pre = None\n        while cur != terminal:\n            next = cur.next\n            cur.next = pre\n\n            pre = cur\n            cur = next\n        return tail, head\n\n    def reverseKGroup(self, head: ListNode, k: int) -> ListNode:\n        ans = ListNode()\n        ans.next = head\n        pre = ans\n\n        while head:\n            tail = pre\n            # 查看剩余部分长度是否大于等于 k\n            for i in range(k):\n                tail = tail.next\n                if not tail:\n                    return ans.next\n            next = tail.next\n            head, tail = self.reverse(head, tail, tail.next)\n            # 把子链表重新接回原链表\n            pre.next = head\n            tail.next = next\n            pre = tail\n            head = next\n        \n        return ans.next\n\n"
+            "text": "\nclass Solution:\n    # 翻转一个子链表，并且返回新的头与尾\n    def reverse(self, head: ListNode, tail: ListNode, terminal):\n        cur = head\n        pre = None\n        while cur != terminal:\n            next = cur.next\n            cur.next = pre\n\n            pre = cur\n            cur = next\n        return tail, head\n\n    def reverseKGroup(self, head: ListNode, k: int) -> ListNode:\n        ans = ListNode()\n        ans.next = head\n        pre = ans\n\n        while head:\n            tail = pre\n            # 查看剩余部分长度是否大于等于 k\n            for i in range(k):\n                tail = tail.next\n                if not tail:\n                    return ans.next\n            next = tail.next\n            head, tail = self.reverse(head, tail, tail.next)\n            # 把子链表重新接回原链表\n            pre.next = head\n            tail.next = next\n            pre = tail\n            head = next\n\n        return ans.next\n\n"
         },
         {
             "language": "py",
@@ -1376,11 +1376,11 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=33 lang=javascript\n *\n * [33] Search in Rotated Sorted Array\n */\n/**\n * @param {number[]} nums\n * @param {number} target\n * @return {number}\n */\nvar search = function(nums, target) {\n  // 时间复杂度：O(logn)\n  // 空间复杂度：O(1)\n  // [6,7,8,1,2,3,4,5]\n  let start = 0;\n  let end = nums.length - 1;\n\n  while (start <= end) {\n    const mid = start + ((end - start) >> 1);\n    if (nums[mid] === target) return mid;\n\n    // [start, mid]有序\n\n    // ️⚠️注意这里的等号\n    if (nums[mid] >= nums[start]) {\n      //target 在 [start, mid] 之间\n\n      // 其实target不可能等于nums[mid]， 但是为了对称，我还是加上了等号\n      if (target >= nums[start] && target <= nums[mid]) {\n        end = mid - 1;\n      } else {\n        //target 不在 [start, mid] 之间\n        start = mid + 1;\n      }\n    } else {\n      // [mid, end]有序\n\n      // target 在 [mid, end] 之间\n      if (target >= nums[mid] && target <= nums[end]) {\n        start = mid + 1;\n      } else {\n        // target 不在 [mid, end] 之间\n        end = mid - 1;\n      }\n    }\n  }\n\n  return -1;\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=33 lang=javascript\n *\n * [33] Search in Rotated Sorted Array\n */\n/**\n * @param {number[]} nums\n * @param {number} target\n * @return {number}\n */\nvar search = function (nums, target) {\n  // 时间复杂度：O(logn)\n  // 空间复杂度：O(1)\n  // [6,7,8,1,2,3,4,5]\n  let start = 0;\n  let end = nums.length - 1;\n\n  while (start <= end) {\n    const mid = start + ((end - start) >> 1);\n    if (nums[mid] === target) return mid;\n\n    // [start, mid]有序\n\n    // ️⚠️注意这里的等号\n    if (nums[mid] >= nums[start]) {\n      //target 在 [start, mid] 之间\n\n      // 其实target不可能等于nums[mid]， 但是为了对称，我还是加上了等号\n      if (target >= nums[start] && target <= nums[mid]) {\n        end = mid - 1;\n      } else {\n        //target 不在 [start, mid] 之间\n        start = mid + 1;\n      }\n    } else {\n      // [mid, end]有序\n\n      // target 在 [mid, end] 之间\n      if (target >= nums[mid] && target <= nums[end]) {\n        start = mid + 1;\n      } else {\n        // target 不在 [mid, end] 之间\n        end = mid - 1;\n      }\n    }\n  }\n\n  return -1;\n};\n"
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def search(self, nums: List[int], target: int) -> int:\n        \"\"\"用二分法，先判断左右两边哪一边是有序的，再判断是否在有序的列表之内\"\"\"\n        if len(nums) <= 0:\n            return -1\n\n        left = 0\n        right = len(nums) - 1\n        while left < right:\n            mid = (right - left) // 2 + left\n            if nums[mid] == target:\n                return mid\n            \n            # 如果中间的值大于最左边的值，说明左边有序\n            if nums[mid] > nums[left]:\n                if nums[left] <= target <= nums[mid]:\n                    right = mid\n                else:\n                    # 这里 +1，因为上面是 <= 符号\n                    left = mid + 1\n            # 否则右边有序\n            else:\n                # 注意：这里必须是 mid+1，因为根据我们的比较方式，mid属于左边的序列\n                if nums[mid+1] <= target <= nums[right]:\n                    left = mid + 1\n                else:\n                    right = mid\n                    \n        return left if nums[left] == target else -1\n"
+            "text": "\nclass Solution:\n    def search(self, nums: List[int], target: int) -> int:\n        \"\"\"用二分法，先判断左右两边哪一边是有序的，再判断是否在有序的列表之内\"\"\"\n        if len(nums) <= 0:\n            return -1\n\n        left = 0\n        right = len(nums) - 1\n        while left < right:\n            mid = (right - left) // 2 + left\n            if nums[mid] == target:\n                return mid\n\n            # 如果中间的值大于最左边的值，说明左边有序\n            if nums[mid] > nums[left]:\n                if nums[left] <= target <= nums[mid]:\n                    right = mid\n                else:\n                    # 这里 +1，因为上面是 <= 符号\n                    left = mid + 1\n            # 否则右边有序\n            else:\n                # 注意：这里必须是 mid+1，因为根据我们的比较方式，mid属于左边的序列\n                if nums[mid+1] <= target <= nums[right]:\n                    left = mid + 1\n                else:\n                    right = mid\n\n        return left if nums[left] == target else -1\n"
         }
     ]
 },
@@ -1478,11 +1478,19 @@
     "code": [
         {
             "language": "js",
-            "text": "\nfunction backtrack(list, tempList, nums, remain, start) {\n  if (remain < 0) return;\n  else if (remain === 0) return list.push([...tempList]);\n  for (let i = start; i < nums.length; i++) {\n    // 和39.combination-sum 的其中一个区别就是这道题candidates可能有重复\n    // 代码表示就是下面这一行\n    if (i > start && nums[i] == nums[i - 1]) continue; // skip duplicates\n    tempList.push(nums[i]);\n    backtrack(list, tempList, nums, remain - nums[i], i + 1); // i + 1代表不可以重复利用， i 代表数字可以重复使用\n    tempList.pop();\n  }\n}\n/**\n * @param {number[]} candidates\n * @param {number} target\n * @return {number[][]}\n */\nvar combinationSum2 = function (candidates, target) {\n  const list = [];\n  backtrack(\n    list,\n    [],\n    candidates.sort((a, b) => a - b),\n    target,\n    0\n  );\n  return list;\n};\n"
+            "text": "\nfunction backtrack(list, tempList, nums, remain, start) {\n  if (remain < 0) return;\n  else if (remain === 0) return list.push([...tempList]);\n  for (let i = start; i < nums.length; i++) {\n    // 和39.combination-sum 的其中一个区别就是这道题candidates可能有重复\n    // 代码表示就是下面这一行。注意 i > start 这一条件\n    if (i > start && nums[i] == nums[i - 1]) continue; // skip duplicates\n    tempList.push(nums[i]);\n    backtrack(list, tempList, nums, remain - nums[i], i + 1); // i + 1代表不可以重复利用， i 代表数字可以重复使用\n    tempList.pop();\n  }\n}\n/**\n * @param {number[]} candidates\n * @param {number} target\n * @return {number[][]}\n */\nvar combinationSum2 = function (candidates, target) {\n  const list = [];\n  backtrack(\n    list,\n    [],\n    candidates.sort((a, b) => a - b),\n    target,\n    0\n  );\n  return list;\n};\n"
         },
         {
             "language": "cpp",
             "text": "\nclass Solution {\n    vector<vector<int>> ans;\n    void backtrack(vector<int> &A, int target, int start, vector<int> &path) {\n        if (!target) {\n            ans.push_back(path);\n            return;\n        }\n        for (int i = start; i < A.size() && target >= A[i]; ++i) {\n            if (i != start && A[i] == A[i - 1]) continue;\n            path.push_back(A[i]);\n            dfs(A, target - A[i], i + 1, path);\n            path.pop_back();\n        }\n    }\npublic:\n    vector<vector<int>> combinationSum2(vector<int>& A, int target) {\n        sort(A.begin(), A.end());\n        vector<int> path;\n        backtrack(A, target, 0, path);\n        return ans;\n    }\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\n if target == 0:\n    res.append(path.copy())\nelse:\n    for i in range(begin, size):\n        left_num = target - candidates[i]\n        if left_num < 0:\n            break\n        path.append(candidates[i])\n        self._find_path(candidates, path, res, left_num, i+1, size)\n        path.pop()\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\n if target == 0:\n    res.append(path.copy())\nelse:\n    for i in range(begin, size):\n        # 增加下面一行代码\n        if i > begin and candidates[i] == candidate[i - 1]: continue\n        left_num = target - candidates[i]\n        if left_num < 0:\n            break\n        path.append(candidates[i])\n        self._find_path(candidates, path, res, left_num, i+1, size)\n        path.pop()\n"
         },
         {
             "language": "py",
@@ -3399,11 +3407,11 @@
     "code": [
         {
             "language": "java",
-            "text": "\n/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode(int x) { val = x; }\n * }\n */\nclass Solution {\n    public boolean isSymmetric(TreeNode root) {\n        if(root == null)\n        {\n            return true;\n        }\n        else{\n            return recur(root.left, root.right);\n        }\n        // return root == null ? true : recur(root.left, root.right);\n    }\n\n    public boolean recur(TreeNode l, TreeNode r)\n    {\n        if(l == null && r==null)\n        {\n            return true;\n        }\n        // 只存在一个子节点 或者左右不相等 \n        if(l==null || r==null || l.val != r.val)\n        {\n            return false;\n        }\n\n        return recur(l.left, r.right) && recur(l.right, r.left);\n    }\n}\n"
+            "text": "\n/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode(int x) { val = x; }\n * }\n */\nclass Solution {\n    public boolean isSymmetric(TreeNode root) {\n        if(root == null)\n        {\n            return true;\n        }\n        else{\n            return recur(root.left, root.right);\n        }\n        // return root == null ? true : recur(root.left, root.right);\n    }\n\n    public boolean recur(TreeNode l, TreeNode r)\n    {\n        if(l == null && r==null)\n        {\n            return true;\n        }\n        // 只存在一个子节点 或者左右不相等\n        if(l==null || r==null || l.val != r.val)\n        {\n            return false;\n        }\n\n        return recur(l.left, r.right) && recur(l.right, r.left);\n    }\n}\n"
         },
         {
             "language": "cpp",
-            "text": "\n/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}\n * };\n */\nclass Solution {\npublic:\n    bool isSymmetric(TreeNode* root) {\n        return root==NULL?true:recur(root->left, root->right);\n    }\n\n    bool recur(TreeNode* l, TreeNode* r)\n    {\n        if(l == NULL && r==NULL)\n        {\n            return true;\n        }\n        // 只存在一个子节点 或者左右不相等 \n        if(l==NULL || r==NULL || l->val != r->val)\n        {\n            return false;\n        }\n\n        return recur(l->left, r->right) && recur(l->right, r->left);\n    }\n};\n"
+            "text": "\n/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}\n * };\n */\nclass Solution {\npublic:\n    bool isSymmetric(TreeNode* root) {\n        return root==NULL?true:recur(root->left, root->right);\n    }\n\n    bool recur(TreeNode* l, TreeNode* r)\n    {\n        if(l == NULL && r==NULL)\n        {\n            return true;\n        }\n        // 只存在一个子节点 或者左右不相等\n        if(l==NULL || r==NULL || l->val != r->val)\n        {\n            return false;\n        }\n\n        return recur(l->left, r->right) && recur(l->right, r->left);\n    }\n};\n"
         },
         {
             "language": "py",
@@ -3480,11 +3488,11 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/**\n * @param {TreeNode} root\n * @return {number[][]}\n */\nvar levelOrder = function(root) {\n  if (!root) return [];\n  const items = []; // 存放所有节点\n  const queue = [root, null]; // null 简化操作\n  let levelNodes = []; // 存放每一层的节点\n\n  while (queue.length > 0) {\n    const t = queue.shift();\n\n    if (t) {\n      levelNodes.push(t.val)\n      if (t.left) {\n        queue.push(t.left);\n      }\n      if (t.right) {\n        queue.push(t.right);\n      }\n    } else { // 一层已经遍历完了\n      items.push(levelNodes);\n      levelNodes = [];\n      if (queue.length > 0) {\n        queue.push(null)\n      }\n    }\n  }\n\n  return items;\n};\n\n"
+            "text": "\n/**\n * @param {TreeNode} root\n * @return {number[][]}\n */\nvar levelOrder = function (root) {\n  if (!root) return [];\n  const items = []; // 存放所有节点\n  const queue = [root, null]; // null 简化操作\n  let levelNodes = []; // 存放每一层的节点\n\n  while (queue.length > 0) {\n    const t = queue.shift();\n\n    if (t) {\n      levelNodes.push(t.val);\n      if (t.left) {\n        queue.push(t.left);\n      }\n      if (t.right) {\n        queue.push(t.right);\n      }\n    } else {\n      // 一层已经遍历完了\n      items.push(levelNodes);\n      levelNodes = [];\n      if (queue.length > 0) {\n        queue.push(null);\n      }\n    }\n  }\n\n  return items;\n};\n"
         },
         {
             "language": "py",
-            "text": "\n# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.left = None\n#         self.right = None\n\nclass Solution:\n    def levelOrder(self, root: TreeNode) -> List[List[int]]:\n        \"\"\"递归法\"\"\"\n        if root is None:\n            return []\n        \n        result = []\n        \n        def add_to_result(level, node):\n            \"\"\"递归函数\n            :param level int 当前在二叉树的层次\n            :param node TreeNode 当前节点\n            \"\"\"\n            if level > len(result) - 1:\n                result.append([])\n                \n            result[level].append(node.val)\n            if node.left:\n                add_to_result(level+1, node.left)\n            if node.right:\n                add_to_result(level+1, node.right)\n        \n        add_to_result(0, root)\n        return result\n"
+            "text": "\n# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.left = None\n#         self.right = None\n\nclass Solution:\n    def levelOrder(self, root: TreeNode) -> List[List[int]]:\n        \"\"\"递归法\"\"\"\n        if root is None:\n            return []\n\n        result = []\n\n        def add_to_result(level, node):\n            \"\"\"递归函数\n            :param level int 当前在二叉树的层次\n            :param node TreeNode 当前节点\n            \"\"\"\n            if level > len(result) - 1:\n                result.append([])\n\n            result[level].append(node.val)\n            if node.left:\n                add_to_result(level+1, node.left)\n            if node.right:\n                add_to_result(level+1, node.right)\n\n        add_to_result(0, root)\n        return result\n"
         }
     ]
 },
@@ -3727,7 +3735,7 @@
         },
         {
             "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    TreeNode* sortedArrayToBST(vector<int>& nums) {\n        return reBuild(nums, 0, nums.size()-1);\n    }\n\n    TreeNode* reBuild(vector<int>& nums, int left, int right) \n    {\n        // 终止条件：中序遍历为空\n        if(left > right)\n        {\n            return NULL;\n        }\n        // 建立当前子树的根节点\n        int mid = (left+right)/2;\n        TreeNode * root = new TreeNode(nums[mid]);\n       \n        // 左子树的下层递归\n        root->left = reBuild(nums, left, mid-1);\n        // 右子树的下层递归\n        root->right = reBuild(nums, mid+1, right);\n        // 返回根节点\n        return root;\n    }\n};\n"
+            "text": "\nclass Solution {\npublic:\n    TreeNode* sortedArrayToBST(vector<int>& nums) {\n        return reBuild(nums, 0, nums.size()-1);\n    }\n\n    TreeNode* reBuild(vector<int>& nums, int left, int right)\n    {\n        // 终止条件：中序遍历为空\n        if(left > right)\n        {\n            return NULL;\n        }\n        // 建立当前子树的根节点\n        int mid = (left+right)/2;\n        TreeNode * root = new TreeNode(nums[mid]);\n\n        // 左子树的下层递归\n        root->left = reBuild(nums, left, mid-1);\n        // 右子树的下层递归\n        root->right = reBuild(nums, mid+1, right);\n        // 返回根节点\n        return root;\n    }\n};\n"
         },
         {
             "language": "py",
@@ -3735,7 +3743,7 @@
         },
         {
             "language": "py",
-            "text": "\nclass Solution(object):\n    def sortedArrayToBST(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: TreeNode\n        \"\"\"\n        return self.reBuild(nums, 0, len(nums)-1)\n    \n    def reBuild(self, nums, left, right):\n         # 终止条件：\n        if left > right:\n            return\n        # 建立当前子树的根节点\n        mid = (left + right)//2\n        root = TreeNode(nums[mid])\n        # 左右子树的下层递归\n        root.left = self.reBuild(nums, left, mid-1)\n        root.right = self.reBuild(nums, mid+1, right)\n        \n        return root\n"
+            "text": "\nclass Solution(object):\n    def sortedArrayToBST(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: TreeNode\n        \"\"\"\n        return self.reBuild(nums, 0, len(nums)-1)\n\n    def reBuild(self, nums, left, right):\n         # 终止条件：\n        if left > right:\n            return\n        # 建立当前子树的根节点\n        mid = (left + right)//2\n        root = TreeNode(nums[mid])\n        # 左右子树的下层递归\n        root.left = self.reBuild(nums, left, mid-1)\n        root.right = self.reBuild(nums, mid+1, right)\n\n        return root\n"
         }
     ]
 },
@@ -3759,9 +3767,9 @@
             "color": "magenta"
         },
         {
-            "text": "同理,当前节点的值必然小于所有右子树节点的值",
+            "text": "> 同理,当前节点的值必然小于所有右子树节点的值",
             "link": null,
-            "color": "green"
+            "color": "red"
         }
     ],
     "keyPoints": [],
@@ -3775,11 +3783,11 @@
         },
         {
             "language": "js",
-            "text": "\n   var sortedListToBST = function(head) {\n         if(!head) return null;\n         return run(head, null);\n   };\n\n   function run(head, tail){\n         if(head == tail) return null;\n         let fast = head;\n         let slow = head;\n         while(fast != tail && fast.next != tail){\n           fast = fast.next.next;\n           slow = slow.next;\n         }\n         let root = new TreeNode(slow.val);\n         root.left = run(head, slow);\n         root.right = run(slow.next, tail);\n         return root;\n   }\n"
+            "text": "\nvar sortedListToBST = function (head) {\n  if (!head) return null;\n  return run(head, null);\n};\n\nfunction run(head, tail) {\n  if (head == tail) return null;\n  let fast = head;\n  let slow = head;\n  while (fast != tail && fast.next != tail) {\n    fast = fast.next.next;\n    slow = slow.next;\n  }\n  let root = new TreeNode(slow.val);\n  root.left = run(head, slow);\n  root.right = run(slow.next, tail);\n  return root;\n}\n"
         },
         {
             "language": "js",
-            "text": "\nvar sortedListToBST = function(head) {\n    let res = []\n    while(head){\n        res.push(head.val)\n        head = head.next\n    }\n    return run(res)\n};\n\nfunction run(res){\n    if(res.length == 0) return null\n    let mid = parseInt(res.length / 2)\n    let root = new TreeNode(res[mid])\n    root.left = mid > 0 ? run(res.slice(0, mid)) : null\n    root.right = mid >= res.length - 1 ? null : run(res.slice(mid + 1))\n    return root\n}\n"
+            "text": "\nvar sortedListToBST = function (head) {\n  let res = [];\n  while (head) {\n    res.push(head.val);\n    head = head.next;\n  }\n  return run(res);\n};\n\nfunction run(res) {\n  if (res.length == 0) return null;\n  let mid = parseInt(res.length / 2);\n  let root = new TreeNode(res[mid]);\n  root.left = mid > 0 ? run(res.slice(0, mid)) : null;\n  root.right = mid >= res.length - 1 ? null : run(res.slice(mid + 1));\n  return root;\n}\n"
         }
     ]
 },
@@ -3955,9 +3963,9 @@
     "name": "binary-tree-maximum-path-sum",
     "pre": [
         {
-            "text": "递归",
-            "link": null,
-            "color": "orange"
+            "text": "树",
+            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/tree.md",
+            "color": "purple"
         }
     ],
     "keyPoints": [
@@ -3996,6 +4004,10 @@
         {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=124 lang=javascript\n *\n * [124] Binary Tree Maximum Path Sum\n */\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\nfunction helper(node, payload) {\n  if (node === null) return 0;\n\n  const l = helper(node.left, payload);\n  const r = helper(node.right, payload);\n\n  payload.max = Math.max(\n    node.val + Math.max(0, l) + Math.max(0, r),\n    payload.max\n  );\n\n  return node.val + Math.max(l, r, 0);\n}\n/**\n * @param {TreeNode} root\n * @return {number}\n */\nvar maxPathSum = function (root) {\n  if (root === null) return 0;\n  const payload = {\n    max: root.val,\n  };\n  helper(root, payload);\n  return payload.max;\n};\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\nclass Solution {\nprivate:\n    int ans = INT_MIN;\n    int postOrder(TreeNode *root) {\n        if (!root) return INT_MIN;\n        int L = max(0, postOrder(root->left)), R = max(0, postOrder(root->right));\n        ans = max(ans, L + R + root->val);\n        return root->val + max(L, R);\n    }\npublic:\n    int maxPathSum(TreeNode* root) {\n        postOrder(root);\n        return ans;\n    }\n};\n\n"
         },
         {
             "language": "py",
@@ -4100,7 +4112,7 @@
     "code": [
         {
             "language": "java",
-            "text": "\nclass Solution {\n    public int longestConsecutive(int[] nums) {\n        Set<Integer> set = new HashSet<Integer>();\n        int ans = 0;\n        for (int num : nums) {\n            set.add(num);\n        }\n        for(int i = 0;i < nums.length; i ++) {\n            int x = nums[i];\n            // 说明x是连续序列的开头元素\n            if  (!set.contains(x - 1)) {\n                while(set.contains(x + 1)) {\n                    x ++;\n                }\n            }\n            ans = Math.max(ans, x - nums[i] + 1);\n        }\n        return ans;\n        \n    }\n}\n"
+            "text": "\nclass Solution {\n    public int longestConsecutive(int[] nums) {\n        Set<Integer> set = new HashSet<Integer>();\n        int ans = 0;\n        for (int num : nums) {\n            set.add(num);\n        }\n        for(int i = 0;i < nums.length; i ++) {\n            int x = nums[i];\n            // 说明x是连续序列的开头元素\n            if  (!set.contains(x - 1)) {\n                while(set.contains(x + 1)) {\n                    x ++;\n                }\n            }\n            ans = Math.max(ans, x - nums[i] + 1);\n        }\n        return ans;\n\n    }\n}\n"
         },
         {
             "language": "js",
@@ -4108,7 +4120,7 @@
         },
         {
             "language": "js",
-            "text": "\n/**\n * @param {number[]} nums\n * @return {number}\n */\nvar longestConsecutive = function(nums) {\n  set = new Set(nums);\n  let max = 0;\n  let temp = 0;\n  set.forEach(x => {\n    // 说明x是连续序列的开头元素。加这个条件相当于剪枝的作用，否则时间复杂度会退化到 N ^ 2\n    if (!set.has(x - 1)) {\n      temp = x + 1;\n      while (set.has(y)) {\n        temp = temp + 1;\n      }\n      max = Math.max(max, y - x); // y - x 就是从x开始到最后有多少连续的数字\n    }\n  });\n  return max;\n};\n"
+            "text": "\n/**\n * @param {number[]} nums\n * @return {number}\n */\nvar longestConsecutive = function (nums) {\n  set = new Set(nums);\n  let max = 0;\n  let temp = 0;\n  set.forEach((x) => {\n    // 说明x是连续序列的开头元素。加这个条件相当于剪枝的作用，否则时间复杂度会退化到 N ^ 2\n    if (!set.has(x - 1)) {\n      temp = x + 1;\n      while (set.has(y)) {\n        temp = temp + 1;\n      }\n      max = Math.max(max, y - x); // y - x 就是从x开始到最后有多少连续的数字\n    }\n  });\n  return max;\n};\n"
         },
         {
             "language": "py",
@@ -4149,7 +4161,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=129 lang=javascript\n *\n * [129] Sum Root to Leaf Numbers\n */\nfunction helper(node, cur) {\n  if (node === null) return 0;\n  const next = node.val + cur * 10;\n\n  if (node.left === null && node.right === null) return next;\n\n  const l = helper(node.left, next);\n  const r = helper(node.right, next);\n\n  return l + r;\n}\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @return {number}\n */\nvar sumNumbers = function(root) {\n  // tag: `tree` `dfs` `math`\n  return helper(root, 0);\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=129 lang=javascript\n *\n * [129] Sum Root to Leaf Numbers\n */\nfunction helper(node, cur) {\n  if (node === null) return 0;\n  const next = node.val + cur * 10;\n\n  if (node.left === null && node.right === null) return next;\n\n  const l = helper(node.left, next);\n  const r = helper(node.right, next);\n\n  return l + r;\n}\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @return {number}\n */\nvar sumNumbers = function (root) {\n  // tag: `tree` `dfs` `math`\n  return helper(root, 0);\n};\n"
         },
         {
             "language": "py",
@@ -4207,11 +4219,15 @@
     "code": [
         {
             "language": "js",
-            "text": "\n\n\n\n/*\n * @lc app=leetcode id=130 lang=javascript\n *\n * [130] Surrounded Regions\n */\n// 将O以及周边的O转化为A\nfunction mark(board, i, j, rows, cols) {\n  if (i < 0 || i > rows - 1 || j < 0 || j > cols - 1 || board[i][j] !== \"O\")\n    return;\n\n  board[i][j] = \"A\";\n  mark(board, i + 1, j, rows, cols);\n  mark(board, i - 1, j, rows, cols);\n  mark(board, i, j + 1, rows, cols);\n  mark(board, i, j - 1, rows, cols);\n}\n/**\n * @param {character[][]} board\n * @return {void} Do not return anything, modify board in-place instead.\n */\nvar solve = function(board) {\n  const rows = board.length;\n  if (rows === 0) return [];\n  const cols = board[0].length;\n\n  for (let i = 0; i < rows; i++) {\n    for (let j = 0; j < cols; j++) {\n      if (i === 0 || i == rows - 1 || j === 0 || j === cols - 1) {\n        mark(board, i, j, rows, cols);\n      }\n    }\n  }\n\n  for (let i = 0; i < rows; i++) {\n    for (let j = 0; j < cols; j++) {\n      if (board[i][j] === \"O\") {\n        board[i][j] = \"X\";\n      } else if (board[i][j] === \"A\") {\n        board[i][j] = \"O\";\n      }\n    }\n  }\n\n  return board;\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=130 lang=javascript\n *\n * [130] Surrounded Regions\n */\n// 将O以及周边的O转化为A\nfunction mark(board, i, j, rows, cols) {\n  if (i < 0 || i > rows - 1 || j < 0 || j > cols - 1 || board[i][j] !== \"O\")\n    return;\n\n  board[i][j] = \"A\";\n  mark(board, i + 1, j, rows, cols);\n  mark(board, i - 1, j, rows, cols);\n  mark(board, i, j + 1, rows, cols);\n  mark(board, i, j - 1, rows, cols);\n}\n/**\n * @param {character[][]} board\n * @return {void} Do not return anything, modify board in-place instead.\n */\nvar solve = function (board) {\n  const rows = board.length;\n  if (rows === 0) return [];\n  const cols = board[0].length;\n\n  for (let i = 0; i < rows; i++) {\n    for (let j = 0; j < cols; j++) {\n      if (i === 0 || i == rows - 1 || j === 0 || j === cols - 1) {\n        mark(board, i, j, rows, cols);\n      }\n    }\n  }\n\n  for (let i = 0; i < rows; i++) {\n    for (let j = 0; j < cols; j++) {\n      if (board[i][j] === \"O\") {\n        board[i][j] = \"X\";\n      } else if (board[i][j] === \"A\") {\n        board[i][j] = \"O\";\n      }\n    }\n  }\n\n  return board;\n};\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\nclass Solution {\n    int M, N, dirs[4][2] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};\n    void dfs(vector<vector<char>> &board, int x, int y) {\n        if (x < 0 || x >= M || y < 0 || y >= N || board[x][y] != 'O') return;\n        board[x][y] = '#';\n        for (auto &dir : dirs) dfs(board, x + dir[0], y + dir[1]);\n    }\npublic:\n    void solve(vector<vector<char>>& board) {\n        if (board.empty() || board[0].empty()) return;\n        M = board.size(), N = board[0].size();\n        for (int i = 0; i < M; ++i) {\n            dfs(board, i, 0);\n            dfs(board, i, N - 1);\n        }\n        for (int j = 0; j < N; ++j) {\n            dfs(board, 0, j);\n            dfs(board, M - 1, j);\n        }\n        for (auto &row : board) {\n            for (auto &cell : row) {\n                cell = cell == '#' ? 'O' : 'X';\n            }\n        }\n    }\n};\n"
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def solve(self, board: List[List[str]]) -> None:\n        \"\"\"\n        Do not return anything, modify board in-place instead.\n        \"\"\"\n        # 如果数组长或宽小于等于2，则不需要替换\n        if len(board) <= 2 or len(board[0]) <= 2:\n            return\n        \n        row, col = len(board), len(board[0])\n        \n        def dfs(i, j):\n            \"\"\"\n            深度优先算法，如果符合条件，替换为A并进一步测试，否则停止\n            \"\"\"\n            if i < 0 or j < 0 or i >= row or j >= col or board[i][j] != 'O':\n                return\n            board[i][j] = 'A'\n            \n            dfs(i - 1, j)\n            dfs(i + 1, j)\n            dfs(i, j - 1)\n            dfs(i, j + 1)\n        \n        # 从外围开始\n        for i in range(row):\n            dfs(i, 0)\n            dfs(i, col-1)\n        \n        for j in range(col):\n            dfs(0, j)\n            dfs(row-1, j)\n        \n        # 最后完成替换\n        for i in range(row):\n            for j in range(col):\n                if board[i][j] == 'O':\n                    board[i][j] = 'X'\n                elif board[i][j] == 'A':\n                    board[i][j] = 'O'\n"
+            "text": "\nclass Solution:\n    def solve(self, board: List[List[str]]) -> None:\n        \"\"\"\n        Do not return anything, modify board in-place instead.\n        \"\"\"\n        # 如果数组长或宽小于等于2，则不需要替换\n        if len(board) <= 2 or len(board[0]) <= 2:\n            return\n\n        row, col = len(board), len(board[0])\n\n        def dfs(i, j):\n            \"\"\"\n            深度优先算法，如果符合条件，替换为A并进一步测试，否则停止\n            \"\"\"\n            if i < 0 or j < 0 or i >= row or j >= col or board[i][j] != 'O':\n                return\n            board[i][j] = 'A'\n\n            dfs(i - 1, j)\n            dfs(i + 1, j)\n            dfs(i, j - 1)\n            dfs(i, j + 1)\n\n        # 从外围开始\n        for i in range(row):\n            dfs(i, 0)\n            dfs(i, col-1)\n\n        for j in range(col):\n            dfs(0, j)\n            dfs(row-1, j)\n\n        # 最后完成替换\n        for i in range(row):\n            for j in range(col):\n                if board[i][j] == 'O':\n                    board[i][j] = 'X'\n                elif board[i][j] == 'A':\n                    board[i][j] = 'O'\n"
         }
     ]
 },
@@ -4252,6 +4268,10 @@
         {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=131 lang=javascript\n *\n * [131] Palindrome Partitioning\n */\n\nfunction isPalindrom(s) {\n  let left = 0;\n  let right = s.length - 1;\n\n  while (left < right && s[left] === s[right]) {\n    left++;\n    right--;\n  }\n\n  return left >= right;\n}\nfunction backtrack(s, list, tempList, start) {\n  const sliced = s.slice(start);\n\n  if (isPalindrom(sliced) && tempList.join(\"\").length === s.length)\n    list.push([...tempList]);\n\n  for (let i = 0; i < sliced.length; i++) {\n    const sub = sliced.slice(0, i + 1);\n    if (isPalindrom(sub)) {\n      tempList.push(sub);\n    } else {\n      continue;\n    }\n    backtrack(s, list, tempList, start + i + 1);\n    tempList.pop();\n  }\n}\n/**\n * @param {string} s\n * @return {string[][]}\n */\nvar partition = function (s) {\n  // \"aab\"\n  // [\"aa\", \"b\"]\n  // [\"a\", \"a\", \"b\"]\n  const list = [];\n  backtrack(s, list, [], 0);\n  return list;\n};\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\n\tclass Solution {\nprivate:\n  vector<vector<string>> ans;\n  vector<string> tmp;\n  bool isPalindrome(string &s, int first, int last) {\n    while (first < last && s[first] == s[last]) ++first, --last;\n    return first >= last;\n  }\n  void dfs(string &s, int start) {\n    if (start == s.size()) { ans.push_back(tmp); return; }\n    for (int i = start; i < s.size(); ++i) {\n      if (isPalindrome(s, start, i)) {\n        tmp.push_back(s.substr(start, i - start + 1));\n        dfs(s, i + 1);\n        tmp.pop_back();\n      }\n    }\n  }\npublic:\n  vector<vector<string>> partition(string s) {\n    dfs(s, 0);\n    return ans;\n  }\n};\n"
         },
         {
             "language": "py",
@@ -4309,7 +4329,7 @@
         },
         {
             "language": "js",
-            "text": "\n/**\n * @param {number[]} nums\n * @return {number}\n */\nvar singleNumber = function(nums) {\n  let ret = 0;\n  for (let index = 0; index < nums.length; index++) {\n    const element = nums[index];\n    ret = ret ^ element;\n  }\n  return ret;\n};\n"
+            "text": "\n/**\n * @param {number[]} nums\n * @return {number}\n */\nvar singleNumber = function (nums) {\n  let ret = 0;\n  for (let index = 0; index < nums.length; index++) {\n    const element = nums[index];\n    ret = ret ^ element;\n  }\n  return ret;\n};\n"
         },
         {
             "language": "py",
@@ -4348,6 +4368,10 @@
         {
             "language": "js",
             "text": "\n/**\n * @param {string} s\n * @param {string[]} wordDict\n * @return {boolean}\n */\nvar wordBreak = function (s, wordDict) {\n  const dp = Array(s.length + 1);\n  dp[0] = true;\n  for (let i = 0; i < s.length + 1; i++) {\n    for (let word of wordDict) {\n      if (word.length <= i && dp[i - word.length]) {\n        if (s.substring(i - word.length, i) === word) {\n          dp[i] = true;\n        }\n      }\n    }\n  }\n\n  return dp[s.length] || false;\n};\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\nclass Solution {\npublic:\n    bool wordBreak(string s, vector<string>& dict) {\n        unordered_set<string> st(begin(dict), end(dict));\n        int N = s.size();\n        vector<bool> dp(N + 1);\n        dp[0] = true;\n        for (int i = 1; i <= N; ++i) {\n            for (int j = 0; j < i && !dp[i]; ++j) {\n                dp[i] = dp[j] && st.count(s.substr(j, i - j));\n            }\n        }\n        return dp[N];\n    }\n};\n\n"
         }
     ]
 },
@@ -4378,6 +4402,10 @@
         {
             "language": "js",
             "text": "\n{\n  hi: true,\n  h: true,\n  i: true,\n  world: true,\n  hello: true,\n\n}\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\nclass Solution {\n    int maxLen = 0;\n    unordered_set<string> ws;\n    vector<int> m;\n    vector<string> ans;\n    bool dfs(string &s, int i, string tmp) {\n        if (i == s.size()) {\n            ans.push_back(tmp);\n            return true;\n        }\n        if (m[i] == 0) return m[i];\n        m[i] = 0;\n        for (int j = min((int)s.size(), i + maxLen); j > i; --j) {\n            auto sub = s.substr(i, j - i);\n            if (ws.count(sub) && dfs(s, j, tmp.size() ? tmp + \" \" + sub : sub)) m[i] = 1;\n        }\n        return m[i];\n    }\npublic:\n    vector<string> wordBreak(string s, vector<string>& dict) {\n        ws = { dict.begin(), dict.end() };\n        for (auto &w : dict) maxLen = max(maxLen, (int)w.size());\n        m.assign(s.size(), -1); // -1 = unvisited, 0 = can not reach end, 1 = can reach end.\n        dfs(s, 0, \"\");\n        return ans;\n    }\n};\n"
         },
         {
             "language": "py",
@@ -4413,6 +4441,10 @@
         {
             "language": "js",
             "text": "\nif (head == null || head.next == null) return null;\nlet fast = (slow = head);\ndo {\n  if (fast != null && fast.next != null) {\n    fast = fast.next.next;\n  } else {\n    fast = null;\n  }\n  slow = slow.next;\n} while (fast != slow);\nif (fast == null) return null;\nfast = head;\nwhile (fast != slow) {\n  fast = fast.next;\n  slow = slow.next;\n}\nreturn fast;\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\nclass Solution {\npublic:\n    ListNode *detectCycle(ListNode *head) {\n        if (!head) return NULL;\n        auto p = head, q = head;\n        while (p && p->next) {\n            p = p->next->next;\n            q = q->next;\n            if (p == q) break;\n        }\n        if (!p || !p->next) return NULL;\n        p = head;\n        for (; p != q; p = p->next, q = q->next);\n        return p;\n    }\n};\n\n"
         }
     ]
 },
@@ -4472,7 +4504,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/**\n * @param {TreeNode} root\n * @return {number[]}\n */\nvar preorderTraversal = function(root) {\n  // 1. Recursive solution\n\n  // if (!root) return [];\n\n  // return [root.val].concat(preorderTraversal(root.left)).concat(preorderTraversal(root.right));\n\n  // 2. iterative solutuon\n\n  if (!root) return [];\n  const ret = [];\n  const stack = [root];\n  let t = stack.pop();\n\n  while (t) {\n    if (t.right) {\n      stack.push(t.right);\n    }\n    if (t.left) {\n      stack.push(t.left);\n    }\n    ret.push(t.val);\n    t = stack.pop();\n  }\n\n  return ret;\n};\n"
+            "text": "\n/**\n * @param {TreeNode} root\n * @return {number[]}\n */\nvar preorderTraversal = function (root) {\n  // 1. Recursive solution\n\n  // if (!root) return [];\n\n  // return [root.val].concat(preorderTraversal(root.left)).concat(preorderTraversal(root.right));\n\n  // 2. iterative solutuon\n\n  if (!root) return [];\n  const ret = [];\n  const stack = [root];\n  let t = stack.pop();\n\n  while (t) {\n    if (t.right) {\n      stack.push(t.right);\n    }\n    if (t.left) {\n      stack.push(t.left);\n    }\n    ret.push(t.val);\n    t = stack.pop();\n  }\n\n  return ret;\n};\n"
         }
     ]
 },
@@ -4532,7 +4564,11 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @return {number[]}\n */\nvar postorderTraversal = function(root) {\n  // 1. Recursive solution\n\n  // if (!root) return [];\n\n  // return postorderTraversal(root.left).concat(postorderTraversal(root.right)).concat(root.val);\n\n  // 2. iterative solutuon\n\n  if (!root) return [];\n  const ret = [];\n  const stack = [root];\n  let p = root; // 标识元素，用来判断节点是否应该出栈\n\n  while (stack.length > 0) {\n    const top = stack[stack.length - 1];\n    if (\n      top.left === p ||\n      top.right === p || // 子节点已经遍历过了\n      (top.left === null && top.right === null) // 叶子元素\n    ) {\n      p = stack.pop();\n      ret.push(p.val);\n    } else {\n      if (top.right) {\n        stack.push(top.right);\n      }\n      if (top.left) {\n        stack.push(top.left);\n      }\n    }\n  }\n\n  return ret;\n};\n\n"
+            "text": "\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @return {number[]}\n */\nvar postorderTraversal = function (root) {\n  // 1. Recursive solution\n\n  // if (!root) return [];\n\n  // return postorderTraversal(root.left).concat(postorderTraversal(root.right)).concat(root.val);\n\n  // 2. iterative solutuon\n\n  if (!root) return [];\n  const ret = [];\n  const stack = [root];\n  let p = root; // 标识元素，用来判断节点是否应该出栈\n\n  while (stack.length > 0) {\n    const top = stack[stack.length - 1];\n    if (\n      top.left === p ||\n      top.right === p || // 子节点已经遍历过了\n      (top.left === null && top.right === null) // 叶子元素\n    ) {\n      p = stack.pop();\n      ret.push(p.val);\n    } else {\n      if (top.right) {\n        stack.push(top.right);\n      }\n      if (top.left) {\n        stack.push(top.left);\n      }\n    }\n  }\n\n  return ret;\n};\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\nclass Solution {\npublic:\n    vector<int> postorderTraversal(TreeNode* root) {\n        vector<int> ans;\n        stack<TreeNode*> s;\n        TreeNode *prev = NULL;\n        while (root || s.size()) {\n            while (root) {\n                s.push(root);\n                root = root->left;\n            }\n            root = s.top();\n            if (!root->right || root->right == prev) {\n                ans.push_back(root->val);\n                s.pop();\n                prev = root;\n                root = NULL;\n            } else root = root->right;\n        }\n        return ans;\n    }\n};\n"
         }
     ]
 },
@@ -4552,6 +4588,10 @@
         {
             "language": "js",
             "text": "\nfunction ListNode(key, val) {\n  this.key = key;\n  this.val = val;\n  this.pre = this.next = null;\n}\n\nvar LRUCache = function (capacity) {\n  this.capacity = capacity;\n  this.size = 0;\n  this.data = {};\n  this.head = new ListNode();\n  this.tail = new ListNode();\n  this.head.next = this.tail;\n  this.tail.pre = this.head;\n};\n\nfunction get(key) {\n  if (this.data[key] !== undefined) {\n    let node = this.data[key];\n    this.removeNode(node);\n    this.appendHead(node);\n    return node.val;\n  } else {\n    return -1;\n  }\n}\n\nfunction put(key, value) {\n  let node;\n  if (this.data[key] !== undefined) {\n    node = this.data[key];\n    this.removeNode(node);\n    node.val = value;\n  } else {\n    node = new ListNode(key, value);\n    this.data[key] = node;\n    if (this.size < this.capacity) {\n      this.size++;\n    } else {\n      key = this.removeTail();\n      delete this.data[key];\n    }\n  }\n  this.appendHead(node);\n}\n\nfunction removeNode(node) {\n  let preNode = node.pre,\n    nextNode = node.next;\n  preNode.next = nextNode;\n  nextNode.pre = preNode;\n}\n\nfunction appendHead(node) {\n  let firstNode = this.head.next;\n  this.head.next = node;\n  node.pre = this.head;\n  node.next = firstNode;\n  firstNode.pre = node;\n}\n\nfunction removeTail() {\n  let key = this.tail.pre.key;\n  this.removeNode(this.tail.pre);\n  return key;\n}\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\nclass LRUCache {\nprivate:\n  list<pair<int, int>> data;\n  unordered_map<int, list<pair<int, int>>::iterator> m;\n  int capacity;\npublic:\n  LRUCache(int capacity) : capacity(capacity) {}\n\n  int get(int key) {\n    if (!m.count(key)) return -1;\n    data.splice(data.begin(), data, m[key]);\n    m[key] = data.begin();\n    return data.front().second;\n  }\n\n  void put(int key, int value) {\n    if (get(key) == -1) {\n      if (data.size() == capacity) {\n        auto p = data.back();\n        m.erase(p.first);\n        data.pop_back();\n      }\n      data.emplace_front(key, value);\n      m[key] = data.begin();\n    } else data.front().second = value;\n  }\n};\n"
         }
     ]
 },
@@ -4571,6 +4611,10 @@
         {
             "language": "js",
             "text": "\nvar insertionSortList = function (head) {\n  ans = new ListNode(-1);\n  while (head != null) {\n    next = head.next;\n    cur = ans;\n    while (cur.next != null && cur.next.val < head.val) {\n      cur = cur.next;\n    }\n    head.next = cur.next;\n    cur.next = head;\n    head = next;\n  }\n\n  return ans.next;\n};\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\nclass Solution {\npublic:\n    ListNode* insertionSortList(ListNode* head) {\n        ListNode dummy, *p;\n        while (head) {\n            auto *n = head;\n            head = head->next;\n            p = &dummy;\n            while (p->next && p->next->val < n->val) p = p->next;\n            n->next = p->next;\n            p->next = n;\n        }\n        return dummy.next;\n    }\n};\n"
         },
         {
             "language": "py",
@@ -4640,7 +4684,11 @@
         },
         {
             "language": "js",
-            "text": "\n/**\n * @param {string[]} tokens\n * @return {number}\n */\nvar evalRPN = function(tokens) {\n  // 这种算法的前提是 tokens是有效的，\n  // 当然这由算法来保证\n  const stack = [];\n\n  for (let index = 0; index < tokens.length; index++) {\n    const token = tokens[index];\n    // 对于运算数， 我们直接入栈\n    if (!Number.isNaN(Number(token))) {\n      stack.push(token);\n    } else {\n      // 遇到操作符，我们直接大胆运算，不用考虑算术优先级\n      // 然后将运算结果入栈即可\n\n      // 当然如果题目进一步扩展，允许使用单目等其他运算符，我们的算法需要做微小的调整\n      const a = Number(stack.pop());\n      const b = Number(stack.pop());\n      if (token === \"*\") {\n        stack.push(b * a);\n      } else if (token === \"/\") {\n        stack.push(b / a >> 0);\n      } else if (token === \"+\") {\n        stack.push(b + a);\n      } else if (token === \"-\") {\n        stack.push(b - a);\n      }\n    }\n  }\n\n  return stack.pop();\n};\n\n"
+            "text": "\n/**\n * @param {string[]} tokens\n * @return {number}\n */\nvar evalRPN = function (tokens) {\n  // 这种算法的前提是 tokens是有效的，\n  // 当然这由算法来保证\n  const stack = [];\n\n  for (let index = 0; index < tokens.length; index++) {\n    const token = tokens[index];\n    // 对于运算数， 我们直接入栈\n    if (!Number.isNaN(Number(token))) {\n      stack.push(token);\n    } else {\n      // 遇到操作符，我们直接大胆运算，不用考虑算术优先级\n      // 然后将运算结果入栈即可\n\n      // 当然如果题目进一步扩展，允许使用单目等其他运算符，我们的算法需要做微小的调整\n      const a = Number(stack.pop());\n      const b = Number(stack.pop());\n      if (token === \"*\") {\n        stack.push(b * a);\n      } else if (token === \"/\") {\n        stack.push((b / a) >> 0);\n      } else if (token === \"+\") {\n        stack.push(b + a);\n      } else if (token === \"-\") {\n        stack.push(b - a);\n      }\n    }\n  }\n\n  return stack.pop();\n};\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\n\tclass Solution {\npublic:\n  int evalRPN(vector<string>& tokens) {\n    stack<int> s;\n    for (string t : tokens) {\n      if (isdigit(t.back())) s.push(stoi(t));\n      else {\n        int n = s.top();\n        s.pop();\n        switch(t[0]) {\n          case '+': s.top() += n; break;\n          case '-': s.top() -= n; break;\n          case '*': s.top() *= n; break;\n          case '/': s.top() /= n; break;\n        }\n      }\n    }\n    return s.top();\n  }\n};\n"
         },
         {
             "language": "py",
@@ -4684,15 +4732,19 @@
     "code": [
         {
             "language": "js",
-            "text": "\nvar maxProduct = function(nums) {\n  let max = nums[0];\n  let temp = null;\n  for (let i = 0; i < nums.length; i++) {\n    temp = nums[i];\n    for (let j = i + 1; j < nums.length; j++) {\n      temp *= nums[j];\n      max = Math.max(temp, max);\n    }\n  }\n\n  return max;\n};\n"
+            "text": "\nvar maxProduct = function (nums) {\n  let max = nums[0];\n  let temp = null;\n  for (let i = 0; i < nums.length; i++) {\n    temp = nums[i];\n    for (let j = i + 1; j < nums.length; j++) {\n      temp *= nums[j];\n      max = Math.max(temp, max);\n    }\n  }\n\n  return max;\n};\n"
         },
         {
             "language": "js",
-            "text": "\nvar maxProduct = function(nums) {\n  let max = nums[0];\n  let min = nums[0];\n  let res = nums[0];\n\n  for (let i = 1; i < nums.length; i++) {\n    let tmp = min;\n    min = Math.min(nums[i], Math.min(max * nums[i], min * nums[i])); // 取最小\n    max = Math.max(nums[i], Math.max(max * nums[i], tmp * nums[i])); /// 取最大\n    res = Math.max(res, max);\n  }\n  return res;\n};\n"
+            "text": "\nvar maxProduct = function (nums) {\n  let max = nums[0];\n  let min = nums[0];\n  let res = nums[0];\n\n  for (let i = 1; i < nums.length; i++) {\n    let tmp = min;\n    min = Math.min(nums[i], Math.min(max * nums[i], min * nums[i])); // 取最小\n    max = Math.max(nums[i], Math.max(max * nums[i], tmp * nums[i])); /// 取最大\n    res = Math.max(res, max);\n  }\n  return res;\n};\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\nclass Solution {\npublic:\n    int maxProduct(vector<int>& A) {\n        int maxProd = 1, minProd = 1, ans = INT_MIN;\n        for (int n : A) {\n            int a = n * maxProd, b = n * minProd;\n            maxProd = max({n, a, b});\n            minProd = min({n, a, b});\n            ans = max(ans, maxProd);\n        }\n        return ans;\n    }\n};\n"
         },
         {
             "language": "py",
-            "text": "\n\n\nclass Solution:\n    def maxProduct(self, nums: List[int]) -> int:\n        n = len(nums)\n        max__dp = [1] * (n + 1)\n        min_dp = [1] * (n + 1)\n        ans = float('-inf')\n\n        for i in range(1, n + 1):\n            max__dp[i] = max(max__dp[i - 1] * nums[i - 1],\n                             min_dp[i - 1] * nums[i - 1], nums[i - 1])\n            min_dp[i] = min(max__dp[i - 1] * nums[i - 1],\n                            min_dp[i - 1] * nums[i - 1], nums[i - 1])\n            ans = max(ans, max__dp[i])\n        return ans\n  "
+            "text": "\n\n\nclass Solution:\n    def maxProduct(self, nums: List[int]) -> int:\n        n = len(nums)\n        max__dp = [1] * (n + 1)\n        min_dp = [1] * (n + 1)\n        ans = float('-inf')\n\n        for i in range(1, n + 1):\n            max__dp[i] = max(max__dp[i - 1] * nums[i - 1],\n                             min_dp[i - 1] * nums[i - 1], nums[i - 1])\n            min_dp[i] = min(max__dp[i - 1] * nums[i - 1],\n                            min_dp[i - 1] * nums[i - 1], nums[i - 1])\n            ans = max(ans, max__dp[i])\n        return ans\n"
         },
         {
             "language": "py",
@@ -4867,11 +4919,11 @@
     "code": [
         {
             "language": "java",
-            "text": "\nclass Solution {\n    public int[] twoSum(int[] numbers, int target) {\n        int n = numbers.length;\n        int left = 0;\n        int right = n-1;\n        while(left <= right)\n        {\n            if(numbers[left] + numbers[right] == target)\n            {\n                return new int[]{left + 1, right + 1};\n            }\n            else if (numbers[left] + numbers[right] > target)\n            {\n                right--;\n            }\n            else\n            {\n                left++;\n            }\n        }\n        \n        return new int[]{-1, -1};\n    }\n}\n"
+            "text": "\nclass Solution {\n    public int[] twoSum(int[] numbers, int target) {\n        int n = numbers.length;\n        int left = 0;\n        int right = n-1;\n        while(left <= right)\n        {\n            if(numbers[left] + numbers[right] == target)\n            {\n                return new int[]{left + 1, right + 1};\n            }\n            else if (numbers[left] + numbers[right] > target)\n            {\n                right--;\n            }\n            else\n            {\n                left++;\n            }\n        }\n\n        return new int[]{-1, -1};\n    }\n}\n"
         },
         {
             "language": "js",
-            "text": "\n/**\n * @param {number[]} numbers\n * @param {number} target\n * @return {number[]}\n */\nvar twoSum = function(numbers, target) {\n    const visited = {} // 记录出现的数字， 空间复杂度N\n\n    for (let index = 0; index < numbers.length; index++) {\n        const element = numbers[index];\n        if (visited[target - element] !== void 0) {\n            return [visited[target - element], index + 1]\n        }\n        visited[element] = index + 1;\n    }\n    return [];\n};\n"
+            "text": "\n/**\n * @param {number[]} numbers\n * @param {number} target\n * @return {number[]}\n */\nvar twoSum = function (numbers, target) {\n  const visited = {}; // 记录出现的数字， 空间复杂度N\n\n  for (let index = 0; index < numbers.length; index++) {\n    const element = numbers[index];\n    if (visited[target - element] !== void 0) {\n      return [visited[target - element], index + 1];\n    }\n    visited[element] = index + 1;\n  }\n  return [];\n};\n"
         },
         {
             "language": "cpp",
@@ -4925,7 +4977,11 @@
     "code": [
         {
             "language": "js",
-            "text": "\nvar majorityElement = function(nums) {\n    let count = 1;\n    let majority = nums[0];\n    for(let i = 1; i < nums.length; i++) {\n        if (count === 0) {\n            majority = nums[i];\n        }\n        if (nums[i] === majority) {\n            count ++;\n        } else {\n            count --;\n        }\n    }\n    return majority;\n};\n"
+            "text": "\nvar majorityElement = function (nums) {\n  let count = 1;\n  let majority = nums[0];\n  for (let i = 1; i < nums.length; i++) {\n    if (count === 0) {\n      majority = nums[i];\n    }\n    if (nums[i] === majority) {\n      count++;\n    } else {\n      count--;\n    }\n  }\n  return majority;\n};\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\nclass Solution {\npublic:\n    int majorityElement(vector<int>& nums) {\n        int ans = 0, cnt = 0;\n        for (int n : nums) {\n            if (ans == n) ++cnt;\n            else if (cnt > 0) --cnt;\n            else {\n                ans = n;\n                cnt = 1;\n            }\n        }\n        return ans;\n    }\n};\n"
         },
         {
             "language": "py",
@@ -4969,7 +5025,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=172 lang=javascript\n *\n * [172] Factorial Trailing Zeroes\n */\n/**\n * @param {number} n\n * @return {number}\n */\nvar trailingZeroes = function(n) {\n  // tag: 数论\n\n  // if (n === 0) return n;\n\n  // 递归： f(n) = n / 5 + f(n / 5)\n  // return Math.floor(n / 5)  + trailingZeroes(Math.floor(n / 5));\n  let count = 0;\n  while (n >= 5) {\n    count += Math.floor(n / 5);\n    n = Math.floor(n / 5);\n  }\n  return count;\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=172 lang=javascript\n *\n * [172] Factorial Trailing Zeroes\n */\n/**\n * @param {number} n\n * @return {number}\n */\nvar trailingZeroes = function (n) {\n  // tag: 数论\n\n  // if (n === 0) return n;\n\n  // 递归： f(n) = n / 5 + f(n / 5)\n  // return Math.floor(n / 5)  + trailingZeroes(Math.floor(n / 5));\n  let count = 0;\n  while (n >= 5) {\n    count += Math.floor(n / 5);\n    n = Math.floor(n / 5);\n  }\n  return count;\n};\n"
         },
         {
             "language": "js",
@@ -5034,7 +5090,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/**\n * @param {number} n - a positive integer\n * @return {number} - a positive integer\n */\nvar reverseBits = function(n) {\n  let res = 0;\n  for (let i = 0; i < 32; i++) {\n    res = (res << 1) + (n & 1);\n    n = n >>> 1;\n  }\n\n  return res >>> 0;\n};\n"
+            "text": "\n/**\n * @param {number} n - a positive integer\n * @return {number} - a positive integer\n */\nvar reverseBits = function (n) {\n  let res = 0;\n  for (let i = 0; i < 32; i++) {\n    res = (res << 1) + (n & 1);\n    n = n >>> 1;\n  }\n\n  return res >>> 0;\n};\n"
         },
         {
             "language": "py",
@@ -5089,7 +5145,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=191 lang=javascript\n *\n */\n/**\n * @param {number} n - a positive integer\n * @return {number}\n */\nvar hammingWeight = function(n) {\n  let count = 0;\n  while (n !== 0) {\n    n = n & (n - 1);\n    count++;\n  }\n\n  return count;\n};\n\n"
+            "text": "\n/*\n * @lc app=leetcode id=191 lang=javascript\n *\n */\n/**\n * @param {number} n - a positive integer\n * @return {number}\n */\nvar hammingWeight = function (n) {\n  let count = 0;\n  while (n !== 0) {\n    n = n & (n - 1);\n    count++;\n  }\n\n  return count;\n};\n"
         },
         {
             "language": "cpp",
@@ -5263,11 +5319,15 @@
         },
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=200 lang=javascript\n *\n * [200] Number of Islands\n */\nfunction helper(grid, i, j, rows, cols) {\n  if (i < 0 || j < 0 || i > rows - 1 || j > cols - 1 || grid[i][j] === \"0\")\n    return;\n\n  grid[i][j] = \"0\";\n\n  helper(grid, i + 1, j, rows, cols);\n  helper(grid, i, j + 1, rows, cols);\n  helper(grid, i - 1, j, rows, cols);\n  helper(grid, i, j - 1, rows, cols);\n}\n/**\n * @param {character[][]} grid\n * @return {number}\n */\nvar numIslands = function(grid) {\n  let res = 0;\n  const rows = grid.length;\n  if (rows === 0) return 0;\n  const cols = grid[0].length;\n  for (let i = 0; i < rows; i++) {\n    for (let j = 0; j < cols; j++) {\n      if (grid[i][j] === \"1\") {\n        helper(grid, i, j, rows, cols);\n        res++;\n      }\n    }\n  }\n  return res;\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=200 lang=javascript\n *\n * [200] Number of Islands\n */\nfunction helper(grid, i, j, rows, cols) {\n  if (i < 0 || j < 0 || i > rows - 1 || j > cols - 1 || grid[i][j] === \"0\")\n    return;\n\n  grid[i][j] = \"0\";\n\n  helper(grid, i + 1, j, rows, cols);\n  helper(grid, i, j + 1, rows, cols);\n  helper(grid, i - 1, j, rows, cols);\n  helper(grid, i, j - 1, rows, cols);\n}\n/**\n * @param {character[][]} grid\n * @return {number}\n */\nvar numIslands = function (grid) {\n  let res = 0;\n  const rows = grid.length;\n  if (rows === 0) return 0;\n  const cols = grid[0].length;\n  for (let i = 0; i < rows; i++) {\n    for (let j = 0; j < cols; j++) {\n      if (grid[i][j] === \"1\") {\n        helper(grid, i, j, rows, cols);\n        res++;\n      }\n    }\n  }\n  return res;\n};\n"
         },
         {
             "language": "cpp",
             "text": "\nclass Solution {\npublic:\n    int numIslands(vector<vector<char>>& grid) {\n        int res = 0;\n        for(int i=0;i<grid.size();i++)\n        {\n            for(int j=0;j<grid[0].size();j++)\n            {\n                if(grid[i][j] == '1')\n                {\n                    dfs(grid, i, j);\n                    res += 1;\n                }\n            }\n        }\n        return res;\n\n    }\n    void dfs(vector<vector<char>>& grid, int i, int j)\n    {\n        // edge\n        if(i<0 || i>= grid.size() || j<0 || j>= grid[0].size() || grid[i][j] != '1')\n        {\n            return;\n        }\n        grid[i][j] = '0';\n        dfs(grid, i+1, j);\n        dfs(grid, i-1, j);\n        dfs(grid, i, j+1);\n        dfs(grid, i, j-1);\n    }\n};\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def numIslands(self, grid: List[List[str]]) -> int:\n        if not grid: return 0\n\n        count = 0\n        for i in range(len(grid)):\n            for j in range(len(grid[0])):\n                if grid[i][j] == '1':\n                    self.dfs(grid, i, j)\n                    count += 1\n\n        return count\n\n    def dfs(self, grid, i, j):\n        if i < 0 or j < 0 or i >= len(grid) or j >= len(grid[0]) or grid[i][j] != '1':\n            return\n        grid[i][j] = '0'\n        self.dfs(grid, i + 1, j)\n        self.dfs(grid, i - 1, j)\n        self.dfs(grid, i, j + 1)\n        self.dfs(grid, i, j - 1)\n\n"
         }
     ]
 },
@@ -5293,7 +5353,7 @@
             "color": "blue"
         },
         {
-            "text": "bit运算代码：```js(n>m)?(rangeBitwiseAnd(m/2,n/2)<<1):m;```>每次问题规模缩小一半，这是二分法吗？",
+            "text": "bit运算代码：```jsn>m?rangeBitwiseAnd(m/2,n/2)<<1:m;```>每次问题规模缩小一半，这是二分法吗？",
             "link": null,
             "color": "blue"
         }
@@ -5317,19 +5377,19 @@
     "code": [
         {
             "language": "js",
-            "text": "\n\n    let res = m;\n    for (let i = m + 1; i <= n; i++) {\n      res = res & i;\n    }\n    return res;\n\n"
+            "text": "\nlet res = m;\nfor (let i = m + 1; i <= n; i++) {\n  res = res & i;\n}\nreturn res;\n"
         },
         {
             "language": "js",
-            "text": "\n\n(n > m) ? (rangeBitwiseAnd(m/2, n/2) << 1) : m;\n\n"
+            "text": "\nn > m ? rangeBitwiseAnd(m / 2, n / 2) << 1 : m;\n"
         },
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=201 lang=javascript\n *\n * [201] Bitwise AND of Numbers Range\n *\n */\n/**\n * @param {number} m\n * @param {number} n\n * @return {number}\n */\nvar rangeBitwiseAnd = function(m, n) {\n  let count = 0;\n  while (m !== n) {\n    m = m >> 1;\n    n = n >> 1;\n    count++;\n  }\n\n  return n << count;\n};\n\n"
+            "text": "\n/*\n * @lc app=leetcode id=201 lang=javascript\n *\n * [201] Bitwise AND of Numbers Range\n *\n */\n/**\n * @param {number} m\n * @param {number} n\n * @return {number}\n */\nvar rangeBitwiseAnd = function (m, n) {\n  let count = 0;\n  while (m !== n) {\n    m = m >> 1;\n    n = n >> 1;\n    count++;\n  }\n\n  return n << count;\n};\n"
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def rangeBitwiseAnd(self, m: int, n: int) -> int:\n        cnt = 0\n        while m != n:\n            m >>= 1\n            n >>= 1\n            cnt += 1\n\n        return m << cnt\n "
+            "text": "\nclass Solution:\n    def rangeBitwiseAnd(self, m: int, n: int) -> int:\n        cnt = 0\n        while m != n:\n            m >>= 1\n            n >>= 1\n            cnt += 1\n\n        return m << cnt\n"
         }
     ]
 },
@@ -5350,7 +5410,7 @@
             "color": "blue"
         },
         {
-            "text": "虚拟节点dummy简化操作>其实设置dummy节点就是为了处理特殊位置（头节点），这这道题就是如果头节点是给定的需要删除的节点呢？为了保证代码逻辑的一致性，即不需要为头节点特殊定制逻辑，才采用的虚拟节点。",
+            "text": "虚拟节点dummy简化操作>其实设置dummy节点就是为了处理特殊位置（头节点），这这道题就是如果头节点是给定的需要删除的节点呢？>为了保证代码逻辑的一致性，即不需要为头节点特殊定制逻辑，才采用的虚拟节点。",
             "link": null,
             "color": "blue"
         },
@@ -5379,11 +5439,11 @@
     "code": [
         {
             "language": "js",
-            "text": "\n// 只有下个节点不是要删除的节点才更新 current\nif (!next || next.val !== val) {\n    current =  next;\n}\n\n"
+            "text": "\n// 只有下个节点不是要删除的节点才更新 current\nif (!next || next.val !== val) {\n  current = next;\n}\n"
         },
         {
             "language": "js",
-            "text": "\n/**\n * @param {ListNode} head\n * @param {number} val\n * @return {ListNode}\n */\nvar removeElements = function(head, val) {\n    const dummy = {\n        next: head\n    }\n    let current = dummy;\n\n    while(current && current.next) {\n        let next = current.next;\n        if (next.val === val) {\n            current.next = next.next;\n            next = next.next;\n        }\n\n        if (!next || next.val !== val) {\n            current =  next;\n        }\n    }\n\n    return dummy.next;\n};\n"
+            "text": "\n/**\n * @param {ListNode} head\n * @param {number} val\n * @return {ListNode}\n */\nvar removeElements = function (head, val) {\n  const dummy = {\n    next: head,\n  };\n  let current = dummy;\n\n  while (current && current.next) {\n    let next = current.next;\n    if (next.val === val) {\n      current.next = next.next;\n      next = next.next;\n    }\n\n    if (!next || next.val !== val) {\n      current = next;\n    }\n  }\n\n  return dummy.next;\n};\n"
         },
         {
             "language": "py",
@@ -5582,11 +5642,11 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=209 lang=javascript\n *\n * [209] Minimum Size Subarray Sum\n *\n */\n/**\n * @param {number} s\n * @param {number[]} nums\n * @return {number}\n */\nvar minSubArrayLen = function(s, nums) {\n  if (nums.length === 0) return 0;\n  const slideWindow = [];\n  let acc = 0;\n  let min = null;\n\n  for (let i = 0; i < nums.length + 1; i++) {\n    const num = nums[i];\n\n    while (acc >= s) {\n      if (min === null || slideWindow.length < min) {\n        min = slideWindow.length;\n      }\n      acc = acc - slideWindow.shift();\n    }\n\n    slideWindow.push(num);\n\n    acc = slideWindow.reduce((a, b) => a + b, 0);\n  }\n\n  return min || 0;\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=209 lang=javascript\n *\n * [209] Minimum Size Subarray Sum\n *\n */\n/**\n * @param {number} s\n * @param {number[]} nums\n * @return {number}\n */\nvar minSubArrayLen = function (s, nums) {\n  if (nums.length === 0) return 0;\n  const slideWindow = [];\n  let acc = 0;\n  let min = null;\n\n  for (let i = 0; i < nums.length + 1; i++) {\n    const num = nums[i];\n\n    while (acc >= s) {\n      if (min === null || slideWindow.length < min) {\n        min = slideWindow.length;\n      }\n      acc = acc - slideWindow.shift();\n    }\n\n    slideWindow.push(num);\n\n    acc = slideWindow.reduce((a, b) => a + b, 0);\n  }\n\n  return min || 0;\n};\n"
         },
         {
             "language": "js",
-            "text": "\nvar minSubArrayLen = function(s, nums) {\n  if (nums.length === 0) return 0;\n  const slideWindow = [];\n  let acc = 0;\n  let min = null;\n\n  for (let i = 0; i < nums.length + 1; i++) {\n    const num = nums[i];\n\n    while (acc > s) {\n      acc = acc - slideWindow.shift();\n    }\n    if (acc === s) {\n      if (min === null || slideWindow.length < min) {\n        min = slideWindow.length;\n      }\n      slideWindow.shift();\n    }\n\n    slideWindow.push(num);\n\n    acc = slideWindow.reduce((a, b) => a + b, 0);\n  }\n\n  return min || 0;\n};\n"
+            "text": "\nvar minSubArrayLen = function (s, nums) {\n  if (nums.length === 0) return 0;\n  const slideWindow = [];\n  let acc = 0;\n  let min = null;\n\n  for (let i = 0; i < nums.length + 1; i++) {\n    const num = nums[i];\n\n    while (acc > s) {\n      acc = acc - slideWindow.shift();\n    }\n    if (acc === s) {\n      if (min === null || slideWindow.length < min) {\n        min = slideWindow.length;\n      }\n      slideWindow.shift();\n    }\n\n    slideWindow.push(num);\n\n    acc = slideWindow.reduce((a, b) => a + b, 0);\n  }\n\n  return min || 0;\n};\n"
         },
         {
             "language": "py",
@@ -5796,7 +5856,7 @@
         },
         {
             "language": "js",
-            "text": "\n/**\n * @param {number[]} nums\n * @param {number} k\n * @return {boolean}\n */\nvar containsNearbyDuplicate = function(nums, k) {\n    const visited = {};\n    for(let i = 0; i < nums.length; i++) {\n        const num = nums[i];\n        if (visited[num] !== undefined && i - visited[num] <= k) {\n            return true;\n        }\n        visited[num] = i;\n    }\n    return false\n};\n"
+            "text": "\n/**\n * @param {number[]} nums\n * @param {number} k\n * @return {boolean}\n */\nvar containsNearbyDuplicate = function (nums, k) {\n  const visited = {};\n  for (let i = 0; i < nums.length; i++) {\n    const num = nums[i];\n    if (visited[num] !== undefined && i - visited[num] <= k) {\n      return true;\n    }\n    visited[num] = i;\n  }\n  return false;\n};\n"
         },
         {
             "language": "py",
@@ -5865,7 +5925,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n\n/*\n * @lc app=leetcode id=221 lang=javascript\n *\n * [221] Maximal Square\n */\n/**\n * @param {character[][]} matrix\n * @return {number}\n */\nvar maximalSquare = function(matrix) {\n  if (matrix.length === 0) return 0;\n  const dp = [];\n  const rows = matrix.length;\n  const cols = matrix[0].length;\n  let max = Number.MIN_VALUE;\n\n  for (let i = 0; i < rows + 1; i++) {\n    if (i === 0) {\n      dp[i] = Array(cols + 1).fill(0);\n    } else {\n      dp[i] = [0];\n    }\n  }\n\n  for (let i = 1; i < rows + 1; i++) {\n    for (let j = 1; j < cols + 1; j++) {\n      if (matrix[i - 1][j - 1] === \"1\") {\n        dp[i][j] = Math.min(dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]) + 1;\n        max = Math.max(max, dp[i][j]);\n      } else {\n        dp[i][j] = 0;\n      }\n    }\n  }\n\n  return max * max;\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=221 lang=javascript\n *\n * [221] Maximal Square\n */\n/**\n * @param {character[][]} matrix\n * @return {number}\n */\nvar maximalSquare = function (matrix) {\n  if (matrix.length === 0) return 0;\n  const dp = [];\n  const rows = matrix.length;\n  const cols = matrix[0].length;\n  let max = Number.MIN_VALUE;\n\n  for (let i = 0; i < rows + 1; i++) {\n    if (i === 0) {\n      dp[i] = Array(cols + 1).fill(0);\n    } else {\n      dp[i] = [0];\n    }\n  }\n\n  for (let i = 1; i < rows + 1; i++) {\n    for (let j = 1; j < cols + 1; j++) {\n      if (matrix[i - 1][j - 1] === \"1\") {\n        dp[i][j] = Math.min(dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]) + 1;\n        max = Math.max(max, dp[i][j]);\n      } else {\n        dp[i][j] = 0;\n      }\n    }\n  }\n\n  return max * max;\n};\n"
         },
         {
             "language": "py",
@@ -5919,7 +5979,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @return {TreeNode}\n */\nvar invertTree = function(root) {\n  if (!root) return root;\n  // 递归\n  //   const left = root.left;\n  //   const right = root.right;\n  //   root.right = invertTree(left);\n  //   root.left = invertTree(right);\n  // 我们用stack来模拟递归\n  // 本质上递归是利用了执行栈，执行栈也是一种栈\n  // 其实这里使用队列也是一样的，因为这里顺序不重要\n\n  const stack = [root];\n  let current = null;\n  while ((current = stack.shift())) {\n    const left = current.left;\n    const right = current.right;\n    current.right = left;\n    current.left = right;\n    if (left) {\n      stack.push(left);\n    }\n    if (right) {\n      stack.push(right);\n    }\n  }\n  return root;\n};\n"
+            "text": "\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @return {TreeNode}\n */\nvar invertTree = function (root) {\n  if (!root) return root;\n  // 递归\n  //   const left = root.left;\n  //   const right = root.right;\n  //   root.right = invertTree(left);\n  //   root.left = invertTree(right);\n  // 我们用stack来模拟递归\n  // 本质上递归是利用了执行栈，执行栈也是一种栈\n  // 其实这里使用队列也是一样的，因为这里顺序不重要\n\n  const stack = [root];\n  let current = null;\n  while ((current = stack.shift())) {\n    const left = current.left;\n    const right = current.right;\n    current.right = left;\n    current.left = right;\n    if (left) {\n      stack.push(left);\n    }\n    if (right) {\n      stack.push(right);\n    }\n  }\n  return root;\n};\n"
         },
         {
             "language": "py",
@@ -6077,15 +6137,15 @@
     "code": [
         {
             "language": "java",
-            "text": "\n/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode(int x) { val = x; }\n * }\n */\nprivate int count = 1;\nprivate int res;\n\npublic int KthSmallest (TreeNode root, int k) {\n    inorder(root, k);\n    return res;\n}\n\npublic void inorder (TreeNode root, int k) {\n    if (root == null) return;\n\n    inorder(root.left, k);\n\n    if (count++ == k) {\n        res = root.val;\n        return;\n    }\n    \n    inorder(root.right, k);\n}\n"
+            "text": "\n/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode(int x) { val = x; }\n * }\n */\nprivate int count = 1;\nprivate int res;\n\npublic int KthSmallest (TreeNode root, int k) {\n    inorder(root, k);\n    return res;\n}\n\npublic void inorder (TreeNode root, int k) {\n    if (root == null) return;\n\n    inorder(root.left, k);\n\n    if (count++ == k) {\n        res = root.val;\n        return;\n    }\n\n    inorder(root.right, k);\n}\n"
         },
         {
             "language": "js",
-            "text": "\n\n\n/*\n * @lc app=leetcode id=230 lang=javascript\n *\n * [230] Kth Smallest Element in a BST\n */\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @param {number} k\n * @return {number}\n */\nvar kthSmallest = function(root, k) {\n    const stack = [root];\n    let cur = root;\n    let i = 0;\n\n    function insertAllLefts(cur) {\n        while(cur && cur.left) {\n            const l = cur.left;\n            stack.push(l);\n            cur = l;\n        }\n    }\n    insertAllLefts(cur);\n\n    while(cur = stack.pop()) {\n        i++;\n        if (i === k) return cur.val;\n        const r = cur.right;\n\n        if (r) {\n            stack.push(r);\n            insertAllLefts(r);\n        }\n    }\n\n    return -1;\n\n    \n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=230 lang=javascript\n *\n * [230] Kth Smallest Element in a BST\n */\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @param {number} k\n * @return {number}\n */\nvar kthSmallest = function (root, k) {\n  const stack = [root];\n  let cur = root;\n  let i = 0;\n\n  function insertAllLefts(cur) {\n    while (cur && cur.left) {\n      const l = cur.left;\n      stack.push(l);\n      cur = l;\n    }\n  }\n  insertAllLefts(cur);\n\n  while ((cur = stack.pop())) {\n    i++;\n    if (i === k) return cur.val;\n    const r = cur.right;\n\n    if (r) {\n      stack.push(r);\n      insertAllLefts(r);\n    }\n  }\n\n  return -1;\n};\n"
         },
         {
             "language": "js",
-            "text": "\n\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\nfunction nodeCount(node) {\n    if (node === null) return 0;\n    \n    const l = nodeCount(node.left);\n    const r = nodeCount(node.right);\n    \n    return 1 + l + r;\n}\n/**\n * @param {TreeNode} root\n * @param {number} k\n * @return {number}\n */\nvar kthSmallest = function(root, k) {\n    const c = nodeCount(root.left);\n    if (c === k - 1) return root.val;\n    else if (c < k - 1) return kthSmallest(root.right, k - c - 1);\n    return kthSmallest(root.left, k)\n};\n\n"
+            "text": "\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\nfunction nodeCount(node) {\n  if (node === null) return 0;\n\n  const l = nodeCount(node.left);\n  const r = nodeCount(node.right);\n\n  return 1 + l + r;\n}\n/**\n * @param {TreeNode} root\n * @param {number} k\n * @return {number}\n */\nvar kthSmallest = function (root, k) {\n  const c = nodeCount(root.left);\n  if (c === k - 1) return root.val;\n  else if (c < k - 1) return kthSmallest(root.right, k - c - 1);\n  return kthSmallest(root.left, k);\n};\n"
         }
     ]
 },
@@ -6131,11 +6191,11 @@
     "code": [
         {
             "language": "java",
-            "text": "\nclass MyQueue {\n    Stack<Integer> pushStack = new Stack<> ();\n    Stack<Integer> popStack = new Stack<> ();\n\n    /** Initialize your data structure here. */\n    public MyQueue() {\n\n    }\n    \n    /** Push element x to the back of queue. */\n    public void push(int x) {\n        while (!popStack.isEmpty()) {\n            pushStack.push(popStack.pop());\n        }\n        pushStack.push(x);\n    }\n    \n    /** Removes the element from in front of queue and returns that element. */\n    public int pop() {\n        while (!pushStack.isEmpty()) {\n            popStack.push(pushStack.pop());\n        }\n        return popStack.pop();\n    }\n    \n    /** Get the front element. */\n    public int peek() {\n        while (!pushStack.isEmpty()) {\n            popStack.push(pushStack.pop());\n        }\n        return popStack.peek();\n    }\n    \n    /** Returns whether the queue is empty. */\n    public boolean empty() {\n        return pushStack.isEmpty() && popStack.isEmpty();\n    }\n}\n\n/**\n * Your MyQueue object will be instantiated and called as such:\n * MyQueue obj = new MyQueue();\n * obj.push(x);\n * int param_2 = obj.pop();\n * int param_3 = obj.peek();\n * boolean param_4 = obj.empty();\n */\n"
+            "text": "\nclass MyQueue {\n    Stack<Integer> pushStack = new Stack<> ();\n    Stack<Integer> popStack = new Stack<> ();\n\n    /** Initialize your data structure here. */\n    public MyQueue() {\n\n    }\n\n    /** Push element x to the back of queue. */\n    public void push(int x) {\n        while (!popStack.isEmpty()) {\n            pushStack.push(popStack.pop());\n        }\n        pushStack.push(x);\n    }\n\n    /** Removes the element from in front of queue and returns that element. */\n    public int pop() {\n        while (!pushStack.isEmpty()) {\n            popStack.push(pushStack.pop());\n        }\n        return popStack.pop();\n    }\n\n    /** Get the front element. */\n    public int peek() {\n        while (!pushStack.isEmpty()) {\n            popStack.push(pushStack.pop());\n        }\n        return popStack.peek();\n    }\n\n    /** Returns whether the queue is empty. */\n    public boolean empty() {\n        return pushStack.isEmpty() && popStack.isEmpty();\n    }\n}\n\n/**\n * Your MyQueue object will be instantiated and called as such:\n * MyQueue obj = new MyQueue();\n * obj.push(x);\n * int param_2 = obj.pop();\n * int param_3 = obj.peek();\n * boolean param_4 = obj.empty();\n */\n"
         },
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=232 lang=javascript\n *\n * [232] Implement Queue using Stacks\n */\n/**\n * Initialize your data structure here.\n */\nvar MyQueue = function() {\n  // tag: queue stack array\n  this.stack = [];\n  this.helperStack = [];\n};\n\n/**\n * Push element x to the back of queue.\n * @param {number} x\n * @return {void}\n */\nMyQueue.prototype.push = function(x) {\n  let cur = null;\n  while ((cur = this.stack.pop())) {\n    this.helperStack.push(cur);\n  }\n  this.helperStack.push(x);\n\n  while ((cur = this.helperStack.pop())) {\n    this.stack.push(cur);\n  }\n};\n\n/**\n * Removes the element from in front of queue and returns that element.\n * @return {number}\n */\nMyQueue.prototype.pop = function() {\n  return this.stack.pop();\n};\n\n/**\n * Get the front element.\n * @return {number}\n */\nMyQueue.prototype.peek = function() {\n  return this.stack[this.stack.length - 1];\n};\n\n/**\n * Returns whether the queue is empty.\n * @return {boolean}\n */\nMyQueue.prototype.empty = function() {\n  return this.stack.length === 0;\n};\n\n/**\n * Your MyQueue object will be instantiated and called as such:\n * var obj = new MyQueue()\n * obj.push(x)\n * var param_2 = obj.pop()\n * var param_3 = obj.peek()\n * var param_4 = obj.empty()\n */\n"
+            "text": "\n/*\n * @lc app=leetcode id=232 lang=javascript\n *\n * [232] Implement Queue using Stacks\n */\n/**\n * Initialize your data structure here.\n */\nvar MyQueue = function () {\n  // tag: queue stack array\n  this.stack = [];\n  this.helperStack = [];\n};\n\n/**\n * Push element x to the back of queue.\n * @param {number} x\n * @return {void}\n */\nMyQueue.prototype.push = function (x) {\n  let cur = null;\n  while ((cur = this.stack.pop())) {\n    this.helperStack.push(cur);\n  }\n  this.helperStack.push(x);\n\n  while ((cur = this.helperStack.pop())) {\n    this.stack.push(cur);\n  }\n};\n\n/**\n * Removes the element from in front of queue and returns that element.\n * @return {number}\n */\nMyQueue.prototype.pop = function () {\n  return this.stack.pop();\n};\n\n/**\n * Get the front element.\n * @return {number}\n */\nMyQueue.prototype.peek = function () {\n  return this.stack[this.stack.length - 1];\n};\n\n/**\n * Returns whether the queue is empty.\n * @return {boolean}\n */\nMyQueue.prototype.empty = function () {\n  return this.stack.length === 0;\n};\n\n/**\n * Your MyQueue object will be instantiated and called as such:\n * var obj = new MyQueue()\n * obj.push(x)\n * var param_2 = obj.pop()\n * var param_3 = obj.peek()\n * var param_4 = obj.empty()\n */\n"
         },
         {
             "language": "py",
@@ -6179,11 +6239,15 @@
     "code": [
         {
             "language": "js",
-            "text": "\n  // 如果我们找到了p，直接进行返回，那如果下面就是q呢？ 其实这没有影响，但是还是要多考虑一下\n  if (!root || root === p || root === q) return root;\n  const left = lowestCommonAncestor(root.left, p, q); // 去左边找，我们期望返回找到的节点\n  const right = lowestCommonAncestor(root.right, p, q);// 去右边找，我们期望返回找到的节点\n  if (!left) return right; // 左子树找不到，返回右子树\n  if (!right) return left; // 右子树找不到，返回左子树\n  return root; // 左右子树分别有一个，则返回root\n\n"
+            "text": "\n// 如果我们找到了p，直接进行返回，那如果下面就是q呢？ 其实这没有影响，但是还是要多考虑一下\nif (!root || root === p || root === q) return root;\nconst left = lowestCommonAncestor(root.left, p, q); // 去左边找，我们期望返回找到的节点\nconst right = lowestCommonAncestor(root.right, p, q); // 去右边找，我们期望返回找到的节点\nif (!left) return right; // 左子树找不到，返回右子树\nif (!right) return left; // 右子树找不到，返回左子树\nreturn root; // 左右子树分别有一个，则返回root\n"
         },
         {
             "language": "js",
-            "text": "\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @param {TreeNode} p\n * @param {TreeNode} q\n * @return {TreeNode}\n */\nvar lowestCommonAncestor = function(root, p, q) {\n  if (!root || root === p || root === q) return root;\n  const left = lowestCommonAncestor(root.left, p, q);\n  const right = lowestCommonAncestor(root.right, p, q);\n  if (!left) return right; // 左子树找不到，返回右子树\n  if (!right) return left; // 右子树找不到，返回左子树\n  return root; // 左右子树分别有一个，则返回root\n};\n"
+            "text": "\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @param {TreeNode} p\n * @param {TreeNode} q\n * @return {TreeNode}\n */\nvar lowestCommonAncestor = function (root, p, q) {\n  if (!root || root === p || root === q) return root;\n  const left = lowestCommonAncestor(root.left, p, q);\n  const right = lowestCommonAncestor(root.right, p, q);\n  if (!left) return right; // 左子树找不到，返回右子树\n  if (!right) return left; // 右子树找不到，返回左子树\n  return root; // 左右子树分别有一个，则返回root\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\n# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.left = None\n#         self.right = None\n\nclass Solution:\n    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':\n        if not root or root == p or root == q:\n            return root\n        left = self.lowestCommonAncestor(root.left, p, q)\n        right = self.lowestCommonAncestor(root.right, p, q)\n\n        if not left:\n            return right\n        if not right:\n            return left\n        else:\n            return root\n\n"
         }
     ]
 },
@@ -6228,7 +6292,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/**\n * @param {number[]} nums\n * @return {number[]}\n */\nvar productExceptSelf = function(nums) {\n  const ret = [];\n\n  for (let i = 0, temp = 1; i < nums.length; i++) {\n    ret[i] = temp;\n    temp *= nums[i];\n  }\n  // 此时ret[i]存放的是前i个元素相乘的结果(不包含第i个)\n\n  // 如果没有上面的循环的话，\n  // ret经过下面的循环会变成ret[i]存放的是后i个元素相乘的结果(不包含第i个)\n\n  // 我们的目标是ret[i]存放的所有数字相乘的结果(不包含第i个)\n\n  // 因此我们只需要对于上述的循环产生的ret[i]基础上运算即可\n  for (let i = nums.length - 1, temp = 1; i >= 0; i--) {\n    ret[i] *= temp;\n    temp *= nums[i];\n  }\n  return ret;\n};\n"
+            "text": "\n/**\n * @param {number[]} nums\n * @return {number[]}\n */\nvar productExceptSelf = function (nums) {\n  const ret = [];\n\n  for (let i = 0, temp = 1; i < nums.length; i++) {\n    ret[i] = temp;\n    temp *= nums[i];\n  }\n  // 此时ret[i]存放的是前i个元素相乘的结果(不包含第i个)\n\n  // 如果没有上面的循环的话，\n  // ret经过下面的循环会变成ret[i]存放的是后i个元素相乘的结果(不包含第i个)\n\n  // 我们的目标是ret[i]存放的所有数字相乘的结果(不包含第i个)\n\n  // 因此我们只需要对于上述的循环产生的ret[i]基础上运算即可\n  for (let i = nums.length - 1, temp = 1; i >= 0; i--) {\n    ret[i] *= temp;\n    temp *= nums[i];\n  }\n  return ret;\n};\n"
         }
     ]
 },
@@ -6330,7 +6394,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n\n/*\n * @lc app=leetcode id=240 lang=javascript\n *\n * [240] Search a 2D Matrix II\n *\n * https://leetcode.com/problems/search-a-2d-matrix-ii/description/\n *\n * \n */\n/**\n * @param {number[][]} matrix\n * @param {number} target\n * @return {boolean}\n */\nvar searchMatrix = function(matrix, target) {\n    if (!matrix || matrix.length === 0) return false;\n\n    let colIndex = 0;\n    let rowIndex = matrix.length - 1;\n    while(rowIndex > 0 && target < matrix[rowIndex][colIndex]) {\n        rowIndex --;\n    }\n\n    while(colIndex < matrix[0].length) {\n        if (target === matrix[rowIndex][colIndex]) return true;\n        if (target > matrix[rowIndex][colIndex]) {\n            colIndex ++;\n        } else if (rowIndex > 0){\n            rowIndex --;\n        } else {\n            return false;\n        }\n    }\n\n    return  false;\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=240 lang=javascript\n *\n * [240] Search a 2D Matrix II\n *\n * https://leetcode.com/problems/search-a-2d-matrix-ii/description/\n *\n *\n */\n/**\n * @param {number[][]} matrix\n * @param {number} target\n * @return {boolean}\n */\nvar searchMatrix = function (matrix, target) {\n  if (!matrix || matrix.length === 0) return false;\n\n  let colIndex = 0;\n  let rowIndex = matrix.length - 1;\n  while (rowIndex > 0 && target < matrix[rowIndex][colIndex]) {\n    rowIndex--;\n  }\n\n  while (colIndex < matrix[0].length) {\n    if (target === matrix[rowIndex][colIndex]) return true;\n    if (target > matrix[rowIndex][colIndex]) {\n      colIndex++;\n    } else if (rowIndex > 0) {\n      rowIndex--;\n    } else {\n      return false;\n    }\n  }\n\n  return false;\n};\n"
         },
         {
             "language": "py",
@@ -6388,11 +6452,11 @@
         },
         {
             "language": "js",
-            "text": "\n\n  while(num % 2 === 0)   num = num / 2;\n  while(num % 3 === 0)   num = num / 3;\n  while(num % 5 === 0)   num = num / 5;\n\n  return num === 1;\n\n"
+            "text": "\nwhile (num % 2 === 0) num = num / 2;\nwhile (num % 3 === 0) num = num / 3;\nwhile (num % 5 === 0) num = num / 5;\n\nreturn num === 1;\n"
         },
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=263 lang=javascript\n *\n * [263] Ugly Number\n */\n/**\n * @param {number} num\n * @return {boolean}\n */\nvar isUgly = function(num) {\n  // TAG: 数论\n  if (num <= 0) return false;\n  if (num === 1) return true;\n\n  const list = [2, 3, 5];\n\n  if (list.includes(num)) return true;\n\n  for (let i of list) {\n    if (num % i === 0) return isUgly(Math.floor(num / i));\n  }\n  return false;\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=263 lang=javascript\n *\n * [263] Ugly Number\n */\n/**\n * @param {number} num\n * @return {boolean}\n */\nvar isUgly = function (num) {\n  // TAG: 数论\n  if (num <= 0) return false;\n  if (num === 1) return true;\n\n  const list = [2, 3, 5];\n\n  if (list.includes(num)) return true;\n\n  for (let i of list) {\n    if (num % i === 0) return isUgly(Math.floor(num / i));\n  }\n  return false;\n};\n"
         },
         {
             "language": "cpp",
@@ -6524,7 +6588,7 @@
         },
         {
             "language": "js",
-            "text": "\n/**\n * @param {number[]} nums\n * @return {void} Do not return anything, modify nums in-place instead.\n */\nvar moveZeroes = function(nums) {\n    let index = 0;\n    for(let i = 0; i < nums.length; i++) {\n        const num = nums[i];\n        if (num !== 0) {\n            nums[index++] = num;\n        }\n    }\n\n    for(let i = index; i < nums.length; i++) {\n        nums[index++] = 0;\n    }\n};\n"
+            "text": "\n/**\n * @param {number[]} nums\n * @return {void} Do not return anything, modify nums in-place instead.\n */\nvar moveZeroes = function (nums) {\n  let index = 0;\n  for (let i = 0; i < nums.length; i++) {\n    const num = nums[i];\n    if (num !== 0) {\n      nums[index++] = num;\n    }\n  }\n\n  for (let i = index; i < nums.length; i++) {\n    nums[index++] = 0;\n  }\n};\n"
         },
         {
             "language": "py",
@@ -6879,7 +6943,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=328 lang=javascript\n *\n * [328] Odd Even Linked List\n *\n *\n */\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} head\n * @return {ListNode}\n */\nvar oddEvenList = function(head) {\n  if (!head || !head.next) return head;\n\n  const dummyHead1 = {\n    next: head\n  };\n  const dummyHead2 = {\n    next: head.next\n  };\n\n  let odd = dummyHead1.next;\n  let even = dummyHead2.next;\n\n  while (odd && odd.next && even && even.next) {\n    const oddNext = odd.next.next;\n    const evenNext = even.next.next;\n\n    odd.next = oddNext;\n    even.next = evenNext;\n\n    odd = oddNext;\n    even = evenNext;\n  }\n\n  odd.next = dummyHead2.next;\n\n  return dummyHead1.next;\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=328 lang=javascript\n *\n * [328] Odd Even Linked List\n *\n *\n */\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} head\n * @return {ListNode}\n */\nvar oddEvenList = function (head) {\n  if (!head || !head.next) return head;\n\n  const dummyHead1 = {\n    next: head,\n  };\n  const dummyHead2 = {\n    next: head.next,\n  };\n\n  let odd = dummyHead1.next;\n  let even = dummyHead2.next;\n\n  while (odd && odd.next && even && even.next) {\n    const oddNext = odd.next.next;\n    const evenNext = even.next.next;\n\n    odd.next = oddNext;\n    even.next = evenNext;\n\n    odd = oddNext;\n    even = evenNext;\n  }\n\n  odd.next = dummyHead2.next;\n\n  return dummyHead1.next;\n};\n"
         }
     ]
 },
@@ -6949,7 +7013,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/*\n/**\n * @param {number[]} nums\n * @return {boolean}\n */\nvar increasingTriplet = function(nums) {\n    if (nums.length < 3) return false;\n    let n1 = Number.MAX_VALUE;\n    let n2 = Number.MAX_VALUE;\n\n    for(let i = 0; i < nums.length; i++) {\n        if (nums[i] <= n1) {\n            n1 = nums[i]\n        } else if (nums[i] <= n2) {\n            n2 = nums[i]\n        } else {\n            return true;\n        }\n    }\n\n    return false;\n};\n"
+            "text": "\n/*\n/**\n * @param {number[]} nums\n * @return {boolean}\n */\nvar increasingTriplet = function (nums) {\n  if (nums.length < 3) return false;\n  let n1 = Number.MAX_VALUE;\n  let n2 = Number.MAX_VALUE;\n\n  for (let i = 0; i < nums.length; i++) {\n    if (nums[i] <= n1) {\n      n1 = nums[i];\n    } else if (nums[i] <= n2) {\n      n2 = nums[i];\n    } else {\n      return true;\n    }\n  }\n\n  return false;\n};\n"
         }
     ]
 },
@@ -6970,7 +7034,7 @@
             "color": "blue"
         },
         {
-            "text": "对于这种$$O(1)$$空间复杂度有固定的套路。常见的有：1.直接修改原数组2.滑动窗口（当前状态并不是和之前所有状态有关，而是仅和某几个有关）。我们采用的是滑动窗口。但是难点就在于我们怎么知道当前状态和哪几个有关。对于这道题来说，画图或许可以帮助你打开思路。另外面试的时候说出$$O(N)$$的思路也不失为一个帮助你冷静分析问题的手段。",
+            "text": "对于这种$O(1)$空间复杂度有固定的套路。常见的有：1.直接修改原数组2.滑动窗口（当前状态并不是和之前所有状态有关，而是仅和某几个有关）。我们采用的是滑动窗口。但是难点就在于我们怎么知道当前状态和哪几个有关。对于这道题来说，画图或许可以帮助你打开思路。另外面试的时候说出$O(N)$的思路也不失为一个帮助你冷静分析问题的手段。",
             "link": null,
             "color": "blue"
         }
@@ -7090,7 +7154,7 @@
         },
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=342 lang=javascript\n *\n * [342] Power of Four\n */\n/**\n * @param {number} num\n * @return {boolean}\n */\nvar isPowerOfFour = function(num) {\n  // tag: 数论\n\n  if (num === 1) return true;\n  if (num < 4) return false;\n\n  if ((num & (num - 1)) !== 0) return false;\n\n  return (num & 0x55555555) === num;\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=342 lang=javascript\n *\n * [342] Power of Four\n */\n/**\n * @param {number} num\n * @return {boolean}\n */\nvar isPowerOfFour = function (num) {\n  // tag: 数论\n\n  if (num === 1) return true;\n  if (num < 4) return false;\n\n  if ((num & (num - 1)) !== 0) return false;\n\n  return (num & 0x55555555) === num;\n};\n"
         },
         {
             "language": "py",
@@ -7210,7 +7274,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/**\n * @param {number[]} nums1\n * @param {number[]} nums2\n * @return {number[]}\n */\nvar intersection = function(nums1, nums2) {\n    const visited = {};\n    const ret = [];\n    for(let i = 0; i < nums1.length; i++) {\n        const num = nums1[i];\n\n        visited[num] = num;\n    }\n\n    for(let i = 0; i < nums2.length; i++) {\n        const num = nums2[i];\n\n        if (visited[num] !== undefined) {\n            ret.push(num);\n            visited[num] = undefined;\n        }\n    }\n\n    return ret;\n\n};\n"
+            "text": "\n/**\n * @param {number[]} nums1\n * @param {number[]} nums2\n * @return {number[]}\n */\nvar intersection = function (nums1, nums2) {\n  const visited = {};\n  const ret = [];\n  for (let i = 0; i < nums1.length; i++) {\n    const num = nums1[i];\n\n    visited[num] = num;\n  }\n\n  for (let i = 0; i < nums2.length; i++) {\n    const num = nums2[i];\n\n    if (visited[num] !== undefined) {\n      ret.push(num);\n      visited[num] = undefined;\n    }\n  }\n\n  return ret;\n};\n"
         },
         {
             "language": "py",
@@ -7250,11 +7314,11 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/**\n * @param {number} x\n * @param {number} y\n * @param {number} z\n * @return {boolean}\n */\nvar canMeasureWater = function(x, y, z) {\n  if (x + y < z) return false;\n\n  if (z === 0) return true;\n\n  if (x === 0) return y === z;\n\n  if (y === 0) return x === z;\n\n  function GCD(a, b) {\n    let min = Math.min(a, b);\n    while (min) {\n      if (a % min === 0 && b % min === 0) return min;\n      min--;\n    }\n    return 1;\n  }\n\n  return z % GCD(x, y) === 0;\n};\n"
+            "text": "\n/**\n * @param {number} x\n * @param {number} y\n * @param {number} z\n * @return {boolean}\n */\nvar canMeasureWater = function (x, y, z) {\n  if (x + y < z) return false;\n\n  if (z === 0) return true;\n\n  if (x === 0) return y === z;\n\n  if (y === 0) return x === z;\n\n  function GCD(a, b) {\n    let min = Math.min(a, b);\n    while (min) {\n      if (a % min === 0 && b % min === 0) return min;\n      min--;\n    }\n    return 1;\n  }\n\n  return z % GCD(x, y) === 0;\n};\n"
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def canMeasureWater(self, x: int, y: int, z: int) -> bool:\n        if x + y < z:\n            return False\n        queue = [(0, 0)]\n        seen = set((0, 0))\n\n        while(len(queue) > 0):\n            a, b = queue.pop(0)\n            if a ==z or b == z or a + b == z:\n                return True\n            states = set()\n\n            states.add((x, b))\n            states.add((a, y))\n            states.add((0, b))\n            states.add((a, 0)) \n            states.add((min(x, b + a), 0 if b < x - a else b - (x - a))) \n            states.add((0 if a + b < y else a - (y - b), min(b + a, y)))\n            for state in states:\n                if state in seen:\n                    continue;\n                queue.append(state)\n                seen.add(state)\n        return False\n"
+            "text": "\nclass Solution:\n    def canMeasureWater(self, x: int, y: int, z: int) -> bool:\n        if x + y < z:\n            return False\n        queue = [(0, 0)]\n        seen = set((0, 0))\n\n        while(len(queue) > 0):\n            a, b = queue.pop(0)\n            if a ==z or b == z or a + b == z:\n                return True\n            states = set()\n\n            states.add((x, b))\n            states.add((a, y))\n            states.add((0, b))\n            states.add((a, 0))\n            states.add((min(x, b + a), 0 if b < x - a else b - (x - a)))\n            states.add((0 if a + b < y else a - (y - b), min(b + a, y)))\n            for state in states:\n                if state in seen:\n                    continue;\n                queue.append(state)\n                seen.add(state)\n        return False\n"
         },
         {
             "language": "py",
@@ -7316,7 +7380,7 @@
         },
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=371 lang=javascript\n *\n * [371] Sum of Two Integers\n */\n/**\n * @param {number} a\n * @param {number} b\n * @return {number}\n */\nvar getSum = function(a, b) {\n    if (a === 0) return b;\n\n    if (b === 0) return a;\n\n    return getSum(a ^ b, (a & b) << 1);\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=371 lang=javascript\n *\n * [371] Sum of Two Integers\n */\n/**\n * @param {number} a\n * @param {number} b\n * @return {number}\n */\nvar getSum = function (a, b) {\n  if (a === 0) return b;\n\n  if (b === 0) return a;\n\n  return getSum(a ^ b, (a & b) << 1);\n};\n"
         },
         {
             "language": "cpp",
@@ -7376,7 +7440,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=378 lang=javascript\n *\n * [378] Kth Smallest Element in a Sorted Matrix\n */\nfunction notGreaterCount(matrix, target) {\n  // 等价于在matrix 中搜索mid，搜索的过程中利用有序的性质记录比mid小的元素个数\n\n  // 我们选择左下角，作为开始元素\n  let curRow = 0;\n  // 多少列\n  const COL_COUNT = matrix[0].length;\n  // 最后一列的索引\n  const LAST_COL = COL_COUNT - 1;\n  let res = 0;\n\n  while (curRow < matrix.length) {\n    // 比较最后一列的数据和target的大小\n    if (matrix[curRow][LAST_COL] < target) {\n      res += COL_COUNT;\n    } else {\n      let i = COL_COUNT - 1;\n      while (i < COL_COUNT && matrix[curRow][i] > target) {\n        i--;\n      }\n      // 注意这里要加1\n      res += i + 1;\n    }\n    curRow++;\n  }\n\n  return res;\n}\n/**\n * @param {number[][]} matrix\n * @param {number} k\n * @return {number}\n */\nvar kthSmallest = function(matrix, k) {\n  if (matrix.length < 1) return null;\n  let start = matrix[0][0];\n  let end = matrix[matrix.length - 1][matrix[0].length - 1];\n  while (start < end) {\n    const mid = start + ((end - start) >> 1);\n    const count = notGreaterCount(matrix, mid);\n    if (count < k) start = mid + 1;\n    else end = mid;\n  }\n  // 返回start,mid, end 都一样\n  return start;\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=378 lang=javascript\n *\n * [378] Kth Smallest Element in a Sorted Matrix\n */\nfunction notGreaterCount(matrix, target) {\n  // 等价于在matrix 中搜索mid，搜索的过程中利用有序的性质记录比mid小的元素个数\n\n  // 我们选择左下角，作为开始元素\n  let curRow = 0;\n  // 多少列\n  const COL_COUNT = matrix[0].length;\n  // 最后一列的索引\n  const LAST_COL = COL_COUNT - 1;\n  let res = 0;\n\n  while (curRow < matrix.length) {\n    // 比较最后一列的数据和target的大小\n    if (matrix[curRow][LAST_COL] < target) {\n      res += COL_COUNT;\n    } else {\n      let i = COL_COUNT - 1;\n      while (i < COL_COUNT && matrix[curRow][i] > target) {\n        i--;\n      }\n      // 注意这里要加1\n      res += i + 1;\n    }\n    curRow++;\n  }\n\n  return res;\n}\n/**\n * @param {number[][]} matrix\n * @param {number} k\n * @return {number}\n */\nvar kthSmallest = function (matrix, k) {\n  if (matrix.length < 1) return null;\n  let start = matrix[0][0];\n  let end = matrix[matrix.length - 1][matrix[0].length - 1];\n  while (start < end) {\n    const mid = start + ((end - start) >> 1);\n    const count = notGreaterCount(matrix, mid);\n    if (count < k) start = mid + 1;\n    else end = mid;\n  }\n  // 返回start,mid, end 都一样\n  return start;\n};\n"
         }
     ]
 },
@@ -7552,6 +7616,31 @@
         }
     ]
 },
+"longest-repeating-character-replacement":{
+    "id": "424",
+    "name": "longest-repeating-character-replacement",
+    "pre": [],
+    "keyPoints": [
+        {
+            "text": "最长连续1模型",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/424.longest-repeating-character-replacement.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/424.longest-repeating-character-replacement.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def characterReplacement(self, s: str, k: int) -> int:\n        def fix(c, k):\n            ans = i = 0\n            for j in range(len(s)):\n                k -= s[j] != c\n                while i < j and k < 0:\n                    k += s[i] != c\n                    i += 1\n                ans = max(ans, j - i + 1)\n            return ans\n \n        ans = 0\n        for i in range(26):\n            ans = max(ans, fix(chr(ord(\"A\") + i), k))\n        return ans\n \n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def characterReplacement(self, s: str, k: int) -> int:\n        if not s: return 0\n        counts = [0] * 26\n        i = most_fraq = 0\n        for j in range(len(s)):\n            counts[ord(s[j]) - ord(\"A\")] += 1\n            most_fraq = max(most_fraq, counts[ord(s[j]) - ord(\"A\")])\n            while i < j and j - i + 1 - most_fraq > k:\n                counts[ord(s[i]) - ord(\"A\")] -= 1\n                most_fraq = max(most_fraq, counts[ord(s[j]) - ord(\"A\")])\n                i += 1\n        return j - i + 1\n"
+        }
+    ]
+},
 "path-sum-iii":{
     "id": "437",
     "name": "path-sum-iii",
@@ -7608,11 +7697,11 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n// the number of the paths starting from self\nfunction helper(root, sum) {\n  if (root === null) return 0;\n  const l = helper(root.left, sum - root.val);\n  const r = helper(root.right, sum - root.val);\n\n  return l + r + (root.val === sum ? 1 : 0);\n}\n/**\n * @param {TreeNode} root\n * @param {number} sum\n * @return {number}\n */\nvar pathSum = function(root, sum) {\n// 空间复杂度O(n) 时间复杂度介于O(nlogn) 和 O(n^2)\n  // tag: dfs tree\n  if (root === null) return 0;\n  // the number of the paths starting from self\n  const self = helper(root, sum);\n  // we don't know the answer, so we just pass it down\n  const l = pathSum(root.left, sum);\n  // we don't know the answer, so we just pass it down\n  const r = pathSum(root.right, sum);\n\n  return self + l + r;\n};\n\n"
+            "text": "\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n// the number of the paths starting from self\nfunction helper(root, sum) {\n  if (root === null) return 0;\n  const l = helper(root.left, sum - root.val);\n  const r = helper(root.right, sum - root.val);\n\n  return l + r + (root.val === sum ? 1 : 0);\n}\n/**\n * @param {TreeNode} root\n * @param {number} sum\n * @return {number}\n */\nvar pathSum = function (root, sum) {\n  // 空间复杂度O(n) 时间复杂度介于O(nlogn) 和 O(n^2)\n  // tag: dfs tree\n  if (root === null) return 0;\n  // the number of the paths starting from self\n  const self = helper(root, sum);\n  // we don't know the answer, so we just pass it down\n  const l = pathSum(root.left, sum);\n  // we don't know the answer, so we just pass it down\n  const r = pathSum(root.right, sum);\n\n  return self + l + r;\n};\n"
         },
         {
             "language": "js",
-            "text": "\n\n\n/*\n * @lc app=leetcode id=437 lang=javascript\n *\n * [437] Path Sum III\n */\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\nfunction helper(root, acc, target, hashmap) {\n  // see also : https://leetcode.com/problems/subarray-sum-equals-k/\n\n  if (root === null) return 0;\n  let count = 0;\n  acc += root.val;\n  if (acc === target) count++;\n  if (hashmap[acc - target] !== void 0) {\n    count += hashmap[acc - target];\n  }\n  if (hashmap[acc] === void 0) {\n    hashmap[acc] = 1;\n  } else {\n    hashmap[acc] += 1;\n  }\n  const res =\n    count +\n    helper(root.left, acc, target, hashmap) +\n    helper(root.right, acc, target, hashmap);\n\n    // 这里要注意别忘记了\n    hashmap[acc] = hashmap[acc] - 1;\n\n    return res;\n}\n\nvar pathSum = function(root, sum) {\n  const hashmap = {};\n  return helper(root, 0, sum, hashmap);\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=437 lang=javascript\n *\n * [437] Path Sum III\n */\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\nfunction helper(root, acc, target, hashmap) {\n  // see also : https://leetcode.com/problems/subarray-sum-equals-k/\n\n  if (root === null) return 0;\n  let count = 0;\n  acc += root.val;\n  if (acc === target) count++;\n  if (hashmap[acc - target] !== void 0) {\n    count += hashmap[acc - target];\n  }\n  if (hashmap[acc] === void 0) {\n    hashmap[acc] = 1;\n  } else {\n    hashmap[acc] += 1;\n  }\n  const res =\n    count +\n    helper(root.left, acc, target, hashmap) +\n    helper(root.right, acc, target, hashmap);\n\n  // 这里要注意别忘记了\n  hashmap[acc] = hashmap[acc] - 1;\n\n  return res;\n}\n\nvar pathSum = function (root, sum) {\n  const hashmap = {};\n  return helper(root, 0, sum, hashmap);\n};\n"
         }
     ]
 },
@@ -7669,11 +7758,11 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=445 lang=javascript\n *\n * [445] Add Two Numbers II\n */\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} l1\n * @param {ListNode} l2\n * @return {ListNode}\n */\nvar addTwoNumbers = function(l1, l2) {\n  const stack1 = [];\n  const stack2 = [];\n  const stack = [];\n\n  let cur1 = l1;\n  let cur2 = l2;\n  let curried = 0;\n\n  while (cur1) {\n    stack1.push(cur1.val);\n    cur1 = cur1.next;\n  }\n\n  while (cur2) {\n    stack2.push(cur2.val);\n    cur2 = cur2.next;\n  }\n\n  let a = null;\n  let b = null;\n\n  while (stack1.length > 0 || stack2.length > 0) {\n    a = Number(stack1.pop()) || 0;\n    b = Number(stack2.pop()) || 0;\n\n    stack.push((a + b + curried) % 10);\n\n    if (a + b + curried >= 10) {\n      curried = 1;\n    } else {\n      curried = 0;\n    }\n  }\n\n  if (curried === 1) {\n    stack.push(1);\n  }\n\n  const dummy = {};\n\n  let current = dummy;\n\n  while (stack.length > 0) {\n    current.next = {\n      val: stack.pop(),\n      next: null\n    };\n\n    current = current.next;\n  }\n\n  return dummy.next;\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=445 lang=javascript\n *\n * [445] Add Two Numbers II\n */\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} l1\n * @param {ListNode} l2\n * @return {ListNode}\n */\nvar addTwoNumbers = function (l1, l2) {\n  const stack1 = [];\n  const stack2 = [];\n  const stack = [];\n\n  let cur1 = l1;\n  let cur2 = l2;\n  let curried = 0;\n\n  while (cur1) {\n    stack1.push(cur1.val);\n    cur1 = cur1.next;\n  }\n\n  while (cur2) {\n    stack2.push(cur2.val);\n    cur2 = cur2.next;\n  }\n\n  let a = null;\n  let b = null;\n\n  while (stack1.length > 0 || stack2.length > 0) {\n    a = Number(stack1.pop()) || 0;\n    b = Number(stack2.pop()) || 0;\n\n    stack.push((a + b + curried) % 10);\n\n    if (a + b + curried >= 10) {\n      curried = 1;\n    } else {\n      curried = 0;\n    }\n  }\n\n  if (curried === 1) {\n    stack.push(1);\n  }\n\n  const dummy = {};\n\n  let current = dummy;\n\n  while (stack.length > 0) {\n    current.next = {\n      val: stack.pop(),\n      next: null,\n    };\n\n    current = current.next;\n  }\n\n  return dummy.next;\n};\n"
         },
         {
             "language": "py",
-            "text": "\n# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.next = None\n\nclass Solution:\n    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:\n        def listToStack(l: ListNode) -> list:\n            stack, c = [], l\n            while c:\n                stack.append(c.val)\n                c = c.next\n            return stack\n            \n        # transfer l1 and l2 into stacks\n        stack1, stack2 = listToStack(l1), listToStack(l2)\n            \n        # add stack1 and stack2\n        diff = abs(len(stack1) - len(stack2))\n        stack1 = ([0]*diff + stack1 if len(stack1) < len(stack2) else stack1)\n        stack2 = ([0]*diff + stack2 if len(stack2) < len(stack1) else stack2)\n        stack3 = [x + y for x, y in zip(stack1, stack2)]\n        \n        # calculate carry for each item in stack3 and add one to the item before it\n        carry = 0\n        for i, val in enumerate(stack3[::-1]):\n            index = len(stack3) - i - 1\n            carry, stack3[index] = divmod(val + carry, 10)\n            if carry and index == 0: \n                stack3 = [1] + stack3\n            elif carry:\n                stack3[index - 1] += 1\n        \n        # transfer stack3 to a linkedList\n        result = ListNode(0)\n        c = result\n        for item in stack3:\n            c.next = ListNode(item)\n            c = c.next\n        \n        return result.next\n"
+            "text": "\n# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.next = None\n\nclass Solution:\n    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:\n        def listToStack(l: ListNode) -> list:\n            stack, c = [], l\n            while c:\n                stack.append(c.val)\n                c = c.next\n            return stack\n\n        # transfer l1 and l2 into stacks\n        stack1, stack2 = listToStack(l1), listToStack(l2)\n\n        # add stack1 and stack2\n        diff = abs(len(stack1) - len(stack2))\n        stack1 = ([0]*diff + stack1 if len(stack1) < len(stack2) else stack1)\n        stack2 = ([0]*diff + stack2 if len(stack2) < len(stack1) else stack2)\n        stack3 = [x + y for x, y in zip(stack1, stack2)]\n\n        # calculate carry for each item in stack3 and add one to the item before it\n        carry = 0\n        for i, val in enumerate(stack3[::-1]):\n            index = len(stack3) - i - 1\n            carry, stack3[index] = divmod(val + carry, 10)\n            if carry and index == 0:\n                stack3 = [1] + stack3\n            elif carry:\n                stack3[index - 1] += 1\n\n        # transfer stack3 to a linkedList\n        result = ListNode(0)\n        c = result\n        for item in stack3:\n            c.next = ListNode(item)\n            c = c.next\n\n        return result.next\n"
         }
     ]
 },
@@ -7712,11 +7801,11 @@
     "code": [
         {
             "language": "js",
-            "text": "\n\n/*\n * @lc app=leetcode id=454 lang=javascript\n *\n * [454] 4Sum II\n *\n * https://leetcode.com/problems/4sum-ii/description/\n/**\n * @param {number[]} A\n * @param {number[]} B\n * @param {number[]} C\n * @param {number[]} D\n * @return {number}\n */\nvar fourSumCount = function(A, B, C, D) {\n  const sumMapper = {};\n  let res = 0;\n  for (let i = 0; i < A.length; i++) {\n    for (let j = 0; j < B.length; j++) {\n        sumMapper[A[i] + B[j]] = (sumMapper[A[i] + B[j]] || 0) + 1;\n    }\n  }\n\n  for (let i = 0; i < C.length; i++) {\n    for (let j = 0; j < D.length; j++) {\n        res += sumMapper[- (C[i] + D[j])] || 0;\n    }\n  }\n\n  return res;\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=454 lang=javascript\n *\n * [454] 4Sum II\n *\n * https://leetcode.com/problems/4sum-ii/description/\n/**\n * @param {number[]} A\n * @param {number[]} B\n * @param {number[]} C\n * @param {number[]} D\n * @return {number}\n */\nvar fourSumCount = function (A, B, C, D) {\n  const sumMapper = {};\n  let res = 0;\n  for (let i = 0; i < A.length; i++) {\n    for (let j = 0; j < B.length; j++) {\n      sumMapper[A[i] + B[j]] = (sumMapper[A[i] + B[j]] || 0) + 1;\n    }\n  }\n\n  for (let i = 0; i < C.length; i++) {\n    for (let j = 0; j < D.length; j++) {\n      res += sumMapper[-(C[i] + D[j])] || 0;\n    }\n  }\n\n  return res;\n};\n"
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def fourSumCount(self, A: List[int], B: List[int], C: List[int], D: List[int]) -> int:\n        mapper = {}\n        res = 0\n        for i in A:\n            for j in B:\n                mapper[i + j] = mapper.get(i + j, 0) + 1\n        \n        for i in C:\n            for j in D:\n                res += mapper.get(-1 * (i + j), 0)\n        return res\n "
+            "text": "\nclass Solution:\n    def fourSumCount(self, A: List[int], B: List[int], C: List[int], D: List[int]) -> int:\n        mapper = {}\n        res = 0\n        for i in A:\n            for j in B:\n                mapper[i + j] = mapper.get(i + j, 0) + 1\n\n        for i in C:\n            for j in D:\n                res += mapper.get(-1 * (i + j), 0)\n        return res\n"
         }
     ]
 },
@@ -7948,6 +8037,33 @@
         }
     ]
 },
+"sliding-window-median":{
+    "id": "480",
+    "name": "sliding-window-median",
+    "pre": [
+        {
+            "text": "二分查找",
+            "link": "https://github.com/azl397985856/leetcode/blob/master/91/binary-search.md",
+            "color": "magenta"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "滑动窗口+二分",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/480.sliding-window-median.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/480.sliding-window-median.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def medianSlidingWindow(self, A: List[int], k: int) -> List[float]:\n        ans = []\n        win = []\n\n        for i, a in enumerate(A):\n            bisect.insort(win, a)\n            if i >= k:\n                win.pop(bisect.bisect_left(win, A[i - k]))\n            if i >= k - 1:\n                if k & 1:\n                    median = win[k // 2]\n                else:\n                    median = (win[k // 2] + win[k // 2 - 1]) / 2\n                ans.append(median)\n        return ans\n\n\n"
+        }
+    ]
+},
 "smallest-good-base":{
     "id": "483",
     "name": "smallest-good-base",
@@ -8151,7 +8267,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=494 lang=javascript\n *\n * [494] Target Sum\n *\n */\n// 这个是我们熟悉的问题了\n// 我们这里需要求解的是nums里面有多少种可以组成target的方式\nvar sumCount = function(nums, target) {\n  // 这里通过观察，我们没必要使用二维数组去存储这些计算结果\n  // 使用一维数组可以有效节省空间\n  const dp = Array(target + 1).fill(0);\n  dp[0] = 1;\n  for (let i = 0; i < nums.length; i++) {\n    for (let j = target; j >= nums[i]; j--) {\n      dp[j] += dp[j - nums[i]];\n    }\n  }\n  return dp[target];\n};\nconst add = nums => nums.reduce((a, b) => (a += b), 0);\n/**\n * @param {number[]} nums\n * @param {number} S\n * @return {number}\n */\nvar findTargetSumWays = function(nums, S) {\n  const sum = add(nums);\n  if (sum < S) return 0;\n  if ((S + sum) % 2 === 1) return 0;\n  return sumCount(nums, (S + sum) >> 1);\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=494 lang=javascript\n *\n * [494] Target Sum\n *\n */\n// 这个是我们熟悉的问题了\n// 我们这里需要求解的是nums里面有多少种可以组成target的方式\nvar sumCount = function (nums, target) {\n  // 这里通过观察，我们没必要使用二维数组去存储这些计算结果\n  // 使用一维数组可以有效节省空间\n  const dp = Array(target + 1).fill(0);\n  dp[0] = 1;\n  for (let i = 0; i < nums.length; i++) {\n    for (let j = target; j >= nums[i]; j--) {\n      dp[j] += dp[j - nums[i]];\n    }\n  }\n  return dp[target];\n};\nconst add = (nums) => nums.reduce((a, b) => (a += b), 0);\n/**\n * @param {number[]} nums\n * @param {number} S\n * @return {number}\n */\nvar findTargetSumWays = function (nums, S) {\n  const sum = add(nums);\n  if (sum < S) return 0;\n  if ((S + sum) % 2 === 1) return 0;\n  return sumCount(nums, (S + sum) >> 1);\n};\n"
         }
     ]
 },
@@ -8238,7 +8354,7 @@
         },
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=516 lang=javascript\n *\n * [516] Longest Palindromic Subsequence\n */\n/**\n * @param {string} s\n * @return {number}\n */\nvar longestPalindromeSubseq = function(s) {\n  // bbbab 返回4\n  // tag : dp\n  const dp = [];\n\n  for (let i = s.length - 1; i >= 0; i--) {\n    dp[i] = Array(s.length).fill(0);\n    for (let j = i; j < s.length; j++) {\n      if (i - j === 0) dp[i][j] = 1;\n      else if (s[i] === s[j]) {\n        dp[i][j] = dp[i + 1][j - 1] + 2;\n      } else {\n        dp[i][j] = Math.max(dp[i][j - 1], dp[i + 1][j]);\n      }\n    }\n  }\n\n  return dp[0][s.length - 1];\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=516 lang=javascript\n *\n * [516] Longest Palindromic Subsequence\n */\n/**\n * @param {string} s\n * @return {number}\n */\nvar longestPalindromeSubseq = function (s) {\n  // bbbab 返回4\n  // tag : dp\n  const dp = [];\n\n  for (let i = s.length - 1; i >= 0; i--) {\n    dp[i] = Array(s.length).fill(0);\n    for (let j = i; j < s.length; j++) {\n      if (i - j === 0) dp[i][j] = 1;\n      else if (s[i] === s[j]) {\n        dp[i][j] = dp[i + 1][j - 1] + 2;\n      } else {\n        dp[i][j] = Math.max(dp[i][j - 1], dp[i + 1][j]);\n      }\n    }\n  }\n\n  return dp[0][s.length - 1];\n};\n"
         }
     ]
 },
@@ -8423,7 +8539,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=575 lang=javascript\n *\n * [575] Distribute Candies\n */\n/**\n * @param {number[]} candies\n * @return {number}\n */\nvar distributeCandies = function(candies) {\n    const count = new Set(candies);\n    return Math.min(count.size, candies.length >> 1);\n};\n"
+            "text": "\n/*\n * @lc app=leetcode id=575 lang=javascript\n *\n * [575] Distribute Candies\n */\n/**\n * @param {number[]} candies\n * @return {number}\n */\nvar distributeCandies = function (candies) {\n  const count = new Set(candies);\n  return Math.min(count.size, candies.length >> 1);\n};\n"
         },
         {
             "language": "py",
@@ -8528,6 +8644,42 @@
         {
             "language": "py",
             "text": "\nclass Solution:\n    def triangleNumber(self, nums: List[int]) -> int:\n        n = len(nums)\n        ans = 0\n        nums.sort()\n        for i in range(n - 2):\n            if nums[i] == 0: continue\n            k = i + 2\n            for j in range(i + 1, n - 1):\n                while k < n and nums[i] + nums[j] > nums[k]:\n                    k += 1\n                ans += k - j - 1\n        return ans\n"
+        }
+    ]
+},
+"non-decreasing-array":{
+    "id": "665",
+    "name": "non-decreasing-array",
+    "pre": [
+        {
+            "text": "数组",
+            "link": null,
+            "color": "purple"
+        },
+        {
+            "text": "贪心",
+            "link": null,
+            "color": "purple"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "考虑各种边界情况，贪心改变数组的值",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/665.non-decreasing-array.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/665.non-decreasing-array.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def checkPossibility(self, A: List[int]) -> bool:\n        ans = 0\n        for i in range(1, len(A)):\n            if A[i] < A[i - 1]:\n                if ans == 1: return False\n                ans += 1\n        return True\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution(object):\n    def checkPossibility(self, A):\n        N = len(A)\n        count = 0\n        for i in range(1, N):\n            if A[i] < A[i - 1]:\n                count += 1\n                if count > 1:\n                    return False\n                # [4,2,3]  [4,2,1]   [1,2,1,2]  [1,1,1,] []\n                if i >= 2 and A[i] < A[i - 2]:\n                    A[i] = A[i - 1]\n\n        return True\n\n"
         }
     ]
 },
@@ -8887,6 +9039,165 @@
         }
     ]
 },
+"domino-and-tromino-tiling":{
+    "id": "790",
+    "name": "domino-and-tromino-tiling",
+    "pre": [
+        {
+            "text": "动态规划",
+            "link": null,
+            "color": "red"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "识别最优子结构",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "对一块瓷砖能拼成的图形进行分解，并对每一种情况进行讨论",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/790.domino-and-tromino-tiling.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/790.domino-and-tromino-tiling.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def numTilings(self, N: int) -> int:\n        dp = [0] * (N + 3)\n        # f(3) = 2 * f(2) + f(0) = 2 + f(0) = 1 -> f(0) = -1\n        # f(4) = 2 * f(3) + f(1) = 2 + f(1) = 2 -> f(1) = 0\n        dp[0] = -1\n        dp[1] = 0\n        dp[2] = 1\n        # f(n) = f(n-1) + f(n-2) + 2 * T(n-1)\n        # 2 * T(n-1) = 2 * f(n-3) + 2 * T(n-2)\n        # f(n) = f(n-1) + 2 * f(n-3) + f(n-2) + 2T(n-2) = f(n-1) + f(n-3) + f(n-3) + f(n-2) + 2T(n-2) = f(n-1) + f(n-3) + f(n-1) = 2 * f(n-1) + f(n-3)\n        for i in range(3, N + 3):\n            dp[i] = 2 * dp[i-1] + dp[i-3]\n        return dp[-1] % (10 ** 9 + 7)\n\n"
+        }
+    ]
+},
+"champagne-tower":{
+    "id": "799",
+    "name": "champagne-tower",
+    "pre": [
+        {
+            "text": "动态规划",
+            "link": null,
+            "color": "red"
+        },
+        {
+            "text": "杨辉三角",
+            "link": null,
+            "color": "green"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "不必模拟多步，而是只模拟一次即可",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/799.champagne-tower.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/799.champagne-tower.md",
+    "code": []
+},
+"minimum-swaps-to-make-sequences-increasing":{
+    "id": "801",
+    "name": "minimum-swaps-to-make-sequences-increasing",
+    "pre": [
+        {
+            "text": "动态规划",
+            "link": null,
+            "color": "red"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "一：无需考虑全部整体，而只需要考虑相邻两个数字即可这其实也是可以使用动态规划解决问题的关键条件。对于这道题来说，**最小**的子问题就是当前项和前一项组成的局部，**无法**再小了，**没有必要**再大了。为什么只关心两个数字即可？因为要使得整个数组递增，**假设**前面的i",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "2项已经满足递增了，那么现在**采取某种方式**使得满足A[i]>A[i",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "1]即可(B也是同理)。>因为A[i",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "1]>A[i",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "2]已经成立，因此如果A[i]>A[i",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "1]，那么整体就递增了。这提示我们可以使用动态规划来完成。如果上面的这些没有听懂，则很有可能对动态规划不熟悉，建议先看下基础知识。",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/801.minimum-swaps-to-make-sequences-increasing.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/801.minimum-swaps-to-make-sequences-increasing.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def minSwap(self, A: List[int], B: List[int]) -> int:\n        n = len(A)\n        swap = [n] * n\n        no_swap = [n] * n\n        swap[0] = 1\n        no_swap[0] = 0\n\n        for i in range(1, len(A)):\n            q1 = A[i-1] < A[i] and B[i-1] < B[i]\n            q2 = A[i-1] < B[i] and B[i-1] < A[i]\n            if q1 and q2:\n                no_swap[i] = min(swap[i-1], no_swap[i-1]) # 都不换或者换i-1\n                swap[i] = min(swap[i-1], no_swap[i-1]) + 1 # 都换 或者 换 i\n            if q1 and not q2:\n                swap[i] = swap[i-1] + 1 # 都换\n                no_swap[i] = no_swap[i-1] # 都不换\n            if not q1 and q2:\n                swap[i] = no_swap[i-1] + 1 # 换 i\n                no_swap[i] = swap[i-1] # 换 i - 1\n\n        return min(swap[n-1], no_swap[n-1])\n"
+        },
+        {
+            "language": "py",
+            "text": "\nif q1:\n    no_swap[i] = no_swap[i-1] # 都不换\n    swap[i] = swap[i-1] + 1 # 都换\nif q2:\n    swap[i] = min(swap[i], no_swap[i-1] + 1) # 换 i\n    no_swap[i] =  min(no_swap[i], swap[i-1]) # 换 i - 1\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def minSwap(self, A: List[int], B: List[int]) -> int:\n        n = len(A)\n        swap = [n] * n\n        no_swap = [n] * n\n        swap[0] = 1\n        no_swap[0] = 0\n\n        for i in range(1, len(A)):\n            # 如果交换之前有序，则可以不交换\n            if A[i-1] < A[i] and B[i-1] < B[i]:\n                no_swap[i] = no_swap[i-1]\n                swap[i] = swap[i-1] + 1\n            # 否则至少需要交换一次（交换当前项或者前一项）\n            if A[i-1] < B[i] and B[i-1] < A[i]:\n                swap[i] = min(swap[i], no_swap[i-1] + 1) # i 换\n                no_swap[i] =  min(no_swap[i], swap[i-1]) # i - 1 换\n\n        return min(swap[n-1], no_swap[n-1])\n"
+        }
+    ]
+},
+"split-array-with-same-average":{
+    "id": "805",
+    "name": "split-array-with-same-average",
+    "pre": [
+        {
+            "text": "回溯",
+            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/backtrack.md",
+            "color": "green"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "回溯解题模板",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "两个剪枝",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/805.split-array-with-same-average.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/805.split-array-with-same-average.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\ndef splitArraySameAverage(self, A: List[int]) -> bool:\n        n = len(A)\n        avg = sum(A) / n\n\n        for i in range(1, n // 2 + 1):\n            for combination in combinations(A, i):\n                if abs(sum(combination) - avg * i) < 1e-6:\n                    return True\n        return False\n"
+        },
+        {
+            "language": "py",
+            "text": "\ndef splitArraySameAverage(self, A: List[int]) -> bool:\n        n = len(A)\n        avg = sum(A) / n\n\n        for i in range(1, n // 2 + 1):\n            for s in combinationSum(A, i):\n                if abs(s - avg * i) < 1e-6:\n                    return True\n        return False\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def combinationSum(self, candidates: List[int], count: int) -> List[List[int]]:\n        size = len(candidates)\n        if size == 0:\n            return []\n \n        # 还是先排序，主要是方便去重\n        candidates.sort()\n \n        ans = []\n        self._find_path(candidates, ans, 0, count, 0, size)\n        return ans\n \n    def _find_path(self, candidates, ans, path_sum, count, begin, size):\n        if count == 0:\n            ans.append(path_sum)\n            return\n        else:\n            for i in range(begin, size):\n                # 剪枝一。 注意这里的 i > begin 这个条件\n                if i > begin and candidates[i] == candidates[i - 1]:\n                    continue\n                self._find_path(candidates, ans, path_sum + candidates[i], count - 1, i + 1, size)\n \n    def splitArraySameAverage(self, A: List[int]) -> bool:\n        n = len(A)\n        avg = sum(A) / n\n \n        for i in range(1, n // 2 + 1):\n            # 剪枝二\n            if abs(i * avg - int(i * avg)) > 1e-6:\n                continue\n            for s in self.combinationSum(A, i):\n                if abs(s - avg * i) < 1e-6:\n                    return True\n        return False\n\n"
+        }
+    ]
+},
 "ambiguous-coordinates":{
     "id": "816",
     "name": "ambiguous-coordinates",
@@ -9114,7 +9425,7 @@
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def canEatAllBananas(self, piles, H, K):\n        t = 0\n        for pile in piles:\n            t += math.ceil(pile / K)\n        return t <= H\n    def minEatingSpeed(self, piles: List[int], H: int) -> int:\n        l, r = 1, max(piles)\n        # [l, r) ， 左闭右开的好处是如果能找到，那么返回 l 和 r 都是一样的，因为最终 l 等于 r。\n        while l < r:\n            mid = (l + r) >> 1\n            if self.canEatAllBananas(piles, H, mid):\n                r = mid\n            else:\n                l = mid + 1\n        return l\n\n"
+            "text": "\nclass Solution:\n    def solve(self, piles, k):\n        def possible(mid):\n            t = 0\n            for pile in piles:\n                t += (pile + mid - 1) // mid\n            return t <= k\n\n        l, r = 1, max(piles)\n\n        while l <= r:\n            mid = (l + r) // 2\n            if possible(mid):\n                r = mid - 1\n            else:\n                l = mid + 1\n        return l\n\n"
         }
     ]
 },
@@ -9322,6 +9633,33 @@
         }
     ]
 },
+"bitwise-ors-of-subarrays":{
+    "id": "898",
+    "name": "bitwise-ors-of-subarrays",
+    "pre": [
+        {
+            "text": "【西法带你学算法】一次搞定前缀和",
+            "link": "https://lucifer.ren/blog/2020/09/27/atMostK/",
+            "color": "gold"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "子数组是连续的，有很多性质可以利用",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/898.bitwise-ors-of-subarrays.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/898.bitwise-ors-of-subarrays.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution(object):\n    def subarrayBitwiseORs(self, A):\n        pres = set([0])\n        ans = set()\n        for a in A:\n            nxt = set()\n            for pre in pres:\n                nxt.add(a | pre)\n                nxt.add(a)\n            pres = nxt\n            ans |= nxt\n        return len(ans)\n\n\n"
+        }
+    ]
+},
 "rle-iterator":{
     "id": "900",
     "name": "rle-iterator",
@@ -9440,6 +9778,38 @@
         {
             "language": "js",
             "text": "\nfunction swap(nums, a, b) {\n    const temp = nums[a];\n    nums[a] = nums[b];\n    nums[b] = temp;\n}\n\nfunction helper(nums, start, end) {\n    if (start >= end) return;\n    const pivotIndex = start + ((end - start) >>> 1)\n    const pivot = nums[pivotIndex]\n    let i = start;\n    let j = end;\n    while (i <= j) {\n        while (nums[i] < pivot) i++;\n        while (nums[j] > pivot) j--;\n        if (i <= j) {\n            swap(nums, i, j);\n            i++;\n            j--;\n        }\n    }\n    helper(nums, start, j);\n    helper(nums, i, end);\n}\n\n/**\n * @param {number[]} nums\n * @return {number[]}\n */\nvar sortArray = function(nums) {\n    helper(nums, 0, nums.length - 1);\n    return nums;\n};\n"
+        }
+    ]
+},
+"beautiful-array":{
+    "id": "932",
+    "name": "beautiful-array",
+    "pre": [
+        {
+            "text": "分治",
+            "link": null,
+            "color": "gold"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "利用性质**奇数+偶数=奇数**",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "对问题进行分解",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/932.beautiful-array.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/932.beautiful-array.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def beautifulArray(self, N: int) -> List[int]:\n        @lru_cache(None)\n        def dp(n):\n            if n == 1:\n                return [1]\n            ans = []\n            # [1,n] 中奇数比偶数多1或一样\n            for a in dp(n - n // 2):\n                ans += [a * 2 - 1]\n            for b in dp(n // 2):\n                ans += [b * 2]\n            return ans\n\n        return dp(N)\n\n"
         }
     ]
 },
@@ -9719,7 +10089,7 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/**\n * @param {number[]} weights\n * @param {number} D\n * @return {number}\n */\nvar shipWithinDays = function(weights, D) {\n  let high = weights.reduce((acc, cur) => acc + cur)\n  let low = 0\n\n  while(low < high) {\n    let mid = Math.floor((high + low) / 2)\n    if (canShip(mid)) {\n      high = mid\n    } else {\n      low = mid + 1\n    }\n  }\n\n  return low\n\n  function canShip(opacity) {\n    let remain = opacity\n    let count = 1\n    for (let weight of weights) {\n      if (weight > opacity) {\n        return false\n      }\n      remain -= weight\n      if (remain < 0) {\n        count++\n        remain = opacity - weight\n      }\n      if (count > D) {\n        return false\n      }\n    }\n    return count <= D\n  }\n};\n"
+            "text": "\n/**\n * @param {number[]} weights\n * @param {number} D\n * @return {number}\n */\nvar shipWithinDays = function (weights, D) {\n  let high = weights.reduce((acc, cur) => acc + cur);\n  let low = 0;\n\n  while (low < high) {\n    let mid = Math.floor((high + low) / 2);\n    if (canShip(mid)) {\n      high = mid;\n    } else {\n      low = mid + 1;\n    }\n  }\n\n  return low;\n\n  function canShip(opacity) {\n    let remain = opacity;\n    let count = 1;\n    for (let weight of weights) {\n      if (weight > opacity) {\n        return false;\n      }\n      remain -= weight;\n      if (remain < 0) {\n        count++;\n        remain = opacity - weight;\n      }\n      if (count > D) {\n        return false;\n      }\n    }\n    return count <= D;\n  }\n};\n"
         },
         {
             "language": "py",
@@ -10249,11 +10619,11 @@
     "code": [
         {
             "language": "py",
-            "text": "\n  class Solution:\n    def maximumSum(self, arr: List[int]) -> int:\n        res = arr[0]\n        def maxSubSum(arr, skip):\n            res = maxSub = float(\"-inf\")\n           \n            for i in range(len(arr)):\n                if i == skip:\n                    continue\n                maxSub = max(arr[i], maxSub + arr[i])\n                res = max(res, maxSub)\n            return res\n\t\t# 这里循环到了len(arr)项，表示的是一个都不删除的情况\n        for i in range(len(arr) + 1):\n            res = max(res, maxSubSum(arr, i))\n        return res\n"
+            "text": "\n  class Solution:\n    def maximumSum(self, arr: List[int]) -> int:\n        res = arr[0]\n        def maxSubSum(arr, skip):\n            res = maxSub = float(\"-inf\")\n\n            for i in range(len(arr)):\n                if i == skip:\n                    continue\n                maxSub = max(arr[i], maxSub + arr[i])\n                res = max(res, maxSub)\n            return res\n\t\t# 这里循环到了len(arr)项，表示的是一个都不删除的情况\n        for i in range(len(arr) + 1):\n            res = max(res, maxSubSum(arr, i))\n        return res\n"
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def maximumSum(self, arr: List[int]) -> int:\n        n = len(arr)\n        l = [arr[0]] * n\n        r = [arr[n - 1]] * n\n        if n == 1:\n            return arr[0]\n        res = arr[0]\n        for i in range(1, n):\n            l[i] = max(l[i - 1] + arr[i], arr[i])\n            res = max(res, l[i])\n        for i in range(n - 2, -1, -1):\n            r[i] = max(r[i + 1] + arr[i], arr[i])\n            res = max(res, r[i])\n        for i in range(1, n - 1):\n            res = max(res, l[i - 1] + r[i + 1])\n      \n        return res\n\n"
+            "text": "\nclass Solution:\n    def maximumSum(self, arr: List[int]) -> int:\n        n = len(arr)\n        l = [arr[0]] * n\n        r = [arr[n - 1]] * n\n        if n == 1:\n            return arr[0]\n        res = arr[0]\n        for i in range(1, n):\n            l[i] = max(l[i - 1] + arr[i], arr[i])\n            res = max(res, l[i])\n        for i in range(n - 2, -1, -1):\n            r[i] = max(r[i + 1] + arr[i], arr[i])\n            res = max(res, r[i])\n        for i in range(1, n - 1):\n            res = max(res, l[i - 1] + r[i + 1])\n\n        return res\n\n"
         },
         {
             "language": "py",
@@ -10873,6 +11243,60 @@
         {
             "language": "py",
             "text": "\nfor j in V to 0:\n    for i in 1 to N + 1:\n        ...\n\n"
+        }
+    ]
+},
+"parallel-courses-ii":{
+    "id": "1494",
+    "name": "parallel-courses-ii",
+    "pre": [
+        {
+            "text": "拓扑排序",
+            "link": null,
+            "color": "purple"
+        },
+        {
+            "text": "位运算",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "动态规划",
+            "link": null,
+            "color": "red"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "枚举",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "位运算的枚举子集优化",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1494.parallel-courses-ii.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1494.parallel-courses-ii.md",
+    "code": [
+        {
+            "language": "js",
+            "text": "\n// 外层枚举所有小于等于 x 的数\nans = [];\nfor (i = 1; i < 1 << n; i++) {\n  if ((x | i) === x) ans.push(i);\n}\n// ans 就是所有非空子集\n"
+        },
+        {
+            "language": "js",
+            "text": "\nans = [];\n// 外层枚举所有小于等于 x 的数\nfor (i = x; i != 0; i = (i - 1) & x) {\n  ans.push(i);\n}\n// ans 就是所有非空子集\n"
+        },
+        {
+            "language": "py",
+            "text": "\ndp[i | sub] = min(dp[i | sub], dp[i] + 1)\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def minNumberOfSemesters(self, n: int, dependencies: List[List[int]], k: int) -> int:\n        neighbors = collections.defaultdict(int)\n        dp = [n] * (1 << n)\n\n        for fr, to in dependencies:\n            neighbors[to - 1] |= 1 << (fr - 1)\n        dp[0] = 0  # 启动 dp\n        for i in range(1 << n):\n            can = 0\n            for j in range(n):\n                if (i & neighbors[j]) == neighbors[j]:\n                    can |= 1 << j\n            # 已经学过的不能学\n            can &= ~i\n            sub = can\n            while sub:\n                if bin(sub).count(\"1\") <= k:\n                    dp[i | sub] = min(dp[i | sub], dp[i] + 1)\n                sub = (sub - 1) & can\n        return dp[(1 << n) - 1]\n\n\n"
         }
     ]
 },
