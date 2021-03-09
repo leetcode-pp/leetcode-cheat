@@ -480,7 +480,7 @@ def count_bs(nums, k):
   },
 };
 
-export default function RoadMap({}) {
+export default function RoadMap() {
   const [topic, setTopic] = useState("dp");
   return (
     <>
