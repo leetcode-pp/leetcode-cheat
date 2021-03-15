@@ -1,5 +1,3 @@
-import React from "react";
-import { Button, message } from "antd";
 import { ISSUES_URL } from "./constant/index";
 
 function TreeNode(value) {
@@ -9,6 +7,11 @@ function TreeNode(value) {
     value,
   };
 }
+const message = {
+  error({ content }) {
+    window.alert(content);
+  },
+};
 const seen = {};
 export function getRandomUnique(lower, upper, amount) {
   console.log(seen);
@@ -98,17 +101,11 @@ export function buildRandomTree({
   return dfs({ upper, lower });
 }
 
-export function 不讲武德() {
+export function bjwd() {
   return message.error({
-    content: (
-      <>
-        力扣不讲武德，不按套路出牌。不过没关系啊，你
-        <Button type="link" href={ISSUES_URL} target="_blank">
-          反馈
-        </Button>
-        给我，下次一定全部防出去！
-      </>
-    ),
+    content: `
+        力扣不讲武德，不按套路出牌。不过没关系啊，你反馈给我，下次一定全部防出去！反馈到这里：${ISSUES_URL}
+      `,
   });
 }
 export function getUrlParameter(key) {

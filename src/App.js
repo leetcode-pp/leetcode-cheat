@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import { Button, Table, Empty, Tabs, Image } from "antd";
 
 import "highlight.js/styles/github.css";
@@ -21,9 +21,12 @@ import "antd/dist/antd.css";
 import "./App.css";
 import CodeTemplates from "./codeTemplates/codeTemplate";
 import ComplexityRating from "./complexityRating/index";
-import DataStrutureVis from "./dataStructureVis/index";
 import SolutionTemplate from "./solutionTemplate/index";
 // import { data as a } from "./db/binary-tree";
+
+const DataStrutureVis = isInExtension()
+  ? null
+  : React.lazy(() => import("./dataStructureVis"));
 
 const { problems, selected } = db;
 
@@ -207,7 +210,9 @@ function App() {
             <CodeTemplates tempaltes={tempaltes}></CodeTemplates>
           </TabPane>
           <TabPane key="data-structure-vis" tab="数据结构可视化">
-            <DataStrutureVis></DataStrutureVis>
+            <Suspense fallback={<div>Loading...</div>}>
+              <DataStrutureVis></DataStrutureVis>
+            </Suspense>
           </TabPane>
           {!isInExtension() && (
             <TabPane key="solution-template" tab="题解模板">

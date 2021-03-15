@@ -1,14 +1,21 @@
-// import React, { PureComponent } from "react";
-// import ReactDOM from "react-dom";
-import { message } from "antd";
 // import "./content.css";
-import {
-  copyToClipboard,
-  不讲武德,
-  getStorage,
-  setCloundStorage,
-} from "./utils";
+// import { message } from "antd";
+import { copyToClipboard, bjwd, getStorage, setCloundStorage } from "./utils";
 import zenAble from "./zen/zenMode";
+
+// WTF!  ant message didn't go well with chrome extension?
+const message = {
+  success({ content }) {
+    //
+  },
+  warn({ content }) {
+    window.alert(content);
+  },
+  loading(content) {
+    //
+    return () => null;
+  },
+};
 
 // import AccessToken from "./components/AccessToken";
 
@@ -154,7 +161,7 @@ function getProviedTestCases() {
         if (pres[i].innerText.includes(prefix)) {
           const testcase = extractTestCase(pres[i].innerText, prefix);
           if (!testcase || testcase.length <= 1) {
-            不讲武德();
+            bjwd();
             return [];
           }
           ans.push(normalize(testcase[1]));
@@ -175,7 +182,7 @@ function insertButton() {
       copyButton.style["margin-left"] = "10px";
       copyButton.onclick = () => {
         const cases = getProviedTestCases();
-        if (cases.filter(Boolean).length === 0) return 不讲武德();
+        if (cases.filter(Boolean).length === 0) return bjwd();
         copyToClipboard(cases.join("\n"));
         message.success({
           content: "复制成功~",
@@ -282,14 +289,21 @@ function insertButton() {
   return false;
 }
 let inserted = false;
+let retried = 0;
+const MAX_TRY = 10;
 const timerId = setInterval(() => {
   if (inserted) return clearInterval(timerId);
+  if (retried > MAX_TRY) {
+    clearInterval(timerId);
+    return console.error("初始化 chrome 插件 content script 失败");
+  }
   if (insertButton()) {
     window.location.title = "";
     inserted = true;
     // 可进入禅定模式
     zenAble();
   }
+  retried++;
 }, 1000);
 
 // class Main extends React.Component {

@@ -214,22 +214,22 @@
     ],
     "keyPoints": [
         {
-            "text": "分析1.暴力求解，在线性时间内merge两个排好序的数组成一个数组。2.二分查找，关键点在于",
+            "text": "分析",
             "link": null,
             "color": "blue"
         },
         {
-            "text": "要partition两个排好序的数组成左右两等份，partition需要满足`len(Aleft)+len(Bleft)=(m+n+1)/2",
+            "text": "有序数组容易想到二分查找",
             "link": null,
             "color": "blue"
         },
         {
-            "text": "m是数组A的长度，n是数组B的长度`",
+            "text": "对小的数组进行二分可降低时间复杂度",
             "link": null,
             "color": "blue"
         },
         {
-            "text": "并且partition后A左边最大(`maxLeftA`),A右边最小（`minRightA`),B左边最大（`maxLeftB`),B右边最小（`minRightB`)满足`(maxLeftA<=minRightB&&maxLeftB<=minRightA)`有了这两个条件，那么median就在这四个数中，根据奇数或者是偶数，```奇数：median=max(maxLeftA,maxLeftB)偶数：median=(max(maxLeftA,maxLeftB)+min(minRightA,minRightB))/2```",
+            "text": "根据leftp1,rightp2,leftp2和rightp1的大小关系确定结束点和收缩方向",
             "link": null,
             "color": "blue"
         }
@@ -267,6 +267,18 @@
         {
             "language": "cpp",
             "text": "\nclass Solution {\npublic:\n    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {\n        if (nums1.size() > nums2.size()) swap(nums1, nums2);\n        int M = nums1.size(), N = nums2.size(), L = 0, R = M, K = (M + N + 1) / 2;\n        while (true) {\n            int i = (L + R) / 2, j = K - i;\n            if (i < M && nums2[j - 1] > nums1[i]) L = i + 1;\n            else if (i > L && nums1[i - 1] > nums2[j]) R = i - 1;\n            else {\n                int maxLeft = max(i ? nums1[i - 1] : INT_MIN, j ? nums2[j - 1] : INT_MIN);\n                if ((M + N) % 2) return maxLeft;\n                int minRight = min(i == M ? INT_MAX : nums1[i], j == N ? INT_MAX : nums2[j]);\n                return (maxLeft + minRight) / 2.0;\n            }\n        }\n    }\n};\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nif leftp1 > rightp2:\n    hi = mid1 - 1\nelse:\n    lo = mid1 + 1\n"
+        },
+        {
+            "language": "py",
+            "text": "\nif leftp2 > rightp1:\n    hi = mid2 - 1\nelse:\n    lo = mid2 + 1\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:\n        N = len(nums1)\n        M = len(nums2)\n        if N > M:\n            return self.findMedianSortedArrays(nums2, nums1)\n\n        lo = 0\n        hi = N\n        combined = N + M\n\n        while lo <= hi:\n            mid1 = lo + hi >> 1\n            mid2 = ((combined + 1) >> 1) - mid1\n\n            leftp1 = -float(\"inf\") if mid1 == 0 else nums1[mid1 - 1]\n            rightp1 = float(\"inf\") if mid1 == N else nums1[mid1]\n\n            leftp2 = -float(\"inf\") if mid2 == 0 else nums2[mid2 - 1]\n            rightp2 = float(\"inf\") if mid2 == M else nums2[mid2]\n\n            # Check if the partition is valid for the case of\n            if leftp1 <= rightp2 and leftp2 <= rightp1:\n                if combined % 2 == 0:\n                    return (max(leftp1, leftp2)+min(rightp1, rightp2)) / 2.0\n\n                return max(leftp1, leftp2)\n            else:\n                if leftp1 > rightp2:\n                    hi = mid1 - 1\n                else:\n                    lo = mid1 + 1\n        return -1\n"
         }
     ]
 },
@@ -1845,7 +1857,7 @@
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def myPow(self, x: float, n: int) -> float:\n        if n == 0:\n            return 1\n        if n == 1:\n            return x\n        if n < 0:\n            return 1 / self.myPow(x, -n)\n        return self.myPow(x _ x, n // 2) if n % 2 == 0 else x _ self.myPow(x, n - 1)\n"
+            "text": "\nclass Solution:\n    def myPow(self, x: float, n: int) -> float:\n        if n == 0:\n            return 1\n        if n == 1:\n            return x\n        if n < 0:\n            return 1 / self.myPow(x, -n)\n        return self.myPow(x * x, n // 2) if n % 2 == 0 else x * self.myPow(x, n - 1)\n"
         },
         {
             "language": "py",
@@ -2855,7 +2867,7 @@
     ],
     "keyPoints": [
         {
-            "text": "从后往前比较，并从后往前插入",
+            "text": "从后往前比较，并从后往前插入，这样可避免写指针影响，同时将空间复杂度降低到$O(1)$",
             "link": null,
             "color": "blue"
         }
@@ -2904,7 +2916,7 @@
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:\n        \"\"\"\n        Do not return anything, modify nums1 in-place instead.\n        \"\"\"\n        # 整体思路相似，只不过没有使用 current 指针记录当前填补位置\n        while m > 0 and n > 0:\n            if nums1[m-1] <= nums2[n-1]:\n                nums1[m+n-1] = nums2[n-1]\n                n -= 1\n            else:\n                nums1[m+n-1] = nums1[m-1]\n                m -=1\n        \"\"\"\n        由于没有使用 current，第一步比较结束后有两种情况:\n            1. 指针 m>0，n=0，此时不需要做任何处理\n            2. 指针 n>0，m=0，此时需要将 nums2 指针左侧元素全部拷贝到 nums1 的前 n 位\n        \"\"\"\n        if n > 0:\n            nums1[:n] = nums2[:n]\n"
+            "text": "\nclass Solution:\n    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:\n        \"\"\"\n        Do not return anything, modify nums1 in-place instead.\n        \"\"\"\n        pos = m + n - 1\n        while m > 0 and n > 0:\n            if nums1[m - 1] < nums2[n - 1]:\n                nums1[pos] = nums2[n - 1]\n                n -= 1\n            else:\n                nums1[pos] = nums1[m - 1]\n                m -= 1\n            pos -= 1\n        while n > 0:\n            nums1[pos] = nums2[n - 1]\n            n -= 1\n            pos -= 1\n\n"
         }
     ]
 },
@@ -4279,6 +4291,50 @@
         }
     ]
 },
+"palindrome-partitioning-ii":{
+    "id": "132",
+    "name": "palindrome-partitioning-ii",
+    "pre": [
+        {
+            "text": "动态规划",
+            "link": null,
+            "color": "red"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "预处理。将s[i:j]是否为回文的数据提前计算出来存储到一个二维数组中。接下来就是普通的动态规划。",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "如果s[0:j]本身就是一个回文，那么dp[j]应该是0",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/132.palindrome-partitioning-ii.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/132.palindrome-partitioning-ii.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nfor i in range(n):\n    for j in range(i + 1, n):\n        if judge(i + 1, j):\n            # 你的逻辑\n"
+        },
+        {
+            "language": "py",
+            "text": "\npalindrome_pairs[i][j] = (s[i] == s[j]) and palindrome_pairs[i + 1][j - 1]\n"
+        },
+        {
+            "language": "py",
+            "text": "\nfor i in range(n):\n    for j in range(i + 1, n):\n        if judge(i + 1, j):\n            dp[j] = min(dp[j], dp[i] + 1)\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def minCut(self, s: str) -> int:\n        n = len(s)\n        palindrome_pairs = [[True] * n for _ in range(n)]\n\n        for i in range(n - 1, -1, -1):\n            for j in range(i + 1, n):\n                palindrome_pairs[i][j] = (s[i] == s[j]) and palindrome_pairs[i + 1][j - 1]\n\n        def judge(i, j):\n            return palindrome_pairs[i][j]\n\n        dp = [float(\"inf\")] * n\n        dp[0] = 0\n        for i in range(n):\n            for j in range(i + 1, n):\n                if palindrome_pairs[0][j]:\n                    dp[j] = 0\n                elif judge(i + 1, j):\n                    dp[j] = min(dp[j], dp[i] + 1)\n        return dp[-1]\n\n"
+        }
+    ]
+},
 "single-number":{
     "id": "136",
     "name": "single-number",
@@ -4590,8 +4646,8 @@
             "text": "\nfunction ListNode(key, val) {\n  this.key = key;\n  this.val = val;\n  this.pre = this.next = null;\n}\n\nvar LRUCache = function (capacity) {\n  this.capacity = capacity;\n  this.size = 0;\n  this.data = {};\n  this.head = new ListNode();\n  this.tail = new ListNode();\n  this.head.next = this.tail;\n  this.tail.pre = this.head;\n};\n\nfunction get(key) {\n  if (this.data[key] !== undefined) {\n    let node = this.data[key];\n    this.removeNode(node);\n    this.appendHead(node);\n    return node.val;\n  } else {\n    return -1;\n  }\n}\n\nfunction put(key, value) {\n  let node;\n  if (this.data[key] !== undefined) {\n    node = this.data[key];\n    this.removeNode(node);\n    node.val = value;\n  } else {\n    node = new ListNode(key, value);\n    this.data[key] = node;\n    if (this.size < this.capacity) {\n      this.size++;\n    } else {\n      key = this.removeTail();\n      delete this.data[key];\n    }\n  }\n  this.appendHead(node);\n}\n\nfunction removeNode(node) {\n  let preNode = node.pre,\n    nextNode = node.next;\n  preNode.next = nextNode;\n  nextNode.pre = preNode;\n}\n\nfunction appendHead(node) {\n  let firstNode = this.head.next;\n  this.head.next = node;\n  node.pre = this.head;\n  node.next = firstNode;\n  firstNode.pre = node;\n}\n\nfunction removeTail() {\n  let key = this.tail.pre.key;\n  this.removeNode(this.tail.pre);\n  return key;\n}\n"
         },
         {
-            "language": "cpp",
-            "text": "\nclass LRUCache {\nprivate:\n  list<pair<int, int>> data;\n  unordered_map<int, list<pair<int, int>>::iterator> m;\n  int capacity;\npublic:\n  LRUCache(int capacity) : capacity(capacity) {}\n\n  int get(int key) {\n    if (!m.count(key)) return -1;\n    data.splice(data.begin(), data, m[key]);\n    m[key] = data.begin();\n    return data.front().second;\n  }\n\n  void put(int key, int value) {\n    if (get(key) == -1) {\n      if (data.size() == capacity) {\n        auto p = data.back();\n        m.erase(p.first);\n        data.pop_back();\n      }\n      data.emplace_front(key, value);\n      m[key] = data.begin();\n    } else data.front().second = value;\n  }\n};\n"
+            "language": "py",
+            "text": "\nclass DLinkedNode:\n    def __init__(self, key=0, value=0):\n        self.key = key\n        self.value = value\n        self.prev = None\n        self.next = None\n\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.cache = dict()\n        # 使用伪头部和伪尾部节点\n        self.head = DLinkedNode()\n        self.tail = DLinkedNode()\n        self.head.next = self.tail\n        self.tail.prev = self.head\n        self.capacity = capacity\n        self.size = 0\n\n    def get(self, key: int) -> int:\n        if key not in self.cache:\n            return -1\n        # 如果 key 存在，先通过哈希表定位，再移到头部\n        node = self.cache[key]\n        self.moveToHead(node)\n        return node.value\n\n    def put(self, key: int, value: int) -> None:\n        if key not in self.cache:\n            # 如果 key 不存在，创建一个新的节点\n            node = DLinkedNode(key, value)\n            # 添加进哈希表\n            self.cache[key] = node\n            # 添加至双向链表的头部\n            self.addToHead(node)\n            self.size += 1\n            if self.size > self.capacity:\n                # 如果超出容量，删除双向链表的尾部节点\n                removed = self.removeTail()\n                # 删除哈希表中对应的项\n                self.cache.pop(removed.key)\n                self.size -= 1\n        else:\n            # 如果 key 存在，先通过哈希表定位，再修改 value，并移到头部\n            node = self.cache[key]\n            node.value = value\n            self.moveToHead(node)\n\n    def addToHead(self, node):\n        node.prev = self.head\n        node.next = self.head.next\n        self.head.next.prev = node\n        self.head.next = node\n\n    def removeNode(self, node):\n        node.prev.next = node.next\n        node.next.prev = node.prev\n\n    def moveToHead(self, node):\n        self.removeNode(node)\n        self.addToHead(node)\n\n    def removeTail(self):\n        node = self.tail.prev\n        self.removeNode(node)\n        return node\n\n"
         }
     ]
 },
@@ -5864,6 +5920,33 @@
         }
     ]
 },
+"contains-duplicate-iii":{
+    "id": "220",
+    "name": "contains-duplicate-iii",
+    "pre": [
+        {
+            "text": "哈希表",
+            "link": null,
+            "color": "gold"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "分桶排序思想的应用",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/220.contains-duplicate-iii.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/220.contains-duplicate-iii.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def containsNearbyAlmostDuplicate(self, nums: List[int], k: int, t: int) -> bool:\n        bucket = dict()\n        if t < 0:\n            return False\n        for i in range(len(nums)):\n            nth = nums[i] // (t + 1)\n            if nth in bucket:\n                return True\n            if nth - 1 in bucket and abs(nums[i] - bucket[nth - 1]) <= t:\n                return True\n            if nth + 1 in bucket and abs(nums[i] - bucket[nth + 1]) <= t:\n                return True\n            bucket[nth] = nums[i]\n            # 如果数组有相同的数会有影响么？答案是不会，因为如果有相同的数，我们直接就会在前面返回 true 了。\n            if i >= k:\n                bucket.pop(nums[i - k] // (t + 1))\n        return False\n\n"
+        }
+    ]
+},
 "maximal-square":{
     "id": "221",
     "name": "maximal-square",
@@ -5999,6 +6082,11 @@
     ],
     "keyPoints": [
         {
+            "text": "区分一目和二目运算符，并使用栈来简化操作",
+            "link": null,
+            "color": "blue"
+        },
+        {
             "text": "记录pre_flag，即上一次出现的操作符",
             "link": null,
             "color": "blue"
@@ -6040,6 +6128,10 @@
         {
             "language": "py",
             "text": "\nclass Solution:\n    def calculate(self, s: str) -> int:\n        def dfs(s, start):\n            stack = []\n            pre_flag = '+'\n            num = 0\n            i = start\n            while i < len(s):\n                c = s[i]\n                if  c == ' ':\n                    i += 1\n                    continue\n                elif c == '(':\n                    i, num = dfs(s, i+1)\n                elif c.isdigit():\n                    num = num * 10 + int(c)\n                else:\n                    if pre_flag == '+':\n                        stack.append(num)\n                    elif pre_flag == '-':\n                        stack.append(-num)\n                    if c == ')': break\n                    pre_flag = c\n                    num = 0\n                i += 1\n            return i, sum(stack)\n        s += '$'\n        return dfs(s, 0)[1]\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nif c == ')':\n    if pre_flag == '+':\n        stack.append(num)\n    elif pre_flag == '-':\n        stack.append(-num)\n    break\n"
         }
     ]
 },
@@ -6155,8 +6247,13 @@
     "pre": [
         {
             "text": "栈",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/basic-data-structure.md",
+            "link": null,
             "color": "red"
+        },
+        {
+            "text": "队列",
+            "link": null,
+            "color": "volcano"
         }
     ],
     "keyPoints": [
@@ -6166,26 +6263,7 @@
             "color": "blue"
         }
     ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        },
-        {
-            "name": "bloomberg"
-        },
-        {
-            "name": "microsoft"
-        }
-    ],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/232.implement-queue-using-stacks.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/232.implement-queue-using-stacks.md",
     "code": [
@@ -6797,7 +6875,23 @@
             "color": "red"
         }
     ],
-    "keyPoints": [],
+    "keyPoints": [
+        {
+            "text": "这道题属于是切割型dp",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "反向思考",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "遍历方向的确定",
+            "link": null,
+            "color": "blue"
+        }
+    ],
     "companies": [
         {
             "name": "阿里巴巴"
@@ -6826,6 +6920,10 @@
         {
             "language": "py",
             "text": "\nclass Solution:\n    def maxCoins(self, nums: List[int]) -> int:\n        n = len(nums)\n        points = [1] + nums + [1]\n        dp = [[0] * (n + 2) for _ in range(n + 2)]\n\n        for i in range(n, -1, -1):\n            for j in range(i + 1, n + 2):\n                for k in range(i + 1, j):\n                    dp[i][j] = max(dp[i][j], dp[i][k] + dp[k][j] + points[i] * points[k] * points[j])\n        return dp[0][-1]\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def maxCoins(self, nums: List[int]) -> int:\n        n = len(nums)\n        nums = [1] + nums + [1]\n\n        @lru_cache(None)\n        def dp(left, right):\n            if left + 1 == right:\n                return 0\n            if left + 2 == right:\n                return nums[left] * nums[left + 1] * nums[left + 2]\n            ans = 0\n            for i in range(left + 1, right):\n                ans = max(ans, nums[i] * nums[left] * nums[right] + dp(left, i) + dp(i, right))\n            return ans\n\n        return dp(0, len(nums) - 1)\n\n"
         }
     ]
 },
@@ -6980,6 +7078,33 @@
         {
             "language": "py",
             "text": "\nclass Solution:\n    def minPatches(self, nums: List[int], n: int) -> int:\n        furthest, i, ans = 1, 0, 0\n        # 结束条件也要相应改变\n        while furthest <= n:\n            if i < len(nums) and nums[i] <= furthest:\n                furthest += nums[i] #  [1, furthest) -> [1, furthest + nums[i])\n                i += 1\n            else:\n                furthest = 2 * furthest # [1, furthest) -> [1, furthest + furthest)\n                ans += 1\n        return ans\n"
+        }
+    ]
+},
+"verify-preorder-serialization-of-a-binary-tree":{
+    "id": "331",
+    "name": "verify-preorder-serialization-of-a-binary-tree",
+    "pre": [
+        {
+            "text": "图论",
+            "link": null,
+            "color": "gold"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "从入度和出度的角度思考",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/331.verify-preorder-serialization-of-a-binary-tree.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/331.verify-preorder-serialization-of-a-binary-tree.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def isValidSerialization(self, preorder: str) -> bool:\n        diff = 0\n\n        for node in preorder.split(\",\"):\n            diff -= 1\n            if diff < -1:\n                return False\n            if node != \"#\":\n                diff += 2\n        return diff == -1\n\n"
         }
     ]
 },
@@ -8271,6 +8396,31 @@
         }
     ]
 },
+"base-7":{
+    "id": "504",
+    "name": "base-7",
+    "pre": [],
+    "keyPoints": [
+        {
+            "text": "除x取余，并逆序输出",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/504.base-7.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/504.base-7.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def convertToBase7(self, num: int) -> str:\n        if num < 0:\n            return \"-\" + self.convertToBase7(-num)\n        if num < 7:\n            return str(num)\n        return self.convertToBase7(num // 7) + str(num % 7)\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def convertToBase7(self, num: int) -> str:\n        if num == 0:\n            return 0\n        ans = []\n        is_negative = num < 0\n        num = abs(num)\n        while num > 0:\n            num, remain = num // 7, num % 7\n            ans.append(str(remain))\n\n        return \"-\" + \"\".join(ans[::-1]) if is_negative else \"\".join(ans[::-1])\n\n"
+        }
+    ]
+},
 "find-bottom-left-tree-value":{
     "id": "513",
     "name": "find-bottom-left-tree-value",
@@ -8789,6 +8939,41 @@
         {
             "language": "py",
             "text": "\nclass Solution:\n    def repeatedStringMatch(self, a: str, b: str) -> int:\n        if not set(b).issubset(set(a)):\n            return -1\n        cnt = 1\n        while len(a * cnt) < 2 * len(a) + len(b):\n            if b in a * cnt:\n                return cnt\n            cnt += 1\n        return -1\n"
+        }
+    ]
+},
+"best-time-to-buy-and-sell-stock-with-transaction-fee":{
+    "id": "714",
+    "name": "best-time-to-buy-and-sell-stock-with-transaction-fee",
+    "pre": [
+        {
+            "text": "动态规划",
+            "link": null,
+            "color": "red"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "记忆化递归",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/714.best-time-to-buy-and-sell-stock-with-transaction-fee.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/714.best-time-to-buy-and-sell-stock-with-transaction-fee.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def maxProfit(self, prices: List[int], fee: int) -> int:\n        def dp(i):\n            if i == 0:\n                return 0, -prices[0] - fee\n            sell, buy = dp(i - 1)\n            return max(sell, buy + prices[i]), max(buy, sell - prices[i] - fee)\n\n        return dp(len(prices) - 1)[0]\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def maxProfit(self, prices: List[int], fee: int) -> int:\n        n = len(prices)\n        dp = [[0 for i in range(2)]] * n\n        for i in range(n):\n            if i == 0:\n                dp[i][0] = 0\n                dp[i][1] = -1 * prices[i]\n            else:\n                dp[i][0] = max(dp[i - 1][1] + prices[i] - fee, dp[i - 1][0])\n                dp[i][1] = max(dp[i - 1][1], dp[i - 1][0] - prices[i])\n\n        return dp[-1][0]\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def maxProfit(self, prices: List[int], fee: int) -> int:\n        n = len(prices)\n        # [手里没股票, 手里有股票]\n        dp = [0, 0]\n        for i in range(n):\n            if i == 0:\n                dp[0] = 0\n                dp[1] = -1 * prices[i] - fee\n            else:\n                dp[0] = max(dp[0], dp[1] + prices[i])\n                dp[1] = max(dp[1], dp[0] - prices[i] - fee)\n\n        return dp[0]\n"
         }
     ]
 },
@@ -10023,6 +10208,64 @@
         }
     ]
 },
+"minimum-number-of-k-consecutive-bit-flips":{
+    "id": "995",
+    "name": "minimum-number-of-k-consecutive-bit-flips",
+    "pre": [
+        {
+            "text": "连续子数组优化",
+            "link": null,
+            "color": "lime"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "连续子数组优化技巧",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/995.minimum-number-of-k-consecutive-bit-flips.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/995.minimum-number-of-k-consecutive-bit-flips.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def minKBitFlips(self, A, K):\n        N = len(A)\n        ans = 0\n        for i in range(N - K + 1):\n            if A[i] == 1:\n                continue\n            for j in range(K):\n                A[i + j] ^= 1\n            ans += 1\n        for i in range(N):\n            if A[i] == 0:\n                return -1\n        return ans\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def minKBitFlips(self, A: List[int], K: int) -> int:\n        n = len(A)\n        diff = [0] * (n + 1)\n        ans, cur = 0, 0\n        for i in range(n):\n            cur += diff[i]\n            if cur % 2 == A[i]:\n                if i + K > n:\n                    return -1\n                ans += 1\n                cur += 1\n                diff[i + K] -= 1\n        return ans\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def minKBitFlips(self, A, K):\n        N = len(A)\n        q = collections.deque()\n        ans = 0\n        for i in range(N):\n            if q and i >= q[0] + K:\n                q.popleft()\n            if len(q) % 2 == A[i]:\n                if i + K > N:\n                    return -1\n                q.append(i)\n                ans += 1\n        return ans\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def minKBitFlips(self, A, K):\n        flips = ans = 0\n        for i in range(len(A)):\n            if i >= K and A[i - K] - 2 == 0:\n                flips -= 1\n            if (flips % 2) == A[i]:\n                if i + K > len(A):\n                    return -1\n                A[i] = 2\n                flips += 1\n                ans += 1\n        return ans\n\n"
+        }
+    ]
+},
+"max-consecutive-ones-iii":{
+    "id": "1004",
+    "name": "max-consecutive-ones-iii",
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1004.max-consecutive-ones-iii.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1004.max-consecutive-ones-iii.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def longestOnes(self, A: List[int], K: int) -> int:\n        i = ans = 0\n\n        for j in range(len(A)):\n            K -= A[j] == 0\n            while K < 0:\n                K += A[i] == 0\n                i += 1\n            ans = max(ans, j - i + 1)\n        return ans\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def longestOnes(self, A: List[int], K: int) -> int:\n        i = 0\n\n        for j in range(len(A)):\n            K -= 1 - A[j]\n            if K < 0:\n                K += 1 - A[i]\n                i += 1\n        return j - i + 1\n"
+        }
+    ]
+},
 "capacity-to-ship-packages-within-d-days-cn":{
     "id": "1011",
     "name": "capacity-to-ship-packages-within-d-days-cn",
@@ -10393,6 +10636,36 @@
         }
     ]
 },
+"partition-array-for-maximum-sum":{
+    "id": "1043",
+    "name": "partition-array-for-maximum-sum",
+    "pre": [
+        {
+            "text": "动态规划",
+            "link": null,
+            "color": "red"
+        },
+        {
+            "text": "记忆化递归",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "keyPoints": [],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1043.partition-array-for-maximum-sum.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1043.partition-array-for-maximum-sum.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def maxSumAfterPartitioning(self, arr: List[int], k: int) -> int:\n        @lru_cache(None)\n        def dp(i):\n            if i >= len(arr): return 0\n            ans = 0\n            max_value = -1\n            for steps in range(1, k + 1):\n                if i + steps - 1 < len(arr): max_value = max(max_value, arr[i + steps - 1])\n                else: break\n                ans = max(ans, max_value * steps +  dp(i + steps))\n            return ans\n        return dp(0)\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def maxSumAfterPartitioning(self, nums: List[int], k: int) -> int:\n        n = len(nums)\n        dp = [0] * (n+1)\n\n        for i in range(1, n+1):\n            max_ele = 0\n            for j in range(i, min(n+1, i+k)):\n                max_ele = max(max_ele, nums[j-1])\n                # range: [i,j]\n                dp[j] = max(dp[j], (j-i+1) * max_ele + dp[i-1])\n        return max(dp)\n\n"
+        }
+    ]
+},
 "path-in-zigzag-labelled-binary-tree":{
     "id": "1104",
     "name": "path-in-zigzag-labelled-binary-tree",
@@ -10574,6 +10847,59 @@
         {
             "language": "py",
             "text": "\nclass Solution:\n    def minCostToSupplyWater(self, n: int, wells: List[int], pipes: List[List[int]]) -> int:\n        union_find = {i: i for i in range(n + 1)}\n        \n        def find(x):\n            return x if x == union_find[x] else find(union_find[x])\n        \n        def union(x, y):\n            px = find(x)\n            py = find(y)\n            union_find[px] = py\n            \n        graph_wells = [[cost, 0, i] for i, cost in enumerate(wells, 1)]\n        graph_pipes = [[cost, i, j] for i, j, cost in pipes]\n        min_costs = 0\n        for cost, x, y in sorted(graph_wells + graph_pipes):\n            if find(x) == find(y):\n                continue\n            union(x, y)\n            min_costs += cost\n            n -= 1\n            if n == 0:\n                return min_costs\n"
+        }
+    ]
+},
+"number-of-valid-words-for-each-puzzle":{
+    "id": "1178",
+    "name": "number-of-valid-words-for-each-puzzle",
+    "pre": [
+        {
+            "text": "枚举子集",
+            "link": null,
+            "color": "magenta"
+        },
+        {
+            "text": "位运算",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "前缀树",
+            "link": null,
+            "color": "purple"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "枚举子集算法",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1178.number-of-valid-words-for-each-puzzle.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1178.number-of-valid-words-for-each-puzzle.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def findNumOfValidWords(self, words: List[str], puzzles: List[str]) -> List[int]:\n        s_word = [set(word) for word in words]\n        ans = []\n        for puzzle in puzzles:\n            cnt = 0\n            for word in s_word:\n                if puzzle[0] not in word:\n                    continue\n                flag = False\n                for c in word:\n                    if c not in puzzle:\n                        flag = True\n                        break\n                if not flag:\n                    cnt += 1\n            ans.append(cnt)\n        return ans\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def findNumOfValidWords(self, words: List[str], puzzles: List[str]) -> List[int]:\n        counts = collections.defaultdict(int)\n        ans = [0] * len(puzzles)\n        for word in words:\n            bit = 0 # bit 是 word 的二进制表示\n            for c in word:\n                bit |= 1 << ord(c) - ord(\"a\")\n            counts[bit] += 1\n        for i, puzzle in enumerate(puzzles):\n            bit = 0 # bit 是 puzzle 的二进制表示\n            for c in puzzle:\n                bit |= 1 << ord(c) - ord(\"a\")\n            j = bit # j 是 bit 的子集\n            # 倒序枚举 bit 的子集 j\n            while j:\n                # 单词 word 需要包含谜面的第一个字母\n                if 1 << ord(puzzle[0]) - ord(\"a\") & j:\n                    ans[i] += counts[j]\n                j = bit & (j - 1)\n        return ans\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\n{\n    \"abc\": 3\n}\n"
+        },
+        {
+            "language": "py",
+            "text": "\ndef get_subset(puzzle, pos):\n  # ...\n  get_subset(next_with_puzzle_pos , pos + 1) # 选 pos\n  get_subset(next_without_puzzle_pos, pos + 1) # 不选 pos\n  # ...\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\n class TrieNode:\n    def __init__(self):\n        self.count = 0\n        self.children = {}\n\n\nclass Trie:\n    def __init__(self):\n        self.root = TrieNode()\n\n    def insert(self, word):\n        cur = self.root\n        for c in word:\n            if c not in cur.children:\n                cur.children[c] = TrieNode()\n            cur = cur.children[c]\n        cur.count += 1\n\n\nclass Solution:\n    def findNumOfValidWords(self, words: List[str], puzzles: List[str]) -> List[int]:\n        trie = Trie()\n        for word in words:\n            trie.insert(sorted(set(word)))\n\n        def get_count(first_letter, cur, i, puzzle):\n            if i == len(puzzle):\n                return cur.count\n            if not cur:\n                return 0\n            ans = 0\n            # 这个判断成立的条件是 puzzle 中不存在重复的字符， 这恰好就是题目的限制条件\n            if puzzle[i] != first_letter:\n                ans += get_count(first_letter, cur, i + 1, puzzle)\n            if puzzle[i] in cur.children:\n                ans += get_count(first_letter, cur.children[puzzle[i]], i + 1, puzzle)\n            return ans\n\n"
         }
     ]
 },
@@ -11187,6 +11513,56 @@
         }
     ]
 },
+"longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit":{
+    "id": "1438",
+    "name": "longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit",
+    "pre": [
+        {
+            "text": "有序集合",
+            "link": null,
+            "color": "red"
+        },
+        {
+            "text": "二分法",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "滑动窗口",
+            "link": null,
+            "color": "purple"
+        },
+        {
+            "text": "单调栈",
+            "link": null,
+            "color": "purple"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "维护一个有序数组，并通过二分法找到插入位置",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1438.longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1438.longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def longestSubarray(self, A: List[int], limit: int) -> int:\n        d = []\n        ans = 1\n\n        for i, a in enumerate(A):\n            bisect.insort(d, a)\n            if len(d) > 1:\n                while d[-1] - d[0] > limit:\n                    d.remove(A[i - len(d)+1])\n                ans = max(ans, len(d))\n        return ans\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nfrom sortedcontainers import SortedList\nclass Solution:\n    def longestSubarray(self, A: List[int], limit: int) -> int:\n        d = SortedList()\n        ans = 1\n\n        for i, a in enumerate(A):\n            d.add(a)\n            if len(d) > 1:\n                while d[-1] - d[0] > limit:\n                    d.remove(A[i - len(d)+1])\n                ans = max(ans, len(d))\n        return ans\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def longestSubarray(self, A: List[int], limit: int) -> int:\n        q1, q2 = collections.deque(), collections.deque()\n        ans = 1\n        i = 0\n        for j, a in enumerate(A):\n            while q1 and q1[-1] < a:\n                q1.pop()\n            q1.append(a)\n            while q2 and q2[-1] > a:\n                q2.pop()\n            q2.append(a)\n            while i < j and q1 and q2 and q1[0] - q2[0] > limit:\n                if A[i] == q1[0]: q1.popleft()\n                elif A[i] == q2[0]: q2.popleft()\n                i += 1\n            ans = max(ans, j - i + 1)\n        return ans\n\n"
+        }
+    ]
+},
 "form-largest-integer-with-digits-that-add-up-to-target":{
     "id": "1449",
     "name": "form-largest-integer-with-digits-that-add-up-to-target",
@@ -11709,6 +12085,150 @@
         {
             "language": "py",
             "text": "\nclass Solution:\n    def maximizeXor(self, nums: List[int], queries: List[List[int]]) -> List[int]:\n        def solve(x, m, s, e):\n            if nums[0] > m: return -1\n            max_v = 0\n            for i in range(31, -1, -1):\n                if nums[s] & (1<<i) == nums[e] & (1<<i):\n                    max_v += nums[s] & (1<<i)\n                elif nums[dp[i][e]] <= m and x ^ nums[s] < x ^ nums[e]:\n                    max_v += nums[e] & (1<<i)\n                    # 直接移动较小指针（s）到 dp[i][e]，其他不可能是答案\n                    s = dp[i][e]\n                else:\n                    max_v += nums[s] & (1<<i)\n                    # 直接移动较小指针（e）到 dp[i][e] - 1，其他不可能是答案\n                    e = dp[i][e] - 1\n\n            return max_v ^ x\n\n        nums.sort()\n        n = len(nums)\n        #  dp[i][j] 是和 nums[j] 第 i 位相等的最小的数组下标\n        dp = [[0 for _ in range(n)] for _ in range(32)]\n        for i in range(32):\n            for j in range(n):\n                if j == 0 or (nums[j] & (1<<i)) != (nums[j-1] & (1<<i)): dp[i][j] = j\n                else: dp[i][j] = dp[i][j-1]\n        return [solve(x, m, 0, n-1) for x,m in queries]\n"
+        }
+    ]
+},
+"md":{
+    "id": "Kth-Pair-Distance",
+    "name": "md",
+    "pre": [
+        {
+            "text": "排序",
+            "link": null,
+            "color": "purple"
+        },
+        {
+            "text": "二分法",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "keyPoints": [],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/Kth-Pair-Distance.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/Kth-Pair-Distance.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def solve(self, A, k):\n        A.sort()\n        h = [(A[i] - A[i-1], i-1,i) for i in range(1, len(A))]\n        heapq.heapify(h)\n\n        while True:\n            top, i, j = heapq.heappop(h)\n            if not k: return top\n            k -= 1\n            if j + 1 < len(A): heapq.heappush(h, (A[j+1] - A[i], i, j + 1))\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def solve(self, A, k):\n        A.sort()\n        def count_not_greater(diff):\n            i = ans = 0\n            for j in range(1, len(A)):\n                while A[j] - A[i] > diff:\n                    i += 1\n                ans += j - i\n            return ans\n        l, r = 0, A[-1] - A[0]\n\n        while l <= r:\n            mid = (l + r) // 2\n            if count_not_greater(mid) > k:\n                r = mid - 1\n            else:\n                l = mid + 1\n        return l\n"
+        }
+    ]
+},
+"md":{
+    "id": "Minimum-Light-Radius",
+    "name": "md",
+    "pre": [
+        {
+            "text": "排序",
+            "link": null,
+            "color": "purple"
+        },
+        {
+            "text": "二分法",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "keyPoints": [],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/Minimum-Light-Radius.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/Minimum-Light-Radius.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\ndef possible(diameter):\n    start = nums[0]\n    end = start + diameter\n    for i in range(LIGHTS):\n        idx = bisect_right(nums, end)\n        if idx >= N:\n            return True\n        start = nums[idx]\n        end = start + diameter\n    return False\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def solve(self, nums):\n        nums.sort()\n        N = len(nums)\n        if N <= 3:\n            return 0\n        LIGHTS = 3\n        # 这里使用的是直径，因此最终返回需要除以 2\n        def possible(diameter):\n            start = nums[0]\n            end = start + diameter\n            for i in range(LIGHTS):\n                idx = bisect_right(nums, end)\n                if idx >= N:\n                    return True\n                start = nums[idx]\n                end = start + diameter\n            return False\n\n        l, r = 0, nums[-1] - nums[0]\n        while l <= r:\n            mid = (l + r) // 2\n            if possible(mid):\n                r = mid - 1\n            else:\n                l = mid + 1\n        return l / 2\n"
+        }
+    ]
+},
+"md":{
+    "id": "Number-Stream-to-Intervals",
+    "name": "md",
+    "pre": [
+        {
+            "text": "哈希表",
+            "link": null,
+            "color": "gold"
+        },
+        {
+            "text": "有序哈希表",
+            "link": null,
+            "color": "purple"
+        },
+        {
+            "text": "二分法",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "keyPoints": [],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/Number-Stream-to-Intervals.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/Number-Stream-to-Intervals.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\ns.add(1)\ns.add(3)\ns.add(2)\ns.add(9)\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\ns.add(1) # [ [1,1] ]\ns.add(3) # [ [1,1], [3,3] ]\ns.add(2) # [ [1,1], [2,2], [3,3] ] 可合并为 [ [1,3] ]\ns.add(9) # [ [1,3], [9,9] ]\n"
+        },
+        {
+            "language": "py",
+            "text": "\nfrom sortedcontainers import SortedDict\n\n\nclass StreamSummary:\n    def __init__(self):\n        self.start = SortedDict()\n        self.end = SortedDict()\n\n    def add(self, val):\n        if val - 1 in self.end and val + 1 in self.start:\n            # [a, val-1] + [val,val] + [val+1, b] -> [a, b]\n            self.end[self.start[val + 1]] = self.end[val - 1]\n            self.start[self.end[val - 1]] = self.start[val + 1]\n            del self.start[val + 1]\n            del self.end[val - 1]\n        elif val - 1 in self.end:\n            # [a, val -1] + [val, val] -> [a, val]\n            self.end[val] = self.end[val - 1]\n            self.start[self.end[val]] = val\n            del self.end[val - 1]\n        elif val + 1 in self.start:\n            # [val,val] + [val+1, b] -> [val, b]\n            self.start[val] = self.start[val + 1]\n            self.end[self.start[val]] = val\n            del self.start[val + 1]\n        else:\n            self.start[val] = val\n            self.end[val] = val\n\n    def get(self):\n        # iterate start or end get same correct answer\n        ans = []\n        for s, e in self.start.items():\n            ans.append([s, e])\n        return ans\n\n"
+        }
+    ]
+},
+"md":{
+    "id": "Triple-Inversion",
+    "name": "md",
+    "pre": [
+        {
+            "text": "二分法",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "keyPoints": [],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/Triple-Inversion.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/Triple-Inversion.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def solve(self, A):\n        ans = 0\n        for i in range(len(A)):\n            for j in range(i+1,len(A)):\n                if A[i] > A[j] * 3: ans += 1\n        return ans\n"
+        },
+        {
+            "language": "py",
+            "text": "\nd = []\nfor a in A:\n    bisect.insort(d, a)\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def solve(self, A):\n        d = []\n        ans = 0\n\n        for a in A:\n            i = bisect.bisect_right(d, a * 3)\n            ans += len(d) - i\n            bisect.insort(d, a)\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nfrom sortedcontainers import SortedList\nclass Solution:\n    def solve(self, A):\n        d = SortedList()\n        ans = 0\n\n        for a in A:\n            i = d.bisect_right(a * 3)\n            ans += len(d) - i\n            d.add(a)\n        return ans\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\ndef mergeTwo(nums1, nums2):\n    res = []\n    i = j = 0\n    while i < len(nums1) and j < len(nums2):\n        if nums1[i] < nums[j]:\n            res.append(nums[i])\n            i += 1\n        else:\n            res.append(nums[j])\n            j += 1\n    while i < len(nums1) :\n        res.append(num[i])\n        i += 1\n    while j < len(nums1) :\n        res.append(num[j])\n        j += 1\n    return res\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def solve(self, nums: List[int]) -> int:\n        self.cnt = 0\n        def merge(nums, start, mid, end):\n            i, j, temp = start, mid + 1, []\n            while i <= mid and j <= end:\n                if nums[i] <= nums[j]:\n                    temp.append(nums[i])\n                    i += 1\n                else:\n                    self.cnt += mid - i + 1\n                    temp.append(nums[j])\n                    j += 1\n            while i <= mid:\n                temp.append(nums[i])\n                i += 1\n            while j <= end:\n                temp.append(nums[j])\n                j += 1\n\n            for i in range(len(temp)):\n                nums[start + i] = temp[i]\n\n\n        def mergeSort(nums, start, end):\n            if start >= end: return\n            mid = (start + end) >> 1\n            mergeSort(nums, start, mid)\n            mergeSort(nums, mid + 1, end)\n            merge(nums, start, mid,  end)\n        mergeSort(nums, 0, len(nums) - 1)\n        return self.cnt\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def solve(self, nums) -> int:\n        self.cnt = 0\n        def merge(nums, start, mid, end, temp):\n            i, j = start, mid + 1\n            while i <= mid and j <= end:\n                if nums[i] <=  nums[j]:\n                    temp.append(nums[i])\n                    i += 1\n                else:\n                    temp.append(nums[j])\n                    j += 1\n            # 防住\n            # 这里代码开始\n            ti, tj = start, mid + 1\n            while ti <= mid and tj <= end:\n                if nums[ti] <=  3 * nums[tj]:\n                    ti += 1\n                else:\n                    self.cnt += mid - ti + 1\n                    tj += 1\n            # 这里代码结束\n            while i <= mid:\n                temp.append(nums[i])\n                i += 1\n            while j <= end:\n                temp.append(nums[j])\n                j += 1\n            for i in range(len(temp)):\n                nums[start + i] = temp[i]\n            temp.clear()\n\n\n        def mergeSort(nums, start, end, temp):\n            if start >= end: return\n            mid = (start + end) >> 1\n            mergeSort(nums, start, mid, temp)\n            mergeSort(nums, mid + 1, end, temp)\n            merge(nums, start, mid,  end, temp)\n        mergeSort(nums, 0, len(nums) - 1, [])\n        return self.cnt\n"
         }
     ]
 },
