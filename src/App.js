@@ -210,9 +210,19 @@ function App() {
             <CodeTemplates tempaltes={tempaltes}></CodeTemplates>
           </TabPane>
           <TabPane key="data-structure-vis" tab="数据结构可视化">
-            <Suspense fallback={<div>Loading...</div>}>
-              <DataStrutureVis></DataStrutureVis>
-            </Suspense>
+            {isInExtension() ? (
+              <Button
+                type="link"
+                target="_blank"
+                href="https://leetcode-pp.github.io/leetcode-cheat/?tab=data-structure-vis"
+              >
+                去网站使用
+              </Button>
+            ) : (
+              <Suspense fallback={<div>Loading...</div>}>
+                <DataStrutureVis></DataStrutureVis>
+              </Suspense>
+            )}
           </TabPane>
           {!isInExtension() && (
             <TabPane key="solution-template" tab="题解模板">

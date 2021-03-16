@@ -1,6 +1,5 @@
 import React from "react";
 import { Button, Collapse, Tabs } from "antd";
-import Excalidraw from "@excalidraw/excalidraw";
 import Codes from "../components/codes";
 
 import {
