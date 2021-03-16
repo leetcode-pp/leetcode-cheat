@@ -7,6 +7,7 @@ import slidingWindow from "./sliding-window";
 import segmemntTree from "./segmentTree";
 import heap from "./heap";
 import preSum from "./preSum";
+import handWriting from "./hand-writing";
 export default [
   preSum,
   binarySearch,
@@ -17,4 +18,5 @@ export default [
   trie,
   uf,
   segmemntTree,
+  handWriting,
 ];
