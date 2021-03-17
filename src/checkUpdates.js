@@ -1,3 +1,4 @@
+import React from "react";
 import { message } from "antd";
 const chrome = window.chrome;
 if (chrome) {
@@ -15,8 +16,12 @@ export default function checkUpdate() {
   return chrome.runtime.requestUpdateCheck(function (status) {
     if (status === "update_available") {
       message.success({
-        content:
-          '检测到有新版本，您可以去 <a href="chrome://extensions/">扩展中心</a> 手动更新',
+        content: (
+          <>
+            检测到有新版本，已为您自动更新。如果更新失败，您可以去
+            <a href="chrome://extensions/">扩展中心</a> 手动更新哦~
+          </>
+        ),
       });
     } else if (status === "no_update") {
       message.success({

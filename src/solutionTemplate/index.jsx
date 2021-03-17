@@ -183,6 +183,20 @@ const formulas = [
     name: "根号",
     logo: require("../imgs/formula/sqrt.svg"),
   },
+  {
+    formula: String.raw`
+$$
+  negative[i]=\left\{
+  \begin{aligned}
+  negative[i-1] + 1 &  & negative[i-1] > 0 \\
+  0 & & negative[i-1] = 0 \\
+  \end{aligned}
+  \right.
+$$
+    `,
+    name: "动态规划选择方程",
+    logo: require("../imgs/formula/choice.svg"),
+  },
 ];
 
 const saveDraft = debounce(
