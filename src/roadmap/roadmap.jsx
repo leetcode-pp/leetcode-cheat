@@ -21,6 +21,31 @@ const dpDoubleCode = `
                   dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
 `;
 
+const dpRangeCode = `
+class Solution:
+    def solve(self, s):
+        n = len(s)
+        dp = [[0] * n for _ in range(n)]
+        # 右边界倒序遍历
+        for i in range(n - 1, -1, -1):
+            # 左边界正序遍历
+            for j in range(i + 1, n):
+                # do something
+        return  dp[0][m-1] # 一般都是使用这个区间作为答案
+`
+const dpRangeCodeRecur = `
+class Solution:
+    def solve(self, s):
+        @lru_cache(None)
+        def helper(l, r):
+            if l >= r:
+                return 0
+            if s[l] == s[r]:
+                return helper(l + 1, r - 1)
+            return 1 + min(helper(l + 1, r), helper(l, r - 1))
+        return helper(0, len(s) - 1)
+`
+
 const roadmaps = {
   "binary-search": {
     desc: `
@@ -454,6 +479,33 @@ def count_bs(nums, k):
         ],
         code: void 0,
         keys: [],
+      },
+      {
+        title: "区间 DP",
+        // pic:
+        //   "https://tva1.sinaimg.cn/large/0081Kckwly1glpjptuor0j31n00u0q8y.jpg",
+        problems: [
+          {
+            link: "https://binarysearch.com/problems/Make-a-Palindrome-by-Inserting-Characters",
+            text: "回文插入",
+            desc:
+              "区间 dp 需要从序列两头同时进行，而不是从序列的某一端到另一端",
+          },
+        ],
+        code: {
+          language: "py",
+          text: `
+          
+${dpRangeCode}
+# 使用记忆化可能会更好书写，比如上面的 dp 代码改成记忆化递归就是：
+${dpRangeCodeRecur}`,
+        },
+        keys: [
+          `
+右边界倒序遍历，左边界正序遍历
+        `,
+          "通常都是返回 dp[0][n]，而不是其他常见的 dp[-1][-1]",
+        ],
       },
       {
         title: "状态压缩型（仅列举题目）",
