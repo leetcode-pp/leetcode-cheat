@@ -32,7 +32,7 @@ class Solution:
             for j in range(i + 1, n):
                 # do something
         return  dp[0][m-1] # 一般都是使用这个区间作为答案
-`
+`;
 const dpRangeCodeRecur = `
 class Solution:
     def solve(self, s):
@@ -44,7 +44,7 @@ class Solution:
                 return helper(l + 1, r - 1)
             return 1 + min(helper(l + 1, r), helper(l, r - 1))
         return helper(0, len(s) - 1)
-`
+`;
 
 const roadmaps = {
   "binary-search": {
@@ -418,9 +418,15 @@ def count_bs(nums, k):
             link:
               "https://github.com/azl397985856/leetcode/blob/master/problems/1015.smallest-integer-divisible-by-k.md",
           },
+          {
+            text: "递增的数位",
+            link: "https://binarysearch.com/problems/Increasing-Digits",
+          },
         ],
         code: void 0,
-        keys: [],
+        keys: [
+          "常见的 dp 定义为 dp[i][j] 其中 i 为数字的长度， j 为最后一位的数。比如 dp[3][2] 表示这个数一共三位，最后一位是 2 的情况",
+        ],
       },
       {
         title: "概率型（仅列举题目）",
@@ -486,7 +492,8 @@ def count_bs(nums, k):
         //   "https://tva1.sinaimg.cn/large/0081Kckwly1glpjptuor0j31n00u0q8y.jpg",
         problems: [
           {
-            link: "https://binarysearch.com/problems/Make-a-Palindrome-by-Inserting-Characters",
+            link:
+              "https://binarysearch.com/problems/Make-a-Palindrome-by-Inserting-Characters",
             text: "回文插入",
             desc:
               "区间 dp 需要从序列两头同时进行，而不是从序列的某一端到另一端",
