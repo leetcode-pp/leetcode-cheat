@@ -24,6 +24,7 @@ import recurTree1 from "../db/dataStructureVis/recur-tree-1.js";
 import array1 from "../db/dataStructureVis/array-1.js";
 import board1 from "../db/dataStructureVis/board-1.js";
 import official from "../db/dataStructureVis/leetcode-official";
+import calm from "../db/dataStructureVis/calm";
 
 // import treeLevel5 from "../db/dataStructureVis/tree-level-5";
 
@@ -102,6 +103,13 @@ const initialDataSource = {
       desc: "力扣官方题解主题（持续更新）",
       type: "leetcode-official",
       typeName: "力扣官方",
+    },
+    {
+      title: "calm",
+      data: calm,
+      desc: "稳重色系（目前只完成了树，后续更新其他数据结构）",
+      type: "theme",
+      typeName: "色系",
     },
     {
       title: "二层二叉树",
