@@ -1,5 +1,9 @@
 // import "./content.css";
 // import { message } from "antd";
+// import React from "react";
+// import ReactDOM from "react-dom";
+// import { Menu, Dropdown, Button } from "antd";
+// import { DownOutlined, UserOutlined } from "@ant-design/icons";
 import { copyToClipboard, bjwd, getStorage, setCloundStorage } from "./utils";
 import zenAble from "./zen/zenMode";
 
@@ -73,7 +77,7 @@ const message = {
 // } else
 
 // testcase eg: `bottom = "BCD", allowed = ["BCG", "CDE", "GEA", "FFF"], c = [1,2,3], d = 2`
-function normalize(testCase) {
+function normalize(testCase, includeArray = true) {
   testCase = testCase.trim().replace(/\n/g, "").replace("&nbsp;", "");
 
   // 单一参数
@@ -109,7 +113,8 @@ function normalize(testCase) {
       // skip ,
       i += 1;
       stack.push("\n");
-    } else {
+    } else if (includeArray) {
+      // 解析为数组
       // cnt 左括号[ 与 右括号] 个数的差值
       let cnt = 0;
       while (i < testCase.length) {
@@ -125,7 +130,16 @@ function normalize(testCase) {
           break;
         }
       }
+    } else {
+      while (i < testCase.length) {
+        stack.push(testCase[i]);
+        i += 1;
+      }
     }
+  }
+  const ans = stack.join("");
+  if (includeArray && ans[ans.length - 1] !== testCase[testCase.length - 1]) {
+    return normalize(testCase, false);
   }
   return stack.join("");
 }
@@ -149,7 +163,7 @@ function extractTestCase(text, prefix) {
   return [];
 }
 
-function getProviedTestCases() {
+function getProviedTestCases(includeArray = true) {
   const possibleTags = ["pre", "p"];
   const possiblePrefixs = ["输入：", "输入:", "Input:", "input:"];
   const ans = [];
@@ -164,7 +178,7 @@ function getProviedTestCases() {
             bjwd();
             return [];
           }
-          ans.push(normalize(testcase[1]));
+          ans.push(normalize(testcase[1], includeArray));
         }
       }
       if (ans.length > 0) return ans;
@@ -172,11 +186,39 @@ function getProviedTestCases() {
   }
   return ans;
 }
+// const menu = (
+//   <Menu onClick={() => handleTestCaseClick(false)}>
+//     <Menu.Item key="1" icon={<UserOutlined />}>
+//       测试用例不包含数组选这个
+//     </Menu.Item>
+//   </Menu>
+// );
 
+// function handleTestCaseClick(includeArray) {
+//   const cases = getProviedTestCases(includeArray);
+//   if (cases.filter(Boolean).length === 0) return bjwd();
+//   copyToClipboard(cases.join("\n"));
+//   message.success({
+//     content: "复制成功~",
+//   });
+// }
 function insertButton() {
   const buttons = document.querySelectorAll("button");
   for (var i = 0; i < buttons.length; ++i) {
     if (buttons[i].innerText.includes("执行代码")) {
+      // const container = document.createElement("div");
+
+      // buttons[i].parentElement.prepend(container);
+      // ReactDOM.render(
+      //   <Dropdown overlay={menu} style={{ marginLeft: "10px" }}>
+      //     <Button onClick={() => handleTestCaseClick(true)}>
+      //       复制所有内置用例 <DownOutlined />
+      //     </Button>
+      //   </Dropdown>,
+      //   container
+      // );
+
+      // const writeSolutionButton = document.createElement("div");
       const copyButton = buttons[i].cloneNode(true);
       copyButton.innerText = "复制所有内置用例";
       copyButton.style["margin-left"] = "10px";
@@ -189,8 +231,6 @@ function insertButton() {
         });
       };
       buttons[i].parentElement.prepend(copyButton);
-
-      // const writeSolutionButton = document.createElement("div");
       const writeSolutionButton = document.createElement("a");
       writeSolutionButton.innerText = "去写题解";
       writeSolutionButton.style["margin-right"] = "20px";
