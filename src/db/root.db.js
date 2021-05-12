@@ -2395,6 +2395,37 @@
         }
     ]
 },
+"valid-number":{
+    "id": "65",
+    "name": "valid-number",
+    "pre": [
+        {
+            "text": "暂无",
+            "link": null,
+            "color": "green"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "分析非法的情况，用三个变量记录上一次出现的点，指数，数字的位置来复制判断",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/65.valid-number.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/65.valid-number.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def isNumber(self, s: str) -> bool:\n        last_dot = last_e = last_d = -1\n        for i, c in enumerate(s):\n            if c.isdigit():\n                last_d = i\n            elif c == '.':\n                if last_dot != -1 or last_e != -1: return False\n                last_dot = i\n            elif c.lower() == 'e':\n                if last_d == -1 or last_e != -1: return False\n                last_e = i\n            elif c == '+' or c == '-':\n                if i == 0 or s[i-1].lower() == 'e':\n                    continue\n                else:\n                    return False\n            else:\n                return False\n\n        return s[-1].isdigit() or (s[-1] == '.' and last_d != -1)\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def isNumber(self, s: str) -> bool:\n        # 任何状态机的核心都是建立如下的状态机模型\n        states = {\n            \"start\": {\"SIGN\":\"sign1\",  \"DIGIT\":\"digit1\",  \"DOT\":\"dot1\"},\n            \"sign1\": {\"DIGIT\":\"digit1\",  \"DOT\":\"dot1\"},\n            \"sign2\": {\"DIGIT\":\"D\"},\n            \"digit1\": {\"DIGIT\":\"digit1\",  \"DOT\":\"dot2\",  \"EXP\":\"exp\",  \"END\": True},\n            \"digit2\": {\"DIGIT\":\"digit2\",  \"EXP\":\"exp\",  \"END\": True},\n            \"dot1\": {\"DIGIT\":\"digit2\"}, # 前面没数字\n            \"dot2\": {\"DIGIT\":\"digit2\",  \"EXP\":\"exp\",  \"END\": True}, # 前面有数字\n            \"exp\": {\"SIGN\":\"sign2\",  \"DIGIT\":\"D\"},\n            \"D\": {\"DIGIT\":\"D\",  \"END\": True}\n        }\n\n        def get(ch):\n            if ch == \".\": return \"DOT\"\n            elif ch in \"+-\": return \"SIGN\"\n            elif ch in \"Ee\": return \"EXP\"\n            elif ch.isdigit(): return \"DIGIT\"\n\n        state = \"start\"\n        for c in s:\n            state = states[state].get(get(c))\n            if not state: return False\n\n        return \"END\" in states[state]\n\n"
+        }
+    ]
+},
 "plus-one":{
     "id": "66",
     "name": "plus-one",
@@ -8158,6 +8189,11 @@
     ],
     "keyPoints": [
         {
+            "text": "先找到32模式，再找132模式。",
+            "link": null,
+            "color": "blue"
+        },
+        {
             "text": "固定2,从右往左遍历,使用单调栈获取最大的小于当前数的2，并将当前数作为3。",
             "link": null,
             "color": "blue"
@@ -8169,7 +8205,7 @@
     "code": [
         {
             "language": "py",
-            "text": "\n\nclass Solution:\n    def find132pattern(self, nums: List[int]) -> bool:\n        s2, stack = float(\"-inf\"), []\n\n        for i in range(len(nums) - 1, -1, -1):\n            if nums[i] < s2:\n                return True\n            while stack and stack[-1] < nums[i]:\n                s2 = stack.pop()\n            stack.append(nums[i])\n        return False\n\n\n"
+            "text": "\nclass Solution:\n    def find132pattern(self, A: List[int]) -> bool:\n        stack = []\n        p2 = float(\"-inf\")\n        for a in A[::-1]:\n            # p2 不为初始值意味着我们已经找到了 32 模式，因此 a < p2 时候，我们就找到了 132 模式\n            if a < p2:\n                return True\n            while stack and a > stack[-1]:\n                p2 = stack.pop()\n            stack.append(a)\n\n        return False\n"
         }
     ]
 },
@@ -9062,7 +9098,7 @@
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def findNumberOfLIS(self, nums: List[int]) -> int:\n        n = len(nums)\n        # dp[i][0] ->  LIS\n        # dp[i][1] -> NumberOfLIS\n        dp = [[1, 1] for i in range(n)]\n        ans = [1, 1]\n        longest = 1\n        for i in range(n):\n            for j in range(i + 1, n):\n                if nums[j] > nums[i]:\n                    if dp[i][0] + 1 > dp[j][0]:\n                        dp[j][0] = dp[i][0] + 1\n                        # 下面这行代码容易忘记，导致出错\n                        dp[j][1] = dp[i][1]\n                        longest = max(longest, dp[j][0])\n                    elif dp[i][0] + 1 == dp[j][0]:\n                        dp[j][1] += dp[i][1]\n        return sum(dp[i][1] for i in range(n) if dp[i][0] == longest)\n\n"
+            "text": "\nclass Solution:\n    def findNumberOfLIS(self, nums: List[int]) -> int:\n        n = len(nums)\n        # dp[i][0] ->  LIS\n        # dp[i][1] -> NumberOfLIS\n        dp = [[1, 1] for _ in range(n)]\n        longest = 1\n        for i in range(n):\n            for j in range(i + 1, n):\n                if nums[j] > nums[i]:\n                    if dp[i][0] + 1 > dp[j][0]:\n                        dp[j][0] = dp[i][0] + 1\n                        # 下面这行代码容易忘记，导致出错\n                        dp[j][1] = dp[i][1]\n                        longest = max(longest, dp[j][0])\n                    elif dp[i][0] + 1 == dp[j][0]:\n                        dp[j][1] += dp[i][1]\n        return sum(dp[i][1] for i in range(n) if dp[i][0] == longest)\n\n"
         }
     ]
 },
@@ -9482,7 +9518,12 @@
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/799.champagne-tower.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/799.champagne-tower.md",
-    "code": []
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def champagneTower(self, poured, R, C):\n        # 这种初始化方式有一半空间是浪费的\n        A = [[0] * (R+1) for _ in range(R+1)]\n        A[0][0] = poured\n        # 从上到下，从左到右模拟每一行每一列\n        for i in range(R + 1):\n            for j in range(i+1):\n                overflow = (A[i][j] - 1.0) / 2.0\n                # 不必模拟多步，而是只模拟一次即可。也就是说我们无需溢出到下一层之后，下一层的杯子容量大于 1，因为我们后面处理即可，这和直觉上或许有所不一样。体现在代码上只需要 if 即可，无需 while\n                if overflow > 0 and i < R and j <= C:\n                    A[i+1][j] += overflow\n                    if j+1<=C: A[i+1][j+1] += overflow\n\n        return min(1, A[R][C]) # 最后的结果如果大于 1，说明流到地板上了，需要和 1 取最小值。\n\n"
+        }
+    ]
 },
 "minimum-swaps-to-make-sequences-increasing":{
     "id": "801",
@@ -12275,6 +12316,56 @@
         }
     ]
 },
+"find-minimum-time-to-finish-all-jobs":{
+    "id": "1723",
+    "name": "find-minimum-time-to-finish-all-jobs",
+    "pre": [
+        {
+            "text": "位运算",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "回溯",
+            "link": null,
+            "color": "green"
+        },
+        {
+            "text": "剪枝",
+            "link": null,
+            "color": "gold"
+        },
+        {
+            "text": "子集枚举",
+            "link": null,
+            "color": "magenta"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "剪枝（否则会超时）",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1723.find-minimum-time-to-finish-all-jobs.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1723.find-minimum-time-to-finish-all-jobs.md",
+    "code": [
+        {
+            "language": "cpp",
+            "text": "\n\nclass Solution {\npublic:\n    int minimumTimeRequired(vector<int>& jobs, int k) {\n        int n = jobs.size();\n        vector<int> sum(1 << n);\n        for (int i = 0; i < (1 << n); i++) {\n            for(int j = 0; j < n; j++) {\n                if (i & (1 << j)) {\n                    sum[i] += jobs[j];\n                }\n            }\n        }\n\n        vector<vector<int>> dp(k, vector<int>(1 << n));\n        for (int i = 0; i < (1 << n); i++) {\n            dp[0][i] = sum[i];\n        }\n\n        for (int i = 1; i < k; i++) {\n           // 二进制子集枚举优化\n            for (int j = 0; j < (1 << n); j++) {\n                dp[i][j] = INT_MAX;\n                for (int x = j; x; x = (x - 1) & j) {\n                    dp[i][j] = min(dp[i][j], max(dp[i - 1][j - x], sum[x]));\n                }\n            }\n        }\n        return dp[k - 1][(1 << n) - 1];\n    }\n};\n\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def minimumTimeRequired(self, jobs: List[int], k: int) -> int:\n        def backtrack(pos, workloads, limit):\n            if pos >= len(jobs): return True\n            for i in range(len(workloads)):\n                workload = workloads[i]\n                if jobs[pos] + workload <= limit:\n                    workloads[i] += jobs[pos]\n                    if backtrack(pos + 1, workloads, limit): return True\n                    workloads[i] -= jobs[pos]\n                if workload == 0:\n                    return False\n            return False\n        def possible(limit):\n            return backtrack(0, [0] * k, limit)\n        jobs.sort(reverse=True)\n        l, r = jobs[0], sum(jobs)\n        while l <= r:\n            mid = (l + r) // 2\n            if possible(mid):\n                r = mid - 1\n            else:\n                l = mid + 1\n        return l\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def minimumTimeRequired(self, jobs: List[int], k: int) -> int:\n        n = len(jobs)\n        sum_jobs = [0] * (1 << n)\n        dp = [[float(\"inf\") for _ in range(1 << n)] for _ in range(k)]\n\n        for i in range(1 << n):\n            for j in range(n):\n                if i & 1 << j:\n                    sum_jobs[i] += jobs[j]\n\n        for i in range(1 << n):\n            dp[0][i] = sum_jobs[i]\n\n        for i in range(1, k):\n            #  二进制子集枚举优化\n            for j in range(1 << n):\n                sub = j\n                while sub != 0:\n                    dp[i][j] = min(dp[i][j], max(dp[i - 1][j - sub], sum_jobs[sub]))\n                    sub = j & (sub - 1)\n        return dp[-1][-1]\n\n"
+        }
+    ]
+},
 "change-minimum-characters-to-satisfy-one-of-three-conditions":{
     "id": "1737",
     "name": "change-minimum-characters-to-satisfy-one-of-three-conditions",
@@ -12303,7 +12394,7 @@
     "code": [
         {
             "language": "py",
-            "text": "\n        # 枚举 A 的最大字母\n        for i in range(1, 26):\n            t = 0\n            # 大于等于 i 的所有字符都需要进行一次操作\n            for j in range(i, 26):\n                t += counter_A[j]\n            # 小于 i 的所有字符都需要进行一次操作\n            for j in range(i):\n                t += counter_B[j]\n            # 枚举的所有情况中取最小的\n            ans = min(ans, t)\n"
+            "text": "\n        # 枚举 A 的最大字母\n        for i in range(1, 26):\n            t = 0\n            # A 中大于等于 i 的所有字符都需要进行一次操作\n            for j in range(i, 26):\n                t += counter_A[j]\n            # B 中小于 i 的所有字符都需要进行一次操作\n            for j in range(i):\n                t += counter_B[j]\n            # 枚举的所有情况中取最小的\n            ans = min(ans, t)\n"
         },
         {
             "language": "py",
@@ -12312,6 +12403,74 @@
         {
             "language": "py",
             "text": "\nclass Solution:\n    def minCharacters(self, A: str, B: str) -> int:\n        counter_A = [0] * 26\n        counter_B = [0] * 26\n        for a in A:\n            counter_A[ord(a) - ord('a')] += 1\n        for b in B:\n            counter_B[ord(b) - ord('a')] += 1\n        ans = len(A) + len(B)\n        for i in range(26):\n            ans = min(ans, len(A) + len(B) - counter_A[i] - counter_B[i])\n        for i in range(1, 26):\n            t = 0\n            for j in range(i, 26):\n                t += counter_A[j]\n            for j in range(i):\n                t += counter_B[j]\n            ans = min(ans, t)\n        for i in range(1, 26):\n            t = 0\n            for j in range(i, 26):\n                t += counter_B[j]\n            for j in range(i):\n                t += counter_A[j]\n            ans = min(ans, t)\n        return ans\n\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def minCharacters(self, A: str, B: str) -> int:\n        ca = collections.Counter(A)\n        cb = collections.Counter(B)\n        # ca 中严格大于 cb 的最小操作数\n        def greater_cost(ca, cb):\n            ans = float(\"inf\")\n            # 枚举 ca 中的最小值\n            for i in range(1, 26):\n                count = 0\n                # 将 ca 中小于最小值的都进行一次操作\n                for j in range(i):\n                    count += ca[chr(97 + j)]\n                # 将 cb 中大于等于最小值的都进行一次操作（注意这里的等号）\n                for j in range(i, 26):\n                    count += cb[chr(97 + j)]\n                ans = min(ans, count)\n            return ans\n\n        def equal_cost(ca, cb):\n            ans = float(\"inf\")\n            for i in range(26):\n                ans = min(ans, len(A) + len(B) - ca[chr(97 + i)] - cb[chr(97 + i)])\n            return ans\n\n        return min(greater_cost(ca, cb), greater_cost(cb, ca), equal_cost(ca, cb))\n\n"
+        }
+    ]
+},
+"single-threaded-cpu":{
+    "id": "1834",
+    "name": "single-threaded-cpu",
+    "pre": [
+        {
+            "text": "模拟",
+            "link": null,
+            "color": "purple"
+        },
+        {
+            "text": "堆",
+            "link": null,
+            "color": "green"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "堆",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1834.single-threaded-cpu.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1834.single-threaded-cpu.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def getOrder(self, tasks: List[List[int]]) -> List[int]:\n        tasks = [(task[0], i, task[1]) for i, task in enumerate(tasks)]\n        tasks.sort()\n        backlog = []\n        time = 0\n        ans = []\n        pos = 0\n        for _ in tasks:\n            if not backlog:\n                time = max(time, tasks[pos][0])\n            while pos < len(tasks) and tasks[pos][0] <= time:\n                heapq.heappush(backlog, (tasks[pos][2], tasks[pos][1]))\n                pos += 1\n            d, j = heapq.heappop(backlog)\n            time += d\n            ans.append(j)\n        return ans\n\n"
+        }
+    ]
+},
+"find-xor-sum-of-all-pairs-bitwise-and":{
+    "id": "1835",
+    "name": "find-xor-sum-of-all-pairs-bitwise-and",
+    "pre": [
+        {
+            "text": "位运算",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "从位的角度思考问题",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "位运算（这里是AND和XOR）的基本特性",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1835.find-xor-sum-of-all-pairs-bitwise-and.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1835.find-xor-sum-of-all-pairs-bitwise-and.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def getXORSum(self, A: List[int], B: List[int]) -> int:\n        ans = 0\n        for i in range(31):\n            ones_a = ones_b = 0\n            for a in A:\n                if a & (1 << i):\n                    ones_a += 1\n            for b in B:\n                if b & (1 << i):\n                    ones_b += 1\n            if ones_a * ones_b & 1:\n                ans |= 1 << i\n        return ans\n\n"
         }
     ]
 },
