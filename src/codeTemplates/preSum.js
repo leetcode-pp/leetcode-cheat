@@ -68,5 +68,5 @@ module.exports = {
       ],
     },
   ],
-  link: "",
+  link: "https://lucifer.ren/blog/2020/09/27/atMostK/",
 };
