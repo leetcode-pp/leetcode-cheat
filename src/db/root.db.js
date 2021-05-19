@@ -2987,7 +2987,7 @@
         },
         {
             "language": "js",
-            "text": "\n// 将nums1 和 nums2 合并\nfunction merge(nums1, nums2) {\n  let ret = [];\n  while (nums1.length || nums2.length) {\n    // 为了方便大家理解，这里代码有点赘余\n    if (nums1.length === 0) {\n      ret.push(nums2.shift());\n      continue;\n    }\n\n    if (nums2.length === 0) {\n      ret.push(nums1.shift());\n      continue;\n    }\n    const a = nums1[0];\n    const b = nums2[0];\n    if (a > b) {\n      ret.push(nums2.shift());\n    } else {\n      ret.push(nums1.shift());\n    }\n  }\n  return ret;\n}\n"
+            "text": "\n// 将nums1 和 nums2 合并\nfunction merge(nums1, nums2) {\n  let ret = [];\n  let i = (j = 0);\n  while (i < nums1.length || j < nums2.length) {\n    if (i === nums1.length) {\n      ret.push(nums2[j]);\n      j++;\n      continue;\n    }\n\n    if (j === nums2.length) {\n      ret.push(nums1[i]);\n      i++;\n      continue;\n    }\n    const a = nums1[i];\n    const b = nums2[j];\n    if (a > b) {\n      ret.push(nums2[j]);\n      j++;\n    } else {\n      ret.push(nums1[i]);\n      i++;\n    }\n  }\n  return ret;\n}\n"
         },
         {
             "language": "js",
