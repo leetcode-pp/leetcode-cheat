@@ -2,7 +2,7 @@ import React from "react";
 import { message } from "antd";
 const chrome = window.chrome;
 if (chrome) {
-  chrome.runtime.onUpdateAvailable &&
+  chrome?.runtime?.onUpdateAvailable &&
     chrome.runtime.onUpdateAvailable.addListener(function (details) {
       console.log("updating to version " + details.version);
 

@@ -8,6 +8,7 @@ import segmemntTree from "./segmentTree";
 import heap from "./heap";
 import preSum from "./preSum";
 import handWriting from "./hand-writing";
+import rotate from "./rotate";
 export default [
   preSum,
   binarySearch,
@@ -19,4 +20,5 @@ export default [
   uf,
   segmemntTree,
   handWriting,
+  rotate,
 ];
