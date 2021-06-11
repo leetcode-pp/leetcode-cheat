@@ -38,7 +38,7 @@ export default {
                   # 遍历当前层的所有节点
                   for _ in range(size):
                       node = queue.popleft()
-                      if (step == k) ans.append(node)
+                      if (steps == k) ans.append(node)
                       if node.right:
                           queue.append(node.right)
                       if node.left:
@@ -81,6 +81,5 @@ export default {
       ],
     },
   ],
-  link:
-    "https://github.com/azl397985856/leetcode/blob/master/thinkings/tree.md",
+  link: "https://github.com/azl397985856/leetcode/blob/master/thinkings/tree.md",
 };
