@@ -14,7 +14,7 @@ export default function Codes({ codes, renderHeader }) {
         <Panel
           key={c.text}
           header={
-            <div className="row">
+            <div style={{ display: "inline-block" }}>
               <span className="language language-js">{c.language}</span>
               <Button
                 type="primary"

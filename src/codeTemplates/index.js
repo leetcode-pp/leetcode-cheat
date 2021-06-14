@@ -9,8 +9,10 @@ import heap from "./heap";
 import preSum from "./preSum";
 import handWriting from "./hand-writing";
 import rotate from "./rotate";
+import grapth from "./grapth";
 export default [
   preSum,
+  grapth,
   binarySearch,
   bfs,
   heap,

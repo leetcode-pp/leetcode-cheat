@@ -10,6 +10,12 @@ import {
 const { TabPane } = Tabs;
 const { Panel } = Collapse;
 
+function computedURL(problem) {
+  if (problem.id.startsWith("http://") || problem.id.startsWith("https://"))
+    return problem.id;
+  return `${LEETCODE_CN_URL}/problems/${problem.id}`;
+}
+
 export default function CodeTemplate({ tempaltes }) {
   return (
     <div>
@@ -44,8 +50,8 @@ export default function CodeTemplate({ tempaltes }) {
             )}
             {tempalte.list.map(({ text, problems, codes }) => (
               <Collapse key={text}>
-                <Panel header={<div>{text}</div>} key={text}>
-                  <div>
+                <Panel header={<span>{text}</span>} key={text}>
+                  <div style={problems.length > 0 ? {} : { display: "none" }}>
                     推荐题目：
                     <ul>
                       {problems.map((problem) => (
@@ -54,7 +60,7 @@ export default function CodeTemplate({ tempaltes }) {
                           <Button
                             onClick={(e) => e.stopPropagation()}
                             type="link"
-                            href={`${LEETCODE_CN_URL}/problems/${problem.id}`}
+                            href={computedURL(problem)}
                             target="_blank"
                             size="small"
                             style={{ marginLeft: "10px" }}
