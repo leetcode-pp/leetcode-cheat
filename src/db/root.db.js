@@ -8395,6 +8395,43 @@
         }
     ]
 },
+"matchsticks-to-square":{
+    "id": "473",
+    "name": "matchsticks-to-square",
+    "pre": [
+        {
+            "text": "回溯",
+            "link": null,
+            "color": "green"
+        },
+        {
+            "text": "剪枝",
+            "link": null,
+            "color": "gold"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "如果火柴和不是4的倍数，需要剪枝。",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "降序排序，优先选择权值大的可以介绍搜索树的规模。这是放置型回溯的常见的固定套路之一。",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/473.matchsticks-to-square.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/473.matchsticks-to-square.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def makesquare(self, matchsticks: List[int]) -> bool:\n        side = sum(matchsticks) // 4\n        sides = [0] * 4\n        # 剪枝处理\n        if side * 4 != sum(matchsticks):\n            return False\n\n        matchsticks.sort(reverse=True)\n        #  带权值的放置型回溯，有一个剪枝套路就是进行一次降序排序。\n        # 由于:\n        # 1. 性能瓶颈不在排序，并且先放大的可以有效减少极端情况下的执行次数，因此剪枝效果很棒。\n        # 2. 既然都回溯了，那么顺序也是无所谓的，因此打乱顺序无所谓。 而如果真的顺序有所谓，我们也可以排序后记录下排序前的索引也帮不难。\n        # 3. 优先选择大的，这样可选择变少了，可以有效减少递归树节点的个数，进而使得搜索时间大大降低。\n        def backtrack(i):\n            if i == len(matchsticks):\n                return sides[0] == sides[1] == sides[2] == sides[3] == side\n            for j in range(4):\n                if sides[j] + matchsticks[i] <= side:\n                    sides[j] += matchsticks[i]\n                    if backtrack(i + 1):\n                        return True\n                    sides[j] -= matchsticks[i]\n            return False\n\n        return backtrack(0)\n\n\n"
+        }
+    ]
+},
 "sliding-window-median":{
     "id": "480",
     "name": "sliding-window-median",
@@ -8799,6 +8836,38 @@
         }
     ]
 },
+"contiguous-array":{
+    "id": "525",
+    "name": "contiguous-array",
+    "pre": [
+        {
+            "text": "前缀和",
+            "link": null,
+            "color": "cyan"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "将0/1数组转化为",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "1/1数组",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/525.contiguous-array.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/525.contiguous-array.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def findMaxLength(self, A: List[int]) -> int:\n        A = [1 if a == 0 else -1 for a in A]\n        ans = acc = 0\n        mapper = {0: -1}\n        for i in range(len(A)):\n            acc += A[i]\n            if acc not in mapper:\n                mapper[acc] = i\n            else:\n                ans = max(ans, i - mapper[acc])\n        return ans\n"
+        }
+    ]
+},
 "friend-circles":{
     "id": "547",
     "name": "friend-circles",
@@ -9027,6 +9096,40 @@
         {
             "language": "py",
             "text": "\nclass Solution:\n    def triangleNumber(self, nums: List[int]) -> int:\n        n = len(nums)\n        ans = 0\n        nums.sort()\n        for i in range(n - 2):\n            if nums[i] == 0: continue\n            k = i + 2\n            for j in range(i + 1, n - 1):\n                while k < n and nums[i] + nums[j] > nums[k]:\n                    k += 1\n                ans += k - j - 1\n        return ans\n"
+        }
+    ]
+},
+"strange-printer":{
+    "id": "664",
+    "name": "strange-printer",
+    "pre": [
+        {
+            "text": "动态规划",
+            "link": null,
+            "color": "red"
+        },
+        {
+            "text": "区间 DP",
+            "link": null,
+            "color": "red"
+        }
+    ],
+    "keyPoints": [],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/664.strange-printer.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/664.strange-printer.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\ndef dp(l, r):\n    # ...\n    # 将 分别处理 A 和 部分\n    for i in range(l, r):\n        ans = min(ans, dp(l, i) + dp(i + 1, r))\n    # ...\ndp(0, len(s) - 1)\n"
+        },
+        {
+            "language": "py",
+            "text": "\ndef dp(l, r):\n    # ...\n    if s[l] == s[r]:\n        return dp(l, r - 1)\n    # ...\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def strangePrinter(self, s: str) -> int:\n        @lru_cache(None)\n        def dp(l, r):\n            if l >= r:\n                return int(l == r)\n            if s[l] == s[r]:\n                return dp(l, r - 1)\n            ans = len(s)\n            #  枚举分割点\n            for i in range(l, r):\n                ans = min(ans, dp(l, i) + dp(i + 1, r))\n            return ans\n\n        return dp(0, len(s) - 1)\n\n\n"
         }
     ]
 },
@@ -9332,6 +9435,33 @@
         {
             "language": "py",
             "text": "\nclass UF:\n    def __init__(self):\n        self.parent = {}\n\n    def find(self, x):\n        self.parent.setdefault(x, x)\n        while x != self.parent[x]:\n            x = self.parent[x]\n        return x\n    def union(self, p, q):\n        self.parent[self.find(p)] = self.find(q)\n\n\nclass Solution:\n    def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:\n        uf = UF()\n        email_to_name = {}\n        res = collections.defaultdict(list)\n        for account in accounts:\n            for i in range(1, len(account)):\n                email_to_name[account[i]] = account[0]\n                if i < len(account) - 1:uf.union(account[i], account[i + 1])\n        for email in email_to_name:\n            res[uf.find(email)].append(email)\n\n        return [[email_to_name[value[0]]] + sorted(value) for value in res.values()]\n"
+        }
+    ]
+},
+"asteroid-collision":{
+    "id": "735",
+    "name": "asteroid-collision",
+    "pre": [
+        {
+            "text": "栈",
+            "link": null,
+            "color": "red"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "whilebreakifelse的灵活使用",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/735.asteroid-collision.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/735.asteroid-collision.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def asteroidCollision(self, asteroids):\n        stack = []\n        for asteroid in asteroids:\n            if not stack or asteroid > 0:\n                stack.append(asteroid)\n            else:\n                while stack and stack[-1] > 0:\n                    if stack[-1] + asteroid > 0:\n                        break\n                    elif stack[-1] + asteroid < 0:\n                        # 这种情况需要继续和前前星球继续判断是否碰撞\n                        stack.pop()\n                    else:\n                        stack.pop()\n                        break\n                else:\n                    stack.append(asteroid)\n\n        return stack\n\n\n"
         }
     ]
 },
@@ -10132,6 +10262,38 @@
         {
             "language": "js",
             "text": "\n/**\n * @param {number[]} A\n */\nvar RLEIterator = function(A) {\n    this.A = A;\n    this.current = 0;\n};\n\n\n/** \n * @param {number} n\n * @return {number}\n */\nRLEIterator.prototype.next = function(n) {\n    const A = this.A;\n    while(this.current < A.length && A[this.current] < n){\n        n = n - A[this.current];\n        this.current += 2;\n    }\n    \n    if(this.current >= A.length){\n        return -1;\n    }\n    \n    A[this.current] = A[this.current] - n; // 更新Count\n    return A[this.current + 1]; // 返回element\n};\n\n/** \n * Your RLEIterator object will be instantiated and called as such:\n * var obj = new RLEIterator(A)\n * var param_1 = obj.next(n)\n */\n"
+        }
+    ]
+},
+"snakes-and-ladders":{
+    "id": "909",
+    "name": "snakes-and-ladders",
+    "pre": [
+        {
+            "text": "广度优先遍历",
+            "link": null,
+            "color": "gold"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "根据矩阵编号如何算出其都在的行号和列号。这里其实用到了number=(row",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "1)\\*n+col这样的一个公式，后面的所有公式都是基于它产生的。",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/909.snakes-and-ladders.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/909.snakes-and-ladders.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def snakesAndLadders(self, board: List[List[int]]) -> int:\n        q = collections.deque([(1, 0)])\n        n = len(board)\n        visited = set()\n\n        def get_pos(pos):\n            row = (n - 1) - (pos - 1) // n\n            col = (n - 1) - ((pos - 1) % n) if row & 1 == n & 1 else (pos - 1) % n\n            return row, col\n\n        while q:\n            for _ in range(len(q)):\n                cur, steps = q.popleft()\n                if cur in visited:\n                    continue\n                visited.add(cur)\n                if cur == n ** 2:\n                    return steps\n                for nxt in range(cur + 1, min(cur + 6, n * n) + 1):\n                    row, col = get_pos(nxt)\n                    if board[row][col] == -1:\n                        q.append((nxt, steps + 1))\n                    else:\n                        q.append((board[row][col], steps + 1))\n        return -1\n\n"
         }
     ]
 },
@@ -11007,6 +11169,27 @@
         {
             "language": "py",
             "text": "\n\n\nclass Solution:\n    def numEquivDominoPairs(self, dominoes: List[List[int]]) -> int:\n        counts = [0] * 9 * 9\n        ans = 0\n        for a, b in dominoes:\n            v = min((a - 1) * 9 + (b - 1), (b - 1) * 9 + (a - 1))\n            ans += counts[v]\n            counts[v] += 1\n        return ans\n"
+        }
+    ]
+},
+"shortest-path-with-alternating-colors":{
+    "id": "1129",
+    "name": "shortest-path-with-alternating-colors",
+    "pre": [
+        {
+            "text": "BFS",
+            "link": null,
+            "color": "purple"
+        }
+    ],
+    "keyPoints": [],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1129.shortest-path-with-alternating-colors.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1129.shortest-path-with-alternating-colors.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\n\nclass Solution:\n    def shortestAlternatingPaths(self, n: int, red_edges: List[List[int]], blue_edges: List[List[int]]) -> List[int]:\n        ans = [2 * n] * n\n        neibors_red = collections.defaultdict(list)\n        neibors_blue = collections.defaultdict(list)\n        # 1. 建立邻接矩阵\n        for fr, to in red_edges:\n            neibors_red[fr].append(to)\n        for fr, to in blue_edges:\n            neibors_blue[fr].append(to)‘\n        # 将颜色也存入到队中\n        q = collections.deque([(0, -1), (0, 1)])\n        steps = 0\n\n        while q:\n            for _ in range(len(q)):\n                cur, color = q.popleft()\n                ans[cur] = min(ans[cur], steps)\n                # color == 1 该取红边了，否则取蓝边\n                neibors = neibors_red if color == 1 else neibors_blue\n                for nxt in neibors[cur]:\n                    q.append((nxt, -1 * color))\n                # 此处的作用等同于 visited，即防止环的产产生。\n                neibors[cur] = []\n            steps += 1\n\n        return [-1 if a == 2 * n else a for a in ans]\n\n\n"
         }
     ]
 },
@@ -12410,6 +12593,55 @@
         }
     ]
 },
+"make-the-xor-of-all-segments-equal-to-zero":{
+    "id": "1787",
+    "name": "make-the-xor-of-all-segments-equal-to-zero",
+    "pre": [
+        {
+            "text": "异或",
+            "link": null,
+            "color": "geekblue"
+        },
+        {
+            "text": "动态规划",
+            "link": null,
+            "color": "red"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "异或的自反性",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "对值域（upper）做dp，而不是数组索引。",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1787.make-the-xor-of-all-segments-equal-to-zero.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1787.make-the-xor-of-all-segments-equal-to-zero.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def minChanges(self, nums: List[int], k: int) -> int:\n        counter = collections.defaultdict(int)\n        UPPER = 2 ** 10\n        n = len(nums)\n        for i, num in enumerate(nums):\n            counter[(i % k, num)] += 1\n        dp = [[n] * UPPER for _ in range(k)]\n\n        for i in range(k):\n            size_i = n // k + int(n % k > i)\n            for j in range(UPPER):\n                for p in range(UPPER):\n                    if i == 0:\n                        dp[i][j] = size_i - counter[(i, j)]\n                    else:\n                        dp[i][j] = min(\n                            dp[i][j],\n                            dp[i - 1][p] + size_i - counter[(i, p ^ j)],\n                        )\n        return dp[-1][0]\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\n        counter = collections.defaultdict(int)\n        UPPER = 2 ** 10\n        n = len(nums)\n        for i, num in enumerate(nums):\n            counter[(i % k, num)] += 1\n        dp = [n] * UPPER\n\n        for i in range(k):\n            size_i = n // k + int(n % k > i)\n            nxt_dp = [n] * UPPER\n            for j in range(UPPER):\n                for p in range(UPPER):\n                    if i == 0:\n                        nxt_dp[j] = size_i - counter[(i, j)]\n                    else:\n                        nxt_dp[j] = min(\n                            nxt_dp[j],\n                            dp[p] + size_i - counter[(i, p ^ j)],\n                        )\n            dp = nxt_dp\n        return dp[0]\n"
+        },
+        {
+            "language": "py",
+            "text": "\nfor val, count in counter[i].items():  # 改成这一列已有的数\n    nxt_dp[j ^ val] = min(nxt_dp[j ^ val], dp[j] + size_i - count)\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def minChanges(self, nums: List[int], k: int) -> int:\n        counter = collections.defaultdict(lambda: collections.defaultdict(int))\n        UPPER = 2 ** 10\n        n = len(nums)\n        for i, num in enumerate(nums):\n            counter[i % k][num] += 1\n        dp = [n] * UPPER\n        dp[0] = 0\n\n        for i in range(k):\n            size_i = n // k + int(n % k > i)\n            nxt_dp = [min(dp) + size_i] * UPPER  # 改成新的数\n            for j in range(UPPER):\n                for val, count in counter[i].items():  # 改成这一列已有的数\n                    nxt_dp[j ^ val] = min(nxt_dp[j ^ val], dp[j] + size_i - count)\n            dp = nxt_dp\n        return dp[0]\n\n\n"
+        }
+    ]
+},
 "single-threaded-cpu":{
     "id": "1834",
     "name": "single-threaded-cpu",
@@ -12507,6 +12739,48 @@
         {
             "language": "py",
             "text": "\nclass Solution:\n    def maximizeXor(self, nums: List[int], queries: List[List[int]]) -> List[int]:\n        def solve(x, m, s, e):\n            if nums[0] > m: return -1\n            max_v = 0\n            for i in range(31, -1, -1):\n                if nums[s] & (1<<i) == nums[e] & (1<<i):\n                    max_v += nums[s] & (1<<i)\n                elif nums[dp[i][e]] <= m and x ^ nums[s] < x ^ nums[e]:\n                    max_v += nums[e] & (1<<i)\n                    # 直接移动较小指针（s）到 dp[i][e]，其他不可能是答案\n                    s = dp[i][e]\n                else:\n                    max_v += nums[s] & (1<<i)\n                    # 直接移动较小指针（e）到 dp[i][e] - 1，其他不可能是答案\n                    e = dp[i][e] - 1\n\n            return max_v ^ x\n\n        nums.sort()\n        n = len(nums)\n        #  dp[i][j] 是和 nums[j] 第 i 位相等的最小的数组下标\n        dp = [[0 for _ in range(n)] for _ in range(32)]\n        for i in range(32):\n            for j in range(n):\n                if j == 0 or (nums[j] & (1<<i)) != (nums[j-1] & (1<<i)): dp[i][j] = j\n                else: dp[i][j] = dp[i][j-1]\n        return [solve(x, m, 0, n-1) for x,m in queries]\n"
+        }
+    ]
+},
+"minimum-skips-to-arrive-at-meeting-on-time":{
+    "id": "5775",
+    "name": "minimum-skips-to-arrive-at-meeting-on-time",
+    "pre": [
+        {
+            "text": "动态规划",
+            "link": null,
+            "color": "red"
+        },
+        {
+            "text": "浮点精度",
+            "link": null,
+            "color": "purple"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "浮点精度",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "dp[i][j]定义为到达dist[i",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "1]且休息j次（第j次休息完）所需要的时间。",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/5775.minimum-skips-to-arrive-at-meeting-on-time.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/5775.minimum-skips-to-arrive-at-meeting-on-time.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def minSkips(self, dists: List[int], s: int, h: int) -> int:\n        n = len(dists)\n        dp = [[s * h + 1] * (n + 1) for i in range(n + 1)]\n        dp[0][0] = 0\n        for i in range(1, n + 1):\n            cur = dists[i - 1]\n            for j in range(i + 1):\n                dp[i][j] = (dp[i - 1][j] + cur + s - 1) // s * s # rest\n                if j > 0: dp[i][j] = min(dp[i][j], dp[i - 1][j - 1] + cur) # no rest\n                if dp[-1][j] <= h * s:\n                    return j\n        return -1\n\n"
         }
     ]
 },
@@ -12654,6 +12928,25 @@
     ]
 },
 "md":{
+    "id": "Longest-Matrix-Path-Length",
+    "name": "md",
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/Longest-Matrix-Path-Length.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/Longest-Matrix-Path-Length.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def solve(self, matrix):\n        m, n = len(matrix), len(matrix[0])\n        visited = set()\n        def dp(i, j):\n            if (i, j) in visited: return float('-inf')\n            if j < 0 or j >= n: return float('-inf')\n            if i >= m: return 0\n            if matrix[i][j] == 1: return float('-inf')\n            visited.add((i, j))\n            ans = 1 + max(dp(i+1, j), dp(i,j+1), dp(i, j-1))\n            visited.remove((i, j))\n            return ans\n        ans = max([dp(0, j) for j in range(n)])\n        return 0 if ans == float('-inf') else ans\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def solve(self, matrix):\n        m, n = len(matrix), len(matrix[0])\n\n        @lru_cache(None)\n        def dp(i, j, d):\n            if j < 0 or j >= n: return float('-inf')\n            if i >= m: return 0\n            if matrix[i][j] == 1: return float('-inf')\n            ans = 1 + max(dp(i+1, j, 0), float('-inf') if d == -1 else dp(i,j+1, 1), float('-inf') if d == 1 else dp(i, j-1, -1))\n            return ans\n        ans = max([dp(0, j, 0) for j in range(n)])\n        return 0 if ans == float('-inf') else ans\n"
+        }
+    ]
+},
+"md":{
     "id": "Minimum-Dropping-Path-Sum",
     "name": "md",
     "pre": [
@@ -12796,6 +13089,25 @@
         {
             "language": "py",
             "text": "\nclass Solution:\n    def solve(self, s):\n        x_count = y_count = 0\n        ans = len(s)\n        for c in s:\n            x_count += c == 'x'\n        for c in s:\n            x_count -= c == 'x'\n            ans = min(ans, x_count + y_count)\n            y_count += c == 'y'\n        return ans\n\n"
+        }
+    ]
+},
+"md":{
+    "id": "Ticket-Order",
+    "name": "md",
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/Ticket-Order.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/Ticket-Order.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def solve(self, tickets):\n        q = collections.deque([(i, ticket) for i, ticket in enumerate(tickets)])\n        ans = [0] * len(tickets)\n        time = 0\n        while q:\n            i, cur = q.popleft()\n            time += 1\n            if cur > 1:\n                q.append((i, cur - 1))\n            else:\n                ans[i] = time\n\n        return ans\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def solve(self, a):\n        n = len(a)\n        answer = [0 for i in range(n)]\n        sl = SortedList()\n        ps = 0\n        for j, (ai, i) in enumerate(sorted((ai, i) for i, ai in enumerate(a))):\n            answer[i] = ps + (n - j) * (ai - 1) + (i + 1 - sl.bisect_left(i))\n            sl.add(i)\n            ps += ai\n        return answer\n"
         }
     ]
 },
