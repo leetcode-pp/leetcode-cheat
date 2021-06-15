@@ -136,7 +136,12 @@ def bell_man(edges, s):
     },
     {
       text: "Kruskal（又称加边法，是一种最小生成树算法）",
-      problems: [],
+      problems: [
+        {
+          id: "min-cost-to-connect-all-points",
+          title: "1584. 连接所有点的最小费用",
+        },
+      ],
       codes: [
         {
           language: "py",
@@ -194,7 +199,12 @@ if __name__ == "__main__":  # pragma: no cover
     },
     {
       text: "Prim（又称加点法，是一种最小生成树算法）",
-      problems: [],
+      problems: [
+        {
+          id: "min-cost-to-connect-all-points",
+          title: "1584. 连接所有点的最小费用",
+        },
+      ],
       codes: [
         {
           language: "py",
