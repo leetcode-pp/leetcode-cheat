@@ -15,11 +15,12 @@ module.exports = {
           language: "cpp",
           text: `
 vector<vector<int>> rotate(vector<vector<int>> &mat) {
-  int n = mat.size();
-  vector<vector<int>> ans(n, vector<int>(n));
-  for (int i = 0; i < n; ++i)
+  int m = mat.size();
+  int n = mat[0].size()
+  vector<vector<int>> ans(n, vector<int>(m));
+  for (int i = 0; i < m; ++i)
       for (int j = 0; j < n; ++j)
-          ans[j][n - 1 - i] = mat[i][j];
+          ans[j][m - 1 - i] = mat[i][j];
   return ans;
 }         
 `,
@@ -28,11 +29,11 @@ vector<vector<int>> rotate(vector<vector<int>> &mat) {
           language: "py",
           text: `
 def rotate(mat):
-  n = len(mat)
-  ans = [[0] * n for _ in range(n)]
-  for i in range(n):
+  m, n = len(mat), len(mat[0])
+  ans = [[0] * m for _ in range(n)]
+  for i in range(m):
       for j in range(n):
-          ans[j][n - i - 1] = mat[i][j]
+          ans[j][m - i - 1] = mat[i][j]
   return ans
           `,
         },
