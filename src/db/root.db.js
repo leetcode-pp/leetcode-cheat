@@ -2525,60 +2525,12 @@
 "sort-colors":{
     "id": "75",
     "name": "sort-colors",
-    "pre": [
-        {
-            "text": "荷兰国旗问题",
-            "link": "https://en.wikipedia.org/wiki/Dutch_national_flag_problem",
-            "color": "purple"
-        },
-        {
-            "text": "排序",
-            "link": null,
-            "color": "purple"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "荷兰国旗问题",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "countingsort",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/75.sort-colors.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/75.sort-colors.md",
-    "code": [
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    void sortColors(vector<int>& nums) {\n        int r = 0, g = 0, b = 0;\n        for (int n : nums) {\n            if (n == 0) {\n                nums[b++] = 2;\n                nums[g++] = 1;\n                nums[r++] = 0;\n            } else if (n == 1) {\n                nums[b++] = 2;\n                nums[g++] = 1;\n            } else nums[b++] = 2;\n        }\n    }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def sortColors(self, nums: List[int]) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        p0 = cur = 0\n        p2 = len(nums) - 1\n\n        while cur <= p2:\n            if nums[cur] == 0:\n                nums[cur], nums[p0] = nums[p0], nums[cur]\n                p0 += 1\n                cur += 1\n            elif nums[cur] == 2:\n                nums[cur], nums[p2] = nums[p2], nums[cur]\n                p2 -= 1\n            else:\n                cur += 1\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def partition(self, head: ListNode, x: int) -> ListNode:\n        l1 = cur = head\n        while cur:\n            if cur.val < x:\n                cur.val, l1.val = l1.val, cur.val\n                l1 = l1.next\n            cur = cur.next\n        return head\n"
-        }
-    ]
+    "code": []
 },
 "subsets":{
     "id": "78",

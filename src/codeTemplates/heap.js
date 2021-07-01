@@ -1,101 +1,72 @@
 const minHeapJSCode = `
-class MinHeap {
-
-    constructor () {
-        /* Initialing the array heap and adding a dummy element at index 0 */
-        this.heap = [null]
+function minHeap(A = []) {
+    this.heapify(A);
+  }
+  
+  minHeap.prototype._shiftUp = function(i) {
+    let parent_i = (i / 2) >>> 0;
+    while (parent_i > 0) {
+      if (this.h[i] < this.h[parent_i]) {
+        [this.h[i], this.h[parent_i]] = [this.h[parent_i], this.h[i]];
+      }
+      parent_i = (parent_i / 2) >>> 0;
     }
-
-    peek() {
-        /* Accessing the min element at index 1 in the heap array */
-        return this.heap[1]
+  };
+  
+  minHeap.prototype._shiftDown = function(i) {
+    while (i * 2 <= this.h.length - 1) {
+      const mc = this._minChild(i);
+      if (this.h[i] > this.h[mc]) {
+        [this.h[i], this.h[mc]] = [this.h[mc], this.h[i]];
+      }
+      i = mc;
     }
-    
-    push (node) {
-
-        /* Inserting the new node at the end of the heap array */
-        this.heap.push(node)
-
-        /* Finding the correct position for the new node */
-
-        if (this.heap.length > 1) {
-            let current = this.heap.length - 1
-
-            /* Traversing up the parent node until the current node (current) is greater than the parent (current/2)*/
-            while (current > 1 && this.heap[Math.floor(current/2)] > this.heap[current]) {
-
-                /* Swapping the two nodes by using the ES6 destructuring syntax*/
-                [this.heap[Math.floor(current/2)], this.heap[current]] = [this.heap[current], this.heap[Math.floor(current/2)]]
-                current = Math.floor(current/2)
-            }
-        }
+  };
+  
+  minHeap.prototype._minChild = function(i) {
+    if (i * 2 + 1 > this.h.length - 1) return i * 2;
+    if (this.h[i * 2] < this.h[i * 2 + 1]) return i * 2;
+    return i * 2 + 1;
+  };
+  
+  minHeap.prototype.pop = function() {
+    if (this.h.length === 1) throw new Error('空了就别弹了吧？');
+    const ans = this.h[1];
+    this.h[1] = this.h[this.h.length - 1];
+    this.h.pop();
+    this._shiftDown(1);
+    return ans;
+  };
+  
+  minHeap.prototype.push = function(a) {
+    this.h.push(a);
+    this._shiftUp(this.h.length - 1);
+    console.log(this.h);
+  };
+  
+  minHeap.prototype.heapify = function(A) {
+    this.h = [0].concat(A);
+    i = 1;
+    while (i < this.h.length) {
+      this._shiftDown(i);
+      i++;
     }
-    
-    pop() {
-        /* Smallest element is at the index 1 in the heap array */
-        let smallest = this.heap[1]
-
-        /* When there are more than two elements in the array, we put the right most element at the first position
-            and start comparing nodes with the child nodes
-        */
-        if (this.heap.length > 2) {
-            this.heap[1] = this.heap[this.heap.length-1]
-            this.heap.splice(this.heap.length - 1)
-
-            if (this.heap.length === 3) {
-                if (this.heap[1] > this.heap[2]) {
-                    [this.heap[1], this.heap[2]] = [this.heap[2], this.heap[1]]
-                }
-                return smallest
-            }
-
-            let current = 1
-            let leftChildIndex = current * 2
-            let rightChildIndex = current * 2 + 1
-
-            while (this.heap[leftChildIndex] &&
-                    this.heap[rightChildIndex] &&
-                    (this.heap[current] > this.heap[leftChildIndex] ||
-                        this.heap[current] > this.heap[rightChildIndex])) {
-                if (this.heap[leftChildIndex] < this.heap[rightChildIndex]) {
-                    [this.heap[current], this.heap[leftChildIndex]] = [this.heap[leftChildIndex], this.heap[current]]
-                    current = leftChildIndex
-                } else {
-                    [this.heap[current], this.heap[rightChildIndex]] = [this.heap[rightChildIndex], this.heap[current]]
-                    current = rightChildIndex
-                }
-
-                leftChildIndex = current * 2
-                rightChildIndex = current * 2 + 1
-            }
-        }
-
-        /* If there are only two elements in the array, we directly splice out the first element */
-
-        else if (this.heap.length === 2) {
-            this.heap.splice(1, 1)
-        } else {
-            return null
-        }
-
-        return smallest
-    }
-    /**
-     * Your MinHeap object will be instantiated and called as such:
-     * var obj = new MinHeap()
-     * obj.push(1)
-     * obj.push(2)
-     * obj.peek() // will return 1
-     * obj.pop() // remove 1
-     * obj.peek() // will return 2
-     */ 
+  };
+  
+  // test:
+  h = new minHeap([1, 2, 3]);
+  h.push(4);
+  h.push(5);
+  h.pop();
+  h.pop();
+  console.log(h.h); // inspect internal value
 }
 `;
 
 const minHeapPythonCode = `
 class min_heap:
-    def __init__(self):
-        self.h = [0]
+    def __init__(self, A=[]):
+        self.heapify(A)
 
     def shift_up(self, i):
         while i // 2 > 0:
@@ -131,7 +102,7 @@ class min_heap:
         self.h.append(a)
         self.shift_up(len(self.h)-1)
 
-    def build_heap(self, A):
+    def heapify(self, A):
         self.h = [0] + A
         i = 1
         while (i < len(self.h)):
@@ -140,8 +111,7 @@ class min_heap:
 
 # 使用：
 
-h = min_heap()
-h.build_heap([5, 6, 2, 3])
+h = min_heap([5, 6, 2, 3])
 
 h.heappush(1)
 h.heappop() # 1
@@ -293,6 +263,5 @@ module.exports = {
       ],
     },
   ],
-  link:
-    "https://leetcode-solution.cn/solutionDetail?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fazl397985856%2Fleetcode%2Fcontents%2Fthinkings%2Fheap.md&type=1",
+  link: "https://leetcode-solution.cn/solutionDetail?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fazl397985856%2Fleetcode%2Fcontents%2Fthinkings%2Fheap.md&type=1",
 };
