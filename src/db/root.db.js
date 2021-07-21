@@ -2525,12 +2525,60 @@
 "sort-colors":{
     "id": "75",
     "name": "sort-colors",
-    "pre": [],
-    "keyPoints": [],
-    "companies": [],
+    "pre": [
+        {
+            "text": "荷兰国旗问题",
+            "link": "https://en.wikipedia.org/wiki/Dutch_national_flag_problem",
+            "color": "purple"
+        },
+        {
+            "text": "排序",
+            "link": null,
+            "color": "purple"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "荷兰国旗问题",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "countingsort",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/75.sort-colors.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/75.sort-colors.md",
-    "code": []
+    "code": [
+        {
+            "language": "cpp",
+            "text": "\nclass Solution {\npublic:\n    void sortColors(vector<int>& nums) {\n        int r = 0, g = 0, b = 0;\n        for (int n : nums) {\n            if (n == 0) {\n                nums[b++] = 2;\n                nums[g++] = 1;\n                nums[r++] = 0;\n            } else if (n == 1) {\n                nums[b++] = 2;\n                nums[g++] = 1;\n            } else nums[b++] = 2;\n        }\n    }\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def sortColors(self, nums: List[int]) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        p0 = cur = 0\n        p2 = len(nums) - 1\n\n        while cur <= p2:\n            if nums[cur] == 0:\n                nums[cur], nums[p0] = nums[p0], nums[cur]\n                p0 += 1\n                cur += 1\n            elif nums[cur] == 2:\n                nums[cur], nums[p2] = nums[p2], nums[cur]\n                p2 -= 1\n            else:\n                cur += 1\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def partition(self, head: ListNode, x: int) -> ListNode:\n        l1 = cur = head\n        while cur:\n            if cur.val < x:\n                cur.val, l1.val = l1.val, cur.val\n                l1 = l1.next\n            cur = cur.next\n        return head\n"
+        }
+    ]
 },
 "subsets":{
     "id": "78",
@@ -6237,6 +6285,10 @@
         },
         {
             "language": "py",
+            "text": "\nclass Solution:\n    def calculate(self, s: str) -> int:\n        s = '(' + s + ')'\n        n = len(s)\n        i = 0\n        stack_ops = [] # 存储字符串的栈\n        stack_nums = [] # 存储数字的栈\n        while i < n:\n            if s[i] in ' ':\n                i += 1\n                continue\n            elif '0' <= s[i] <= '9':\n                # 是数字\n                num = ''\n                while i < n and s[i].isdigit():\n                    num += s[i]\n                    i += 1\n                i -= 1\n                stack_nums.append(int(num))\n                if not stack_ops:\n                    i += 1\n                    continue\n                op = stack_ops.pop()\n                num = stack_nums.pop()\n                if op == \"+\":\n                    num *= 1\n                elif op == \"-\":\n                    num *= -1\n                elif op == \"*\":\n                    num = stack_nums.pop() * num\n                elif op == \"/\":\n                    if num ^ stack_nums[-1] > 0: num = stack_nums.pop() // num\n                    else: num = (stack_nums.pop() + num - 1) // num\n                stack_nums.append(num)\n            else:\n                stack_ops.append(s[i])\n            i += 1\n        return sum(stack_nums)\n"
+        },
+        {
+            "language": "py",
             "text": "\nclass Solution:\n    def calculate(self, s: str) -> int:\n        def dfs(s, start):\n            stack = []\n            pre_flag = '+'\n            num = 0\n            i = start\n            while i < len(s):\n                c = s[i]\n                if  c == ' ':\n                    i += 1\n                    continue\n                elif c == '(':\n                    i, num = dfs(s, i+1)\n                elif c.isdigit():\n                    num = num * 10 + int(c)\n                else:\n                    if pre_flag == '+':\n                        stack.append(num)\n                    elif pre_flag == '-':\n                        stack.append(-num)\n                    if c == ')': break\n                    pre_flag = c\n                    num = 0\n                i += 1\n            return i, sum(stack)\n        s += '$'\n        return dfs(s, 0)[1]\n\n"
         },
         {
@@ -7012,12 +7064,12 @@
     ],
     "keyPoints": [
         {
-            "text": "这道题属于是切割型dp",
+            "text": "区间DP",
             "link": null,
             "color": "blue"
         },
         {
-            "text": "反向思考",
+            "text": "反向思考。不是戳气球，而是添加气球。",
             "link": null,
             "color": "blue"
         },
@@ -7721,6 +7773,42 @@
         {
             "language": "py",
             "text": "\nfrom random import random\n\n\nclass RandomizedSet:\n\n    def __init__(self):\n        \"\"\"\n        Initialize your data structure here.\n        \"\"\"\n        self.data = dict()\n        self.arr = []\n        self.n = 0\n\n    def insert(self, val: int) -> bool:\n        \"\"\"\n        Inserts a value to the set. Returns true if the set did not already contain the specified element.\n        \"\"\"\n        if val in self.data:\n            return False\n        self.data[val] = self.n\n        self.arr.append(val)\n        self.n += 1\n\n        return True\n\n    def remove(self, val: int) -> bool:\n        \"\"\"\n        Removes a value from the set. Returns true if the set contained the specified element.\n        \"\"\"\n        if val not in self.data:\n            return False\n        i = self.data[val]\n        # 更新data\n        self.data[self.arr[-1]] = i\n        self.data.pop(val)\n        # 更新arr\n        self.arr[i] = self.arr[-1]\n        # 删除最后一项\n        self.arr.pop()\n        self.n -= 1\n\n        return True\n\n    def getRandom(self) -> int:\n        \"\"\"\n        Get a random element from the set.\n        \"\"\"\n\n        return self.arr[int(random() * self.n)]\n\n\n# Your RandomizedSet object will be instantiated and called as such:\n# obj = RandomizedSet()\n# param_1 = obj.insert(val)\n# param_2 = obj.remove(val)\n# param_3 = obj.getRandom()\n"
+        }
+    ]
+},
+"mini-parser":{
+    "id": "385",
+    "name": "mini-parser",
+    "pre": [
+        {
+            "text": "栈",
+            "link": null,
+            "color": "red"
+        },
+        {
+            "text": "递归",
+            "link": null,
+            "color": "orange"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "栈+递归。遇到[开启新的递归，遇到]返回",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/385.mini-parser.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/385.mini-parser.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def deserialize(self, s: str) -> NestedInteger:\n        def dfs(cur):\n            if type(cur) == int:\n                return NestedInteger(cur)\n            ans = NestedInteger()\n            for nxt in cur:\n                ans.add(dfs(nxt))\n            return ans\n\n        return dfs(eval(s))\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\n# \"\"\"\n# This is the interface that allows for creating nested lists.\n# You should not implement it, or speculate about its implementation\n# \"\"\"\n#class NestedInteger:\n#    def __init__(self, value=None):\n#        \"\"\"\n#        If value is not specified, initializes an empty list.\n#        Otherwise initializes a single integer equal to value.\n#        \"\"\"\n#\n#    def isInteger(self):\n#        \"\"\"\n#        @return True if this NestedInteger holds a single integer, rather than a nested list.\n#        :rtype bool\n#        \"\"\"\n#\n#    def add(self, elem):\n#        \"\"\"\n#        Set this NestedInteger to hold a nested list and adds a nested integer elem to it.\n#        :rtype void\n#        \"\"\"\n#\n#    def setInteger(self, value):\n#        \"\"\"\n#        Set this NestedInteger to hold a single integer equal to value.\n#        :rtype void\n#        \"\"\"\n#\n#    def getInteger(self):\n#        \"\"\"\n#        @return the single integer that this NestedInteger holds, if it holds a single integer\n#        Return None if this NestedInteger holds a nested list\n#        :rtype int\n#        \"\"\"\n#\n#    def getList(self):\n#        \"\"\"\n#        @return the nested list that this NestedInteger holds, if it holds a nested list\n#        Return None if this NestedInteger holds a single integer\n#        :rtype List[NestedInteger]\n#        \"\"\"\nclass Solution:\n    def deserialize(self, s: str) -> NestedInteger:\n        def dfs(cur):\n            if type(cur) == int:\n                return NestedInteger(cur)\n            ans = NestedInteger()\n            for nxt in cur:\n                ans.add(dfs(nxt))\n            return ans\n        def to_array(i):\n            stack = []\n            num = ''\n            while i < len(s):\n                if s[i] == ' ':\n                    i += 1\n                    continue\n                elif s[i] == ',':\n                    if num:\n                        stack.append(int(num or '0'))\n                        num = ''\n                elif s[i] == '[':\n                    j, t = to_array(i+1)\n                    stack.append(t)\n                    i = j\n                elif s[i] == ']':\n                    break\n                else:\n                    num += s[i]\n                i += 1\n            if num:\n                stack.append(int(num))\n            return i, stack\n        return dfs(to_array(0)[1][0])\n\n"
         }
     ]
 },
@@ -9390,6 +9478,33 @@
         }
     ]
 },
+"number-of-atoms":{
+    "id": "726",
+    "name": "number-of-atoms",
+    "pre": [
+        {
+            "text": "栈",
+            "link": null,
+            "color": "red"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "从后往前遍历",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/726.number-of-atoms.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/726.number-of-atoms.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def countOfAtoms(self, s: str) -> str:\n        stack = [1]\n        i = len(s) - 1\n        dic = collections.defaultdict(int)\n        lower = count = ''\n        while i > -1:\n            if '0' <= s[i] <= '9':\n                count = s[i] + count\n            elif 'a' <= s[i] <= 'z':\n                lower = s[i] + lower\n            elif s[i] == ')':\n                stack.append(stack[-1] * int(count or '1'))\n                count = ''\n            elif s[i] == '(':\n                stack.pop()\n            elif 'A' <= s[i] <= 'Z':\n                dic[s[i] + lower] += stack[-1] * int(count or '1')\n                count = ''\n                lower = ''\n            i -= 1\n        ans = ''\n        for k, v in sorted(dic.items()):\n            if v == 1:\n                ans += k\n            else:\n                ans += k + str(v)\n        return ans\n\n\n"
+        }
+    ]
+},
 "asteroid-collision":{
     "id": "735",
     "name": "asteroid-collision",
@@ -9540,6 +9655,14 @@
         {
             "language": "py",
             "text": "\nclass Solution:\n    def dfs(self, grid, colors, i, color, N):\n        colors[i] = color\n        for j in range(N):\n            if grid[i][j] == 1:\n                if colors[j] == color:\n                    return False\n                if colors[j] == 0 and not self.dfs(grid, colors, j, -1 * color, N):\n                    return False\n        return True\n\n    def isBipartite(self, graph: List[List[int]]) -> bool:\n        N = len(graph)\n        grid = [[0] * N for _ in range(N)]\n        colors = [0] * N\n        for i in range(N):\n            for j in graph[i]:\n                grid[i][j] = 1\n        for i in range(N):\n            if colors[i] == 0 and not self.dfs(grid, colors, i, 1, N):\n                return False\n        return True\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def isBipartite(self, graph: List[List[int]]) -> bool:\n        n = len(graph)\n        colors = [0] * n\n        def dfs(i, color):\n            colors[i] = color\n            for neibor in graph[i]:\n                if colors[neibor] == color: return False\n                if colors[neibor] == 0 and not dfs(neibor,-1*color): return False\n            return True\n        for i in range(n):\n            if colors[i] == 0 and not dfs(i,1): return False\n        return True\n "
+        },
+        {
+            "language": "py",
+            "text": "\nclass UF:\n    def __init__(self, n):\n        self.parent = {}\n        for i in range(n):\n            self.parent[i] = i\n    def union(self, i,j):\n        self.parent[self.find(i)] = self.find(j)\n    def find(self, i):\n        if i == self.parent[i]: return i\n        self.parent[i] = self.find(self.parent[i])\n        return self.parent[i]\n    def is_connected(self, i,j):\n        return self.find(i) == self.find(j)\n\nclass Solution:\n    def isBipartite(self, graph: List[List[int]]) -> bool:\n        n = len(graph)\n        uf = UF(n)\n        for i in range(n):\n            for neibor in graph[i]:\n                if uf.is_connected(i, neibor): return False\n                uf.union(graph[i][0], neibor)\n        return True\n"
         }
     ]
 },
@@ -12283,6 +12406,42 @@
         }
     ]
 },
+"maximum-sum-obtained-of-any-permutation":{
+    "id": "1589",
+    "name": "maximum-sum-obtained-of-any-permutation",
+    "pre": [
+        {
+            "text": "差分&前缀和",
+            "link": null,
+            "color": "magenta"
+        },
+        {
+            "text": "贪心",
+            "link": null,
+            "color": "purple"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "差分",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1589.maximum-sum-obtained-of-any-permutation.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1589.maximum-sum-obtained-of-any-permutation.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def maxSumRangeQuery(self, nums: List[int], requests: List[List[int]]) -> int:\n        counter = collections.Counter()\n        n = len(nums)\n        for s, e in requests:\n            for i in range(s, e+1):\n                counter[i] += 1\n        ans = i = 0\n        nums.sort(reverse=True)\n        for v in sorted(counter.values(), reverse=True):\n            ans += v * nums[i]\n            ans %= 10 ** 9 + 7\n            i += 1\n        return ans\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def maxSumRangeQuery(self, nums: List[int], requests: List[List[int]]) -> int:\n        counter = collections.Counter()\n        n = len(nums)\n        for s, e in requests:\n            counter[s] += 1\n            if e + 1 < n:\n                counter[e + 1] -= 1\n        for i in range(1, n):\n            counter[i] += counter[i - 1]\n        ans = i = 0\n        nums.sort(reverse=True)\n        for v in sorted(counter.values(), reverse=True):\n            ans += v * nums[i]\n            ans %= 10 ** 9 + 7\n            i += 1\n        return ans\n\n"
+        }
+    ]
+},
 "path-with-minimum-effort":{
     "id": "1631",
     "name": "path-with-minimum-effort",
@@ -12451,6 +12610,38 @@
         }
     ]
 },
+"minimum-operations-to-make-a-subsequence":{
+    "id": "1713",
+    "name": "minimum-operations-to-make-a-subsequence",
+    "pre": [
+        {
+            "text": "动态规划",
+            "link": null,
+            "color": "red"
+        },
+        {
+            "text": "LIS",
+            "link": null,
+            "color": "red"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "LIS",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1713.minimum-operations-to-make-a-subsequence.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1713.minimum-operations-to-make-a-subsequence.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def minOperations(self, target: List[int], A: List[int]) -> int:\n        def LIS(A):\n            d = []\n            for a in A:\n                i = bisect.bisect_left(d, a)\n                if d and i < len(d):\n                    d[i] = a\n                else:\n                    d.append(a)\n            return len(d)\n        B = []\n        target = { t:i for i, t in enumerate(target)}\n        for a in A:\n            if a in target: B.append(target[a])\n        return len(target) - LIS(B)\n"
+        }
+    ]
+},
 "find-minimum-time-to-finish-all-jobs":{
     "id": "1723",
     "name": "find-minimum-time-to-finish-all-jobs",
@@ -12493,7 +12684,7 @@
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def minimumTimeRequired(self, jobs: List[int], k: int) -> int:\n        def backtrack(pos, workloads, limit):\n            if pos >= len(jobs): return True\n            for i in range(len(workloads)):\n                workload = workloads[i]\n                if jobs[pos] + workload <= limit:\n                    workloads[i] += jobs[pos]\n                    if backtrack(pos + 1, workloads, limit): return True\n                    workloads[i] -= jobs[pos]\n                if workload == 0:\n                    return False\n            return False\n        def possible(limit):\n            return backtrack(0, [0] * k, limit)\n        jobs.sort(reverse=True)\n        l, r = jobs[0], sum(jobs)\n        while l <= r:\n            mid = (l + r) // 2\n            if possible(mid):\n                r = mid - 1\n            else:\n                l = mid + 1\n        return l\n"
+            "text": "\nclass Solution:\n    def minimumTimeRequired(self, jobs: List[int], k: int) -> int:\n        def backtrack(pos, workloads, limit):\n            if pos >= len(jobs): return True\n            for i in range(len(workloads)):\n                workload = workloads[i]\n                if jobs[pos] + workload <= limit:\n                    workloads[i] += jobs[pos]\n                    if backtrack(pos + 1, workloads, limit): return True\n                    workloads[i] -= jobs[pos]\n                # 剪枝\n                if workload == 0:\n                    return False\n            return False\n        def possible(limit):\n            return backtrack(0, [0] * k, limit)\n        # 剪枝\n        jobs.sort(reverse=True)\n        l, r = jobs[0], sum(jobs)\n        while l <= r:\n            mid = (l + r) // 2\n            if possible(mid):\n                r = mid - 1\n            else:\n                l = mid + 1\n        return l\n"
         },
         {
             "language": "py",
@@ -12658,6 +12849,210 @@
         }
     ]
 },
+"jump-game-vii":{
+    "id": "1871",
+    "name": "jump-game-vii",
+    "pre": [
+        {
+            "text": "BFS",
+            "link": null,
+            "color": "purple"
+        },
+        {
+            "text": "动态规划",
+            "link": null,
+            "color": "red"
+        },
+        {
+            "text": "前缀和",
+            "link": null,
+            "color": "cyan"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "将题目抽象为图的联通问题",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1871.jump-game-vii.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1871.jump-game-vii.md",
+    "code": [
+        {
+            "language": "js",
+            "text": "\nbools = [false, true, false, false, true];\nbools[2] || bools[3];\n"
+        },
+        {
+            "language": "js",
+            "text": "\nbools = [false, true, false, false, true]\nfor(let i = s; i < min(e,len(bools)); i++) {\n    if bools[i]: return true\n}\nreturn false\n\n"
+        },
+        {
+            "language": "js",
+            "text": "\nbools = [false, true, false, false, true];\n// bools 映射为 [0,1,0,0,1]\n// pres 为 [0,1,1,1,2]\nreturn pres[e] - s == 0 ? 0 : pres[s - 1];\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def canReach(self, s: str, minJump: int, maxJump: int) -> bool:\n        if s[-1] == '1': return False\n        zeroes = set([i for i in range(len(s)) if s[i] == '0'])\n        q = set([0])\n        while q:\n            cur = q.pop()\n            if cur == len(s) - 1: return True\n            for nxt in range(cur + minJump, min(cur + maxJump, len(s)) + 1):\n                if nxt in zeroes and nxt not in q:\n                    q.add(nxt)\n        return False\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def canReach(self, s: str, minJump: int, maxJump: int) -> bool:\n        def dp(pos):\n            if pos == len(s) - 1: return True\n            return s[pos] == '0' and any([dp(i) for i in range(pos + minJump, min(len(s), pos + maxJump + 1))])\n        if s[-1] == '1': return False\n        return dp(0)\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\n\nclass Solution:\n    def canReach(self, s: str, minJump: int, maxJump: int) -> bool:\n        n = len(s)\n        pres = [0] * n\n        dp = [0] * n\n        dp[0] = pres[0] = 1\n        for i in range(1, n):\n            l = i - maxJump - 1\n            r = i - minJump\n            dp[i] = s[i] == '0' and (0 if r < 0 else pres[r]) - (0 if l < 0 else pres[l]) > 0\n            pres[i] = pres[i-1] + dp[i]\n        return dp[-1]\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nfrom sortedcontainers import SortedList\nclass Solution:\n    def canReach(self, s: str, minJump: int, maxJump: int) -> bool:\n        if s[-1] == '1': return False\n        zeroes = SortedList([i for i in range(len(s)) if s[i] == '0'])\n\n        dp = [False] * len(s)\n        dp[0] = True\n\n        for i in range(len(s)):\n            if dp[i]:\n                l = zeroes.bisect_left(i + minJump)\n                r = zeroes.bisect_right(i + maxJump)\n                for v in [zeroes[i] for i in range(l, r)]:\n                    dp[v] = True\n                    zeroes.remove(v)\n        return dp[-1]\n\n"
+        }
+    ]
+},
+"stone-game-viii":{
+    "id": "1872",
+    "name": "stone-game-viii",
+    "pre": [
+        {
+            "text": "动态规划",
+            "link": null,
+            "color": "red"
+        },
+        {
+            "text": "前缀和",
+            "link": null,
+            "color": "cyan"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "前缀和",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "动态规划",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1872.stone-game-viii.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1872.stone-game-viii.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nfrom itertools import accumulate\n\nclass Solution:\n    def stoneGameVIII(self, stones: List[int]) -> int:\n        pres = list(accumulate(stones))\n\n        @cache\n        def dp(pos):\n            if pos == len(stones):\n                return 0\n            ans = float(\"-inf\")\n            for nxt in range(pos, len(stones)):\n                ans = max(ans, pres[nxt] - dp(nxt + 1))\n            return ans\n\n        return dp(1)\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nfrom itertools import accumulate\n\n\nclass Solution:\n    def stoneGameVIII(self, stones: List[int]) -> int:\n        pres = list(accumulate(stones))\n        n = len(stones)\n\n        @cache\n        def dp(pos):\n            if pos == n - 1:\n                return pres[n - 1]\n            return max(dp(pos + 1), pres[pos] - dp(pos + 1))\n\n        return dp(1)\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def stoneGameVIII(self, stones: List[int]) -> int:\n        pres = list(accumulate(stones))\n        n = len(stones)\n        dp = [0] * n\n        dp[n - 1] = pres[n - 1]\n        for i in range(n - 2, 0, -1):\n            dp[i] = max(dp[i + 1], pres[i] - dp[i + 1])\n        return dp[1]\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def stoneGameVIII(self, stones: List[int]) -> int:\n        pres = list(accumulate(stones))\n        n = len(stones)\n        ans = pres[n - 1]\n        for i in range(n - 2, 0, -1):\n            ans = max(ans, pres[i] - ans)\n        return ans\n"
+        }
+    ]
+},
+"merge-triplets-to-form-target-triplet":{
+    "id": "1899",
+    "name": "merge-triplets-to-form-target-triplet",
+    "pre": [
+        {
+            "text": "贪心",
+            "link": null,
+            "color": "purple"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "max操作的**单调递增性**",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1899.merge-triplets-to-form-target-triplet.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1899.merge-triplets-to-form-target-triplet.md",
+    "code": [
+        {
+            "language": "cpp",
+            "text": "\nclass Solution {\npublic:\n    bool mergeTriplets(vector<vector<int>>& triplets, vector<int>& target) {\n        bool sx = false, sy = false, sz = false;\n        for (int i = 0; i < triplets.size() && (!sx || !sy || !sz); i++) {\n            auto &t = triplets[i];\n            if (t[0] == target[0] && t[1] <= target[1] && t[2] <= target[2]) {\n                sx = true;\n            }\n            if (t[1] == target[1] && t[0] <= target[0] && t[2] <= target[2]) {\n                sy = true;\n            }\n            if (t[2] == target[2] && t[0] <= target[0] && t[1] <= target[1]) {\n                sz = true;\n            }\n        }\n        return sx && sy && sz;\n    }\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def mergeTriplets(self, triplets: List[List[int]], target: List[int]) -> bool:\n        tx, ty, tz = target\n        cx = cy = cz = 0\n        for a, b, c in triplets:\n            if a <= tx and b <= ty and c <= tz:\n                cx, cy, cz = max(cx, a), max(cy, b), max(cz, c)\n        return (cx, cy, cz) == (tx, ty, tz)\n\n"
+        }
+    ]
+},
+"the-number-of-full-rounds-you-have-played":{
+    "id": "1904",
+    "name": "the-number-of-full-rounds-you-have-played",
+    "pre": [
+        {
+            "text": "暂无",
+            "link": null,
+            "color": "green"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "将开始时间和结束时间**规范到**标准时间",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1904.the-number-of-full-rounds-you-have-played.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1904.the-number-of-full-rounds-you-have-played.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def numberOfRounds(self, startTime: str, finishTime: str) -> int:\n        sh, sm = map(int, startTime.split(\":\"))\n        eh, em = map(int, finishTime.split(\":\"))\n        if 0 < sm < 15:\n            sm = 15\n        elif 15 < sm < 30:\n            sm = 30\n        elif 30 < sm < 45:\n            sm = 45\n        elif 45 < sm < 60:\n            sm = 0\n            sh += 1\n        if 0 < em < 15:\n            em = 0\n        elif 15 < em < 30:\n            em = 15\n        elif 30 < em < 45:\n            em = 30\n        elif 45 < em < 60:\n            em = 45\n        st = sh * 60 + sm\n        et = eh * 60 + em\n        if st > et:\n            et += 24 * 60\n        return (et - st) // 15\n\n"
+        }
+    ]
+},
+"minimum-absolute-difference-queries":{
+    "id": "1906",
+    "name": "minimum-absolute-difference-queries",
+    "pre": [
+        {
+            "text": "前缀和",
+            "link": null,
+            "color": "cyan"
+        },
+        {
+            "text": "离散化",
+            "link": null,
+            "color": "volcano"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "同时对索引和值建立前缀和，即建立二维前缀和",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1906.minimum-absolute-difference-queries.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1906.minimum-absolute-difference-queries.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nfor i in range(1, 101):\n    v = pres[qr+1][i] - pres[ql][i]\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def minDifference(self, nums: List[int], queries: List[List[int]]) -> List[int]:\n        ans = []\n        n = len(nums)\n        pres = [[0] * 101]\n        for i, num in enumerate(nums):\n            pres.append(pres[-1].copy())\n            pres[-1][num] += 1\n\n        for ql, qr in queries:\n            pre = -100\n            cur = 100\n            for i in range(1, 101):\n                if pres[qr+1][i] - pres[ql][i] > 0:\n                    cur = min(cur, i - pre)\n                    pre = i\n            if cur >= 100: ans.append(-1)\n            else: ans.append(cur)\n        return ans\n\n"
+        }
+    ]
+},
 "maximum-xor-with-an-element-from-array":{
     "id": "5640",
     "name": "maximum-xor-with-an-element-from-array",
@@ -12767,6 +13162,36 @@
         {
             "language": "py",
             "text": "\nclass Solution:\n    def solve(self, days):\n        prices = [2, 7, 25]\n        durations = [1, 7, 30]\n        n = len(days)\n        m = len(prices)\n        dp = [float(\"inf\")] * (n + 1)\n        dp[0] = 0\n        pointers = [0] * m\n        for i in range(1, n + 1):\n            for j in range(m):\n                while days[i - 1] - days[pointers[j]] >= durations[j]:\n                    pointers[j] += 1\n                dp[i] = min(dp[i], dp[pointers[j]] + prices[j])\n        return dp[-1]\n"
+        }
+    ]
+},
+"md":{
+    "id": "Connected-Road-to-Destination",
+    "name": "md",
+    "pre": [
+        {
+            "text": "二分",
+            "link": null,
+            "color": "purple"
+        },
+        {
+            "text": "并查集",
+            "link": null,
+            "color": "volcano"
+        }
+    ],
+    "keyPoints": [],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/Connected-Road-to-Destination.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/Connected-Road-to-Destination.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def solve(self, sx, sy, ex, ey, roads):\n        def possible(mid):\n            dic = set([(sx, sy), (ex, ey)])\n            visited = set()\n            q = collections.deque([(sx, sy)])\n            for x, y in roads[:mid]:\n                dic.add((x, y))\n            while q:\n                x, y = q.popleft()\n                if (x, y) in visited: continue\n                visited.add((x, y))\n                if (x, y) == (ex, ey): return True\n                for dx, dy in [(1,0),(-1,0), (0,1), (0,-1)]:\n                    if (x + dx, y + dy) in dic:\n                        q.append((x + dx, y + dy))\n            return False\n        l, r = 0, len(roads)\n\n        while l <= r:\n            mid = (l + r) // 2\n            if possible(mid):\n                r = mid - 1\n            else:\n                l = mid + 1\n        return -1 if l > len(roads) else l\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass UF:\n  def __init__(self):\n      self.parent = {}\n      self.cnt = 0\n  def add(self, i):\n      self.parent[i] = i\n      self.cnt += 1\n\n  def find(self, x):\n      if x != self.parent[x]:\n          self.parent[x] = self.find(self.parent[x])\n          return self.parent[x]\n      return x\n  def union(self, p, q):\n      if p not in self.parent or q not in self.parent: return\n      if self.connected(p, q): return\n      leader_p = self.find(p)\n      leader_q = self.find(q)\n      self.parent[leader_p] = leader_q\n      self.cnt -= 1\n  def connected(self, p, q):\n      return self.find(p) == self.find(q)\n\nclass Solution:\n    def solve(self, sx, sy, ex, ey, roads):\n        start = (sx, sy)\n        end = (ex, ey)\n        # 注意特判\n        for dx, dy in [(0, 0), (1,0), (-1,0), (0,1), (0,-1)]:\n            x = sx + dx\n            y = sy + dy\n            if (x, y) == (ex, ey): return 0\n\n        uf = UF()\n        uf.add(start)\n        uf.add(end)\n\n        for i, road in enumerate(map(tuple, roads)):\n            uf.add(road)\n            for dx, dy in [(1,0), (-1,0), (0,1), (0,-1)]:\n                x = road[0] + dx\n                y = road[1] + dy\n                uf.union(road, (x, y))\n                if uf.connected(start, end):\n                    return i + 1\n\n        return -1\n"
         }
     ]
 },
