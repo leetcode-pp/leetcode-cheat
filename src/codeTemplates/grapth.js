@@ -342,7 +342,7 @@ def topologicalSort(graph):
     using BFS
     """
     indegree = [0] * len(graph)
-    queue = []
+    queue = collections.deque([])
     topo = []
     cnt = 0
 
@@ -355,7 +355,7 @@ def topologicalSort(graph):
             queue.append(i)
 
     while queue:
-        vertex = queue.pop(0)
+        vertex = queue.popleft()
         cnt += 1
         topo.append(vertex)
         for x in graph[vertex]:
