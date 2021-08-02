@@ -77,28 +77,28 @@ def dijkstra(graph, start, end):
         {
           language: "py",
           text: `
-# graph 是邻接矩阵，v 是顶点个数
+# graph 是邻接矩阵，n 是顶点个数
 # graph 形如： graph[u][v] = w
-def floyd_warshall(graph, v):
-    dist = [[float("inf") for _ in range(v)] for _ in range(v)]
+def floyd_warshall(graph, n):
+    dist = [[float("inf") for _ in range(n)] for _ in range(n)]
 
-    for i in range(v):
-        for j in range(v):
+    for i in range(n):
+        for j in range(n):
             dist[i][j] = graph[i][j]
 
     # check vertex k against all other vertices (i, j)
-    for k in range(v):
+    for k in range(n):
         # looping through rows of graph array
-        for i in range(v):
+        for i in range(n):
             # looping through columns of graph array
-            for j in range(v):
+            for j in range(n):
                 if (
                     dist[i][k] != float("inf")
                     and dist[k][j] != float("inf")
                     and dist[i][k] + dist[k][j] < dist[i][j]
                 ):
                     dist[i][j] = dist[i][k] + dist[k][j]
-    return dist, v
+    return dist
               `,
         },
       ],
