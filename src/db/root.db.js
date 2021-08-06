@@ -10464,11 +10464,11 @@
     "code": [
         {
             "language": "js",
-            "text": "\n/**\n * @param {number[]} nums\n * @return {number[]}\n */\nvar sortArray = function(nums) {\n    const counts = Array(50000 * 2 + 1).fill(0);\n    const res = [];\n    for(const num of nums) counts[50000 + num] += 1;\n    for(let i in counts)  {\n        while(counts[i]--) {\n            res.push(i - 50000)\n        }\n    }\n    return res;\n};\n"
+            "text": "\n/**\n * @param {number[]} nums\n * @return {number[]}\n */\nvar sortArray = function (nums) {\n  const counts = Array(50000 * 2 + 1).fill(0);\n  const res = [];\n  for (const num of nums) counts[50000 + num] += 1;\n  for (let i in counts) {\n    while (counts[i]--) {\n      res.push(i - 50000);\n    }\n  }\n  return res;\n};\n"
         },
         {
             "language": "js",
-            "text": "\nfunction swap(nums, a, b) {\n    const temp = nums[a];\n    nums[a] = nums[b];\n    nums[b] = temp;\n}\n\nfunction helper(nums, start, end) {\n    if (start >= end) return;\n    const pivotIndex = start + ((end - start) >>> 1)\n    const pivot = nums[pivotIndex]\n    let i = start;\n    let j = end;\n    while (i <= j) {\n        while (nums[i] < pivot) i++;\n        while (nums[j] > pivot) j--;\n        if (i <= j) {\n            swap(nums, i, j);\n            i++;\n            j--;\n        }\n    }\n    helper(nums, start, j);\n    helper(nums, i, end);\n}\n\n/**\n * @param {number[]} nums\n * @return {number[]}\n */\nvar sortArray = function(nums) {\n    helper(nums, 0, nums.length - 1);\n    return nums;\n};\n"
+            "text": "\nfunction swap(nums, a, b) {\n  const temp = nums[a];\n  nums[a] = nums[b];\n  nums[b] = temp;\n}\n\nfunction helper(nums, start, end) {\n  if (start >= end) return;\n  const pivotIndex = start + ((end - start) >>> 1);\n  const pivot = nums[pivotIndex];\n  let i = start;\n  let j = end;\n  while (i <= j) {\n    while (nums[i] < pivot) i++;\n    while (nums[j] > pivot) j--;\n    if (i <= j) {\n      swap(nums, i, j);\n      i++;\n      j--;\n    }\n  }\n  helper(nums, start, j);\n  helper(nums, i, end);\n}\n\n/**\n * @param {number[]} nums\n * @return {number[]}\n */\nvar sortArray = function (nums) {\n  helper(nums, 0, nums.length - 1);\n  return nums;\n};\n"
         }
     ]
 },
@@ -10750,6 +10750,37 @@
         {
             "language": "py",
             "text": "\n\nclass Solution:\n    def minKBitFlips(self, A, K):\n        flips = ans = 0\n        for i in range(len(A)):\n            if i >= K and A[i - K] - 2 == 0:\n                flips -= 1\n            if (flips % 2) == A[i]:\n                if i + K > len(A):\n                    return -1\n                A[i] = 2\n                flips += 1\n                ans += 1\n        return ans\n\n"
+        }
+    ]
+},
+"find-the-town-judge":{
+    "id": "997",
+    "name": "find-the-town-judge",
+    "pre": [
+        {
+            "text": "图",
+            "link": null,
+            "color": "green"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "将问题抽象为图，问题转为求图的入度和出度",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/997.find-the-town-judge.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/997.find-the-town-judge.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n     def findJudge(self, N, trust):\n        in_degree = [0] * (N + 1)\n        out_degree = [0] * (N + 1)\n        for a, b in trust:\n            in_degree[b] += 1\n            out_degree[a] += 1\n        for i in range(1, N + 1):\n            if in_degree[i] == N - 1 and out_degree[i] == 0:\n                return i\n        return -1\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n     def findJudge(self, N, trust):\n        count = [0] * (N + 1)\n        for i, j in trust:\n            count[i] -= 1\n            count[j] += 1\n        for i in range(1, N + 1):\n            if count[i] == N - 1:\n                return i\n        return -1\n"
         }
     ]
 },

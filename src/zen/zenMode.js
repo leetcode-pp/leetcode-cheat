@@ -5,8 +5,8 @@ const leetCodeLogo =
   "https://static.leetcode-cn.com/cn-mono-assets/production/main/assets/favicon-notification-32x32.3f045777.png";
 
 function findHeader() {
-  const tag = document.querySelector("#new-ft");
-  return tag.parentElement.parentElement;
+  const tag = document.querySelector("#lc-home");
+  return tag.children[0].children[0];
 }
 
 function findSider() {

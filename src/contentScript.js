@@ -4,7 +4,13 @@
 // import ReactDOM from "react-dom";
 // import { Menu, Dropdown, Button } from "antd";
 // import { DownOutlined, UserOutlined } from "@ant-design/icons";
-import { copyToClipboard, bjwd, getStorage, setCloundStorage } from "./utils";
+import {
+  copyToClipboard,
+  bjwd,
+  getStorage,
+  setCloundStorage,
+  addStyle,
+} from "./utils";
 import zenAble from "./zen/zenMode";
 
 // WTF!  ant message didn't go well with chrome extension?
@@ -331,6 +337,14 @@ function insertButton() {
 let inserted = false;
 let retried = 0;
 const MAX_TRY = 10;
+
+// 去除智能提示
+// addStyle(`
+// .monaco-editor .editor-widget {
+//   display: none !important;
+//   visibility: hidden !important;
+// }
+// `);
 const timerId = setInterval(() => {
   if (inserted) return clearInterval(timerId);
   if (retried > MAX_TRY) {
