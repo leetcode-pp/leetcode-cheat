@@ -9,7 +9,7 @@ import {
   bjwd,
   getStorage,
   setCloundStorage,
-  addStyle,
+  // addStyle,
 } from "./utils";
 import zenAble from "./zen/zenMode";
 
@@ -208,6 +208,119 @@ function getProviedTestCases(includeArray = true) {
 //     content: "复制成功~",
 //   });
 // }
+
+function goToVisDebug() {
+  const language = document.querySelector("#lang-select").innerText;
+  const supportedLanguages = ["Python3", "JavaScript", "C++"];
+  const languageMap = {
+    Python3: "3",
+    Java: "java",
+    JavaScript: "js",
+    "C++": "cpp_g%2B%2B9.3.0",
+    C: "c_gcc9.3.0",
+  };
+  const prefixMap = {
+    Python3: "",
+    JavaScript: "",
+    java: "",
+    "C++": `
+#include <algorithm>
+#include <bitset>
+#include <complex>
+#include <deque>
+#include <exception>
+#include <fstream>
+#include <functional>
+#include <iomanip>
+#include <ios>
+#include <iosfwd>
+#include <iostream>
+#include <istream>
+#include <iterator>
+#include <limits>
+#include <list>
+#include <locale>
+#include <map>
+#include <memory>
+#include <new>
+#include <numeric>
+#include <ostream>
+#include <queue>
+#include <set>
+#include <sstream>
+#include <stack>
+#include <stdexcept>
+#include <streambuf>
+#include <string>
+#include <typeinfo>
+#include <utility>
+#include <valarray>
+#include <vector>
+
+#if __cplusplus >= 201103L
+#include <array>
+#include <atomic>
+#include <chrono>
+#include <condition_variable>
+#include <forward_list>
+#include <future>
+#include <initializer_list>
+#include <mutex>
+#include <random>
+#include <ratio>
+#include <regex>
+#include <scoped_allocator>
+#include <system_error>
+#include <thread>
+#include <tuple>
+#include <typeindex>
+#include <type_traits>
+#include <unordered_map>
+#include <unordered_set>
+#endif
+
+using namespace std;    
+`,
+    C: "",
+  };
+  const suffixMap = {
+    Python3: `
+# 替换下方的 xxx 为主函数名， yyy 为测试用例参数开启调试
+Solution().xxx(yyy)
+`,
+    JavaScript: `
+// 替换下方的 xxx 为主函数名， yyy 为测试用例参数开启调试
+xxx(yyy)
+`,
+    "C++": `
+int main()
+{
+  Solution s;
+  // 替换下方的 xxx 为主函数名， yyy 为测试用例参数开启调试
+  s.xxx(yyy);
+  return 0;
+}
+`,
+    C: "",
+    Java: "",
+  };
+  if (!supportedLanguages.includes(language))
+    return message.warn({
+      content: `当前仅支持 ${supportedLanguages.join(",")}`,
+    });
+  const code =
+    (prefixMap[language] || "") +
+    window?.monaco?.editor?.getModels()[0]?.getValue() +
+    (suffixMap[language] || "");
+  window.open(
+    `https://pythontutor.com/visualize.html#code=${encodeURIComponent(
+      code
+    )}&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=${
+      languageMap[language]
+    }&rawInputLstJSON=%5B%5D&textReferences=false`
+  );
+}
+
 function insertButton() {
   const buttons = document.querySelectorAll("button");
   for (var i = 0; i < buttons.length; ++i) {
@@ -329,6 +442,15 @@ function insertButton() {
 
       buttons[i].parentElement.prepend(writeSolutionButton);
       // ele.appendChild(writeSolutionButton);
+
+      const visDebugButton = document.createElement("a");
+      visDebugButton.innerText = "可视化调试";
+      visDebugButton.style["margin-right"] = "20px";
+      visDebugButton.style["line-height"] = "32px";
+
+      visDebugButton.onclick = goToVisDebug;
+
+      buttons[i].parentElement.prepend(visDebugButton);
       return true;
     }
   }

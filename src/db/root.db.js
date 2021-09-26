@@ -5957,11 +5957,11 @@
     "code": [
         {
             "language": "py",
-            "text": "\nclass Trie:\n\n    def __init__(self):\n        \"\"\"\n        Initialize your data structure here.\n        \"\"\"\n        self.Trie = {}\n\n    def insert(self, word):\n        \"\"\"\n        Inserts a word into the trie.\n        :type word: str\n        :rtype: void\n        \"\"\"\n        curr = self.Trie\n        for w in word:\n            if w not in curr:\n                curr[w] = {}\n            curr = curr[w]\n        curr['#'] = 1\n\n    def startsWith(self, prefix):\n        \"\"\"\n        Returns if there is any word in the trie that starts with the given prefix.\n        :type prefix: str\n        :rtype: bool\n        \"\"\"\n\n        curr = self.Trie\n        for w in prefix:\n            if w not in curr:\n                return False\n            curr = curr[w]\n        return True\n"
+            "text": "\nfrom collections import defaultdict\nclass Trie:\n    def __init__(self):\n        self.children = defaultdict(Trie)\n        self.word = \"\"\n\n    def insert(self, word):\n        cur = self\n        for c in word:\n            cur = cur.children[c]\n        cur.word = word\n"
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:\n        m = len(board)\n        if m == 0:\n            return []\n        n = len(board[0])\n        trie = Trie()\n        seen = None\n        res = set()\n        for word in words:\n            trie.insert(word)\n\n        def dfs(s, i, j):\n            if (i, j) in seen or i < 0 or i >= m or j < 0 or j >= n or not trie.startsWith(s):\n                return\n            s += board[i][j]\n            seen[(i, j)] = True\n\n            if s in words:\n                res.add(s)\n            dfs(s, i + 1, j)\n            dfs(s, i - 1, j)\n            dfs(s, i, j + 1)\n            dfs(s, i, j - 1)\n\n            del seen[(i, j)]\n\n        for i in range(m):\n            for j in range(n):\n                seen = dict()\n                dfs(\"\", i, j)\n        return list(res)\n"
+            "text": "\n\nclass Solution:\n    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:\n        def dfs(row, col, cur):\n            if row < 0 or row >= m or col < 0 or col >= n or board[row][col] == '.' or board[row][col] not in cur.children: return\n            c = board[row][col]\n            cur  = cur.children[c]\n            if cur.word != '': ans.add(cur.word)\n            board[row][col] = '.'\n            dfs(row+1,col, cur)\n            dfs(row-1,col, cur)\n            dfs(row,col+1, cur)\n            dfs(row,col-1, cur)\n            board[row][col] = c\n        m, n = len(board), len(board[0])\n        ans = set()\n        trie = Trie()\n        words = set(words)\n        for word in words:\n            trie.insert(word)\n        for i in range(m):\n            for j in range(n):\n                dfs(i, j, trie)\n        return list(ans)\n"
         }
     ]
 },
@@ -7985,7 +7985,7 @@
     ],
     "keyPoints": [
         {
-            "text": "通过hashmap，以时间换空间",
+            "text": "通过hashmap，以空间换时间",
             "link": null,
             "color": "blue"
         },
@@ -8249,6 +8249,39 @@
         }
     ]
 },
+"circular-array-loop":{
+    "id": "457",
+    "name": "circular-array-loop",
+    "pre": [
+        {
+            "text": "图",
+            "link": null,
+            "color": "green"
+        }
+    ],
+    "keyPoints": [],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/457.circular-array-loop.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/457.circular-array-loop.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nfor i in range(n):\n    if can(i): return True\nreturn False\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def circularArrayLoop(self, nums: List[int]) -> bool:\n        def can(cur, start, steps):\n            if nums[cur] ^ nums[start] < 0: return False\n            if cur == start and steps != 0: return steps > 1\n            if cur in visited: return False\n            visited.add(cur)\n            return can(((cur + nums[cur]) % n + n ) % n, start, steps + 1)\n        n = len(nums)\n        visited = None\n        for i in range(n):\n            visited = set()\n            if can(i, i, 0): return True\n        return False\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def circularArrayLoop(self, nums: List[int]) -> bool:\n        def can(cur, start, steps):\n            if nums[cur] ^ nums[start] < 0: return False\n            if cur == start and steps != 0: return steps > 1\n            if steps > n: return False\n            return can(((cur + nums[cur]) % n + n ) % n, start, steps + 1)\n        n = len(nums)\n        for i in range(n):\n            if can(i, i, 0): return True\n        return False\n\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def circularArrayLoop(self, nums: List[int]) -> bool:\n        def can(cur, start, start_v):\n            if nums[cur] >= 5000: return nums[cur] - 5000 == start\n            if nums[cur] ^ start_v < 0: return False\n            nxt = ((cur + nums[cur]) % n + n ) % n\n            if nxt == cur: return False\n            nums[cur] = start + 5000\n            return can(nxt, start, start_v)\n        n = len(nums)\n        for i in range(n):\n            if can(i, i, nums[i]): return True\n        return False\n\n"
+        }
+    ]
+},
 "lfu-cache":{
     "id": "460",
     "name": "lfu-cache",
@@ -8393,6 +8426,38 @@
         {
             "language": "py",
             "text": "\n\nclass Solution:\n    def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:\n        if desiredTotal <= maxChoosableInteger:\n            return True\n        if sum(range(maxChoosableInteger + 1)) < desiredTotal:\n            return False\n\n        @lru_cache(None)\n        def dp(picked, acc):\n            if acc >= desiredTotal:\n                return False\n            if picked == (1 << (maxChoosableInteger + 1)) - 1:\n                return False\n            for n in range(1, maxChoosableInteger + 1):\n                if picked & 1 << n == 0:\n                    if not dp(picked | 1 << n, acc + n):\n                        return True\n            return False\n\n        return dp(0, 0)\n"
+        }
+    ]
+},
+"implement-rand10-using-rand7":{
+    "id": "470",
+    "name": "implement-rand10-using-rand7",
+    "pre": [
+        {
+            "text": "概率",
+            "link": null,
+            "color": "red"
+        },
+        {
+            "text": "拒绝采样",
+            "link": null,
+            "color": "orange"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "选择等概率的十个数即可实现rand10",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/470.implement-rand10-using-rand7.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/470.implement-rand10-using-rand7.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def rand10(self):\n        while True:\n            row = rand7()\n            col = rand7()\n            idx = col + (row - 1) * 7\n            if idx <= 40:\n                break\n\n        return 1 + (idx - 1)%10\n\n"
         }
     ]
 },
@@ -8815,6 +8880,14 @@
         {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=516 lang=javascript\n *\n * [516] Longest Palindromic Subsequence\n */\n/**\n * @param {string} s\n * @return {number}\n */\nvar longestPalindromeSubseq = function (s) {\n  // bbbab 返回4\n  // tag : dp\n  const dp = [];\n\n  for (let i = s.length - 1; i >= 0; i--) {\n    dp[i] = Array(s.length).fill(0);\n    for (let j = i; j < s.length; j++) {\n      if (i - j === 0) dp[i][j] = 1;\n      else if (s[i] === s[j]) {\n        dp[i][j] = dp[i + 1][j - 1] + 2;\n      } else {\n        dp[i][j] = Math.max(dp[i][j - 1], dp[i + 1][j]);\n      }\n    }\n  }\n\n  return dp[0][s.length - 1];\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def longestPalindromeSubseq(self, s: str) -> int:\n        @cache\n        def dp(l,r):\n            if l >= r: return int(l == r)\n            if s[l] == s[r]: \n                return 2 + dp(l+1,r-1)\n            return max(dp(l+1, r), dp(l, r-1))\n        return dp(0, len(s)-1)\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def longestPalindromeSubseq(self, s: str) -> int:\n        n = len(s)\n        dp = [[0]*n for _ in range(n)]\n\n        for i in range(n-1, -1, -1):\n            for j in range(i, n):\n                if i == j:\n                    dp[i][j] = 1\n                elif s[i] == s[j]:\n                    dp[i][j] = dp[i+1][j-1]+2\n                else:\n                    dp[i][j] = max(dp[i+1][j], dp[i][j-1])\n        return dp[0][-1]\n        \n "
         }
     ]
 },
@@ -9653,6 +9726,10 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/785.is-graph-bipartite.md",
     "code": [
         {
+            "language": "java",
+            "text": "\n// weighted quick-union with path compression\nclass Solution {\n    class UF {\n\t    int numOfUnions; // number of unions\n\t    int[] parent;\n\t    int[] size; \n\t\n\t    UF(int numOfElements) {\n\t\t    numOfUnions = numOfElements;\n\t\t    parent = new int[numOfElements];\n\t\t    size = new int[numOfElements];\n\t\t    for (int i = 0; i < numOfElements; i++) {\n\t\t\t    parent[i] = i;\n\t\t\t    size[i] = 1;\n\t\t    }\n\t    }\n\n\t    // find the head/representative of x\n\t    int find(int x) {\n\t\t    while (x != parent[x]) {\n\t\t\t    parent[x] = parent[parent[x]]; \n\t\t\t    x = parent[x]; \t\n\t\t    }\n\t\t    return x;\n\t    }\n\n\t    void union(int p, int q) {\n\t\t    int headOfP = find(p);\n\t\t    int headOfQ = find(q);\n\t\t    if (headOfP == headOfQ) {\n\t\t\t    return;\n\t\t    }\n\t\t    // connect the small tree to the larger tree\n\t\t    if (size[headOfP] < size[headOfQ]) {\n\t\t\t    parent[headOfP] = headOfQ; // set headOfP's parent to be headOfQ \n\t\t\t    size[headOfQ] += size[headOfP];\n\t\t    } else {\n\t\t\t    parent[headOfQ] = headOfP;\n\t\t\t    size[headOfP] += size[headOfQ];\n\t\t    }\n\t\t    numOfUnions -= 1;\n\t    }\n\n\t    boolean connected(int p, int q) {\n\t\t    return find(p) == find(q);\n\t    }\n    }\n\n    public boolean isBipartite(int[][] graph) {\n        int n = graph.length;\n        UF unionfind = new UF(n);\n        // i is what node each adjacent list is for\n        for (int i = 0; i < n; i++) {\n            // i's neighbors\n            for (int neighbor : graph[i]) {\n                // i should not be in the union of its neighbors\n                if (unionfind.connected(i, neighbor)) {\n                    return false;\n                }\n                // add into unions\n                unionfind.union(graph[i][0], neighbor);\n            }\n        }\n        \n        return true;\n    }\n    \n"
+        },
+        {
             "language": "py",
             "text": "\nclass Solution:\n    def dfs(self, grid, colors, i, color, N):\n        colors[i] = color\n        for j in range(N):\n            if grid[i][j] == 1:\n                if colors[j] == color:\n                    return False\n                if colors[j] == 0 and not self.dfs(grid, colors, j, -1 * color, N):\n                    return False\n        return True\n\n    def isBipartite(self, graph: List[List[int]]) -> bool:\n        N = len(graph)\n        grid = [[0] * N for _ in range(N)]\n        colors = [0] * N\n        for i in range(N):\n            for j in graph[i]:\n                grid[i][j] = 1\n        for i in range(N):\n            if colors[i] == 0 and not self.dfs(grid, colors, i, 1, N):\n                return False\n        return True\n"
         },
@@ -9939,6 +10016,43 @@
         {
             "language": "py",
             "text": "\nclass Solution:\n    def shortestToChar(self, S: str, C: str) -> List[int]:\n        pre = -10000\n        ans = []\n\n        for i in range(len(S)):\n            if S[i] == C: pre = i\n            ans.append(i - pre)\n        pre = 20000\n        for i in range(len(S) - 1, -1, -1):\n            if S[i] == C: pre = i\n            ans[i] = min(ans[i], pre - i)\n        return ans\n"
+        }
+    ]
+},
+"push-dominoes":{
+    "id": "838",
+    "name": "push-dominoes",
+    "pre": [
+        {
+            "text": "双指针",
+            "link": null,
+            "color": "green"
+        },
+        {
+            "text": "哨兵",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "只有相邻的受力dominoes才会相互影响",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "使用哨兵简化操作",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/838.push-dominoes.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/838.push-dominoes.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def pushDominoes(self, dominoes: str) -> str:\n        dominoes = 'L' + dominoes + 'R'\n        i = 0\n        j = i + 1\n        ans = ''\n        while j < len(dominoes):\n            if dominoes[j] == '.':\n                j += 1\n                continue\n            count = (j - i - 1)\n            if i != 0 :ans += dominoes[i]\n            if dominoes[i] == 'L' and dominoes[j] == 'R':\n                ans += '.' * count\n            elif dominoes[i] == 'L' and dominoes[j] == 'L':\n                ans += 'L' * count\n            elif dominoes[i] == 'R' and dominoes[j] == 'R':\n                ans += 'R' * count\n            elif dominoes[i] == 'R' and dominoes[j] == 'L':\n                ans += 'R' * (count//2) + '.'*(count%2) + 'L' * (count//2)\n            i = j\n            j += 1\n        return ans\n\n\n\n"
         }
     ]
 },
@@ -13084,6 +13198,91 @@
         }
     ]
 },
+"last-day-where-you-can-still-cross":{
+    "id": "1970",
+    "name": "last-day-where-you-can-still-cross",
+    "pre": [
+        {
+            "text": "多源 BFS",
+            "link": null,
+            "color": "green"
+        },
+        {
+            "text": "二分",
+            "link": null,
+            "color": "purple"
+        }
+    ],
+    "keyPoints": [],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1970.last-day-where-you-can-still-cross.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1970.last-day-where-you-can-still-cross.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def latestDayToCross(self, row: int, col: int, cells: List[List[int]]) -> int:\n        def can(d):\n            visited = set()\n            q = collections.deque([(0,j) for j in range(col)])\n            for x, y in cells[:d]:\n                visited.add((x-1, y-1))\n            while q:\n                x,y = q.popleft()\n                if (x,y) in visited: continue\n                visited.add((x,y))\n                if x == row - 1: return True\n                for dx, dy in [(1,0), (-1,0), (0,1), (0,-1)]:\n                    if 0 <= x + dx < row and 0 <= y + dy < col: q.append((x+dx, y+dy))\n            return False\n\n        l, r = 0, row * col\n        while l <=r :\n            mid = (l+r)//2\n            if can(mid):\n                l = mid + 1\n            else:\n                r = mid - 1\n        return r\n\n\n"
+        }
+    ]
+},
+"maximum-earnings-from-taxi":{
+    "id": "2008",
+    "name": "maximum-earnings-from-taxi",
+    "pre": [
+        {
+            "text": "动态规划",
+            "link": null,
+            "color": "red"
+        },
+        {
+            "text": "二分",
+            "link": null,
+            "color": "purple"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "二分优化时间复杂度",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/2008.maximum-earnings-from-taxi.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/2008.maximum-earnings-from-taxi.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def maxTaxiEarnings(self, n: int, rides: List[List[int]]) -> int:\n        rides.sort(key=lambda x:x[1])\n\n        n = len(rides)\n        dp = [e-s+t for s,e,t in rides]\n        def bisect_right(rides, i):\n            l, r = 0, i\n            while l <= r:\n                mid = (l+r)//2\n                if rides[i][0] >= rides[mid][1]:\n                    l = mid + 1\n                else:\n                    r = mid - 1\n            return r\n        for j in range(1, n):\n            i = bisect_right(rides, j)\n            if i == -1:\n                dp[j] = max(dp[j], dp[j-1])\n            else:\n                dp[j] = max(dp[j], dp[j-1], dp[i] + rides[j][1] - rides[j][0] + rides[j][2])\n        return max(dp)\n\n"
+        }
+    ]
+},
+"minimum-number-of-operations-to-make-array-continuous":{
+    "id": "2009",
+    "name": "minimum-number-of-operations-to-make-array-continuous",
+    "pre": [
+        {
+            "text": "二分",
+            "link": null,
+            "color": "purple"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "反向思考，题目要找最少操作数，其实就是找最多保留多少个数",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/2009.minimum-number-of-operations-to-make-array-continuous.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/2009.minimum-number-of-operations-to-make-array-continuous.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nimport bisect\n\n\nclass Solution:\n    def minOperations(self, nums: List[int]) -> int:\n        ans = on = len(nums)\n        nums = list(set(nums))\n        nums.sort()\n        n = len(nums)\n        for i, v in enumerate(nums):\n            r = bisect.bisect_right(nums, v + on - 1)\n            l = bisect.bisect_left(nums, v - on + 1)\n            ans = min(ans, n - (r - i), n - (i - l + 1))\n        return ans + (on - n)\n\n"
+        }
+    ]
+},
 "maximum-xor-with-an-element-from-array":{
     "id": "5640",
     "name": "maximum-xor-with-an-element-from-array",
@@ -13123,44 +13322,12 @@
 "minimum-skips-to-arrive-at-meeting-on-time":{
     "id": "5775",
     "name": "minimum-skips-to-arrive-at-meeting-on-time",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        },
-        {
-            "text": "浮点精度",
-            "link": null,
-            "color": "purple"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "浮点精度",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "dp[i][j]定义为到达dist[i",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "1]且休息j次（第j次休息完）所需要的时间。",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/5775.minimum-skips-to-arrive-at-meeting-on-time.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/5775.minimum-skips-to-arrive-at-meeting-on-time.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def minSkips(self, dists: List[int], s: int, h: int) -> int:\n        n = len(dists)\n        dp = [[s * h + 1] * (n + 1) for i in range(n + 1)]\n        dp[0][0] = 0\n        for i in range(1, n + 1):\n            cur = dists[i - 1]\n            for j in range(i + 1):\n                dp[i][j] = (dp[i - 1][j] + cur + s - 1) // s * s # rest\n                if j > 0: dp[i][j] = min(dp[i][j], dp[i - 1][j - 1] + cur) # no rest\n                if dp[-1][j] <= h * s:\n                    return j\n        return -1\n\n"
-        }
-    ]
+    "code": []
 },
 "md":{
     "id": "Bus-Fare",
