@@ -220,8 +220,32 @@ function goToVisDebug() {
     C: "c_gcc9.3.0",
   };
   const prefixMap = {
-    Python3: "",
-    JavaScript: "",
+    Python3: `
+  # 如何你在调试链表题目，手动生成链表很麻烦，想快速生成链表可以注释如下方法，并使用如下方法，输入一个数组，返回一个链表
+  # eg：head = ListNodes([4,2,1,3]).head
+  # class ListNodes:
+  #     def __init__(self, vals)->ListNode:
+  #         cur = dummy = ListNode() 
+  #         for val in vals:
+  #             nxt = ListNode(val)
+  #             cur.next = nxt
+  #             cur = nxt
+  #         self.head = dummy.next
+`,
+    JavaScript: `
+// 如何你在调试链表题目，手动生成链表很麻烦，想快速生成链表可以注释如下方法，并使用如下方法，输入一个数组，返回一个链表
+// eg：head = ListNodes([4,2,1,3]).head
+//   function ListNodes(vals) {
+//       let cur = new ListNode()
+//       let dummy = cur
+//       for(const val of vals) {
+//           const nxt = new ListNode(val)
+//           cur.next = nxt
+//           cur = nxt
+//       }
+//       return dummy.next
+//   }    
+`,
     java: "",
     "C++": `
 #include <algorithm>
