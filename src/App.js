@@ -34,9 +34,17 @@ const { TabPane } = Tabs;
 
 const dataSource = Object.values(problems);
 const chrome = window.chrome;
+
 // function inLeetCodeWebsite(url) {
 //   return [LEETCODE_CN_URL, LEETCODE_URL].some((u) => url.includes(u));
 // }
+
+// 根据 Github 用户名获取用户信息
+function getUserInfo(username) {
+  return fetch(`https://api.github.com/users/${username}`)
+    .then((res) => res.json())
+    .then((res) => res);
+}
 
 const columns = [
   {
