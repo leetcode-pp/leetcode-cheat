@@ -363,7 +363,7 @@ function insertButton() {
 
       // const writeSolutionButton = document.createElement("div");
       const copyButton = buttons[i].cloneNode(true);
-      copyButton.innerText = "复制所有内置用例";
+      copyButton.innerText = "复制用例";
       copyButton.style["margin-left"] = "10px";
       copyButton.onclick = () => {
         const cases = getProviedTestCases();
@@ -375,7 +375,7 @@ function insertButton() {
       };
       buttons[i].parentElement.prepend(copyButton);
       const writeSolutionButton = document.createElement("a");
-      writeSolutionButton.innerText = "去写题解";
+      writeSolutionButton.innerText = "写题解";
       writeSolutionButton.style["margin-right"] = "20px";
       writeSolutionButton.style["line-height"] = "32px";
 
