@@ -11454,6 +11454,38 @@
         }
     ]
 },
+"alphabet-board-path":{
+    "id": "1138",
+    "name": "alphabet-board-path",
+    "pre": [
+        {
+            "text": "矩阵",
+            "link": null,
+            "color": "gold"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "理解题意",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "矩阵坐标映射",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1138.alphabet-board-path.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1138.alphabet-board-path.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def alphabetBoardPath(self, target: str) -> str:\n        board = []\n        for i in range(5):\n            for j in range(5):\n                board.append((i,j))\n        board.append((5,0))\n        last_x = last_y = 0\n        ans = ''\n        for c in target:\n            nxt_x, nxt_y = board[ord(c)-ord('a')]\n            up = max(0, last_x - nxt_x)\n            down = max(0, nxt_x - last_x)\n            left = max(0, last_y - nxt_y)\n            right = max(0, nxt_y - last_y)\n            ans += 'U'*up + 'L'*left + 'D'*down + 'R'*right + '!'\n            last_x, last_y = nxt_x, nxt_y\n        return ans\n\n\n\n"
+        }
+    ]
+},
 "optimize-water-distribution-in-a-village-cn":{
     "id": "1168",
     "name": "optimize-water-distribution-in-a-village-cn",
@@ -13280,6 +13312,70 @@
         {
             "language": "py",
             "text": "\n\nimport bisect\n\n\nclass Solution:\n    def minOperations(self, nums: List[int]) -> int:\n        ans = on = len(nums)\n        nums = list(set(nums))\n        nums.sort()\n        n = len(nums)\n        for i, v in enumerate(nums):\n            r = bisect.bisect_right(nums, v + on - 1)\n            l = bisect.bisect_left(nums, v - on + 1)\n            ans = min(ans, n - (r - i), n - (i - l + 1))\n        return ans + (on - n)\n\n"
+        }
+    ]
+},
+"maximum-number-of-ways-to-partition-an-array":{
+    "id": "2025",
+    "name": "maximum-number-of-ways-to-partition-an-array",
+    "pre": [
+        {
+            "text": "枚举",
+            "link": null,
+            "color": "magenta"
+        },
+        {
+            "text": "前缀和",
+            "link": null,
+            "color": "cyan"
+        },
+        {
+            "text": "哈希表",
+            "link": null,
+            "color": "gold"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "滚动思想",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/2025.maximum-number-of-ways-to-partition-an-array.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/2025.maximum-number-of-ways-to-partition-an-array.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def waysToPartition(self, nums: List[int], k: int) -> int:\n        n, pres = len(nums), list(accumulate(nums))\n        left, right = defaultdict(int), Counter(pres[:n - 1])\n        total = pres[-1]\n        ans = right[total / 2]\n        for i in range(n):\n            if i > 0: left[pres[i - 1]] += 1\n            if i > 0: right[pres[i - 1]] -= 1\n            ans = max(ans, left[(total - nums[i] + k) / 2] + right[total - (total - nums[i] + k) / 2])\n        return ans\n\n\n"
+        }
+    ]
+},
+"smallest-k-length-subsequence-with-occurrences-of-a-letter":{
+    "id": "2030",
+    "name": "smallest-k-length-subsequence-with-occurrences-of-a-letter",
+    "pre": [
+        {
+            "text": "单调栈",
+            "link": null,
+            "color": "purple"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "先不考虑repetition，这就是一个典型的单调栈题目",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/2030.smallest-k-length-subsequence-with-occurrences-of-a-letter.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/2030.smallest-k-length-subsequence-with-occurrences-of-a-letter.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def smallestSubsequence(self, s: str, k: int, letter: str, repetition: int) -> str:\n        stack = []\n        remain, k = k, len(s) - k\n        pre_letters, pos_letters = 0, s.count(letter)\n        for a in s:\n            while k and stack and stack[-1] > a:\n                if stack[-1] == letter:\n                    if repetition > pre_letters + pos_letters - 1: break # 重要\n                    pre_letters -= 1\n                stack.pop()\n                k -= 1\n            if a == letter:\n                pre_letters += 1\n                pos_letters -= 1\n            stack.append(a)\n        # 不能直接取前 remain 个，因为可能不满足 repetition 的要求，因此需要记录一下剔除超过 remain 部分元素后，我们剔除了多少 letter（假设为 m 个），之后把末尾的 m 个非 letter 替换为 letter 以满足  repetiton 的要求\n        while len(stack) > remain:\n            if stack[-1] == letter:\n                pre_letters -= 1\n            stack.pop()\n        for i in range(remain-1,-1,-1):\n            if pre_letters < repetition and stack[i] != letter:\n                pre_letters += 1\n                stack[i] = letter\n        return ''.join(stack)\n\n\n"
         }
     ]
 },
