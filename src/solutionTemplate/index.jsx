@@ -105,11 +105,10 @@ ${desc}
 
 ${displayLanguage(language)} Code:
 
-\`\`\`${
-    language.toLocaleLowerCase() === "python3"
+\`\`\`${language.toLocaleLowerCase() === "python3"
       ? "python"
       : language.toLocaleLowerCase()
-  }
+    }
 
 ${code}
 
@@ -518,7 +517,6 @@ export default class SolutionTemplate extends PureComponent {
           解决(注意此网站和力扣数据是隔离，因此填写 token
           也是独立，互不影响的)。后期考虑搞个服务器给大家存放。
         </li> */}
-          <li>目前公式无法预览，原因暂时不明，不过后期会支持。</li>
           <li>后续考虑提供更多题解模板。</li>
           <li>后续考虑支持更多主题，以及用户自定义主题。</li>
         </ul>
