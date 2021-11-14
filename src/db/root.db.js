@@ -7318,9 +7318,9 @@
     "name": "self-crossing",
     "pre": [
         {
-            "text": "滑动窗口",
+            "text": "滚动数组",
             "link": null,
-            "color": "purple"
+            "color": "gold"
         }
     ],
     "keyPoints": [
@@ -7330,7 +7330,22 @@
             "color": "blue"
         },
         {
-            "text": "对于这种$O(1)$空间复杂度有固定的套路。常见的有：1.直接修改原数组2.滑动窗口（当前状态并不是和之前所有状态有关，而是仅和某几个有关）。我们采用的是滑动窗口。但是难点就在于我们怎么知道当前状态和哪几个有关。对于这道题来说，画图或许可以帮助你打开思路。另外面试的时候说出$O(N)$的思路也不失为一个帮助你冷静分析问题的手段。",
+            "text": "对于这种$O(1)$空间复杂度有固定的套路。常见的有：1.直接修改原数组2.滚动数组（当前状态并不是和之前所有状态有关，而是仅和某几个有关）。我们采用的是滚动数组。如果你了解动态规划的滚动数组优化的话应该理解我的意思。但是难点就在于我们怎么知道当前状态和哪几个有关。对于这道题来说，画图或许可以帮助你打开思路。另外面试的时候说出$O(B)$的思路也不失为一个帮助你冷静分析问题的手段。感谢[@saberjiang",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "b](https://leetcode",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "cn.com/u/saberjiang",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "b/)指出的代码重复判断问题",
             "link": null,
             "color": "blue"
         }
@@ -7341,7 +7356,7 @@
     "code": [
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def isSelfCrossing(self, x: List[int]) -> bool:\n        n = len(x)\n        if n < 4:\n            return False\n        for i in range(3, n):\n            if x[i] >= x[i - 2] and x[i - 1] <= x[i - 3]:\n                return True\n            if x[i - 1] <= x[i - 3] and x[i - 2] <= x[i]:\n                return True\n            if i > 3 and x[i - 1] == x[i - 3] and x[i] + x[i - 4] == x[i - 2]:\n                return True\n            if i > 4 and x[i] + x[i - 4] >= x[i - 2] and x[i - 1] >= x[i - 3] - x[i - 5] \\\n                    and x[i - 1] <= x[i - 3] and x[i - 2] >= x[i - 4] and x[i - 3] >= x[i - 5]:\n                return True\n        return False\n"
+            "text": "\nclass Solution:\n    def isSelfCrossing(self, x: List[int]) -> bool:\n        n = len(x)\n        if n < 4:\n            return False\n        for i in range(3, n):\n            if x[i] >= x[i - 2] and x[i - 1] <= x[i - 3]:\n                return True\n            if i > 3 and x[i - 1] == x[i - 3] and x[i] + x[i - 4] == x[i - 2]:\n                return True\n            if i > 4 and x[i] + x[i - 4] >= x[i - 2] and x[i - 1] >= x[i - 3] - x[i - 5] \\\n                    and x[i - 1] <= x[i - 3] and x[i - 2] >= x[i - 4] and x[i - 3] >= x[i - 5]:\n                return True\n        return False\n"
         }
     ]
 },
