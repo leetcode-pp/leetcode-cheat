@@ -148,59 +148,72 @@ func (t *Trie) StartsWith(prefix string) bool {
 const javaCode = `
 class Trie {
 
-  class TireNode {
-      boolean isEnd = false;
-      TireNode[] next = new TireNode[26];
-      TireNode() {} 
-  }
+  TrieNode root;
 
-  private TireNode root;
-
-  /** Initialize your data structure here. */
   public Trie() {
-      root = new TireNode();
+
+      root = new TrieNode();
   }
-  
-  /** Inserts a word into the trie. */
+
   public void insert(String word) {
-      TireNode node = root;
-      for (char ch : word.toCharArray()) {
-          if (node.next[ch-'a'] == null) {
-              node.next[ch-'a'] = new TireNode();
-          }
-          node = node.next[ch-'a'];
+
+      TrieNode node = root;
+
+      for (int i = 0; i < word.length(); i++) {
+
+          if (node.children[word.charAt(i) - 'a'] == null)
+              node.children[word.charAt(i) - 'a'] = new TrieNode();
+
+          node = node.children[word.charAt(i) - 'a'];
+          node.preCount++;
       }
-      node.isEnd = true;
+
+      node.count++;
   }
-  
-  /** Returns if the word is in the trie. */
+
   public boolean search(String word) {
-      TireNode node = root;
-      for (char ch : word.toCharArray()) {
-          if (node.next[ch-'a'] == null) return false;
-          node = node.next[ch-'a'];
+
+      TrieNode node = root;
+
+      for (int i = 0; i < word.length(); i++) {
+
+          if (node.children[word.charAt(i) - 'a'] == null)
+              return false;
+
+          node = node.children[word.charAt(i) - 'a'];
       }
-      return node.isEnd;
+
+      return node.count > 0;
   }
-  
-  /** Returns if there is any word in the trie that starts with the given prefix. */
+
   public boolean startsWith(String prefix) {
-      TireNode node = root;
-      for (char ch : prefix.toCharArray()) {
-          if (node.next[ch-'a'] == null) return false;
-          node = node.next[ch-'a'];
+
+      TrieNode node = root;
+
+      for (int i = 0; i < prefix.length(); i++) {
+
+          if (node.children[prefix.charAt(i) - 'a'] == null)
+              return false;
+          node = node.children[prefix.charAt(i) - 'a'];
       }
-      return true;
+
+      return node.preCount > 0;
+  }
+
+  private class TrieNode {
+
+      int count; //表示以该处节点构成的串的个数
+      int preCount; //表示以该处节点构成的前缀的字串的个数
+      TrieNode[] children;
+
+      TrieNode() {
+
+          children = new TrieNode[26];
+          count = 0;
+          preCount = 0;
+      }
   }
 }
-
-/**
-* Your Trie object will be instantiated and called as such:
-* Trie obj = new Trie();
-* obj.insert(word);
-* boolean param_2 = obj.search(word);
-* boolean param_3 = obj.startsWith(prefix);
-*/
 `;
 export default {
   title: "前缀树",
@@ -242,124 +255,79 @@ export default {
         {
           language: "py",
           text: `
+class TrieNode:
+    def __init__(self):
+        self.count = 0 # 表示以该处节点构成的串的个数
+        self.preCount = 0 # 表示以该处节点构成的前缀的字串的个数
+        self.children = {}
+
 class Trie:
 
     def __init__(self):
-        """
-        Initialize your data structure here.
-        """
-        self.Trie = {}
+        self.root = TrieNode()
 
     def insert(self, word):
-        """
-        Inserts a word into the trie.
-        :type word: str
-        :rtype: void
-        """
-        curr = self.Trie
-        for w in word:
-            if w not in curr:
-                curr[w] = {}
-            curr = curr[w]
-        curr['#'] = 1
+        node = self.root
+        for ch in word:
+            if ch not in node.children:
+                node.children[ch] = TrieNode()
+            node = node.children[ch]
+            node.preCount += 1
+        node.count += 1
 
     def search(self, word):
-        """
-        Returns if the word is in the trie.
-        :type word: str
-        :rtype: bool
-        """
-        curr = self.Trie
-        for i, w in enumerate(word):
-            if w == '.':
-                wizards = []
-                for k in curr.keys():
-                    if k == '#':
-                        continue
-                    wizards.append(self.search(word[:i] + k + word[i + 1:]))
-                return any(wizards)
-            if w not in curr:
+        node = self.root
+        for ch in word:
+            if ch not in node.children:
                 return False
-            curr = curr[w]
-        return "#" in curr
+            node = node.children[ch]
+        return node.count > 0
+
+    def startsWith(self, prefix):
+        node = self.root
+        for ch in prefix:
+            if ch not in node.children:
+                return False
+            node = node.children[ch]
+        return node.preCount > 0
             `,
         },
         {
           language: "js",
           text: `
-          function TrieNode(val) {
-            this.val = val;
-            this.children = [];
-            this.isWord = false;
-          }
-          
-          function computeIndex(c) {
-            return c.charCodeAt(0) - "a".charCodeAt(0);
-          }
-          /**
-           * Initialize your data structure here.
-           */
-          var Trie = function() {
-            this.root = new TrieNode(null);
-          };
-          
-          /**
-           * Inserts a word into the trie.
-           * @param {string} word
-           * @return {void}
-           */
-          Trie.prototype.insert = function(word) {
-            let ws = this.root;
-            for (let i = 0; i < word.length; i++) {
-              const c = word[i];
-              const current = computeIndex(c);
-              if (!ws.children[current]) {
-                ws.children[current] = new TrieNode(c);
-              }
-              ws = ws.children[current];
-            }
-            ws.isWord = true;
-          };
-          
-          /**
-           * Returns if the word is in the trie.
-           * @param {string} word
-           * @return {boolean}
-           */
-          Trie.prototype.search = function(word) {
-            let ws = this.root;
-            for (let i = 0; i < word.length; i++) {
-              const c = word[i];
-              const current = computeIndex(c);
-              if (!ws.children[current]) return false;
-              ws = ws.children[current];
-            }
-            return ws.isWord;
-          };
-          
-          /**
-           * Returns if there is any word in the trie that starts with the given prefix.
-           * @param {string} prefix
-           * @return {boolean}
-           */
-          Trie.prototype.startsWith = function(prefix) {
-            let ws = this.root;
-            for (let i = 0; i < prefix.length; i++) {
-              const c = prefix[i];
-              const current = computeIndex(c);
-              if (!ws.children[current]) return false;
-              ws = ws.children[current];
-            }
-            return true;
-          };
-          
-          /**
-           * Your Trie object will be instantiated and called as such:
-           * var obj = new Trie()
-           * obj.insert(word)
-           * var param_2 = obj.search(word)
-           * var param_3 = obj.startsWith(prefix)
-           */
+  var Trie = function() {
+    this.children = {};
+    this.count = 0 //表示以该处节点构成的串的个数
+    this.preCount = 0 // 表示以该处节点构成的前缀的字串的个数
+  };
+  
+  Trie.prototype.insert = function(word) {
+    let node = this.children;
+    for(let char of word){
+      if(!node[char]) node[char] = {}
+      node = node[char]
+      node.preCount += 1
+    }
+    node.count += 1
+  };
+  
+  Trie.prototype.search = function(word) {
+    let node = this.children;
+    for(let char of word){
+      if(!node[char]) return false
+      node = node[char]
+    }
+    return node.count > 0
+  };
+  
+  Trie.prototype.startsWith = function(prefix) {
+    let node = this.children;
+    for(let char of prefix){
+      if(!node[char]) return false
+      node = node[char]
+    }
+    return node.preCount > 0
+  };
                   `,
         },
         {
