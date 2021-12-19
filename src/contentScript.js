@@ -12,6 +12,7 @@ import {
   // addStyle,
 } from "./utils";
 import zenAble from "./zen/zenMode";
+import hideFailCases from "./submission/hideFailCases";
 
 // WTF!  ant message didn't go well with chrome extension?
 const message = {
@@ -339,8 +340,7 @@ int main()
   window.open(
     `https://pythontutor.com/visualize.html#code=${encodeURIComponent(
       code
-    )}&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=${
-      languageMap[language]
+    )}&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=${languageMap[language]
     }&rawInputLstJSON=%5B%5D&textReferences=false`
   );
 }
@@ -349,6 +349,7 @@ function insertButton() {
   const buttons = document.querySelectorAll("button");
   for (var i = 0; i < buttons.length; ++i) {
     if (buttons[i].innerText.includes("执行代码")) {
+
       // const container = document.createElement("div");
 
       // buttons[i].parentElement.prepend(container);
@@ -475,13 +476,33 @@ function insertButton() {
       visDebugButton.onclick = goToVisDebug;
 
       buttons[i].parentElement.prepend(visDebugButton);
-      return true;
+      inserted = true;
+    } else if (buttons[i].innerText.includes("提交")) {
+      const click = buttons[i].onclick
+      buttons[i].onclick = (...args) => {
+        click.call(buttons[i], ...args);
+
+        // try to hide failed test cases
+        let tries = 0;
+        const hideFailCasesJob = setInterval(() => {
+          if (hideFailCases()) {
+            clearInterval(hideFailCasesJob);
+          }
+          // 300 times means 30s
+          if (tries > 300) return;
+          tries++;
+        }, 100)
+      }
+
+
+      submitProxied = true
     }
   }
   return false;
 }
 let inserted = false;
 let retried = 0;
+let submitProxied = false
 const MAX_TRY = 10;
 
 // 去除智能提示
@@ -492,14 +513,14 @@ const MAX_TRY = 10;
 // }
 // `);
 const timerId = setInterval(() => {
-  if (inserted) return clearInterval(timerId);
+  if (inserted && submitProxied) return clearInterval(timerId);
   if (retried > MAX_TRY) {
     clearInterval(timerId);
     return console.error("初始化 chrome 插件 content script 失败");
   }
-  if (insertButton()) {
+  insertButton()
+  if (inserted && submitProxied) {
     window.location.title = "";
-    inserted = true;
     // 可进入禅定模式
     zenAble();
   }
@@ -521,3 +542,32 @@ const timerId = setInterval(() => {
 // document.body.appendChild(app);
 
 // ReactDOM.render(<Main />, app);
+
+
+
+
+// history.pushState = (f => function pushState() {
+//   var ret = f.apply(this, arguments);
+//   window.dispatchEvent(new Event('pushstate'));
+//   window.dispatchEvent(new Event('locationchange'));
+//   return ret;
+// })(history.pushState);
+
+// history.replaceState = (f => function replaceState() {
+//   var ret = f.apply(this, arguments);
+//   window.dispatchEvent(new Event('replacestate'));
+//   window.dispatchEvent(new Event('locationchange'));
+//   return ret;
+// })(history.replaceState);
+
+// window.addEventListener('popstate', () => {
+//   window.dispatchEvent(new Event('locationchange'))
+// });
+
+// window.addEventListener('locationchange', function (e) {
+//   const url = e.target.location.href;
+//   console.log('hideFailCases')
+//   if (url.endsWith("submissions/")) {
+
+//   }
+// })
