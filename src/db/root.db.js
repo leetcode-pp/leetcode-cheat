@@ -4726,7 +4726,7 @@
         },
         {
             "language": "js",
-            "text": "\nfunction ListNode(key, val) {\n  this.key = key;\n  this.val = val;\n  this.pre = this.next = null;\n}\n\nvar LRUCache = function (capacity) {\n  this.capacity = capacity;\n  this.size = 0;\n  this.data = {};\n  this.head = new ListNode();\n  this.tail = new ListNode();\n  this.head.next = this.tail;\n  this.tail.pre = this.head;\n};\n\nfunction get(key) {\n  if (this.data[key] !== undefined) {\n    let node = this.data[key];\n    this.removeNode(node);\n    this.appendHead(node);\n    return node.val;\n  } else {\n    return -1;\n  }\n}\n\nfunction put(key, value) {\n  let node;\n  if (this.data[key] !== undefined) {\n    node = this.data[key];\n    this.removeNode(node);\n    node.val = value;\n  } else {\n    node = new ListNode(key, value);\n    this.data[key] = node;\n    if (this.size < this.capacity) {\n      this.size++;\n    } else {\n      key = this.removeTail();\n      delete this.data[key];\n    }\n  }\n  this.appendHead(node);\n}\n\nfunction removeNode(node) {\n  let preNode = node.pre,\n    nextNode = node.next;\n  preNode.next = nextNode;\n  nextNode.pre = preNode;\n}\n\nfunction appendHead(node) {\n  let firstNode = this.head.next;\n  this.head.next = node;\n  node.pre = this.head;\n  node.next = firstNode;\n  firstNode.pre = node;\n}\n\nfunction removeTail() {\n  let key = this.tail.pre.key;\n  this.removeNode(this.tail.pre);\n  return key;\n}\n"
+            "text": "\nclass ListNode{\n    constructor(key, val){\n        this.key = key;\n        this.val = val;\n        this.pre = null;\n        this.next = null;\n    }\n};\n\nclass LRUCache{\n    constructor(capacity){\n        this.capacity = capacity;\n        this.size = 0;\n        this.data = {};\n        this.head = new ListNode();\n        this.tail = new ListNode();\n        this.head.next = this.tail;\n        this.tail.pre = this.head;\n    }\n\n    get(key){\n        if(!this.data[key]) return -1;\n        else{\n            let node = this.data[key];\n            this.removeNode(node);\n            this.appendHead(node);\n            \n            return node.val;\n        }\n    }\n\n    put(key, value){\n        if(!this.data[key]){\n            let node = new ListNode(key, value);\n\n            this.data[key] = node;\n            this.appendHead(node);\n            this.size++;\n\n            if(this.size > this.capacity){\n                const lastKey = this.removeTail();\n                delete this.data[lastKey];\n                this.size--;\n            }\n\n        }else{\n            let node = this.data[key];\n            this.removeNode(node);\n            node.val = value;\n            this.appendHead(node);\n        }   \n    }\n\n    removeNode(node){\n        let preNode = node.pre;\n        let nextNode = node.next;\n\n        preNode.next = nextNode;\n        nextNode.pre = preNode;\n    }\n\n    appendHead(node){\n        let firstNode = this.head.next;\n\n        this.head.next = node;\n        node.pre = this.head;\n        node.next = firstNode;\n        firstNode.pre = node;\n    }\n\n    removeTail(){\n        let key = this.tail.pre.key;\n\n        this.removeNode(this.tail.pre);\n        \n        return key;\n    }\n}\n\n"
         },
         {
             "language": "py",
@@ -13394,6 +13394,41 @@
         }
     ]
 },
+"sequentially-ordinal-rank-tracker":{
+    "id": "2102",
+    "name": "sequentially-ordinal-rank-tracker",
+    "pre": [
+        {
+            "text": "平衡二叉树",
+            "link": null,
+            "color": "geekblue"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "add的时候对score取反，达到**如果有两个景点的评分一样，那么字典序较小的景点更好**的效果。",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/2102.sequentially-ordinal-rank-tracker.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/2102.sequentially-ordinal-rank-tracker.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nfrom sortedcontainers import SortedList\nclass SORTracker:\n\n    def __init__(self):\n        sl = SortedList()\n        self.i = -1\n        self.sl = sl\n\n    def add(self, name: str, score: int) -> None:\n        self.sl.add((score, name))\n\n    def get(self) -> str:\n        ans = self.sl[self.i][1]\n        self.i += 1\n        return ans\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nfrom sortedcontainers import SortedList\nclass SORTracker:\n\n    def __init__(self):\n        sl = SortedList()\n        self.i = -1\n        self.sl = sl\n\n    def add(self, name: str, score: int) -> None:\n        self.sl.add((score, -1 * toNumber(name) ,name))\n\n    def get(self) -> str:\n        ans = self.sl[self.i][2]\n        self.i += 1\n        return ans\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nfrom sortedcontainers import SortedList\nclass SORTracker:\n\n    def __init__(self):\n        sl = SortedList()\n        self.i = 0\n        self.sl = sl\n\n    def add(self, name: str, score: int) -> None:\n        self.sl.add((-score, name))\n\n    def get(self) -> str:\n        ans = self.sl[self.i][1]\n        self.i += 1\n        return ans\n\n\n\n# Your SORTracker object will be instantiated and called as such:\n# obj = SORTracker()\n# obj.add(name,score)\n# param_2 = obj.get()\n\n"
+        }
+    ]
+},
 "maximum-xor-with-an-element-from-array":{
     "id": "5640",
     "name": "maximum-xor-with-an-element-from-array",
@@ -13439,6 +13474,60 @@
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/5775.minimum-skips-to-arrive-at-meeting-on-time.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/5775.minimum-skips-to-arrive-at-meeting-on-time.md",
     "code": []
+},
+"find-good-days-to-rob-the-bank":{
+    "id": "5935",
+    "name": "find-good-days-to-rob-the-bank",
+    "pre": [
+        {
+            "text": "动态规划",
+            "link": null,
+            "color": "red"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "预处理出数组l和r",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/5935.find-good-days-to-rob-the-bank.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/5935.find-good-days-to-rob-the-bank.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def goodDaysToRobBank(self, security: List[int], time: int) -> List[int]:\n        n = len(security)\n        l, r = [0]*n, [0]*n\n        ans = []\n\n        for i in range(1, n):\n            if security[i] <= security[i-1]:\n                l[i] += l[i-1] + 1\n        for i in range(n-2,-1,-1):\n            if security[i] <= security[i+1]:\n                r[i] += r[i+1] + 1\n\n        for i in range(n):\n            if l[i] >= time and r[i] >= time:\n                ans.append(i)\n        return ans\n\n"
+        }
+    ]
+},
+"detonate-the-maximum-bombs":{
+    "id": "5936",
+    "name": "detonate-the-maximum-bombs",
+    "pre": [
+        {
+            "text": "BFS",
+            "link": null,
+            "color": "purple"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "BFS",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/5936.detonate-the-maximum-bombs.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/5936.detonate-the-maximum-bombs.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\n\n\nclass Solution:\n    def maximumDetonation(self, bombs: List[List[int]]) -> int:\n        n = len(bombs)\n        d = collections.defaultdict(list)\n        def overlap(i, j):\n            x1, y1, r1 = bombs[i]\n            x2, y2, r2 = bombs[j]\n            return (x1 - x2) ** 2 + (y1 - y2) ** 2 <= r1 ** 2\n        for i in range(n):\n            for j in range(i+1, n):\n                if overlap(i, j):\n                    d[i].append(j)\n                if overlap(j, i):\n                    d[j].append(i)\n        ans = 1\n        for i in range(n):\n            q = collections.deque([i])\n            vis = set()\n            count = 0\n            while q:\n                cur = q.popleft()\n                if cur in vis: continue\n                vis.add(cur)\n                count += 1\n                for neibor in d[cur]:\n                    q.append(neibor)\n            ans = max(ans, count)\n        return ans\n\n\n\n\n"
+        }
+    ]
 },
 "md":{
     "id": "Bus-Fare",
