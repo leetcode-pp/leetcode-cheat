@@ -1,10 +1,10 @@
 
+let showFailCases = null
 function hideFailCases() {
     const submissionDOM = document.querySelector("div[data-key=submissions-content]")
     const submmisionTabVisible = submissionDOM?.children.length > 0;
     if (submmisionTabVisible) {
         const result = submissionDOM.querySelector("div[data-cypress=SubmissionSuccess]")
-        debugger
         if (!result) {
             return false
         }
@@ -16,7 +16,9 @@ function hideFailCases() {
         input.style.display = "none"
         output.style.display = "none"
         expect.style.display = "none"
-        const showFailCases = document.createElement("div");
+        if (showFailCases === null) {
+            showFailCases = document.createElement("div");
+        }
         const showFailCasesTip = document.createElement("span")
         showFailCasesTip.innerText = "请先尝试自己解决，如果实在无法解决再尝试显示失败的测试用例！";
         showFailCasesTip.style["margin-right"] = "20px";

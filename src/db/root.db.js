@@ -13594,6 +13594,33 @@
     ]
 },
 "md":{
+    "id": "Every-Sublist-Min-Sum",
+    "name": "md",
+    "pre": [
+        {
+            "text": "单调栈",
+            "link": null,
+            "color": "purple"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "分别计算以每一个被pop出来的为最小数的贡献",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/Every-Sublist-Min-Sum.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/Every-Sublist-Min-Sum.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def solve(self, nums):\n        nums += [float('-inf')]\n        mod = 10 ** 9 + 7\n        stack = []\n        ans = 0\n\n        for i, num in enumerate(nums):\n            while stack and nums[stack[-1]] > num:\n                last = stack.pop()\n                left = stack[-1] if stack else -1\n                ans += (i - last) * (last - left) * nums[last]\n            stack.append(i)\n        return ans % mod\n\n"
+        }
+    ]
+},
+"md":{
     "id": "Increasing-Digits",
     "name": "md",
     "pre": [
