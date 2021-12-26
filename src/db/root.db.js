@@ -6352,6 +6352,10 @@
         {
             "language": "cpp",
             "text": "\nclass Solution {\npublic:\n    vector<int> majorityElement(vector<int>& nums) {\n        int c1 = 0, c2 = 0, v1 = 0, v2 = 1;\n        for (int n : nums) {\n            if (v1 == n) ++c1;\n            else if (v2 == n) ++c2;\n            else if (!c1) v1 = n, ++c1;\n            else if (!c2) v2 = n, ++c2;\n            else --c1, --c2;\n        }\n        c1 = c2 = 0;\n        for (int n : nums) {\n            if (v1 == n) ++c1;\n            if (v2 == n) ++c2;\n        }\n        vector<int> v;\n        if (c1 > nums.size() / 3) v.push_back(v1);\n        if (c2 > nums.size() / 3) v.push_back(v2);\n        return v;\n    }\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def majorityElement(self, nums):\n        c1 = c2 = 0\n        v1 = v2 = -1\n\n        for num in nums:\n            if num == v1: c1 += 1\n            elif num == v2: c2 += 1\n            elif c1 == 0:\n                c1 = 1\n                v1 = num\n            elif c2 == 0:\n                c2 = 1\n                v2 = num\n            else:\n                c1 -= 1\n                c2 -= 1\n        # check\n        c1 = c2 = 0\n        for num in nums:\n            if v1 == num: c1 += 1\n            if v2 == num: c2 += 1\n        ans = []\n        if c1 > len(nums)//3: ans.append(v1)\n        if c2 > len(nums)//3: ans.append(v2)\n        return list(set(ans))\n"
         }
     ]
 },
@@ -13271,6 +13275,37 @@
         }
     ]
 },
+"find-original-array-from-doubled-array":{
+    "id": "2007",
+    "name": "find-original-array-from-doubled-array",
+    "pre": [
+        {
+            "text": "哈希表",
+            "link": null,
+            "color": "gold"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "对changed进行排序后再处理",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/2007.find-original-array-from-doubled-array.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/2007.find-original-array-from-doubled-array.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def findOriginalArray(self, changed: List[int]) -> List[int]:\n        counter = collections.Counter(changed)\n        if counter[0] % 2: return []\n        n = len(changed)\n        changed.sort()\n        ans = []\n        for c in changed:\n            if counter[c] < 1: continue\n            double = c * 2\n            if double in counter:\n                ans.append(c)\n            else:\n                return []\n            if double == 0:\n                counter[double] -= 2\n            else:\n                counter[double] -= 1\n                counter[c] -= 1\n        if len(ans) == n // 2: return ans\n        return []\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def recoverArray(self, nums: List[int]) -> List[int]:\n        n = len(nums)\n        nums.sort()\n        for i in range(n):\n            # enumerate i, assueme that: nums[i] is higher[0]\n            d = nums[i] - nums[0]\n            if d == 0 or d & 1: continue # k 应该是大于 0 的整数\n            k = d // 2\n            counter = collections.Counter(nums)\n            ans = []\n            for key in sorted(counter):\n                if counter[key + 2 * k] >= counter[key]:\n                    ans += [key + k] * counter[key]\n                    counter[key + 2 * k] -= counter[key]\n                else:\n                    break # 剪枝（不剪枝的话实测 Python 也能通过，不过要多花很多时间）\n            if len(ans) == n // 2: return ans\n        return []\n"
+        }
+    ]
+},
 "maximum-earnings-from-taxi":{
     "id": "2008",
     "name": "maximum-earnings-from-taxi",
@@ -13529,6 +13564,33 @@
         }
     ]
 },
+"intervals-between-identical-elements":{
+    "id": "5965",
+    "name": "intervals-between-identical-elements",
+    "pre": [
+        {
+            "text": "前缀和",
+            "link": null,
+            "color": "cyan"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "前缀和+后缀和优化时间复杂度",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/5965.intervals-between-identical-elements.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/5965.intervals-between-identical-elements.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def getDistances(self, arr: List[int]) -> List[int]:\n        ans = []\n        n = len(arr)\n        last_map = collections.defaultdict(lambda:-1)\n        pre = collections.defaultdict(lambda:(0,0))\n        suf = collections.defaultdict(lambda:(0,0))\n        for i in range(n):\n            a = arr[i]\n            last = last_map[a]\n            v, c = pre[last]\n            pre[i] = v + c * (i - last), c + 1\n            last_map[a] = i\n        last_map = collections.defaultdict(lambda:len(arr))\n        for i in range(n-1,-1,-1):\n            a = arr[i]\n            last = last_map[a]\n            v, c = suf[last]\n            suf[i] = v + c * (last - i), c + 1\n            last_map[a] = i\n        for i, a in enumerate(arr):\n            ans.append(pre[i][0] + suf[i][0])\n        return ans\n\n\n"
+        }
+    ]
+},
 "md":{
     "id": "Bus-Fare",
     "name": "md",
@@ -13745,6 +13807,37 @@
         {
             "language": "py",
             "text": "\nclass Solution:\n    def solve(self, matrix):\n        m, n = len(matrix), len(matrix[0])\n\n        @lru_cache(None)\n        def dp(i, j, d):\n            if j < 0 or j >= n: return float('-inf')\n            if i >= m: return 0\n            if matrix[i][j] == 1: return float('-inf')\n            ans = 1 + max(dp(i+1, j, 0), float('-inf') if d == -1 else dp(i,j+1, 1), float('-inf') if d == 1 else dp(i, j-1, -1))\n            return ans\n        ans = max([dp(0, j, 0) for j in range(n)])\n        return 0 if ans == float('-inf') else ans\n"
+        }
+    ]
+},
+"md":{
+    "id": "Maximize-the-Number-of-Equivalent-Pairs-After-Swaps",
+    "name": "md",
+    "pre": [
+        {
+            "text": "并查集",
+            "link": null,
+            "color": "volcano"
+        },
+        {
+            "text": "BFS",
+            "link": null,
+            "color": "purple"
+        },
+        {
+            "text": "DFS",
+            "link": null,
+            "color": "red"
+        }
+    ],
+    "keyPoints": [],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/Maximize-the-Number-of-Equivalent-Pairs-After-Swaps.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/Maximize-the-Number-of-Equivalent-Pairs-After-Swaps.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass UF:\n  def __init__(self, M):\n      self.parent = {}\n      self.cnt = 0\n      # 初始化 parent，size 和 cnt\n      for i in range(M):\n          self.parent[i] = i\n          self.cnt += 1\n\n  def find(self, x):\n      if x != self.parent[x]:\n          self.parent[x] = self.find(self.parent[x])\n          return self.parent[x]\n      return x\n  def union(self, p, q):\n      if self.connected(p, q): return\n      leader_p = self.find(p)\n      leader_q = self.find(q)\n      self.parent[leader_p] = leader_q\n      self.cnt -= 1\n  def connected(self, p, q):\n      return self.find(p) == self.find(q)\n\nclass Solution:\n    def solve(self, A, B, C):\n        n = len(A)\n        uf = UF(n)\n        for fr, to in C:\n            print(fr, to)\n            uf.union(fr, to)\n        group = collections.defaultdict(list)\n\n        for i in uf.parent:\n            group[uf.find(i)].append(i)\n        ans = 0\n        for i in group:\n            indices = group[i]\n            values = collections.Counter([A[i] for i in indices])\n            for i in indices:\n                if values[B[i]] > 0:\n                    values[B[i]] -= 1\n                    ans += 1\n        return ans\n\n"
         }
     ]
 },
