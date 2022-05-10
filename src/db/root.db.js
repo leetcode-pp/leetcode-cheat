@@ -2572,7 +2572,7 @@
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def sortColors(self, nums: List[int]) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        p0 = cur = 0\n        p2 = len(nums) - 1\n\n        while cur <= p2:\n            if nums[cur] == 0:\n                nums[cur], nums[p0] = nums[p0], nums[cur]\n                p0 += 1\n                cur += 1\n            elif nums[cur] == 2:\n                nums[cur], nums[p2] = nums[p2], nums[cur]\n                p2 -= 1\n            else:\n                cur += 1\n\n"
+            "text": "\nclass Solution:\n    def sortColors(self, strs):\n        # p0 是右边界\n        # p1 是右边界\n        # p2 是左边界\n        # p1 超过 p2 结束\n        p0, p1, p2 = 0, 0, len(strs) - 1\n\n        while p1 <= p2:\n            if strs[p1] == 'blue':\n                strs[p2], strs[p1] = strs[p1], strs[p2]\n                p2 -= 1\n            elif strs[p1] == 'red':\n                strs[p0], strs[p1] = strs[p1], strs[p0]\n                p0 += 1\n                p1 += 1 # p0 一定不是 blue，因此 p1 += 1\n            else: # p1 === 'green'\n                p1 += 1\n        return strs\n"
         },
         {
             "language": "py",
@@ -3233,11 +3233,15 @@
         },
         {
             "language": "js",
-            "text": "\n/**\n * @param {TreeNode} root\n * @return {number[]}\n */\nvar inorderTraversal = function (root) {\n  // 1. Recursive solution\n  // if (!root) return [];\n  // const left = root.left ? inorderTraversal(root.left) : [];\n  // const right = root.right ? inorderTraversal(root.right) : [];\n  // return left.concat([root.val]).concat(right);\n\n  // 2. iterative solutuon\n  if (!root) return [];\n  const stack = [root];\n  const ret = [];\n  let left = root.left;\n\n  let item = null; // stack 中弹出的当前项\n\n  while (left) {\n    stack.push(left);\n    left = left.left;\n  }\n\n  while ((item = stack.pop())) {\n    ret.push(item.val);\n    let t = item.right;\n\n    while (t) {\n      stack.push(t);\n      t = t.left;\n    }\n  }\n\n  return ret;\n};\n"
+            "text": "\nvar inorderTraversal = function (root) {\n  const res = [];\n  const stk = [];\n  while (root || stk.length) {\n    while (root) {\n      stk.push(root);\n      root = root.left;\n    }\n    root = stk.pop();\n    res.push(root.val);\n    root = root.right;\n  }\n  return res;\n};\n"
         },
         {
             "language": "cpp",
             "text": "\n/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}\n * };\n */\nclass Solution {\npublic:\n    vector<int> inorderTraversal(TreeNode* root) {\n        vector<TreeNode*> s;\n        vector<int> v;\n        while (root != NULL || !s.empty()) {\n            for (; root != NULL; root = root->left)\n                s.push_back(root);\n            v.push_back(s.back()->val);\n            root = s.back()->right;\n            s.pop_back();\n        }\n        return v;\n    }\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def inorderTraversal(self, root: TreeNode) -> List[int]:\n        if not root: return []\n        stack = []\n        ans = []\n        cur = root\n\n        while cur or stack:\n            while cur:\n                stack.append(cur)\n                cur = cur.left\n            cur = stack.pop()\n            ans.append(cur.val)\n            cur = cur.right\n        return ans\n"
         }
     ]
 },
@@ -4183,6 +4187,11 @@
     ],
     "keyPoints": [
         {
+            "text": "从所有的序列起点（终点也行）开始尝试",
+            "link": null,
+            "color": "blue"
+        },
+        {
             "text": "空间换时间",
             "link": null,
             "color": "blue"
@@ -4219,7 +4228,7 @@
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def longestConsecutive(self, A: List[int]) -> int:\n        seen = set(A)\n        ans = 0\n        for a in A:\n            t = a\n            #  if 的作用是剪枝\n            if t + 1 not in seen:\n                while t - 1 in seen:\n                    t -= 1\n            ans = max(ans, a - t + 1)\n        return ans\n"
+            "text": "\nclass Solution:\n    def longestConsecutive(self, A: List[int]) -> int:\n        seen = set(A)\n        ans = 0\n        for a in A:\n            t = a\n            # 说明 t 是连续序列的开头元素。加这个条件相当于剪枝的作用，否则时间复杂度会退化到 N ^ 2\n            if t + 1 not in seen:\n                while t - 1 in seen:\n                    t -= 1\n            ans = max(ans, a - t + 1)\n        return ans\n"
         }
     ]
 },
@@ -6089,7 +6098,7 @@
     "code": [
         {
             "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    bool containsNearbyAlmostDuplicate(vector<int>& nums, int k, int t) {\n        if(t<0) return false;\n        //t+1可能会溢出，所以要+ 1LL\n        long long mod = t + 1LL;\n        unordered_map<long long,long long> buck;\n        for(int i=0;i<nums.size();i++)\n        {\n            long long nth = nums[i] / mod;\n            //可能nums[i]为负数，比如-4 / 5 以及 -4 / 5都等于0，所以负数要向下移动一位\n            if(nums[i] < 0) nth--;\n            //这里要用find 不能直接[],因为可能本身存储的数字就为0\n            if(buck.find(nth)!=buck.end())\n                return true;\n            else if(buck.find(nth-1)!=buck.end() && abs(nums[i] - buck[nth-1]) <= t)\n                return true;\n            else if(buck.find(nth+1)!=buck.end() && abs(nums[i] - buck[nth+1]) <= t)\n                return true;\n            buck[nth] = nums[i];\n            if(i >= k)\n            {\n                buck.erase(nums[i - k] / mod);\n            }\n        }\n        return false;\n    }\n};\n"
+            "text": "\nclass Solution {\npublic:\n    bool containsNearbyAlmostDuplicate(vector<int>& nums, int k, int t) {\n        if(t<0) return false;\n        //t+1可能会溢出，所以要+ 1LL\n        long long mod = t + 1LL;\n        unordered_map<long long,long long> buck;\n        for(int i=0;i<nums.size();i++)\n        {\n            long long nth = nums[i] / mod;\n            //可能nums[i]为负数，比如-4 / 5 以及 -4 / 5都等于0，所以负数要向下移动一位\n            if(nums[i] < 0) nth--;\n            //这里要用find 不能直接[],因为可能本身存储的数字就为0\n            if(buck.find(nth)!=buck.end())\n                return true;\n            else if(buck.find(nth-1)!=buck.end() && abs(nums[i] - buck[nth-1]) <= t)\n                return true;\n            else if(buck.find(nth+1)!=buck.end() && abs(nums[i] - buck[nth+1]) <= t)\n                return true;\n            buck[nth] = nums[i];\n            if(i >= k)\n            {\n                long long pos = nums[i - k] / mod;\n                if(nums[i - k] < 0) pos--;\n                buck.erase(pos);\n            }\n        }\n        return false;\n    }\n};\n"
         },
         {
             "language": "py",
@@ -7756,6 +7765,14 @@
         {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=378 lang=javascript\n *\n * [378] Kth Smallest Element in a Sorted Matrix\n */\nfunction notGreaterCount(matrix, target) {\n  // 等价于在matrix 中搜索mid，搜索的过程中利用有序的性质记录比mid小的元素个数\n\n  // 我们选择左下角，作为开始元素\n  let curRow = 0;\n  // 多少列\n  const COL_COUNT = matrix[0].length;\n  // 最后一列的索引\n  const LAST_COL = COL_COUNT - 1;\n  let res = 0;\n\n  while (curRow < matrix.length) {\n    // 比较最后一列的数据和target的大小\n    if (matrix[curRow][LAST_COL] < target) {\n      res += COL_COUNT;\n    } else {\n      let i = COL_COUNT - 1;\n      while (i < COL_COUNT && matrix[curRow][i] > target) {\n        i--;\n      }\n      // 注意这里要加1\n      res += i + 1;\n    }\n    curRow++;\n  }\n\n  return res;\n}\n/**\n * @param {number[][]} matrix\n * @param {number} k\n * @return {number}\n */\nvar kthSmallest = function (matrix, k) {\n  if (matrix.length < 1) return null;\n  let start = matrix[0][0];\n  let end = matrix[matrix.length - 1][matrix[0].length - 1];\n  while (start < end) {\n    const mid = start + ((end - start) >> 1);\n    const count = notGreaterCount(matrix, mid);\n    if (count < k) start = mid + 1;\n    else end = mid;\n  }\n  // 返回start,mid, end 都一样\n  return start;\n};\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\nclass Solution {\npublic:\n    bool check(vector<vector<int>>& matrix, int mid, int k, int n) {\n        int row = n - 1;\n        int col = 0;\n        int num = 0;\n        while (row >= 0 && col < n) {\n            if (matrix[row][col] <= mid) {\n                num += i + 1;\n                col++;\n            } else {\n                row--;\n            }\n        }\n        return num >= k;\n    }\n\n    int kthSmallest(vector<vector<int>>& matrix, int k) {\n        int n = matrix.size();\n        int left = matrix[0][0];\n        int right = matrix[n - 1][n - 1];\n        while (left <= right) {\n            int mid = left + ((right - left) >> 1);\n            if (check(matrix, mid, k, n)) {\n                right = mid - 1;\n            } else {\n                left = mid + 1;\n            }\n        }\n        return left;\n    }\n};\n\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def kthSmallest(self, matrix: List[List[int]], k: int) -> int:\n        n = len(matrix)\n\n        def check(mid):\n            row, col = n - 1, 0\n            num = 0\n            while row >= 0 and col < n:\n                # 增加 col\n                if matrix[row][col] <= mid:\n                    num += row + 1\n                    col += 1\n                # 减少 row\n                else:\n                    row -= 1\n            return num >= k\n\n        left, right = matrix[0][0], matrix[-1][-1]\n        while left <= right:\n            mid = (left + right) // 2\n            if check(mid):\n                right = mid - 1\n            else:\n                left = mid + 1\n\n        return left\n\n"
         }
     ]
 },
@@ -8053,6 +8070,10 @@
         {
             "language": "js",
             "text": "\n/*\n * @lc app=leetcode id=437 lang=javascript\n *\n * [437] Path Sum III\n */\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\nfunction helper(root, acc, target, hashmap) {\n  // see also : https://leetcode.com/problems/subarray-sum-equals-k/\n\n  if (root === null) return 0;\n  let count = 0;\n  acc += root.val;\n  if (acc === target) count++;\n  if (hashmap[acc - target] !== void 0) {\n    count += hashmap[acc - target];\n  }\n  if (hashmap[acc] === void 0) {\n    hashmap[acc] = 1;\n  } else {\n    hashmap[acc] += 1;\n  }\n  const res =\n    count +\n    helper(root.left, acc, target, hashmap) +\n    helper(root.right, acc, target, hashmap);\n\n  // 这里要注意别忘记了\n  hashmap[acc] = hashmap[acc] - 1;\n\n  return res;\n}\n\nvar pathSum = function (root, sum) {\n  const hashmap = {};\n  return helper(root, 0, sum, hashmap);\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nimport collections\n'''\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n'''\nclass Solution:\n    def helper(self,root,acc,target,hashmap):\n        if not root:\n            return 0\n        count=0\n        acc+=root.val\n        if acc==target:\n            count+=1\n        if acc-target in hashmap:\n            count+=hashmap[acc-target]\n        hashmap[acc]+=1\n        if root.left:\n            count+=self.helper(root.left,acc,target,hashmap)\n        if root.right:\n            count+=self.helper(root.right,acc,target,hashmap)\n        hashmap[acc]-=1\n        return count\n    \n    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:\n        hashmap=collections.defaultdict(lambda:0)\n        return self.helper(root,0,targetSum,hashmap)\n"
         }
     ]
 },
@@ -8233,6 +8254,10 @@
         {
             "language": "js",
             "text": "\n/**\n * @param {number[]} g\n * @param {number[]} s\n * @return {number}\n */\nconst findContentChildren = function (g, s) {\n    g = g.sort((a, b) => a - b);\n    s = s.sort((a, b) => a - b);\n    let gi = 0; // 胃口值\n    let sj = 0; // 饼干尺寸\n    let res = 0;\n    while (gi < g.length && sj < s.length) {\n        // 当饼干 sj >= 胃口 gi 时，饼干满足胃口，更新满足的孩子数并移动指针\n        if (s[sj] >= g[gi]) {\n            gi++;\n            sj++;\n            res++;\n        } else {\n            // 当饼干 sj < 胃口 gi 时，饼干不能满足胃口，需要换大的\n            sj++;\n        }\n    }\n    return res;\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def findContentChildren(self, g: List[int], s: List[int]) -> int:\n        g.sort()\n        s.sort()\n        count=gIdx=sIdx=0\n        while gIdx<len(g) and sIdx<len(s):\n            if s[sIdx]>=g[gIdx]:\n                gIdx+=1\n                count+=1\n            sIdx+=1\n        return count\n"
         }
     ]
 },
@@ -8500,6 +8525,16 @@
             "text": "前缀树",
             "link": null,
             "color": "blue"
+        },
+        {
+            "text": "记忆化搜索",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "排序后word**选择性**插入到trie中",
+            "link": null,
+            "color": "blue"
         }
     ],
     "companies": [
@@ -8515,7 +8550,11 @@
     "code": [
         {
             "language": "py",
-            "text": "\nclass Trie:\n\n    def __init__(self):\n        self.Trie = {}\n        self.visited = {}\n\n    def insert(self, word):\n        curr = self.Trie\n        for w in word:\n            if w not in curr:\n                curr[w] = {}\n            curr = curr[w]\n        curr['#'] = 1\n\n    def cntWords(self, word):\n        if not word:\n            return 0\n        if word in self.visited:\n            return self.visited[word]\n        curr = self.Trie\n        res = float('-inf')\n\n        for i, w in enumerate(word):\n            if w not in curr:\n                return res\n            curr = curr[w]\n            if '#' in curr:\n                res = max(res, 1 + self.cntWords(word[i + 1:]))\n        self.visited[word] = res\n        return res\n\n\nclass Solution:\n    def findAllConcatenatedWordsInADict(self, words: List[str]) -> List[str]:\n        self.trie = Trie()\n        res = []\n\n        for word in words:\n            self.trie.insert(word)\n        for word in words:\n            if self.trie.cntWords(word) >= 2:\n                res.append(word)\n        return res\n"
+            "text": "\nfor word in words:\n    if trie.cntWords(word) >= 2:\n        res.append(word)\n    else:\n        trie.insert(word)\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Trie:\n\n    def __init__(self):\n        self.Trie = {}\n        self.visited = {}\n\n    def insert(self, word):\n        curr = self.Trie\n        for w in word:\n            if w not in curr:\n                curr[w] = {}\n            curr = curr[w]\n        curr['#'] = 1\n\n    def cntWords(self, word):\n        if not word:\n            return 0\n        if word in self.visited:\n            return self.visited[word]\n        curr = self.Trie\n        res = float('-inf')\n\n        for i, w in enumerate(word):\n            if w not in curr:\n                return res\n            curr = curr[w]\n            if '#' in curr:\n                res = max(res, 1 + self.cntWords(word[i + 1:]))\n        self.visited[word] = res\n        return res\n\n\nclass Solution:\n    def findAllConcatenatedWordsInADict(self, words: List[str]) -> List[str]:\n        trie = Trie()\n        res = []\n        words.sort(key=len)\n        for word in words:\n            if trie.cntWords(word) >= 2:\n                res.append(word)\n            else:\n                trie.insert(word)\n        return res\n\n"
         }
     ]
 },
@@ -8811,7 +8850,7 @@
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def convertToBase7(self, num: int) -> str:\n        if num == 0:\n            return 0\n        ans = []\n        is_negative = num < 0\n        num = abs(num)\n        while num > 0:\n            num, remain = num // 7, num % 7\n            ans.append(str(remain))\n\n        return \"-\" + \"\".join(ans[::-1]) if is_negative else \"\".join(ans[::-1])\n\n"
+            "text": "\nclass Solution:\n    def convertToBase7(self, num: int) -> str:\n        if num == 0:\n            return \"0\"\n        ans = []\n        is_negative = num < 0\n        num = abs(num)\n        while num > 0:\n            num, remain = num // 7, num % 7\n            ans.append(str(remain))\n\n        return \"-\" + \"\".join(ans[::-1]) if is_negative else \"\".join(ans[::-1])\n\n"
         }
     ]
 },
@@ -9034,6 +9073,40 @@
         }
     ]
 },
+"number-of-provinces":{
+    "id": "547",
+    "name": "number-of-provinces",
+    "pre": [
+        {
+            "text": "并查集",
+            "link": null,
+            "color": "volcano"
+        }
+    ],
+    "keyPoints": [],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/547.number-of-provinces.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/547.number-of-provinces.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nclass UF:\n    parent = {}\n    cnt = 0\n    def __init__(self, M):\n        n = len(M)\n        for i in range(n):\n            self.parent[i] = i\n            self.cnt += 1\n\n    def find(self, x):\n        while x != self.parent[x]:\n            x = self.parent[x]\n        return x\n    def union(self, p, q):\n        if self.connected(p, q): return\n        self.parent[self.find(p)] = self.find(q)\n        self.cnt -= 1\n    def connected(self, p, q):\n        return self.find(p) == self.find(q)\n\nclass Solution:\n    def findCircleNum(self, M: List[List[int]]) -> int:\n        n = len(M)\n        uf = UF(M)\n        for i in range(n):\n            for j in range(i):\n                if M[i][j] == 1:\n                    uf.union(i, j)\n        return uf.cnt\n\n"
+        }
+    ]
+},
 "subarray-sum-equals-k":{
     "id": "560",
     "name": "subarray-sum-equals-k",
@@ -9128,6 +9201,33 @@
         {
             "language": "py",
             "text": "\nclass Solution:\n    def distributeCandies(self, candies: List[int]) -> int:\n        return min(len(set(candies)), len(candies) >> 1)\n"
+        }
+    ]
+},
+"construct-string-from-binary-tree":{
+    "id": "606",
+    "name": "construct-string-from-binary-tree",
+    "pre": [
+        {
+            "text": "DFS",
+            "link": null,
+            "color": "red"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "理解什么是可以省略的括号",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/606.construct-string-from-binary-tree.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/606.construct-string-from-binary-tree.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\n# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.left = None\n#         self.right = None\n\nclass Solution:\n    def tree2str(self, root: TreeNode) -> str:\n        if not root: return ''\n        ans = str(root.val)\n        l = self.tree2str(root.left)\n        r = self.tree2str(root.right)\n        if l or r: ans += '(' +  l + ')'\n        if r: ans += '(' +  r + ')'\n        return ans\n\n\n"
         }
     ]
 },
@@ -9228,6 +9328,32 @@
         {
             "language": "py",
             "text": "\nclass Solution:\n    def triangleNumber(self, nums: List[int]) -> int:\n        n = len(nums)\n        ans = 0\n        nums.sort()\n        for i in range(n - 2):\n            if nums[i] == 0: continue\n            k = i + 2\n            for j in range(i + 1, n - 1):\n                while k < n and nums[i] + nums[j] > nums[k]:\n                    k += 1\n                ans += k - j - 1\n        return ans\n"
+        }
+    ]
+},
+"image-smoother":{
+    "id": "661",
+    "name": "image-smoother",
+    "pre": [],
+    "keyPoints": [
+        {
+            "text": "位运算",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "前缀和",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/661.image-smoother.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/661.image-smoother.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def imageSmoother(self, matrix: List[List[int]]) -> List[List[int]]:\n        m,n = len(matrix), len(matrix[0])\n        # 建立\n        pre = [[0 for _ in range(n + 1)] for _ in range(m + 1)]\n        for i in range(1, m+1):\n            for j in range(1, n +1):\n                pre[i][j] = pre[i-1][j]+ pre[i][j-1] - pre[i-1][j-1] + matrix[i-1][j-1]\n        ans = [[0 for _ in range(n)] for _ in range(m)]\n        # 使用，等价于以(x1,y1)为矩阵左上角以(x2,y2)为矩阵右下角的所有格子的和\n        for i in range(m):\n            for j in range(n):\n                x1,y1,x2,y2 = max(0, i-1),max(0, j-1),min(m-1, i+1),min(n-1, j+1)\n                cnt = (y2 - y1 + 1) * (x2 - x1 + 1)\n                ans[i][j] = (pre[x2+1][y2+1] + pre[x1][y1] - pre[x1][y2+1] - pre[x2+1][y1])//cnt\n        return ans\n\n\n"
         }
     ]
 },
@@ -10303,11 +10429,15 @@
     "code": [
         {
             "language": "py",
-            "text": "\n        graph = [[0] * N for i in range(N)]\n        for a, b in dislikes:\n            graph[a - 1][b - 1] = 1\n            graph[b - 1][a - 1] = 1\n"
+            "text": "\ngraph = [[0] * N for i in range(N)]\nfor a, b in dislikes:\n    graph[a - 1][b - 1] = 1\n    graph[b - 1][a - 1] = 1\n"
         },
         {
             "language": "py",
             "text": "\n# 其中j 表示当前是第几个人，N表示总人数。 dfs的功能就是根据colors和graph分配组，true表示可以分，false表示不可以，具体代码见代码区。\nif colors[j] == 0 and not self.dfs(graph, colors, j, -1 * color, N)\n"
+        },
+        {
+            "language": "py",
+            "text": "\nfor i in range(n):\n    if random.random() > 0.5:\n        if colors[i] == 0 and not dfs(i, -1): return False\n    else:\n        if colors[i] == 0 and not dfs(i, 1): return False\n"
         },
         {
             "language": "py",
@@ -11088,7 +11218,7 @@
     "code": [
         {
             "language": "py",
-            "text": "\n#\n# @lc app=leetcode.cn id=1015 lang=python3\n#\n# [1015] 可被 K 整除的最小整数\n#\n\n# @lc code=start\n\n\nclass Solution:\n    def smallestRepunitDivByK(self, K: int) -> int:\n        if K % 10 in [2, 4, 5, 6, 8]:\n            return - 1\n        seen = set()\n        mod = 0\n        for i in range(1, K + 1):\n            mod = (mod * 10 + 1) % K\n            if mod in seen:\n                return -1\n            if mod == 0:\n                return ix\n            seen.add(mod)\n"
+            "text": "\n\nclass Solution:\n    def smallestRepunitDivByK(self, K: int) -> int:\n        if K % 10 in [2, 4, 5, 6, 8]:\n            return - 1\n        seen = set()\n        mod = 0\n        for i in range(1, K + 1):\n            mod = (mod * 10 + 1) % K\n            if mod in seen:\n                return -1\n            if mod == 0:\n                return ix\n            seen.add(mod)\n"
         }
     ]
 },
@@ -13464,6 +13594,31 @@
         }
     ]
 },
+"minimum-white-tiles-after-covering-with-carpets":{
+    "id": "2209",
+    "name": "minimum-white-tiles-after-covering-with-carpets",
+    "pre": [
+        {
+            "text": "动态规划",
+            "link": null,
+            "color": "red"
+        }
+    ],
+    "keyPoints": [],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/2209.minimum-white-tiles-after-covering-with-carpets.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/2209.minimum-white-tiles-after-covering-with-carpets.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\ndp[i][j] = dp[i-1][j] + int(floor[i] == '1')\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def minimumWhiteTiles(self, floor: str, numCarpets: int, carpetLen: int) -> int:\n        dp = [[0] * (numCarpets + 1) for _ in range(len(floor))]\n        for i in range(len(floor)):\n            for j in range(numCarpets + 1):\n                if j == 0:\n                    dp[i][j] = dp[i-1][j] + int(floor[i] == '1')\n                    continue\n                if i >= carpetLen and j > 0:\n                    dp[i][j] = dp[i - carpetLen][j - 1]\n                dp[i][j] = min(dp[i][j],  dp[i-1][j] + int(floor[i] == '1'))\n\n        return dp[-1][-1]\n\n"
+        }
+    ]
+},
 "maximum-xor-with-an-element-from-array":{
     "id": "5640",
     "name": "maximum-xor-with-an-element-from-array",
@@ -13588,6 +13743,74 @@
         {
             "language": "py",
             "text": "\n\nclass Solution:\n    def getDistances(self, arr: List[int]) -> List[int]:\n        ans = []\n        n = len(arr)\n        last_map = collections.defaultdict(lambda:-1)\n        pre = collections.defaultdict(lambda:(0,0))\n        suf = collections.defaultdict(lambda:(0,0))\n        for i in range(n):\n            a = arr[i]\n            last = last_map[a]\n            v, c = pre[last]\n            pre[i] = v + c * (i - last), c + 1\n            last_map[a] = i\n        last_map = collections.defaultdict(lambda:len(arr))\n        for i in range(n-1,-1,-1):\n            a = arr[i]\n            last = last_map[a]\n            v, c = suf[last]\n            suf[i] = v + c * (last - i), c + 1\n            last_map[a] = i\n        for i, a in enumerate(arr):\n            ans.append(pre[i][0] + suf[i][0])\n        return ans\n\n\n"
+        }
+    ]
+},
+"count-good-triplets-in-an-array":{
+    "id": "5999",
+    "name": "count-good-triplets-in-an-array",
+    "pre": [
+        {
+            "text": "平衡二叉树",
+            "link": null,
+            "color": "geekblue"
+        },
+        {
+            "text": "枚举",
+            "link": null,
+            "color": "magenta"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "根据数组A的索引对应关系置换数组B，得到新的数组C，问题转化为堆C求递增三元组的个数",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "枚举三元组中中间的数",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/5999.count-good-triplets-in-an-array.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/5999.count-good-triplets-in-an-array.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nn = len(nums1)\nfor i in range(n):\n    d[nums1[i]] = i\n"
+        },
+        {
+            "language": "py",
+            "text": "\nfor i in range(n):\n    nums.append(d[nums2[i]])\n"
+        },
+        {
+            "language": "py",
+            "text": "\nsl1 = SortedList()\nsl2 = SortedList(nums)\nfor num in nums:\n    sl1.add(num)\n    sl2.remove(num)\n    ans += sl1.bisect_left(num) * (len(sl2) - sl2.bisect_left(num + 1))\nreturn ans\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nfrom sortedcontainers import SortedList\nclass Solution:\n    def goodTriplets(self, nums1: List[int], nums2: List[int]) -> int:\n        d = {}\n        nums = []\n        ans = 0\n        n = len(nums1)\n        for i in range(n):\n            d[nums1[i]] = i\n        for i in range(n):\n            nums.append(d[nums2[i]])\n        sl1 = SortedList()\n        for num in nums:\n            sl1.add(num)\n            ans += sl1.bisect_left(num) * ((n - num - (len(sl1) - sl1.bisect_left(num))))\n        return ans\n\n"
+        }
+    ]
+},
+"maximize-number-of-subsequences-in-a-string":{
+    "id": "6201",
+    "name": "maximize-number-of-subsequences-in-a-string",
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/6201.maximize-number-of-subsequences-in-a-string.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/6201.maximize-number-of-subsequences-in-a-string.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def maximumSubsequenceCount(self, text: str, pattern: str) -> int:\n        a = b = ans = 0\n        for c in text:\n            if c == pattern[1]:\n                b += 1\n                ans += a # 这里累加答案。含义为以当前位置结尾的子序列有 a 个，因此累加上 a\n            if c == pattern[0]:\n                a += 1\n        return ans\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def maximumSubsequenceCount(self, text: str, pattern: str) -> int:\n        a = b = ans = 0\n        for c in text:\n            if c == pattern[1]:\n                b += 1\n                ans += a\n            if c == pattern[0]:\n                a += 1\n        return ans + max(a, b)\n\n"
         }
     ]
 },
