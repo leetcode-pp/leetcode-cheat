@@ -124,7 +124,7 @@ export default function Detail({ problemId }) {
           我想贡献公司和岗位信息（免费获得题目咨询服务）
         </a>
         <a
-          href="https://p.ipic.vip/n8gbxo.jpg"
+          href="https://p.ipic.vip/h9nm77.jpg"
           target="_blank"
           rel="noopener noreferrer"
         >

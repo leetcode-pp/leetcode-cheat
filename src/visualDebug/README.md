@@ -83,19 +83,19 @@ class Solution:
 
 第一步之后大概会生成这样的图：
 
-![](https://tva1.sinaimg.cn/large/007S8ZIlly1gfu805nd4mj30ol07taag.jpg)
+![](https://p.ipic.vip/7cr2tv.jpg)
 
 第二步之后大概会生成这样的图：
 
-![](https://tva1.sinaimg.cn/large/007S8ZIlly1gfu7zjlxbfj30lr056wes.jpg)
+![](https://p.ipic.vip/kat9z5.jpg)
 
 第三步之后大概会生成这样的图：
 
-![](https://tva1.sinaimg.cn/large/007S8ZIlly1gfu813p4tij30m208d74s.jpg)
+![](https://p.ipic.vip/l0p2e7.jpg)
 
 第四步之后大概会生成这样的图：
 
-![](https://tva1.sinaimg.cn/large/007S8ZIlly1gfu81iyc9rj30qh0an750.jpg)
+![](https://p.ipic.vip/5hjf66.jpg)
 
 之后每次当 left 和 right 发生变化的时候更新图片（指针变化）即可。
 
@@ -145,7 +145,7 @@ digraph MyGraph {
 
 生成：
 
-![](https://tva1.sinaimg.cn/large/007S8ZIlly1gfu7oww70dj30fn04bt91.jpg)
+![](https://p.ipic.vip/tf30t2.jpg)
 
 ## 详细流程
 
@@ -208,7 +208,7 @@ function parse(list) {
 
 will render:
 
-![](https://tva1.sinaimg.cn/large/007S8ZIlly1giz7wiwrrej30e108emxi.jpg)
+![](https://p.ipic.vip/f7a9ji.jpg)
 
 因此我们的目标就是:
 

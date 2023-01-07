@@ -16,4 +16,4 @@
 
 ### 架构图
 
-![](https://tva1.sinaimg.cn/large/007S8ZIlly1gfpjc8au5fj30np0okjuc.jpg)
+![](https://p.ipic.vip/y8729i.jpg)

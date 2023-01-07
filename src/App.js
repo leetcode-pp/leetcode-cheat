@@ -260,7 +260,7 @@ function App() {
               leetcode-cheatsheet
               作者，掌握各种算法套路，写了十几万字的算法刷题套路电子书，公众号回复
               <b>电子书</b>获取。
-              <Image src="https://p.ipic.vip/n8gbxo.jpg"></Image>
+              <Image src="https://p.ipic.vip/h9nm77.jpg"></Image>
             </div>
           </TabPane>
         </Tabs>
