@@ -1,5 +1,5 @@
 const leetCodePPLogo =
-  "https://tva1.sinaimg.cn/large/0081Kckwly1glmdoxibgdj303k03kt8z.jpg";
+  "https://p.ipic.vip/mdxmwn.jpg";
 
 const leetCodeLogo =
   "https://static.leetcode-cn.com/cn-mono-assets/production/main/assets/favicon-notification-32x32.3f045777.png";

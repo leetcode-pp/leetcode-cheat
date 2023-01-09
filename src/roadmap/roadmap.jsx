@@ -221,7 +221,7 @@ def count_bs(nums, k):
       {
         title: "单字符串型",
         pic:
-          "https://tva1.sinaimg.cn/large/0081Kckwly1glpjptuor0j31n00u0q8y.jpg",
+          "https://p.ipic.vip/575fs3.jpg",
         problems: [
           {
             link: "https://leetcode-cn.com/problems/re-space-lcci/",
@@ -252,7 +252,7 @@ def count_bs(nums, k):
       {
         title: "双字符串型",
         pic:
-          "https://tva1.sinaimg.cn/large/0081Kckwly1glpnd8ne27j31970u0gss.jpg",
+          "https://p.ipic.vip/f5uljj.jpg",
         problems: [
           {
             link: "https://lucifer.ren/blog/2020/07/01/LCS/",
@@ -290,7 +290,7 @@ def count_bs(nums, k):
       {
         title: "爬楼梯型",
         pic:
-          "https://tva1.sinaimg.cn/large/0081Kckwly1glpom6u30yj30u00v1n61.jpg",
+          "https://p.ipic.vip/gr1c58.jpg",
         problems: [
           {
             text: "70. 爬楼梯",
@@ -489,7 +489,7 @@ def count_bs(nums, k):
       {
         title: "区间 DP",
         // pic:
-        //   "https://tva1.sinaimg.cn/large/0081Kckwly1glpjptuor0j31n00u0q8y.jpg",
+        //   "https://p.ipic.vip/575fs3.jpg",
         problems: [
           {
             link:

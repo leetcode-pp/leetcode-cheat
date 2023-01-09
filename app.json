@@ -2,8 +2,14 @@
   "name": "LeetCode Cheatsheet",
   "description": "力扣加加，或许是西湖区最好的算法题解",
   "repository": "https://github.com/leetcode-pp/leetcode-cheat",
-  "logo": "https://tva1.sinaimg.cn/large/008eGmZEly1gnm68epc0kj30u00tsaav.jpg",
-  "keywords": ["github", "leetcode", "cheatsheet", "91algo", "algorithm"],
+  "logo": "https://p.ipic.vip/8mc9qy.jpg",
+  "keywords": [
+    "github",
+    "leetcode",
+    "cheatsheet",
+    "91algo",
+    "algorithm"
+  ],
   "env": {
     "REACT_APP_BUILD_TARGET": {
       "description": "枚举值：extension 和 web",
