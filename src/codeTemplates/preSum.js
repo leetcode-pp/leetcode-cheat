@@ -29,6 +29,40 @@ const pre2dPythonCode = `
   pre[x2+1][y2+1] + pre[x1][y1] - pre[x1][y2+1] - pre[x2+1][y1]
 `;
 
+const diff1dPythonCode = `
+        # 差分数组一般是对一个数组的若干区间进行若干次加减操作，求最终更新后的数组。
+        d = [0] * n # 差分数组
+        ans = [0] * n # 经过若干次操作后的最终数组
+        for start, end, inc in updates: # updates 就是一系列操作，start 是开始坐标，end 是结束坐标，inc 是增加的值（可为负数）。
+            d[start] += seats
+            if end+1 < n: d[end+1] -= inc
+        return list(accumulate(d))
+`;
+
+const diff2dPythonCode = `
+        matrix = [[0] * n for _ in range(n)] # 经过若干次操作后的最终数组
+        diff = [[0] * (n+1) for _ in range(n+1)] # 差分数组
+        for r1, c1, r2, c2, inc in updates: # updates r1,c1 是左上角坐标，r2, c2 是右下角坐标，inc 是增加的值（可为负数）。
+            diff[r1][c1] += inc
+            diff[r1][c2+1] -= inc
+            diff[r2+1][c1] -= inc
+            diff[r2+1][c2+1] += inc # 别忘记了，由于我们在两个地方对减去 1， 因此在右下角会多减去一个，加上去即可。
+        for i in range(n):
+            for j in range(n):
+                matrix[i][j] = diff[i][j]
+        
+        for i in range(1,n):
+            for j in range(n):
+                matrix[i][j] += matrix[i-1][j]
+        
+        for i in range(n):
+            for j in range(1,n):
+                matrix[i][j] += matrix[i][j-1]
+        
+        return matrix
+
+`;
+
 module.exports = {
   title: "前缀和",
   logo: require("../imgs/preSum.svg"),
@@ -64,6 +98,36 @@ module.exports = {
         {
           language: "py",
           text: pre2dPythonCode,
+        },
+      ],
+    },
+    {
+      text: "一维差分数组",
+      problems: [
+        {
+          title: "1109. 航班预订统计",
+          id: "corporate-flight-bookings",
+        },
+      ],
+      codes: [
+        {
+          language: "py",
+          text: diff1dPythonCode,
+        },
+      ],
+    },
+    {
+      text: "二维差分数组",
+      problems: [
+        {
+          title: "6292. 子矩阵元素加 1",
+          id: "increment-submatrices-by-one",
+        },
+      ],
+      codes: [
+        {
+          language: "py",
+          text: diff2dPythonCode,
         },
       ],
     },
