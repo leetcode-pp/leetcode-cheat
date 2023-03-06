@@ -110,6 +110,89 @@ export default {
       ],
     },
     {
+      text: "区间和懒更新（区间更新）线段树",
+      problems: [
+        {
+          id: "handling-sum-queries-after-update",
+          title: "2569. 更新数组后处理求和查询"
+        }
+      ],
+      codes: [
+        {
+          language: "py",
+          text: `
+  class LazySegmentTree:
+    def __init__(self, data):
+        '''
+        data:传入的数组
+        '''
+        self.data = data
+        self.n = len(data)
+        #  申请4倍data长度的空间来存线段树节点
+        self.tree = [0] * (4 * self.n) # 索引i的左孩子索引为2i+1，右孩子为2i+2
+        # 要点 1 开始
+        self.dirty = [True] * (4 * self.n) # 索引i的左孩子索引为2i+1，右孩子为2i+2
+        # 要点 1 结束
+        if self.n:
+            self.build(0, 0, self.n-1)
+
+    def build(self, tree_index, l, r):
+        if l == r:
+            self.tree[tree_index] = self.data[l]
+            return
+        left, right = 2 * tree_index + 1, 2 * tree_index + 2
+        mid = (l + r) // 2
+        self.build(left, l, mid)
+        self.build(right, mid+1, r)
+        self.tree[tree_index] = self.tree[left] + self.tree[right]
+
+    def updateSum(self, ql, qr):
+        self.update(0, 0, self.n-1, ql, qr)
+
+    def update(self, tree_index, l, r, ql, qr):
+        if l == ql and r == qr:
+            # 要点 2 开始
+            self.dirty[tree_index] = not self.dirty[tree_index]
+            self.tree[tree_index] = r - l + 1 - self.tree[tree_index]
+            # 要点 2 结束
+            return
+        left, right = 2 * tree_index + 1, 2 * tree_index + 2
+        mid = (l + r) // 2
+        # 要点 3 开始
+        if not self.dirty[tree_index]: # 如果有标记就处理
+            self.update(left, l, mid, l, mid)
+            self.update(right, mid+1, r, mid+1, r)
+            self.dirty[tree_index] = True # 重置回去
+        # 要点 3 结束
+        if qr <= mid: self.update(left, l, mid, ql, qr)
+        elif ql > mid: self.update(right, mid+1, r, ql, qr)
+        else:
+            self.update(left, l, mid, ql, mid)
+            self.update(right, mid+1, r, mid+1, qr)
+        self.tree[tree_index] = self.tree[left] + self.tree[right]
+
+    def querySum(self, ql, qr):
+        return self.query(0, 0, self.n-1, ql, qr)
+
+    def query(self, tree_index, l, r, ql, qr):
+        if l == ql and r == qr:
+            return self.tree[tree_index]
+        left, right = 2 * tree_index + 1, 2 * tree_index + 2
+        mid = (l + r) // 2
+        # 要点 3 开始
+        if not self.dirty[tree_index]: # 如果有标记就处理
+            self.update(left, l, mid, l, mid)
+            self.update(right, mid+1, r, mid+1, r)
+            self.dirty[tree_index] = True # 重置回去
+        # 要点 3 结束
+        if qr <= mid: return self.query(left, l, mid, ql, qr)
+        if ql > mid: return self.query(right, mid+1, r, ql, qr)
+        return self.query(left, l, mid, ql, mid) + self.query(right, mid+1, r, mid+1, qr)
+          `
+        }
+      ]
+    },
+    {
       text: "计数线段树",
       problems: [
         {
