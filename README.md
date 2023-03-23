@@ -1,5 +1,13 @@
 ## 刷题小助手
 
+[谷歌商店安装](https://chrome.google.com/webstore/detail/leetcode-cheatsheet/fniccleejlofifaakbgppmbbcdfjonle?hl=en-US)
+
+[Chrome Extension Store](https://chrome.google.com/webstore/detail/leetcode-cheatsheet/fniccleejlofifaakbgppmbbcdfjonle?hl=en-US)
+
+[下载最新 Chrome 扩展](./leetcode-cheat-0.10.5.zip)
+
+[Download latest Chrome Extension](./leetcode-cheat-0.10.5.zip)
+
 功能介绍：
 
 - [刷题效率低？或许你就差这么一个插件](https://lucifer.ren/blog/2020/08/16/leetcode-cheat/)
