@@ -3447,10 +3447,6 @@
         {
             "language": "cpp",
             "text": "\nclass Solution {\npublic:\n    bool isSameTree(TreeNode* p, TreeNode* q) {\n        return (!p && !q) || (p && q && p->val == q->val && isSameTree(p->left, q->left) && isSameTree(p->right, q->right));\n    }\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    bool isSameTree(TreeNode* p, TreeNode* q) {\n        return (!p && !q) || (p && q && p->val == q->val && isSameTree(p->left, q->left) && isSameTree(p->right, q->right));\n    }\n};\n"
         }
     ]
 },
@@ -12801,6 +12797,50 @@
         }
     ]
 },
+"number-of-ways-to-form-a-target-string-given-a-dictionary":{
+    "id": "1639",
+    "name": "number-of-ways-to-form-a-target-string-given-a-dictionary",
+    "pre": [
+        {
+            "text": "哈希表",
+            "link": null,
+            "color": "gold"
+        },
+        {
+            "text": "动态规划",
+            "link": null,
+            "color": "red"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "使用哈希表加速dp状态转移",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1639.number-of-ways-to-form-a-target-string-given-a-dictionary.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1639.number-of-ways-to-form-a-target-string-given-a-dictionary.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def numWays(self, words: List[str], target: str) -> int:\n        MOD = 10 ** 9 + 7\n        k = len(words[0])\n        cnt = [[0] * k for _ in range(26)]\n        for j in range(k):\n            for word in words:\n                cnt[ord(word[j]) - ord('a')][j] += 1\n        @cache\n        def dp(col, pos):\n            if len(target) - pos > len(words[0]) - col: return 0 # 剪枝\n            if pos == len(target): return 1\n            if col == len(words[0]): return 0\n            ans = dp(col+1, pos) # skip\n            for word in words: # pick one of the word[col]\n                if word[col] == target[pos]:\n                    ans += dp(col+1, pos+1)\n                    ans %= MOD\n            return ans % MOD\n        return dp(0, 0) % MOD\n"
+        },
+        {
+            "language": "py",
+            "text": "\nfor word in words: # pick one of the word[col]\n    if word[col] == target[pos]:\n        ans += dp(col+1, pos+1)\n        ans %= MOD\n"
+        },
+        {
+            "language": "py",
+            "text": "\ncnt = [[0] * k for _ in range(26)]\nfor j in range(k):\n    for word in words:\n        cnt[ord(word[j]) - ord('a')][j] += 1\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def numWays(self, words: List[str], target: str) -> int:\n        MOD = 10 ** 9 + 7\n        k = len(words[0])\n        cnt = [[0] * k for _ in range(26)]\n        for j in range(k):\n            for word in words:\n                cnt[ord(word[j]) - ord('a')][j] += 1\n        @cache\n        def dp(col, pos):\n            if len(target) - pos > len(words[0]) - col: return 0 # 剪枝\n            if pos == len(target): return 1\n            if col == len(words[0]): return 0\n            ans = dp(col+1, pos) # skip\n            ans += dp(col+1, pos+1) * cnt[ord(target[pos]) - ord('a')][col] # 根据上面的提示，我们可以这样优化\n            return ans % MOD\n        return dp(0, 0) % MOD\n\n"
+        }
+    ]
+},
 "create-sorted-array-through-instructions":{
     "id": "1649",
     "name": "create-sorted-array-through-instructions",
@@ -13726,6 +13766,110 @@
         }
     ]
 },
+"distribute-money-to-maximum-children":{
+    "id": "2591",
+    "name": "distribute-money-to-maximum-children",
+    "pre": [
+        {
+            "text": "动态规划",
+            "link": null,
+            "color": "red"
+        },
+        {
+            "text": "脑筋急转弯",
+            "link": null,
+            "color": "cyan"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "先每个人分配一块钱，保证题目约束”每个人“都需要分到。",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "贪心",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/2591.distribute-money-to-maximum-children.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/2591.distribute-money-to-maximum-children.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def distMoney(self, money: int, children: int) -> int:\n        # @cache\n        # def dp(money, children):\n        #     if children == 0:\n        #         if money == 0: return 0\n        #         return -inf\n        #     if money == 0: return -inf\n        #     ans = -inf\n        #     for i in range(1, money+1):\n        #         if i == 4: continue\n        #         ans = max(ans, int(i == 8) + dp(money - i, children - 1))\n        #     return ans\n        # ans = dp(money, children)\n        # if ans == -inf: return -1\n        # return ans\n        if money < children: return -1\n        dp = [[-inf] * (children+1) for _ in range(money+1)]\n        dp[0][0] = 0\n        for i in range(money+1):\n            for j in range(1, children+1):\n                for k in range(1, i+1):\n                    if k == 4: continue\n                    dp[i][j] = max(dp[i][j], int(k == 8) + dp[i - k][j - 1])\n        return -1 if dp[-1][-1] == -inf else dp[-1][-1]\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def distMoney(self, money: int, children: int) -> int:\n        money -= children  # 每人至少 1 美元\n        if money < 0: return -1\n        ans = min(money // 7, children)  # 初步分配，让尽量多的人分到 8 美元\n        money -= ans * 7\n        children -= ans\n        # children == 0 and money：必须找一个前面分了 8 美元的人，分配完剩余的钱\n        # children == 1 and money == 3：不能有人恰好分到 4 美元\n        if children == 0 and money or \\\n           children == 1 and money == 3:\n            ans -= 1\n        return ans\n\n"
+        }
+    ]
+},
+"maximize-greatness-of-an-array":{
+    "id": "2592",
+    "name": "maximize-greatness-of-an-array",
+    "pre": [
+        {
+            "text": "二分",
+            "link": null,
+            "color": "purple"
+        },
+        {
+            "text": "贪心",
+            "link": null,
+            "color": "purple"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "能力检测二分",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/2592.maximize-greatness-of-an-array.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/2592.maximize-greatness-of-an-array.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def maximizeGreatness(self, nums: List[int]) -> int:\n        A = sorted(nums)\n\n        l, r = 1, len(nums)\n        def can(mid):\n            for i in range(mid):\n                if A[i] >= A[len(nums) - mid + i]: return False\n            return True\n\n\n        while l <= r:\n            mid = (l + r) // 2\n            if can(mid):\n                l = mid + 1\n            else:\n                r = mid - 1\n        return r\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def maximizeGreatness(self, nums: List[int]) -> int:\n        nums.sort()\n        i = 0\n        for x in nums:\n            if x > nums[i]:\n                i += 1\n        return i\n\n"
+        }
+    ]
+},
+"find-score-of-an-array-after-marking-all-elements":{
+    "id": "2593",
+    "name": "find-score-of-an-array-after-marking-all-elements",
+    "pre": [
+        {
+            "text": "哈希表",
+            "link": null,
+            "color": "gold"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "哈希表记录每个元素的访问状态",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/2593.find-score-of-an-array-after-marking-all-elements.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/2593.find-score-of-an-array-after-marking-all-elements.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def findScore(self, nums: List[int]) -> int:\n        ans = 0\n        vis = [False] * (len(nums) + 2)  # 保证下标不越界\n        for i, x in sorted(enumerate(nums, 1), key=lambda p: p[1]):\n            if not vis[i]:\n                vis[i - 1] = True\n                vis[i + 1] = True  # 标记相邻的两个元素\n                ans += x\n        return ans\n\n"
+        }
+    ]
+},
 "selling-pieces-of-wood":{
     "id": "5254",
     "name": "selling-pieces-of-wood",
@@ -14323,12 +14467,33 @@
 "md":{
     "id": "Number-of-Substrings-with-Single-Character-Difference",
     "name": "md",
-    "pre": [],
-    "keyPoints": [],
+    "pre": [
+        {
+            "text": "动态规划",
+            "link": null,
+            "color": "red"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "建立前后缀dp数组，将问题转化为前后缀的笛卡尔积",
+            "link": null,
+            "color": "blue"
+        }
+    ],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/Number-of-Substrings-with-Single-Character-Difference.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/Number-of-Substrings-with-Single-Character-Difference.md",
-    "code": []
+    "code": [
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def solve(self, s, t):\n        ans = 0\n        for i in range(len(s)):\n            for j in range(len(t)):\n                mismatches = 0\n                for k in range(min(len(s) - i, len(t) - j)):\n                    mismatches += s[i + k] != t[j + k]\n                    if mismatches == 1:\n                        ans += 1\n                    elif mismatches > 1:\n                        break\n        return ans\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def solve(self, s, t):\n        m, n = len(s), len(t)\n        prefix = [[0] * (n + 1) for _ in range(m + 1)]\n        suffix = [[0] * (n + 1) for _ in range(m + 1)]\n\n        for i in range(1, m + 1):\n            for j in range(1, n + 1):\n                if s[i - 1] == t[j - 1]:\n                    prefix[i][j] = prefix[i - 1][j - 1] + 1\n\n        for i in range(m - 1, -1, -1):\n            for j in range(n - 1, -1, -1):\n                if s[i] == t[j]:\n                    suffix[i][j] = suffix[i + 1][j + 1] + 1\n\n        ans = 0\n        for i in range(1, m + 1):\n            for j in range(1, n + 1):\n                if s[i - 1] != t[j - 1]:\n                    ans += (prefix[i - 1][j - 1] + 1) * (suffix[i][j] + 1)\n        return ans\n\n"
+        }
+    ]
 },
 "md":{
     "id": "Sort-String-by-Flipping",
