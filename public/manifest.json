@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "leetcode cheatsheet",
   "description": "刷题小助手，made by 力扣加加",
-  "version": "0.10.5",
+  "version": "0.10.6",
   "browser_action": {
     "default_popup": "index.html",
     "default_title": "力扣加加"
