@@ -23,7 +23,7 @@
     "rome": "^10.0.4-beta"
   },
   "scripts": {
-    "release": "zip -r leetcode-cheat.zip build/ && git commit -am 'feat: release' && git push",
+    "release": "zip -r leetcode-cheat.zip build/* && git commit -am 'feat: release' && git push",
     "lint": "eslint src",
     "start": "react-app-rewired start",
     "build-web": "PUBLIC_URL=/leetcode-cheat react-app-rewired build",
