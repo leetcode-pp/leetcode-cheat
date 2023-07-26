@@ -2565,12 +2565,60 @@
 "sort-colors":{
     "id": "75",
     "name": "sort-colors",
-    "pre": [],
-    "keyPoints": [],
-    "companies": [],
+    "pre": [
+        {
+            "text": "荷兰国旗问题",
+            "link": "https://en.wikipedia.org/wiki/Dutch_national_flag_problem",
+            "color": "purple"
+        },
+        {
+            "text": "排序",
+            "link": null,
+            "color": "purple"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "荷兰国旗问题",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "countingsort",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/75.sort-colors.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/75.sort-colors.md",
-    "code": []
+    "code": [
+        {
+            "language": "cpp",
+            "text": "\nclass Solution {\npublic:\n    void sortColors(vector<int>& nums) {\n        int r = 0, g = 0, b = 0;\n        for (int n : nums) {\n            if (n == 0) {\n                nums[b++] = 2;\n                nums[g++] = 1;\n                nums[r++] = 0;\n            } else if (n == 1) {\n                nums[b++] = 2;\n                nums[g++] = 1;\n            } else nums[b++] = 2;\n        }\n    }\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def sortColors(self, strs):\n        # p0 是右边界\n        # p1 是右边界\n        # p2 是左边界\n        # p1 超过 p2 结束\n        p0, p1, p2 = 0, 0, len(strs) - 1\n\n        while p1 <= p2:\n            if strs[p1] == 'blue':\n                strs[p2], strs[p1] = strs[p1], strs[p2]\n                p2 -= 1\n            elif strs[p1] == 'red':\n                strs[p0], strs[p1] = strs[p1], strs[p0]\n                p0 += 1\n                p1 += 1 # p0 一定不是 blue，因此 p1 += 1\n            else: # p1 === 'green'\n                p1 += 1\n        return strs\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def partition(self, head: ListNode, x: int) -> ListNode:\n        l1 = cur = head\n        while cur:\n            if cur.val < x:\n                cur.val, l1.val = l1.val, cur.val\n                l1 = l1.next\n            cur = cur.next\n        return head\n"
+        }
+    ]
 },
 "subsets":{
     "id": "78",
@@ -4516,6 +4564,14 @@
         {
             "language": "cpp",
             "text": "\nclass Solution {\npublic:\n    bool wordBreak(string s, vector<string>& dict) {\n        unordered_set<string> st(begin(dict), end(dict));\n        int N = s.size();\n        vector<bool> dp(N + 1);\n        dp[0] = true;\n        for (int i = 1; i <= N; ++i) {\n            for (int j = 0; j < i && !dp[i]; ++j) {\n                dp[i] = dp[j] && st.count(s.substr(j, i - j));\n            }\n        }\n        return dp[N];\n    }\n};\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\n@cache\ndef dp(pos):\n    if pos == len(s): return True\n    for word in wordDict:\n        if s[pos:pos+len(word)] == word and dp(pos + len(word)): return True\n    return False\nreturn dp(0)\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def wordBreak(self, s: str, wordDict: List[str]) -> bool:\n        wordDict = set(wordDict)\n        @cache\n        def dp(pos):\n            if pos == len(s): return True\n            cur = ''\n            for nxt in range(pos, len(s)):\n                cur += s[nxt]\n                if cur in wordDict and dp(nxt + 1): return True\n            return False\n        return dp(0)\n"
         }
     ]
 },
@@ -5619,12 +5675,68 @@
 "remove-linked-list-elements":{
     "id": "203",
     "name": "remove-linked-list-elements",
-    "pre": [],
-    "keyPoints": [],
-    "companies": [],
+    "pre": [
+        {
+            "text": "链表",
+            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/basic-data-structure.md",
+            "color": "magenta"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "链表的基本操作（删除指定节点）",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "虚拟节点dummy简化操作>其实设置dummy节点就是为了处理特殊位置（头节点），这这道题就是如果头节点是给定的需要删除的节点呢？>为了保证代码逻辑的一致性，即不需要为头节点特殊定制逻辑，才采用的虚拟节点。",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "如果连续两个节点都是要删除的节点，这个情况容易被忽略。eg:```js//只有下个节点不是要删除的节点才更新currentif(!next||next.val!==val){current=next;}```",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/203.remove-linked-list-elements.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/203.remove-linked-list-elements.md",
-    "code": []
+    "code": [
+        {
+            "language": "java",
+            "text": "\nclass Solution {\n    public ListNode removeElements(ListNode head, int val) {\n        ListNode dummyHead = new ListNode(0);\n        dummyHead.next = head;\n        ListNode temp = dummyHead;\n        while (temp.next != null) {\n            if (temp.next.val == val) {\n                temp.next = temp.next.next;\n            } else {\n                temp = temp.next;\n            }\n        }\n        return dummyHead.next;\n    }\n}\n"
+        },
+        {
+            "language": "js",
+            "text": "\n// 只有下个节点不是要删除的节点才更新 current\nif (!next || next.val !== val) {\n  current = next;\n}\n"
+        },
+        {
+            "language": "js",
+            "text": "\n/**\n * @param {ListNode} head\n * @param {number} val\n * @return {ListNode}\n */\nvar removeElements = function (head, val) {\n  const dummy = {\n    next: head,\n  };\n  let current = dummy;\n\n  while (current && current.next) {\n    let next = current.next;\n    if (next.val === val) {\n      current.next = next.next;\n      next = next.next;\n    }\n\n    if (!next || next.val !== val) {\n      current = next;\n    }\n  }\n\n  return dummy.next;\n};\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\nclass Solution {\npublic:\n    ListNode* removeElements(ListNode* head, int val) {\n        struct ListNode* dummyHead = new ListNode(0, head);\n        struct ListNode* temp = dummyHead;\n        while (temp->next != NULL) {\n            if (temp->next->val == val) {\n                temp->next = temp->next->next;\n            } else {\n                temp = temp->next;\n            }\n        }\n        return dummyHead->next;\n    }\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\n# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.next = None\n\nclass Solution:\n    def removeElements(self, head: ListNode, val: int) -> ListNode:\n        prev = ListNode(0)\n        prev.next = head\n        cur = prev\n        while cur.next:\n            if cur.next.val == val:\n                cur.next = cur.next.next\n            else:\n                cur = cur.next\n        return prev.next\n"
+        }
+    ]
 },
 "reverse-linked-list":{
     "id": "206",
@@ -10618,12 +10730,34 @@
 "snakes-and-ladders":{
     "id": "909",
     "name": "snakes-and-ladders",
-    "pre": [],
-    "keyPoints": [],
+    "pre": [
+        {
+            "text": "广度优先遍历",
+            "link": null,
+            "color": "gold"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "根据矩阵编号如何算出其都在的行号和列号。这里其实用到了number=(row",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "1)\\*n+col这样的一个公式，后面的所有公式都是基于它产生的。",
+            "link": null,
+            "color": "blue"
+        }
+    ],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/909.snakes-and-ladders.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/909.snakes-and-ladders.md",
-    "code": []
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def snakesAndLadders(self, board: List[List[int]]) -> int:\n        q = collections.deque([(1, 0)])\n        n = len(board)\n        visited = set()\n\n        def get_pos(pos):\n            row = (n - 1) - (pos - 1) // n\n            col = (n - 1) - ((pos - 1) % n) if row & 1 == n & 1 else (pos - 1) % n\n            return row, col\n\n        while q:\n            for _ in range(len(q)):\n                cur, steps = q.popleft()\n                if cur in visited:\n                    continue\n                visited.add(cur)\n                if cur == n ** 2:\n                    return steps\n                for nxt in range(cur + 1, min(cur + 6, n * n) + 1):\n                    row, col = get_pos(nxt)\n                    if board[row][col] == -1:\n                        q.append((nxt, steps + 1))\n                    else:\n                        q.append((board[row][col], steps + 1))\n        return -1\n\n"
+        }
+    ]
 },
 "online-election":{
     "id": "911",
@@ -10722,6 +10856,38 @@
         {
             "language": "js",
             "text": "\nfunction swap(nums, a, b) {\n  const temp = nums[a];\n  nums[a] = nums[b];\n  nums[b] = temp;\n}\n\nfunction helper(nums, start, end) {\n  if (start >= end) return;\n  const pivotIndex = start + ((end - start) >>> 1);\n  const pivot = nums[pivotIndex];\n  let i = start;\n  let j = end;\n  while (i <= j) {\n    while (nums[i] < pivot) i++;\n    while (nums[j] > pivot) j--;\n    if (i <= j) {\n      swap(nums, i, j);\n      i++;\n      j--;\n    }\n  }\n  helper(nums, start, j);\n  helper(nums, i, end);\n}\n\n/**\n * @param {number[]} nums\n * @return {number[]}\n */\nvar sortArray = function (nums) {\n  helper(nums, 0, nums.length - 1);\n  return nums;\n};\n"
+        }
+    ]
+},
+"maximum-sum-circular-subarray":{
+    "id": "918",
+    "name": "maximum-sum-circular-subarray",
+    "pre": [
+        {
+            "text": "动态规划",
+            "link": null,
+            "color": "red"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "其中一种情况（两段子序和）：转化为sum(nums)",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "最小子序和",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/918.maximum-sum-circular-subarray.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/918.maximum-sum-circular-subarray.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    # 最小子序和\n    def solve1(self, A):\n        A = A\n        dp = [inf] * len(A)\n        for i in range(len(A)):\n            dp[i] = min(A[i], dp[i - 1] + A[i])\n        return min(dp)\n    # 最大子序和\n    def solve2(self, A):\n        A = A\n        dp = [-inf] * len(A)\n        for i in range(len(A)):\n            dp[i] = max(A[i], dp[i - 1] + A[i])\n        return max(dp)\n    def maxSubarraySumCircular(self, nums: List[int]) -> int:\n        ans1 = sum(nums) - self.solve1(nums)\n        ans2 = self.solve2(nums)\n        if ans1 == 0: ans1 = max(nums) # 不能为空，那就选一个最大的吧\n        return max(ans1, ans2)\n\n"
         }
     ]
 },
@@ -11457,6 +11623,31 @@
         {
             "language": "py",
             "text": "\n\nclass Solution:\n    def maxSumAfterPartitioning(self, nums: List[int], k: int) -> int:\n        n = len(nums)\n        dp = [0] * (n+1)\n\n        for i in range(1, n+1):\n            max_ele = 0\n            for j in range(i, min(n+1, i+k)):\n                max_ele = max(max_ele, nums[j-1])\n                # range: [i,j]\n                dp[j] = max(dp[j], (j-i+1) * max_ele + dp[i-1])\n        return max(dp)\n\n"
+        }
+    ]
+},
+"previous-permutation-with-one-swap":{
+    "id": "1053",
+    "name": "previous-permutation-with-one-swap",
+    "pre": [],
+    "keyPoints": [
+        {
+            "text": "需要i尽可能地大（尽可能的把低位变大，而不是高位），nums[j]尽可能大",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1053.previous-permutation-with-one-swap.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1053.previous-permutation-with-one-swap.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def prevPermOpt1(self, arr: List[int]) -> List[int]:\n        l = -1\n        for i in range(len(arr)-1, -1, -1):\n            if arr[i-1] > arr[i]:\n                l = i - 1\n                break\n        if l == -1: return arr\n        ans = 0\n        r = -1\n        for i in range(l+1, len(arr)):\n            if arr[i] < arr[l] and arr[i] > ans:\n                ans = arr[i]\n                r = i\n        if r == -1:\n            return arr\n        arr[l], arr[r] = arr[r], arr[l]\n        return arr\n        \n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def prevPermOpt1(self, arr: List[int]) -> List[int]:\n        l = -1\n        for i in range(len(arr)-1, -1, -1):\n            if arr[i-1] > arr[i]:\n                l = i - 1\n                break\n        if l == -1: return arr\n        for i in range(len(arr)-1, l, -1):\n            if arr[i] < arr[l] and arr[i] != arr[i-1]:\n                r = i\n                break\n        if r == -1:\n            return arr\n        arr[l], arr[r] = arr[r], arr[l]\n        return arr\n        \n            \n\n"
         }
     ]
 },
@@ -12794,6 +12985,47 @@
         {
             "language": "py",
             "text": "\nclass Solution:\n    def minimumEffortPath(self, heights: List[List[int]]) -> int:\n        lo, hi = 0, 10**6 - 1\n        m, n = len(heights), len(heights[0])\n        def dfs(i, j, pre, target):\n            if (i, j) in visited: return False\n            if i < 0 or i >= m or j < 0 or j >= n or abs(heights[i][j] - pre) > target: return False\n            if i == m - 1 and j == n - 1: return True\n            visited.add((i, j))\n            return dfs(i + 1, j, heights[i][j], target) or dfs(i - 1, j, heights[i][j], target) or dfs(i, j + 1, heights[i][j], target) or dfs(i, j - 1, heights[i][j], target)\n        # 查找最右侧满足条件的值\n        while lo <= hi:\n            visited = set()\n            mid = (lo + hi) >> 1\n            if dfs(0, 0, heights[0][0], mid): hi = mid - 1\n            else: lo = mid + 1\n        return lo\n\n"
+        }
+    ]
+},
+"count-substrings-that-differ-by-one-character":{
+    "id": "1638",
+    "name": "count-substrings-that-differ-by-one-character",
+    "pre": [
+        {
+            "text": "枚举",
+            "link": null,
+            "color": "magenta"
+        },
+        {
+            "text": "递推",
+            "link": null,
+            "color": "volcano"
+        },
+        {
+            "text": "动态规划",
+            "link": null,
+            "color": "red"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "枚举s和t的起点i和j，接下来枚举子串长度k",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/1638.count-substrings-that-differ-by-one-character.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/1638.count-substrings-that-differ-by-one-character.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\n# 方法 1\nclass Solution:\n    def countSubstrings(self, s: str, t: str) -> int:\n        m, n = len(s), len(t)\n        ans = 0\n        for i in range(m):\n            for j in range(n):\n                diff = 0\n                k = 0\n                while i + k < m and j + k < n:\n                    diff += int(s[i + k] != t[j + k])\n                    if diff > 1:\n                        break\n                    if diff == 1:\n                        ans += 1\n                    k += 1\n        return ans\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\n# 方法 2\nclass Solution:\n    def countSubstrings(self, s: str, t: str) -> int:\n        L = [[0] * (len(t)+1) for _ in range(len(s)+1)] # L[i][j] 表示 s[i] != s[j] 情况下可以向左扩展的最大长度\n        R = [[0] * (len(t)+1) for _ in range(len(s)+1)] # R[i][j] 表示 s[i] != s[j] 情况下可以向右扩展的最大长度\n        ans = 0\n        for i in range(1,len(s)+1):\n            for j in range(1,len(t)+1):\n                if s[i-1] != t[j-1]:\n                    L[i][j] = 0\n                else:\n                    L[i][j] = L[i-1][j-1] + 1\n        for i in range(len(s)-1,-1,-1):\n            for j in range(len(t)-1,-1,-1):\n                if s[i] != t[j]:\n                    R[i][j] = 0\n                else:\n                    R[i][j] = R[i+1][j+1] + 1\n        # 枚举不同的那个字符，这样就只需向左向右匹配即可\n        for i in range(len(s)):\n            for j in range(len(t)):\n                # L 前面有哨兵，因此 L[i][j] 相当于没有哨兵的 L[i-1][j-1]\n                if s[i] != t[j]: ans += (L[i][j] + 1) * (R[i+1][j+1] + 1)\n        return ans\n\n"
         }
     ]
 },
