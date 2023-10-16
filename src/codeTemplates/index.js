@@ -10,6 +10,7 @@ import preSum from "./preSum";
 import handWriting from "./hand-writing";
 import rotate from "./rotate";
 import grapth from "./grapth";
+import prime from './prime'
 export default [
   preSum,
   grapth,
@@ -23,4 +24,5 @@ export default [
   segmemntTree,
   handWriting,
   rotate,
+  prime
 ];
