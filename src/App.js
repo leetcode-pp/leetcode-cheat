@@ -22,7 +22,7 @@ import "./App.css";
 import CodeTemplates from "./codeTemplates/codeTemplate";
 import ComplexityRating from "./complexityRating/index";
 import SolutionTemplate from "./solutionTemplate/index";
-import Locale, { initLang } from "./locales";
+import { t, initLang } from "./locales";
 // import { data as a } from "./db/binary-tree";
 
 const DataStrutureVis = isInExtension()
@@ -42,7 +42,7 @@ const chrome = window.chrome;
 
 const columns = [
   {
-    title: Locale.app.allSolutions.columns.title,
+    title: t("Locale.app.allSolutions.columns.title"),
     dataIndex: "name",
     width: "300",
     align: "center",
@@ -57,7 +57,7 @@ const columns = [
     ),
   },
   {
-    title: Locale.app.allSolutions.columns.tag,
+    title: t("Locale.app.allSolutions.columns.tag"),
     dataIndex: "pre",
     align: "center",
     render: (tags) => (
@@ -88,7 +88,9 @@ function App() {
     chrome.tabs &&
     // eslint-disable-next-line
     chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
+      console.log("[leetcode 插件打印]:chrome.tabs.query", tabs);
       const currentUrl = tabs[0].url;
+      initLang(currentUrl);
       const match = currentUrl.match(/problems\/(.+?)\//);
       const problemId = match && match[1];
       setProblemId(problemId);
@@ -122,9 +124,6 @@ function App() {
   // }, 1000);
   // console.log(a);
 
-  useEffect(() => {
-    initLang();
-  })
   return (
     <div className="container">
       <div
@@ -149,14 +148,14 @@ function App() {
             <div className="guide">
               {page !== "" ? (
                 <Button type="link" onClick={() => setPage("")}>
-                  {Locale.app.back}
+                  {t("Locale.app.back")}
                 </Button>
               ) : (
                 ""
               )}
               {hasSolution && page === "" ? (
                 <Button type="link" onClick={() => setPage("detail")}>
-                  {Locale.app.viewSolution}
+                  {t("Locale.app.viewSolution")}
                   <img
                     src={viewLogo}
                     alt="view-solution"
@@ -176,9 +175,7 @@ function App() {
                     target="_blank"
                     href={selected[problemId].url}
                   >
-                    {Locale.app.viewInHandpickCollection(
-                      selected[problemId].title
-                    )}
+                    {t("Locale.app.viewInHandpickCollection",selected[problemId].title)}
                     <img
                       alt="view-solutions"
                       src={collectionLogo}
@@ -188,7 +185,7 @@ function App() {
                   </Button>
                 ) : (
                   <Button type="link" onClick={() => setPage("allSolutions")}>
-                    {Locale.app.notCollected}
+                    {t("Locale.app.notCollected")}
                   </Button>
                 ))}
             </div>
@@ -196,9 +193,9 @@ function App() {
           </div>
 
           <div style={page === "allSolutions" ? {} : { display: "none" }}>
-            <Empty description={Locale.app.writingExplanation}>
+            <Empty description={t("Locale.app.writingExplanation")}>
               <div className="row" style={{ marginTop: "20px" }}>
-                {Locale.app.allCollected}
+                {t("Locale.app.allCollected")}
               </div>
               <Table
                 pagination={{ hideOnSinglePage: true }}
@@ -212,12 +209,12 @@ function App() {
       )}
       {page === "" && (
         <Tabs type="card" activeKey={tab} onChange={setTab}>
-          <TabPane key="code-template" tab={Locale.codeTemplateTab.name}>
+          <TabPane key="code-template" tab={t("Locale.codeTemplate.name")}>
             <CodeTemplates tempaltes={tempaltes}></CodeTemplates>
           </TabPane>
           <TabPane
             key="data-structure-vis"
-            tab={Locale.dataStructureVisualizationTab.name}
+            tab={t("Locale.dataStructureVisualization.name")}
           >
             {isInExtension() ? (
               <Button
@@ -225,7 +222,7 @@ function App() {
                 target="_blank"
                 href="https://leetcode-pp.github.io/leetcode-cheat/?tab=data-structure-vis"
               >
-                {Locale.app.goToTheWebsiteToUse}
+                {t("Locale.app.goToTheWebsiteToUse")}
               </Button>
             ) : (
               <Suspense fallback={<div>Loading...</div>}>
@@ -236,7 +233,7 @@ function App() {
           {!isInExtension() && (
             <TabPane
               key="solution-template"
-              tab={Locale.explanationTemplateTab.name}
+              tab={t("Locale.explanationTemplate.name")}
             >
               <SolutionTemplate></SolutionTemplate>
             </TabPane>
@@ -244,29 +241,29 @@ function App() {
 
           <TabPane
             key="complexityRating"
-            tab={Locale.complexityQuickCheckTab.name}
+            tab={t("Locale.complexityQuickCheck.name")}
           >
             <ComplexityRating />
           </TabPane>
-          <TabPane key="roadmap" tab={Locale.learningRouteTab.name}>
+          <TabPane key="roadmap" tab={t("Locale.learningRoute.name")}>
             <Roadmap />
           </TabPane>
           {isInExtension() && (
-            <TabPane key="checkUpdate" tab={Locale.checkForUpdatesTab.name}>
-              <div>{Locale.app.checkTips}</div>
+            <TabPane key="checkUpdate" tab={t("Locale.checkForUpdates.name")}>
+              <div>{t("Locale.app.checkTips")}</div>
               <Button
                 style={{ margin: "20px 0 0 20px" }}
                 type="primary"
                 onClick={checkUpdate}
               >
-                {Locale.app.checkBtn}
+                {t("Locale.app.checkBtn")}
               </Button>
             </TabPane>
           )}
 
-          <TabPane key="about" tab={Locale.aboutMeTab.name}>
+          <TabPane key="about" tab={t("Locale.aboutMe.name")}>
             <div>
-              <div>{Locale.app.selfIntroduction}</div>
+              <div>{t("Locale.app.selfIntroduction")}</div>
               <Image src="https://p.ipic.vip/h9nm77.jpg"></Image>
             </div>
           </TabPane>

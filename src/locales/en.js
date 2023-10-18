@@ -2,7 +2,7 @@ export const en = {
     app: {
       back: "Back to Home page",
       viewSolution: "View solution",
-      viewInHandpickCollection: (t) => `This question has been collected in the handpick collection《${t}》Click to view`,
+      viewInHandpickCollection:"This question has been collected in the handpick collection《{slotText}》Click to view",
       notCollected: "This question has not been collected by LeetCode Plus, click to view all collected questions",
       allCollected: "All collected questions",
       writingExplanation: "Writing explanation",
@@ -19,26 +19,26 @@ export const en = {
         },
       },
     },
-    codeTemplateTab: {
+    codeTemplate: {
       name: "Code Template",
     },
-    dataStructureVisualizationTab: {
+    dataStructureVisualization: {
       name: "Data Structure Visualization",
     },
   
-    explanationTemplateTab: {
+    explanationTemplate: {
       name: "Explanation Template",
     },
-    complexityQuickCheckTab: {
+    complexityQuickCheck: {
       name: "Complexity Quick Check",
     },
-    learningRouteTab: {
+    learningRoute: {
       name: "Learning Route",
     },
-    checkForUpdatesTab: {
+    checkForUpdates: {
       name: "Check for Updates",
     },
-    aboutMeTab: {
+    aboutMe: {
       name: "About Me",
     },
   };

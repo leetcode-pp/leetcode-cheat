@@ -2,7 +2,7 @@ export const cn = {
   app: {
     back: "返回主页",
     viewSolution: "查看本题题解",
-    viewInHandpickCollection: (t) => `该题已被收录到精选合集《${t}》点击查看`,
+    viewInHandpickCollection:"该题已被收录到精选合集《{slotText}》点击查看",
     notCollected: "本题暂未被力扣加加收录，点击查看所有已收录题目~",
     allCollected: "所有已收录的题目",
     writingExplanation: "正在撰写题解...",
@@ -19,26 +19,26 @@ export const cn = {
       },
     },
   },
-  codeTemplateTab: {
+  codeTemplate: {
     name: "代码模板",
   },
-  dataStructureVisualizationTab: {
+  dataStructureVisualization: {
     name: "数据结构可视化",
   },
 
-  explanationTemplateTab: {
+  explanationTemplate: {
     name: "题解模板",
   },
-  complexityQuickCheckTab: {
+  complexityQuickCheck: {
     name: "复杂度速查",
   },
-  learningRouteTab: {
+  learningRoute: {
     name: "学习路线",
   },
-  checkForUpdatesTab: {
+  checkForUpdates: {
     name: "检查更新",
   },
-  aboutMeTab: {
+  aboutMe: {
     name: "关于我",
   },
 };
