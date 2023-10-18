@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from "react";
+import React, { useState, Suspense, useEffect } from "react";
 import { Button, Table, Empty, Tabs, Image } from "antd";
 
 import "highlight.js/styles/github.css";
@@ -22,6 +22,7 @@ import "./App.css";
 import CodeTemplates from "./codeTemplates/codeTemplate";
 import ComplexityRating from "./complexityRating/index";
 import SolutionTemplate from "./solutionTemplate/index";
+import Locale, { initLang } from "./locales";
 // import { data as a } from "./db/binary-tree";
 
 const DataStrutureVis = isInExtension()
@@ -41,7 +42,7 @@ const chrome = window.chrome;
 
 const columns = [
   {
-    title: "题目",
+    title: Locale.app.allSolutions.columns.title,
     dataIndex: "name",
     width: "300",
     align: "center",
@@ -56,7 +57,7 @@ const columns = [
     ),
   },
   {
-    title: "标签",
+    title: Locale.app.allSolutions.columns.tag,
     dataIndex: "pre",
     align: "center",
     render: (tags) => (
@@ -121,6 +122,9 @@ function App() {
   // }, 1000);
   // console.log(a);
 
+  useEffect(() => {
+    initLang();
+  })
   return (
     <div className="container">
       <div
@@ -145,14 +149,14 @@ function App() {
             <div className="guide">
               {page !== "" ? (
                 <Button type="link" onClick={() => setPage("")}>
-                  回到首页
+                  {Locale.app.back}
                 </Button>
               ) : (
                 ""
               )}
               {hasSolution && page === "" ? (
                 <Button type="link" onClick={() => setPage("detail")}>
-                  查看本题题解
+                  {Locale.app.viewSolution}
                   <img
                     src={viewLogo}
                     alt="view-solution"
@@ -172,8 +176,9 @@ function App() {
                     target="_blank"
                     href={selected[problemId].url}
                   >
-                    该题已被收录到精选合集《{selected[problemId].title}
-                    》点击查看
+                    {Locale.app.viewInHandpickCollection(
+                      selected[problemId].title
+                    )}
                     <img
                       alt="view-solutions"
                       src={collectionLogo}
@@ -183,7 +188,7 @@ function App() {
                   </Button>
                 ) : (
                   <Button type="link" onClick={() => setPage("allSolutions")}>
-                    本题暂未被力扣加加收录，点击查看所有已收录题目~
+                    {Locale.app.notCollected}
                   </Button>
                 ))}
             </div>
@@ -191,9 +196,9 @@ function App() {
           </div>
 
           <div style={page === "allSolutions" ? {} : { display: "none" }}>
-            <Empty description="正在撰写题解...">
+            <Empty description={Locale.app.writingExplanation}>
               <div className="row" style={{ marginTop: "20px" }}>
-                所有已收录的题目
+                {Locale.app.allCollected}
               </div>
               <Table
                 pagination={{ hideOnSinglePage: true }}
@@ -207,17 +212,20 @@ function App() {
       )}
       {page === "" && (
         <Tabs type="card" activeKey={tab} onChange={setTab}>
-          <TabPane key="code-template" tab="代码模板">
+          <TabPane key="code-template" tab={Locale.codeTemplateTab.name}>
             <CodeTemplates tempaltes={tempaltes}></CodeTemplates>
           </TabPane>
-          <TabPane key="data-structure-vis" tab="数据结构可视化">
+          <TabPane
+            key="data-structure-vis"
+            tab={Locale.dataStructureVisualizationTab.name}
+          >
             {isInExtension() ? (
               <Button
                 type="link"
                 target="_blank"
                 href="https://leetcode-pp.github.io/leetcode-cheat/?tab=data-structure-vis"
               >
-                去网站使用
+                {Locale.app.goToTheWebsiteToUse}
               </Button>
             ) : (
               <Suspense fallback={<div>Loading...</div>}>
@@ -226,40 +234,39 @@ function App() {
             )}
           </TabPane>
           {!isInExtension() && (
-            <TabPane key="solution-template" tab="题解模板">
+            <TabPane
+              key="solution-template"
+              tab={Locale.explanationTemplateTab.name}
+            >
               <SolutionTemplate></SolutionTemplate>
             </TabPane>
           )}
 
-          <TabPane key="complexityRating" tab="复杂度速查">
+          <TabPane
+            key="complexityRating"
+            tab={Locale.complexityQuickCheckTab.name}
+          >
             <ComplexityRating />
           </TabPane>
-          <TabPane key="roadmap" tab="学习路线">
+          <TabPane key="roadmap" tab={Locale.learningRouteTab.name}>
             <Roadmap />
           </TabPane>
           {isInExtension() && (
-            <TabPane key="checkUpdate" tab="检查更新">
-              <div>
-                一般只要你开启了自动更新，那么当插件更新之后
-                chrome会在五个小时以内自动更新。
-                如果你想第一时间更新，或者您禁用了自动更新，都可以在这里检测最新版。
-              </div>
+            <TabPane key="checkUpdate" tab={Locale.checkForUpdatesTab.name}>
+              <div>{Locale.app.checkTips}</div>
               <Button
                 style={{ margin: "20px 0 0 20px" }}
                 type="primary"
                 onClick={checkUpdate}
               >
-                检查更新
+                {Locale.app.checkBtn}
               </Button>
             </TabPane>
           )}
 
-          <TabPane key="about" tab="关于我">
+          <TabPane key="about" tab={Locale.aboutMeTab.name}>
             <div>
-              作者是一个 Github 40K star 的前端架构师，leetcode 刷题插件
-              leetcode-cheatsheet
-              作者，掌握各种算法套路，写了十几万字的算法刷题套路电子书，公众号回复
-              <b>电子书</b>获取。
+              <div>{Locale.app.selfIntroduction}</div>
               <Image src="https://p.ipic.vip/h9nm77.jpg"></Image>
             </div>
           </TabPane>
