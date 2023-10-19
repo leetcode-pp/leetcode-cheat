@@ -211,7 +211,7 @@ function getProviedTestCases(includeArray = true) {
 // }
 
 function goToVisDebug() {
-  const language = document.querySelector("#lang-select").innerText;
+  const language = getCodeLanguage();
   const supportedLanguages = ["Python3", "JavaScript", "C++"];
   const languageMap = {
     Python3: "3",
@@ -345,11 +345,24 @@ int main()
   );
 }
 
+function getCodeLanguage() {
+  const langMap = {
+    "cpp": "C++",
+    "python3": "Python3",
+    "java": "Java",
+    "c": "C",
+    "javascript": "JavaScript",
+  }
+  const l =window?.monaco?.editor?.getModels()[0]?.getLanguageId() ||
+    localStorage.getItem("global_lang")
+  
+  return langMap[l.toLowerCase()]
+
+}
 function insertButton() {
   const buttons = document.querySelectorAll("button");
   for (var i = 0; i < buttons.length; ++i) {
-    if (buttons[i].innerText.includes("执行代码")) {
-
+    if (buttons[i].innerText.includes("运行")) {
       // const container = document.createElement("div");
 
       // buttons[i].parentElement.prepend(container);
@@ -363,18 +376,18 @@ function insertButton() {
       // );
 
       // const writeSolutionButton = document.createElement("div");
-      const copyButton = buttons[i].cloneNode(true);
-      copyButton.innerText = "复制用例";
-      copyButton.style["margin-left"] = "10px";
-      copyButton.onclick = () => {
-        const cases = getProviedTestCases();
-        if (cases.filter(Boolean).length === 0) return bjwd();
-        copyToClipboard(cases.join("\n"));
-        message.success({
-          content: "复制成功~",
-        });
-      };
-      buttons[i].parentElement.prepend(copyButton);
+      // const copyButton = buttons[i].cloneNode(true);
+      // copyButton.innerText = "复制用例";
+      // copyButton.style["margin-left"] = "10px";
+      // copyButton.onclick = () => {
+      //   const cases = getProviedTestCases();
+      //   if (cases.filter(Boolean).length === 0) return bjwd();
+      //   copyToClipboard(cases.join("\n"));
+      //   message.success({
+      //     content: "复制成功~",
+      //   });
+      // };
+      // buttons[i].parentElement.prepend(copyButton);
       const writeSolutionButton = document.createElement("a");
       writeSolutionButton.innerText = "写题解";
       writeSolutionButton.style["margin-right"] = "20px";
@@ -383,29 +396,25 @@ function insertButton() {
       writeSolutionButton.onclick = () => {
         // d: "<a href="/problems/remove-max-number-of-edges-to-keep-graph-fully-traversable/">1579. 保证图可完全遍历</a>"
 
-        const ele = document.querySelector(`[data-cypress="QuestionTitle"]`);
+        const desc = document.querySelector(
+          "[data-track-load=\"description_content\"]"
+        ).innerHTML;
 
-        if (!ele) {
-          return message.warn({
-            content: "获取题目描述失败，请先切换到题目描述标签",
-          });
-        }
-        const d = ele.innerHTML;
-        const title = d.match(/(\d+.+)(?=<)/)[1];
-        const link = window.location.origin + d.match(/href="(.*?)"/)[1];
-        const language = document.querySelector("#lang-select").innerText;
-        // let code = document.querySelector(
-        //   ".monaco-scrollable-element,.editor-scrollable"
-        // ).innerText;
-        const code = window?.monaco?.editor?.getModels()[0]?.getValue();
-
-        const desc = document.querySelector("#question-detail-main-tabs")
-          ?.children[1]?.children[0]?.children[1]?.innerText;
         if (!desc) {
           return message.warn({
             content: "获取题目描述失败，请先切换到题目描述标签",
           });
         }
+        const title = document.title;
+        const link = window.location.href;
+        const language = getCodeLanguage();
+        // let code = document.querySelector(
+        //   ".monaco-scrollable-element,.editor-scrollable"
+        // ).innerText;
+        const code = window?.monaco?.editor?.getModels()[0]?.getValue();
+
+        // const desc = document.querySelector("#question-detail-main-tabs")?.children[1]?.children[0]?.children[1]?.innerText;
+
         const hide = message.loading("正在存储题目信息，请稍后~", 0);
         writeSolutionButton.setAttribute("disabled", true);
         // Dismiss manually and asynchronously
@@ -478,7 +487,7 @@ function insertButton() {
       buttons[i].parentElement.prepend(visDebugButton);
       inserted = true;
     } else if (buttons[i].innerText.includes("提交")) {
-      const click = buttons[i].onclick
+      const click = buttons[i].onclick;
       buttons[i].onclick = (...args) => {
         click.call(buttons[i], ...args);
 
@@ -518,12 +527,12 @@ const timerId = setInterval(() => {
     clearInterval(timerId);
     return console.error("初始化 chrome 插件 content script 失败");
   }
-  insertButton()
-  if (inserted && submitProxied) {
-    window.location.title = "";
-    // 可进入禅定模式
-    zenAble();
-  }
+  insertButton();
+  // if (inserted && submitProxied) {
+  //   window.location.title = "";
+  //   // 可进入禅定模式
+  //   zenAble();
+  // }
   retried++;
 }, 1000);
 
