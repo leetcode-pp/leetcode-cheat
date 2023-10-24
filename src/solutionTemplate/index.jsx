@@ -81,9 +81,7 @@ ${link}
 
 ## 题目描述
 
-\`\`\`
 ${desc}
-\`\`\`
 
 ## 前置知识
 
@@ -343,9 +341,9 @@ export default class SolutionTemplate extends PureComponent {
                   this.setLanguage(v);
                   this.setTemplate(
                     template
-                      .replace(new RegExp(`\`\`\`.+`, "mg"), `\`\`\`${v}`)
-                      .replace(
-                        new RegExp(`语言支持：.+`, "mg"),
+                    .replace(new RegExp(`\`\`\`.+`, "mg"), `\`\`\`${v}`)
+                    .replace(
+                      new RegExp(`语言支持：.+`, "mg"),
                         `语言支持：${displayLanguage(v)}`
                       )
                       .replace(
