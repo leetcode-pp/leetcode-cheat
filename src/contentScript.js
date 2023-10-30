@@ -340,7 +340,8 @@ int main()
   window.open(
     `https://pythontutor.com/visualize.html#code=${encodeURIComponent(
       code
-    )}&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=${languageMap[language]
+    )}&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=${
+      languageMap[language]
     }&rawInputLstJSON=%5B%5D&textReferences=false`
   );
 }
@@ -360,9 +361,19 @@ function getCodeLanguage() {
 
 }
 function insertButton() {
+  const customBtnStyle = {
+    "line-height": "1",
+    cursor: "pointer",
+    "vertical-align": "text-top",
+  };
   const buttons = document.querySelectorAll("button");
+
   for (var i = 0; i < buttons.length; ++i) {
     if (buttons[i].innerText.includes("运行")) {
+
+      // 停止观察器
+      // observer.disconnect();
+
       // const container = document.createElement("div");
 
       // buttons[i].parentElement.prepend(container);
@@ -390,8 +401,8 @@ function insertButton() {
       // buttons[i].parentElement.prepend(copyButton);
       const writeSolutionButton = document.createElement("a");
       writeSolutionButton.innerText = "写题解";
-      writeSolutionButton.style["margin-right"] = "20px";
-      writeSolutionButton.style["line-height"] = "32px";
+      Object.assign(writeSolutionButton.style, customBtnStyle);
+      writeSolutionButton.className = buttons[i].className;
 
       writeSolutionButton.onclick = () => {
         // d: "<a href="/problems/remove-max-number-of-edges-to-keep-graph-fully-traversable/">1579. 保证图可完全遍历</a>"
@@ -474,17 +485,17 @@ function insertButton() {
 
       // ReactDOM.render(<SolutionButton />, writeSolutionButton);
 
-      buttons[i].parentElement.prepend(writeSolutionButton);
+      buttons[i].parentElement.parentElement.prepend(writeSolutionButton);
       // ele.appendChild(writeSolutionButton);
 
       const visDebugButton = document.createElement("a");
       visDebugButton.innerText = "可视化调试";
-      visDebugButton.style["margin-right"] = "20px";
-      visDebugButton.style["line-height"] = "32px";
+      Object.assign(visDebugButton.style, customBtnStyle);
+      visDebugButton.className = buttons[i].className;
 
       visDebugButton.onclick = goToVisDebug;
 
-      buttons[i].parentElement.prepend(visDebugButton);
+      buttons[i].parentElement.parentElement.prepend(visDebugButton);
       inserted = true;
     } else if (buttons[i].innerText.includes("提交")) {
       const click = buttons[i].onclick;
@@ -500,18 +511,17 @@ function insertButton() {
           // 300 times means 30s
           if (tries > 300) return;
           tries++;
-        }, 100)
-      }
+        }, 100);
+      };
 
-
-      submitProxied = true
+      submitProxied = true;
     }
   }
   return false;
 }
 let inserted = false;
 let retried = 0;
-let submitProxied = false
+let submitProxied = false;
 const MAX_TRY = 10;
 
 // 去除智能提示
@@ -521,6 +531,7 @@ const MAX_TRY = 10;
 //   visibility: hidden !important;
 // }
 // `);
+
 const timerId = setInterval(() => {
   if (inserted && submitProxied) return clearInterval(timerId);
   if (retried > MAX_TRY) {
@@ -528,6 +539,7 @@ const timerId = setInterval(() => {
     return console.error("初始化 chrome 插件 content script 失败");
   }
   insertButton();
+
   // if (inserted && submitProxied) {
   //   window.location.title = "";
   //   // 可进入禅定模式
@@ -551,9 +563,6 @@ const timerId = setInterval(() => {
 // document.body.appendChild(app);
 
 // ReactDOM.render(<Main />, app);
-
-
-
 
 // history.pushState = (f => function pushState() {
 //   var ret = f.apply(this, arguments);
