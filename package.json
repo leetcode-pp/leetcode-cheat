@@ -49,6 +49,7 @@
     "axios": ">=0.21.1",
     "cheerio": "^1.0.0-rc.3",
     "iconv-lite": "^0.5.1",
+    "katex": "^0.16.9",
     "log4js": "^6.3.0",
     "mkdirp": "^1.0.4",
     "react-app-rewired": "^2.1.7"
