@@ -348,17 +348,17 @@ int main()
 
 function getCodeLanguage() {
   const langMap = {
-    cpp: "C++",
-    python3: "Python3",
-    java: "Java",
-    c: "C",
-    javascript: "JavaScript",
-  };
-  const l =
-    window?.monaco?.editor?.getModels()[0]?.getLanguageId() ||
-    localStorage.getItem("global_lang");
+    "cpp": "C++",
+    "python3": "Python3",
+    "java": "Java",
+    "c": "C",
+    "javascript": "JavaScript",
+  }
+  const l =window?.monaco?.editor?.getModels()[0]?.getLanguageId() ||
+    localStorage.getItem("global_lang")
+  
+  return langMap[l.toLowerCase()]
 
-  return langMap[l.toLowerCase()];
 }
 function insertButton() {
   const customBtnStyle = {
