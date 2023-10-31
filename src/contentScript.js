@@ -541,6 +541,7 @@ const timerId = setInterval(() => {
     clearInterval(timerId);
     return console.error(t("app.initializeContentScriptFailed"));
   }
+  if(document.title.includes("力扣加加")) return
   insertButton();
 
   // if (inserted && submitProxied) {
