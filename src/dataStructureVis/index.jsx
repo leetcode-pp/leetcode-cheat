@@ -33,7 +33,6 @@ import calm from "../db/dataStructureVis/calm";
 import "./index.css";
 
 const { Option } = Select;
-const { Panel } = Collapse;
 
 const InitialData = {
   elements: [],
@@ -201,7 +200,6 @@ export default function DataStrutureVis() {
   const [dataSource, setDataSource] = useState(initialDataSource);
   const [modalVisible, setModalVisible] = useState(false);
   const [fullScreenMode, setFullScreenMode] = useState(false);
-  const [offsetTop] = useState(550);
   const [customTypeName, setCustomTypeName] = useState("自定义");
 
   const onResize = () => {

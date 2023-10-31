@@ -3,7 +3,7 @@ import en from "./en";
 // import { getStorage, setStorage } from "../utils";
 // const STORAGE_LANG_KEY = "LEETCODE_CHEAT_LANG";
 const LEETCODE_URL_CN = "https://leetcode.cn";
-const LEETCODE_URL_EN = "https://leetcode.com";
+// const LEETCODE_URL_EN = "https://leetcode.com";
 const DEFAULT_LANG = "cn";
 
 let lang = DEFAULT_LANG;
@@ -44,7 +44,7 @@ export const t = (keypath, slotText) => {
   let content = getForPath(langData, keypath);
   if (slotText) {
     if (Array.isArray(slotText)) {
-      slotText.map((item, idx) => {
+      slotText.forEach((item, idx) => {
         content = content.replace(`{${idx}}`, item);
       })
     } else {

@@ -5,13 +5,12 @@
 // import { Menu, Dropdown, Button } from "antd";
 // import { DownOutlined, UserOutlined } from "@ant-design/icons";
 import {
-  copyToClipboard,
-  bjwd,
+  // bjwd,
   getStorage,
   setCloundStorage,
   // addStyle,
 } from "./utils";
-import zenAble from "./zen/zenMode";
+// import zenAble from "./zen/zenMode";
 import hideFailCases from "./submission/hideFailCases";
 
 // WTF!  ant message didn't go well with chrome extension?
@@ -84,115 +83,115 @@ const message = {
 // } else
 
 // testcase eg: `bottom = "BCD", allowed = ["BCG", "CDE", "GEA", "FFF"], c = [1,2,3], d = 2`
-function normalize(testCase, includeArray = true) {
-  testCase = testCase.trim().replace(/\n/g, "").replace("&nbsp;", "");
+// function normalize(testCase, includeArray = true) {
+//   testCase = testCase.trim().replace(/\n/g, "").replace("&nbsp;", "");
 
-  // 单一参数
-  // console.log(testCase);
-  if (!testCase.includes("=")) {
-    // 数组直接返回
-    // eslint-disable-next-line
-    if (testCase.includes("[") || testCase.includes('"')) {
-      return testCase;
-    } else {
-      // 输入: 3, 2, 0, 0
-      // 输入: 0.0625
+//   // 单一参数
+//   // console.log(testCase);
+//   if (!testCase.includes("=")) {
+//     // 数组直接返回
+//     // eslint-disable-next-line
+//     if (testCase.includes("[") || testCase.includes('"')) {
+//       return testCase;
+//     } else {
+//       // 输入: 3, 2, 0, 0
+//       // 输入: 0.0625
 
-      const parts = testCase.split(",");
-      if (parts.length === 0) return parts.join("");
-      return parts.join("\n");
-    }
-  }
-  let stack = [];
-  let i = 0;
-  while (i < testCase.length) {
-    while (i < testCase.length && testCase[i] !== "=") {
-      i += 1;
-    }
-    // skip =
-    i += 1;
+//       const parts = testCase.split(",");
+//       if (parts.length === 0) return parts.join("");
+//       return parts.join("\n");
+//     }
+//   }
+//   let stack = [];
+//   let i = 0;
+//   while (i < testCase.length) {
+//     while (i < testCase.length && testCase[i] !== "=") {
+//       i += 1;
+//     }
+//     // skip =
+//     i += 1;
 
-    while (i < testCase.length && testCase[i] !== "[" && testCase[i] !== ",") {
-      stack.push(testCase[i]);
-      i += 1;
-    }
-    if (testCase[i] === ",") {
-      // skip ,
-      i += 1;
-      stack.push("\n");
-    } else if (includeArray) {
-      // 解析为数组
-      // cnt 左括号[ 与 右括号] 个数的差值
-      let cnt = 0;
-      while (i < testCase.length) {
-        stack.push(testCase[i]);
-        cnt += testCase[i] === "[";
-        cnt -= testCase[i] === "]";
-        i += 1;
-        if (cnt === 0) {
-          if (i !== testCase.length) {
-            stack.push("\n");
-          }
+//     while (i < testCase.length && testCase[i] !== "[" && testCase[i] !== ",") {
+//       stack.push(testCase[i]);
+//       i += 1;
+//     }
+//     if (testCase[i] === ",") {
+//       // skip ,
+//       i += 1;
+//       stack.push("\n");
+//     } else if (includeArray) {
+//       // 解析为数组
+//       // cnt 左括号[ 与 右括号] 个数的差值
+//       let cnt = 0;
+//       while (i < testCase.length) {
+//         stack.push(testCase[i]);
+//         cnt += testCase[i] === "[";
+//         cnt -= testCase[i] === "]";
+//         i += 1;
+//         if (cnt === 0) {
+//           if (i !== testCase.length) {
+//             stack.push("\n");
+//           }
 
-          break;
-        }
-      }
-    } else {
-      while (i < testCase.length) {
-        stack.push(testCase[i]);
-        i += 1;
-      }
-    }
-  }
-  const ans = stack.join("");
-  if (includeArray && ans[ans.length - 1] !== testCase[testCase.length - 1]) {
-    return normalize(testCase, false);
-  }
-  return stack.join("");
-}
+//           break;
+//         }
+//       }
+//     } else {
+//       while (i < testCase.length) {
+//         stack.push(testCase[i]);
+//         i += 1;
+//       }
+//     }
+//   }
+//   const ans = stack.join("");
+//   if (includeArray && ans[ans.length - 1] !== testCase[testCase.length - 1]) {
+//     return normalize(testCase, false);
+//   }
+//   return stack.join("");
+// }
 
-function extractTestCase(text, prefix) {
-  const possiblePrefixs = [
-    "输出",
-    "返回",
-    "Output",
-    "output",
-    "Return",
-    "return",
-    "",
-  ];
-  for (let tag of possiblePrefixs) {
-    const testCase = text.match(new RegExp(`${prefix}(.*)${tag}`, "s"));
-    if (testCase && testCase.length > 1) {
-      return testCase;
-    }
-  }
-  return [];
-}
+// function extractTestCase(text, prefix) {
+//   const possiblePrefixs = [
+//     "输出",
+//     "返回",
+//     "Output",
+//     "output",
+//     "Return",
+//     "return",
+//     "",
+//   ];
+//   for (let tag of possiblePrefixs) {
+//     const testCase = text.match(new RegExp(`${prefix}(.*)${tag}`, "s"));
+//     if (testCase && testCase.length > 1) {
+//       return testCase;
+//     }
+//   }
+//   return [];
+// }
 
-function getProviedTestCases(includeArray = true) {
-  const possibleTags = ["pre", "p"];
-  const possiblePrefixs = ["输入：", "输入:", "Input:", "input:"];
-  const ans = [];
-  for (let tag of possibleTags) {
-    const pres = document.querySelectorAll(tag);
+// function getProviedTestCases(includeArray = true) {
+//   const possibleTags = ["pre", "p"];
+//   const possiblePrefixs = ["输入：", "输入:", "Input:", "input:"];
+//   const ans = [];
+//   for (let tag of possibleTags) {
+//     const pres = document.querySelectorAll(tag);
 
-    for (let prefix of possiblePrefixs) {
-      for (var i = 0; i < pres.length; ++i) {
-        if (pres[i].innerText.includes(prefix)) {
-          const testcase = extractTestCase(pres[i].innerText, prefix);
-          if (!testcase || testcase.length <= 1) {
-            bjwd();
-            return [];
-          }
-          ans.push(normalize(testcase[1], includeArray));
-        }
-      }
-      if (ans.length > 0) return ans;
-    }
-  }
-  return ans;
-}
+//     for (let prefix of possiblePrefixs) {
+//       for (var i = 0; i < pres.length; ++i) {
+//         if (pres[i].innerText.includes(prefix)) {
+//           const testcase = extractTestCase(pres[i].innerText, prefix);
+//           if (!testcase || testcase.length <= 1) {
+//             bjwd();
+//             return [];
+//           }
+//           ans.push(normalize(testcase[1], includeArray));
+//         }
+//       }
+//       if (ans.length > 0) return ans;
+//     }
+//   }
+//   return ans;
+// }
 // const menu = (
 //   <Menu onClick={() => handleTestCaseClick(false)}>
 //     <Menu.Item key="1" icon={<UserOutlined />}>
@@ -499,8 +498,9 @@ function insertButton() {
       inserted = true;
     } else if (buttons[i].innerText.includes("提交")) {
       const click = buttons[i].onclick;
+      const originalFn = buttons[i]
       buttons[i].onclick = (...args) => {
-        click.call(buttons[i], ...args);
+        click.call(originalFn, ...args);
 
         // try to hide failed test cases
         let tries = 0;

@@ -1,4 +1,4 @@
-import React, { useState, Suspense, useEffect } from "react";
+import React, { useState, Suspense } from "react";
 import { Button, Table, Empty, Tabs, Image } from "antd";
 
 import "highlight.js/styles/github.css";
