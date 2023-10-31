@@ -13,11 +13,10 @@ import {
 } from "./utils";
 import zenAble from "./zen/zenMode";
 import hideFailCases from "./submission/hideFailCases";
-import { t as tt, lang } from "./locales";
+import { t as tt } from "./locales";
 let documentLang = document.documentElement.lang;
 const t = (keypath, slotText) => tt(keypath, slotText, documentLang);
-// console.log("lang", lang);
-// lang = document.documentElement.lang
+
 // WTF!  ant message didn't go well with chrome extension?
 const message = {
   success({ content }) {
