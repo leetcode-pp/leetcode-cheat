@@ -1,20 +1,20 @@
-import cn from "./cn";
+import zh from "./zh";
 import en from "./en";
 // import { getStorage, setStorage } from "../utils";
 // const STORAGE_LANG_KEY = "LEETCODE_CHEAT_LANG";
 const LEETCODE_URL_CN = "https://leetcode.cn";
-// const LEETCODE_URL_EN = "https://leetcode.com";
-const DEFAULT_LANG = "cn";
+const LEETCODE_URL_EN = "https://leetcode.com";
+const DEFAULT_LANG = "zh";
 
-let lang = DEFAULT_LANG;
+export let lang = DEFAULT_LANG;
 
 const ALL_LANGS = {
-  cn,
+  zh,
   en,
 };
 
 export const ALL_LANG_OPTIONS = {
-  cn: "简体中文",
+  zh: "简体中文",
   en: "English",
 };
 
@@ -22,7 +22,7 @@ export const AllLangs = Object.keys(ALL_LANGS);
 
 export const initLang = async (currentUrl) => {
   const isCnHref = currentUrl.includes(LEETCODE_URL_CN);
-  setLang(isCnHref ? "cn" : "en");
+  setLang(isCnHref ? "zh" : "en");
 };
 
 export const setLang = (_lang) => {
@@ -38,9 +38,12 @@ const getForPath = (obj, path) => {
   return result;
 };
 
-export const t = (keypath, slotText) => {
-  const langData ={ Locale: ALL_LANGS[lang] }
+export const t = (keypath, slotText,l) => {
+  const langData ={ Locale: ALL_LANGS[l||lang] }
   if (!keypath) return "";
+  if (!keypath.includes("Locale")) { 
+    keypath = "Locale." + keypath
+  }
   let content = getForPath(langData, keypath);
   if (slotText) {
     if (Array.isArray(slotText)) {

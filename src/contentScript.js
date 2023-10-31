@@ -12,6 +12,9 @@ import {
 } from "./utils";
 // import zenAble from "./zen/zenMode";
 import hideFailCases from "./submission/hideFailCases";
+import { t as tt } from "./locales";
+let documentLang = document.documentElement.lang;
+const t = (keypath, slotText) => tt(keypath, slotText, documentLang);
 
 // WTF!  ant message didn't go well with chrome extension?
 const message = {
@@ -221,7 +224,7 @@ function goToVisDebug() {
   };
   const prefixMap = {
     Python3: `
-  # 如何你在调试链表题目，手动生成链表很麻烦，想快速生成链表可以注释如下方法，并使用如下方法，输入一个数组，返回一个链表
+  # ${t("app.linkedListCommnet")}
   # eg：head = ListNodes([4,2,1,3]).head
   # class ListNodes:
   #     def __init__(self, vals)->ListNode:
@@ -233,7 +236,7 @@ function goToVisDebug() {
   #         self.head = dummy.next
 `,
     JavaScript: `
-// 如何你在调试链表题目，手动生成链表很麻烦，想快速生成链表可以注释如下方法，并使用如下方法，输入一个数组，返回一个链表
+// ${t("app.linkedListCommnet")}
 // eg：head = ListNodes([4,2,1,3]).head
 //   function ListNodes(vals) {
 //       let cur = new ListNode()
@@ -309,18 +312,18 @@ using namespace std;
   };
   const suffixMap = {
     Python3: `
-# 替换下方的 xxx 为主函数名， yyy 为测试用例参数开启调试
+# ${t("app.visualDebugComment")}
 Solution().xxx(yyy)
 `,
     JavaScript: `
-// 替换下方的 xxx 为主函数名， yyy 为测试用例参数开启调试
+// ${t("app.visualDebugComment")}
 xxx(yyy)
 `,
     "C++": `
 int main()
 {
   Solution s;
-  // 替换下方的 xxx 为主函数名， yyy 为测试用例参数开启调试
+  // ${t("app.visualDebugComment")}
   s.xxx(yyy);
   return 0;
 }
@@ -330,7 +333,7 @@ int main()
   };
   if (!supportedLanguages.includes(language))
     return message.warn({
-      content: `当前仅支持 ${supportedLanguages.join(",")}`,
+      content: `${t("app.visualDebugSupport")} ${supportedLanguages.join(",")}`,
     });
   const code =
     (prefixMap[language] || "") +
@@ -347,17 +350,17 @@ int main()
 
 function getCodeLanguage() {
   const langMap = {
-    "cpp": "C++",
-    "python3": "Python3",
-    "java": "Java",
-    "c": "C",
-    "javascript": "JavaScript",
-  }
-  const l =window?.monaco?.editor?.getModels()[0]?.getLanguageId() ||
-    localStorage.getItem("global_lang")
-  
-  return langMap[l.toLowerCase()]
+    cpp: "C++",
+    python3: "Python3",
+    java: "Java",
+    c: "C",
+    javascript: "JavaScript",
+  };
+  const l =
+    window?.monaco?.editor?.getModels()[0]?.getLanguageId() ||
+    localStorage.getItem("global_lang");
 
+  return langMap[l.toLowerCase()];
 }
 function insertButton() {
   const customBtnStyle = {
@@ -368,10 +371,7 @@ function insertButton() {
   const buttons = document.querySelectorAll("button");
 
   for (var i = 0; i < buttons.length; ++i) {
-    if (buttons[i].innerText.includes("运行")) {
-
-      // 停止观察器
-      // observer.disconnect();
+    if (buttons[i].innerText.includes(t("Locale.app.run"))) {
 
       // const container = document.createElement("div");
 
@@ -399,7 +399,7 @@ function insertButton() {
       // };
       // buttons[i].parentElement.prepend(copyButton);
       const writeSolutionButton = document.createElement("a");
-      writeSolutionButton.innerText = "写题解";
+      writeSolutionButton.innerText = t("Locale.app.wirteSolution");
       Object.assign(writeSolutionButton.style, customBtnStyle);
       writeSolutionButton.className = buttons[i].className;
 
@@ -412,7 +412,7 @@ function insertButton() {
 
         if (!desc) {
           return message.warn({
-            content: "获取题目描述失败，请先切换到题目描述标签",
+            content: t("app.getProblemError"),
           });
         }
         const title = document.title;
@@ -425,7 +425,7 @@ function insertButton() {
 
         // const desc = document.querySelector("#question-detail-main-tabs")?.children[1]?.children[0]?.children[1]?.innerText;
 
-        const hide = message.loading("正在存储题目信息，请稍后~", 0);
+        const hide = message.loading(t("app.savingProblem"), 0);
         writeSolutionButton.setAttribute("disabled", true);
         // Dismiss manually and asynchronously
         setTimeout(() => {
@@ -465,8 +465,7 @@ function insertButton() {
                   );
                 } else {
                   message.warn({
-                    content:
-                      "使用 Github API 失败，已为您切换为普通模式，普通模式仅可自动带入题目名称，题目地址以及题解语言。",
+                    content: t("app.githubAPIError"),
                   });
                   setTimeout(() => {
                     window.open(
@@ -483,20 +482,24 @@ function insertButton() {
       };
 
       // ReactDOM.render(<SolutionButton />, writeSolutionButton);
-
-      buttons[i].parentElement.parentElement.prepend(writeSolutionButton);
       // ele.appendChild(writeSolutionButton);
 
       const visDebugButton = document.createElement("a");
-      visDebugButton.innerText = "可视化调试";
+      visDebugButton.innerText = t("Locale.app.visualizationDebug");
       Object.assign(visDebugButton.style, customBtnStyle);
       visDebugButton.className = buttons[i].className;
 
       visDebugButton.onclick = goToVisDebug;
+      if (documentLang === "en") {
+        buttons[i].parentElement.prepend(visDebugButton);
+        buttons[i].parentElement.prepend(writeSolutionButton);
+      } else {
+        buttons[i].parentElement.parentElement.prepend(writeSolutionButton);
 
-      buttons[i].parentElement.parentElement.prepend(visDebugButton);
+        buttons[i].parentElement.parentElement.prepend(visDebugButton);
+      }
       inserted = true;
-    } else if (buttons[i].innerText.includes("提交")) {
+    } else if (buttons[i].innerText.includes(t("app.submit"))) {
       const click = buttons[i].onclick;
       const originalFn = buttons[i]
       buttons[i].onclick = (...args) => {
@@ -536,7 +539,7 @@ const timerId = setInterval(() => {
   if (inserted && submitProxied) return clearInterval(timerId);
   if (retried > MAX_TRY) {
     clearInterval(timerId);
-    return console.error("初始化 chrome 插件 content script 失败");
+    return console.error(t("app.initializeContentScriptFailed"));
   }
   insertButton();
 
