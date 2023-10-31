@@ -4,6 +4,7 @@ import { Button, message, Collapse } from "antd";
 import CodeBlock from "./CodeBlock";
 
 import { copy } from "../utils";
+import { t } from "../locales";
 
 const { Panel } = Collapse;
 
@@ -22,11 +23,11 @@ export default function Codes({ codes, renderHeader }) {
                 onClick={(e) => {
                   e.stopPropagation();
                   copy(c.text, () => {
-                    message.success("复制成功～");
+                    message.success(t("Locale.app.copySuccess"));
                   });
                 }}
               >
-                复制
+                {t("Locale.app.copy")}
               </Button>
 
               {renderHeader && renderHeader()}

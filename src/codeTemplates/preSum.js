@@ -1,3 +1,5 @@
+// import { t } from "../locales";
+const { t } = require("../locales");
 const pre1dJSCode = `
   // 建立
   const pre = [0]
@@ -63,15 +65,15 @@ const diff2dPythonCode = `
 
 `;
 
-module.exports = {
-  title: "前缀和",
+module.exports = () => ({
+  title: t("Locale.codeTemplate.perSum.title"),
   logo: require("../imgs/preSum.svg"),
   list: [
     {
-      text: "一维前缀和",
+      text: t("Locale.codeTemplate.perSum.item1"),
       problems: [
         {
-          title: "1480. 一维数组的动态和",
+          title: t("Locale.problem.1480"),
           id: "running-sum-of-1d-array",
         },
       ],
@@ -87,10 +89,10 @@ module.exports = {
       ],
     },
     {
-      text: "二维前缀和",
+      text: t("Locale.codeTemplate.perSum.item2"),
       problems: [
         {
-          title: "1314. 矩阵区域和",
+          title: t("Locale.problem.1314"),
           id: "matrix-block-sum",
         },
       ],
@@ -102,10 +104,10 @@ module.exports = {
       ],
     },
     {
-      text: "一维差分数组",
+      text: t("Locale.codeTemplate.perSum.item3"),
       problems: [
         {
-          title: "1109. 航班预订统计",
+          title: t("Locale.problem.1109"),
           id: "corporate-flight-bookings",
         },
       ],
@@ -117,10 +119,10 @@ module.exports = {
       ],
     },
     {
-      text: "二维差分数组",
+      text: t("Locale.codeTemplate.perSum.item4"),
       problems: [
         {
-          title: "6292. 子矩阵元素加 1",
+          title: t("Locale.problem.2536"),
           id: "increment-submatrices-by-one",
         },
       ],
@@ -133,4 +135,4 @@ module.exports = {
     },
   ],
   link: "https://lucifer.ren/blog/2020/09/27/atMostK/",
-};
+});

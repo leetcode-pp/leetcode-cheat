@@ -10,8 +10,9 @@ import preSum from "./preSum";
 import handWriting from "./hand-writing";
 import rotate from "./rotate";
 import grapth from "./grapth";
-import prime from './prime'
-export default [
+import prime from "./prime";
+console.log(binarySearch,"123");
+const templates = [
   preSum,
   grapth,
   binarySearch,
@@ -24,5 +25,6 @@ export default [
   segmemntTree,
   handWriting,
   rotate,
-  prime
+  prime,
 ];
+export default templates;

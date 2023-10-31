@@ -1,5 +1,14 @@
 export const cn = {
+    
   app: {
+    setLang: "设置语言",
+    changeLang: "切换为英文",
+    copy: "复制",
+    copySuccess: "复制成功~",
+    article: "文章",
+    recommendedQuestions: "推荐题目：",
+    toWriteSilently: "去默写",
+    contribution:"纠错 or 贡献其他语言",
     back: "返回主页",
     viewSolution: "查看本题题解",
     viewInHandpickCollection: "该题已被收录到精选合集《{slotText}》点击查看",
@@ -33,8 +42,37 @@ export const cn = {
     githubAPIError:
       "使用 Github API 失败，已为您切换为普通模式，普通模式仅可自动带入题目名称，题目地址以及题解语言。",
   },
+  problem: {
+    "743": "743. 网络延迟时间",
+    "1109": "1109. 航班预订统计",
+    "1314": "1314. 矩阵区域和",
+    "1462":"1462. 课程表 IV",
+    "1480": "1480. 一维数组的动态和",
+    "1584":"1584. 连接所有点的最小费用",
+    "2536": "2536. 子矩阵元素加 1",
+  },
   codeTemplate: {
     name: "代码模板",
+    perSum: {
+      title: "前缀和",
+      tips: "建议先学会之后再用模板。 如果你还不会的话，可以看看这篇",
+      item1: "一维前缀和",
+      item2: "二维前缀和",
+      item3: "一维差分数组",
+      item4: "二维差分数组",
+    },
+    graph: {
+      title: "图",
+      item1: "dijkstra(单源贪心最短路径)",
+      item2: "floyd_warshall(多源动态规划最短路径)",
+      item3: "Bellman–Ford（单源动态规划最短路径）",
+      item4: "Kruskal（又称加边法，是一种最小生成树算法）",
+      item5: "Prim（又称加点法，是一种最小生成树算法）",
+      item6: "Kahn（基于BFS的拓扑排序）",
+      
+    },
+
+    moreTemplate:"更多模板后续陆续更新~"
   },
   dataStructureVisualization: {
     name: "数据结构可视化",

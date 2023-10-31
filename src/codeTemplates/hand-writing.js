@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = () => ({
   logo: require("../imgs/hand-writing.svg"),
   title: "手撕算法",
   list: [
@@ -296,4 +296,4 @@ class Solution:
     },
   ],
   //   link: "",
-};
+});

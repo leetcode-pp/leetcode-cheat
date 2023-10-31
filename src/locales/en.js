@@ -1,5 +1,13 @@
 export const en = {
   app: {
+    setLang: "Set Language",
+    changeLang: "Switch to Chinese",
+    copy: "copy",
+    copySuccess: "Copy successfully~",
+    article: "article",
+    recommendedQuestions: "Recommended Questions:",
+    toWriteSilently: "To write silently",
+    contribution: "Correction or contribution to other languages",
     back: "Back to Home page",
     viewSolution: "View solution",
     viewInHandpickCollection:
@@ -20,7 +28,8 @@ export const en = {
         tag: "Tag",
       },
     },
-    initializeContentScriptFailed:"Failed to initialize the chrome plugin content script",
+    initializeContentScriptFailed:
+      "Failed to initialize the chrome plugin content script",
     run: "Run",
     submit: "Submit",
     wirteSolution: "Write Solution",
@@ -35,8 +44,37 @@ export const en = {
     githubAPIError:
       "Failed to use Github API, has been switched to normal mode, normal mode can only automatically bring in the problem name, problem address and solution language.",
   },
+  problem: {
+    743: "743. Network Delay Time",
+    1109: "1109. Corporate Flight Bookings",
+    1314: "1314. Matrix Block Sum",
+    1462: "1462. Course Schedule IV",
+    1480: "1480. Running Sum of 1d Array",
+    1584: "1584. Min Cost to Connect All Points",
+    2536: "2536. Increment Submatrices by One",
+  },
   codeTemplate: {
     name: "Code Template",
+    perSum: {
+      title: "Prefix Sum",
+      tips: "It is recommended to learn it first and then use the template. If you don't know it yet, you can take a look at this article",
+      item1: "One-dimensional prefix sum",
+      item2: "Two-dimensional prefix sum",
+      item3: "One-dimensional difference array",
+      item4: "Two-dimensional difference array",
+    },
+    graph: {
+      title: "Graph",
+      item1: "dijkstra(single-source greedy shortest path)",
+      item2: "floyd_warshall(multi-source dynamic programming shortest path)",
+      item3: "Bellman–Ford(single-source dynamic programming shortest path)",
+      item4:
+        "Kruskal(also known as adding edge method, is a minimum spanning tree algorithm)",
+      item5:
+        "Prim(also known as adding point method, is a minimum spanning tree algorithm)",
+      item6: "Kahn(topological sorting based on BFS)",
+    },
+    moreTemplate: "More templates will be updated one after another~",
   },
   dataStructureVisualization: {
     name: "Data Structure Visualization",

@@ -1,6 +1,6 @@
 import bfsLogo from "../imgs/bfs.svg";
 
-export default {
+export default () => ({
   title: "BFS",
   logo: bfsLogo,
   list: [
@@ -82,4 +82,4 @@ export default {
     },
   ],
   link: "https://github.com/azl397985856/leetcode/blob/master/thinkings/tree.md",
-};
+});

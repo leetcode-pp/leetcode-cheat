@@ -235,7 +235,7 @@ public class MinHeap {
 
 
 `;
-module.exports = {
+module.exports = () => ({
   logo: require("../imgs/heap.svg"),
   title: "堆",
   list: [
@@ -264,4 +264,4 @@ module.exports = {
     },
   ],
   link: "https://leetcode-solution.cn/solutionDetail?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fazl397985856%2Fleetcode%2Fcontents%2Fthinkings%2Fheap.md&type=1",
-};
+});

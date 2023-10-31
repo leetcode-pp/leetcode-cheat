@@ -1,13 +1,14 @@
-module.exports = {
-  title: "图",
+const t = require("../locales").t;
+module.exports = () => ({
+  title: t("Locale.codeTemplate.graph.title"),
   logo: require("../imgs/grapth.svg"),
   list: [
     {
-      text: "dijkstra(单源贪心最短路径)",
+      text: t("Locale.codeTemplate.graph.item1"),
       problems: [
         {
           id: "network-delay-time",
-          title: "743. 网络延迟时间",
+          title: t("Locale.problem.743"),
         },
       ],
       codes: [
@@ -66,11 +67,11 @@ def dijkstra(graph, start, end):
       ],
     },
     {
-      text: "floyd_warshall(多源动态规划最短路径)",
+      text: t("Locale.codeTemplate.graph.item2"),
       problems: [
         {
           id: "course-schedule-iv",
-          title: "1462. 课程表 IV",
+          title: t("Locale.problem.1462"),
         },
       ],
       codes: [
@@ -104,7 +105,7 @@ def floyd_warshall(graph, n):
       ],
     },
     {
-      text: "Bellman–Ford（单源动态规划最短路径）",
+      text: t("Locale.codeTemplate.graph.item3"),
       problems: [
         {
           id: "https://binarysearch.com/problems/Best-Currency-Path",
@@ -135,11 +136,11 @@ def bell_man(edges, s):
       ],
     },
     {
-      text: "Kruskal（又称加边法，是一种最小生成树算法）",
+      text: t("Locale.codeTemplate.graph.item4"),
       problems: [
         {
           id: "min-cost-to-connect-all-points",
-          title: "1584. 连接所有点的最小费用",
+          title: t("Locale.problem.1584"),
         },
       ],
       codes: [
@@ -198,11 +199,11 @@ if __name__ == "__main__":  # pragma: no cover
       ],
     },
     {
-      text: "Prim（又称加点法，是一种最小生成树算法）",
+      text: t("Locale.codeTemplate.graph.item5"),
       problems: [
         {
           id: "min-cost-to-connect-all-points",
-          title: "1584. 连接所有点的最小费用",
+          title: t("Locale.problem.1584"),
         },
       ],
       codes: [
@@ -330,7 +331,7 @@ if __name__ == "__main__":  # pragma: no cover
       ],
     },
     {
-      text: "Kahn（基于BFS的拓扑排序）",
+      text: t("Locale.codeTemplate.graph.item6"),
       problems: [],
       codes: [
         {
@@ -378,4 +379,4 @@ topologicalSort(graph)
     },
   ],
   link: "",
-};
+});
