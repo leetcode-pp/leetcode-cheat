@@ -2565,12 +2565,60 @@
 "sort-colors":{
     "id": "75",
     "name": "sort-colors",
-    "pre": [],
-    "keyPoints": [],
-    "companies": [],
+    "pre": [
+        {
+            "text": "荷兰国旗问题",
+            "link": "https://en.wikipedia.org/wiki/Dutch_national_flag_problem",
+            "color": "purple"
+        },
+        {
+            "text": "排序",
+            "link": null,
+            "color": "purple"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "荷兰国旗问题",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "countingsort",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/75.sort-colors.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/75.sort-colors.md",
-    "code": []
+    "code": [
+        {
+            "language": "cpp",
+            "text": "\nclass Solution {\npublic:\n    void sortColors(vector<int>& nums) {\n        int r = 0, g = 0, b = 0;\n        for (int n : nums) {\n            if (n == 0) {\n                nums[b++] = 2;\n                nums[g++] = 1;\n                nums[r++] = 0;\n            } else if (n == 1) {\n                nums[b++] = 2;\n                nums[g++] = 1;\n            } else nums[b++] = 2;\n        }\n    }\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def sortColors(self, strs):\n        # p0 是右边界\n        # p1 是右边界\n        # p2 是左边界\n        # p1 超过 p2 结束\n        p0, p1, p2 = 0, 0, len(strs) - 1\n\n        while p1 <= p2:\n            if strs[p1] == 'blue':\n                strs[p2], strs[p1] = strs[p1], strs[p2]\n                p2 -= 1\n            elif strs[p1] == 'red':\n                strs[p0], strs[p1] = strs[p1], strs[p0]\n                p0 += 1\n                p1 += 1 # p0 一定不是 blue，因此 p1 += 1\n            else: # p1 === 'green'\n                p1 += 1\n        return strs\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def partition(self, head: ListNode, x: int) -> ListNode:\n        l1 = cur = head\n        while cur:\n            if cur.val < x:\n                cur.val, l1.val = l1.val, cur.val\n                l1 = l1.next\n            cur = cur.next\n        return head\n"
+        }
+    ]
 },
 "subsets":{
     "id": "78",
@@ -13782,6 +13830,26 @@
             "text": "反向思考，题目要找最少操作数，其实就是找最多保留多少个数",
             "link": null,
             "color": "blue"
+        },
+        {
+            "text": "对于每一个num我们需要找到其作为左端点时，那么右端点就是v+on",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "1，于是我们在这个数组中找值在num和v+on",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "1的有多少个，这些都是可以保留的",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "排序+二分减少时间复杂度",
+            "link": null,
+            "color": "blue"
         }
     ],
     "companies": [],
@@ -13790,7 +13858,7 @@
     "code": [
         {
             "language": "py",
-            "text": "\n\nimport bisect\n\n\nclass Solution:\n    def minOperations(self, nums: List[int]) -> int:\n        ans = on = len(nums)\n        nums = list(set(nums))\n        nums.sort()\n        n = len(nums)\n        for i, v in enumerate(nums):\n            r = bisect.bisect_right(nums, v + on - 1)\n            l = bisect.bisect_left(nums, v - on + 1)\n            ans = min(ans, n - (r - i), n - (i - l + 1))\n        return ans + (on - n)\n\n"
+            "text": "\n\nimport bisect\n\n\nclass Solution:\n    def minOperations(self, nums: List[int]) -> int:\n        ans = on = len(nums)\n        nums = list(set(nums))\n        nums.sort()\n        n = len(nums)\n        for i, v in enumerate(nums):\n            # nums[i] 一定有一个是在端点的，如果都不在端点，变成在端点不会使得答案更差\n            r = bisect.bisect_right(nums, v + on - 1) # 枚举 i 作为左端点\n            l = bisect.bisect_left(nums, v - on + 1) # 枚举 i 作为右端点\n            ans = min(ans, n - (r - i), n - (i - l + 1))\n        return ans + (on - n)\n\n"
         }
     ]
 },
