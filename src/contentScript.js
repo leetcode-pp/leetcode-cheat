@@ -541,7 +541,10 @@ const timerId = setInterval(() => {
     clearInterval(timerId);
     return console.error(t("app.initializeContentScriptFailed"));
   }
-  if(document.title.includes("力扣加加")) return
+
+  // 防止 insertButton 在本插件应用中执行，会匹配到题目中包含 "Run" 的情况,例如：“1480. Running Sum of 1d Array”
+  if (document.title.includes("力扣加加")) return
+  
   insertButton();
 
   // if (inserted && submitProxied) {
