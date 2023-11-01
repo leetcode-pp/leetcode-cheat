@@ -7,7 +7,7 @@ export const cn = {
     copySuccess: "复制成功~",
     article: "文章",
     recommendedQuestions: "推荐题目：",
-    toWriteSilently: "去默写",
+    goForDictation: "去默写",
     contribution:"纠错 or 贡献其他语言",
     back: "返回主页",
     viewSolution: "查看本题题解",

@@ -6,7 +6,7 @@ export const en = {
     copySuccess: "Copy successfully~",
     article: "article",
     recommendedQuestions: "Recommended Questions:",
-    toWriteSilently: "To write silently",
+    goForDictation: "go for dictation",
     contribution: "Correction or contribution to other languages",
     back: "Back to Home page",
     viewSolution: "View solution",

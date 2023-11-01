@@ -74,7 +74,7 @@ export default function CodeTemplate({ templates }) {
                             size="small"
                             style={{ marginLeft: "10px" }}
                           >
-                            {t("Locale.app.toWriteSilently")}
+                            {t("Locale.app.goForDictation")}
                           </Button>
                         </li>
                       ))}
