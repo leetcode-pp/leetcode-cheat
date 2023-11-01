@@ -1,9 +1,16 @@
-import { getUrlParams, getForPath, } from "../utils";
+import { getUrlParams, getForPath } from "../utils";
 import { LEETCODE_CN_URL, LEETCODE_URL } from "../constant";
 import zh from "./zh";
 import en from "./en";
 
-const DEFAULT_LANG = "zh";
+const DEV_URL_LANG =
+  process.env.NODE_ENV === "development"
+    ? getUrlParams(window.location.href)?.lang
+    : undefined;
+
+// 支持在 url 中传入 lang 参数，否则本地开发刷新页面后会恢复为默认语言
+const DEFAULT_LANG = DEV_URL_LANG || "zh";
+
 let isInit = false;
 
 export let lang = DEFAULT_LANG;
@@ -24,12 +31,6 @@ export const setLang = (_lang) => {
 
 export const initLang = async (currentUrl) => {
   if (isInit) return;
-  // 开发环境，可以通过url参数来切换语言
-  if (process.env.NODE_ENV === "development") {
-    const urlLang = getUrlParams(window.location.href)?.lang;
-    urlLang && setLang(urlLang);
-    return;
-  }
 
   const isCnHref = currentUrl.includes(LEETCODE_CN_URL);
   setLang(isCnHref ? "zh" : "en");
