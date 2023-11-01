@@ -343,3 +343,31 @@ export const addStyle = (css) => {
   const head = document.getElementsByTagName("head")[0];
   head.appendChild(style);
 };
+
+/**
+ * 获取url参数
+ * @param {string} url
+ * @returns object
+ */
+export const getUrlParams = (url) => {
+  let urlStr = url.split("?")[1];
+  const urlSearchParams = new URLSearchParams(urlStr);
+  const result = Object.fromEntries(urlSearchParams.entries());
+  return result;
+};
+
+
+/**
+ * 获取对象指定路径的值
+ * @param {object} obj
+ * @param {string} path
+ * @returns any
+ */
+export const getForPath = (obj, path) => {
+  const pathArr = path.split(".");
+  let result = obj;
+  for (const key of pathArr) {
+    result = result[key];
+  }
+  return result;
+};

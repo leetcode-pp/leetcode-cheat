@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = () => ({
   title: "矩阵旋转",
   logo: require("../imgs/rotate.svg"),
   list: [
@@ -41,4 +41,4 @@ def rotate(mat):
     },
   ],
   link: "",
-};
+});

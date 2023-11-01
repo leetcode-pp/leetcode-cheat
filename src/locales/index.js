@@ -1,52 +1,64 @@
-import cn from "./cn";
+import { getUrlParams, getForPath } from "../utils";
+import { LEETCODE_CN_URL, LEETCODE_URL } from "../constant";
+import zh from "./zh";
 import en from "./en";
-// import { getStorage, setStorage } from "../utils";
-// const STORAGE_LANG_KEY = "LEETCODE_CHEAT_LANG";
-const LEETCODE_URL_CN = "https://leetcode.cn";
-// const LEETCODE_URL_EN = "https://leetcode.com";
-const DEFAULT_LANG = "cn";
 
-let lang = DEFAULT_LANG;
+const DEV_URL_LANG =
+  process.env.NODE_ENV === "development"
+    ? getUrlParams(window.location.href)?.lang
+    : undefined;
+
+// 支持在 url 中传入 lang 参数，否则本地开发刷新页面后会恢复为默认语言
+const DEFAULT_LANG = DEV_URL_LANG || "zh";
+
+let isInit = false;
+
+export let lang = DEFAULT_LANG;
 
 const ALL_LANGS = {
-  cn,
+  zh,
   en,
 };
 
-export const ALL_LANG_OPTIONS = {
-  cn: "简体中文",
-  en: "English",
-};
-
-export const AllLangs = Object.keys(ALL_LANGS);
-
-export const initLang = async (currentUrl) => {
-  const isCnHref = currentUrl.includes(LEETCODE_URL_CN);
-  setLang(isCnHref ? "cn" : "en");
-};
+// export const ALL_LANG_OPTIONS = {
+//   zh: "简体中文",
+//   en: "English",
+// };
 
 export const setLang = (_lang) => {
   lang = _lang || DEFAULT_LANG;
 };
 
-const getForPath = (obj, path) => {
-  const pathArr = path.split(".");
-  let result = obj;
-  for (const key of pathArr) {
-    result = result[key];
-  }
-  return result;
+export const initLang = async (currentUrl) => {
+  if (isInit) return;
+
+  const isCnHref = currentUrl.includes(LEETCODE_CN_URL);
+  setLang(isCnHref ? "zh" : "en");
+  isInit = true;
 };
 
-export const t = (keypath, slotText) => {
-  const langData ={ Locale: ALL_LANGS[lang] }
+export const getLeetcodeUrlForLang = () => {
+  return lang === "zh" ? LEETCODE_CN_URL : LEETCODE_URL;
+};
+
+/**
+ * @param {string} keypath
+ * @param {string | string[]} slotText
+ * @param {string} l lang
+ * @returns {string}
+ */
+export const t = (keypath, slotText, l) => {
+  const langData = { Locale: ALL_LANGS[l || lang] };
   if (!keypath) return "";
+  if (!keypath.includes("Locale")) {
+    keypath = "Locale." + keypath;
+  }
   let content = getForPath(langData, keypath);
   if (slotText) {
     if (Array.isArray(slotText)) {
       slotText.forEach((item, idx) => {
         content = content.replace(`{${idx}}`, item);
-      })
+      });
     } else {
       content = content.replace("{slotText}", slotText);
     }

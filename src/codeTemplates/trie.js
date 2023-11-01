@@ -215,7 +215,7 @@ class Trie {
   }
 }
 `;
-export default {
+export default () => ({
   title: "前缀树",
   logo: treeLogo,
   list: [
@@ -345,6 +345,5 @@ class Trie:
       ],
     },
   ],
-  link:
-    "https://github.com/azl397985856/leetcode/blob/master/thinkings/trie.md",
-};
+  link: "https://github.com/azl397985856/leetcode/blob/master/thinkings/trie.md",
+});

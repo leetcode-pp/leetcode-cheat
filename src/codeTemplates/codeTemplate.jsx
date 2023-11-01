@@ -1,11 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Collapse, Tabs } from "antd";
 import Codes from "../components/codes";
-
-import {
-  LEETCODE_CN_URL,
-  CONTRIBUTE_PROGRAMMING_LANGUAGE_URL,
-} from "../constant/index";
+import { t, getLeetcodeUrlForLang } from "../locales";
+import { CONTRIBUTE_PROGRAMMING_LANGUAGE_URL } from "../constant/index";
 
 const { TabPane } = Tabs;
 const { Panel } = Collapse;
@@ -13,14 +10,26 @@ const { Panel } = Collapse;
 function computedURL(problem) {
   if (problem.id.startsWith("http://") || problem.id.startsWith("https://"))
     return problem.id;
-  return `${LEETCODE_CN_URL}/problems/${problem.id}`;
+
+  return `${getLeetcodeUrlForLang()}/problems/${problem.id}`;
 }
 
-export default function CodeTemplate({ tempaltes }) {
+export default function CodeTemplate({ templates }) {
+  const [tab, setTab] = useState("");
+  const [tempaltesState, setTempaltesState] = useState([]);
+
+  useEffect(() => {
+    setTempaltesState(templates.map((c) => c?.call()));
+  }, [templates]);
+
+  useEffect(() => {
+    tempaltesState[0] && setTab(tempaltesState[0].title);
+  }, [tempaltesState]);
+
   return (
     <div>
-      <Tabs>
-        {tempaltes.map((tempalte) => (
+      <Tabs activeKey={tab}>
+        {tempaltesState.map((tempalte) => (
           <TabPane
             tab={
               <div>
@@ -41,18 +50,18 @@ export default function CodeTemplate({ tempaltes }) {
           >
             {tempalte.link && (
               <div>
-                建议先学会之后再用模板。 如果你还不会的话，可以看看这篇
+                {t("Locale.codeTemplate.perSum.tips")}
                 <Button type="link" href={tempalte.link} target="_blank">
-                  文章
+                  {t("Locale.app.article")}
                 </Button>
-                哦~
+                ~
               </div>
             )}
             {tempalte.list.map(({ text, problems, codes }) => (
               <Collapse key={text}>
                 <Panel header={<span>{text}</span>} key={text}>
                   <div style={problems.length > 0 ? {} : { display: "none" }}>
-                    推荐题目：
+                    {t("Locale.app.recommendedQuestions")}
                     <ul>
                       {problems.map((problem) => (
                         <li key={problem.title}>
@@ -65,7 +74,7 @@ export default function CodeTemplate({ tempaltes }) {
                             size="small"
                             style={{ marginLeft: "10px" }}
                           >
-                            去默写
+                            {t("Locale.app.toWriteSilently")}
                           </Button>
                         </li>
                       ))}
@@ -76,7 +85,7 @@ export default function CodeTemplate({ tempaltes }) {
                     type="link"
                     href={CONTRIBUTE_PROGRAMMING_LANGUAGE_URL}
                   >
-                    纠错 or 贡献其他语言
+                    {t("Locale.app.contribution")}
                   </Button>
                 </Panel>
               </Collapse>
@@ -84,7 +93,11 @@ export default function CodeTemplate({ tempaltes }) {
           </TabPane>
         ))}
 
-        <TabPane tab="更多模板后续陆续更新" key="more" disabled></TabPane>
+        <TabPane
+          tab={t("Locale.codeTemplate.moreTemplate")}
+          key="more"
+          disabled
+        ></TabPane>
       </Tabs>
     </div>
   );

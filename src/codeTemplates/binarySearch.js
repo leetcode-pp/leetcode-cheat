@@ -1,8 +1,6 @@
-import halfLogo from "../imgs/half.svg";
-
-export default {
+module.exports = () => ({
   title: "二分法",
-  logo: halfLogo,
+  logo: require("../imgs/half.svg"),
   list: [
     {
       text: "查找一个数",
@@ -402,6 +400,5 @@ function searchInsertRight(nums, x) {
       ],
     },
   ],
-  link:
-    "https://github.com/azl397985856/leetcode/blob/master/91/binary-search.md",
-};
+  link: "https://github.com/azl397985856/leetcode/blob/master/91/binary-search.md",
+});

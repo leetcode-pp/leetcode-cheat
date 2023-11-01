@@ -1,4 +1,4 @@
-export default {
+export default () => ({
   title: "后缀树组",
   logo: "",
   list: [
@@ -116,4 +116,4 @@ export default {
     },
   ],
   link: "",
-};
+});

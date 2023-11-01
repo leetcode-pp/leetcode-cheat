@@ -1,6 +1,6 @@
 import ufLogo from "../imgs/uf.svg";
 
-export default {
+export default () => ({
   title: "并查集",
   logo: ufLogo,
   list: [
@@ -94,6 +94,5 @@ class UF:
       ],
     },
   ],
-  link:
-    "https://github.com/azl397985856/leetcode/blob/master/thinkings/union-find.md",
-};
+  link: "https://github.com/azl397985856/leetcode/blob/master/thinkings/union-find.md",
+});

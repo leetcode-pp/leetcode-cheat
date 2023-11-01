@@ -85,7 +85,7 @@ class SegmentTree:
         self.tree[tree_index] = self.tree[left] + self.tree[right]
 `;
 
-export default {
+export default () => ({
   title: "线段树",
   logo: segmentLogo,
   link: "https://oi-wiki.org/ds/seg/",
@@ -114,8 +114,8 @@ export default {
       problems: [
         {
           id: "handling-sum-queries-after-update",
-          title: "2569. 更新数组后处理求和查询"
-        }
+          title: "2569. 更新数组后处理求和查询",
+        },
       ],
       codes: [
         {
@@ -188,9 +188,9 @@ export default {
               if qr <= mid: return self.query(left, l, mid, ql, qr)
               if ql > mid: return self.query(right, mid+1, r, ql, qr)
               return self.query(left, l, mid, ql, mid) + self.query(right, mid+1, r, mid+1, qr)
-          `
-        }
-      ]
+          `,
+        },
+      ],
     },
     {
       text: "计数线段树",
@@ -261,14 +261,17 @@ class SegmentTree:
       ],
     },
     {
-      text: '动态开点',
-      problems: [{
-        id: 'maximum-sum-queries',
-        title: '2736. 最大和查询'
-      }],
-      codes: [{
-        language: 'py',
-        text: `
+      text: "动态开点",
+      problems: [
+        {
+          id: "maximum-sum-queries",
+          title: "2736. 最大和查询",
+        },
+      ],
+      codes: [
+        {
+          language: "py",
+          text: `
 class Node:
     def __init__(self, l, r):
         self.left = None # 左孩子的指针
@@ -324,8 +327,9 @@ class SegmentTree:
 
     def querySum(self,left,right):
         return self.query(left,right,self.root)
-        `
-      }]
-    }
+        `,
+        },
+      ],
+    },
   ],
-};
+});

@@ -1,5 +1,5 @@
 import windowLogo from "../imgs/window.svg";
-export default {
+export default () => ({
   title: "滑动窗口",
   logo: windowLogo,
   list: [
@@ -87,6 +87,5 @@ export default {
       ],
     },
   ],
-  link:
-    "https://github.com/azl397985856/leetcode/blob/master/thinkings/slide-window.md",
-};
+  link: "https://github.com/azl397985856/leetcode/blob/master/thinkings/slide-window.md",
+});

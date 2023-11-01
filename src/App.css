@@ -35,7 +35,7 @@
   height: 30px;
 }
 .guide-wrapper {
-  display: flex;
+  display: inline-flex;
 }
 .ant-layout-sider {
   background: none;

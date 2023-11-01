@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = () => ({
   logo: require("../imgs/backtrack.svg"),
   title: "回溯",
   list: [
@@ -107,6 +107,5 @@ class Solution:
       ],
     },
   ],
-  link:
-    "https://github.com/azl397985856/leetcode/blob/master/thinkings/backtrack.md",
-};
+  link: "https://github.com/azl397985856/leetcode/blob/master/thinkings/backtrack.md",
+});
