@@ -1,4 +1,4 @@
-import React, { useState, Suspense, useEffect } from "react";
+import React, { useState, Suspense } from "react";
 import { Button, Table, Empty, Tabs, Image } from "antd";
 
 import "highlight.js/styles/github.css";
@@ -23,6 +23,7 @@ import CodeTemplates from "./codeTemplates/codeTemplate";
 import ComplexityRating from "./complexityRating/index";
 import SolutionTemplate from "./solutionTemplate/index";
 import { t, initLang, setLang, lang } from "./locales";
+
 // import { data as a } from "./db/binary-tree";
 
 const DataStrutureVis = isInExtension()
@@ -82,6 +83,7 @@ const columns = [
   },
 ];
 const initialTab = getUrlParameter("tab") || "code-template";
+const isDev = process.env.NODE_ENV === "development";
 function App() {
   // eslint-disable-next-line
   chrome &&
@@ -91,6 +93,7 @@ function App() {
       console.log("[leetcode 插件打印]:chrome.tabs.query", tabs);
       const currentUrl = tabs[0].url;
       initLang(currentUrl);
+      setLangReady(true);
       const match = currentUrl.match(/problems\/(.+?)\//);
       const problemId = match && match[1];
       setProblemId(problemId);
@@ -106,19 +109,14 @@ function App() {
   //   setHasSolution(!!problems[problemId]);
   // }, 1000);
 
-  const [langReady, setLangReady] = useState(false);
+  // 开发环境不需要依赖 chrome 插件 query 函数
+  const [langReady, setLangReady] = useState(isDev);
   const [problemId, setProblemId] = useState("");
 
   const [hasSolution, setHasSolution] = useState(false);
   const [inSelected, setInSelected] = useState(false); // 是否被精选题解（其实就是合集）收录
   const [page, setPage] = useState("");
   const [tab, setTab] = useState(initialTab);
-
-  useEffect(() => {
-    process.env.NODE_ENV === "development" && initLang();
-    setLangReady(true);
-  }, []);
-
 
   // const [inLeetCode, setInLeetCode] = useState(true);
 
@@ -156,6 +154,14 @@ function App() {
           <div>{/* <pre>{a}</pre> */}</div>
           <canvas width="1000" height="1000" id="canvas"></canvas>
         </div>
+        <Button
+          type="primary"
+          onClick={changeLang}
+          size="small"
+          style={{ marginBottom: "8px", padding: "0 4px" }}
+        >
+          {t("app.changeLang")}
+        </Button>
         {isInExtension() && (
           <>
             <div className="guide-wrapper">
@@ -283,11 +289,6 @@ function App() {
                 <div>{t("Locale.app.selfIntroduction")}</div>
                 <Image src="https://p.ipic.vip/h9nm77.jpg"></Image>
               </div>
-            </TabPane>
-            <TabPane key="changeLang" tab={t("app.setLang")} onClick={changeLang}>
-              <Button type="primary" onClick={changeLang}>
-              {t("app.changeLang")}
-              </Button>
             </TabPane>
           </Tabs>
         )}

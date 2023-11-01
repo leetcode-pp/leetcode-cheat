@@ -1,7 +1,7 @@
 export const en = {
   app: {
     setLang: "Set Language",
-    changeLang: "Switch to Chinese",
+    changeLang: "中文",
     copy: "copy",
     copySuccess: "Copy successfully~",
     article: "article",

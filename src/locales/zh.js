@@ -2,7 +2,7 @@ export const cn = {
     
   app: {
     setLang: "设置语言",
-    changeLang: "切换为英文",
+    changeLang: "English",
     copy: "复制",
     copySuccess: "复制成功~",
     article: "文章",
