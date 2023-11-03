@@ -180,18 +180,24 @@ export default function DataStrutureVis() {
         >
           <ol>
             <li>
+              {/* 暂不支持编辑功能。如果需要编辑，可通过先“使用”再“保存”，最后“删除”原有的数据，从而间接实现。 */}
               {t("Locale.dataStructureVisualization.explain1")}
             </li>
             <li>
-            {t("Locale.dataStructureVisualization.explain2")}
+              {/* 模板可以增量使用。点击”去使用“的下拉三角，并选择增量使用即可。 */}
 
+              {t("Locale.dataStructureVisualization.explain2")}
             </li>
             <li>
-            {t("Locale.dataStructureVisualization.explain3")}
-
+              {/* 使用的模板会根据你鼠标的位置生成。比如你的鼠标在点(100,
+              100)，那么模板会整体偏移 (100, 100)个单位
+              。如果此时模板并不是正好以(100,
+              100)为左上顶点，说明模板本身制作的时候就不是以(0,0)为左上顶点制作的。大家制作自定义模板的话需要注意这一点。 */}
+              {t("Locale.dataStructureVisualization.explain3")}
             </li>
             <li>
-            {t("Locale.dataStructureVisualization.explain4")}
+              {/* 你也可以选择直接使用原生 excalidraw  */}
+              {t("Locale.dataStructureVisualization.explain4")}
 
               <a href="https://excalidraw.com/">Website</a>
             </li>
