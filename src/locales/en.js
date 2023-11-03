@@ -1,8 +1,20 @@
 export const en = {
   app: {
+    name: "LeetCode Cheatsheet",
+    fullScreen: "Full Screen (Press ESC to exit)",
+    toUse: "To Use",
+    custom: "Custom",
+    presets: "Presets",
     setLang: "Set Language",
     changeLang: "中文",
     copy: "copy",
+    save: "save",
+    yes: "yes",
+    no: "no",
+    delete: "delete",
+    delTitle: "Are you sure you want to delete it?",
+    deleteSuccess: "Delete successfully~",
+    saveSuccess: "Save successfully~",
     copySuccess: "Copy successfully~",
     article: "article",
     recommendedQuestions: "Recommended Questions:",
@@ -78,6 +90,12 @@ export const en = {
   },
   dataStructureVisualization: {
     name: "Data Structure Visualization",
+    incrementalUsage: "Incremental Usage",
+    explain1:
+      "The editing function is not supported. If you need to edit, you can do so indirectly by first \"use\", then \"save\", and finally \"delete\" the original data.",
+    explain2: "Templates can be used incrementally. Click the drop-down triangle of 'to use' and select Incremental Usage.",
+    explain3: "The template will be generated according to the position of your mouse. For example, if your mouse is at point (100, 100), the template will be offset by (100, 100) units as a whole. If the template is not exactly at (100, 100), it means that the template itself was not created with (0, 0) as the top-left corner. When creating custom templates, it's important to keep this in mind.",
+    explain4: "You can also choose to use the native excalidraw directly ",
   },
 
   explanationTemplate: {
@@ -85,6 +103,9 @@ export const en = {
   },
   complexityQuickCheck: {
     name: "Complexity Quick Check",
+    tips: "Don't understand why? Click here",
+    dataScale: "Data Scale",
+    timeComplexity: "Algorithm acceptable time complexity",
   },
   learningRoute: {
     name: "Learning Route",

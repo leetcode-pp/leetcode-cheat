@@ -15,16 +15,8 @@ import {
   Menu,
 } from "antd";
 import { uuidv4, getStorage, setStorage } from "../utils";
-import treeLevel2 from "../db/dataStructureVis/tree-level-2";
-import treeLevel3 from "../db/dataStructureVis/tree-level-3";
-import treeLevel4 from "../db/dataStructureVis/tree-level-4";
-import trigeminal from "../db/dataStructureVis/trigeminal";
-import graph1 from "../db/dataStructureVis/graph-1";
-import recurTree1 from "../db/dataStructureVis/recur-tree-1.js";
-import array1 from "../db/dataStructureVis/array-1.js";
-import board1 from "../db/dataStructureVis/board-1.js";
-import official from "../db/dataStructureVis/leetcode-official";
-import calm from "../db/dataStructureVis/calm";
+import { initialDataSource, initialDataSourceEn } from "./data";
+import { t, lang } from "../locales";
 
 // import treeLevel5 from "../db/dataStructureVis/tree-level-5";
 
@@ -54,7 +46,7 @@ function saveScene({ title, elements, customTypeName }) {
     )
       .then(() => {
         message.success({
-          content: "保存成功~",
+          content: t("app.saveSuccess"),
         });
         return getStorage("customDrawings").then((res) => {
           const { result } = res;
@@ -83,7 +75,7 @@ function deleteCustomDrawing(id) {
     )
       .then(() => {
         message.success({
-          content: "删除成功~",
+          content: t("app.deleteSuccess"),
         });
         return getStorage("customDrawings").then((res) => {
           const { result } = res;
@@ -93,90 +85,6 @@ function deleteCustomDrawing(id) {
       .catch((msg) => message.error(msg));
   });
 }
-
-const initialDataSource = {
-  presets: [
-    {
-      title: "力扣官方",
-      data: official,
-      desc: "力扣官方题解主题（持续更新）",
-      type: "leetcode-official",
-      typeName: "力扣官方",
-    },
-    {
-      title: "calm",
-      data: calm,
-      desc: "稳重色系（目前只完成了树，后续更新其他数据结构）",
-      type: "theme",
-      typeName: "色系",
-    },
-    {
-      title: "二层二叉树",
-      data: treeLevel2,
-      desc: "",
-      cover: "",
-      type: "tree",
-      typeName: "树",
-    },
-    {
-      title: "三层二叉树",
-      data: treeLevel3,
-      desc: "",
-      cover: "",
-      type: "tree",
-      typeName: "树",
-    },
-    {
-      title: "四层二叉树",
-      data: treeLevel4,
-      desc: "",
-      cover: "",
-      type: "tree",
-      typeName: "树",
-    },
-    {
-      title: "三叉树",
-      data: trigeminal,
-      desc: "",
-      cover: "",
-      type: "tree",
-      typeName: "树",
-    },
-    {
-      title: "递归树",
-      data: recurTree1,
-      desc: "",
-      cover: "",
-      type: "tree",
-      typeName: "树",
-    },
-    {
-      title: "简单数组",
-      data: array1,
-      desc: "",
-      cover: "",
-      type: "array",
-      typeName: "数组",
-    },
-    {
-      title: "简单二维矩阵",
-      data: board1,
-      desc: "",
-      cover: "",
-      type: "board",
-      typeName: "二维矩阵（或邻接矩阵）",
-    },
-    {
-      title: "简单图",
-      data: graph1,
-      desc: "",
-      cover: "",
-      type: "graph",
-      typeName: "图",
-    },
-  ],
-  custom: [],
-};
 
 const excalidrawRef = createRef();
 const excalidrawWrapperRef = createRef();
@@ -197,7 +105,9 @@ export default function DataStrutureVis() {
   const [activeKey, setActiveKey] = useState("template");
   const [elements, setElements] = useState([]);
   const [title, setTitle] = useState("无标题");
-  const [dataSource, setDataSource] = useState(initialDataSource);
+  const [dataSource, setDataSource] = useState(
+    lang === "en" ? initialDataSourceEn : initialDataSource
+  );
   const [modalVisible, setModalVisible] = useState(false);
   const [fullScreenMode, setFullScreenMode] = useState(false);
   const [customTypeName, setCustomTypeName] = useState("自定义");
@@ -208,8 +118,9 @@ export default function DataStrutureVis() {
       height: window.innerHeight,
     });
   };
-
+  console.log("lang", lang);
   useEffect(() => {
+    console.log("lang", lang);
     window.addEventListener("resize", onResize);
     document.onfullscreenchange = (e) => {
       const fullscreenElement = document.fullscreenElement;
@@ -263,22 +174,27 @@ export default function DataStrutureVis() {
           setActiveKey(v[0]);
         }}
       >
-
-        <div className="d-list" style={fullScreenMode ? { display: "none" } : {}}>
+        <div
+          className="d-list"
+          style={fullScreenMode ? { display: "none" } : {}}
+        >
           <ol>
             <li>
-              暂不支持编辑功能。如果需要编辑，可通过先“使用”再“保存”，最后“删除”原有的数据，从而间接实现。
+              {t("Locale.dataStructureVisualization.explain1")}
             </li>
             <li>
-              模板可以增量使用。点击”去使用“的下拉三角，并选择增量使用即可。
+            {t("Locale.dataStructureVisualization.explain2")}
+
             </li>
             <li>
-              使用的模板会根据你鼠标的位置生成。比如你的鼠标在点(100,
-              100)，那么模板会整体偏移 (100, 100)个单位
-              。如果此时模板并不是正好以(100,
-              100)为左上顶点，说明模板本身制作的时候就不是以(0,0)为左上顶点制作的。大家制作自定义模板的话需要注意这一点。
+            {t("Locale.dataStructureVisualization.explain3")}
+
             </li>
-            <li>你也可以选择直接使用原生 excalidraw <a href="https://excalidraw.com/">地址</a></li>
+            <li>
+            {t("Locale.dataStructureVisualization.explain4")}
+
+              <a href="https://excalidraw.com/">Website</a>
+            </li>
           </ol>
           {/* <Select value={type} style={{ width: 120 }} onChange={setType}>
         <Option value="array">数组</Option>
@@ -330,8 +246,8 @@ export default function DataStrutureVis() {
             style={{ height: "230px", overflow: "scroll" }}
             header={
               <Select value={type} style={{ width: 120 }} onChange={setType}>
-                <Option value="presets">预设</Option>
-                <Option value="custom">自定义</Option>
+                <Option value="presets">{t("app.presets")}</Option>
+                <Option value="custom">{t("app.custom")}</Option>
               </Select>
             }
             bordered
@@ -339,7 +255,7 @@ export default function DataStrutureVis() {
             renderItem={(item) => (
               <List.Item>
                 {item.typeName && (
-                  <Typography.Text mark>【{item.typeName}】</Typography.Text>
+                  <Typography.Text mark>【{item.typeName}】 </Typography.Text>
                 )}
                 {item.title}
                 <Dropdown
@@ -366,12 +282,16 @@ export default function DataStrutureVis() {
                         )
                       }
                     >
-                      <Menu.Item key="1">增量使用</Menu.Item>
+                      <Menu.Item key="1">
+                        {t(
+                          "Locale.dataStructureVisualization.incrementalUsage"
+                        )}
+                      </Menu.Item>
                     </Menu>
                   }
                 >
-                  <Button>
-                    去使用 <DownOutlined />
+                  <Button size="small" style={{ marginLeft: "8px" }}>
+                    {t("app.toUse")} <DownOutlined />
                   </Button>
                 </Dropdown>
                 {/* <Button
@@ -384,7 +304,7 @@ export default function DataStrutureVis() {
               编辑名称
             </Button> */}
                 <Popconfirm
-                  title="确认要删除么？"
+                  title={t("app.delTitle")}
                   onConfirm={() =>
                     deleteCustomDrawing(item.id).then((d) =>
                       setDataSource({
@@ -393,15 +313,15 @@ export default function DataStrutureVis() {
                       })
                     )
                   }
-                  okText="是"
-                  cancelText="否"
+                  okText={t("app.yes")}
+                  cancelText={t("app.no")}
                 >
                   <Button
                     style={type === "presets" ? { display: "none" } : {}}
                     type="link"
                     danger
                   >
-                    删除
+                    {t("app.delete")}
                   </Button>
                 </Popconfirm>
               </List.Item>
@@ -413,7 +333,7 @@ export default function DataStrutureVis() {
             className="update-scene"
             onClick={() => setModalVisible(true)}
           >
-            保存
+            {t("app.save")}
           </Button>
 
           <Button
@@ -423,7 +343,7 @@ export default function DataStrutureVis() {
               document.documentElement.requestFullscreen();
             }}
           >
-            全屏模式(退出请按 ESC)
+            {t("app.fullScreen")}
           </Button>
           {/* <Button type="primary" className="update-scene" onClick={updateScene}>
         快速生成
@@ -437,10 +357,13 @@ export default function DataStrutureVis() {
         清空
       </button> */}
         </div>
-
       </Collapse>
 
-      <div className="excalidraw-wrapper" ref={excalidrawWrapperRef} style={{ width, height }}>
+      <div
+        className="excalidraw-wrapper"
+        ref={excalidrawWrapperRef}
+        style={{ width, height }}
+      >
         <Excalidraw
           ref={excalidrawRef}
           // offsetTop={offsetTop}
@@ -451,9 +374,9 @@ export default function DataStrutureVis() {
           onPointerUpdate={({ pointer }) => {
             setPointer(pointer);
           }}
-          name="力扣加加"
-        // user={{ name: "力扣加加" }}
-        //   onPointerUpdate={(payload) => console.log(payload)}
+          name={t("app.name")}
+          // user={{ name: "力扣加加" }}
+          //   onPointerUpdate={(payload) => console.log(payload)}
         />
       </div>
     </div>

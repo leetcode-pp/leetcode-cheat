@@ -1,14 +1,25 @@
 export const cn = {
-    
   app: {
+    name: "力扣加加",
+    fullScreen: "全屏模式(退出请按 ESC)",
+    toUse: "去使用",
+    custom: "自定义",
+    presets: "预设",
     setLang: "设置语言",
     changeLang: "English",
     copy: "复制",
+    save: "保存",
+    yes: "是",
+    no: "否",
+    delete: "删除",
+    delTitle: "确认要删除么？",
+    deleteSuccess: "删除成功~",
+    saveSuccess: "保存成功~",
     copySuccess: "复制成功~",
     article: "文章",
     recommendedQuestions: "推荐题目：",
     goForDictation: "去默写",
-    contribution:"纠错 or 贡献其他语言",
+    contribution: "纠错 or 贡献其他语言",
     back: "返回主页",
     viewSolution: "查看本题题解",
     viewInHandpickCollection: "该题已被收录到精选合集《{slotText}》点击查看",
@@ -27,7 +38,7 @@ export const cn = {
         tag: "标签",
       },
     },
-    initializeContentScriptFailed:"初始化 chrome 插件 content script 失败",
+    initializeContentScriptFailed: "初始化 chrome 插件 content script 失败",
     run: "运行",
     submit: "提交",
     wirteSolution: "写题解",
@@ -43,13 +54,13 @@ export const cn = {
       "使用 Github API 失败，已为您切换为普通模式，普通模式仅可自动带入题目名称，题目地址以及题解语言。",
   },
   problem: {
-    "743": "743. 网络延迟时间",
-    "1109": "1109. 航班预订统计",
-    "1314": "1314. 矩阵区域和",
-    "1462":"1462. 课程表 IV",
-    "1480": "1480. 一维数组的动态和",
-    "1584":"1584. 连接所有点的最小费用",
-    "2536": "2536. 子矩阵元素加 1",
+    743: "743. 网络延迟时间",
+    1109: "1109. 航班预订统计",
+    1314: "1314. 矩阵区域和",
+    1462: "1462. 课程表 IV",
+    1480: "1480. 一维数组的动态和",
+    1584: "1584. 连接所有点的最小费用",
+    2536: "2536. 子矩阵元素加 1",
   },
   codeTemplate: {
     name: "代码模板",
@@ -69,13 +80,18 @@ export const cn = {
       item4: "Kruskal（又称加边法，是一种最小生成树算法）",
       item5: "Prim（又称加点法，是一种最小生成树算法）",
       item6: "Kahn（基于BFS的拓扑排序）",
-      
     },
 
-    moreTemplate:"更多模板后续陆续更新~"
+    moreTemplate: "更多模板后续陆续更新~",
   },
   dataStructureVisualization: {
     name: "数据结构可视化",
+    incrementalUsage: "增量使用",
+    explain1:
+      "暂不支持编辑功能。如果需要编辑，可通过先“使用”再“保存”，最后“删除”原有的数据，从而间接实现。",
+    explain2: "模板可以增量使用。点击”去使用“的下拉三角，并选择增量使用即可。",
+    explain3: "使用的模板会根据你鼠标的位置生成。比如你的鼠标在点(100, 100)，那么模板会整体偏移 (100, 100)个单位。如果此时模板并不是正好以(100, 100)为左上顶点，说明模板本身制作的时候就不是以(0,0)为左上顶点制作的。大家制作自定义模板的话需要注意这一点。",
+    explain4: "你也可以选择直接使用原生 excalidraw ",
   },
 
   explanationTemplate: {
@@ -83,6 +99,9 @@ export const cn = {
   },
   complexityQuickCheck: {
     name: "复杂度速查",
+    tips: "不懂为什么？点这里",
+    dataScale: "数据规模",
+    timeComplexity: "算法可接受时间复杂度",
   },
   learningRoute: {
     name: "学习路线",
