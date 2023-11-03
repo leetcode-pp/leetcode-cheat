@@ -28,7 +28,7 @@ export default function CodeTemplate({ templates }) {
 
   return (
     <div>
-      <Tabs activeKey={tab}>
+      <Tabs activeKey={tab} onChange={setTab}>
         {tempaltesState.map((tempalte) => (
           <TabPane
             tab={

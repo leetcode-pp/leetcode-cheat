@@ -11,7 +11,7 @@ import handWriting from "./hand-writing";
 import rotate from "./rotate";
 import grapth from "./grapth";
 import prime from "./prime";
-console.log(binarySearch,"123");
+
 const templates = [
   preSum,
   grapth,
