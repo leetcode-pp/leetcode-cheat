@@ -83,7 +83,7 @@ function getTemplate({
   link = "",
   desc = "",
   pre = "",
-  company = "暂无",
+  company = t("app.notYet"),
   language = "python3",
   code = "",
   keyword = "",
