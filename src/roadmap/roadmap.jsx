@@ -79,7 +79,7 @@ const roadmaps = {
         ],
         code: {
           language: "py",
-          text: `代码参考：代码模板 - 二分法`,
+          text: "代码参考：代码模板 - 二分法",
         },
         keys: [
           `

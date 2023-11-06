@@ -1,6 +1,8 @@
-export const cn = {
+const zh = {
   app: {
     name: "力扣加加",
+    preview: "预览",
+    copyMdOrigin:"点击复制 MarkDown 原文",
     fullScreen: "全屏模式(退出请按 ESC)",
     toUse: "去使用",
     custom: "自定义",
@@ -52,6 +54,7 @@ export const cn = {
     savingProblem: "正在存储题目信息，请稍后~",
     githubAPIError:
       "使用 Github API 失败，已为您切换为普通模式，普通模式仅可自动带入题目名称，题目地址以及题解语言。",
+      notYet:"暂无",
   },
   problem: {
     743: "743. 网络延迟时间",
@@ -96,6 +99,27 @@ export const cn = {
 
   explanationTemplate: {
     name: "题解模板",
+    goToTheWebsiteToUse: "去网站使用",
+    problemAddress: "题目地址",
+    problemDesc: "题目描述",
+    preKnowledge: "前置知识",
+    company: "公司",
+    thinking: "思路",
+    keyPoints: "关键点",
+    languageSupport: "语言支持",
+    complexityAnalysis: "复杂度分析",
+    complexityDeclare: "令 n 为数组长度。",
+    timeComplexity: "时间复杂度",
+    spaceComplexity: "空间复杂度",
+    howToUse: "如何使用？",
+    programmingLanguage: "编程语言:1",
+    commonFormulas: "常用公式（点击可复制）：",
+    noBackup: "没有找到任何备份文件",
+    restore: "恢复上次编辑内容",
+    backupTips: "题解每五秒备份一次，如果你不小心刷新了浏览器可以点击下方的恢复按钮还原。由于是覆盖式备份，因此仅会保存最后一次编辑的内容。",
+    afterUpdateTemplateTips: "后续考虑提供更多题解模板。",
+    afterUpdateThemeTips:"后续考虑支持更多主题，以及用户自定义主题。"
+
   },
   complexityQuickCheck: {
     name: "复杂度速查",
@@ -113,4 +137,5 @@ export const cn = {
     name: "关于我",
   },
 };
-export default cn;
+// export default zh;
+module.exports = zh;
