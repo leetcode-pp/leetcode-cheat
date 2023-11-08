@@ -118,9 +118,7 @@ export default function DataStrutureVis() {
       height: window.innerHeight,
     });
   };
-  console.log("lang", lang);
   useEffect(() => {
-    console.log("lang", lang);
     window.addEventListener("resize", onResize);
     document.onfullscreenchange = (e) => {
       const fullscreenElement = document.fullscreenElement;
