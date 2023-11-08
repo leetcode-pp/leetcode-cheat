@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Table } from "antd";
-
+import { t } from "../locales";
 import "./index.less";
 
 // | 数据规模 | 算法可接受时间复杂度 |
@@ -15,17 +15,19 @@ import "./index.less";
 // | <=10^14  | $O(\sqrt{n})$        |
 // | -        | $O(logn)$            |
 
-const columns = [
+const getColumns = () => [
   {
     key: "size",
     dataIndex: "size",
-    title: "数据规模",
+    // title: "数据规模",
+    title: t("Locale.complexityQuickCheck.dataScale"),
     align: "center",
   },
   {
     key: "complexity",
     dataIndex: "complexity",
-    title: "算法可接受时间复杂度",
+    // title: "算法可接受时间复杂度",
+    title: t("Locale.complexityQuickCheck.timeComplexity"),
     align: "center",
     render: (t) => {
       if (t === "O(sqrt(n))")
@@ -82,10 +84,11 @@ export default function ComplexityRating() {
         href="https://lucifer.ren/blog/2020/12/21/shuati-silu3/"
         target="_blank"
       >
-        不懂为什么？点这里
+        {/* 不懂为什么？点这里 */}
+        {t("Locale.complexityQuickCheck.tips")}
       </Button>
 
-      <Table columns={columns} dataSource={data} />
+      <Table columns={getColumns()} dataSource={data} />
     </div>
   );
 }

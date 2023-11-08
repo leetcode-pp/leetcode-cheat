@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from "react";
+import React, { useState, Suspense, useEffect } from "react";
 import { Button, Table, Empty, Tabs, Image } from "antd";
 
 import "highlight.js/styles/github.css";
@@ -109,8 +109,8 @@ function App() {
   //   setHasSolution(!!problems[problemId]);
   // }, 1000);
 
-  // 开发环境不需要依赖 chrome 插件 query 函数
-  const [langReady, setLangReady] = useState(isDev);
+  // 开发环境和直接进入网站的方式不需要依赖 chrome 插件 query 函数
+  const [langReady, setLangReady] = useState(isDev||!isInExtension());
   const [problemId, setProblemId] = useState("");
 
   const [hasSolution, setHasSolution] = useState(false);
@@ -243,7 +243,7 @@ function App() {
                 <Button
                   type="link"
                   target="_blank"
-                  href="https://leetcode-pp.github.io/leetcode-cheat/?tab=data-structure-vis"
+                  href={`https://leetcode-pp.github.io/leetcode-cheat/?tab=data-structure-vis&lang=${lang}`}
                 >
                   {t("Locale.app.goToTheWebsiteToUse")}
                 </Button>

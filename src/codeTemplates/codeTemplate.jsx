@@ -28,7 +28,7 @@ export default function CodeTemplate({ templates }) {
 
   return (
     <div>
-      <Tabs activeKey={tab}>
+      <Tabs activeKey={tab} onChange={setTab}>
         {tempaltesState.map((tempalte) => (
           <TabPane
             tab={
@@ -74,7 +74,7 @@ export default function CodeTemplate({ templates }) {
                             size="small"
                             style={{ marginLeft: "10px" }}
                           >
-                            {t("Locale.app.toWriteSilently")}
+                            {t("Locale.app.goForDictation")}
                           </Button>
                         </li>
                       ))}

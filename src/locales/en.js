@@ -1,12 +1,26 @@
-export const en = {
+const en = {
   app: {
+    name: "LeetCode Cheatsheet",
+    preview: "Preview",
+    copyMdOrigin: "Click to copy MarkDown origin",
+    fullScreen: "Full Screen (Press ESC to exit)",
+    toUse: "To Use",
+    custom: "Custom",
+    presets: "Presets",
     setLang: "Set Language",
     changeLang: "中文",
     copy: "copy",
+    save: "save",
+    yes: "yes",
+    no: "no",
+    delete: "delete",
+    delTitle: "Are you sure you want to delete it?",
+    deleteSuccess: "Delete successfully~",
+    saveSuccess: "Save successfully~",
     copySuccess: "Copy successfully~",
     article: "article",
     recommendedQuestions: "Recommended Questions:",
-    toWriteSilently: "To write silently",
+    goForDictation: "go for dictation",
     contribution: "Correction or contribution to other languages",
     back: "Back to Home page",
     viewSolution: "View solution",
@@ -43,6 +57,7 @@ export const en = {
     savingProblem: "Saving problem information, please wait~",
     githubAPIError:
       "Failed to use Github API, has been switched to normal mode, normal mode can only automatically bring in the problem name, problem address and solution language.",
+    notYet: "Not yet",
   },
   problem: {
     743: "743. Network Delay Time",
@@ -78,13 +93,47 @@ export const en = {
   },
   dataStructureVisualization: {
     name: "Data Structure Visualization",
+    incrementalUsage: "Incremental Usage",
+    explain1:
+      "The editing function is not supported. If you need to edit, you can do so indirectly by first \"use\", then \"save\", and finally \"delete\" the original data.",
+    explain2:
+      "Templates can be used incrementally. Click the drop-down triangle of 'to use' and select Incremental Usage.",
+    explain3:
+      "The template will be generated according to the position of your mouse. For example, if your mouse is at point (100, 100), the template will be offset by (100, 100) units as a whole. If the template is not exactly at (100, 100), it means that the template itself was not created with (0, 0) as the top-left corner. When creating custom templates, it's important to keep this in mind.",
+    explain4: "You can also choose to use the native excalidraw directly ",
   },
 
   explanationTemplate: {
     name: "Explanation Template",
+    goToTheWebsiteToUse: "Go to the website to use",
+    problemAddress: "Problem Address",
+    problemDesc: "Problem Description",
+    preKnowledge: "Pre Knowledge",
+    company: "Company",
+    thinking: "Thinking",
+    keyPoints: "Key Points",
+    languageSupport: "Language Support",
+    complexityAnalysis: "Complexity Analysis",
+    complexityDeclare: "Let n be the length of the array.",
+    timeComplexity: "Time Complexity",
+    spaceComplexity: "Space Complexity",
+    howToUse: "How to use it?",
+    programmingLanguage: "Programming Language:",
+    commonFormulas: "Common formulas (click to copy):",
+    noBackup: "No backup file found",
+    restore: "Restore last edit content",
+    backupTips:
+      "The explanation is backed up every five seconds. If you accidentally refresh the browser, you can click the restore button below to restore it. Since it is an overwrite backup, only the last edited content will be saved.",
+    afterUpdateTemplateTips:
+      "More explanation templates will be provided later.",
+    afterUpdateThemeTips:
+      "More themes and user-defined themes will be supported later.",
   },
   complexityQuickCheck: {
     name: "Complexity Quick Check",
+    tips: "Don't understand why? Click here",
+    dataScale: "Data Scale",
+    timeComplexity: "Algorithm acceptable time complexity",
   },
   learningRoute: {
     name: "Learning Route",
@@ -96,4 +145,5 @@ export const en = {
     name: "About Me",
   },
 };
-export default en;
+// export default en;
+module.exports = en;
