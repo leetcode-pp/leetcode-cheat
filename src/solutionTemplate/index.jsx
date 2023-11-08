@@ -123,7 +123,7 @@ ${desc}
 ${displayLanguage(language)} Code:
 
 \`\`\`${
-    language.toLocaleLowerCase() == "python3"
+    language.toLocaleLowerCase() === "python3"
       ? "python"
       : language.toLocaleLowerCase()
   }
