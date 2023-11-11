@@ -18,7 +18,7 @@ function hideFailCases() {
         expect.style.display = "none"
 
 
-        if (!document.querySelector('#leetcode-cheat-show-fail-cases')) {
+        if (!document.querySelector("#leetcode-cheat-show-fail-cases")) {
             const showFailCases = document.createElement("div");
             showFailCases.id = "leetcode-cheat-show-fail-cases";
             const showFailCasesTip = document.createElement("span")
