@@ -57,13 +57,31 @@ const zh = {
     notYet: "暂无",
   },
   problem: {
+    69: "69. x 的平方根",
+    278: "278. 第一个错误的版本",
+    "278_desc":
+      "最左最右思路一样，大家练习两道，实际情况根据题意使用不同的二分即可。",
+    327: "327. 区间和的个数",
+    493: "493. 翻转对",
     743: "743. 网络延迟时间",
+    778: "778. 水位上升的泳池中游泳",
+    "778_desc":
+      "DFS + 二分，类似的题目有很多，比如第 1439 题。这种题套路都很像，难度其实也不算大。",
     1109: "1109. 航班预订统计",
     1314: "1314. 矩阵区域和",
     1462: "1462. 课程表 IV",
     1480: "1480. 一维数组的动态和",
     1584: "1584. 连接所有点的最小费用",
     2536: "2536. 子矩阵元素加 1",
+
+    minimumLightRadius: "最小光照半径",
+    minimumLightRadius_desc: "经典能力检测二分，力扣也有一道类似题",
+    kthPairDistance: "第 K 小的距离对",
+    kthPairDistance_desc: "典型的计数二分，本质上也是能力检测，只不过题量大，单独拆出来。",
+    JZ51: "剑指 Offer 51. 数组中的逆序对",
+
+    longestIncreasingSubsequence: "最长上升子序列系列",
+    longestIncreasingSubsequence_desc: "系列经典题目，值得一做",
   },
   codeTemplate: {
     name: "代码模板",
@@ -130,6 +148,46 @@ const zh = {
   },
   learningRoute: {
     name: "学习路线",
+    dp: "动态规划",
+    binarySearch: "二分查找",
+    binarySearchDesc: `
+    如果让我用一句话总结二分法，我会说**二分法是一种让未知世界无机可乘的算法**。即二分法无论如何我们都可以舍弃一半解，也就是无论如何都可以将解空间砍半。
+    难点就是两点：**什么条件** 和 **舍弃哪部分**。这是二分法核心要解决的问题。
+    
+    从战术上有两种基本类型，分别是最左插入二分和最右插入二分。
+    
+    从战略上有四种基本类型，能力检测二分，前缀和二分，插入排序二分和计数二分。
+    
+    两种类型（最左和最右插入）主要解决的的是：**解空间已经明确出来了，如何用代码找出具体的解**。而四大应用主要解决的是：**如何构造解空间**。更多的情况则是如何构建有序序列。
+
+    这两部分都是实操性很强的内容，在理解这两部分内容的同时，请大家务必牢记一个中心**折半**。
+    
+    更多内容请访问：https://lucifer.ren/blog/2021/03/08/binary-search-1`,
+    binarySearch_item1: "最左/最右二分",
+    binarySearch_item1_text: "代码参考：代码模板 - 二分法",
+    binarySearch_item1_keys: `
+    1. 最左二分不断收缩右边界，最终返回左边界
+    2. 最右二分不断收缩左边界，最终返回右边界
+    `,
+    binarySearch_item2: "能力检测二分",
+    binarySearch_item2_keys: `定义函数 possible 参数是 mid，返回值是布尔值。外层根据返回值调整"解空间"。示例代码是以最左二分为例的。
+    `,
+    binarySearch_item3: "前缀和二分",
+    binarySearch_item3_keys: `
+    如果数组是非负的，那么前缀和就是一个单调不递减数组，我们有时候可以基于它来做二分。
+    `,
+    binarySearch_item4: "插入排序二分",
+    binarySearch_item4_keys: `
+    不断插入并维护序列有序，进而利用有序做一些事情。
+    `,
+    binarySearch_item5: "计数二分",
+    binarySearch_item5_keys: `本质也是能力检测，因此和能力检测框架基本一致，大家对比理解一下。
+    `,
+
+    tree: "树",
+    linkedList: "链表",
+    clickToEnlarge: "单击可放大",
+    recommendedProblems: "推荐题目",
   },
   checkForUpdates: {
     name: "检查更新",

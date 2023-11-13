@@ -60,13 +60,28 @@ const en = {
     notYet: "Not yet",
   },
   problem: {
+    69: "69. Sqrt(x)",
+    278: "278. First Bad Version",
+    "278_desc": "The idea of the leftmost and rightmost is the same. Everyone can practice two questions. The actual situation can use different binary search according to the meaning of the question.",
+    327: "327. Count of Range Sum",
+    493: "493. Reverse Pairs",
     743: "743. Network Delay Time",
+    778: "778. Swim in Rising Water",
+    "778_desc": "DFS + binary search, there are many similar questions, such as the 1439th question. This kind of question routine is very similar, and the difficulty is not big.",
     1109: "1109. Corporate Flight Bookings",
     1314: "1314. Matrix Block Sum",
     1462: "1462. Course Schedule IV",
     1480: "1480. Running Sum of 1d Array",
     1584: "1584. Min Cost to Connect All Points",
     2536: "2536. Increment Submatrices by One",
+    minimumLightRadius: "Minimum Light Radius",
+    minimumLightRadius_desc: "Classic ability detection binary search, leetcode also has a similar topic",
+    kthPairDistance: "Kth Smallest Distance Pair",
+    kthPairDistance_desc: "Typical counting binary search, which is essentially an ability test, but the number of questions is large, so it is separated.",
+    JZ51: "Sword Offer 51. Reverse pairs in an array",
+
+    longestIncreasingSubsequence: "Longest Increasing Subsequence Series",
+    longestIncreasingSubsequence_desc: "Series classic topic, worth doing",
   },
   codeTemplate: {
     name: "Code Template",
@@ -137,6 +152,44 @@ const en = {
   },
   learningRoute: {
     name: "Learning Route",
+    dp: "Dynamic Programming",
+    binarySearch: "Binary Search",
+    binarySearchDesc:`
+    If you ask me to summarize binary search in one sentence, I would say that binary search is an algorithm that makes the unknown world inorganic. That is, no matter what, we can discard half of the solutions, that is, we can cut the solution space in half.
+    The difficulty is two points: **what conditions** and **which part to discard**. This is the core problem that binary search needs to solve.
+
+    There are two basic types of tactics, namely the leftmost insertion binary search and the rightmost insertion binary search.
+
+    There are four basic types of strategies: ability detection binary search, prefix sum binary search, insertion sort binary search, and counting binary search.
+
+    These two parts are very practical. While understanding these two parts, please keep in mind a central point **half**.
+
+    For more information, please visit: https://lucifer.ren/blog/2021/03/08/binary-search-1`,
+    binarySearch_item1: "Leftmost/Rightmost Binary Search",
+    binarySearch_item1_text: "Code reference: Code templates - Binary",
+    binarySearch_item1_keys: `
+    1. shrink the right boundary continuously and finally return the left boundary
+    2. shrink the left boundary continuously and finally return the right boundary
+    `,
+    binarySearch_item2: "Ability Detection Binary Search",
+    binarySearch_item2_keys: `Define the function that the possible argument is mid and the return value is a Boolean value. The outer layer adjusts according to the return value "; Solution space" . The sample code is an example of the leftmost binary.
+    `,
+    binarySearch_item3: "Prefix Sum Binary Search",
+    binarySearch_item3_keys: `
+    If the array is non-negative, then the prefix sum is a monotone non-decrement array, and we can sometimes make dichotomies based on it.
+    `,
+    binarySearch_item4: "Insertion Sort Binary Search",
+    binarySearch_item4_keys: `
+    Continuously insert and maintain the ordered sequence, and then use the ordered sequence to do something.
+    `,
+    binarySearch_item5: "Counting Binary Search",
+    binarySearch_item5_keys: `The essence is also ability detection, so it is basically the same as the ability detection framework. Everyone compares and understands.
+    `,
+
+    tree: "Tree",
+    linkedList: "Linked List",
+    clickToEnlarge: "Click to enlarge",
+    recommendedProblems:"Recommended Problems",
   },
   checkForUpdates: {
     name: "Check for Updates",

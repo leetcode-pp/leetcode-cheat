@@ -3,7 +3,7 @@ import { Radio, Image } from "antd";
 
 import Codes from "../components/codes";
 import TagOrLink from "../components/TagOrLink";
-
+import { t, auto_detect_languange } from "../locales"
 const dpSingleCode = `
   dp = [0] * (n + 1)
   for i in range(1, n + 1):
@@ -15,7 +15,7 @@ const dpDoubleCode = `
         dp = [[0 for _ in range(n + 1)] for _ in range(m + 1)]
         for i in range(1, m + 1):
             for j in range(1, n + 1):
-                if 一定条件:
+                if Certain conditions:
                   dp[i][j] = dp[i - 1][j - 1] + 1
                 else:
                   dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
@@ -26,12 +26,12 @@ class Solution:
     def solve(self, s):
         n = len(s)
         dp = [[0] * n for _ in range(n)]
-        # 右边界倒序遍历
+        # Traverse in reverse order from the right boundary
         for i in range(n - 1, -1, -1):
-            # 左边界正序遍历
+            # Traverse in forward order from the left boundary
             for j in range(i + 1, n):
                 # do something
-        return  dp[0][m-1] # 一般都是使用这个区间作为答案
+        return  dp[0][m-1] # Typically, this interval is used as the answer.
 `;
 const dpRangeCodeRecur = `
 class Solution:
@@ -48,60 +48,43 @@ class Solution:
 
 const roadmaps = {
   "binary-search": {
-    desc: `
-    如果让我用一句话总结二分法，我会说**二分法是一种让未知世界无机可乘的算法**。即二分法无论如何我们都可以舍弃一半解，也就是无论如何都可以将解空间砍半。
-    难点就是两点：**什么条件** 和 **舍弃哪部分**。这是二分法核心要解决的问题。
-    
-    从战术上有两种基本类型，分别是最左插入二分和最右插入二分。
-    
-    从战略上有四种基本类型，能力检测二分，前缀和二分，插入排序二分和计数二分。
-    
-    两种类型（最左和最右插入）主要解决的的是：**解空间已经明确出来了，如何用代码找出具体的解**。而四大应用主要解决的是：**如何构造解空间**。更多的情况则是如何构建有序序列。
-
-    这两部分都是实操性很强的内容，在理解这两部分内容的同时，请大家务必牢记一个中心**折半**。
-    
-    更多内容请访问：https://lucifer.ren/blog/2021/03/08/binary-search-1`,
+    desc: t("Locale.learningRoute.binarySearchDesc"),
     items: [
       {
-        title: "最左/最右二分",
+        title: t("Locale.learningRoute.binarySearch_item1"),
         pic: void 0,
         problems: [
           {
             link: "https://leetcode-cn.com/problems/sqrtx",
-            text: "69. x 的平方根",
+            text: t("Locale.problem.69"),
           },
           {
             link: "https://leetcode-cn.com/problems/first-bad-version/",
-            text: "278. 第一个错误的版本",
-            desc:
-              "最左最右思路一样，大家练习两道，实际情况根据题意使用不同的二分即可。",
+            text: t("Locale.problem.278"),
+            desc: t("Locale.problem.278_desc"),
           },
         ],
         code: {
           language: "py",
-          text: "代码参考：代码模板 - 二分法",
+          text: t("Locale.learningRoute.binarySearch_item1_text"),
         },
         keys: [
-          `
-      1. 最左二分不断收缩右边界，最终返回左边界
-      2. 最右二分不断收缩左边界，最终返回右边界
-      `,
+          t("Locale.learningRoute.binarySearch_item1_keys"),
         ],
       },
       {
-        title: "能力检测二分",
+        title: t("Locale.learningRoute.binarySearch_item2"),
         pic: void 0,
         problems: [
           {
             link: "https://binarysearch.com/problems/Minimum-Light-Radius",
-            text: "最小灯半径",
-            desc: "经典能力检测二分，力扣也有一道类似题",
+            text: t("Locale.problem.minimumLightRadius"),
+            desc: t("Locale.problem.minimumLightRadius_desc"),
           },
           {
             link: "https://leetcode-cn.com/problems/swim-in-rising-water",
-            text: "778. 水位上升的泳池中游泳",
-            desc:
-              "DFS + 二分，类似的题目有很多，比如第 1439 题。这种题套路都很像，难度其实也不算大。",
+            text: t("Locale.problem.778"),
+            desc: t("Locale.problem.778_desc"),
           },
         ],
         code: {
@@ -113,50 +96,55 @@ def ability_test_bs(nums):
   l, r = 0, len(A) - 1
   while l <= r:
       mid = (l + r) // 2
-      # 只有这里和最左二分不一样
+      # The only difference is here and in the leftmost binary search.
       if possible(mid): l = mid + 1
       else: r = mid - 1
   return l
           `,
         },
         keys: [
-          `定义函数 possible 参数是 mid，返回值是布尔值。外层根据返回值调整"解空间"。示例代码是以最左二分为例的。
-      `,
+      //     `定义函数 possible 参数是 mid，返回值是布尔值。外层根据返回值调整"解空间"。示例代码是以最左二分为例的。
+          // `,
+          t("Locale.learningRoute.binarySearch_item2_keys")
         ],
       },
       {
-        title: "前缀和二分",
+        title: t("Locale.learningRoute.binarySearch_item3"),
         pic: void 0,
         problems: [
           {
             link: "https://leetcode-cn.com/problems/count-of-range-sum/",
-            text: "327. 区间和的个数",
+            text: t("Locale.problem.327"),
           },
         ],
 
         keys: [
-          `
-      如果数组是非负的，那么前缀和就是一个单调不递减数组，我们有时候可以基于它来做二分。
-      `,
+      //     `
+      // 如果数组是非负的，那么前缀和就是一个单调不递减数组，我们有时候可以基于它来做二分。
+          // `,
+          t("Locale.learningRoute.binarySearch_item3_keys"),
+          
         ],
       },
       {
-        title: "插入排序二分",
+        title: t("Locale.learningRoute.binarySearch_item4"),
         pic: void 0,
         problems: [
           {
             link: "https://leetcode-cn.com/problems/reverse-pairs",
-            text: "493. 翻转对",
+            text: t("Locale.problem.493"),
           },
           {
             link:
               "https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof",
-            text: "剑指 Offer 51. 数组中的逆序对",
+            // text: "剑指 Offer 51. 数组中的逆序对",
+            text:t("Locale.problem.JZ51")
           },
           {
             link: "https://lucifer.ren/blog/2020/06/20/LIS/",
-            text: "最长上升子序列系列",
-            desc: "系列经典题目，值得一做",
+            // text: "最长上升子序列系列",
+            text: t("Locale.problem.longestIncreasingSubsequence"),
+            desc: t("Locale.problem.longestIncreasingSubsequence_desc"),
           },
         ],
         code: {
@@ -171,20 +159,22 @@ def ability_test_bs(nums):
           d.append(a)`,
         },
         keys: [
-          `
-      不断插入并维护序列有序，进而利用有序做一些事情。
-      `,
+      //     `
+      // 不断插入并维护序列有序，进而利用有序做一些事情。
+          // `,
+          t("Locale.learningRoute.binarySearch_item4_keys")
         ],
       },
       {
-        title: "计数二分",
+        // title: "计数二分",
+        title: t("Locale.learningRoute.binarySearch_item5"),
         pic: void 0,
         problems: [
           {
             link: "https://binarysearch.com/problems/Kth-Pair-Distance",
-            text: "第k小的距离对",
-            desc:
-              "典型的计数二分，本质上也是能力检测，只不过题量大，单独拆出来。",
+            // text: "第k小的距离对",
+            text: t("Locale.problem.kthPairDistance"),
+            desc:t("Locale.problem.kthPairDistance_desc"),
           },
         ],
         code: {
@@ -196,15 +186,16 @@ def count_bs(nums, k):
   l, r = 0, len(A) - 1
   while l <= r:
       mid = (l + r) // 2
-      # 只有这里和最左二分不一样
+      # Only this is different from the leftmost binary
       if count_not_greater(mid) > k: r = mid - 1
       else: l = mid + 1
   return l
           `,
         },
         keys: [
-          `本质也是能力检测，因此和能力检测框架基本一致，大家对比理解一下。
-      `,
+      //     `本质也是能力检测，因此和能力检测框架基本一致，大家对比理解一下。
+          // `,
+          t("Locale.learningRoute.binarySearch_item5_keys")
         ],
       },
     ],
@@ -548,13 +539,13 @@ export default function RoadMap() {
         value={topic}
         buttonStyle="solid"
       >
-        <Radio.Button value="dp">动态规划</Radio.Button>
-        <Radio.Button value="binary-search">二分</Radio.Button>
+        <Radio.Button value="dp">{t("Locale.learningRoute.dp")}</Radio.Button>
+        <Radio.Button value="binary-search">{t("Locale.learningRoute.binarySearch")}</Radio.Button>
         <Radio.Button value="tree" disabled>
-          树
+          {t("Locale.learningRoute.tree")}
         </Radio.Button>
         <Radio.Button value="linked-list" disabled>
-          链表
+          {t("Locale.learningRoute.linkedList")}
         </Radio.Button>
       </Radio.Group>
       <div>
@@ -571,11 +562,11 @@ export default function RoadMap() {
               {item.pic && (
                 <>
                   <Image src={item.pic} width={400} height={200} />
-                  (单击可放大)
+                  ({t("Locale.learningRoute.clickToEnlarge")})
                 </>
               )}
               {item.code && <Codes codes={[item.code]}></Codes>}
-              推荐题目：
+              { t("Locale.learningRoute.recommendedProblems")}：
               <ul>
                 {item.problems.map(({ link, text, desc }) => {
                   return (
