@@ -3,7 +3,7 @@ import { Radio, Image } from "antd";
 
 import Codes from "../components/codes";
 import TagOrLink from "../components/TagOrLink";
-import { t, auto_detect_languange } from "../locales"
+import { t } from "../locales"
 const dpSingleCode = `
   dp = [0] * (n + 1)
   for i in range(1, n + 1):
