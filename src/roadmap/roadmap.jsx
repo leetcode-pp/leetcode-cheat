@@ -201,29 +201,25 @@ def count_bs(nums, k):
     ],
   },
   dp: {
-    desc: `
-  同一类型的不同题目框架基本一致，但细节略有不同，模板代码仅以某一种为例进行讲述，大家根据实际情况微调。
-  
-  动态规划三把斧：状态，枚举，转移方程（选择）。对于每一种题目，我都尽量按照这三点给大家提示。
-  
-  当然这个学习路线是给有一些基础的人看的，如果你还没有基础，可以看下相关文章，之后我也会写一篇硬核套路文。
-  `,
+    desc: t("Locale.learningRoute.dp_desc"),
     items: [
       {
-        title: "单字符串型",
+        title: t("Locale.learningRoute.dp_item1"),
         pic:
           "https://p.ipic.vip/575fs3.jpg",
         problems: [
           {
             link: "https://leetcode-cn.com/problems/re-space-lcci/",
-            text: "面试题 17.13. 恢复空格",
+            // text: "面试题 17.13. 恢复空格",
+            text: t("Locale.problem.interview17_13"),
             desc:
-              "细节怎么练？+1？ -1? 怎么初始化？大家可以通过这道题学习一下~",
+            // "细节怎么练？+1？ -1? 怎么初始化？大家可以通过这道题学习一下~",
+            t("Locale.problem.interview17_13__desc")
           },
           {
             link: "https://lucifer.ren/blog/2020/06/20/LIS/",
-            text: "最长上升子序列系列",
-            desc: "系列经典题目，值得一做",
+            text: t("Locale.problem.longestIncreasingSubsequence")  ,
+            desc: t("Locale.problem.longestIncreasingSubsequence_desc"),
           },
         ],
         code: {
@@ -231,38 +227,41 @@ def count_bs(nums, k):
           text: dpSingleCode,
         },
         keys: [
-          `
-状态：1. dp[i] 表示以 s[i] 结尾的 xxxx
-     2. dp[i] 表示到 s[i] 为止的 xxxx
-        `,
-          "枚举： 通常都是两层循环，一层循环固定左端点，另一层循环固定右端点进行枚举",
-          "转移方程：根据题目选择是否和 s[j] 结合，取最大，最小或计数即可",
+//           `
+// 状态：1. dp[i] 表示以 s[i] 结尾的 xxxx
+//      2. dp[i] 表示到 s[i] 为止的 xxxx
+          //         `,
+          t("Locale.learningRoute.dp_item1_keys1"),
+          // "枚举： 通常都是两层循环，一层循环固定左端点，另一层循环固定右端点进行枚举",
+          t("Locale.learningRoute.dp_item1_keys2"),
+          // "转移方程：根据题目选择是否和 s[j] 结合，取最大，最小或计数即可",
+          t("Locale.learningRoute.dp_item1_keys3")
         ],
       },
 
       {
-        title: "双字符串型",
+        title: t("Locale.learningRoute.dp_item2"),
         pic:
           "https://p.ipic.vip/f5uljj.jpg",
         problems: [
           {
             link: "https://lucifer.ren/blog/2020/07/01/LCS/",
-            text: "最长公共子序列系列",
-            desc: "系列经典题目，值得一做",
+            text: t("Locale.problem.longestIncreasingSubsequence")  ,
+            desc: t("Locale.problem.longestIncreasingSubsequence_desc"),
           },
           {
             link: "https://leetcode-cn.com/problems/edit-distance/",
-            text: "72. 编辑距离",
+            text: t("Locale.problem.72"),
           },
           {
             link:
               "https://leetcode-cn.com/problems/regular-expression-matching/solution/chao-jian-dan-de-ji-yi-hua-di-gui-ji-bai-9010-zhen/",
-            text: "10. 正则表达式匹配",
+            text: t("Locale.problem.10"),
           },
           {
             link:
               "https://leetcode-cn.com/problems/wildcard-matching/solution/chao-ji-xiang-xi-ji-yi-hua-di-gui-tu-jie-dai-ni-yi/",
-            text: "44. 通配符匹配",
+            text: t("Locale.problem.44"),
           },
         ],
         code: {
@@ -270,66 +269,69 @@ def count_bs(nums, k):
           text: dpDoubleCode,
         },
         keys: [
-          `
-状态：1. dp[i][j] 表示以 s1[i],s2[j] 结尾的 xxxx
-     2. dp[i][j] 表示到 s1[i],s2[j] 为止的 xxxx
-        `,
-          "枚举：通常都是两层循环，一层循环固定 s1 的右端点，另一层循环固定 s2 的右端点进行枚举",
-          "状态转移：根据题目以及 s[i]， s[j] 的关系，取最大，最小或计数即可",
+//           `
+// 状态：1. dp[i][j] 表示以 s1[i],s2[j] 结尾的 xxxx
+//      2. dp[i][j] 表示到 s1[i],s2[j] 为止的 xxxx
+          //         `,
+          t("Locale.learningRoute.dp_item2_keys1"),
+          // "枚举：通常都是两层循环，一层循环固定 s1 的右端点，另一层循环固定 s2 的右端点进行枚举",
+          t("Locale.learningRoute.dp_item2_keys2"),
+          // "状态转移：根据题目以及 s[i]， s[j] 的关系，取最大，最小或计数即可",
+          t("Locale.learningRoute.dp_item2_keys3")
         ],
       },
       {
-        title: "爬楼梯型",
+        title: t("Locale.learningRoute.dp_item3"),
         pic:
           "https://p.ipic.vip/gr1c58.jpg",
         problems: [
           {
-            text: "70. 爬楼梯",
+            text: t("Locale.problem.70"),
             link: "https://leetcode-cn.com/problems/climbing-stairs/",
           },
           {
-            text: "198. 打家劫舍",
+            text: t("Locale.problem.198"),
             link:
               "https://github.com/azl397985856/leetcode/blob/master/problems/198.house-robber.md",
           },
           {
-            text: "337. 打家劫舍 III",
+            text: t("Locale.problem.337"),
             link:
               "https://github.com/azl397985856/leetcode/blob/master/problems/337.house-robber-iii.md",
           },
           {
-            text: "62. 不同路径",
+            text: t("Locale.problem.62"),
             link:
               "https://github.com/azl397985856/leetcode/blob/master/problems/62.unique-paths.md",
           },
           {
-            text: "63. 不同路径 II",
+            text: t("Locale.problem.63"),
             link:
               "https://github.com/azl397985856/leetcode/blob/master/problems/63.unique-paths-ii.md",
           },
           {
-            text: "64. 最小路径和",
+            text: t("Locale.problem.64"),
             link: "https://leetcode-cn.com/problems/minimum-path-sum/",
           },
           {
-            text: "174. 地下城游戏",
+            text: t("Locale.problem.174"),
             link: "https://leetcode-cn.com/problems/dungeon-game/",
           },
           {
-            text: "576. 出界的路径数(只能选两个方向变成了只能选四个方向而已)",
+            text: t("Locale.problem.576"),
             link: "https://leetcode-cn.com/problems/out-of-boundary-paths/",
           },
           {
-            text: "935. 骑士拨号器(只能选两个方向变成了只能选八个方向而已)",
+            text: t("Locale.problem.935"),
             link:
               "https://github.com/azl397985856/leetcode/blob/master/problems/935.knight-dialer.md",
           },
           {
-            text: "小兔的棋盘",
+            text: t("Locale.problem.littleRabbitsChessboard"),
             link: "https://github.com/azl397985856/leetcode/issues/429",
           },
           {
-            text: "Shopee的办公室",
+            text: t("Locale.problem.shopeesOffice"),
             link:
               "https://www.nowcoder.com/questionTerminal/a71f3bd890734201986cd1e171807d30?commentTags=Python",
           },
@@ -337,10 +339,10 @@ def count_bs(nums, k):
         code: {
           language: "py",
           text: `
-      # 一维
+      # one-dimensional
       for i in range(2, n):
         cur, prev = max(prev + nums[i], cur), cur
-      # 二维
+      # two-dimensional.
       def uniquePaths(self, m: int, n: int) -> int:
           dp = [1] * n
           for _ in range(1, m):
@@ -349,36 +351,39 @@ def count_bs(nums, k):
         `,
         },
         keys: [
-          `
-状态： 1. 一维通常是 dp[i] 表示以 nums[i] 结尾的 xxxx
-      2. 二维通常是 dp[i][j] 表示以 grid[i][j] 结尾的 xxxx
-      `,
-          "枚举：一维就是一层循环枚举所有的 nums，二维就是两层循环枚举所有的 grid",
-          `
-状态转移：1. 一维通常是当前格子和前面的两个格子的关系，可能是最大最小或计数。 
-        dp[i] = dp[i - 1] + dp[i - 2]，这也叫递推式，因为不涉及决策。
-        2. 二维通常是当前格子和上方以及左方的两个格子的关系，可能是最大最小或计数。
-        dp[i][j] = dp[i - 1][j] + dp[i][j-1]，这也叫递推式，因为不涉及决策。
-        3. 根转移方程不难看出， 这种题目通常都可以滚动数组优化
-        `,
+//           `
+// 状态： 1. 一维通常是 dp[i] 表示以 nums[i] 结尾的 xxxx
+//       2. 二维通常是 dp[i][j] 表示以 grid[i][j] 结尾的 xxxx
+          //       `,
+          t("Locale.learningRoute.dp_item3_keys1"),
+          // "枚举：一维就是一层循环枚举所有的 nums，二维就是两层循环枚举所有的 grid",
+          t("Locale.learningRoute.dp_item3_keys2"),
+//           `
+// 状态转移：1. 一维通常是当前格子和前面的两个格子的关系，可能是最大最小或计数。 
+//         dp[i] = dp[i - 1] + dp[i - 2]，这也叫递推式，因为不涉及决策。
+//         2. 二维通常是当前格子和上方以及左方的两个格子的关系，可能是最大最小或计数。
+//         dp[i][j] = dp[i - 1][j] + dp[i][j-1]，这也叫递推式，因为不涉及决策。
+//         3. 根转移方程不难看出， 这种题目通常都可以滚动数组优化
+          //         `,
+          t("Locale.learningRoute.dp_item3_keys3")
         ],
       },
       {
-        title: "背包型（仅列举题目）",
+        title: t("Locale.learningRoute.dp_item4"),
         pic: "",
         problems: [
           {
-            text: "416. 分割等和子集",
+            text: t("Locale.problem.416"),
             link:
               "https://github.com/azl397985856/leetcode/blob/master/problems/416.partition-equal-subset-sum.md",
           },
           {
-            text: "322. 零钱兑换",
+            text: t("Locale.problem.322"),
             link:
               "https://github.com/azl397985856/leetcode/blob/master/problems/322.coin-change.md",
           },
           {
-            text: "518. 零钱兑换 II",
+            text: t("Locale.problem.518"),
             link:
               "https://github.com/azl397985856/leetcode/blob/master/problems/518.coin-change-2.md",
           },
@@ -387,48 +392,49 @@ def count_bs(nums, k):
         keys: [],
       },
       {
-        title: "数位型（仅列举题目）",
+        title: t("Locale.learningRoute.dp_item5"),
         pic: "",
         problems: [
           {
-            text: "233. 数字 1 的个数",
+            text: t("Locale.problem.233"),
             link: "https://leetcode-cn.com/problems/number-of-digit-one/",
           },
           {
-            text: "357. 计算各个位数不同的数字个数",
+            text: t("Locale.problem.357"),
             link:
               "https://leetcode-cn.com/problems/count-numbers-with-unique-digits/",
           },
           {
-            text: "902. 最大为 N 的数字组合",
+            text: t("Locale.problem.902"),
             link:
               "https://leetcode-cn.com/problems/numbers-at-most-n-given-digit-set/",
           },
           {
-            text: "1015. 可被 K 整除的最小整数",
+            text: t("Locale.problem.1015"),
             link:
               "https://github.com/azl397985856/leetcode/blob/master/problems/1015.smallest-integer-divisible-by-k.md",
           },
           {
-            text: "递增的数位",
+            text: t("Locale.problem.increasingDigits"),
             link: "https://binarysearch.com/problems/Increasing-Digits",
           },
         ],
         code: void 0,
         keys: [
-          "常见的 dp 定义为 dp[i][j] 其中 i 为数字的长度， j 为最后一位的数。比如 dp[3][2] 表示这个数一共三位，最后一位是 2 的情况",
+          // "常见的 dp 定义为 dp[i][j] 其中 i 为数字的长度， j 为最后一位的数。比如 dp[3][2] 表示这个数一共三位，最后一位是 2 的情况",
+          t("Locale.learningRoute.dp_item5_keys1")
         ],
       },
       {
-        title: "概率型（仅列举题目）",
+        title: t("Locale.learningRoute.dp_item6"),
         pic: "",
         problems: [
           {
-            text: "808. 分汤",
+            text: t("Locale.problem.808"),
             link: "https://leetcode-cn.com/problems/soup-servings/",
           },
           {
-            text: "837. 新21点",
+            text: t("Locale.problem.837"),
             link: "https://leetcode-cn.com/problems/new-21-game/",
           },
         ],
@@ -436,41 +442,41 @@ def count_bs(nums, k):
         keys: [],
       },
       {
-        title: "博弈型（仅列举题目）",
+        title: t("Locale.learningRoute.dp_item7"),
         pic: "",
         problems: [
           {
-            text: "292. Nim 游戏",
+            text: t("Locale.problem.292"),
             link: "https://leetcode-cn.com/problems/nim-game/",
           },
           {
-            text: "877. 石子游戏",
+            text: t("Locale.problem.877"),
             link:
               "https://github.com/azl397985856/leetcode/blob/master/problems/877.stone-game.md",
           },
           {
-            text: "1140. 石子游戏 II",
+            text: t("Locale.problem.1140"),
             link: "https://leetcode-cn.com/problems/stone-game-ii/",
           },
           {
-            text: "1406. 石子游戏 III",
+            text: t("Locale.problem.1406"),
             link: "https://leetcode-cn.com/problems/stone-game-iii/",
           },
           {
-            text: "1510. 石子游戏 IV",
+            text: t("Locale.problem.1510"),
             link: "https://leetcode-cn.com/problems/stone-game-iv/",
           },
           {
-            text: "1563. 石子游戏 V",
+            text: t("Locale.problem.1563"),
             link: "https://leetcode-cn.com/problems/stone-game-v/",
           },
           {
-            text: "1686. 石子游戏 VI",
-            desc: "除了这个，其他《石子游戏》思路基本都一样",
+            text: t("Locale.problem.1686"),
+            desc: t("Locale.problem.1686_desc"),
             link: "https://leetcode-cn.com/problems/stone-game-vi/",
           },
           {
-            text: "1690. 石子游戏 VII",
+            text: t("Locale.problem.1690"),
             link: "https://leetcode-cn.com/problems/stone-game-vii/",
           },
         ],
@@ -478,16 +484,17 @@ def count_bs(nums, k):
         keys: [],
       },
       {
-        title: "区间 DP",
+        title: t("Locale.learningRoute.dp_item8"),
         // pic:
         //   "https://p.ipic.vip/575fs3.jpg",
         problems: [
           {
             link:
               "https://binarysearch.com/problems/Make-a-Palindrome-by-Inserting-Characters",
-            text: "回文插入",
+            text: t("Locale.problem.palindromicInsertions"),
             desc:
-              "区间 dp 需要从序列两头同时进行，而不是从序列的某一端到另一端",
+            // "区间 dp 需要从序列两头同时进行，而不是从序列的某一端到另一端",
+            t("Locale.problem.palindromicInsertions_desc")
           },
         ],
         code: {
@@ -495,31 +502,35 @@ def count_bs(nums, k):
           text: `
           
 ${dpRangeCode}
-# 使用记忆化可能会更好书写，比如上面的 dp 代码改成记忆化递归就是：
+# ${
+  // 使用记忆化可能会更好书写，比如上面的 dp 代码改成记忆化递归就是：
+t("Locale.learningRoute.dp_item8_text_comment")}
 ${dpRangeCodeRecur}`,
         },
         keys: [
-          `
-右边界倒序遍历，左边界正序遍历
-        `,
-          "通常都是返回 dp[0][n]，而不是其他常见的 dp[-1][-1]",
+//           `
+// 右边界倒序遍历，左边界正序遍历
+          //         `,
+          t("Locale.learningRoute.dp_item8_keys1"),
+          // "通常都是返回 dp[0][n]，而不是其他常见的 dp[-1][-1]",
+          t("Locale.learningRoute.dp_item8_keys2")
         ],
       },
       {
-        title: "状态压缩型（仅列举题目）",
+        title: t("Locale.learningRoute.dp_item9"),
         pic: "",
         problems: [
           {
-            text: "464. 我能赢吗",
+            text: t("Locale.problem.464"),
             link: "https://leetcode-cn.com/problems/can-i-win/",
           },
           {
-            text: "698. 划分为k个相等的子集",
+            text: t("Locale.problem.698"),
             link:
               "https://leetcode-cn.com/problems/partition-to-k-equal-sum-subsets/",
           },
           {
-            text: "1681. 最小不兼容性",
+            text: t("Locale.problem.1681"),
             link: "https://leetcode-cn.com/problems/minimum-incompatibility/",
           },
         ],
