@@ -1,13 +1,17 @@
+const { t } = require("../locales");
 module.exports = () => ({
-  title: "二分法",
+  // title: "二分法",
+  title: t("Locale.codeTemplate.binarySearch.title"),
   logo: require("../imgs/half.svg"),
   list: [
     {
-      text: "查找一个数",
+      // text: "查找一个数",
+      text: t("Locale.codeTemplate.binarySearch.item1"),
       problems: [
         {
           id: "single-element-in-a-sorted-array",
-          title: "540. 有序数组中的单一元素",
+          // title: "540. 有序数组中的单一元素",
+          title: t("Locale.problem.540"),
         },
       ],
       codes: [
@@ -92,15 +96,18 @@ module.exports = () => ({
       ],
     },
     {
-      text: "寻找最左边的满足条件的值",
+      // text: "寻找最左边的满足条件的值",
+      text: t("Locale.codeTemplate.binarySearch.item2"),
       problems: [
         {
           id: "find-first-and-last-position-of-element-in-sorted-array",
-          title: "34. 在排序数组中查找元素的第一个和最后一个位置",
+          // title: "34. 在排序数组中查找元素的第一个和最后一个位置",
+          title: t("Locale.problem.34"),
         },
         {
           id: "first-bad-version",
-          title: "278. 第一个错误的版本",
+          // title: "278. 第一个错误的版本",
+          title: t("Locale.problem.278"),
         },
       ],
       codes: [
@@ -194,15 +201,18 @@ module.exports = () => ({
       ],
     },
     {
-      text: "寻找最右边的满足条件的值",
+      // text: "寻找最右边的满足条件的值",
+      text: t("Locale.codeTemplate.binarySearch.item3"),
       problems: [
         {
           id: "find-first-and-last-position-of-element-in-sorted-array",
-          title: "34. 在排序数组中查找元素的第一个和最后一个位置",
+          // title: "34. 在排序数组中查找元素的第一个和最后一个位置",
+          title: t("Locale.problem.34"),
         },
         {
           id: "sqrtx",
-          title: "69. x 的平方根",
+          // title: "69. x 的平方根",
+          title: t("Locale.problem.69"),
         },
       ],
       codes: [
@@ -297,7 +307,8 @@ module.exports = () => ({
       ],
     },
     {
-      text: "寻找最左插入位置",
+      // text: "寻找最左插入位置",
+      text: t("Locale.codeTemplate.binarySearch.item4"),
       codes: [
         {
           language: "py",
@@ -344,12 +355,14 @@ function searchInsertLeft(nums, x) {
       problems: [
         {
           id: "random-pick-with-weight",
-          title: "528. 按权重随机选择",
+          // title: "528. 按权重随机选择",
+          title: t("Locale.problem.528"),
         },
       ],
     },
     {
-      text: "寻找最右插入位置",
+      // text: "寻找最右插入位置",
+      text: t("Locale.codeTemplate.binarySearch.item5"),
       codes: [
         {
           language: "py",
@@ -395,7 +408,8 @@ function searchInsertRight(nums, x) {
       problems: [
         {
           id: "find-first-and-last-position-of-element-in-sorted-array",
-          title: "34. 在排序数组中查找元素的第一个和最后一个位置",
+          // title: "34. 在排序数组中查找元素的第一个和最后一个位置",
+          title: t("Locale.problem.34"),
         },
       ],
     },

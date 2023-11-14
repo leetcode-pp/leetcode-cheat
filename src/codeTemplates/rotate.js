@@ -1,13 +1,18 @@
+const { t } = require("../locales");
+
 module.exports = () => ({
-  title: "矩阵旋转",
+  // title: "矩阵旋转",
+  title: t("Locale.codeTemplate.rotate.title"),
   logo: require("../imgs/rotate.svg"),
   list: [
     {
-      text: "顺时针 90° 旋转二维矩阵",
+      // text: "顺时针 90° 旋转二维矩阵",
+      text: t("Locale.codeTemplate.rotate.item1"),
       problems: [
         {
           id: "determine-whether-matrix-can-be-obtained-by-rotation",
-          title: "1886.判断矩阵经轮转后是否一致",
+          // title: "1886.判断矩阵经轮转后是否一致",
+          title: t("Locale.problem.1886"),
         },
       ],
       codes: [

@@ -1,13 +1,18 @@
+const { t } = require("../locales");
+
 module.exports = () => ({
   logo: require("../imgs/hand-writing.svg"),
-  title: "手撕算法",
+  //   title: "手撕算法",
+  title: t("Locale.codeTemplate.handWriting.title"),
   list: [
     {
-      text: "数组排序",
+      //   text: "数组排序",
+      text: t("Locale.codeTemplate.handWriting.item1"),
       problems: [
         {
           id: "sort-an-array",
-          title: "912. 排序数组",
+          //   title: "912. 排序数组",
+          title: t("Locale.problem.912"),
         },
       ],
       codes: [
@@ -160,11 +165,13 @@ class Solution:
       ],
     },
     {
-      text: "链表排序",
+      //   text: "链表排序",
+      text: t("Locale.codeTemplate.handWriting.item2"),
       problems: [
         {
           id: "sort-list",
-          title: "148. 排序链表",
+          //   title: "148. 排序链表",
+          title: t("Locale.problem.148"),
         },
       ],
       codes: [
