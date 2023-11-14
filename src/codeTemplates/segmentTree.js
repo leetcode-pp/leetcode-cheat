@@ -295,8 +295,10 @@ class SegmentTree:
             node.add = v #   做了一个标记
             return
         self.__pushdown(node) # 动态开点。为子节点赋值，这个值就从 add 传递过来
-        self.update(l, r, v, node.left)
-        self.update(l, r, v, node.right) 
+        if l <= node.m:
+            self.update(l, r, v, node.left)
+        if r > node.m:
+            self.update(l, r, v, node.right) 
         self.__pushup(node) # 动态开点结束后，修复当前节点的值
 
     def query(self, l, r,node):
@@ -305,7 +307,12 @@ class SegmentTree:
         if l <= node.l and node.r <= r:
             return node.v
         self.__pushdown(node) # 动态开点。为子节点赋值，这个值就从 add 传递过来
-        return self.query(l, r, node.left) + self.query(l, r, node.right)
+        ans = 0
+        if l <= node.m:
+            ans += self.query(l, r, node.left)
+        if r > node.m:
+            ans += self.query(l, r, node.right)
+        return ans
 
     def __pushdown(self,node):
         if node.left is None:
