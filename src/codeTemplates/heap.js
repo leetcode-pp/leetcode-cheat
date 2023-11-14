@@ -1,3 +1,5 @@
+const { t } = require("../locales");
+
 const minHeapJSCode = `
 function minHeap(A = []) {
     this.heapify(A);
@@ -237,13 +239,16 @@ public class MinHeap {
 `;
 module.exports = () => ({
   logo: require("../imgs/heap.svg"),
-  title: "堆",
+  // title: "堆",
+  title: t("Locale.codeTemplate.heap.title"),
   list: [
     {
-      text: "小顶堆",
+      // text: "小顶堆",
+      text: t("Locale.codeTemplate.heap.item1"),
       problems: [
         {
-          title: "1046. 最后一块石头的重量(这道题需要用大顶堆，不过都差不多)",
+          // title: "1046. 最后一块石头的重量(这道题需要用大顶堆，不过都差不多)",
+          title: t("Locale.problem.1046"),
           id: "last-stone-weight",
         },
       ],

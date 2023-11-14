@@ -1,22 +1,27 @@
 import bfsLogo from "../imgs/bfs.svg";
+const { t } = require("../locales");
 
 export default () => ({
   title: "BFS",
   logo: bfsLogo,
   list: [
     {
-      text: "带层信息",
+      // text: "带层信息",
+      text: t("Locale.codeTemplate.BFS.item1"),
       problems: [
         {
-          title: "513.找树左下角的值",
+          // title: "513.找树左下角的值",
+          title: t("Locale.problem.513"),
           id: "find-bottom-left-tree-value",
         },
         {
-          title: "662. 二叉树最大宽度",
+          // title: "662. 二叉树最大宽度",
+          title: t("Locale.problem.662"),
           id: "maximum-width-of-binary-tree",
         },
         {
-          title: "863. 二叉树中所有距离为 K 的结点",
+          // title: "863. 二叉树中所有距离为 K 的结点",
+          title: t("Locale.problem.863"),
           id: "all-nodes-distance-k-in-binary-tree",
         },
       ],
@@ -51,10 +56,12 @@ export default () => ({
       ],
     },
     {
-      text: "不带层信息",
+      // text: "不带层信息",
+      text: t("Locale.codeTemplate.BFS.item2"),
       problems: [
         {
-          title: "116. 填充每个节点的下一个右侧节点指针",
+          // title: "116. 填充每个节点的下一个右侧节点指针",
+          title: t("Locale.problem.116"),
           id: "populating-next-right-pointers-in-each-node",
         },
       ],

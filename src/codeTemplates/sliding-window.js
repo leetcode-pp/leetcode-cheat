@@ -1,13 +1,18 @@
 import windowLogo from "../imgs/window.svg";
+import { t } from "../locales";
+
 export default () => ({
-  title: "滑动窗口",
+  // title: "滑动窗口",
+  title: t("Locale.codeTemplate.slidingWindow.title"),
   logo: windowLogo,
   list: [
     {
-      text: "固定窗口（伪代码）",
+      // text: "固定窗口（伪代码）",
+      text: t("Locale.codeTemplate.slidingWindow.item1"),
       problems: [
         {
-          title: "438. 找到字符串中所有字母异位词",
+          // title: "438. 找到字符串中所有字母异位词",
+          title: t("Locale.problem.438"),
           id: "find-all-anagrams-in-a-string",
         },
       ],
@@ -28,43 +33,53 @@ export default () => ({
       ],
     },
     {
-      text: "可变窗口（伪代码）",
+      // text: "可变窗口（伪代码）",
+      text: t("Locale.codeTemplate.slidingWindow.item2"),
       problems: [
         {
           id: "longest-substring-without-repeating-characters",
-          title: "3. 无重复字符的最长子串",
+          // title: "3. 无重复字符的最长子串",
+          title: t("Locale.problem.3"),
         },
         {
-          title: "76. 最小覆盖子串",
+          // title: "76. 最小覆盖子串",
+          title: t("Locale.problem.76"),
           id: "minimum-window-substring",
         },
         {
-          title: "209. 长度最小的子数组",
+          // title: "209. 长度最小的子数组",
+          title: t("Locale.problem.209"),
           id: "minimum-size-subarray-sum",
         },
         {
           id: "fruit-into-baskets",
-          title: "904. 水果成篮",
+          // title: "904. 水果成篮",
+          title: t("Locale.problem.904"),
         },
         {
-          title: "930. 和相同的二元子数组",
+          // title: "930. 和相同的二元子数组",
+          title: t("Locale.problem.930"),
           id: "binary-subarrays-with-sum",
         },
         {
-          title: "992. K 个不同整数的子数组",
+          // title: "992. K 个不同整数的子数组",
+          title: t("Locale.problem.992"),
           id: "subarrays-with-k-different-integers",
         },
 
         {
-          title: "1004. 最大连续 1 的个数 III",
+          // title: "1004. 最大连续 1 的个数 III",
+          title: t("Locale.problem.1004"),
           id: "max-consecutive-ones-iii",
         },
         {
-          title: "1234. 替换子串得到平衡字符串",
+          // title: "1234. 替换子串得到平衡字符串",
+          title: t("Locale.problem.1234"),
           id: "replace-the-substring-for-balanced-string",
         },
         {
-          title: "1248. 统计「优美子数组」",
+          // title: "1248. 统计「优美子数组」",
+          title: t("Locale.problem.1248"),
           id: "count-number-of-nice-subarrays",
         },
       ],

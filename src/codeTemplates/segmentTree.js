@@ -1,4 +1,5 @@
 import segmentLogo from "../imgs/segment.svg";
+import { t } from "../locales";
 
 const pyCode = `
 class SegmentTree:
@@ -86,20 +87,24 @@ class SegmentTree:
 `;
 
 export default () => ({
-  title: "线段树",
+  // title: "线段树",
+  title: t("Locale.codeTemplate.segmentTree.title"),
   logo: segmentLogo,
   link: "https://oi-wiki.org/ds/seg/",
   list: [
     {
-      text: "区间和线段树",
+      // text: "区间和线段树",
+      text: t("Locale.codeTemplate.segmentTree.item1"),
       problems: [
         {
           id: "range-sum-query-immutable",
-          title: "303. 区域和检索 - 数组不可变（使用一维前缀和会更简单）",
+          // title: "303. 区域和检索 - 数组不可变（使用一维前缀和会更简单）",
+          title: t("Locale.problem.303"),
         },
         {
           id: "range-sum-query-mutable",
-          title: "307. 区域和检索 - 数组可修改",
+          // title: "307. 区域和检索 - 数组可修改",
+          title: t("Locale.problem.307"),
         },
       ],
       codes: [
@@ -110,11 +115,13 @@ export default () => ({
       ],
     },
     {
-      text: "区间和懒更新（区间更新）线段树",
+      // text: "区间和懒更新（区间更新）线段树",
+      text: t("Locale.codeTemplate.segmentTree.item2"),
       problems: [
         {
           id: "handling-sum-queries-after-update",
-          title: "2569. 更新数组后处理求和查询",
+          // title: "2569. 更新数组后处理求和查询",
+          title: t("Locale.problem.2569"),
         },
       ],
       codes: [
@@ -193,11 +200,13 @@ export default () => ({
       ],
     },
     {
-      text: "计数线段树",
+      // text: "计数线段树",
+      text: t("Locale.codeTemplate.segmentTree.item3"),
       problems: [
         {
           id: "create-sorted-array-through-instructions",
-          title: "1649. 通过指令创建有序数组",
+          // title: "1649. 通过指令创建有序数组",
+          title: t("Locale.problem.1649"),
         },
       ],
       codes: [
@@ -261,11 +270,13 @@ class SegmentTree:
       ],
     },
     {
-      text: "动态开点",
+      // text: "动态开点",
+      text: t("Locale.codeTemplate.segmentTree.item4"),
       problems: [
         {
           id: "maximum-sum-queries",
-          title: "2736. 最大和查询",
+          // title: "2736. 最大和查询",
+          title: t("Locale.problem.2736"),
         },
       ],
       codes: [

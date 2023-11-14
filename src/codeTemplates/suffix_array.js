@@ -1,9 +1,13 @@
+import { t } from "../locales";
+
 export default () => ({
-  title: "后缀树组",
+  //   title: "后缀树组",
+  title: t("Locale.codeTemplate.suffixArray.title"),
   logo: "",
   list: [
     {
-      text: "标准版",
+      //   text: "标准版",
+      text: t("Locale.codeTemplate.suffixArray.item1"),
       problems: [],
       codes: [
         {

@@ -1,4 +1,5 @@
 import treeLogo from "../imgs/tree.svg";
+import { t } from "../locales";
 
 const cppCode = `
 struct TrieNode {
@@ -216,38 +217,47 @@ class Trie {
 }
 `;
 export default () => ({
-  title: "前缀树",
+  // title: "前缀树",
+  title: t("Locale.codeTemplate.trie.title"),
   logo: treeLogo,
   list: [
     {
-      text: "标准前缀树",
+      // text: "标准前缀树",
+      text: t("Locale.codeTemplate.trie.item1"),
       problems: [
         {
-          title: "208.实现 Trie (前缀树)",
+          // title: "208.实现 Trie (前缀树)",
+          title: t("Locale.problem.208"),
           id: "implement-trie-prefix-tree",
         },
         {
-          title: "211.添加与搜索单词 - 数据结构设计",
+          // title: "211.添加与搜索单词 - 数据结构设计",
+          title: t("Locale.problem.211"),
           id: "add-and-search-word-data-structure-design",
         },
         {
           id: "word-search-ii",
-          title: "212.单词搜索 II",
+          // title: "212.单词搜索 II",
+          title: t("Locale.problem.212"),
         },
         {
           id: "concatenated-words",
-          title: "472.连接词",
+          // title: "472.连接词",
+          title: t("Locale.problem.472"),
         },
         {
-          title: "648. 单词替换",
+          // title: "648. 单词替换",
+          title: t("Locale.problem.648"),
           id: "replace-words",
         },
         {
           id: "short-encoding-of-words",
-          title: "820.单词的压缩编码",
+          // title: "820.单词的压缩编码",
+          title: t("Locale.problem.820"),
         },
         {
-          title: "1032.字符流",
+          // title: "1032.字符流",
+          title: t("Locale.problem.1032"),
           id: "stream-of-characters",
         },
       ],

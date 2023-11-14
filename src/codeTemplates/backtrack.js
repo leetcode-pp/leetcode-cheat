@@ -1,49 +1,62 @@
+const { t } = require("../locales");
 module.exports = () => ({
   logo: require("../imgs/backtrack.svg"),
-  title: "回溯",
+  // title: "回溯",
+  title: t("Locale.codeTemplate.backtrack.title"),
   list: [
     {
-      text: "标准回溯（伪代码）",
+      // text: "标准回溯（伪代码）",
+      text: t("Locale.codeTemplate.backtrack.item1"),
       problems: [
         {
           id: "combination-sum",
-          title: "39. 组合总和",
+          // title: "39. 组合总和",
+          title: t("Locale.problem.39"),
         },
         {
-          title: "40. 组合总和 II",
+          // title: "40. 组合总和 II",
+          title: t("Locale.problem.40"),
           id: "combination-sum-ii",
         },
         {
-          title: "46. 全排列",
+          // title: "46. 全排列",
+          title: t("Locale.problem.46"),
           id: "permutations",
         },
         {
-          title: "47. 全排列 II",
+          // title: "47. 全排列 II",
+          title: t("Locale.problem.47"),
           id: "permutations-ii",
         },
         {
           id: "N-Queens-II",
-          title: "52. N 皇后 II",
+          // title: "52. N 皇后 II",
+          title: t("Locale.problem.52"),
         },
         {
           id: "subsets",
-          title: "78. 子集",
+          // title: "78. 子集",
+          title: t("Locale.problem.78"),
         },
         {
           id: "subsets-ii",
-          title: "90. 子集 II",
+          // title: "90. 子集 II",
+          title: t("Locale.problem.90"),
         },
         {
           id: "path-sum-ii",
-          title: "113. 路径总和 II",
+          // title: "113. 路径总和 II",
+          title: t("Locale.problem.113"),
         },
         {
           id: "palindrome-partitioning",
-          title: "131. 分割回文串",
+          // title: "131. 分割回文串",
+          title: t("Locale.problem.131"),
         },
         {
           id: "maximum-score-words-formed-by-letters",
-          title: "1255. 得分最高的单词集合",
+          // title: "1255. 得分最高的单词集合",
+          title: t("Locale.problem.1255"),
         },
       ],
       codes: [
@@ -71,15 +84,18 @@ module.exports = () => ({
       ],
     },
     {
-      text: "笛卡尔积优化",
+      // text: "笛卡尔积优化",
+      text: t("Locale.codeTemplate.backtrack.item2"),
       problems: [
         {
           id: "word-break-ii",
-          title: "140. 单词拆分 II",
+          // title: "140. 单词拆分 II",
+          title: t("Locale.problem.140"),
         },
         {
           id: "ambiguous-coordinates",
-          title: "816. 模糊坐标",
+          // title: "816. 模糊坐标",
+          title: t("Locale.problem.816"),
         },
       ],
       codes: [
