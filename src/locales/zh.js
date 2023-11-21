@@ -195,6 +195,8 @@ const zh = {
     graph: {
       title: "图",
       item1: "dijkstra(单源贪心最短路径)",
+      item1_desc1: "比如一个图是这样的：",
+      item1_desc2: "我们使用邻接矩阵来构造：",
       item2: "floyd_warshall(多源动态规划最短路径)",
       item3: "Bellman–Ford（单源动态规划最短路径）",
       item4: "Kruskal（又称加边法，是一种最小生成树算法）",
