@@ -208,7 +208,6 @@ const zh = {
       item3: "寻找最右边的满足条件的值",
       item4: "寻找最左插入位置",
       item5: "寻找最右插入位置",
-      
     },
     BFS: {
       item1: "带层信息",
@@ -236,7 +235,7 @@ const zh = {
       title: "前缀树",
       item1: "标准前缀树",
     },
-    
+
     uf: {
       title: "并查集",
       item1: "不带权并查集",
@@ -287,6 +286,7 @@ const zh = {
 
   explanationTemplate: {
     name: "题解模板",
+    code: "代码",
     goToTheWebsiteToUse: "去网站使用",
     problemAddress: "题目地址",
     problemDesc: "题目描述",

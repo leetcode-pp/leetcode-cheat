@@ -114,7 +114,7 @@ ${desc}
 
 - ${keyword} 
 
-## Code
+## ${t("Locale.explanationTemplate.code")}
 
 - ${t("Locale.explanationTemplate.languageSupport")}：${displayLanguage(
     language

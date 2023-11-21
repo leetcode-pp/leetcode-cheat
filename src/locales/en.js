@@ -295,6 +295,7 @@ const en = {
 
   explanationTemplate: {
     name: "Explanation Template",
+    code: "Code",
     goToTheWebsiteToUse: "Go to the website to use",
     problemAddress: "Problem Address",
     problemDesc: "Problem Description",
