@@ -15,8 +15,8 @@ module.exports = () => ({
         {
           language: "py",
           desc: `
-          
-比如一个图是这样的：
+${t("Locale.codeTemplate.graph.item1_desc1")}          
+
 
 \`\`\`
 E -- 1 --> B -- 1 --> C -- 1 --> D -- 1 --> F
@@ -25,7 +25,8 @@ E -- 1 --> B -- 1 --> C -- 1 --> D -- 1 --> F
     -------- 2 ---------> G ------- 1 ------
     \`\`\`
 
-我们使用邻接矩阵来构造：
+${t("Locale.codeTemplate.graph.item1_desc2")}          
+
 
 \`\`\`py
 G = {
@@ -47,6 +48,7 @@ import heapq
 
 def dijkstra(graph, start, end):
     # 堆里的数据都是 (cost, i) 的二元祖，其含义是“从 start 走到 i 的距离是 cost”。
+    # The data in the heap consists of tuples (cost, i), where it signifies "the distance from start to i is cost".
     heap = [(0, start)]
     visited = set()
     while heap:
@@ -79,7 +81,10 @@ def dijkstra(graph, start, end):
           language: "py",
           text: `
 # graph 是邻接矩阵，n 是顶点个数
+# The graph is represented as an adjacency matrix, where n represents the number of vertices.
+
 # graph 形如： graph[u][v] = w
+# graph is like: graph[u][v] = w
 def floyd_warshall(graph, n):
     dist = [[float("inf") for _ in range(n)] for _ in range(n)]
 
@@ -87,10 +92,13 @@ def floyd_warshall(graph, n):
         for j in range(n):
             dist[i][j] = graph[i][j]
 
+    # 将顶点k与所有其他顶点(i, j)进行比较
     # check vertex k against all other vertices (i, j)
     for k in range(n):
+        # 循环遍历图数组的行
         # looping through rows of graph array
         for i in range(n):
+            # 循环遍历图数组的列
             # looping through columns of graph array
             for j in range(n):
                 if (
@@ -116,7 +124,9 @@ def floyd_warshall(graph, n):
         {
           language: "py",
           text: `
+# 如果不存在，返回-1
 # return -1 for not exsit
+# 如果存在，返回 dis map，dis[v]表示从点s到点v的最小花费
 # else return dis map where dis[v] means for point s the least cost to point v
 def bell_man(edges, s):
     dis = defaultdict(lambda: math.inf)
@@ -245,7 +255,8 @@ def PrimsAlgorithm(l):  # noqa: E741
                 set_position(positions[start], temp)
 
                 top_to_bottom(heap, m, size, positions)
-
+    
+    # 如果最小堆中任意节点的值减小，则更新函数
     # Update function if value of any node in min-heap decreases
     def bottom_to_top(val, index, heap, position):
         temp = position[index]
@@ -283,10 +294,16 @@ def PrimsAlgorithm(l):  # noqa: E741
         return temp
 
     visited = [0 for i in range(len(l))]
-    Nbr_TV = [-1 for i in range(len(l))]  # Neighboring Tree Vertex of selected vertex
+    # 所选顶点的邻近树顶点
+    # Neighboring Tree Vertex of selected vertex
+    Nbr_TV = [-1 for i in range(len(l))]  
+    # 部分树的探索顶点到邻近顶点的最小距离
     # Minimum Distance of explored vertex with neighboring vertex of partial tree
+    # 以图表形式呈现
     # formed in graph
-    Distance_TV = []  # Heap of Distance of vertices from their neighboring vertex
+    # 堆顶点到相邻顶点的距离
+    # Heap of Distance of vertices from their neighboring vertex
+    Distance_TV = []  
     Positions = []
 
     for x in range(len(l)):
@@ -339,8 +356,9 @@ if __name__ == "__main__":  # pragma: no cover
           text: `
 def topologicalSort(graph):
     """
+    Kahn算法是使用广度优先搜索（BFS）来找到有向无环图（Directed Acyclic Graph）的拓扑排序的算法。
     Kahn's Algorithm is used to find Topological ordering of Directed Acyclic Graph
-    using BFS
+    using BFS.
     """
     indegree = [0] * len(graph)
     queue = collections.deque([])
@@ -369,7 +387,7 @@ def topologicalSort(graph):
     else:
         print(topo)
 
-
+# 图的邻接表
 # Adjacency List of Graph
 graph = {0: [1, 2], 1: [3], 2: [3], 3: [4, 5], 4: [], 5: []}
 topologicalSort(graph)

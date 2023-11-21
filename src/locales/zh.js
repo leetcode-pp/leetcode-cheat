@@ -195,6 +195,8 @@ const zh = {
     graph: {
       title: "图",
       item1: "dijkstra(单源贪心最短路径)",
+      item1_desc1: "比如一个图是这样的：",
+      item1_desc2: "我们使用邻接矩阵来构造：",
       item2: "floyd_warshall(多源动态规划最短路径)",
       item3: "Bellman–Ford（单源动态规划最短路径）",
       item4: "Kruskal（又称加边法，是一种最小生成树算法）",
@@ -208,7 +210,6 @@ const zh = {
       item3: "寻找最右边的满足条件的值",
       item4: "寻找最左插入位置",
       item5: "寻找最右插入位置",
-      
     },
     BFS: {
       item1: "带层信息",
@@ -236,7 +237,7 @@ const zh = {
       title: "前缀树",
       item1: "标准前缀树",
     },
-    
+
     uf: {
       title: "并查集",
       item1: "不带权并查集",
@@ -287,6 +288,7 @@ const zh = {
 
   explanationTemplate: {
     name: "题解模板",
+    code: "代码",
     goToTheWebsiteToUse: "去网站使用",
     problemAddress: "题目地址",
     problemDesc: "题目描述",

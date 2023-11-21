@@ -200,6 +200,8 @@ const en = {
     graph: {
       title: "Graph",
       item1: "dijkstra(single-source greedy shortest path)",
+      item1_desc1: "For example, consider a graph like this:",
+      item1_desc2: "We construct it using an adjacency matrix:",
       item2: "floyd_warshall(multi-source dynamic programming shortest path)",
       item3: "Bellman–Ford(single-source dynamic programming shortest path)",
       item4:
@@ -295,6 +297,7 @@ const en = {
 
   explanationTemplate: {
     name: "Explanation Template",
+    code: "Code",
     goToTheWebsiteToUse: "Go to the website to use",
     problemAddress: "Problem Address",
     problemDesc: "Problem Description",
