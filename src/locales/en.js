@@ -386,7 +386,8 @@ const en = {
     `,
 
     dp: "Dynamic Programming",
-    dp_desc: `The basic framework for different problems of the same type is generally consistent, but with slight variations in details. The template code is explained using a specific type as an example, and individuals should make adjustments based on the actual situation.
+    dp_desc: `
+    The basic framework for different problems of the same type is generally consistent, but with slight variations in details. The template code is explained using a specific type as an example, and individuals should make adjustments based on the actual situation.
 
     The three key points for dynamic programming are: state, enumeration, and transition equations (choices). For each type of problem, I try to provide hints based on these three points.
     

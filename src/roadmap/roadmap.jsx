@@ -49,7 +49,7 @@ class Solution:
         return helper(0, len(s) - 1)
 `;
 
-const roadmaps = {
+const getRoadmaps = () => ({
   "binary-search": {
     desc: t("Locale.learningRoute.binarySearchDesc"),
     items: [
@@ -545,10 +545,11 @@ ${dpRangeCodeRecur}`,
       },
     ],
   },
-};
+});
 
 export default function RoadMap() {
   const [topic, setTopic] = useState("dp");
+  const roadmaps = getRoadmaps();
   return (
     <>
       <Radio.Group
