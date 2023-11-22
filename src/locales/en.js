@@ -431,8 +431,6 @@ const en = {
     dp_item7: "Game type(List only the problems)",
 
     dp_item8: "Interval DP",
-    dp_item8_text_comment:
-      "Using memoization might lead to better code writing. For example, the above DP code can be transformed into memoized recursion as:",
     dp_item8_keys1: `
     Traversing in reverse from the right boundary and in forward from the left boundary
             `,

@@ -8,7 +8,8 @@ const dpSingleCode = `
   dp = [0] * (n + 1)
   for i in range(1, n + 1):
     for j in range(i + 1, n + 1):
-      if 一定条件:dp[j] = 选择(dp[i], dp[j])
+      # if 一定条件:dp[j] = 选择(dp[i], dp[j])
+      if a certain condition is met: dp[j] = choose(dp[i], dp[j]).
       else: dp[i] = dp[i - 1]
 `;
 const dpDoubleCode = `
@@ -26,8 +27,10 @@ class Solution:
     def solve(self, s):
         n = len(s)
         dp = [[0] * n for _ in range(n)]
+        # 从右边界开始以逆向顺序遍历。
         # Traverse in reverse order from the right boundary
         for i in range(n - 1, -1, -1):
+            # 从左边界开始以正向顺序遍历。
             # Traverse in forward order from the left boundary
             for j in range(i + 1, n):
                 # do something
@@ -96,6 +99,7 @@ def ability_test_bs(nums):
   l, r = 0, len(A) - 1
   while l <= r:
       mid = (l + r) // 2
+      # 唯一的区别在于这里和最左边的二分查找。
       # The only difference is here and in the leftmost binary search.
       if possible(mid): l = mid + 1
       else: r = mid - 1
@@ -186,6 +190,7 @@ def count_bs(nums, k):
   l, r = 0, len(A) - 1
   while l <= r:
       mid = (l + r) // 2
+      # 唯一的区别在于这里和最左边的二分查找。
       # Only this is different from the leftmost binary
       if count_not_greater(mid) > k: r = mid - 1
       else: l = mid + 1
@@ -339,9 +344,11 @@ def count_bs(nums, k):
         code: {
           language: "py",
           text: `
+      # 一维
       # one-dimensional
       for i in range(2, n):
         cur, prev = max(prev + nums[i], cur), cur
+      # 二维
       # two-dimensional.
       def uniquePaths(self, m: int, n: int) -> int:
           dp = [1] * n
@@ -502,9 +509,8 @@ def count_bs(nums, k):
           text: `
           
 ${dpRangeCode}
-# ${
-  // 使用记忆化可能会更好书写，比如上面的 dp 代码改成记忆化递归就是：
-t("Locale.learningRoute.dp_item8_text_comment")}
+# 使用记忆化可能会更好书写，比如上面的 dp 代码改成记忆化递归就是：
+# Using memoization might lead to better code writing. For example, the above DP code can be transformed into memoized recursion as:
 ${dpRangeCodeRecur}`,
         },
         keys: [

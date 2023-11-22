@@ -2,7 +2,9 @@ const { t } = require("../locales");
 
 const pyCode = `
 MAXN = int(1e5)
-flag = [True] * (MAXN + 10) # if flag[i] is true, then i is prime
+# 如果 flag[i] 为 true，表示 i 是质数
+# if flag[i] is true, then i is prime
+flag = [True] * (MAXN + 10) 
 flag[0], flag[1] = False, False
 for i in range(2, int(MAXN ** 0.5) + 1):
     if flag[i]:

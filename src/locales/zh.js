@@ -429,8 +429,6 @@ const zh = {
     dp_item7: "博弈型（仅列举题目）",
 
     dp_item8: "区间 DP",
-    dp_item8_text_comment:
-      "使用记忆化可能会更好书写，比如上面的 dp 代码改成记忆化递归就是：",
     dp_item8_keys1: `
     右边界倒序遍历，左边界正序遍历
     `,
