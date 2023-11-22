@@ -40,6 +40,7 @@ class UF:
       self.parent = {}
       self.cnt = 0
       # 初始化 parent，size 和 cnt
+      # Initialize parent, size and cnt
       for i in range(M):
           self.parent[i] = i
           self.cnt += 1
@@ -78,6 +79,7 @@ class UF:
 class UF:
   def __init__(self, M):
       # 初始化 parent，weight
+      # Initialize parent, weight
       self.parent = {}
       self.weight = {}
       for i in range(M):

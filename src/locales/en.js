@@ -231,7 +231,29 @@ const en = {
     slidingWindow: {
       title: "Sliding Window",
       item1: "Fixed length sliding window",
+      item1_text:`
+      Initialize front and back pointers to 0.
+      Initialize ans.
+
+      for front in iterable
+          update window info (front in, back out)
+          move back pointer
+      update ans
+      return ans
+          `,
       item2: "Variable length sliding window",
+      item2_text:`
+      Initialize the slow pointer to 0.
+      Initialize ans.
+
+      for fast pointer in iterable collection
+          update information in the window
+          while the window does not satisfy the question
+              expand or shrink the window
+              move the slow pointer
+          update the answer
+      return ans
+          `
     },
 
     backtrack: {
@@ -364,7 +386,8 @@ const en = {
     `,
 
     dp: "Dynamic Programming",
-    dp_desc: `The basic framework for different problems of the same type is generally consistent, but with slight variations in details. The template code is explained using a specific type as an example, and individuals should make adjustments based on the actual situation.
+    dp_desc: `
+    The basic framework for different problems of the same type is generally consistent, but with slight variations in details. The template code is explained using a specific type as an example, and individuals should make adjustments based on the actual situation.
 
     The three key points for dynamic programming are: state, enumeration, and transition equations (choices). For each type of problem, I try to provide hints based on these three points.
     
@@ -409,8 +432,6 @@ const en = {
     dp_item7: "Game type(List only the problems)",
 
     dp_item8: "Interval DP",
-    dp_item8_text_comment:
-      "Using memoization might lead to better code writing. For example, the above DP code can be transformed into memoized recursion as:",
     dp_item8_keys1: `
     Traversing in reverse from the right boundary and in forward from the left boundary
             `,

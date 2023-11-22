@@ -65,18 +65,30 @@ module.exports = () => ({
           text: `
           const visited = {}
           function backtrack(i) {
-              if (满足特定条件）{
+              // 如果满足条件
+              if (Meet certain conditions) {
                   // 返回结果 or 退出搜索空间
+                  // return result or exit search space
               }
           
-              visited[i] = true // 将当前状态标为已搜索
-              dosomething(i) // 对i做一些操作
-              for (根据i能到达的下个状态j) {
-                  if (!visited[j]) { // 如果状态j没有被搜索过
+              // 将当前状态标为已搜索
+              // mark the current state as searched
+              visited[i] = true
+              // 对i做一些操作
+              // do something with i
+              dosomething(i) 
+              
+              // for (根据i能到达的下个状态j) {
+              for (The next state j that can be reached based on i.) {
+                // 如果状态j没有被搜索过
+                // if state j has not been searched
+                  if (!visited[j]) { 
                       dfs(j)
                   }
               }
-              undo(i) // 恢复i
+              // 恢复i
+              // restore i
+              undo(i) 
           }
           backtrack(0)
           `,

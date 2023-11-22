@@ -224,7 +224,29 @@ const zh = {
     slidingWindow: {
       title: "滑动窗口",
       item1: "固定窗口（伪代码）",
+      item1_text:`
+      初始化前后指针 = 0
+      初始化 ans
+
+      for 前指针 in 可迭代集合
+          更新窗口内信息（前指针进窗口，后指针出窗口）
+          后指针移动
+      更新答案
+      返回 ans
+          `,
       item2: "可变窗口（伪代码）",
+      item2_text:`
+      初始化慢指针 = 0
+      初始化 ans
+
+      for 快指针 in 可迭代集合
+          更新窗口内信息
+          while 窗口内不符合题意
+              扩展或者收缩窗口
+              慢指针移动
+          更新答案
+      返回 ans
+          `,
     },
 
     backtrack: {
@@ -407,8 +429,6 @@ const zh = {
     dp_item7: "博弈型（仅列举题目）",
 
     dp_item8: "区间 DP",
-    dp_item8_text_comment:
-      "使用记忆化可能会更好书写，比如上面的 dp 代码改成记忆化递归就是：",
     dp_item8_keys1: `
     右边界倒序遍历，左边界正序遍历
     `,
