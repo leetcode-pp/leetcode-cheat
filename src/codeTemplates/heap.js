@@ -1,3 +1,5 @@
+const { t } = require("../locales");
+
 const minHeapJSCode = `
 function minHeap(A = []) {
     this.heapify(A);
@@ -30,7 +32,7 @@ function minHeap(A = []) {
   };
   
   minHeap.prototype.pop = function() {
-    if (this.h.length === 1) throw new Error('空了就别弹了吧？');
+    if (this.h.length === 1) throw new Error("Don't pop it up when it's empty");
     const ans = this.h[1];
     this.h[1] = this.h[this.h.length - 1];
     this.h.pop();
@@ -109,7 +111,7 @@ class min_heap:
             self.shift_down(i)
             i = i + 1
 
-# 使用：
+# Use:
 
 h = min_heap([5, 6, 2, 3])
 
@@ -137,6 +139,17 @@ import java.util.Comparator;
  * build 构建堆
  */
 
+/**
+ * en:
+ * Use a complete binary tree to construct a heap
+ * The starting point is 1
+ * Then the child nodes are i <<1 and i<<1 + 1
+ * The core methods are
+ * shiftdown exchange sinking
+ * shiftup exchange floating
+ * <p>
+ * build build heap
+ */
 public class MinHeap {
 
     int size = 0;
@@ -164,6 +177,7 @@ public class MinHeap {
         while ((i << 1) <= size) {
             int child = i << 1;
             // child!=size 判断当前元素是否包含右节点
+            // child!=size Determine if the current element contains a right node.
             if (child != size && queue[child + 1] < queue[child]) {
                 child++;
             }
@@ -237,13 +251,16 @@ public class MinHeap {
 `;
 module.exports = () => ({
   logo: require("../imgs/heap.svg"),
-  title: "堆",
+  // title: "堆",
+  title: t("Locale.codeTemplate.heap.title"),
   list: [
     {
-      text: "小顶堆",
+      // text: "小顶堆",
+      text: t("Locale.codeTemplate.heap.item1"),
       problems: [
         {
-          title: "1046. 最后一块石头的重量(这道题需要用大顶堆，不过都差不多)",
+          // title: "1046. 最后一块石头的重量(这道题需要用大顶堆，不过都差不多)",
+          title: t("Locale.problem.1046"),
           id: "last-stone-weight",
         },
       ],

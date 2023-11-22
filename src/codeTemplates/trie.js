@@ -1,4 +1,5 @@
 import treeLogo from "../imgs/tree.svg";
+import { t } from "../locales";
 
 const cppCode = `
 struct TrieNode {
@@ -32,6 +33,7 @@ private:
       delete root;
   }
 public:
+  /** 在这里初始化您的数据结构。 */
   /** Initialize your data structure here. */
   Trie() {
       root = new TrieNode();
@@ -41,6 +43,7 @@ public:
       clear(root);
   }
   
+  /** 将一个单词插入到树中。 */
   /** Inserts a word into the trie. */
   void insert(string word) {
       TrieNode *p = root;
@@ -53,12 +56,14 @@ public:
       p->isEnd = true;
   }
   
+  /** 返回单词是否在树中。 */
   /** Returns if the word is in the trie. */
   bool search(string word) {
       TrieNode *p = findString(word);
       return p != nullptr && p->isEnd;
   }
   
+  /** 返回树中是否有以给定前缀开头的任何单词。 */
   /** Returns if there is any word in the trie that starts with the given prefix. */
   bool startsWith(string prefix) {
       TrieNode *p = findString(prefix);
@@ -92,12 +97,15 @@ type Trie struct {
 //	return &Trie{root: NewNode(false)}
 //}
 
+
+/** 在这里初始化您的数据结构。 */
 /** Initialize your data structure here. */
 func Constructor() Trie {
 	return Trie{root: NewNode(false)}
 }
 
 
+/** 将一个单词插入到树中。 */
 /** Inserts a word into the trie. */
 func (t *Trie) Insert(word string)  {
 	cur := t.root
@@ -109,12 +117,15 @@ func (t *Trie) Insert(word string)  {
 		} 
 		cur = cur.next[c]
 	}
-	if !cur.isWord { // 标记为单词
+	if !cur.isWord {
+    // 标记为单词
+    // mark as word
 		cur.isWord = true
 	}
 }
 
 
+/** 返回单词是否在树中。 */
 /** Returns if the word is in the trie. */
 func (t *Trie) Search(word string) bool {
 	cur := t.root
@@ -130,6 +141,7 @@ func (t *Trie) Search(word string) bool {
 }
 
 
+/** 返回树中是否有以给定前缀开头的任何单词。 */
 /** Returns if there is any word in the trie that starts with the given prefix. */
 func (t *Trie) StartsWith(prefix string) bool {
 	cur := t.root
@@ -201,9 +213,12 @@ class Trie {
   }
 
   private class TrieNode {
-
-      int count; //表示以该处节点构成的串的个数
-      int preCount; //表示以该处节点构成的前缀的字串的个数
+      // 表示以该处节点构成的串的个数
+      // Represents the number of strings consisting of nodes at that point
+      int count;
+      // 表示以该处节点构成的前缀的字串的个数
+      // Represents the number of substrings consisting of prefixes at that point
+      int preCount; 
       TrieNode[] children;
 
       TrieNode() {
@@ -216,38 +231,47 @@ class Trie {
 }
 `;
 export default () => ({
-  title: "前缀树",
+  // title: "前缀树",
+  title: t("Locale.codeTemplate.trie.title"),
   logo: treeLogo,
   list: [
     {
-      text: "标准前缀树",
+      // text: "标准前缀树",
+      text: t("Locale.codeTemplate.trie.item1"),
       problems: [
         {
-          title: "208.实现 Trie (前缀树)",
+          // title: "208.实现 Trie (前缀树)",
+          title: t("Locale.problem.208"),
           id: "implement-trie-prefix-tree",
         },
         {
-          title: "211.添加与搜索单词 - 数据结构设计",
+          // title: "211.添加与搜索单词 - 数据结构设计",
+          title: t("Locale.problem.211"),
           id: "add-and-search-word-data-structure-design",
         },
         {
           id: "word-search-ii",
-          title: "212.单词搜索 II",
+          // title: "212.单词搜索 II",
+          title: t("Locale.problem.212"),
         },
         {
           id: "concatenated-words",
-          title: "472.连接词",
+          // title: "472.连接词",
+          title: t("Locale.problem.472"),
         },
         {
-          title: "648. 单词替换",
+          // title: "648. 单词替换",
+          title: t("Locale.problem.648"),
           id: "replace-words",
         },
         {
           id: "short-encoding-of-words",
-          title: "820.单词的压缩编码",
+          // title: "820.单词的压缩编码",
+          title: t("Locale.problem.820"),
         },
         {
-          title: "1032.字符流",
+          // title: "1032.字符流",
+          title: t("Locale.problem.1032"),
           id: "stream-of-characters",
         },
       ],
@@ -257,8 +281,12 @@ export default () => ({
           text: `
 class TrieNode:
     def __init__(self):
-        self.count = 0 # 表示以该处节点构成的串的个数
-        self.preCount = 0 # 表示以该处节点构成的前缀的字串的个数
+        # 表示以该处节点构成的串的个数
+        # Represents the number of strings consisting of nodes at that point
+        self.count = 0
+        # 表示以该处节点构成的前缀的字串的个数
+        # Represents the number of substrings consisting of prefixes at that point
+        self.preCount = 0 
         self.children = {}
 
 class Trie:
@@ -297,8 +325,12 @@ class Trie:
           text: `
   var Trie = function() {
     this.children = {};
-    this.count = 0 //表示以该处节点构成的串的个数
-    this.preCount = 0 // 表示以该处节点构成的前缀的字串的个数
+    // 表示以该处节点构成的串的个数
+    // Represents the number of strings consisting of nodes at that point
+    this.count = 0
+    // 表示以该处节点构成的前缀的字串的个数
+    // Represents the number of substrings consisting of prefixes at that point
+    this.preCount = 0 
   };
   
   Trie.prototype.insert = function(word) {
