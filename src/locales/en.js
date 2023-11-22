@@ -231,7 +231,29 @@ const en = {
     slidingWindow: {
       title: "Sliding Window",
       item1: "Fixed length sliding window",
+      item1_text:`
+      Initialize front and back pointers to 0.
+      Initialize ans.
+
+      for front in iterable
+          update window info (front in, back out)
+          move back pointer
+      update ans
+      return ans
+          `,
       item2: "Variable length sliding window",
+      item2_text:`
+      Initialize the slow pointer to 0.
+      Initialize ans.
+
+      for fast pointer in iterable collection
+          update information in the window
+          while the window does not satisfy the question
+              expand or shrink the window
+              move the slow pointer
+          update the answer
+      return ans
+          `
     },
 
     backtrack: {
