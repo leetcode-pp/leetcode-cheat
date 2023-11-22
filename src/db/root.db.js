@@ -9694,6 +9694,10 @@
         {
             "language": "py",
             "text": "\nclass RangeModule(object):\n    def __init__(self):\n        # [1,2,3,5,8,12]\n        self.ranges = []\n\n    def overlap(self, left, right, is_odd):\n        i = bisect_left(self.ranges, left)\n        j = bisect_right(self.ranges, right)\n        merge = []\n        if i & 1 == int(is_odd):\n            merge.append(left)\n        if j & 1 == int(is_odd):\n            merge.append(right)\n        # 修改 ranges 的 [i:j-1] 部分\n        self.ranges[i:j] = merge\n\n    def addRange(self, left, right):\n        # [1,2,3,5,8,12]， 代入 left = 3, right = 5，此时需要保持不变， 就不难知道应该用 bisect_left 还是 bisect_right\n        return self.overlap(left, right, False)\n\n    def removeRange(self, left, right):\n        # [1,2,3,5,8,12]， 代入 left = 3, right = 5，此时需要为 [1,2,8,12]， 就不难知道应该用 bisect_left 还是 bisect_right\n        return self.overlap(left, right, True)\n\n    def queryRange(self, left, right):\n        # [1,2,3,5,8,12]， 代入 left = 3, right = 5，此时需要返回 true， 就不难知道应该用 bisect_left 还是 bisect_right\n        i = bisect_right(self.ranges, left)\n        j = bisect_left(self.ranges, right)\n        return i & 1 == 1 and i == j  # 都在一个区间内\n\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Node:\n    def __init__(self, l, r):\n        self.left = None # 左孩子的指针\n        self.right = None # 右孩子的指针\n        self.l = l # 区间左端点\n        self.r = r # 区间右端点\n        self.m = (l + r) >> 1 # 中点\n        self.v = 0 # 当前值\n        self.add = -1   # 懒标记\n\nclass SegmentTree:\n    def __init__(self,n):\n        # 默认就一个根节点，不 build 出整个树，节省空间\n        self.root = Node(0,n-1)  # 根节点\n\n    def update(self, l, r, v, node):\n        if l > node.r or r < node.l:\n            return\n        if l <= node.l and node.r <= r:\n            node.v = (node.r - node.l + 1) * v\n            node.add = v #   做了一个标记\n            return\n        self.__pushdown(node) # 动态开点。为子节点赋值，这个值就从 add 传递过来\n        if l <= node.m:\n            self.update(l, r, v, node.left)\n        if r > node.m:\n            self.update(l, r, v, node.right) \n        self.__pushup(node) # 动态开点结束后，修复当前节点的值\n\n    def query(self, l, r,node):\n        if l > node.r or r < node.l:\n            return False\n        if l <= node.l and node.r <= r:\n            return node.v == node.r - node.l + 1\n        self.__pushdown(node) # 动态开点。为子节点赋值，这个值就从 add 传递过来\n        ans = True\n        if l <= node.m:\n            ans = self.query(l, r, node.left)\n        if ans and r > node.m:\n            ans = self.query(l, r, node.right)\n        return ans\n\n    def __pushdown(self,node):\n        if node.left is None:\n            node.left = Node(node.l, node.m)\n        if node.right is None:\n            node.right = Node(node.m + 1, node.r)\n        if node.add != -1:\n            node.left.v = (node.left.r - node.left.l + 1) * node.add\n            node.right.v = (node.right.r - node.right.l + 1) * node.add\n            node.left.add = node.add\n            node.right.add = node.add\n            node.add = -1\n\n    def __pushup(self,node):\n        node.v = node.left.v + node.right.v\n\n    def updateSum(self,index,val):\n        self.update(index,index,val,self.root)\n\n    def querySum(self,left,right):\n        return self.query(left,right,self.root)\n           \nclass RangeModule:\n    def __init__(self):\n        self.tree = SegmentTree(10 ** 9)\n\n    def addRange(self, left: int, right: int) -> None:\n        self.tree.update(left, right - 1, 1, self.tree.root)\n\n    def queryRange(self, left: int, right: int) -> bool:\n        return not not self.tree.querySum(left, right - 1)\n\n    def removeRange(self, left: int, right: int) -> None:\n        self.tree.update(left, right - 1, 0, self.tree.root)\n\n# Your RangeModule object will be instantiated and called as such:\n# obj = RangeModule()\n# obj.addRange(left,right)\n# param_2 = obj.queryRange(left,right)\n# obj.removeRange(left,right)\n"
         }
     ]
 },
@@ -13891,6 +13895,33 @@
         }
     ]
 },
+"maximum-running-time-of-n-computers":{
+    "id": "2141",
+    "name": "maximum-running-time-of-n-computers",
+    "pre": [
+        {
+            "text": "二分",
+            "link": null,
+            "color": "purple"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "证明总的可用电池大于等于总的分钟数是充要条件",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/2141.maximum-running-time-of-n-computers.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/2141.maximum-running-time-of-n-computers.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def maxRunTime(self, n: int, batteries: List[int]) -> int:\n        def can(k):\n            return sum([min(k, battery) for battery in batteries]) >= n * k\n        l, r = 0, sum(batteries)\n        while l <= r:\n            mid = (l + r) // 2\n            if can(mid):\n                l = mid + 1\n            else:\n                r = mid - 1\n        return r\n\n"
+        }
+    ]
+},
 "minimum-white-tiles-after-covering-with-carpets":{
     "id": "2209",
     "name": "minimum-white-tiles-after-covering-with-carpets",
@@ -14153,6 +14184,38 @@
         {
             "language": "py",
             "text": "\nclass Solution:\n    def maximumSumOfHeights(self, maxHeight: List[int]) -> int:\n        # 枚举 i 作为顶峰，其取值贪心的取 maxHeight[i]\n        # 其左侧第一个小于它的位置 l，[l + 1, i] 都可以且最多取到 maxHeight[i]\n        n = len(maxHeight)\n        f = [-1] * n # f[i] 表示 i 为峰顶，左侧高度和最大值\n        g = [-1] * n # g[i] 表示 i 为峰顶，右侧高度和最大值\n        def cal(f):\n            st = []\n            for i in range(len(maxHeight)):\n                while st and maxHeight[i] < maxHeight[st[-1]]:\n                    st.pop()\n                # 其左侧第一个小于它的位置 l，[l + 1, i] 都可以且最多取到 maxHeight[i]\n                if st:\n                    f[i] = (i - st[-1]) * maxHeight[i] + f[st[-1]]\n                else:\n                    f[i] = maxHeight[i] * (i + 1)\n                st.append(i)\n        cal(f)\n        maxHeight = maxHeight[::-1]\n        cal(g)\n        maxHeight = maxHeight[::-1]\n        ans = 0\n        for i in range(len(maxHeight)):\n            ans = max(ans, f[i] + g[n - 1 - i] - maxHeight[i])\n        return ans\n"
+        }
+    ]
+},
+"maximum-xor-product":{
+    "id": "2939",
+    "name": "maximum-xor-product",
+    "pre": [
+        {
+            "text": "位运算",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "除了低n位，其他不受x异或影响",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "对于每一位，贪心地使得异或结果为1，如果不能，贪心地使较小的异或结果为1",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/2939.maximum-xor-product.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/2939.maximum-xor-product.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def maximumXorProduct(self, a: int, b: int, n: int) -> int:\n        axorx = (a >> n) << n # 低 n 位去掉，剩下的前 m 位就是答案中的 axorb 二进制位。剩下要做的是确定低 n 位具体是多少\n        bxorx = (b >> n) << n\n        MOD = 10 ** 9 + 7\n        for i in range(n-1, -1, -1):\n            t1 = a >> i & 1\n            t2 = b >> i & 1\n            if t1 == t2:\n                axorx |= 1 << i\n                bxorx |= 1 << i\n            else:\n                if axorx < bxorx:\n                    axorx |= 1 << i # 和一定，两者相差越小，乘积越大 \n                else:\n                    bxorx |= 1 << i\n        axorx %= MOD\n        bxorx %= MOD\n        return (axorx * bxorx) % MOD\n\n"
         }
     ]
 },
