@@ -32,8 +32,8 @@ export const setLang = (_lang) => {
 export const initLang = async (currentUrl) => {
   if (isInit) return;
 
-  const isCnHref = currentUrl.includes(LEETCODE_CN_URL);
-  setLang(isCnHref ? "zh" : "en");
+  const isEnHref = currentUrl.includes(LEETCODE_URL);
+  setLang(isEnHref ? "en":"zh");
   isInit = true;
 };
 
