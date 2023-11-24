@@ -393,35 +393,35 @@ const en = {
     
     Of course, this learning path is intended for those with some foundation. If you don't have a foundation yet, you can refer to related articles. I will also write a comprehensive routine article in the future.`,
     dp_item1: "Single string type",
-    dp_item1_keys1: `
-    State: 1. dp[i] represents the xxxx ending with s[i]
-           2. dp[i] represents the xxxx up to s[i]`,
+    dp_item1_keys1: `State:
+    1. dp[i] represents the xxxx ending with s[i]
+    2. dp[i] represents the xxxx up to s[i]`,
     dp_item1_keys2:
       "Enumeration: It usually involves two nested loops, where one loop fixes the left endpoint and the other loop fixes the right endpoint for enumeration.",
     dp_item1_keys3:
       "Transition equation: Based on the problem, choose whether to combine with s[j], then take the maximum, minimum, or count as required.",
 
     dp_item2: "Double string type",
-    dp_item2_keys1: `
-    State: 1. dp[i][j] represents the xxxx ending with s1[i], s2[j]
-           2. dp[i][j] represents the xxxx up to s1[i], s2[j]`,
+    dp_item2_keys1: `State: 
+    1. dp[i][j] represents the xxxx ending with s1[i], s2[j]
+    2. dp[i][j] represents the xxxx up to s1[i], s2[j]`,
     dp_item2_keys2:
       "Enumeration: Typically, it involves two nested loops, where one loop fixes the right endpoint of s1, and the other loop fixes the right endpoint of s2 for enumeration.",
     dp_item2_keys3:
       "State transition: Based on the problem and the relationship between s[i] and s[j], take the maximum, minimum, or count as required.",
 
     dp_item3: "Sequence type",
-    dp_item3_keys1: `
-    State: 1. In one-dimensional arrays, dp[i] usually represents the xxxx ending with nums[i]
-           2. In two-dimensional arrays, dp[i][j] usually represents the xxxx ending with grid[i][j]`,
+    dp_item3_keys1: `State: 
+    1. In one-dimensional arrays, dp[i] usually represents the xxxx ending with nums[i]
+    2. In two-dimensional arrays, dp[i][j] usually represents the xxxx ending with grid[i][j]`,
     dp_item3_keys2:
       "Enumeration: One-dimensional involves a single loop to enumerate all nums, while two-dimensional involves two loops to enumerate all grid.",
-    dp_item3_keys3: `
-    State transition: 1. In one dimension, it usually involves the relationship between the current cell and the preceding two cells, possibly involving maximum, minimum, or counting.
-                      dp[i] = dp[i - 1] + dp[i - 2]" This is also called a recurrence relation because it does not involve decision-making.
-                      2. In two dimensions, it usually involves the relationship between the current cell and its upper and left adjacent cells, possibly involving maximum, minimum, or counting.
-                      dp[i][j] = dp[i - 1][j] + dp[i][j-1]" This is also called a recurrence relation because it does not involve decision-making.
-                      3. From the transition equation, it's not difficult to see that this type of problem can usually be optimized using rolling arrays.
+    dp_item3_keys3: `State transition:
+    1. In one dimension, it usually involves the relationship between the current cell and the preceding two cells, possibly involving maximum, minimum, or counting.
+      dp[i] = dp[i - 1] + dp[i - 2]" This is also called a recurrence relation because it does not involve decision-making.
+    2. In two dimensions, it usually involves the relationship between the current cell and its upper and left adjacent cells, possibly involving maximum, minimum, or counting.
+      dp[i][j] = dp[i - 1][j] + dp[i][j-1]" This is also called a recurrence relation because it does not involve decision-making.
+    3. From the transition equation, it's not difficult to see that this type of problem can usually be optimized using rolling arrays.
     `,
 
     dp_item4: "Backpack type(List only the problems)",

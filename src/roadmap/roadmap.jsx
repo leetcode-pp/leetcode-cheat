@@ -567,14 +567,14 @@ export default function RoadMap() {
         </Radio.Button>
       </Radio.Group>
       <div>
-        <pre>{roadmaps[topic].desc}</pre>
+        <pre style={{whiteSpace: "pre-wrap"}}>{roadmaps[topic].desc}</pre>
         {roadmaps[topic].items.map((item) => {
           return (
             <div key={item.title}>
               <h1>{item.title}</h1>
               <div>
                 {item.keys.map((key) => (
-                  <pre key={key}>{key}</pre>
+                  <pre style={{whiteSpace: "pre-wrap"}} key={key}>{key}</pre>
                 ))}
               </div>
               {item.pic && (
@@ -583,9 +583,9 @@ export default function RoadMap() {
                   ({t("Locale.learningRoute.clickToEnlarge")})
                 </>
               )}
-              {item.code && <Codes codes={[item.code]}></Codes>}
+              {item.code && <Codes codes={[item.code]} ></Codes>}
               { t("Locale.learningRoute.recommendedProblems")}：
-              <ul>
+              <ul >
                 {item.problems.map(({ link, text, desc }) => {
                   return (
                     <li key={text}>
