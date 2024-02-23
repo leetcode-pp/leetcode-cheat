@@ -6,6 +6,7 @@ module.exports = function override(config, env) {
     inject: "./src/inject.js",
   };
   config.optimization.runtimeChunk = false;
+  config.optimization.splitChunks = void 0;
 
   // config.optimization.splitChunks = void 0;
   config.output.filename = "static/js/[name].js";

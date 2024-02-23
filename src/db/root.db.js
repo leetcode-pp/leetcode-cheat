@@ -2565,12 +2565,60 @@
 "sort-colors":{
     "id": "75",
     "name": "sort-colors",
-    "pre": [],
-    "keyPoints": [],
-    "companies": [],
+    "pre": [
+        {
+            "text": "荷兰国旗问题",
+            "link": "https://en.wikipedia.org/wiki/Dutch_national_flag_problem",
+            "color": "purple"
+        },
+        {
+            "text": "排序",
+            "link": null,
+            "color": "purple"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "荷兰国旗问题",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "countingsort",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [
+        {
+            "name": "阿里巴巴"
+        },
+        {
+            "name": "腾讯"
+        },
+        {
+            "name": "百度"
+        },
+        {
+            "name": "字节跳动"
+        }
+    ],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/75.sort-colors.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/75.sort-colors.md",
-    "code": []
+    "code": [
+        {
+            "language": "cpp",
+            "text": "\nclass Solution {\npublic:\n    void sortColors(vector<int>& nums) {\n        int r = 0, g = 0, b = 0;\n        for (int n : nums) {\n            if (n == 0) {\n                nums[b++] = 2;\n                nums[g++] = 1;\n                nums[r++] = 0;\n            } else if (n == 1) {\n                nums[b++] = 2;\n                nums[g++] = 1;\n            } else nums[b++] = 2;\n        }\n    }\n};\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def sortColors(self, strs):\n        # p0 是右边界\n        # p1 是右边界\n        # p2 是左边界\n        # p1 超过 p2 结束\n        p0, p1, p2 = 0, 0, len(strs) - 1\n\n        while p1 <= p2:\n            if strs[p1] == 'blue':\n                strs[p2], strs[p1] = strs[p1], strs[p2]\n                p2 -= 1\n            elif strs[p1] == 'red':\n                strs[p0], strs[p1] = strs[p1], strs[p0]\n                p0 += 1\n                p1 += 1 # p0 一定不是 blue，因此 p1 += 1\n            else: # p1 === 'green'\n                p1 += 1\n        return strs\n"
+        },
+        {
+            "language": "py",
+            "text": "\nclass Solution:\n    def partition(self, head: ListNode, x: int) -> ListNode:\n        l1 = cur = head\n        while cur:\n            if cur.val < x:\n                cur.val, l1.val = l1.val, cur.val\n                l1 = l1.next\n            cur = cur.next\n        return head\n"
+        }
+    ]
 },
 "subsets":{
     "id": "78",
@@ -10686,12 +10734,34 @@
 "snakes-and-ladders":{
     "id": "909",
     "name": "snakes-and-ladders",
-    "pre": [],
-    "keyPoints": [],
+    "pre": [
+        {
+            "text": "广度优先遍历",
+            "link": null,
+            "color": "gold"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "根据矩阵编号如何算出其都在的行号和列号。这里其实用到了number=(row",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "1)\\*n+col这样的一个公式，后面的所有公式都是基于它产生的。",
+            "link": null,
+            "color": "blue"
+        }
+    ],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/909.snakes-and-ladders.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/909.snakes-and-ladders.md",
-    "code": []
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def snakesAndLadders(self, board: List[List[int]]) -> int:\n        q = collections.deque([(1, 0)])\n        n = len(board)\n        visited = set()\n\n        def get_pos(pos):\n            row = (n - 1) - (pos - 1) // n\n            col = (n - 1) - ((pos - 1) % n) if row & 1 == n & 1 else (pos - 1) % n\n            return row, col\n\n        while q:\n            for _ in range(len(q)):\n                cur, steps = q.popleft()\n                if cur in visited:\n                    continue\n                visited.add(cur)\n                if cur == n ** 2:\n                    return steps\n                for nxt in range(cur + 1, min(cur + 6, n * n) + 1):\n                    row, col = get_pos(nxt)\n                    if board[row][col] == -1:\n                        q.append((nxt, steps + 1))\n                    else:\n                        q.append((board[row][col], steps + 1))\n        return -1\n\n"
+        }
+    ]
 },
 "online-election":{
     "id": "911",
