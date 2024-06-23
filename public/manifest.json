@@ -1,9 +1,9 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "leetcode cheatsheet",
   "description": "刷题小助手，made by 力扣加加",
-  "version": "0.11.5",
-  "browser_action": {
+  "version": "0.12.0",
+  "action": {
     "default_popup": "index.html",
     "default_title": "力扣加加"
   },
@@ -24,10 +24,17 @@
     }
   ],
   "web_accessible_resources": [
-    "/static/js/content.js"
+    {
+      "resources": [
+        "/static/js/content.js"
+      ]
+    }
   ],
   "permissions": [
     "tabs"
   ],
-  "content_security_policy": "script-src 'self' 'sha256-9HcBuUP35aPkU0991A4mASdsuifTkUlifJ7elThz6Ow=' 'sha256-0Jo/EYaXS11i7poc/P9fGcq/o6P0djny2JW6WivTVVw='; object-src 'self'"
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'sha256-9HcBuUP35aPkU0991A4mASdsuifTkUlifJ7elThz6Ow=' 'sha256-0Jo/EYaXS11i7poc/P9fGcq/o6P0djny2JW6WivTVVw='; object-src 'self'",
+    "sandbox": "script-src 'self' 'sha256-9HcBuUP35aPkU0991A4mASdsuifTkUlifJ7elThz6Ow=' 'sha256-0Jo/EYaXS11i7poc/P9fGcq/o6P0djny2JW6WivTVVw='; object-src 'self'"
+  }
 }

@@ -34,7 +34,7 @@ const slogan = `
 
 力扣的小伙伴可以[关注我](https://leetcode-cn.com/u/fe-lucifer/)，这样就会第一时间收到我的动态啦~
 
-以上就是本文的全部内容了。大家对此有何看法，欢迎给我留言，我有时间都会一一查看回答。更多算法套路可以访问我的 LeetCode 题解仓库：https://github.com/azl397985856/leetcode 。 目前已经 40K star 啦。大家也可以关注我的公众号《力扣加加》带你啃下算法这块硬骨头。
+以上就是本文的全部内容了。大家对此有何看法，欢迎给我留言，我有时间都会一一查看回答。更多算法套路可以访问我的 LeetCode 题解仓库：https://github.com/azl397985856/leetcode 。 目前已经 54K star 啦。大家也可以关注我的公众号《力扣加加》带你啃下算法这块硬骨头。
 
 关注公众号力扣加加，努力用清晰直白的语言还原解题思路，并且有大量图解，手把手教你识别套路，高效刷题。
 
@@ -46,7 +46,7 @@ const sloganEn = `
 
 LeetCode friends can [follow me](https://leetcode-cn.com/u/fe-lucifer/) to receive my updates in real-time~ 
 
-That's all for the content of this article. If you have any thoughts or comments, feel free to leave a message, and I will check and respond to them when I have time. For more algorithm techniques, you can visit my LeetCode solution repository: https://github.com/azl397985856/leetcode. It has already gained 40K stars. You can also follow my WeChat official account "LeetCode Plus Plus" to tackle the hard bone of algorithms with clear and straightforward explanations, abundant illustrations, and step-by-step guidance.
+That's all for the content of this article. If you have any thoughts or comments, feel free to leave a message, and I will check and respond to them when I have time. For more algorithm techniques, you can visit my LeetCode solution repository: https://github.com/azl397985856/leetcode. It has already gained 54K stars. You can also follow my WeChat official account "LeetCode Plus Plus" to tackle the hard bone of algorithms with clear and straightforward explanations, abundant illustrations, and step-by-step guidance.
 
 Follow the WeChat official account "LeetCode Plus Plus" and strive to present the solution approach in a clear and concise language, along with numerous illustrations, to help you recognize patterns and efficiently solve problems.
 

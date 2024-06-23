@@ -35,7 +35,7 @@ const en = {
       "Generally, as long as you turn on automatic updates, chrome will automatically update within five hours after the plug-in is updated. If you want to update as soon as possible, or if you disable automatic updates, you can check the latest version here.",
     checkBtn: "Check for updates",
     selfIntroduction:
-      "The author is a front-end architect with 40K stars on Github, the author of the leetcode-cheatsheet leetcode plugin, master all kinds of algorithm routines, and wrote hundreds of thousands of words of algorithm brushing e-books. Reply to the public account [电子书] to get.",
+      "The author is a front-end architect with 54K stars on Github, the author of the leetcode-cheatsheet leetcode plugin, master all kinds of algorithm routines, and wrote hundreds of thousands of words of algorithm brushing e-books. Reply to the public account [电子书] to get.",
     allSolutions: {
       columns: {
         title: "Title",
@@ -96,6 +96,7 @@ const en = {
     292: "292. Nim Game",
     303: "303. Range Sum Query - Immutable(It is simpler to use one-dimensional prefix sums)",
     307: "307. Range Sum Query - Mutable",
+    3187: "3187. Peaks in Array",
     327: "327. Count of Range Sum",
     322: "322. Coin Change",
     337: "337. House Robber III",
@@ -274,12 +275,13 @@ const en = {
     },
 
     segmentTree: {
-      title: "Segment Tree",
+      title: "Segment Tree and Binary Indexed Tree",
       item1: "Interval and segment tree",
       item2:
         "Interval sum with lazy propagation (interval update) segment tree",
       item3: "Counting segment tree",
       item4: "Dynamic allocation of nodes",
+      item5: "Binary Indexed Tree",
     },
 
     handWriting: {

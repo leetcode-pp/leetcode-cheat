@@ -1,7 +1,36 @@
 import segmentLogo from "../imgs/segment.svg";
 import { t } from "../locales";
 
-const pyCode = `
+const binaryIndexTreePyCode = `
+class BinaryIndexTree:
+    __slots__ = 'nums', 'tree'
+
+    def __init__(self, nums: List[int]):
+        n = len(nums)
+        self.nums = [0] * n
+        self.tree = [0] * (n + 1) # n + 1 只是方便计算前缀和，前面加了一个 0，所以总长度就是 n + 1
+        for i, x in enumerate(nums):
+            self.update(i, x)
+
+    def update(self, index: int, val: int) -> None:
+        delta = val - self.nums[index]
+        self.nums[index] = val
+        i = index + 1 # + 1 的原因同上，也是前面多加了一个 0，导致所有索引都偏移了一位
+        while i < len(self.tree):
+            self.tree[i] += delta
+            i += i & -i
+
+    def prefixSum(self, i: int) -> int:
+        s = 0
+        while i:
+            s += self.tree[i]
+            i -= i & -i
+        return s
+    def querySum(self, l: int, r: int) -> int:
+        if r < l: return 0
+        return self.prefixSum(r+1) - self.prefixSum(l)
+`;
+const segmentTreePyCode = `
 class SegmentTree:
     def __init__(self, data:List[int]): 
         '''
@@ -134,6 +163,32 @@ export default () => ({
   link: "https://oi-wiki.org/ds/seg/",
   list: [
     {
+        text: t("Locale.codeTemplate.segmentTree.item5"),
+        problems: [
+          {
+            id: "range-sum-query-mutable",
+            // title: "303. 区域和检索 - 数组不可变（使用一维前缀和会更简单）",
+            title: t("Locale.problem.303"),
+          },
+          {
+            id: "range-sum-query-mutable",
+            // title: "307. 区域和检索 - 数组可修改",
+            title: t("Locale.problem.307"),
+          },
+          {
+            id: "peaks-in-array",
+            // title: "3187. 数组中的峰值",
+            title: t("Locale.problem.3187"),
+          },
+        ],
+        codes: [
+          {
+            language: "py",
+            text: binaryIndexTreePyCode,
+          },
+        ],
+      },
+    {
       // text: "区间和线段树",
       text: t("Locale.codeTemplate.segmentTree.item1"),
       problems: [
@@ -151,7 +206,7 @@ export default () => ({
       codes: [
         {
           language: "py",
-          text: pyCode,
+          text: segmentTreePyCode,
         },
       ],
     },
@@ -358,7 +413,7 @@ class SegmentTree:
       ],
     },
     {
-      // text: "动态开点",
+      // text: "动态开点线段树",
       text: t("Locale.codeTemplate.segmentTree.item4"),
       problems: [
         {

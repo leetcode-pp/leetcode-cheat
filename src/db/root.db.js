@@ -13992,6 +13992,55 @@
         }
     ]
 },
+"count-good-triplets-in-an-array":{
+    "id": "2172",
+    "name": "count-good-triplets-in-an-array",
+    "pre": [
+        {
+            "text": "平衡二叉树",
+            "link": null,
+            "color": "geekblue"
+        },
+        {
+            "text": "枚举",
+            "link": null,
+            "color": "magenta"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "根据数组A的索引对应关系置换数组B，得到新的数组C，问题转化为堆C求递增三元组的个数",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "枚举三元组中中间的数",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/2172.count-good-triplets-in-an-array.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/2172.count-good-triplets-in-an-array.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nn = len(nums1)\nfor i in range(n):\n    d[nums1[i]] = i\n"
+        },
+        {
+            "language": "py",
+            "text": "\nfor i in range(n):\n    nums.append(d[nums2[i]])\n"
+        },
+        {
+            "language": "py",
+            "text": "\nsl1 = SortedList()\nsl2 = SortedList(nums)\nfor num in nums:\n    sl1.add(num)\n    sl2.remove(num)\n    ans += sl1.bisect_left(num) * (len(sl2) - sl2.bisect_left(num + 1))\nreturn ans\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nfrom sortedcontainers import SortedList\nclass Solution:\n    def goodTriplets(self, nums1: List[int], nums2: List[int]) -> int:\n        d = {}\n        nums = []\n        ans = 0\n        n = len(nums1)\n        for i in range(n):\n            d[nums1[i]] = i\n        for i in range(n):\n            nums.append(d[nums2[i]])\n        sl1 = SortedList()\n        for num in nums:\n            sl1.add(num)\n            ans += sl1.bisect_left(num) * ((n - num - (len(sl1) - sl1.bisect_left(num))))\n        return ans\n\n"
+        }
+    ]
+},
 "minimum-white-tiles-after-covering-with-carpets":{
     "id": "2209",
     "name": "minimum-white-tiles-after-covering-with-carpets",
@@ -14078,6 +14127,33 @@
         {
             "language": "py",
             "text": "\n\nclass Solution:\n    def distinctNames(self, ideas: List[str]) -> int:\n        ans = 0\n        seen = set(ideas)\n        starts = collections.defaultdict(set)\n\n        for idea in ideas:\n            starts[idea[0]].add(idea[1:])\n        for j in range(25):\n            for i in range(j + 1, 26):\n                set_x = starts[chr(i + 97)]\n                set_y = starts[chr(j + 97)]\n                intersections = len(set_x & set_y) # 交集\n                ans += 2 * (len(set_x) - intersections) * (len(set_y) - intersections)\n        return ans\n\n\n"
+        }
+    ]
+},
+"selling-pieces-of-wood":{
+    "id": "2312",
+    "name": "selling-pieces-of-wood",
+    "pre": [
+        {
+            "text": "动态规划记忆化递归",
+            "link": null,
+            "color": "geekblue"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "枚举切割点",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/2312.selling-pieces-of-wood.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/2312.selling-pieces-of-wood.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def sellingWood(self, m: int, n: int, prices: List[List[int]]) -> int:\n        d = {(h, w): p for h, w, p in prices}\n        @cache\n        def dp(i, j):\n            ans = d.get((i, j), 0) # 不切\n            # 竖着切\n            for x in range(1, i):\n                ans = max(ans, dp(x, j) + dp(i - x, j))\n            # 横着切\n            for y in range(1, j):\n                ans = max(ans, dp(i, y) + dp(i, j - y))\n            return ans # 且三种选择的最大值即可\n        return dp(m, n)\n\n"
         }
     ]
 },
@@ -14231,6 +14307,42 @@
         }
     ]
 },
+"beautiful-towers-i":{
+    "id": "2865",
+    "name": "beautiful-towers-i",
+    "pre": [
+        {
+            "text": "单调栈",
+            "link": null,
+            "color": "purple"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "单调栈优化",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "动态规划",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/2865.beautiful-towers-i.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/2865.beautiful-towers-i.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\nans, n = 0, len(maxHeight)\n        for i, x in enumerate(maxHeight):\n            y = t = x\n            # t 是高度和，y 是 min_v\n            for j in range(i - 1, -1, -1):\n                y = min(y, maxHeight[j])\n                t += y\n            y = x\n            for j in range(i + 1, n):\n                y = min(y, maxHeight[j])\n                t += y\n            ans = max(ans, t)\n        return ans\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def maximumSumOfHeights(self, maxHeight: List[int]) -> int:\n        n = len(maxHeight)\n        f = [-1] * n # f[i] 表示 i 作为峰顶左侧的高度和\n        g = [-1] * n # g[i] 表示 -i-1 作为峰顶右侧的高度和\n        def gao(f):\n            st = []\n            for i in range(len(maxHeight)):\n                while st and maxHeight[i] <= maxHeight[st[-1]]:\n                    st.pop()\n                if st:\n                    f[i] = (i - st[-1]) * maxHeight[i] + f[st[-1]]\n                else:\n                    f[i] = maxHeight[i] * (i + 1)\n                st.append(i)\n        gao(f)\n        maxHeight = maxHeight[::-1]\n        gao(g)\n        maxHeight = maxHeight[::-1]\n        ans = 0\n        for i in range(len(maxHeight)):\n            ans = max(ans, f[i] + g[-i-1] - maxHeight[i])\n        return ans\n\n"
+        }
+    ]
+},
 "beautiful-towers-ii":{
     "id": "2866",
     "name": "beautiful-towers-ii",
@@ -14286,6 +14398,127 @@
         {
             "language": "py",
             "text": "\n\nclass Solution:\n    def maximumXorProduct(self, a: int, b: int, n: int) -> int:\n        axorx = (a >> n) << n # 低 n 位去掉，剩下的前 m 位就是答案中的 axorb 二进制位。剩下要做的是确定低 n 位具体是多少\n        bxorx = (b >> n) << n\n        MOD = 10 ** 9 + 7\n        for i in range(n-1, -1, -1):\n            t1 = a >> i & 1\n            t2 = b >> i & 1\n            if t1 == t2:\n                axorx |= 1 << i\n                bxorx |= 1 << i\n            else:\n                if axorx < bxorx:\n                    axorx |= 1 << i # 和一定，两者相差越小，乘积越大 \n                else:\n                    bxorx |= 1 << i\n        axorx %= MOD\n        bxorx %= MOD\n        return (axorx * bxorx) % MOD\n\n"
+        }
+    ]
+},
+"count-the-number-of-incremovable-subarrays-ii":{
+    "id": "2972",
+    "name": "count-the-number-of-incremovable-subarrays-ii",
+    "pre": [],
+    "keyPoints": [
+        {
+            "text": "枚举每一个后缀对答案的贡献",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/2972.count-the-number-of-incremovable-subarrays-ii.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/2972.count-the-number-of-incremovable-subarrays-ii.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def incremovableSubarrayCount(self, nums: List[int]) -> int:\n        i = 0\n        n = len(nums)\n        while i < n - 1 and nums[i] < nums[i+1]:\n            i += 1\n        if i == n - 1: return (n * (n + 1)) // 2\n        j = n - 1\n        ans = i + 2 # 后缀是空的时候，答案是 i + 2\n        while j > -1:\n            if j+1<n and nums[j] >= nums[j+1]: break # 后缀不再递增，不满足 2\n            while i > -1 and nums[j] <= nums[i]:\n                i -= 1 # 只能靠缩小前缀来满足。而 i 不回退，因此时间复杂度还是 n\n            j -= 1\n            ans += i + 2\n        return ans\n        \n\n"
+        }
+    ]
+},
+"find-the-number-of-ways-to-place-people-ii":{
+    "id": "3027",
+    "name": "find-the-number-of-ways-to-place-people-ii",
+    "pre": [
+        {
+            "text": "暂无",
+            "link": null,
+            "color": "green"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "排序",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/3027.find-the-number-of-ways-to-place-people-ii.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/3027.find-the-number-of-ways-to-place-people-ii.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def numberOfPairs(self, points: List[List[int]]) -> int:\n        points.sort(key=lambda p: (p[0], -p[1]))\n        ans = 0\n        for i, (x1, y1) in enumerate(points): # point i\n            max_y = -inf\n            min_y = inf\n            for (x2, y2) in points[i + 1:]: # point j\n                if y1 < y2: continue # 确保条件1\n                if  y2 > max_y or y1 < min_y: # 确保条件2\n                    ans += 1\n                max_y = max(max_y, y2)\n                min_y = min(min_y, y2)\n        return ans\n\n"
+        }
+    ]
+},
+"maximize-consecutive-elements-in-an-array-after-modification":{
+    "id": "3041",
+    "name": "maximize-consecutive-elements-in-an-array-after-modification",
+    "pre": [
+        {
+            "text": "动态规划",
+            "link": null,
+            "color": "red"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "将以每一个元素结尾的最长连续子序列的长度统统存起来",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/3041.maximize-consecutive-elements-in-an-array-after-modification.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/3041.maximize-consecutive-elements-in-an-array-after-modification.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def maxSelectedElements(self, arr: List[int]) -> int:\n        memo = collections.defaultdict(int)\n        arr.sort()\n        def dp(pos):\n            if pos == len(arr): return 0\n            memo[arr[pos]+1] = memo[arr[pos]]+1 # 由于可以重排，因此这一句要写\n            memo[arr[pos]] = memo[arr[pos]-1]+1\n            dp(pos+1)\n        dp(0)\n        return max(memo.values())\n\n\n"
+        }
+    ]
+},
+"find-the-sum-of-the-power-of-all-subsequences":{
+    "id": "3082",
+    "name": "find-the-sum-of-the-power-of-all-subsequences",
+    "pre": [
+        {
+            "text": "动态规划",
+            "link": null,
+            "color": "red"
+        }
+    ],
+    "keyPoints": [
+        {
+            "text": "分解问题",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/3082.find-the-sum-of-the-power-of-all-subsequences.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/3082.find-the-sum-of-the-power-of-all-subsequences.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\ndef f(i, k):\n    if i == n:\n        if k == 0: 找到了\n        else: 没找到\n    if k == 0:\n        没找到\n    f(i + 1, k) # 不选择\n    f(i + 1, k - nums[i]) # 选择\n"
+        },
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def sumOfPower(self, nums: List[int], k: int) -> int:\n        n = len(nums)\n        MOD = 10 ** 9 + 7\n        @cache\n        def dfs(i, k):\n            if k == 0: return pow(2, n - i, MOD)\n            if i == n or k < 0: return 0\n            ans = dfs(i + 1, k) * 2 # 不选\n            ans += dfs(i + 1, k - nums[i]) # 选\n            return ans % MOD\n        \n        return dfs(0, k)\n\n"
+        }
+    ]
+},
+"minimum-cost-walk-in-weighted-graph":{
+    "id": "3108",
+    "name": "minimum-cost-walk-in-weighted-graph",
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/3108.minimum-cost-walk-in-weighted-graph.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/3108.minimum-cost-walk-in-weighted-graph.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\n\nclass UF:\n  def __init__(self, M):\n      self.parent = {}\n      self.cnt = 0\n      self.all_and = {}\n      # 初始化 parent，size 和 cnt\n      # Initialize parent, size and cnt\n      for i in range(M):\n          self.parent[i] = i\n          self.cnt += 1\n          self.all_and[i] = 2 ** 30 - 1 # 也可以初始化为 -1\n\n  def find(self, x):\n      if x != self.parent[x]:\n          self.parent[x] = self.find(self.parent[x])\n          return self.parent[x]\n      return x\n  def union(self, p, q, w):\n    #   if self.connected(p, q): return # 这道题对于联通的情况不能直接 return，具体可以参考示例 2. 环的存在\n      leader_p = self.find(p)\n      leader_q = self.find(q)\n      self.parent[leader_p] = leader_q\n      # p 连通块的 and 值为 w1，q 连通块的 and 值为 w2，合并后就是 w1 & w2 & w\n      self.all_and[leader_p] = self.all_and[leader_q] = self.all_and[leader_p] & w & self.all_and[leader_q]\n      self.cnt -= 1\n  def connected(self, p, q):\n      return self.find(p) == self.find(q)\n        \nclass Solution:\n    def minimumCost(self, n: int, edges: List[List[int]], query: List[List[int]]) -> List[int]:\n        g = [[] for _ in range(n)]\n        uf = UF(n)\n        for x, y, w in edges:\n            g[x].append((y, w))\n            g[y].append((x, w))\n            uf.union(x, y, w)\n\n        ans = []\n        for s, t in query:\n            if not uf.connected(s, t):\n                ans.append(-1)\n            else:\n                ans.append(uf.all_and[uf.parent[s]])\n        return ans\n\n\n\n\n"
         }
     ]
 },
