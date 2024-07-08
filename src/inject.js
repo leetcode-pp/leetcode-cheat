@@ -12,5 +12,5 @@ function injectScript(file_path, tag) {
   script.setAttribute("src", file_path);
   node.appendChild(script);
 }
-window.chrome.extension &&
-  injectScript(window.chrome.extension.getURL("/static/js/content.js"), "body");
+window.chrome.runtime &&
+  injectScript(window.chrome.runtime.getURL("/static/js/content.js"), "body");
