@@ -2565,60 +2565,12 @@
 "sort-colors":{
     "id": "75",
     "name": "sort-colors",
-    "pre": [
-        {
-            "text": "荷兰国旗问题",
-            "link": "https://en.wikipedia.org/wiki/Dutch_national_flag_problem",
-            "color": "purple"
-        },
-        {
-            "text": "排序",
-            "link": null,
-            "color": "purple"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "荷兰国旗问题",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "countingsort",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/75.sort-colors.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/75.sort-colors.md",
-    "code": [
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    void sortColors(vector<int>& nums) {\n        int r = 0, g = 0, b = 0;\n        for (int n : nums) {\n            if (n == 0) {\n                nums[b++] = 2;\n                nums[g++] = 1;\n                nums[r++] = 0;\n            } else if (n == 1) {\n                nums[b++] = 2;\n                nums[g++] = 1;\n            } else nums[b++] = 2;\n        }\n    }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def sortColors(self, strs):\n        # p0 是右边界\n        # p1 是右边界\n        # p2 是左边界\n        # p1 超过 p2 结束\n        p0, p1, p2 = 0, 0, len(strs) - 1\n\n        while p1 <= p2:\n            if strs[p1] == 'blue':\n                strs[p2], strs[p1] = strs[p1], strs[p2]\n                p2 -= 1\n            elif strs[p1] == 'red':\n                strs[p0], strs[p1] = strs[p1], strs[p0]\n                p0 += 1\n                p1 += 1 # p0 一定不是 blue，因此 p1 += 1\n            else: # p1 === 'green'\n                p1 += 1\n        return strs\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def partition(self, head: ListNode, x: int) -> ListNode:\n        l1 = cur = head\n        while cur:\n            if cur.val < x:\n                cur.val, l1.val = l1.val, cur.val\n                l1 = l1.next\n            cur = cur.next\n        return head\n"
-        }
-    ]
+    "code": []
 },
 "subsets":{
     "id": "78",
@@ -10594,8 +10546,16 @@
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/887.super-egg-drop.md",
     "code": [
         {
+            "language": "java",
+            "text": "\nimport java.util.Arrays;\n\nclass Solution {\n    public int superEggDrop(int K, int N) {\n        int[][] dp = new int[K + 1][N + 1];\n        \n        for (int m = 1; m <= N; ++m) {\n            for (int k = 1; k <= K; ++k) {\n                dp[k][m] = dp[k - 1][m - 1] + 1 + dp[k][m - 1];\n                if (dp[k][m] >= N) {\n                    return m;\n                }\n            }\n        }\n        \n        return N; // Fallback, should not reach here\n    }\n}\n\n"
+        },
+        {
             "language": "js",
-            "text": "\nvar superEggDrop = function (K, N) {\n  // 不选择dp[K][M]的原因是dp[M][K]可以简化操作\n  const dp = Array(N + 1)\n    .fill(0)\n    .map((_) => Array(K + 1).fill(0));\n\n  let m = 0;\n  while (dp[m][K] < N) {\n    m++;\n    for (let k = 1; k <= K; ++k) dp[m][k] = dp[m - 1][k - 1] + 1 + dp[m - 1][k];\n  }\n  return m;\n};\n"
+            "text": "\n/**\n * @param {number} k\n * @param {number} n\n * @return {number}\n */\nvar superEggDrop = function superEggDrop(K, N) {\n    const dp = Array.from({ length: K + 1 }, () => Array(N + 1).fill(0));\n    \n    for (let m = 1; m <= N; ++m) {\n        for (let k = 1; k <= K; ++k) {\n            dp[k][m] = dp[k - 1][m - 1] + 1 + dp[k][m - 1];\n            if (dp[k][m] >= N) {\n                return m;\n            }\n        }\n    }\n    \n    return N; // Fallback, should not reach here\n}\n\n\n"
+        },
+        {
+            "language": "cpp",
+            "text": "\n#include <vector>\n#include <functional>\n\nclass Solution {\npublic:\n    int superEggDrop(int K, int N) {\n        std::vector<std::vector<int>> dp(K + 1, std::vector<int>(N + 1, 0));\n        \n        for (int m = 1; m <= N; ++m) {\n            for (int k = 1; k <= K; ++k) {\n                dp[k][m] = dp[k - 1][m - 1] + 1 + dp[k][m - 1];\n                if (dp[k][m] >= N) {\n                    return m;\n                }\n            }\n        }\n        \n        return N; // Fallback, should not reach here\n    }\n};\n\n"
         },
         {
             "language": "py",
@@ -10611,23 +10571,19 @@
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def superEggDrop(self, K: int, N: int) -> int:\n        for i in range(K + 1):\n            for j in range(N + 1):\n                if i == 1:\n                    dp[i][j] = j\n                if j == 1 or j == 0:\n                    dp[i][j] == j\n                dp[i][j] = j\n                for k in range(1, j + 1):\n                    dp[i][j] = min(dp[i][j], max(dp[i - 1][k - 1] + 1, dp[i][j - k] + 1))\n        return dp[K][N]\n"
+            "text": "\nclass Solution:\n    def superEggDrop(self, K: int, N: int) -> int:\n        dp = [[i for _ in range(K+1)] for i in range(N + 1)]\n        for i in range(N + 1):\n            for j in range(1, K + 1):\n                dp[i][j] = i\n                if j == 1:\n                    continue\n                if i == 1 or i == 0:\n                    break\n                for k in range(1, i + 1):\n                    dp[i][j] = min(dp[i][j], max(dp[k - 1][j-1] + 1, dp[i-k][j] + 1))\n        return dp[N][K]\n"
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def superEggDrop(self, K: int, N: int) -> int:\n        dp = [[0] * (K + 1) for _ in range(N + 1)]\n\n        for i in range(N + 1):\n            for j in range( K + 1):\n                if j == 1:\n                    dp[i][j] = i\n                if i == 1 or i == 0:\n                    dp[i][j] == i\n                dp[i][j] = i\n                for k in range(1, i + 1):\n                    dp[i][j] = min(dp[i][j], max(dp[k - 1][j - 1] + 1, dp[i - k][j] + 1))\n        return dp[N][K]\n        dp = [[0] * (N + 1) for _ in range(K + 1)]\n"
+            "text": "\nclass Solution:\n    def superEggDrop(self, K: int, N: int) -> int:\n        dp = [[i for i in range(N+1)] for _ in range(K + 1)]\n        for i in range(1, K + 1):\n            for j in range(N + 1):\n                dp[i][j] = j\n                if i == 1:\n                    break\n                if j == 1 or j == 0:\n                    continue\n                for k in range(1, j + 1):\n                    dp[i][j] = min(dp[i][j], max(dp[i - 1][k - 1] + 1, dp[i][j - k] + 1))\n        return dp[K][N]\n"
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def superEggDrop(self, K: int, N: int) -> int:\n        def f(m, k):\n            if k == 0 or m == 0: return 0\n            return f(m - 1, k - 1) + 1 +  f(m - 1, k)\n        m = 0\n        while f(m, K) < N:\n            m += 1\n        return m\n"
+            "text": "\nclass Solution:\n    def superEggDrop(self, K: int, N: int) -> int:\n        \n        @cache\n        def f(m, k):\n            if k == 0 or m == 0: return 0\n            return f(m - 1, k - 1) + 1 +  f(m - 1, k)\n        l, r = 1, N\n        while l <= r:\n            mid = (l + r) // 2\n            if f(mid, K) >= N:\n                r = mid - 1\n            else:\n                l = mid + 1\n            \n        return l\n"
         },
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def superEggDrop(self, K: int, N: int) -> int:\n        dp = [[0] * (K + 1) for _ in range(N + 1)]\n        m = 0\n        while dp[m][K] < N:\n            m += 1\n            for i in range(1, K + 1):\n                dp[m][i] = dp[m - 1][i - 1] + 1 + dp[m - 1][i]\n        return m\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def superEggDrop(self, K: int, N: int) -> int:\n        dp = [[0] * (K + 1) for _ in range(N + 1)]\n        m = 0\n        while dp[m][K] < N:\n            m += 1\n            for i in range(1, K + 1):\n                dp[m][i] = dp[m - 1][i - 1] + 1 + dp[m - 1][i]\n        return m\n"
+            "text": "\nclass Solution:\n    def superEggDrop(self, K: int, N: int) -> int:\n        dp = [[0] * (N + 1) for _ in range(K + 1)]\n        \n        for m in range(1, N + 1):\n            for k in range(1, K + 1):\n                dp[k][m] = dp[k - 1][m - 1] + 1 + dp[k][m - 1]\n                if dp[k][m] >= N:\n                    return m\n        \n        return N  # Fallback, should not reach here\n"
         }
     ]
 },
@@ -12789,13 +12745,7 @@
 "minimum-number-of-increments-on-subarrays-to-form-a-target-array":{
     "id": "1526",
     "name": "minimum-number-of-increments-on-subarrays-to-form-a-target-array",
-    "pre": [
-        {
-            "text": "差分与前缀和",
-            "link": null,
-            "color": "red"
-        }
-    ],
+    "pre": [],
     "keyPoints": [
         {
             "text": "逆向思考",
@@ -12803,7 +12753,7 @@
             "color": "blue"
         },
         {
-            "text": "使用差分减少时间复杂度",
+            "text": "考虑修改的左右端点",
             "link": null,
             "color": "blue"
         }
@@ -12814,11 +12764,7 @@
     "code": [
         {
             "language": "py",
-            "text": "\nclass Solution:\n    def minNumberOperations(self, A: List[int]) -> int:\n        d = [A[0]]\n        ans = 0\n\n        for i in range(1, len(A)):\n            d.append(A[i] - A[i-1])\n        for a in d:\n            ans += max(0, a)\n        return ans\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def minNumberOperations(self, A: List[int]) -> int:\n        ans = A[0]\n        for i in range(1, len(A)):\n            ans += max(0, A[i] - A[i-1])\n        return ans\n"
+            "text": "\nclass Solution:\n    def minNumberOperations(self, nums: List[int]) -> int:\n        ans = abs(nums[0])\n        for i in range(1, len(nums)):\n            if abs(nums[i]) > abs(nums[i - 1]): # 这种情况，说明前面不能顺便把我改了，还需要我操作 k 次\n                ans += abs(nums[i]) - abs(nums[i - 1])\n        return ans\n"
         },
         {
             "language": "py",
@@ -14519,6 +14465,32 @@
         {
             "language": "py",
             "text": "\n\n\nclass UF:\n  def __init__(self, M):\n      self.parent = {}\n      self.cnt = 0\n      self.all_and = {}\n      # 初始化 parent，size 和 cnt\n      # Initialize parent, size and cnt\n      for i in range(M):\n          self.parent[i] = i\n          self.cnt += 1\n          self.all_and[i] = 2 ** 30 - 1 # 也可以初始化为 -1\n\n  def find(self, x):\n      if x != self.parent[x]:\n          self.parent[x] = self.find(self.parent[x])\n          return self.parent[x]\n      return x\n  def union(self, p, q, w):\n    #   if self.connected(p, q): return # 这道题对于联通的情况不能直接 return，具体可以参考示例 2. 环的存在\n      leader_p = self.find(p)\n      leader_q = self.find(q)\n      self.parent[leader_p] = leader_q\n      # p 连通块的 and 值为 w1，q 连通块的 and 值为 w2，合并后就是 w1 & w2 & w\n      self.all_and[leader_p] = self.all_and[leader_q] = self.all_and[leader_p] & w & self.all_and[leader_q]\n      self.cnt -= 1\n  def connected(self, p, q):\n      return self.find(p) == self.find(q)\n        \nclass Solution:\n    def minimumCost(self, n: int, edges: List[List[int]], query: List[List[int]]) -> List[int]:\n        g = [[] for _ in range(n)]\n        uf = UF(n)\n        for x, y, w in edges:\n            g[x].append((y, w))\n            g[y].append((x, w))\n            uf.union(x, y, w)\n\n        ans = []\n        for s, t in query:\n            if not uf.connected(s, t):\n                ans.append(-1)\n            else:\n                ans.append(uf.all_and[uf.parent[s]])\n        return ans\n\n\n\n\n"
+        }
+    ]
+},
+"minimum-operations-to-make-array-equal-to-target":{
+    "id": "3229",
+    "name": "minimum-operations-to-make-array-equal-to-target",
+    "pre": [],
+    "keyPoints": [
+        {
+            "text": "考虑修改的左右端点",
+            "link": null,
+            "color": "blue"
+        },
+        {
+            "text": "正负交替的情况，可以直接新开一段",
+            "link": null,
+            "color": "blue"
+        }
+    ],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/3229.minimum-operations-to-make-array-equal-to-target.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/3229.minimum-operations-to-make-array-equal-to-target.md",
+    "code": [
+        {
+            "language": "py",
+            "text": "\n\nclass Solution:\n    def minimumOperations(self, nums: List[int], target: List[int]) -> int:\n        diff = []\n        for i in range(len(nums)):\n            diff.append(nums[i] - target[i])\n        ans = abs(diff[0])\n        for i in range(1, len(nums)):\n            if diff[i] * diff[i - 1] >= 0: # 符号相同，可以贪心地复用\n                if abs(diff[i]) > abs(diff[i - 1]): # 这种情况，说明前面不能顺便把我改了，还需要我操作一次\n                    ans += abs(diff[i]) - abs(diff[i - 1])\n            else: # 符号不同，不可以复用，必须重新开启一段\n                ans += abs(diff[i])\n        return ans\n\n\n"
         }
     ]
 },

@@ -227,6 +227,7 @@ const en = {
     heap: {
       title: "Heap",
       item1: "Min Heap",
+      item2: "Two Heaps",
     },
 
     slidingWindow: {

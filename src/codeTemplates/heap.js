@@ -279,6 +279,56 @@ module.exports = () => ({
         },
       ],
     },
+    {
+      text: t("Locale.codeTemplate.heap.item2"),
+      problems: [
+        {
+          title: '295. 数据流的中位数',
+          id: 'find-median-from-data-stream',
+        },
+        {
+          title: '3321. 计算子数组的 x-sum II',
+          id: 'find-x-sum-of-all-k-long-subarrays-ii',
+        }
+      ],
+        codes: [
+          {
+            language: 'py',
+            text: `
+            from collections import defaultdict
+            from sortedcontainers import SortedList
+            
+            class TwoHeap:
+                def __init__(self, K):
+                    self.K = K
+                    self.st1 = SortedList() # 大顶堆存较小的 k 个。或干脆用 SortedList，这里我们用  SortedList
+                    self.st2 = SortedList() # 小顶堆存较大的 n - k 个。或干脆用 SortedList，这里我们用  SortedList
+            
+                def adjust(self):
+                    while len(self.st2) > 0 and len(self.st1) < self.K:
+                        p = self.st2.pop(0)
+                        self.st1.add(p)
+                    while len(self.st1) > self.K:
+                        p = self.st1.pop(-1)
+                        self.st2.add(p)
+            
+                def add(self, p):
+                    if len(self.st2) > 0 and p >= self.st2[0]:
+                        self.st2.add(p)
+                    else:
+                        self.st1.add(p)
+                    self.adjust()
+            
+                def del_(self, p):
+                    if p in self.st1:
+                        self.st1.remove(p)
+                    else:
+                        self.st2.remove(p)
+                    self.adjust()
+            `
+          }
+        ]
+    }
   ],
   link: "https://leetcode-solution.cn/solutionDetail?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fazl397985856%2Fleetcode%2Fcontents%2Fthinkings%2Fheap.md&type=1",
 });

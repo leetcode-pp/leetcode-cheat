@@ -220,6 +220,7 @@ const zh = {
     heap: {
       title: "堆",
       item1: "小顶堆",
+      item2: "对顶堆",
     },
 
     slidingWindow: {
