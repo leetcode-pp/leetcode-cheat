@@ -152,196 +152,32 @@
 "longest-substring-without-repeating-characters":{
     "id": "3",
     "name": "longest-substring-without-repeating-characters",
-    "pre": [
-        {
-            "text": "哈希表",
-            "link": null,
-            "color": "gold"
-        },
-        {
-            "text": "滑动窗口",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/slide-window.md",
-            "color": "purple"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "mapper记录出现过并且没有被删除的字符",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "滑动窗口记录当前index开始的最大的不重复的字符序列",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "字节跳动"
-        },
-        {
-            "name": "腾讯"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/3.longest-substring-without-repeating-characters.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/3.longest-substring-without-repeating-characters.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\nclass Solution {\n    public int lengthOfLongestSubstring(String s) {\n        int ans = 0, start = 0;\n        int n = s.length();\n        //\n        Map<Character, Integer> map = new HashMap<>();\n\n        for(int i=0;i<n;i++)\n        {\n            char alpha = s.charAt(i);\n            if(map.containsKey(alpha))\n            {\n                start = Math.max(start, map.get(alpha)+1);\n            }\n            ans = Math.max(ans, i-start+1);\n            // 字符位置\n            map.put(alpha, i);\n        }\n\n        return ans;\n    }\n}\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    int lengthOfLongestSubstring(string s) {\n\n        int ans = 0, start = 0;\n        int n = s.length();\n        //\n        map<char, int> mp;\n\n        for(int i=0;i<n;i++)\n        {\n            char alpha = s[i];\n            if(mp.count(alpha))\n            {\n                start = max(start, mp[alpha]+1);\n            }\n            ans = max(ans, i-start+1);\n            // 字符位置\n            mp[alpha] = i;\n        }\n\n        return ans;\n    }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nfrom collections import defaultdict\n\n\nclass Solution:\n    def lengthOfLongestSubstring(self, s: str) -> int:\n        l = 0\n        ans = 0\n        counter = defaultdict(lambda: 0)\n\n        for r in range(len(s)):\n            while counter.get(s[r], 0) != 0:\n                counter[s[l]] = counter.get(s[l], 0) - 1\n                l += 1\n            counter[s[r]] += 1\n            ans = max(ans, r - l + 1)\n\n        return ans\n"
-        }
-    ]
+    "code": []
 },
 "median-of-two-sorted-arrays":{
     "id": "4",
     "name": "median-of-two-sorted-arrays",
-    "pre": [
-        {
-            "text": "中位数",
-            "link": null,
-            "color": "cyan"
-        },
-        {
-            "text": "分治法",
-            "link": null,
-            "color": "volcano"
-        },
-        {
-            "text": "二分查找",
-            "link": null,
-            "color": "magenta"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "分析",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "有序数组容易想到二分查找",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "对小的数组进行二分可降低时间复杂度",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "根据leftp1,rightp2,leftp2和rightp1的大小关系确定结束点和收缩方向",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "腾讯"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/4.median-of-two-sorted-arrays.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/4.median-of-two-sorted-arrays.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\nclass MedianTwoSortedArrayBruteForce {\n    public double findMedianSortedArrays(int[] nums1, int[] nums2) {\n      int[] newArr = mergeTwoSortedArray(nums1, nums2);\n      int n = newArr.length;\n      if (n % 2 == 0) {\n        // even\n        return (double) (newArr[n / 2] + newArr[n / 2 - 1]) / 2;\n      } else {\n        // odd\n        return (double) newArr[n / 2];\n      }\n    }\n    private int[] mergeTwoSortedArray(int[] nums1, int[] nums2) {\n      int m = nums1.length;\n      int n = nums2.length;\n      int[] res = new int[m + n];\n      int i = 0;\n      int j = 0;\n      int idx = 0;\n      while (i < m && j < n) {\n        if (nums1[i] <= nums2[j]) {\n          res[idx++] = nums1[i++];\n        } else {\n          res[idx++] = nums2[j++];\n        }\n      }\n      while (i < m) {\n        res[idx++] = nums1[i++];\n      }\n      while (j < n) {\n        res[idx++] = nums2[j++];\n      }\n      return res;\n    }\n}\n"
-        },
-        {
-            "language": "java",
-            "text": "\nclass MedianSortedTwoArrayBinarySearch {\n  public static double findMedianSortedArraysBinarySearch(int[] nums1, int[] nums2) {\n     // do binary search for shorter length array, make sure time complexity log(min(m,n)).\n     if (nums1.length > nums2.length) {\n        return findMedianSortedArraysBinarySearch(nums2, nums1);\n      }\n      int m = nums1.length;\n      int n = nums2.length;\n      int lo = 0;\n      int hi = m;\n      while (lo <= hi) {\n        // partition A position i\n        int i = lo + (hi - lo) / 2;\n        // partition B position j\n        int j = (m + n + 1) / 2 - i;\n\n        int maxLeftA = i == 0 ? Integer.MIN_VALUE : nums1[i - 1];\n        int minRightA = i == m ? Integer.MAX_VALUE : nums1[i];\n\n        int maxLeftB = j == 0 ? Integer.MIN_VALUE : nums2[j - 1];\n        int minRightB = j == n ? Integer.MAX_VALUE : nums2[j];\n\n        if (maxLeftA <= minRightB && maxLeftB <= minRightA) {\n          // total length is even\n          if ((m + n) % 2 == 0) {\n            return (double) (Math.max(maxLeftA, maxLeftB) + Math.min(minRightA, minRightB)) / 2;\n          } else {\n            // total length is odd\n            return (double) Math.max(maxLeftA, maxLeftB);\n          }\n        } else if (maxLeftA > minRightB) {\n          // binary search left half\n          hi = i - 1;\n        } else {\n          // binary search right half\n          lo = i + 1;\n        }\n      }\n      return 0.0;\n    }\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/**\n * @param {number[]} nums1\n * @param {number[]} nums2\n * @return {number}\n */\nvar findMedianSortedArrays = function (nums1, nums2) {\n  // 归并排序\n  const merged = [];\n  let i = 0;\n  let j = 0;\n  while (i < nums1.length && j < nums2.length) {\n    if (nums1[i] < nums2[j]) {\n      merged.push(nums1[i++]);\n    } else {\n      merged.push(nums2[j++]);\n    }\n  }\n  while (i < nums1.length) {\n    merged.push(nums1[i++]);\n  }\n  while (j < nums2.length) {\n    merged.push(nums2[j++]);\n  }\n\n  const { length } = merged;\n  return length % 2 === 1\n    ? merged[Math.floor(length / 2)]\n    : (merged[length / 2] + merged[length / 2 - 1]) / 2;\n};\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/**\n * 二分解法\n * @param {number[]} nums1\n * @param {number[]} nums2\n * @return {number}\n */\nvar findMedianSortedArrays = function (nums1, nums2) {\n  // make sure to do binary search for shorten array\n  if (nums1.length > nums2.length) {\n    [nums1, nums2] = [nums2, nums1];\n  }\n  const m = nums1.length;\n  const n = nums2.length;\n  let low = 0;\n  let high = m;\n  while (low <= high) {\n    const i = low + Math.floor((high - low) / 2);\n    const j = Math.floor((m + n + 1) / 2) - i;\n\n    const maxLeftA = i === 0 ? -Infinity : nums1[i - 1];\n    const minRightA = i === m ? Infinity : nums1[i];\n    const maxLeftB = j === 0 ? -Infinity : nums2[j - 1];\n    const minRightB = j === n ? Infinity : nums2[j];\n\n    if (maxLeftA <= minRightB && minRightA >= maxLeftB) {\n      return (m + n) % 2 === 1\n        ? Math.max(maxLeftA, maxLeftB)\n        : (Math.max(maxLeftA, maxLeftB) + Math.min(minRightA, minRightB)) / 2;\n    } else if (maxLeftA > minRightB) {\n      high = i - 1;\n    } else {\n      low = low + 1;\n    }\n  }\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {\n        if (nums1.size() > nums2.size()) swap(nums1, nums2);\n        int M = nums1.size(), N = nums2.size(), L = 0, R = M, K = (M + N + 1) / 2;\n        while (true) {\n            int i = (L + R) / 2, j = K - i;\n            if (i < M && nums2[j - 1] > nums1[i]) L = i + 1;\n            else if (i > L && nums1[i - 1] > nums2[j]) R = i - 1;\n            else {\n                int maxLeft = max(i ? nums1[i - 1] : INT_MIN, j ? nums2[j - 1] : INT_MIN);\n                if ((M + N) % 2) return maxLeft;\n                int minRight = min(i == M ? INT_MAX : nums1[i], j == N ? INT_MAX : nums2[j]);\n                return (maxLeft + minRight) / 2.0;\n            }\n        }\n    }\n};\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\nif leftp1 > rightp2:\n    hi = mid1 - 1\nelse:\n    lo = mid1 + 1\n"
-        },
-        {
-            "language": "py",
-            "text": "\nif leftp2 > rightp1:\n    hi = mid2 - 1\nelse:\n    lo = mid2 + 1\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:\n        N = len(nums1)\n        M = len(nums2)\n        if N > M:\n            return self.findMedianSortedArrays(nums2, nums1)\n\n        lo = 0\n        hi = N\n        combined = N + M\n\n        while lo <= hi:\n            mid1 = lo + hi >> 1\n            mid2 = ((combined + 1) >> 1) - mid1\n\n            leftp1 = -float(\"inf\") if mid1 == 0 else nums1[mid1 - 1]\n            rightp1 = float(\"inf\") if mid1 == N else nums1[mid1]\n\n            leftp2 = -float(\"inf\") if mid2 == 0 else nums2[mid2 - 1]\n            rightp2 = float(\"inf\") if mid2 == M else nums2[mid2]\n\n            # Check if the partition is valid for the case of\n            if leftp1 <= rightp2 and leftp2 <= rightp1:\n                if combined % 2 == 0:\n                    return (max(leftp1, leftp2)+min(rightp1, rightp2)) / 2.0\n\n                return max(leftp1, leftp2)\n            else:\n                if leftp1 > rightp2:\n                    hi = mid1 - 1\n                else:\n                    lo = mid1 + 1\n        return -1\n"
-        }
-    ]
+    "code": []
 },
 "longest-palindromic-substring":{
     "id": "5",
     "name": "longest-palindromic-substring",
-    "pre": [
-        {
-            "text": "回文",
-            "link": null,
-            "color": "lime"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "”延伸“（extend）",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "腾讯"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/5.longest-palindromic-substring.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/5.longest-palindromic-substring.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\nif (s[i] === s[j] && dp[i + 1][j - 1]) {\n  dp[i][j] = true;\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=5 lang=javascript\n *\n * [5] Longest Palindromic Substring\n */\n/**\n * @param {string} s\n * @return {string}\n */\nvar longestPalindrome = function (s) {\n  // babad\n  // tag : dp\n  if (!s || s.length === 0) return \"\";\n  let res = s[0];\n\n  const dp = [];\n\n  // 倒着遍历简化操作， 这么做的原因是dp[i][..]依赖于dp[i + 1][..]\n  for (let i = s.length - 1; i >= 0; i--) {\n    dp[i] = [];\n    for (let j = i; j < s.length; j++) {\n      if (j - i === 0) dp[i][j] = true;\n      // specail case 1\n      else if (j - i === 1 && s[i] === s[j]) dp[i][j] = true;\n      // specail case 2\n      else if (s[i] === s[j] && dp[i + 1][j - 1]) {\n        // state transition\n        dp[i][j] = true;\n      }\n\n      if (dp[i][j] && j - i + 1 > res.length) {\n        // update res\n        res = s.slice(i, j + 1);\n      }\n    }\n  }\n\n  return res;\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\nprivate:\n    int expand(string &s, int L, int R) {\n        while (L >= 0 && R < s.size() && s[L] == s[R]) {\n            --L;\n            ++R;\n        }\n        return R - L - 1;\n    }\npublic:\n    string longestPalindrome(string s) {\n        if (s.empty()) return s;\n        int start = 0, maxLen = 0;\n        for (int i = 0; i < s.size(); ++i) {\n            int len1 = expand(s, i, i);\n            int len2 = expand(s, i, i + 1);\n            int len = max(len1, len2);\n            if (len > maxLen) {\n                start = i - (len - 1) / 2;\n                maxLen = len;\n            }\n        }\n        return s.substr(start, maxLen);\n    }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def longestPalindrome(self, s: str) -> str:\n        n = len(s)\n        if n == 0:\n            return \"\"\n        res = s[0]\n        def extend(i, j, s):\n            while(i >= 0 and j < len(s) and s[i] == s[j]):\n                i -= 1\n                j += 1\n            return s[i + 1:j]\n\n        for i in range(n - 1):\n            e1 = extend(i, i, s)\n            e2 = extend(i, i + 1, s)\n            if max(len(e1), len(e2)) > len(res):\n                res = e1 if len(e1) > len(e2) else e2\n        return res\n"
-        }
-    ]
+    "code": []
 },
 "container-with-most-water":{
     "id": "11",
@@ -1088,1479 +924,252 @@
 "divide-two-integers":{
     "id": "29",
     "name": "divide-two-integers",
-    "pre": [
-        {
-            "text": "二分法",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "[二分查找](../91/binary",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "search.md)",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "正负数的判断中，这样判断更简单。```jsconstisNegative=dividend>0!==divisor>0;```或者利用异或：```jsconstisNegative=dividend^(divisor<0);```",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "Facebook"
-        },
-        {
-            "name": "Microsoft"
-        },
-        {
-            "name": "Oracle"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/29.divide-two-integers.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/29.divide-two-integers.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\nlet acc = divisor;\nlet count = 0;\n\nwhile (dividend - acc >= 0) {\n  acc += divisor;\n  count++;\n}\n\nreturn count;\n"
-        },
-        {
-            "language": "js",
-            "text": "\nconst isNegative = dividend > 0 !== divisor > 0;\n"
-        },
-        {
-            "language": "js",
-            "text": "\nconst isNegative = dividend ^ (divisor < 0);\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=29 lang=javascript\n *\n * [29] Divide Two Integers\n */\n/**\n * @param {number} dividend\n * @param {number} divisor\n * @return {number}\n */\nvar divide = function (dividend, divisor) {\n  if (divisor === 1) return dividend;\n\n  // 这种方法很巧妙，即符号相同则为正，不同则为负\n  const isNegative = dividend > 0 !== divisor > 0;\n\n  const MAX_INTERGER = Math.pow(2, 31);\n\n  const res = helper(Math.abs(dividend), Math.abs(divisor));\n\n  // overflow\n  if (res > MAX_INTERGER - 1 || res < -1 * MAX_INTERGER) {\n    return MAX_INTERGER - 1;\n  }\n\n  return isNegative ? -1 * res : res;\n};\n\nfunction helper(dividend, divisor) {\n  // 二分法\n  if (dividend <= 0) return 0;\n  if (dividend < divisor) return 0;\n  if (divisor === 1) return dividend;\n\n  let acc = 2 * divisor;\n  let count = 1;\n\n  while (dividend - acc > 0) {\n    acc += acc;\n    count += count;\n  }\n  // 直接使用位移运算，比如acc >> 1会有问题\n  const last = dividend - Math.floor(acc / 2);\n\n  return count + helper(last, divisor);\n}\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    int divide(int dividend, int divisor) {\n        if (!divisor) return 0;  // divide-by-zero error\n        bool pos1 = dividend > 0, pos2 = divisor > 0, pos = !(pos1^pos2);\n        if (pos1) dividend = -dividend;\n        if (pos2) divisor = -divisor;\n        int q = 0, d = divisor, t = 1;\n        while (t > 0 && dividend < 0) {\n            if (dividend - d <= 0) {\n                dividend -= d;\n                q -= t;\n                if ((INT_MIN >> 1) < d) {\n                    t <<= 1;\n                    d <<= 1;\n                }\n            } else {\n                d >>= 1;\n                t >>= 1;\n            }\n        }\n        return pos? -q : q;\n    }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def divide(self, dividend: int, divisor: int) -> int:\n        \"\"\"\n        二分法\n        :param int divisor\n        :param int dividend\n        :return int\n        \"\"\"\n        # 错误处理\n        if divisor == 0:\n            raise ZeroDivisionError\n        if abs(divisor) == 1:\n            result = dividend if 1 == divisor else -dividend\n            return min(2**31-1, max(-2**31, result))\n\n        # 确定结果的符号\n        sign = ((dividend >= 0) == (divisor >= 0))\n\n        result = 0\n        # abs也可以直接写在while条件中，不过可能会多计算几次\n        _divisor = abs(divisor)\n        _dividend = abs(dividend)\n\n        while _divisor <= _dividend:\n            r, _dividend = self._multi_divide(_divisor, _dividend)\n            result += r\n\n        result = result if sign else -result\n\n        # 注意返回值不能超过32位有符号数的表示范围\n        return min(2**31-1, max(-2**31, result))\n\n    def _multi_divide(self, divisor, dividend):\n        \"\"\"\n        翻倍除法，如果可以被除，则下一步除数翻倍，直至除数大于被除数，\n        返回商加总的结果与被除数的剩余值；\n        这里就不做异常处理了；\n        :param int divisor\n        :param int dividend\n        :return tuple result, left_dividend\n        \"\"\"\n        result = 0\n        times_count = 1\n        while divisor <= dividend:\n            dividend -= divisor\n            result += times_count\n            times_count += times_count\n            divisor += divisor\n        return result, dividend\n"
-        }
-    ]
+    "code": []
 },
 "substring-with-concatenation-of-all-words":{
     "id": "30",
     "name": "substring-with-concatenation-of-all-words",
-    "pre": [
-        {
-            "text": "字符串",
-            "link": null,
-            "color": "green"
-        },
-        {
-            "text": "数组",
-            "link": null,
-            "color": "purple"
-        },
-        {
-            "text": "哈希表",
-            "link": null,
-            "color": "gold"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "Counter",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/30.substring-with-concatenation-of-all-words.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/30.substring-with-concatenation-of-all-words.md",
-    "code": [
-        {
-            "language": "cpp",
-            "text": "\n\nclass Solution {\nprivate:\n    int len, n;\n    string s;\n    bool rec(int i, unordered_map<string, int> &m, int cnt) {\n        if (cnt == n) return true;\n        int &v = m[s.substr(i, len)];\n        if (v) {\n            v--;\n            bool ret = rec(i + len, m, cnt + 1);\n            v++;\n            return ret;\n        }\n        return false;\n    }\npublic:\n    vector<int> findSubstring(string s, vector<string>& words) {\n        if (words.empty()) return {};\n        this->s = s;\n        len = words[0].size();\n        n = words.size();\n        unordered_map<string, int> m;\n        for (string word : words) ++m[word];\n        int end = s.size() - n * len;\n        vector<int> v;\n        for (int i = 0; i <= end; ++i) {\n            if (rec(i, m, 0)) v.push_back(i);\n        }\n        return v;\n    }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nfrom collections import Counter\n\n\nclass Solution:\n    def findSubstring(self, s: str, words: List[str]) -> List[int]:\n        if not s or not words:\n            return []\n        res = []\n        n = len(words)\n        word_len = len(words[0])\n        window_len = word_len * n\n        target = Counter(words)\n        i = 0\n        while i < len(s) - window_len + 1:\n            sliced = []\n            start = i\n            for _ in range(n):\n                sliced.append(s[start:start + word_len])\n                start += word_len\n            if Counter(sliced) == target:\n                res.append(i)\n            i += 1\n        return res\n"
-        }
-    ]
+    "code": []
 },
 "next-permutation":{
     "id": "31",
     "name": "next-permutation",
-    "pre": [
-        {
-            "text": "回溯法",
-            "link": null,
-            "color": "gold"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "写几个例子通常会帮助理解问题的规律",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "在有序数组中首尾指针不断交换位置即可实现reverse",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "找到从右边起`第一个大于nums[i]的`，并将其和nums[i]进行交换",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/31.next-permutation.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/31.next-permutation.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=31 lang=javascript\n *\n * [31] Next Permutation\n */\n\nfunction reverseRange(A, i, j) {\n  while (i < j) {\n    const temp = A[i];\n    A[i] = A[j];\n    A[j] = temp;\n    i++;\n    j--;\n  }\n}\n/**\n * @param {number[]} nums\n * @return {void} Do not return anything, modify nums in-place instead.\n */\nvar nextPermutation = function (nums) {\n  // 时间复杂度O(n) 空间复杂度O(1)\n  if (nums == null || nums.length <= 1) return;\n\n  let i = nums.length - 2;\n  // 从后往前找到第一个降序的,相当于找到了我们的回溯点\n  while (i > -1 && nums[i + 1] <= nums[i]) i--;\n\n  // 如果找了就swap\n  if (i > -1) {\n    let j = nums.length - 1;\n    // 找到从右边起第一个大于nums[i]的，并将其和nums[i]进行交换\n    // 因为如果交换的数字比nums[i]还要小肯定不符合题意\n    while (nums[j] <= nums[i]) j--;\n    const temp = nums[i];\n    nums[i] = nums[j];\n    nums[j] = temp;\n  }\n\n  // 最后我们只需要将剩下的元素从左到右，依次填入当前最小的元素就可以保证是大于当前排列的最小值了\n  // [i + 1, A.length -1]的元素进行反转\n\n  reverseRange(nums, i + 1, nums.length - 1);\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n  void nextPermutation(vector<int>& nums) {\n    int i = nums.size() - 2, j = nums.size() - 1;\n    while (i >= 0 && nums[i] >= nums[i + 1]) --i;\n    if (i >= 0) {\n      while (j > i && nums[j] <= nums[i]) --j;\n      swap(nums[i], nums[j]);\n    }\n    reverse(nums.begin() + i + 1, nums.end());\n  }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def nextPermutation(self, nums: List[int]) -> None:\n        i = len(nums) - 2\n        while i >= 0 and nums[i] >= nums[i + 1]:\n            i -= 1\n        if i >= 0:\n            j = len(nums) - 1\n            while j >= 0 and nums[i] >= nums[j]:\n                j -= 1\n            nums[i], nums[j] = nums[j], nums[i]\n\n        left, right = i + 1, len(nums) - 1\n        while left < right:\n            nums[left], nums[right] = nums[right], nums[left]\n            left += 1\n            right -= 1\n"
-        }
-    ]
+    "code": []
 },
 "longest-valid-parentheses":{
     "id": "32",
     "name": "longest-valid-parentheses",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "解析1.第3点特征,需要检查的字符是s[i",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "1]和s[i",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "2",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "dp[i",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "1]],根据定义可知:i",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "1>=dp[i",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "1],但是i",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "2不一定大于dp[i",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "1],因此,需要检查越界;2.第4点特征最容易遗漏,还有就是不需要检查越界,因为根据定义可知:i>=dp[i],所以dp[i",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "dp[i]]的边界情况是dp[0];",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/32.longest-valid-parentheses.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/32.longest-valid-parentheses.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\npublic class Solution {\n    public int longestValidParentheses(String s) {\n        int left = 0, right = 0, maxlength = 0;\n        for (int i = 0; i < s.length(); i++) {\n            if (s.charAt(i) == '(') {\n                left++;\n            } else {\n                right++;\n            }\n            if (left == right) {\n                maxlength = Math.max(maxlength, left + right);\n            }\n            if (right > left) {\n                left = right = 0;\n            }\n        }\n        left = right = 0;\n        for (int i = s.length() - 1; i >= 0; i--) {\n            if (s.charAt(i) == '(') {\n                left++;\n            } else {\n                right++;\n            }\n            if (left == right) {\n                maxlength = Math.max(maxlength, left + right);\n            }\n            if (left > right) {\n                left = right = 0;\n            }\n        }\n        return maxlength;\n    }\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\n// 用栈来解\nvar longestValidParentheses = function (s) {\n  let stack = new Array();\n  let longest = 0;\n  stack.push(-1);\n  for (let i = 0; i < s.length; i++) {\n    if (s[i] === \"(\") {\n      stack.push(i);\n    } else {\n      stack.pop();\n      if (stack.length === 0) {\n        stack.push(i);\n      } else {\n        longest = Math.max(longest, i - stack[stack.length - 1]);\n      }\n    }\n  }\n  return longest;\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    int longestValidParentheses(string s) {\n        stack<int> st;\n        st.push(-1);\n        int ans = 0;\n        for (int i = 0; i < s.size(); ++i) {\n            if (s[i] == ')' && st.top() != -1 && s[st.top()] == '(') {\n                st.pop();\n                ans = max(ans, i - st.top());\n            } else st.push(i);\n        }\n        return ans;\n    }\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    int longestValidParentheses(string s) {\n        int left = 0, right = 0, ans = 0, N = s.size();\n        for (int i = 0; i < N; ++i) {\n            left += s[i] == '(';\n            right += s[i] == ')';\n            if (left == right) ans = max(ans, left + right);\n            else if (right > left) left = right = 0;\n        }\n        left = 0, right = 0;\n        for (int i = N - 1; i >= 0; --i) {\n            left += s[i] == '(';\n            right += s[i] == ')';\n            if (left == right) ans = max(ans, left + right);\n            else if (left > right) left = right = 0;\n        }\n        return ans;\n    }\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    int longestValidParentheses(string s) {\n        vector<int> dp(s.size() + 1, 0);\n        int ans = 0;\n        for (int i = 0; i < s.size(); ++i) {\n            if (s[i] == '(') continue;\n            int start = i - dp[i] - 1;\n            if (start >= 0 && s[start] == '(')\n                dp[i + 1] = dp[i] + 2 + dp[start];\n            ans = max(ans, dp[i + 1]);\n        }\n        return ans;\n    }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def longestValidParentheses(self, s: str) -> int:\n        n = len(s)\n        ans = 0\n\n        def validCnt(start):\n            # cnt 为 ) 的数量减去 ( 的数量\n            cnt = 0\n            ans = 0\n            for i in range(start, n):\n                if s[i] == '(':\n                    cnt += 1\n                if s[i] == ')':\n                    cnt -= 1\n                if cnt < 0:\n                    return i - start\n                if cnt == 0:\n                    ans = max(ans, i - start + 1)\n            return ans\n        for i in range(n):\n            ans = max(ans, validCnt(i))\n\n        return ans\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def longestValidParentheses(self, s: str) -> int:\n        if not s:\n            return 0\n        res = 0\n        stack = [-1]\n        for i in range(len(s)):\n            if s[i] == \"(\":\n                stack.append(i)\n            else:\n                stack.pop()\n                if not stack:\n                    stack.append(i)\n                else:\n                    res = max(res, i - stack[-1])\n        return res\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def longestValidParentheses(self, s: str) -> int:\n        ans = l = r = 0\n        for c in s:\n            if c == '(':\n                l += 1\n            else:\n                r += 1\n            if l == r:\n                ans = max(ans, l + r)\n            if r > l:\n                l = r = 0\n        l = r = 0\n        for c in s[::-1]:\n            if c == '(':\n                l += 1\n            else:\n                r += 1\n            if l == r:\n                ans = max(ans, l + r)\n            if r < l:\n                l = r = 0\n\n        return ans\n"
-        },
-        {
-            "language": "py",
-            "text": "\ns = '(())())'\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def longestValidParentheses(self, s: str) -> int:\n        mlen = 0\n        slen = len(s)\n        dp = [0] * (slen + 1)\n        for i in range(1, len(s) + 1):\n            # 有效的括号对不可能会以'('结尾的\n            if s[i - 1] == '(':\n                continue\n\n            left_paren = i - 2 - dp[i - 1]\n            if left_paren >= 0 and s[left_paren] == '(':\n                dp[i] = dp[i - 1] + 2\n\n                # 拼接有效括号对\n                if dp[i - dp[i]]:\n                    dp[i] += dp[i - dp[i]]\n\n                # 更新最大有效扩对长度\n                if dp[i] > mlen:\n                    mlen = dp[i]\n\n        return mlen\n"
-        }
-    ]
+    "code": []
 },
 "search-in-rotated-sorted-array":{
     "id": "33",
     "name": "search-in-rotated-sorted-array",
-    "pre": [
-        {
-            "text": "数组",
-            "link": null,
-            "color": "purple"
-        },
-        {
-            "text": "二分法",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "[二分法](../91/binary",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "search.md)",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "找出有序区间，然后根据target是否在有序区间舍弃一半元素",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/33.search-in-rotated-sorted-array.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/33.search-in-rotated-sorted-array.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=33 lang=javascript\n *\n * [33] Search in Rotated Sorted Array\n */\n/**\n * @param {number[]} nums\n * @param {number} target\n * @return {number}\n */\nvar search = function (nums, target) {\n  // 时间复杂度：O(logn)\n  // 空间复杂度：O(1)\n  // [6,7,8,1,2,3,4,5]\n  let start = 0;\n  let end = nums.length - 1;\n\n  while (start <= end) {\n    const mid = start + ((end - start) >> 1);\n    if (nums[mid] === target) return mid;\n\n    // [start, mid]有序\n\n    // ️⚠️注意这里的等号\n    if (nums[mid] >= nums[start]) {\n      //target 在 [start, mid] 之间\n\n      // 其实target不可能等于nums[mid]， 但是为了对称，我还是加上了等号\n      if (target >= nums[start] && target <= nums[mid]) {\n        end = mid - 1;\n      } else {\n        //target 不在 [start, mid] 之间\n        start = mid + 1;\n      }\n    } else {\n      // [mid, end]有序\n\n      // target 在 [mid, end] 之间\n      if (target >= nums[mid] && target <= nums[end]) {\n        start = mid + 1;\n      } else {\n        // target 不在 [mid, end] 之间\n        end = mid - 1;\n      }\n    }\n  }\n\n  return -1;\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def search(self, nums: List[int], target: int) -> int:\n        \"\"\"用二分法，先判断左右两边哪一边是有序的，再判断是否在有序的列表之内\"\"\"\n        if len(nums) <= 0:\n            return -1\n\n        left = 0\n        right = len(nums) - 1\n        while left < right:\n            mid = (right - left) // 2 + left\n            if nums[mid] == target:\n                return mid\n\n            # 如果中间的值大于最左边的值，说明左边有序\n            if nums[mid] > nums[left]:\n                if nums[left] <= target <= nums[mid]:\n                    right = mid\n                else:\n                    # 这里 +1，因为上面是 <= 符号\n                    left = mid + 1\n            # 否则右边有序\n            else:\n                # 注意：这里必须是 mid+1，因为根据我们的比较方式，mid属于左边的序列\n                if nums[mid+1] <= target <= nums[right]:\n                    left = mid + 1\n                else:\n                    right = mid\n\n        return left if nums[left] == target else -1\n"
-        }
-    ]
+    "code": []
 },
 "combination-sum":{
     "id": "39",
     "name": "combination-sum",
-    "pre": [
-        {
-            "text": "回溯法",
-            "link": null,
-            "color": "gold"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "回溯法",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "backtrack解题公式",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/39.combination-sum.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/39.combination-sum.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\nfunction backtrack(list, tempList, nums, remain, start) {\n  if (remain < 0) return;\n  else if (remain === 0) return list.push([...tempList]);\n  for (let i = start; i < nums.length; i++) {\n    tempList.push(nums[i]);\n    backtrack(list, tempList, nums, remain - nums[i], i); // 数字可以重复使用， i + 1代表不可以重复利用\n    tempList.pop();\n  }\n}\n/**\n * @param {number[]} candidates\n * @param {number} target\n * @return {number[][]}\n */\nvar combinationSum = function (candidates, target) {\n  const list = [];\n  backtrack(\n    list,\n    [],\n    candidates.sort((a, b) => a - b),\n    target,\n    0\n  );\n  return list;\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\nprivate:\n    vector<vector<int>> res;\n    void dfs(vector<int> &c, int t, int start, vector<int> &v) {\n        if (!t) {\n            res.push_back(v);\n            return;\n        }\n        for (int i = start; i < c.size() && t >= c[i]; ++i) {\n            v.push_back(c[i]);\n            dfs(c, t - c[i], i, v);\n            v.pop_back();\n        }\n    }\npublic:\n    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {\n        sort(candidates.begin(), candidates.end());\n        vector<int> v;\n        dfs(candidates, target, 0, v);\n        return res;\n    }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:\n        \"\"\"\n        回溯法，层层递减，得到符合条件的路径就加入结果集中，超出则剪枝；\n        主要是要注意一些细节，避免重复等；\n        \"\"\"\n        size = len(candidates)\n        if size <= 0:\n            return []\n\n        # 先排序，便于后面剪枝\n        candidates.sort()\n\n        path = []\n        res = []\n        self._find_path(target, path, res, candidates, 0, size)\n\n        return res\n\n    def _find_path(self, target, path, res, candidates, begin, size):\n        \"\"\"沿着路径往下走\"\"\"\n        if target == 0:\n            res.append(path.copy())\n        else:\n            for i in range(begin, size):\n                left_num = target - candidates[i]\n                # 如果剩余值为负数，说明超过了，剪枝\n                if left_num < 0:\n                    break\n                # 否则把当前值加入路径\n                path.append(candidates[i])\n                # 为避免重复解，我们把比当前值小的参数也从下一次寻找中剔除，\n                # 因为根据他们得出的解一定在之前就找到过了\n                self._find_path(left_num, path, res, candidates, i, size)\n                # 记得把当前值移出路径，才能进入下一个值的路径\n                path.pop()\n"
-        }
-    ]
+    "code": []
 },
 "combination-sum-ii":{
     "id": "40",
     "name": "combination-sum-ii",
-    "pre": [
-        {
-            "text": "回溯法",
-            "link": null,
-            "color": "gold"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "回溯法",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "backtrack解题公式",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/40.combination-sum-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/40.combination-sum-ii.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\nfunction backtrack(list, tempList, nums, remain, start) {\n  if (remain < 0) return;\n  else if (remain === 0) return list.push([...tempList]);\n  for (let i = start; i < nums.length; i++) {\n    // 和39.combination-sum 的其中一个区别就是这道题candidates可能有重复\n    // 代码表示就是下面这一行。注意 i > start 这一条件\n    if (i > start && nums[i] == nums[i - 1]) continue; // skip duplicates\n    tempList.push(nums[i]);\n    backtrack(list, tempList, nums, remain - nums[i], i + 1); // i + 1代表不可以重复利用， i 代表数字可以重复使用\n    tempList.pop();\n  }\n}\n/**\n * @param {number[]} candidates\n * @param {number} target\n * @return {number[][]}\n */\nvar combinationSum2 = function (candidates, target) {\n  const list = [];\n  backtrack(\n    list,\n    [],\n    candidates.sort((a, b) => a - b),\n    target,\n    0\n  );\n  return list;\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\n    vector<vector<int>> ans;\n    void backtrack(vector<int> &A, int target, int start, vector<int> &path) {\n        if (!target) {\n            ans.push_back(path);\n            return;\n        }\n        for (int i = start; i < A.size() && target >= A[i]; ++i) {\n            if (i != start && A[i] == A[i - 1]) continue;\n            path.push_back(A[i]);\n            dfs(A, target - A[i], i + 1, path);\n            path.pop_back();\n        }\n    }\npublic:\n    vector<vector<int>> combinationSum2(vector<int>& A, int target) {\n        sort(A.begin(), A.end());\n        vector<int> path;\n        backtrack(A, target, 0, path);\n        return ans;\n    }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\n if target == 0:\n    res.append(path.copy())\nelse:\n    for i in range(begin, size):\n        left_num = target - candidates[i]\n        if left_num < 0:\n            break\n        path.append(candidates[i])\n        self._find_path(candidates, path, res, left_num, i+1, size)\n        path.pop()\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\n if target == 0:\n    res.append(path.copy())\nelse:\n    for i in range(begin, size):\n        # 增加下面一行代码\n        if i > begin and candidates[i] == candidate[i - 1]: continue\n        left_num = target - candidates[i]\n        if left_num < 0:\n            break\n        path.append(candidates[i])\n        self._find_path(candidates, path, res, left_num, i+1, size)\n        path.pop()\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:\n        \"\"\"\n        与39题的区别是不能重用元素，而元素可能有重复；\n        不能重用好解决，回溯的index往下一个就行；\n        元素可能有重复，就让结果的去重麻烦一些；\n        \"\"\"\n        size = len(candidates)\n        if size == 0:\n            return []\n\n        # 还是先排序，主要是方便去重\n        candidates.sort()\n\n        path = []\n        res = []\n        self._find_path(candidates, path, res, target, 0, size)\n\n        return res\n\n    def _find_path(self, candidates, path, res, target, begin, size):\n        if target == 0:\n            res.append(path.copy())\n        else:\n            for i in range(begin, size):\n                left_num = target - candidates[i]\n                if left_num < 0:\n                    break\n                # 如果存在重复的元素，前一个元素已经遍历了后一个元素与之后元素组合的所有可能\n                if i > begin and candidates[i] == candidates[i-1]:\n                    continue\n                path.append(candidates[i])\n                # 开始的 index 往后移了一格\n                self._find_path(candidates, path, res, left_num, i+1, size)\n                path.pop()\n"
-        }
-    ]
+    "code": []
 },
 "trapping-rain-water":{
     "id": "42",
     "name": "trapping-rain-water",
-    "pre": [
-        {
-            "text": "空间换时间",
-            "link": null,
-            "color": "geekblue"
-        },
-        {
-            "text": "双指针",
-            "link": null,
-            "color": "green"
-        },
-        {
-            "text": "单调栈",
-            "link": null,
-            "color": "purple"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "建模`h[i]=Math.min(左边柱子最大值,右边柱子最大值)`(h为下雨之后的水位)",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/42.trapping-rain-water.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/42.trapping-rain-water.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\nfor (let i = 0; i < height.length; i++) {\n  area += (h[i] - height[i]) * 1; // h为下雨之后的水位\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=42 lang=javascript\n *\n * [42] Trapping Rain Water\n *\n */\n/**\n * @param {number[]} height\n * @return {number}\n */\nvar trap = function (height) {\n  let max = 0;\n  let volume = 0;\n  const leftMax = [];\n  const rightMax = [];\n\n  for (let i = 0; i < height.length; i++) {\n    leftMax[i] = max = Math.max(height[i], max);\n  }\n\n  max = 0;\n\n  for (let i = height.length - 1; i >= 0; i--) {\n    rightMax[i] = max = Math.max(height[i], max);\n  }\n\n  for (let i = 0; i < height.length; i++) {\n    volume = volume + Math.min(leftMax[i], rightMax[i]) - height[i];\n  }\n\n  return volume;\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nint trap(vector<int>& heights)\n{\n\tif(heights == null)\n\t\treturn 0;\n    int ans = 0;\n    int size = heights.size();\n    vector<int> left_max(size), right_max(size);\n    left_max[0] = heights[0];\n    for (int i = 1; i < size; i++) {\n        left_max[i] = max(heights[i], left_max[i - 1]);\n    }\n    right_max[size - 1] = heights[size - 1];\n    for (int i = size - 2; i >= 0; i--) {\n        right_max[i] = max(heights[i], right_max[i + 1]);\n    }\n    for (int i = 1; i < size - 1; i++) {\n        ans += min(left_max[i], right_max[i]) - heights[i];\n    }\n    return ans;\n}\n\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\n\nclass Solution {\npublic:\n    int trap(vector<int>& heights)\n{\n    int left = 0, right = heights.size() - 1;\n    int ans = 0;\n    int left_max = 0, right_max = 0;\n    while (left < right) {\n        if (heights[left] < heights[right]) {\n            heights[left] >= left_max ? (left_max = heights[left]) : ans += (left_max - heights[left]);\n            ++left;\n        }\n        else {\n            heights[right] >= right_max ? (right_max = heights[right]) : ans += (right_max - heights[right]);\n            --right;\n        }\n    }\n    return ans;\n}\n\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def trap(self, heights: List[int]) -> int:\n        n = len(heights)\n        l, r = [0] * n, [0] * n\n        ans = 0\n        for i in range(1, len(heights)):\n            l[i] = max(l[i - 1], heights[i - 1])\n        for i in range(len(heights) - 2, 0, -1):\n            r[i] = max(r[i + 1], heights[i + 1])\n        for i in range(len(heights)):\n            ans += max(0, min(l[i], r[i]) - heights[i])\n        return ans\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def trap(self, heights: List[int]) -> int:\n        n = len(heights)\n        l_max = r_max = 0\n        l, r = 0, n - 1\n        ans = 0\n        while l < r:\n            if heights[l] < heights[r]:\n                if heights[l] < l_max:\n                    ans += l_max - heights[l]\n                else:\n                    l_max = heights[l]\n                l += 1\n            else:\n                if heights[r] < r_max:\n                    ans += r_max - heights[r]\n                else:\n                    r_max = heights[r]\n                r -= 1\n        return ans\n"
-        }
-    ]
+    "code": []
 },
 "permutations":{
     "id": "46",
     "name": "permutations",
-    "pre": [
-        {
-            "text": "回溯",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/backtrack.md",
-            "color": "green"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "回溯法",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "backtrack解题公式",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/46.permutations.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/46.permutations.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\nfunction backtrack(list, tempList, nums) {\n  if (tempList.length === nums.length) return list.push([...tempList]);\n  for (let i = 0; i < nums.length; i++) {\n    if (tempList.includes(nums[i])) continue;\n    tempList.push(nums[i]);\n    backtrack(list, tempList, nums);\n    tempList.pop();\n  }\n}\n/**\n * @param {number[]} nums\n * @return {number[][]}\n */\nvar permute = function (nums) {\n  const list = [];\n  backtrack(list, [], nums);\n  return list;\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\n    vector<vector<int>> ans;\n    void dfs(vector<int> &nums, int start) {\n        if (start == nums.size() - 1) {\n            ans.push_back(nums);\n            return;\n        }\n        for (int i = start; i < nums.size(); ++i) {\n            swap(nums[i], nums[start]);\n            dfs(nums, start + 1);\n            swap(nums[i], nums[start]);\n        }\n    }\npublic:\n    vector<vector<int>> permute(vector<int>& nums) {\n        dfs(nums, 0);\n        return ans;\n    }\n};\n"
-        }
-    ]
+    "code": []
 },
 "permutations-ii":{
     "id": "47",
     "name": "permutations-ii",
-    "pre": [
-        {
-            "text": "回溯",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/backtrack.md",
-            "color": "green"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "回溯法",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "backtrack解题公式",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/47.permutations-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/47.permutations-ii.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=47 lang=javascript\n *\n * [47] Permutations II\n */\nfunction backtrack(list, nums, tempList, visited) {\n  if (tempList.length === nums.length) return list.push([...tempList]);\n  for (let i = 0; i < nums.length; i++) {\n    // 和46.permutations的区别是这道题的nums是可以重复的\n    // 我们需要过滤这种情况\n    if (visited[i]) continue; // 同一个数字不能用两次\n    if (i > 0 && nums[i] === nums[i - 1] && visited[i - 1]) continue; // 同样值的数字不能用两次\n\n    visited[i] = true;\n    tempList.push(nums[i]);\n    backtrack(list, nums, tempList, visited);\n    visited[i] = false;\n    tempList.pop();\n  }\n}\n/**\n * @param {number[]} nums\n * @return {number[][]}\n */\nvar permuteUnique = function (nums) {\n  const list = [];\n  backtrack(\n    list,\n    nums.sort((a, b) => a - b),\n    [],\n    []\n  );\n  return list;\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\nprivate:\n  vector<vector<int>> ans;\n  void permute(vector<int> nums, int start) {\n    if (start == nums.size() - 1) {\n      ans.push_back(nums);\n      return;\n    }\n    for (int i = start; i < nums.size(); ++i) {\n      if (i != start && nums[i] == nums[start]) continue;\n      swap(nums[i], nums[start]);\n      permute(nums, start + 1);\n    }\n  }\npublic:\n  vector<vector<int>> permuteUnique(vector<int>& nums) {\n    sort(nums.begin(), nums.end());\n    permute(nums, 0);\n    return ans;\n  }\n};\n"
-        }
-    ]
+    "code": []
 },
 "rotate-image":{
     "id": "48",
     "name": "rotate-image",
-    "pre": [
-        {
-            "text": "原地算法",
-            "link": null,
-            "color": "orange"
-        },
-        {
-            "text": "矩阵",
-            "link": null,
-            "color": "gold"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "矩阵旋转操作",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/48.rotate-image.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/48.rotate-image.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\nvar rotate = function (matrix) {\n  // 时间复杂度O(n^2) 空间复杂度O(n)\n  const oMatrix = JSON.parse(JSON.stringify(matrix)); // clone\n  const n = oMatrix.length;\n  for (let i = 0; i < n; i++) {\n    for (let j = 0; j < n; j++) {\n      matrix[j][n - i - 1] = oMatrix[i][j];\n    }\n  }\n};\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=48 lang=javascript\n *\n * [48] Rotate Image\n */\n/**\n * @param {number[][]} matrix\n * @return {void} Do not return anything, modify matrix in-place instead.\n */\nvar rotate = function (matrix) {\n  // 时间复杂度O(n^2) 空间复杂度O(1)\n\n  // 做法： 先沿着对角线翻转，然后沿着水平线翻转\n  const n = matrix.length;\n  function swap(arr, [i, j], [m, n]) {\n    const temp = arr[i][j];\n    arr[i][j] = arr[m][n];\n    arr[m][n] = temp;\n  }\n  for (let i = 0; i < n - 1; i++) {\n    for (let j = 0; j < n - i; j++) {\n      swap(matrix, [i, j], [n - j - 1, n - i - 1]);\n    }\n  }\n\n  for (let i = 0; i < n / 2; i++) {\n    for (let j = 0; j < n; j++) {\n      swap(matrix, [i, j], [n - i - 1, j]);\n    }\n  }\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    void rotate(vector<vector<int>>& matrix) {\n        int N = matrix.size();\n        for (int i = 0; i < N / 2; ++i) {\n            for (int j = i; j < N - i - 1; ++j) {\n                int tmp = matrix[i][j];\n                matrix[i][j] = matrix[N - j - 1][i];\n                matrix[N - j - 1][i] = matrix[N - i - 1][N - j - 1];\n                matrix[N - i - 1][N - j - 1] = matrix[j][N - i - 1];\n                matrix[j][N - i - 1] = tmp;\n            }\n        }\n    }\n};\n"
-        }
-    ]
+    "code": []
 },
 "group-anagrams":{
     "id": "49",
     "name": "group-anagrams",
-    "pre": [
-        {
-            "text": "哈希表",
-            "link": null,
-            "color": "gold"
-        },
-        {
-            "text": "排序",
-            "link": null,
-            "color": "purple"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "桶排序",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/49.group-anagrams.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/49.group-anagrams.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\nvar groupAnagrams = function (strs) {\n  const hashTable = {};\n\n  function sort(str) {\n    return str.split(\"\").sort().join(\"\");\n  }\n\n  // 这个方法需要排序，因此不是很优，但是很直观，容易想到\n  for (let i = 0; i < strs.length; i++) {\n    const str = strs[i];\n    const key = sort(str);\n    if (!hashTable[key]) {\n      hashTable[key] = [str];\n    } else {\n      hashTable[key].push(str);\n    }\n  }\n\n  return Object.values(hashTable);\n};\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=49 lang=javascript\n *\n * [49] Group Anagrams\n */\n/**\n * @param {string[]} strs\n * @return {string[][]}\n */\nvar groupAnagrams = function (strs) {\n  // 类似桶排序\n\n  let counts = [];\n  const hashTable = {};\n  for (let i = 0; i < strs.length; i++) {\n    const str = strs[i];\n    counts = Array(26).fill(0);\n    for (let j = 0; j < str.length; j++) {\n      counts[str[j].charCodeAt(0) - \"a\".charCodeAt(0)]++;\n    }\n    const key = counts.join(\"-\");\n    if (!hashTable[key]) {\n      hashTable[key] = [str];\n    } else {\n      hashTable[key].push(str);\n    }\n  }\n\n  return Object.values(hashTable);\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    vector<vector<string>> groupAnagrams(vector<string>& A) {\n        unordered_map<string, int> m;\n        vector<vector<string>> ans;\n        for (auto &s : A) {\n            auto p = s;\n            sort(p.begin(), p.end());\n            if (!m.count(p)) {\n                m[p] = ans.size();\n                ans.push_back({});\n            }\n            ans[m[p]].push_back(s);\n        }\n        return ans;\n    }\n};\n"
-        }
-    ]
+    "code": []
 },
 "pow-x-n":{
     "id": "50",
     "name": "pow-x-n",
-    "pre": [
-        {
-            "text": "递归",
-            "link": null,
-            "color": "orange"
-        },
-        {
-            "text": "位运算",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "超时分析",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "hashtable",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "数学分析",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "位运算",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "二进制转十进制",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/50.pow-x-n.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/50.pow-x-n.md",
-    "code": [
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\n    double myPow(double x, long n) {\n        if (n < 0) return 1 / myPow(x, -n);\n        if (n == 0) return 1;\n        if (n == 1) return x;\n        if (n == 2) return x * x;\n        return myPow(myPow(x, n / 2), 2) * (n % 2 ? x : 1);\n    }\npublic:\n    double myPow(double x, int n) {\n        return myPow(x, (long)n);\n    }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def myPow(self, x: float, n: int) -> float:\n        if n == 0:\n            return 1\n        if n < 0:\n            return 1 / self.myPow(x, -n)\n        res = 1\n        for _ in range(n):\n            res *= x\n        return res\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def myPow(self, x: float, n: int) -> float:\n        if n == 0:\n            return 1\n        if n == 1:\n            return x\n        if n < 0:\n            return 1 / self.myPow(x, -n)\n        return self.myPow(x, n // 2) * self.myPow(x, n - n // 2)\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def myPow(self, x: float, n: int) -> float:\n        if n == 0:\n            return 1\n        if n == 1:\n            return x\n        if n < 0:\n            return 1 / self.myPow(x, -n)\n        return self.myPow(x * x, n // 2) if n % 2 == 0 else x * self.myPow(x, n - 1)\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def myPow(self, x: float, n: int) -> float:\n        if n < 0:\n            return 1 / self.myPow(x, -n)\n        res = 1\n        while n:\n            if n & 1 == 1:\n                res *= x\n            x *= x\n            n >>= 1\n        return res\n"
-        }
-    ]
+    "code": []
 },
 "N-Queens-II":{
     "id": "52",
     "name": "N-Queens-II",
-    "pre": [
-        {
-            "text": "回溯",
-            "link": null,
-            "color": "green"
-        },
-        {
-            "text": "深度优先遍历",
-            "link": null,
-            "color": "geekblue"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "位运算",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "DFS（深度优先搜索）",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/52.N-Queens-II.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/52.N-Queens-II.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/**\n * @param {number} n\n * @return {number}\n * @param row 当前层\n * @param cols 列\n * @param pie 左斜线\n * @param na 右斜线\n */\nconst totalNQueens = function (n) {\n    let res = 0;\n    const dfs = (n, row, cols, pie, na) => {\n        if (row >= n) {\n            res++;\n            return;\n        }\n        // 将所有能放置 Q 的位置由 0 变成 1，以便进行后续的位遍历\n        // 也就是得到当前所有的空位\n        let bits = (~(cols | pie | na)) & ((1 << n) - 1);\n        while (bits) {\n            // 取最低位的1\n            let p = bits & -bits;\n            // 把P位置上放入皇后\n            bits = bits & (bits - 1);\n            // row + 1 搜索下一行可能的位置\n            // cols ｜ p 目前所有放置皇后的列\n            // (pie | p) << 1 和 (na | p) >> 1) 与已放置过皇后的位置 位于一条斜线上的位置\n            dfs(n, row + 1, cols | p, (pie | p) << 1, (na | p) >> 1);\n        }\n    }\n    dfs(n, 0, 0, 0, 0);\n    return res;\n};\n"
-        }
-    ]
+    "code": []
 },
 "maximum-sum-subarray-cn":{
     "id": "53",
     "name": "maximum-sum-subarray-cn",
-    "pre": [
-        {
-            "text": "滑动窗口",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/slide-window.md",
-            "color": "purple"
-        },
-        {
-            "text": "动态规划",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/dynamic-programming.md",
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "分析1.暴力解，列举所有组合子序列首尾位置的组合，求解最大的子序列和,优化可以预先处理，得到前缀和2.分治法，每次从中间位置把数组分为左右中三部分，分别求出左右中（这里中是包括中间元素的子序列）最大和。对左右分别深度递归，三者中最大值即为当前最大子序列和。3.动态规划，找到状态转移方程，求到当前位置最大和。",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "bloomberg"
-        },
-        {
-            "name": "linkedin"
-        },
-        {
-            "name": "microsoft"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/53.maximum-sum-subarray-cn.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/53.maximum-sum-subarray-cn.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\nclass MaximumSubarrayPrefixSum {\n  public int maxSubArray(int[] nums) {\n      int len = nums.length;\n      int maxSum = Integer.MIN_VALUE;\n      int sum = 0;\n      for (int i = 0; i < len; i++) {\n        sum = 0;\n        for (int j = i; j < len; j++) {\n          sum += nums[j];\n          maxSum = Math.max(maxSum, sum);\n        }\n      }\n      return maxSum;\n  }\n}\n"
-        },
-        {
-            "language": "java",
-            "text": "\nclass MaxSumSubarray {\n  public int maxSubArray3(int[] nums) {\n      int maxSum = nums[0];\n      int sum = 0;\n      int minSum = 0;\n      for (int num : nums) {\n        // prefix Sum\n        sum += num;\n        // update maxSum\n        maxSum = Math.max(maxSum, sum - minSum);\n        // update minSum\n        minSum = Math.min(minSum, sum);\n      }\n      return maxSum;\n  }\n}\n"
-        },
-        {
-            "language": "java",
-            "text": "\nclass MaximumSubarrayDivideConquer {\n  public int maxSubArrayDividConquer(int[] nums) {\n      if (nums == null || nums.length == 0) return 0;\n      return helper(nums, 0, nums.length - 1);\n    }\n    private int helper(int[] nums, int l, int r) {\n      if (l > r) return Integer.MIN_VALUE;\n      int mid = (l + r) >>> 1;\n      int left = helper(nums, l, mid - 1);\n      int right = helper(nums, mid + 1, r);\n      int leftMaxSum = 0;\n      int sum = 0;\n      // left surfix maxSum start from index mid - 1 to l\n      for (int i = mid - 1; i >= l; i--) {\n        sum += nums[i];\n        leftMaxSum = Math.max(leftMaxSum, sum);\n      }\n      int rightMaxSum = 0;\n      sum = 0;\n      // right prefix maxSum start from index mid + 1 to r\n      for (int i = mid + 1; i <= r; i++) {\n        sum += nums[i];\n        rightMaxSum = Math.max(sum, rightMaxSum);\n      }\n      // max(left, right, crossSum)\n      return Math.max(leftMaxSum + rightMaxSum + nums[mid], Math.max(left, right));\n    }\n}\n"
-        },
-        {
-            "language": "java",
-            "text": "\nclass MaximumSubarrayDP {\n  public int maxSubArray(int[] nums) {\n     int currMaxSum = nums[0];\n     int maxSum = nums[0];\n     for (int i = 1; i < nums.length; i++) {\n       currMaxSum = Math.max(currMaxSum + nums[i], nums[i]);\n       maxSum = Math.max(maxSum, currMaxSum);\n     }\n     return maxSum;\n  }\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\nfunction LSS(list) {\n  const len = list.length;\n  let max = -Number.MAX_VALUE;\n  let sum = 0;\n  for (let i = 0; i < len; i++) {\n    sum = 0;\n    for (let j = i; j < len; j++) {\n      sum += list[j];\n      if (sum > max) {\n        max = sum;\n      }\n    }\n  }\n\n  return max;\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\nfunction LSS(list) {\n  const len = list.length;\n  let max = list[0];\n  let min = 0;\n  let sum = 0;\n  for (let i = 0; i < len; i++) {\n    sum += list[i];\n    if (sum - min > max) max = sum - min;\n    if (sum < min) {\n      min = sum;\n    }\n  }\n\n  return max;\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\nfunction helper(list, m, n) {\n  if (m === n) return list[m];\n  let sum = 0;\n  let lmax = -Number.MAX_VALUE;\n  let rmax = -Number.MAX_VALUE;\n  const mid = ((n - m) >> 1) + m;\n  const l = helper(list, m, mid);\n  const r = helper(list, mid + 1, n);\n  for (let i = mid; i >= m; i--) {\n    sum += list[i];\n    if (sum > lmax) lmax = sum;\n  }\n\n  sum = 0;\n\n  for (let i = mid + 1; i <= n; i++) {\n    sum += list[i];\n    if (sum > rmax) rmax = sum;\n  }\n\n  return Math.max(l, r, lmax + rmax);\n}\n\nfunction LSS(list) {\n  return helper(list, 0, list.length - 1);\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\nfunction LSS(list) {\n  const len = list.length;\n  let max = list[0];\n  for (let i = 1; i < len; i++) {\n    list[i] = Math.max(0, list[i - 1]) + list[i];\n    if (list[i] > max) max = list[i];\n  }\n\n  return max;\n}\n"
-        },
-        {
-            "language": "py",
-            "text": "\nimport sys\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        n = len(nums)\n        maxSum = -sys.maxsize\n        sum = 0\n        for i in range(n):\n            sum = 0\n            for j in range(i, n):\n                sum += nums[j]\n                maxSum = max(maxSum, sum)\n\n        return maxSum\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        n = len(nums)\n        maxSum = nums[0]\n        minSum = sum = 0\n        for i in range(n):\n            sum += nums[i]\n            maxSum = max(maxSum, sum - minSum)\n            minSum = min(minSum, sum)\n\n        return maxSum\n"
-        },
-        {
-            "language": "py",
-            "text": "\nimport sys\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        return self.helper(nums, 0, len(nums) - 1)\n    def helper(self, nums, l, r):\n        if l > r:\n            return -sys.maxsize\n        mid = (l + r) // 2\n        left = self.helper(nums, l, mid - 1)\n        right = self.helper(nums, mid + 1, r)\n        left_suffix_max_sum = right_prefix_max_sum = 0\n        sum = 0\n        for i in reversed(range(l, mid)):\n            sum += nums[i]\n            left_suffix_max_sum = max(left_suffix_max_sum, sum)\n        sum = 0\n        for i in range(mid + 1, r + 1):\n            sum += nums[i]\n            right_prefix_max_sum = max(right_prefix_max_sum, sum)\n        cross_max_sum = left_suffix_max_sum + right_prefix_max_sum + nums[mid]\n        return max(cross_max_sum, left, right)\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        n = len(nums)\n        max_sum_ending_curr_index = max_sum = nums[0]\n        for i in range(1, n):\n            max_sum_ending_curr_index = max(max_sum_ending_curr_index + nums[i], nums[i])\n            max_sum = max(max_sum_ending_curr_index, max_sum)\n\n        return max_sum\n"
-        }
-    ]
+    "code": []
 },
 "jump-game":{
     "id": "55",
     "name": "jump-game",
-    "pre": [
-        {
-            "text": "贪心",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/greedy.md",
-            "color": "purple"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "记录和更新当前位置能够到达的最大的索引",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/55.jump-game.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/55.jump-game.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\nclass Solution {\n    public boolean canJump(int[] nums) {\n        int n=nums.length;\n        int k=0;\n        for(int i=0;i<n;i++)\n        {\n            if(i>k){\n                return false;\n            }\n            // 能跳到最后一个位置\n            if(k>=n-1){\n                return true;\n            }\n            // 从当前位置能跳的最远的位置\n            k = Math.max(k, i+nums[i]);\n        }\n        return k >= n-1;\n    }\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/**\n * @param {number[]} nums\n * @return {boolean}\n */\nvar canJump = function (nums) {\n  let max = 0; // 能够走到的数组下标\n\n  for (let i = 0; i < nums.length; i++) {\n    if (max < i) return false; // 当前这一步都走不到，后面更走不到了\n    max = Math.max(nums[i] + i, max);\n  }\n\n  return max >= nums.length - 1;\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    bool canJump(vector<int>& nums) {\n        int n=nums.size();\n        int k=0;\n        for(int i=0;i<n;i++)\n        {\n            if(i>k){\n                return false;\n            }\n            // 能跳到最后一个位置\n            if(k>=n-1){\n                return true;\n            }\n            // 从当前位置能跳的最远的位置\n            k = max(k, i+nums[i]);\n        }\n        return k >= n-1;\n    }\n};\n"
-        }
-    ]
+    "code": []
 },
 "merge-intervals":{
     "id": "56",
     "name": "merge-intervals",
-    "pre": [
-        {
-            "text": "排序",
-            "link": null,
-            "color": "purple"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "对数组进行排序简化操作",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "如果不排序，需要借助一些hack,这里不介绍了",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/56.merge-intervals.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/56.merge-intervals.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=56 lang=javascript\n *\n * [56] Merge Intervals\n */\n/**\n * @param {number[][]} intervals\n * @return {number[][]}\n */\n\nfunction intersected(a, b) {\n  if (a[0] > b[1] || a[1] < b[0]) return false;\n  return true;\n}\n\nfunction mergeTwo(a, b) {\n  return [Math.min(a[0], b[0]), Math.max(a[1], b[1])];\n}\nvar merge = function (intervals) {\n  // 这种算法需要先排序\n  intervals.sort((a, b) => a[0] - b[0]);\n  for (let i = 0; i < intervals.length - 1; i++) {\n    const cur = intervals[i];\n    const next = intervals[i + 1];\n\n    if (intersected(cur, next)) {\n      intervals[i] = undefined;\n      intervals[i + 1] = mergeTwo(cur, next);\n    }\n  }\n  return intervals.filter((q) => q);\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def solve(self, intervals, cut):\n        ans = []\n        for s, e in intervals:\n            if s < cut[0]: ans.append([s, min(e, cut[0])])\n            if cut[1] < e: ans.append([max(s, cut[1]), e])\n        return ans\n"
-        }
-    ]
+    "code": []
 },
 "insert-interval":{
     "id": "57",
     "name": "insert-interval",
-    "pre": [
-        {
-            "text": "排序",
-            "link": null,
-            "color": "purple"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/57.insert-interval.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/57.insert-interval.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\n\nclass Solution:\n    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:\n        intervals.append(newInterval)\n        intervals.sort(key=lambda a: a[0])\n\n        def intersected(a, b):\n            if a[0] > b[1] or a[1] < b[0]:\n                return False\n            return True\n\n        def mergeTwo(a, b):\n            return [min(a[0], b[0]), max(a[1], b[1])]\n\n        i = 0\n        while i < len(intervals) - 1:\n            cur = intervals[i]\n            next = intervals[i + 1]\n            if intersected(cur, next):\n                intervals[i] = None\n                intervals[i + 1] = mergeTwo(cur, next)\n            i += 1\n\n        return list(filter(lambda x: x, intervals))\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:\n        i, n = 0, len(intervals)\n        ans = []\n\n        def intersected(a, b):\n            if a[0] > b[1] or a[1] < b[0]:\n                return False\n            return True\n        # 前\n        while i < n and intervals[i][1] < newInterval[0]:\n            ans.append(intervals[i])\n            i += 1\n        # 中\n        while i < n and intersected(intervals[i], newInterval):\n            newInterval = [min(intervals[i][0], newInterval[0]),\n                           max(intervals[i][1], newInterval[1])]\n            i += 1\n        ans.append(newInterval)\n        # 后\n        while i < n:\n            ans.append(intervals[i])\n            i += 1\n        return ans\n"
-        }
-    ]
+    "code": []
 },
 "permutation-sequence":{
     "id": "60",
     "name": "permutation-sequence",
-    "pre": [
-        {
-            "text": "数学",
-            "link": null,
-            "color": "geekblue"
-        },
-        {
-            "text": "回溯",
-            "link": null,
-            "color": "green"
-        },
-        {
-            "text": "factorial",
-            "link": null,
-            "color": "orange"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "找规律",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "排列组合",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        },
-        {
-            "name": "Twitter"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/60.permutation-sequence.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/60.permutation-sequence.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nimport math\n\nclass Solution:\n    def getPermutation(self, n: int, k: int) -> str:\n        res = \"\"\n        candidates = [str(i) for i in range(1, n + 1)]\n\n        while n != 0:\n            facto = math.factorial(n - 1)\n            # i 表示前面被我们排除的组数，也就是k所在的组的下标\n            # k // facto 是不行的， 比如在 k % facto == 0的情况下就会有问题\n            i = math.ceil(k / facto) - 1\n            # 我们把candidates[i]加入到结果集，然后将其弹出candidates（不能重复使用元素）\n            res += candidates[i]\n            candidates.pop(i)\n            # k 缩小了 facto *  i\n            k -= facto * i\n            # 每次迭代我们实际上就处理了一个元素，n 减去 1，当n == 0 说明全部处理完成，我们退出循环\n            n -= 1\n        return res\n"
-        }
-    ]
+    "code": []
 },
 "Rotate-List":{
     "id": "61",
     "name": "Rotate-List",
-    "pre": [
-        {
-            "text": "求单链表的倒数第 N 个节点",
-            "link": null,
-            "color": "gold"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/61.Rotate-List.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/61.Rotate-List.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\nclass Solution {\n    public ListNode rotateRight(ListNode head, int k) {\n        if(head == null || head.next == null) return head;\n        int count = 0;\n        ListNode now = head;\n        while(now != null){\n            now = now.next;\n            count++;\n        }\n        k = k % count;\n        ListNode slow = head, fast = head;\n        while(fast.next != null){\n            if(k-- <= 0){\n                slow = slow.next;\n            }\n            fast = fast.next;\n        }\n        fast.next = head;\n        ListNode res = slow.next;\n        slow.next = null;\n        return res;\n    }\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\n快指针 = head;\n慢指针 = head;\nwhile (快指针.next) {\n  if (N-- <= 0) {\n    慢指针 = 慢指针.next;\n  }\n  快指针 = 快指针.next;\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\nlet slow = (fast = head);\nwhile (fast.next) {\n  if (k-- <= 0) {\n    slow = slow.next;\n  }\n  fast = fast.next;\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\n  获取链表的长度\n  k = k % 链表的长度\n  获取倒数第k + 1,倒数第K个节点与链表尾节点\n  倒数第k + 1个节点.next = null\n  链表尾节点.next = head\n  return 倒数第k个节点\n"
-        },
-        {
-            "language": "js",
-            "text": "\nvar rotateRight = function (head, k) {\n  if (!head || !head.next) return head;\n  let count = 0,\n    now = head;\n  while (now) {\n    now = now.next;\n    count++;\n  }\n  k = k % count;\n  let slow = (fast = head);\n  while (fast.next) {\n    if (k-- <= 0) {\n      slow = slow.next;\n    }\n    fast = fast.next;\n  }\n  fast.next = head;\n  let res = slow.next;\n  slow.next = null;\n  return res;\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\n    int getLength(ListNode *head) {\n        int len = 0;\n        for (; head; head = head->next, ++len);\n        return len;\n    }\npublic:\n    ListNode* rotateRight(ListNode* head, int k) {\n        if (!head) return NULL;\n        int len = getLength(head);\n        k %= len;\n        if (k == 0) return head;\n        auto p = head, q = head;\n        while (k--) q = q->next;\n        while (q->next) {\n            p = p->next;\n            q = q->next;\n        }\n        auto h = p->next;\n        q->next = head;\n        p->next = NULL;\n        return h;\n    }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def rotateRight(self, head: ListNode, k: int) -> ListNode:\n        # 双指针\n        if head:\n            p1 = head\n            p2 = head\n            count = 1\n            i = 0\n            while i < k:\n                if p2.next:\n                    count += 1\n                    p2 = p2.next\n                else:\n                    k = k % count\n                    i = -1\n                    p2 = head\n                i += 1\n\n            while p2.next:\n                p1 = p1.next\n                p2 = p2.next\n\n            if p1.next:\n                tmp = p1.next\n            else:\n                return head\n            p1.next = None\n            p2.next = head\n            return tmp\n"
-        }
-    ]
+    "code": []
 },
 "unique-paths":{
     "id": "62",
     "name": "unique-paths",
-    "pre": [
-        {
-            "text": "排列组合",
-            "link": null,
-            "color": "green"
-        },
-        {
-            "text": "动态规划",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/dynamic-programming.md",
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "排列组合原理",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "记忆化递归",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "基本动态规划问题",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "空间复杂度可以进一步优化到O(n),这会是一个考点",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/62.unique-paths.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/62.unique-paths.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=62 lang=javascript\n *\n * [62] Unique Paths\n *\n * https://leetcode.com/problems/unique-paths/description/\n */\n/**\n * @param {number} m\n * @param {number} n\n * @return {number}\n */\nvar uniquePaths = function (m, n) {\n  const dp = Array(n).fill(1);\n\n  for (let i = 1; i < m; i++) {\n    for (let j = 1; j < n; j++) {\n      dp[j] = dp[j] + dp[j - 1];\n    }\n  }\n\n  return dp[n - 1];\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    int uniquePaths(int m, int n) {\n        vector<int> dp(n + 1, 0);\n        dp[n - 1] = 1;\n        for (int i = m - 1; i >= 0; --i) {\n            for (int j = n - 1; j >= 0; --j) dp[j] += dp[j + 1];\n        }\n        return dp[0];\n    }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def uniquePaths(self, m: int, n: int) -> int:\n        d = [[1] * n for _ in range(m)]\n\n        for col in range(1, m):\n            for row in range(1, n):\n                d[col][row] = d[col - 1][row] + d[col][row - 1]\n\n        return d[m - 1][n - 1]\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n\n    @lru_cache\n    def uniquePaths(self, m: int, n: int) -> int:\n        if m == 1 or n == 1:\n            return 1\n        return self.uniquePaths(m - 1, n) + self.uniquePaths(m, n - 1)\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n\n    def uniquePaths(self, m: int, n: int) -> int:\n        dp = [1] * n\n        for _ in range(1, m):\n            for j in range(1, n):\n                dp[j] += dp[j - 1]\n        return dp[n - 1]\n"
-        }
-    ]
+    "code": []
 },
 "unique-paths-ii":{
     "id": "63",
     "name": "unique-paths-ii",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "记忆化递归",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "基本动态规划问题",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "空间复杂度可以进一步优化到O(n),这会是一个考点",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/63.unique-paths-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/63.unique-paths-ii.md",
-    "code": [
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {\n        int M = obstacleGrid.size(), N = obstacleGrid[0].size();\n        vector<int> memo(N, 0);\n        memo[N - 1] = 1;\n        for (int i = M - 1; i >= 0; --i) {\n            for (int j = N - 1; j >= 0; --j) {\n                if (obstacleGrid[i][j] == 1) memo[j] = 0;\n                else memo[j] += j == N - 1 ? 0 : memo[j + 1];\n            }\n        }\n        return memo[0];\n    }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:\n        m = len(obstacleGrid)\n        if m == 0: return 0\n        n = len(obstacleGrid[0])\n        @lru_cache(None)\n        def dfs(i, j):\n            if i < 0 or i >= m or j < 0 or j >= n: return 0\n            if obstacleGrid[i][j] == 1: return 0\n            if i == 0 and j == 0: return 1\n            return dfs(i - 1, j) + dfs(i, j - 1)\n        return dfs(m - 1, n - 1)\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:\n        m = len(obstacleGrid)\n        n = len(obstacleGrid[0])\n        if obstacleGrid[0][0]:\n            return 0\n\n        dp = [[0] * (n + 1) for _ in range(m + 1)]\n        dp[1][1] = 1\n\n        for i in range(1, m + 1):\n            for j in range(1, n + 1):\n                if i == 1 and j == 1:\n                    continue\n                if obstacleGrid[i - 1][j - 1] == 0:\n                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1]\n                else:\n                    dp[i][j] = 0\n        return dp[m][n]\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:\n        m = len(obstacleGrid)\n        n = len(obstacleGrid[0])\n        if obstacleGrid[0][0]:\n            return 0\n\n        dp = [0] * (n + 1)\n        dp[1] = 1\n        for i in range(1, m + 1):\n            for j in range(1, n + 1):\n                if obstacleGrid[i - 1][j - 1] == 0:\n                    dp[j] += dp[j - 1]\n                else:\n                    dp[j] = 0\n        return dp[-1]\n"
-        }
-    ]
+    "code": []
 },
 "valid-number":{
     "id": "65",
     "name": "valid-number",
-    "pre": [
-        {
-            "text": "暂无",
-            "link": null,
-            "color": "green"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "分析非法的情况，用三个变量记录上一次出现的点，指数，数字的位置来复制判断",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/65.valid-number.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/65.valid-number.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def isNumber(self, s: str) -> bool:\n        last_dot = last_e = last_d = -1\n        for i, c in enumerate(s):\n            if c.isdigit():\n                last_d = i\n            elif c == '.':\n                if last_dot != -1 or last_e != -1: return False\n                last_dot = i\n            elif c.lower() == 'e':\n                if last_d == -1 or last_e != -1: return False\n                last_e = i\n            elif c == '+' or c == '-':\n                if i == 0 or s[i-1].lower() == 'e':\n                    continue\n                else:\n                    return False\n            else:\n                return False\n\n        return s[-1].isdigit() or (s[-1] == '.' and last_d != -1)\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def isNumber(self, s: str) -> bool:\n        # 任何状态机的核心都是建立如下的状态机模型\n        states = {\n            \"start\": {\"SIGN\":\"sign1\",  \"DIGIT\":\"digit1\",  \"DOT\":\"dot1\"},\n            \"sign1\": {\"DIGIT\":\"digit1\",  \"DOT\":\"dot1\"},\n            \"sign2\": {\"DIGIT\":\"D\"},\n            \"digit1\": {\"DIGIT\":\"digit1\",  \"DOT\":\"dot2\",  \"EXP\":\"exp\",  \"END\": True},\n            \"digit2\": {\"DIGIT\":\"digit2\",  \"EXP\":\"exp\",  \"END\": True},\n            \"dot1\": {\"DIGIT\":\"digit2\"}, # 前面没数字\n            \"dot2\": {\"DIGIT\":\"digit2\",  \"EXP\":\"exp\",  \"END\": True}, # 前面有数字\n            \"exp\": {\"SIGN\":\"sign2\",  \"DIGIT\":\"D\"},\n            \"D\": {\"DIGIT\":\"D\",  \"END\": True}\n        }\n\n        def get(ch):\n            if ch == \".\": return \"DOT\"\n            elif ch in \"+-\": return \"SIGN\"\n            elif ch in \"Ee\": return \"EXP\"\n            elif ch.isdigit(): return \"DIGIT\"\n\n        state = \"start\"\n        for c in s:\n            state = states[state].get(get(c))\n            if not state: return False\n\n        return \"END\" in states[state]\n\n"
-        }
-    ]
+    "code": []
 },
 "plus-one":{
     "id": "66",
     "name": "plus-one",
-    "pre": [
-        {
-            "text": "数组的遍历(正向遍历和反向遍历)",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/66.plus-one.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/66.plus-one.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\nfor(int i = n - 1; i > - 1; i --) {\n  内部逻辑\n}\n\n"
-        },
-        {
-            "language": "java",
-            "text": "\nclass Solution {\n    public int[] plusOne(int[] digits) {\n        for (int i = digits.length - 1; i >= 0; i--) {\n            digits[i]++;\n            digits[i] = digits[i] % 10;\n            if (digits[i] != 0) return digits;\n        }\n\t//遇每个数位均为9时手动进位\n        digits = new int[digits.length + 1];\n        digits[0] = 1;\n        return digits;\n    }\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\n// 首先我们要从数组的最后一位开始我们的计算得出我们新的sum\nsum = arr[arr.length - 1] + 1\n\n// 接下来我们需要判断这个新的sum是否超过9\nsum > 9 ?\n\n// 假如大于 9, 那么我们会更新这一位为 0 并且将carry值更改为1\ncarry = 1\narr[i] = 0\n\n// 假如不大于 9，更新最后一位为sum并直接返回数组\narr[arr.length - 1] = sum\nreturn arr\n\n// 接着我们要继续向数组的倒数第二位重复进行我们上一步的操作\n...\n\n// 当我们完成以后，如果数组第一位时的sum大于0，那么我们就要给数组的首位增添一个1\nresult = new array with size of arr.length + 1\nresult[0] = 1\nresult[1] ...... result[result.length - 1]  = 0\n"
-        },
-        {
-            "language": "js",
-            "text": "\nvar plusOne = function (digits) {\n  var carry = 1; // 我们将初始的 +1 也当做是一个在个位的 carry\n  for (var i = digits.length - 1; i > -1; i--) {\n    if (carry) {\n      var sum = carry + digits[i];\n      digits[i] = sum % 10;\n      carry = sum > 9 ? 1 : 0; // 每次计算都会更新下一步需要用到的 carry\n    }\n  }\n  if (carry === 1) {\n    digits.unshift(1); // 如果carry最后停留在1，说明有需要额外的一个长度 所以我们就在首位增添一个 1\n  }\n  return digits;\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    vector<int> plusOne(vector<int>& A) {\n        int i = A.size() - 1, carry = 1;\n        for (; i >= 0 && carry; --i) {\n            carry += A[i];\n            A[i] = carry % 10;\n            carry /= 10;\n        }\n        if (carry) A.insert(begin(A), carry);\n        return A;\n    }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def plusOne(self, digits: List[int]) -> List[int]:\n        carry = 1\n        for i in range(len(digits) - 1, -1, -1):\n            digits[i], carry = (carry + digits[i]) % 10, (carry + digits[i]) // 10\n        return [carry] + digits if carry else digits\n"
-        }
-    ]
+    "code": []
 },
 "set-matrix-zeroes":{
     "id": "73",
     "name": "set-matrix-zeroes",
-    "pre": [
-        {
-            "text": "状态压缩",
-            "link": null,
-            "color": "green"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "使用第一行和第一列来替代我们m+n数组",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "先记录下”第一行和第一列是否全是0“这样的一个数据，否则会因为后续对第一行第一列的更新造成数据丢失",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "最后更新第一行第一列",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/73.set-matrix-zeroes.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/73.set-matrix-zeroes.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\nvar setZeroes = function (matrix) {\n  if (matrix.length === 0) return matrix;\n  const m = matrix.length;\n  const n = matrix[0].length;\n  const zeroes = Array(m + n).fill(false);\n\n  for (let i = 0; i < m; i++) {\n    for (let j = 0; j < n; j++) {\n      const item = matrix[i][j];\n\n      if (item === 0) {\n        zeroes[i] = true;\n        zeroes[m + j] = true;\n      }\n    }\n  }\n\n  for (let i = 0; i < m; i++) {\n    if (zeroes[i]) {\n      matrix[i] = Array(n).fill(0);\n    }\n  }\n\n  for (let i = 0; i < n; i++) {\n    if (zeroes[m + i]) {\n      for (let j = 0; j < m; j++) {\n        matrix[j][i] = 0;\n      }\n    }\n  }\n\n  return matrix;\n};\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=73 lang=javascript\n *\n * [73] Set Matrix Zeroes\n */\n/**\n * @param {number[][]} matrix\n * @return {void} Do not return anything, modify matrix in-place instead.\n */\nvar setZeroes = function (matrix) {\n  if (matrix.length === 0) return matrix;\n  const m = matrix.length;\n  const n = matrix[0].length;\n\n  // 时间复杂度 O(m * n), 空间复杂度 O(1)\n  let firstRow = false; // 第一行是否应该全部为0\n  let firstCol = false; // 第一列是否应该全部为0\n\n  for (let i = 0; i < m; i++) {\n    for (let j = 0; j < n; j++) {\n      const item = matrix[i][j];\n      if (item === 0) {\n        if (i === 0) {\n          firstRow = true;\n        }\n        if (j === 0) {\n          firstCol = true;\n        }\n        matrix[0][j] = 0;\n        matrix[i][0] = 0;\n      }\n    }\n  }\n\n  for (let i = 1; i < m; i++) {\n    for (let j = 1; j < n; j++) {\n      const item = matrix[i][j];\n      if (matrix[0][j] == 0 || matrix[i][0] == 0) {\n        matrix[i][j] = 0;\n      }\n    }\n  }\n\n  // 最后处理第一行和第一列\n\n  if (firstRow) {\n    for (let i = 0; i < n; i++) {\n      matrix[0][i] = 0;\n    }\n  }\n\n  if (firstCol) {\n    for (let i = 0; i < m; i++) {\n      matrix[i][0] = 0;\n    }\n  }\n\n  return matrix;\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def setZeroes(self, matrix: List[List[int]]) -> None:\n        \"\"\"\n        Do not return anything, modify matrix in-place instead.\n        \"\"\"\n        def setRowZeros(matrix: List[List[int]], i:int) -> None:\n            C = len(matrix[0])\n            matrix[i] = [0] * C\n\n        def setColZeros(matrix: List[List[int]], j:int) -> None:\n            R = len(matrix)\n            for i in range(R):\n                matrix[i][j] = 0\n\n        isCol = False\n        R = len(matrix)\n        C = len(matrix[0])\n\n        for i in range(R):\n            if matrix[i][0] == 0:\n                isCol = True\n            for j in range(1, C):\n                if matrix[i][j] == 0:\n                    matrix[i][0] = 0\n                    matrix[0][j] = 0\n        for j in range(1, C):\n            if matrix[0][j] == 0:\n                setColZeros(matrix, j)\n\n        for i in range(R):\n            if matrix[i][0] == 0:\n                setRowZeros(matrix, i)\n\n        if isCol:\n            setColZeros(matrix, 0)\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def setZeroes(self, matrix: List[List[int]]) -> None:\n        \"\"\"\n        这题要解决的问题是，必须有个地方记录判断结果，但又不能影响下一步的判断条件；\n        直接改为0的话，会影响下一步的判断条件；\n        因此，有一种思路是先改为None，最后再将None改为0；\n        从条件上看，如果可以将第一行、第二行作为记录空间，那么，用None应该也不算违背题目条件；\n        \"\"\"\n        rows = len(matrix)\n        cols = len(matrix[0])\n        # 遍历矩阵，用None记录要改的地方，注意如果是0则要保留，否则会影响下一步判断\n        for r in range(rows):\n            for c in range(cols):\n                if matrix[r][c] is not None and matrix[r][c] == 0:\n                    # 改值\n                    for i in range(rows):\n                        matrix[i][c] = None if matrix[i][c] != 0 else 0\n                    for j in range(cols):\n                        matrix[r][j] = None if matrix[r][j] != 0 else 0\n        # 再次遍历，将None改为0\n        for r in range(rows):\n            for c in range(cols):\n                if matrix[r][c] is None:\n                    matrix[r][c] = 0\n"
-        }
-    ]
+    "code": []
 },
 "sort-colors":{
     "id": "75",
@@ -2575,837 +1184,152 @@
 "subsets":{
     "id": "78",
     "name": "subsets",
-    "pre": [
-        {
-            "text": "回溯",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/backtrack.md",
-            "color": "green"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "回溯法",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "backtrack解题公式",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/78.subsets.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/78.subsets.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\nclass Solution {\n    // 结果\n    List<List<Integer>> res = new ArrayList();\n    public List<List<Integer>> subsets(int[] nums) {\n        backtrack(nums, 0, new ArrayList<Integer>());\n        return res;\n    }\n\n    public void backtrack(int[] nums, int start, ArrayList<Integer> track)\n    {\n        // 注意：深拷贝\n        res.add(new ArrayList(track));\n        for(int i=start; i<nums.length;i++)\n        {\n            // 做选择\n            track.add(nums[i]);\n            // 回溯\n            backtrack(nums, i+1, track);\n            // 撤销选择\n            track.remove(track.size()-1);\n        }\n    }\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\nfunction backtrack(list, tempList, nums, start) {\n  list.push([...tempList]);\n  for (let i = start; i < nums.length; i++) {\n    tempList.push(nums[i]);\n    backtrack(list, tempList, nums, i + 1);\n    tempList.pop();\n  }\n}\n/**\n * @param {number[]} nums\n * @return {number[][]}\n */\nvar subsets = function (nums) {\n  const list = [];\n  backtrack(list, [], nums, 0);\n  return list;\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def subsets(self, nums):\n        self.res = []\n        self.track = []\n        self.backtrack(nums, 0, self.track)\n\n        return self.res\n\n    def backtrack(self, nums, start, track):\n        # 注意深拷贝\n        self.res.append(list(self.track))\n        for i in range(start, len(nums)):\n            # 做选择\n            self.track.append(nums[i])\n            # 回溯\n            self.backtrack(nums, i+1, self.track)\n            # 撤销选择\n            self.track.pop()\n"
-        }
-    ]
+    "code": []
 },
 "word-search":{
     "id": "79",
     "name": "word-search",
-    "pre": [
-        {
-            "text": "回溯",
-            "link": null,
-            "color": "green"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "分析",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "遍历二维数组的每一个点，找到起始点相同的字符，做DFS",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "DFS过程中，要记录已经访问过的节点，防止重复遍历，这里（JavaCode中）用`*`表示当前已经访问过，也可以用Set或者是boolean[][]数组记录访问过的节点位置。",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "是否匹配当前单词中的字符，不符合回溯，这里记得把当前`*`重新设为当前字符。如果用Set或者是boolean[][]数组，记得把当前位置重设为没有访问过。",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/79.word-search.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/79.word-search.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\npublic class LC79WordSearch {\n  public boolean exist(char[][] board, String word) {\n    if (board == null || word == null) return false;\n    if (word.length() == 0) return true;\n    if (board.length == 0) return false;\n    int rows = board.length;\n    int cols = board[0].length;\n    for (int r = 0; r < rows; r++) {\n      for (int c = 0; c < cols; c++) {\n        // scan board, start with word first character\n        if (board[r][c] == word.charAt(0)) {\n          if (helper(board, word, r, c, 0)) {\n            return true;\n          }\n        }\n      }\n    }\n    return false;\n  }\n\n  private boolean helper(char[][] board, String word, int r, int c, int start) {\n    // already match word all characters, return true\n    if (start == word.length()) return true;\n    if (!isValid(board, r, c) ||\n        board[r][c] != word.charAt(start)) return false;\n    // mark visited\n    board[r][c] = '*';\n    boolean res = helper(board, word, r - 1, c, start + 1) // 上\n        ||  helper(board, word, r + 1, c, start + 1)       // 下\n        ||  helper(board, word, r, c - 1, start + 1)       // 左\n        ||  helper(board, word, r, c + 1, start + 1);      // 右\n    // backtracking to start position\n    board[r][c] = word.charAt(start);\n    return res;\n  }\n\n  private boolean isValid(char[][] board, int r, int c) {\n    return r >= 0 && r < board.length && c >= 0 && c < board[0].length;\n  }\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=79 lang=javascript\n *\n * [79] Word Search\n */\nfunction DFS(board, row, col, rows, cols, word, cur) {\n  // 边界检查\n  if (row >= rows || row < 0) return false;\n  if (col >= cols || col < 0) return false;\n\n  const item = board[row][col];\n\n  if (item !== word[cur]) return false;\n\n  if (cur + 1 === word.length) return true;\n\n  // 如果你用hashmap记录访问的字母， 那么你需要每次backtrack的时候手动清除hashmap，并且需要额外的空间\n  // 这里我们使用一个little trick\n\n  board[row][col] = null;\n\n  // 上下左右\n  const res =\n    DFS(board, row + 1, col, rows, cols, word, cur + 1) ||\n    DFS(board, row - 1, col, rows, cols, word, cur + 1) ||\n    DFS(board, row, col - 1, rows, cols, word, cur + 1) ||\n    DFS(board, row, col + 1, rows, cols, word, cur + 1);\n\n  board[row][col] = item;\n\n  return res;\n}\n/**\n * @param {character[][]} board\n * @param {string} word\n * @return {boolean}\n */\nvar exist = function (board, word) {\n  if (word.length === 0) return true;\n  if (board.length === 0) return false;\n\n  const rows = board.length;\n  const cols = board[0].length;\n\n  for (let i = 0; i < rows; i++) {\n    for (let j = 0; j < cols; j++) {\n      const hit = DFS(board, i, j, rows, cols, word, 0);\n      if (hit) return true;\n    }\n  }\n  return false;\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def exist(self, board: List[List[str]], word: str) -> bool:\n        m = len(board)\n        n = len(board[0])\n\n        def dfs(board, r, c, word, index):\n            if index == len(word):\n                return True\n            if r < 0 or r >= m or c < 0 or c >= n or board[r][c] != word[index]:\n                return False\n            board[r][c] = '*'\n            res = dfs(board, r - 1, c, word, index + 1) or dfs(board, r + 1, c, word, index + 1) or dfs(board, r, c - 1, word, index + 1) or dfs(board, r, c + 1, word, index + 1)\n            board[r][c] = word[index]\n            return res\n\n        for r in range(m):\n            for c in range(n):\n                if board[r][c] == word[0]:\n                    if dfs(board, r, c, word, 0):\n                        return True\n        return False\n"
-        }
-    ]
+    "code": []
 },
 "remove-duplicates-from-sorted-array-ii":{
     "id": "80",
     "name": "remove-duplicates-from-sorted-array-ii",
-    "pre": [
-        {
-            "text": "双指针",
-            "link": null,
-            "color": "green"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "分析",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "快慢指针",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "读写指针",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "删除排序问题",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/80.remove-duplicates-from-sorted-array-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/80.remove-duplicates-from-sorted-array-ii.md",
-    "code": [
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    int removeDuplicates(vector<int>& nums) {\n        int i = 0;\n        int k = 2;\n        for (int num : nums) {\n            if (i < k || num != nums[i - k]) {\n                nums[i] = num;\n                i++;\n            }\n        }\n        return i;\n    }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def removeDuplicates(self, nums: List[int]) -> int:\n        # 写指针\n        i = 0\n        K = 2\n        for num in nums:\n            if i < K or num != nums[i-K]:\n                nums[i] = num\n                i += 1\n        return i\n"
-        }
-    ]
+    "code": []
 },
 "largest-rectangle-in-histogram":{
     "id": "84",
     "name": "largest-rectangle-in-histogram",
-    "pre": [
-        {
-            "text": "单调栈",
-            "link": null,
-            "color": "purple"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/84.largest-rectangle-in-histogram.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/84.largest-rectangle-in-histogram.md",
-    "code": [
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    int largestRectangleArea(vector<int>& A) {\n        A.push_back(0);\n        int N = A.size(), ans = 0;\n        stack<int> s;\n        for (int i = 0; i < N; ++i) {\n            while (s.size() && A[s.top()] >= A[i]) {\n                int h = A[s.top()];\n                s.pop();\n                int j = s.size() ? s.top() : -1;\n                ans = max(ans, h * (i - j - 1));\n            }\n            s.push(i);\n        }\n        return ans;\n    }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def largestRectangleArea(self, heights: List[int]) -> int:\n        n, ans = len(heights), 0\n        if n != 0:\n            ans = heights[0]\n        for i in range(n):\n            height = heights[i]\n            for j in range(i, n):\n                height = min(height, heights[j])\n                ans = max(ans, (j - i + 1) * height)\n        return ans\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def largestRectangleArea(self, heights: List[int]) -> int:\n        n = len(heights)\n        l, r, ans = [-1] * n, [n] * n, 0\n        for i in range(1, n):\n            j = i - 1\n            while j >= 0 and heights[j] >= heights[i]:\n                j -= 1\n            l[i] = j\n        for i in range(n - 2, -1, -1):\n            j = i + 1\n            while j < n and heights[j] >= heights[i]:\n                j += 1\n            r[i] = j\n        for i in range(n):\n            ans = max(ans, heights[i] * (r[i] - l[i] - 1))\n        return ans\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def largestRectangleArea(self, heights: List[int]) -> int:\n        n = len(heights)\n        l, r, ans = [-1] * n, [n] * n, 0\n\n        for i in range(1, n):\n            j = i - 1\n            while j >= 0 and heights[j] >= heights[i]:\n                j = l[j]\n            l[i] = j\n        for i in range(n - 2, -1, -1):\n            j = i + 1\n            while j < n and heights[j] >= heights[i]:\n                j = r[j]\n            r[i] = j\n        for i in range(n):\n            ans = max(ans, heights[i] * (r[i] - l[i] - 1))\n        return ans\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def largestRectangleArea(self, heights: List[int]) -> int:\n        n, heights, st, ans = len(heights), [0] + heights + [0], [], 0\n        for i in range(n + 2):\n            while st and heights[st[-1]] > heights[i]:\n                ans = max(ans, heights[st.pop(-1)] * (i - st[-1] - 1))\n            st.append(i)\n        return ans\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def largestRectangleArea(self, heights: List[int]) -> int:\n        n, heights, st, ans = len(heights),[0] + heights + [0], [], 0\n        for i in range(n + 2):\n            while st and heights[st[-1]] > heights[i]:\n                a = heights[st[-1]]\n                st.pop()\n                # 如果没有前面的哨兵，这里的 st[-1] 可能会越界。\n                ans = max(ans, a * (i - 1 - st[-1]))\n            st.append(i)\n        return ans\n"
-        }
-    ]
+    "code": []
 },
 "maximal-rectangle":{
     "id": "85",
     "name": "maximal-rectangle",
-    "pre": [
-        {
-            "text": "单调栈",
-            "link": null,
-            "color": "purple"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/85.maximal-rectangle.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/85.maximal-rectangle.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def largestRectangleArea(self, heights: List[int]) -> int:\n        n, heights, st, ans = len(heights), [0] + heights + [0], [], 0\n        for i in range(n + 2):\n            while st and heights[st[-1]] > heights[i]:\n                ans = max(ans, heights[st.pop(-1)] * (i - st[-1] - 1))\n            st.append(i)\n\n        return ans\n    def maximalRectangle(self, matrix: List[List[str]]) -> int:\n        m = len(matrix)\n        if m == 0: return 0\n        n = len(matrix[0])\n        heights = [0] * n\n        ans = 0\n        for i in range(m):\n            for j in range(n):\n                if matrix[i][j] == \"0\":\n                    heights[j] = 0\n                else:\n                    heights[j] += 1\n            ans = max(ans, self.largestRectangleArea(heights))\n        return ans\n\n"
-        }
-    ]
+    "code": []
 },
 "partition-list":{
     "id": "86",
     "name": "partition-list",
-    "pre": [
-        {
-            "text": "链表",
-            "link": null,
-            "color": "magenta"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "链表的基本操作（遍历）",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "虚拟节点dummy简化操作",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "遍历完成之后记得`currentL1.next=null;`否则会内存溢出>如果单纯的遍历是不需要上面操作的，但是我们的遍历会导致currentL1.next和currentL2.next>中有且仅有一个不是null，如果不这么操作的话会导致两个链表成环，造成溢出。",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/86.partition-list.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/86.partition-list.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/**\n * @param {ListNode} head\n * @param {number} x\n * @return {ListNode}\n */\nvar partition = function (head, x) {\n  const dummyHead1 = {\n    next: null,\n  };\n  const dummyHead2 = {\n    next: null,\n  };\n\n  let current = {\n    next: head,\n  };\n  let currentL1 = dummyHead1;\n  let currentL2 = dummyHead2;\n  while (current.next) {\n    current = current.next;\n    if (current.val < x) {\n      currentL1.next = current;\n      currentL1 = current;\n    } else {\n      currentL2.next = current;\n      currentL2 = current;\n    }\n  }\n\n  currentL2.next = null;\n\n  currentL1.next = dummyHead2.next;\n\n  return dummyHead1.next;\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    ListNode* partition(ListNode* head, int x) {\n        ListNode dummy, geHead, *ltTail = &dummy, *geTail = &geHead;\n        while (head) {\n            auto p = head;\n            head = head->next;\n            if (p->val < x) {\n                ltTail->next = p;\n                ltTail = p;\n            } else {\n                geTail->next = p;\n                geTail = p;\n            }\n        }\n        ltTail->next = geHead.next;\n        geTail->next = NULL;\n        return dummy.next;\n    }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def partition(self, head: ListNode, x: int) -> ListNode:\n        \"\"\"在原链表操作，思路基本一致，只是通过指针进行区分而已\"\"\"\n        # 在链表最前面设定一个初始node作为锚点，方便返回最后的结果\n        first_node = ListNode(0)\n        first_node.next = head\n        # 设计三个指针，一个指向小于x的最后一个节点，即前后分离点\n        # 一个指向当前遍历节点的前一个节点\n        # 一个指向当前遍历的节点\n        sep_node = first_node\n        pre_node = first_node\n        current_node = head\n\n        while current_node is not None:\n            if current_node.val < x:\n                # 注意有可能出现前一个节点就是分离节点的情况\n                if pre_node is sep_node:\n                    pre_node = current_node\n                    sep_node = current_node\n                    current_node = current_node.next\n                else:\n                    # 这段次序比较烧脑\n                    pre_node.next = current_node.next\n                    current_node.next = sep_node.next\n                    sep_node.next = current_node\n                    sep_node = current_node\n                    current_node = pre_node.next\n            else:\n                pre_node = current_node\n                current_node = pre_node.next\n\n        return first_node.next\n"
-        }
-    ]
+    "code": []
 },
 "scramble-string":{
     "id": "87",
     "name": "scramble-string",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        },
-        {
-            "text": "递归",
-            "link": null,
-            "color": "orange"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "将其抽象为树的对比问题",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/87.scramble-string.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/87.scramble-string.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def flipEquiv(self, root1: TreeNode, root2: TreeNode) -> bool:\n        if not root1 or not root2:\n            return not root1 and not root2\n        if root1.val != root2.val:\n            return False\n        # 不翻转\n        if self.flipEquiv(root1.left, root2.left) and self.flipEquiv(root1.right, root2.right):\n            return True\n        # 翻转\n        if self.flipEquiv(root1.left, root2.right) and self.flipEquiv(root1.right, root2.left):\n            return True\n        # 不管翻转还是不翻转都不行，直接返回 False\n        return False\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    @lru_cache(None)\n    def isScramble(self, s1: str, s2: str) -> bool:\n        if s1 == s2:\n            return True\n        # 剪枝\n        if collections.Counter(s1) != collections.Counter(s2):\n            return False\n        # 枚举所有可能的根节点\n        for i in range(1, len(s1)):\n            # ----|-\n            # -|----\n            # 不进行翻转\n            if self.isScramble(s1[:i], s2[:i]) and self.isScramble(s1[i:], s2[i:]):\n                return True\n            # 进行翻转\n            if self.isScramble(s1[i:], s2[:-i]) and self.isScramble(s1[:i], s2[-i:]):\n                return True\n        # 不管翻转还是不翻转都不行，直接返回 False\n        return False\n\n\n"
-        }
-    ]
+    "code": []
 },
 "merge-sorted-array":{
     "id": "88",
     "name": "merge-sorted-array",
-    "pre": [
-        {
-            "text": "归并排序",
-            "link": null,
-            "color": "cyan"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "从后往前比较，并从后往前插入，这样可避免写指针影响，同时将空间复杂度降低到$O(1)$",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        },
-        {
-            "name": "loomberg"
-        },
-        {
-            "name": "facebook"
-        },
-        {
-            "name": "microsoft"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/88.merge-sorted-array.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/88.merge-sorted-array.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\nclass Solution {\n    public void merge(int[] nums1, int m, int[] nums2, int n) {\n        int i=m-1, j=n-1, k=m+n-1;\n        // 合并\n        while(i>=0 && j>=0)\n        {\n            if(nums1[i] > nums2[j])\n            {\n                nums1[k--] = nums1[i--];\n            }\n            else\n            {\n                nums1[k--] = nums2[j--];\n            }\n        }\n        // 合并剩余的nums2\n        while(j>=0)\n        {\n            nums1[k--] = nums2[j--];\n        }\n    }\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\n// 这种解法连m都用不到\n// 这显然不是出题人的意思\nif (n === 0) return;\nlet current2 = 0;\nfor (let i = nums1.length - 1; i >= nums1.length - n; i--) {\n  nums1[i] = nums2[current2++];\n}\nnums1.sort((a, b) => a - b); // 当然你可以自己写排序，这里懒得写了，因为已经偏离了题目本身\n"
-        },
-        {
-            "language": "js",
-            "text": "\n// 将nums1 和 nums2 合并\nfunction merge(nums1, nums2) {\n  let ret = [];\n  let i = (j = 0);\n  while (i < nums1.length || j < nums2.length) {\n    if (i === nums1.length) {\n      ret.push(nums2[j]);\n      j++;\n      continue;\n    }\n\n    if (j === nums2.length) {\n      ret.push(nums1[i]);\n      i++;\n      continue;\n    }\n    const a = nums1[i];\n    const b = nums2[j];\n    if (a > b) {\n      ret.push(nums2[j]);\n      j++;\n    } else {\n      ret.push(nums1[i]);\n      i++;\n    }\n  }\n  return ret;\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\nvar merge = function (nums1, m, nums2, n) {\n  // 设置一个指针，指针初始化指向nums1的末尾（根据#62，应该是index为 m+n-1 的位置，因为nums1的长度有可能更长）\n  // 然后不断左移指针更新元素\n  let current = m + n - 1;\n\n  while (current >= 0) {\n    // 没必要继续了\n    if (n === 0) return;\n\n    // 为了方便大家理解，这里代码有点赘余\n    if (m < 1) {\n      nums1[current--] = nums2[--n];\n      continue;\n    }\n\n    if (n < 1) {\n      nums1[current--] = nums1[--m];\n      continue;\n    }\n    // 取大的填充 nums1的末尾\n    // 然后更新 m 或者 n\n    if (nums1[m - 1] > nums2[n - 1]) {\n      nums1[current--] = nums1[--m];\n    } else {\n      nums1[current--] = nums2[--n];\n    }\n  }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:\n        \"\"\"\n        Do not return anything, modify nums1 in-place instead.\n        \"\"\"\n        pos = m + n - 1\n        while m > 0 and n > 0:\n            if nums1[m - 1] < nums2[n - 1]:\n                nums1[pos] = nums2[n - 1]\n                n -= 1\n            else:\n                nums1[pos] = nums1[m - 1]\n                m -= 1\n            pos -= 1\n        while n > 0:\n            nums1[pos] = nums2[n - 1]\n            n -= 1\n            pos -= 1\n\n"
-        }
-    ]
+    "code": []
 },
 "subsets-ii":{
     "id": "90",
     "name": "subsets-ii",
-    "pre": [
-        {
-            "text": "回溯",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/backtrack.md",
-            "color": "green"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "回溯法",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "backtrack解题公式",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/90.subsets-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/90.subsets-ii.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\nfunction backtrack(list, tempList, nums, start) {\n  list.push([...tempList]);\n  for (let i = start; i < nums.length; i++) {\n    // 和78.subsets的区别在于这道题nums可以有重复\n    // 因此需要过滤这种情况\n    if (i > start && nums[i] === nums[i - 1]) continue;\n    tempList.push(nums[i]);\n    backtrack(list, tempList, nums, i + 1);\n    tempList.pop();\n  }\n}\n/**\n * @param {number[]} nums\n * @return {number[][]}\n */\nvar subsetsWithDup = function (nums) {\n  const list = [];\n  backtrack(\n    list,\n    [],\n    nums.sort((a, b) => a - b),\n    0,\n    []\n  );\n  return list;\n};\n"
-        }
-    ]
+    "code": []
 },
 "decode-ways":{
     "id": "91",
     "name": "decode-ways",
-    "pre": [
-        {
-            "text": "爬楼梯问题",
-            "link": null,
-            "color": "geekblue"
-        },
-        {
-            "text": "动态规划",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/dynamic-programming.md",
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "爬楼梯问题（我把这种题目统称为爬楼梯问题）",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/91.decode-ways.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/91.decode-ways.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/**\n * @param {string} s\n * @return {number}\n */\nvar numDecodings = function (s) {\n  if (s == null || s.length == 0) {\n    return 0;\n  }\n  const dp = Array(s.length + 1).fill(0);\n  dp[0] = 1;\n  dp[1] = s[0] !== \"0\" ? 1 : 0;\n  for (let i = 2; i < s.length + 1; i++) {\n    const one = +s.slice(i - 1, i);\n    const two = +s.slice(i - 2, i);\n\n    if (two >= 10 && two <= 26) {\n      dp[i] = dp[i - 2];\n    }\n\n    if (one >= 1 && one <= 9) {\n      dp[i] += dp[i - 1];\n    }\n  }\n\n  return dp[dp.length - 1];\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n  int numDecodings(string s) {\n    int pre2 = 0, pre1 = 1;\n    for (int i = 0; i < s.size() && pre1; ++i) {\n      int cur = 0;\n      if (s[i] != '0') cur += pre1;\n      if (i != 0 && s[i - 1] != '0' && (s[i - 1] - '0') * 10 + s[i] - '0' <= 26)\n        cur += pre2;\n      pre2 = pre1;\n      pre1 = cur;\n    }\n    return pre1;\n  }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def numDecodings(self, s: str) -> int:\n        @lru_cache(None)\n        def dp(start):\n            if start == len(s):\n                return 1\n            if start > len(s):\n                return 0\n            if s[start] != \"0\":\n                if s[start : start + 2] <= \"26\":\n                    return dp(start + 1) + dp(start + 2)\n                return dp(start + 1)\n            return 0\n\n        return dp(0)\n"
-        }
-    ]
+    "code": []
 },
 "reverse-linked-list-ii":{
     "id": "92",
     "name": "reverse-linked-list-ii",
-    "pre": [
-        {
-            "text": "链表",
-            "link": null,
-            "color": "magenta"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "四点法",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "链表的基本操作",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "考虑特殊情况m是1或者n是链表长度的情况，我们可以采用虚拟节点dummy简化操作",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "用四个变量记录特殊节点，然后操作这四个节点使之按照一定方式连接即可。",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "注意更新current和pre的位置，否则有可能出现溢出",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/92.reverse-linked-list-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/92.reverse-linked-list-ii.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=92 lang=javascript\n *\n * [92] Reverse Linked List II\n *\n * https://leetcode.com/problems/reverse-linked-list-ii/description/\n */\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} head\n * @param {number} m\n * @param {number} n\n * @return {ListNode}\n */\nvar reverseBetween = function (head, m, n) {\n  // 虚拟节点，简化操作\n  const dummyHead = {\n    next: head,\n  };\n\n  let cur = dummyHead.next; // 当前遍历的节点\n  let pre = cur; // 因为要反转，因此我们需要记住前一个节点\n  let index = 0; // 链表索引，用来判断是否是特殊位置（头尾位置）\n\n  // 上面提到的四个特殊节点\n  let p1 = (p2 = p3 = p4 = null);\n\n  while (cur) {\n    const next = cur.next;\n    index++;\n\n    // 对 (m - n) 范围内的节点进行反转\n    if (index > m && index <= n) {\n      cur.next = pre;\n    }\n\n    // 下面四个if都是边界, 用于更新四个特殊节点的值\n    if (index === m - 1) {\n      p1 = cur;\n    }\n    if (index === m) {\n      p2 = cur;\n    }\n\n    if (index === n) {\n      p3 = cur;\n    }\n\n    if (index === n + 1) {\n      p4 = cur;\n    }\n\n    pre = cur;\n\n    cur = next;\n  }\n\n  // 两个链表合并起来\n  (p1 || dummyHead).next = p3; // 特殊情况需要考虑\n  p2.next = p4;\n\n  return dummyHead.next;\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:\n        pre = None\n        cur = head\n        i = 0\n        p1 = p2 = p3 = p4 = None\n        # 一坨逻辑\n        if p1:\n            p1.next = p3\n        else:\n            dummy.next = p3\n        if p2:\n            p2.next = p4\n        return head\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n   def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:\n       pre = None\n       cur = head\n       i = 0\n       p1 = p2 = p3 = p4 = None\n       dummy = ListNode(0)\n       dummy.next = head\n       # 一坨逻辑\n       if p1:\n           p1.next = p3\n       else:\n           dummy.next = p3\n       if p2:\n           p2.next = p4\n\n       return dummy.next\n"
-        },
-        {
-            "language": "py",
-            "text": "\n    while cur:\n           i += 1\n           if i == m - 1:\n               p1 = cur\n           next = cur.next\n           if m < i <= n:\n               cur.next = pre\n\n           if i == m:\n               p2 = cur\n               p2.next = None\n\n           if i == n:\n               p3 = cur\n\n           if i == n + 1:\n               p4 = cur\n\n           pre = cur\n           cur = next\n"
-        }
-    ]
+    "code": []
 },
 "binary-tree-inorder-traversal":{
     "id": "94",
     "name": "binary-tree-inorder-traversal",
-    "pre": [
-        {
-            "text": "二叉树",
-            "link": null,
-            "color": "geekblue"
-        },
-        {
-            "text": "递归",
-            "link": null,
-            "color": "orange"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "二叉树的基本操作（遍历）>不同的遍历算法差异还是蛮大的",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "如果非递归的话利用栈来简化操作",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "如果数据规模不大的话，建议使用递归",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "递归的问题需要注意两点，一个是终止条件，一个如何缩小规模1.终止条件，自然是当前这个元素是null（链表也是一样）2.由于二叉树本身就是一个递归结构，每次处理一个子树其实就是缩小了规模，难点在于如何合并结果，这里的合并结果其实就是`left.concat(mid).concat(right)`,mid是一个具体的节点，left和right`递归求出即可`",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/94.binary-tree-inorder-traversal.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/94.binary-tree-inorder-traversal.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\n/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode(int x) { val = x; }\n * }\n */\nclass Solution {\n    List<Integer> res = new LinkedList<>();\n    public List<Integer> inorderTraversal(TreeNode root) {\n        inorder(root);\n        return res;\n    }\n\n    public void inorder (TreeNode root) {\n        if (root == null) return;\n\n        inorder(root.left);\n\n        res.add(root.val);\n\n        inorder(root.right);\n    }\n}\n"
-        },
-        {
-            "language": "java",
-            "text": "\n/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode(int x) { val = x; }\n * }\n */\nclass Solution {\n    public List<Integer> inorderTraversal(TreeNode root) {\n        List<Integer> res = new ArrayList<> ();\n        Stack<TreeNode> stack = new Stack<> ();\n\n        while (root != null || !stack.isEmpty()) {\n            while (root != null) {\n                stack.push(root);\n                root = root.left;\n            }\n            root = stack.pop();\n            res.add(root.val);\n            root = root.right;\n        }\n        return res;\n    }\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\nvar inorderTraversal = function (root) {\n  const res = [];\n  const stk = [];\n  while (root || stk.length) {\n    while (root) {\n      stk.push(root);\n      root = root.left;\n    }\n    root = stk.pop();\n    res.push(root.val);\n    root = root.right;\n  }\n  return res;\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\n/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}\n * };\n */\nclass Solution {\npublic:\n    vector<int> inorderTraversal(TreeNode* root) {\n        vector<TreeNode*> s;\n        vector<int> v;\n        while (root != NULL || !s.empty()) {\n            for (; root != NULL; root = root->left)\n                s.push_back(root);\n            v.push_back(s.back()->val);\n            root = s.back()->right;\n            s.pop_back();\n        }\n        return v;\n    }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def inorderTraversal(self, root: TreeNode) -> List[int]:\n        if not root: return []\n        stack = []\n        ans = []\n        cur = root\n\n        while cur or stack:\n            while cur:\n                stack.append(cur)\n                cur = cur.left\n            cur = stack.pop()\n            ans.append(cur.val)\n            cur = cur.right\n        return ans\n"
-        }
-    ]
+    "code": []
 },
 "unique-binary-search-trees-ii":{
     "id": "95",
     "name": "unique-binary-search-trees-ii",
-    "pre": [
-        {
-            "text": "二叉搜索树",
-            "link": null,
-            "color": "geekblue"
-        },
-        {
-            "text": "分治",
-            "link": null,
-            "color": "gold"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "分治法",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/95.unique-binary-search-trees-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/95.unique-binary-search-trees-ii.md",
-    "code": [
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\nprivate:\n    vector<TreeNode*> generateTrees(int first, int last) {\n        if (first > last) return { NULL };\n        vector<TreeNode*> v;\n        for (int i = first; i <= last; ++i) {\n            auto lefts = generateTrees(first, i - 1);\n            auto rights = generateTrees(i + 1, last);\n            for (auto left : lefts) {\n                for (auto right : rights) {\n                    v.push_back(new TreeNode(i));\n                    v.back()->left = left;\n                    v.back()->right = right;\n                }\n            }\n        }\n        return v;\n    }\npublic:\n    vector<TreeNode*> generateTrees(int n) {\n        if (n <= 0) return {};\n        return generateTrees(1, n);\n    }\n};\n"
-        }
-    ]
+    "code": []
 },
 "unique-binary-search-trees":{
     "id": "96",
     "name": "unique-binary-search-trees",
-    "pre": [
-        {
-            "text": "二叉搜索树",
-            "link": null,
-            "color": "geekblue"
-        },
-        {
-            "text": "分治",
-            "link": null,
-            "color": "gold"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "分治法",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "笛卡尔积",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "记忆化递归",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/96.unique-binary-search-trees.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/96.unique-binary-search-trees.md",
-    "code": [
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\n    vector<int> visited;\n    int dp(int n) {\n        if (visited[n]) return visited[n];\n        int ans = 0;\n        for (int i = 0; i < n; ++i) ans += dp(i) * dp(n - i - 1);\n        return visited[n] = ans;\n    }\npublic:\n    int numTrees(int n) {\n        visited.assign(n + 1, 0);\n        visited[0] = 1;\n        return dp(n);\n    }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def numTrees(self, n: int) -> int:\n        if n <= 1:\n            return 1\n        res = 0\n        for i in range(1, n + 1):\n            res += self.numTrees(i - 1) * self.numTrees(n - i)\n        return res\n"
-        }
-    ]
+    "code": []
 },
 "validate-binary-search-tree":{
     "id": "98",
     "name": "validate-binary-search-tree",
-    "pre": [
-        {
-            "text": "中序遍历",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "二叉树的基本操作（遍历）",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "中序遍历一个二叉查找树（BST）的结果是一个有序数组",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "如果一个树遍历的结果是有序数组，那么他也是一个二叉查找树(BST)",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/98.validate-binary-search-tree.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/98.validate-binary-search-tree.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\n/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode(int x) { val = x; }\n * }\n */\nclass Solution {\n    public boolean isValidBST(TreeNode root) {\n        Stack<Integer> stack = new Stack<> ();\n        TreeNode previous = null;\n\n        while (root != null || !stack.isEmpty()) {\n            while (root != null) {\n                stack.push(root);\n                root = root.left;\n            }\n            root = stack.pop();\n            if (previous != null && root.val <= previous.val ) return false;\n            previous = root;\n            root = root.right;\n        }\n        return true;\n    }\n}\n"
-        },
-        {
-            "language": "java",
-            "text": "\n/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode(int x) { val = x; }\n * }\n */\nclass Solution {\n    public boolean isValidBST(TreeNode root) {\n        return helper(root, null, null);\n    }\n\n    private boolean helper(TreeNode root, Integer lower, Integer higher) {\n        if (root == null) return true;\n\n        if (lower != null && root.val <= lower) return false;\n        if (higher != null && root.val >= higher) return false;\n\n        if (!helper(root.left, lower, root.val)) return false;\n        if (!helper(root.right, root.val, higher)) return false;\n\n        return true;\n    }\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=98 lang=javascript\n *\n * [98] Validate Binary Search Tree\n */\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @return {boolean}\n */\nvar isValidBST = function (root) {\n  if (root === null) return true;\n  if (root.left === null && root.right === null) return true;\n  const stack = [root];\n  let cur = root;\n  let pre = null;\n\n  function insertAllLefts(cur) {\n    while (cur && cur.left) {\n      const l = cur.left;\n      stack.push(l);\n      cur = l;\n    }\n  }\n  insertAllLefts(cur);\n\n  while ((cur = stack.pop())) {\n    if (pre && cur.val <= pre.val) return false;\n    const r = cur.right;\n\n    if (r) {\n      stack.push(r);\n      insertAllLefts(r);\n    }\n    pre = cur;\n  }\n\n  return true;\n};\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @return {boolean}\n */\nvar isValidBST = function (root) {\n  if (!root) return true;\n  return valid(root);\n};\n\nfunction valid(root, min = -Infinity, max = Infinity) {\n  if (!root) return true;\n  const val = root.val;\n  if (val <= min) return false;\n  if (val >= max) return false;\n  return valid(root.left, min, val) && valid(root.right, val, max);\n}\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\n// 递归\nclass Solution {\npublic:\n    bool isValidBST(TreeNode* root) {\n        TreeNode* prev = nullptr;\n        return validateBstInorder(root, prev);\n    }\n\nprivate:\n    bool validateBstInorder(TreeNode* root, TreeNode*& prev) {\n        if (root == nullptr) return true;\n        if (!validateBstInorder(root->left, prev)) return false;\n        if (prev != nullptr && prev->val >= root->val) return false;\n        prev = root;\n        return validateBstInorder(root->right, prev);\n    }\n};\n\n// 迭代\nclass Solution {\npublic:\n    bool isValidBST(TreeNode* root) {\n        auto s = vector<TreeNode*>();\n        TreeNode* prev = nullptr;\n        while (root != nullptr || !s.empty()) {\n            while (root != nullptr) {\n                s.push_back(root);\n                root = root->left;\n            }\n            root = s.back();\n            s.pop_back();\n            if (prev != nullptr && prev->val >= root->val) return false;\n            prev = root;\n            root = root->right;\n        }\n        return true;\n    }\n};\n"
-        }
-    ]
+    "code": []
 },
 "same-tree":{
     "id": "100",
@@ -6686,259 +4610,42 @@
 "ugly-number":{
     "id": "263",
     "name": "ugly-number",
-    "pre": [
-        {
-            "text": "数学",
-            "link": null,
-            "color": "geekblue"
-        },
-        {
-            "text": "因数分解",
-            "link": null,
-            "color": "lime"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "数论",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "因数分解",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/263.ugly-number.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/263.ugly-number.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\nclass Solution {\n    public boolean isUgly(int num) {\n        int [] ugly = {2,3,5};\n        for(int u : ugly)\n        {\n            while(num%u==0 && num%u < num)\n            {\n                num/=u;\n            }\n        }\n        return num == 1;\n    }\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\nwhile (num % 2 === 0) num = num / 2;\nwhile (num % 3 === 0) num = num / 3;\nwhile (num % 5 === 0) num = num / 5;\n\nreturn num === 1;\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=263 lang=javascript\n *\n * [263] Ugly Number\n */\n/**\n * @param {number} num\n * @return {boolean}\n */\nvar isUgly = function (num) {\n  // TAG: 数论\n  if (num <= 0) return false;\n  if (num === 1) return true;\n\n  const list = [2, 3, 5];\n\n  if (list.includes(num)) return true;\n\n  for (let i of list) {\n    if (num % i === 0) return isUgly(Math.floor(num / i));\n  }\n  return false;\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    bool isUgly(int num) {\n        int ugly[] = {2,3,5};\n        for(int u : ugly)\n        {\n            while(num%u==0 && num%u < num)\n            {\n                num/=u;\n            }\n        }\n        return num == 1;\n    }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\n# 非递归写法\nclass Solution:\n    def isUgly(self, num: int) -> bool:\n        if num <= 0:\n            return False\n        for i in (2, 3, 5):\n            while num % i == 0:\n                num /= i\n        return num == 1\n"
-        }
-    ]
+    "code": []
 },
 "perfect-squares":{
     "id": "279",
     "name": "perfect-squares",
-    "pre": [
-        {
-            "text": "递归",
-            "link": null,
-            "color": "orange"
-        },
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "如果用递归+缓存，缓存的设计很重要我的做法是key就是n，value是以n为起点，到达底端的深度。下次取出缓存的时候用当前的level+存的深度就是我们想要的level.",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "使用动态规划的核心点还是选和不选的问题```jsfor(leti=1;i<=n;i++){for(letj=1;j*j<=i;j++){//不选（dp[i]）还是选（dp[i",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "j*j]）dp[i]=Math.min(dp[i],dp[i",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "j*j]+1);}}```",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/279.perfect-squares.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/279.perfect-squares.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\nconst mapper = {};\n\nfunction d(n, level) {\n  if (n === 0) return level;\n\n  let i = 1;\n  const arr = [];\n\n  while (n - i * i >= 0) {\n    const hit = mapper[n - i * i];\n    if (hit) {\n      arr.push(hit + level);\n    } else {\n      const depth = d(n - i * i, level + 1) - level;\n      mapper[n - i * i] = depth;\n      arr.push(depth + level);\n    }\n    i++;\n  }\n\n  return Math.min(...arr);\n}\n/**\n * @param {number} n\n * @return {number}\n */\nvar numSquares = function (n) {\n  return d(n, 0);\n};\n"
-        },
-        {
-            "language": "js",
-            "text": "\nfor (let i = 1; i <= n; i++) {\n  for (let j = 1; j * j <= i; j++) {\n    // 不选（dp[i]） 还是  选（dp[i - j * j]）\n    dp[i] = Math.min(dp[i], dp[i - j * j] + 1);\n  }\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/**\n * @param {number} n\n * @return {number}\n */\nvar numSquares = function (n) {\n  if (n <= 0) {\n    return 0;\n  }\n\n  const dp = Array(n + 1).fill(Number.MAX_VALUE);\n  dp[0] = 0;\n  for (let i = 1; i <= n; i++) {\n    for (let j = 1; j * j <= i; j++) {\n      // 不选（dp[i]） 还是  选（dp[i - j * j]）\n      dp[i] = Math.min(dp[i], dp[i - j * j] + 1);\n    }\n  }\n\n  return dp[n];\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    int numSquares(int n) {\n        static vector<int> dp{0};\n        while (dp.size() <= n) {\n            int m = dp.size(), minVal = INT_MAX;\n            for (int i = 1; i * i <= m; ++i) minVal = min(minVal, 1 + dp[m - i * i]);\n            dp.push_back(minVal);\n        }\n        return dp[n];\n    }\n};\n"
-        }
-    ]
+    "code": []
 },
 "move-zeroes":{
     "id": "283",
     "name": "move-zeroes",
-    "pre": [
-        {
-            "text": "数组",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/basic-data-structure.md",
-            "color": "purple"
-        },
-        {
-            "text": "双指针",
-            "link": null,
-            "color": "green"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "读写双指针",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        },
-        {
-            "name": "bloomberg"
-        },
-        {
-            "name": "facebook"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/283.move-zeroes.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/283.move-zeroes.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\nclass Solution {\n    public void moveZeroes(int[] nums) {\n        // 双指针\n        int i = 0;\n        for(int j=0; j<nums.length; j++)\n        {\n            // 不为0，前移\n            if(nums[j] != 0)\n            {\n                int temp = nums[i];\n                nums[i] = nums[j];\n                nums[j] = temp;\n                i++;\n            }\n        }\n    }\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/**\n * @param {number[]} nums\n * @return {void} Do not return anything, modify nums in-place instead.\n */\nvar moveZeroes = function (nums) {\n  let index = 0;\n  for (let i = 0; i < nums.length; i++) {\n    const num = nums[i];\n    if (num !== 0) {\n      nums[index++] = num;\n    }\n  }\n\n  for (let i = index; i < nums.length; i++) {\n    nums[index++] = 0;\n  }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def moveZeroes(self, nums: List[int]) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        slow = fast = 0\n        while fast < len(nums):\n            if nums[fast] != 0:\n                nums[fast], nums[slow] = nums[slow], nums[fast]\n                slow += 1\n            fast += 1\n"
-        }
-    ]
+    "code": []
 },
 "find-median-from-data-stream":{
     "id": "295",
     "name": "find-median-from-data-stream",
-    "pre": [
-        {
-            "text": "堆",
-            "link": null,
-            "color": "green"
-        },
-        {
-            "text": "队列",
-            "link": null,
-            "color": "volcano"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "用两个堆（一个大顶堆，一个小顶堆）来简化时间复杂度",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "用优先级队列简化操作>JavaScript不像Java，C++等语言都有`优先级队列`中这种数据结构，因此大家可以使用社区的实现>个人认为没有非要纠结于优先级队列怎么实现，至少这道题不是考这个的>优先级队列的实现个人认为已经超过了这道题想考察的范畴",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/295.find-median-from-data-stream.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/295.find-median-from-data-stream.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\nfunction findMedian(a) {\n  return a.length % 2 === 0\n    ? (a[a.length >> 1] + a[a.length >> (1 + 1)]) / 2\n    : a[a.length >> 1];\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/**\n * initialize your data structure here.\n */\nvar MedianFinder = function () {\n  this.maxHeap = [];\n  this.minHeap = [];\n};\n\nfunction minHeapify() {\n  this.minHeap.unshift(null);\n  const a = this.minHeap;\n\n  // 为了方便大家理解，这里选用了粗暴的实现\n  // 时间复杂度为O(n)\n  // 其实可以降到O(logn)， 具体细节我不想在这里讲解和实现\n  for (let i = a.length - 1; i >> 1 > 0; i--) {\n    // 自下往上堆化\n    if (a[i] < a[i >> 1]) {\n      // 如果子元素更小，则交换位置\n      const temp = a[i];\n      this.minHeap[i] = a[i >> 1];\n      this.minHeap[i >> 1] = temp;\n    }\n  }\n  this.minHeap.shift(null);\n}\n\nfunction maxHeapify() {\n  this.maxHeap.unshift(null);\n  const a = this.maxHeap;\n\n  // 为了方便大家理解，这里选用了粗暴的实现\n  // 时间复杂度为O(n)\n  // 其实可以降到O(logn)， 具体细节我不想在这里讲解和实现\n  for (let i = a.length - 1; i >> 1 > 0; i--) {\n    // 自下往上堆化\n    if (a[i] > a[i >> 1]) {\n      // 如果子元素更大，则交换位置\n      const temp = a[i];\n      this.maxHeap[i] = a[i >> 1];\n      this.maxHeap[i >> 1] = temp;\n    }\n  }\n  this.maxHeap.shift(null);\n}\n\n/**\n * @param {number} num\n * @return {void}\n */\nMedianFinder.prototype.addNum = function (num) {\n  // 为了大家容易理解，这部分代码写的比较冗余\n\n  // 插入\n  if (num >= (this.minHeap[0] || Number.MIN_VALUE)) {\n    this.minHeap.push(num);\n  } else {\n    this.maxHeap.push(num);\n  }\n  // 调整两个堆的节点数量平衡\n  // 使得大顶堆的数量最多大于小顶堆一个， 且一定不小于小顶堆数量\n  if (this.maxHeap.length > this.minHeap.length + 1) {\n    // 大顶堆的堆顶元素移动到小顶堆\n    this.minHeap.push(this.maxHeap.shift());\n  }\n\n  if (this.minHeap.length > this.maxHeap.length) {\n    // 小顶堆的堆顶元素移动到大顶堆\n    this.maxHeap.push(this.minHeap.shift());\n  }\n\n  // 调整堆顶元素\n  if (this.maxHeap[0] > this.minHeap[0]) {\n    const temp = this.maxHeap[0];\n    this.maxHeap[0] = this.minHeap[0];\n    this.minHeap[0] = temp;\n  }\n\n  // 堆化\n  maxHeapify.call(this);\n  minHeapify.call(this);\n};\n\n/**\n * @return {number}\n */\nMedianFinder.prototype.findMedian = function () {\n  if ((this.maxHeap.length + this.minHeap.length) % 2 === 0) {\n    return (this.minHeap[0] + this.maxHeap[0]) / 2;\n  } else {\n    return this.maxHeap[0];\n  }\n};\n\n/**\n * Your MedianFinder object will be instantiated and called as such:\n * var obj = new MedianFinder()\n * obj.addNum(num)\n * var param_2 = obj.findMedian()\n */\n"
-        },
-        {
-            "language": "js",
-            "text": "\nthis.heap.unshift(null);\n// ....\nthis.heap.shift(null);\n"
-        },
-        {
-            "language": "js",
-            "text": "\nvar MedianFinder = function () {\n  this.maxHeap = new PriorityQueue((a, b) => a - b);\n  this.minHeap = new PriorityQueue((a, b) => b - a);\n};\n\n/**\n * @param {number} num\n * @return {void}\n */\nMedianFinder.prototype.addNum = function (num) {\n  // 我们的目标就是建立两个堆，一个大顶堆，一个小顶堆\n  // 结合中位数的特点\n  // 这两个堆需要满足:\n  // 1. 大顶堆元素都比小顶堆小（由于堆的特点其实只要比较堆顶即可）\n  // 2. 大顶堆元素不小于小顶堆，且最多比小顶堆多一个元素\n\n  // 满足上面两个条件的话，如果想要找到中位数，就比较简单了\n  // 如果两个堆数量相等（本质是总数为偶数）, 就两个堆顶元素的平均数\n  // 如果两个堆数量不相等（本质是总数为奇数）， 就取大顶堆的堆顶元素\n\n  // 问题如果保证满足上述两个特点\n\n  // 1. 保证第一点\n  this.maxHeap.enq(num);\n  // 由于小顶堆的所有数都来自大顶堆的堆顶元素（最大值）\n  // 因此可以保证第一点\n  this.minHeap.enq(this.maxHeap.deq());\n\n  // 2. 保证第二点\n  if (this.maxHeap.size() < this.minHeap.size()) {\n    this.maxHeap.enq(this.minHeap.deq());\n  }\n};\n\n/**\n * @return {number}\n */\nMedianFinder.prototype.findMedian = function () {\n  if (this.maxHeap.size() == this.minHeap.size())\n    return (this.maxHeap.peek() + this.minHeap.peek()) / 2.0;\n  else return this.maxHeap.peek();\n};\n\n/**\n * Your MedianFinder object will be instantiated and called as such:\n * var obj = new MedianFinder()\n * obj.addNum(num)\n * var param_2 = obj.findMedian()\n */\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass MedianFinder {\npublic:\n    /** initialize your data structure here. */\n    MedianFinder() {\n\n    }\n\n    void addNum(int num) {\n        if (big_queue.empty()) {\n            big_queue.push(num);\n            return;\n        }\n        if (big_queue.size() == small_queue.size()) {\n            if (num <= big_queue.top()) {\n                big_queue.push(num);\n            } else {\n                small_queue.push(num);\n            }\n        } else if (big_queue.size() > small_queue.size()) {\n            if (big_queue.top() > num) {\n                small_queue.push(big_queue.top());\n                big_queue.pop();\n                big_queue.push(num);\n            } else {\n                small_queue.push(num);\n            }\n        } else if (big_queue.size() < small_queue.size()) {\n            if (small_queue.top() > num) {\n                big_queue.push(num);\n            } else {\n                big_queue.push(small_queue.top());\n                small_queue.pop();\n                small_queue.push(num);\n            }\n        }\n    }\n\n    double findMedian() {\n        if (big_queue.size() == small_queue.size()) {\n            return (big_queue.top() + small_queue.top()) * 0.5;\n        }\n        if (big_queue.size() < small_queue.size()) {\n            return small_queue.top();\n        }\n        return big_queue.top();\n    }\n\nprivate:\n    std::priority_queue<int, std::vector<int>, std::greater<int>> small_queue;  // 最小堆\n    std::priority_queue<int> big_queue; // 最大堆\n};\n"
-        }
-    ]
+    "code": []
 },
 "serialize-and-deserialize-binary-tree":{
     "id": "297",
@@ -6948,1960 +4655,417 @@
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/297.serialize-and-deserialize-binary-tree.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/297.serialize-and-deserialize-binary-tree.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\nconst serialize = (root) => {\n  const queue = [root];\n  let res = [];\n  while (queue.length) {\n    const node = queue.shift();\n    if (node) {\n      res.push(node.val);\n      queue.push(node.left);\n      queue.push(node.right);\n    } else {\n      res.push(\"#\");\n    }\n  }\n  return res.join(\",\");\n};\n\nconst deserialize = (data) => {\n  if (data == \"#\") return null;\n\n  const list = data.split(\",\");\n\n  const root = new TreeNode(list[0]);\n  const queue = [root];\n  let cursor = 1;\n\n  while (cursor < list.length) {\n    const node = queue.shift();\n\n    const leftVal = list[cursor];\n    const rightVal = list[cursor + 1];\n\n    if (leftVal != \"#\") {\n      const leftNode = new TreeNode(leftVal);\n      node.left = leftNode;\n      queue.push(leftNode);\n    }\n    if (rightVal != \"#\") {\n      const rightNode = new TreeNode(rightVal);\n      node.right = rightNode;\n      queue.push(rightNode);\n    }\n    cursor += 2;\n  }\n  return root;\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Codec:\n\n    def serialize(self, root):\n        q = collections.deque([root])\n        ans = ''\n        while q:\n            cur = q.popleft()\n            if cur:\n                ans += str(cur.val) + ','\n                q.append(cur.left)\n                q.append(cur.right)\n            else:\n                # 除了这里不一样，其他和普通的不记录层的 BFS 没区别\n                ans += 'null,'\n        # 末尾会多一个逗号，我们去掉它。\n        return ans[:-1]\n"
-        },
-        {
-            "language": "py",
-            "text": "\n    def deserialize(self, data):\n        if data == 'null': return None\n        nodes = data.split(',')\n        root = TreeNode(nodes[0])\n        # 从一号开始编号，编号信息一起入队\n        q = collections.deque([(root, 1)])\n        while q:\n            cur, i = q.popleft()\n            # 2 * i 是左节点，而 2 * i 编号对应的其实是索引为 2 * i - 1 的元素， 右节点同理。\n            if 2 * i - 1 < len(nodes): lv = nodes[2 * i - 1]\n            if 2 * i < len(nodes): rv = nodes[2 * i]\n            if lv != 'null':\n                l = TreeNode(lv)\n                # 将左节点和 它的编号 2 * i 入队\n                q.append((l, 2 * i))\n                cur.left = l\n            if rv != 'null':\n                r = TreeNode(rv)\n                # 将右节点和 它的编号 2 * i + 1 入队\n                q.append((r, 2 * i + 1))\n                cur.right = r\n\n        return root\n"
-        },
-        {
-            "language": "py",
-            "text": "\ndef deserialize(self, data):\n    if data == 'null': return None\n    nodes = data.split(',')\n    root = TreeNode(nodes[0])\n    q = collections.deque([root])\n    i = 0\n    while q and i < len(nodes) - 2:\n        cur = q.popleft()\n        lv = nodes[i + 1]\n        rv = nodes[i + 2]\n        i += 2\n        if lv != 'null':\n            l = TreeNode(lv)\n            q.append(l)\n            cur.left = l\n        if rv != 'null':\n            r = TreeNode(rv)\n            q.append(r)\n            cur.right = r\n\n    return root\n"
-        },
-        {
-            "language": "py",
-            "text": "\n# Definition for a binary tree node.\n# class TreeNode(object):\n#     def __init__(self, x):\n#         self.val = x\n#         self.left = None\n#         self.right = None\n\nclass Codec:\n    def serialize(self, root):\n        ans = ''\n        queue = [root]\n        while queue:\n            node = queue.pop(0)\n            if node:\n                ans += str(node.val) + ','\n                queue.append(node.left)\n                queue.append(node.right)\n            else:\n                ans += '#,'\n        print(ans[:-1])\n        return ans[:-1]\n\n\n\n    def deserialize(self, data: str):\n        if data == '#': return None\n        nodes = data.split(',')\n        if not nodes: return None\n        root = TreeNode(nodes[0])\n        queue = [root]\n        # 已经有 root 了，因此从 1 开始\n        i = 1\n\n        while i < len(nodes) - 1:\n            node = queue.pop(0)\n            lv = nodes[i]\n            rv = nodes[i + 1]\n            i += 2\n            if lv != '#':\n                l = TreeNode(lv)\n                node.left = l\n                queue.append(l)\n\n            if rv != '#':\n                r = TreeNode(rv)\n                node.right = r\n                queue.append(r)\n        return root\n\n"
-        }
-    ]
+    "code": []
 },
 "remove-invalid-parentheses":{
     "id": "301",
     "name": "remove-invalid-parentheses",
-    "pre": [
-        {
-            "text": "BFS",
-            "link": null,
-            "color": "purple"
-        },
-        {
-            "text": "队列",
-            "link": null,
-            "color": "volcano"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "广度优先遍历",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "使用队列简化操作",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "使用一个visited的mapper，来避免遍历同样的字符串",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/301.remove-invalid-parentheses.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/301.remove-invalid-parentheses.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\nvar isValid = function(s) {\n  let openParenthes = 0;\n  for(let i = 0; i < s.length; i++) {\n    if (s[i] === '(') {\n      openParenthes++;\n    } else if (s[i] === ')') {\n      if (openParenthes === 0) return false;\n      openParenthes--;\n    }\n  }\n  return openParenthes === 0;\n};\n/**\n * @param {string} s\n * @return {string[]}\n */\nvar removeInvalidParentheses = function(s) {\n  if (!s || s.length === 0) return [\"\"];\n  const ret = [];\n  const queue = [s];\n  const visited = {};\n  let current = null;\n  let removedParentheses = 0; // 只记录最小改动\n\n  while ((current = queue.shift())) {\n    let hit = isValid(current);\n    if (hit) {\n      if (!removedParentheses) {\n       removedParentheses =  s.length - current.length\n      }\n      if (s.length - current.length > removedParentheses) return ret.length === 0 ? [\"\"] : ret;;\n      ret.unshift(current);\n      continue;\n    }\n    for (let i = 0; i < current.length; i++) {\n      if (current[i] !== ')' && current[i] !== '(') continue;\n      const subString = current.slice(0, i).concat(current.slice(i + 1));\n      if (visited[subString]) continue;\n      visited[subString] = true;\n      queue.push(subString);\n    }\n  }\n\n  return ret.length === 0 ? [\"\"] : ret;\n};\n"
-        }
-    ]
+    "code": []
 },
 "best-time-to-buy-and-sell-stock-with-cooldown":{
     "id": "309",
     "name": "best-time-to-buy-and-sell-stock-with-cooldown",
-    "pre": [
-        {
-            "text": "记忆化递归",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "动态规划",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/dynamic-programming.md",
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "多状态动态规划",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/309.best-time-to-buy-and-sell-stock-with-cooldown.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/309.best-time-to-buy-and-sell-stock-with-cooldown.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\nbuy[i] = Math.max(buy[i - 1], sell[i - 2] - prices[i]);\nsell[i] = Math.max(sell[i - 1], buy[i - 1] + prices[i]);\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=309 lang=javascript\n *\n * [309] Best Time to Buy and Sell Stock with Cooldown\n *\n */\n/**\n * @param {number[]} prices\n * @return {number}\n */\nvar maxProfit = function (prices) {\n  if (prices == null || prices.length <= 1) return 0;\n\n  // 定义状态变量\n  const buy = [];\n  const sell = [];\n  // 寻常\n  buy[0] = -prices[0];\n  buy[1] = Math.max(-prices[0], -prices[1]);\n  sell[0] = 0;\n  sell[1] = Math.max(0, prices[1] - prices[0]);\n  for (let i = 2; i < prices.length; i++) {\n    // 状态转移方程\n    // 第i天只能是买或者cooldown\n    // 如果买利润就是sell[i - 2] - prices[i], 注意这里是i - 2，不是 i-1 ，因为有cooldown的限制\n    // cooldown就是buy[i -1]\n    buy[i] = Math.max(buy[i - 1], sell[i - 2] - prices[i]);\n    // 第i天只能是卖或者cooldown\n    // 如果卖利润就是buy[i  -1] + prices[i]\n    // cooldown就是sell[i -1]\n    sell[i] = Math.max(sell[i - 1], buy[i - 1] + prices[i]);\n  }\n\n  return Math.max(buy[prices.length - 1], sell[prices.length - 1], 0);\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nmax(f(i+1, 0), f(i+1, 1) - prices[i])\n"
-        },
-        {
-            "language": "py",
-            "text": "\nmax(f(i+1, 1), f(i+1, -1) + prices[i])\n"
-        },
-        {
-            "language": "py",
-            "text": "\nf(i+1, 0)\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def maxProfit(self, prices):\n        if not prices:\n            return 0\n        n = len(prices)\n\n        @lru_cache(None)\n        def f(i, state):\n            if i == n - 1:\n                return prices[i] if state == 1 else 0\n\n            if state == -1:\n                return f(i + 1, 0)\n            if state == 0:\n                return max(f(i + 1, 0), -prices[i] + f(i + 1, 1))\n            if state == 1:\n                return max(prices[i] + f(i + 1, -1), f(i + 1, 1))\n\n        return f(0, 0)\n\n"
-        }
-    ]
+    "code": []
 },
 "burst-balloons":{
     "id": "312",
     "name": "burst-balloons",
-    "pre": [
-        {
-            "text": "回溯法",
-            "link": null,
-            "color": "gold"
-        },
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "区间DP",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "反向思考。不是戳气球，而是添加气球。",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "遍历方向的确定",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/312.burst-balloons.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/312.burst-balloons.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\nvar maxCoins = function (nums) {\n  let res = Number.MIN_VALUE;\n  backtrack(nums, 0);\n  return res;\n  // 回溯法，状态树很大\n  function backtrack(nums, score) {\n    if (nums.length == 0) {\n      res = Math.max(res, score);\n      return;\n    }\n    for (let i = 0, n = nums.length; i < n; i++) {\n      let point =\n        (i - 1 < 0 ? 1 : nums[i - 1]) *\n        nums[i] *\n        (i + 1 >= n ? 1 : nums[i + 1]);\n      let tempNums = [].concat(nums);\n      // 做选择 在 nums 中删除元素 nums[i]\n      nums.splice(i, 1);\n      // 递归回溯\n      backtrack(nums, score + point);\n      // 撤销选择\n      nums = [...tempNums];\n    }\n  }\n};\n"
-        },
-        {
-            "language": "js",
-            "text": "\nvar maxCoins = function (nums) {\n  let n = nums.length;\n  // 添加两侧的虚拟气球\n  let points = [1, ...nums, 1];\n  let dp = Array.from(Array(n + 2), () => Array(n + 2).fill(0));\n  // 最后一行开始遍历,从下往上\n  for (let i = n; i >= 0; i--) {\n    // 从左往右\n    for (let j = i + 1; j < n + 2; j++) {\n      for (let k = i + 1; k < j; k++) {\n        dp[i][j] = Math.max(\n          dp[i][j],\n          points[j] * points[k] * points[i] + dp[i][k] + dp[k][j]\n        );\n      }\n    }\n  }\n  return dp[0][n + 1];\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def maxCoins(self, nums: List[int]) -> int:\n        n = len(nums)\n        points = [1] + nums + [1]\n        dp = [[0] * (n + 2) for _ in range(n + 2)]\n\n        for i in range(n, -1, -1):\n            for j in range(i + 1, n + 2):\n                for k in range(i + 1, j):\n                    dp[i][j] = max(dp[i][j], dp[i][k] + dp[k][j] + points[i] * points[k] * points[j])\n        return dp[0][-1]\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def maxCoins(self, nums: List[int]) -> int:\n        n = len(nums)\n        nums = [1] + nums + [1]\n\n        @lru_cache(None)\n        def dp(left, right):\n            if left + 1 == right:\n                return 0\n            if left + 2 == right:\n                return nums[left] * nums[left + 1] * nums[left + 2]\n            ans = 0\n            for i in range(left + 1, right):\n                ans = max(ans, nums[i] * nums[left] * nums[right] + dp(left, i) + dp(i, right))\n            return ans\n\n        return dp(0, len(nums) - 1)\n\n"
-        }
-    ]
+    "code": []
 },
 "coin-change":{
     "id": "322",
     "name": "coin-change",
-    "pre": [
-        {
-            "text": "贪心算法",
-            "link": null,
-            "color": "magenta"
-        },
-        {
-            "text": "动态规划",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/dynamic-programming.md",
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "分析出是典型的完全背包问题",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        },
-        {
-            "name": "阿里巴巴（盒马生鲜）"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/322.coin-change.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/322.coin-change.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\nvar coinChange = function (coins, amount) {\n  if (amount === 0) {\n    return 0;\n  }\n  const dp = Array(amount + 1).fill(Number.MAX_VALUE);\n  dp[0] = 0;\n  for (let i = 1; i < dp.length; i++) {\n    for (let j = 0; j < coins.length; j++) {\n      if (i - coins[j] >= 0) {\n        dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);\n      }\n    }\n  }\n\n  return dp[dp.length - 1] === Number.MAX_VALUE ? -1 : dp[dp.length - 1];\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def coinChange(self, coins: List[int], amount: int) -> int:\n        if amount < 0:\n            return - 1\n        dp = [[amount + 1 for _ in range(len(coins) + 1)]\n              for _ in range(amount + 1)]\n\n        # 初始化第一行为0，其他为最大值（也就是amount + 1）\n        for j in range(len(coins) + 1):\n            dp[0][j] = 0\n\n        for i in range(1, amount + 1):\n            for j in range(1, len(coins) + 1):\n                # 注意：dp[i - coins[j - 1]][j] 含义是硬币无限取， dp[i - coins[j - 1]][j - 1] 的含义就变成了硬币最多取一次\n                if i - coins[j - 1] >= 0:\n                    dp[i][j] = min(\n                        dp[i][j - 1], dp[i - coins[j - 1]][j] + 1)\n                else:\n                    dp[i][j] = dp[i][j - 1]\n\n        return -1 if dp[-1][-1] == amount + 1 else dp[-1][-1]\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def coinChange(self, coins: List[int], amount: int) -> int:\n        dp = [amount + 1] * (amount + 1)\n        dp[0] = 0\n\n        for i in range(1, amount + 1):\n            for j in range(len(coins)):\n                if i >= coins[j]:\n                    dp[i] = min(dp[i], dp[i - coins[j]] + 1)\n\n        return -1 if dp[-1] == amount + 1 else dp[-1]\n"
-        }
-    ]
+    "code": []
 },
 "wiggle-sort-ii":{
     "id": "324",
     "name": "wiggle-sort-ii",
     "pre": [],
-    "keyPoints": [
-        {
-            "text": "排序后按照奇偶性分别放置",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/324.wiggle-sort-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/324.wiggle-sort-ii.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def wiggleSort(self, nums: List[int]) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        n = len(nums)\n        s = sorted(nums, reverse=True)\n\n        i = 1\n        j = 0\n        while i < n:\n            nums[i] = s[j]\n            i += 2\n            j += 1\n        i = 0\n        while i < n:\n            nums[i] = s[j]\n            i += 2\n            j += 1\n\n"
-        }
-    ]
+    "code": []
 },
 "odd-even-linked-list":{
     "id": "328",
     "name": "odd-even-linked-list",
-    "pre": [
-        {
-            "text": "链表",
-            "link": null,
-            "color": "magenta"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "用虚拟节点来简化操作",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "循环的结束条件设置为`odd&&odd.next&&even&&even.next`,不应该是`odd&&even`,否则需要记录一下奇数节点的最后一个节点，复杂了操作",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/328.odd-even-linked-list.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/328.odd-even-linked-list.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=328 lang=javascript\n *\n * [328] Odd Even Linked List\n *\n *\n */\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} head\n * @return {ListNode}\n */\nvar oddEvenList = function (head) {\n  if (!head || !head.next) return head;\n\n  const dummyHead1 = {\n    next: head,\n  };\n  const dummyHead2 = {\n    next: head.next,\n  };\n\n  let odd = dummyHead1.next;\n  let even = dummyHead2.next;\n\n  while (odd && odd.next && even && even.next) {\n    const oddNext = odd.next.next;\n    const evenNext = even.next.next;\n\n    odd.next = oddNext;\n    even.next = evenNext;\n\n    odd = oddNext;\n    even = evenNext;\n  }\n\n  odd.next = dummyHead2.next;\n\n  return dummyHead1.next;\n};\n"
-        }
-    ]
+    "code": []
 },
 "patching-array":{
     "id": "330",
     "name": "patching-array",
-    "pre": [
-        {
-            "text": "贪心",
-            "link": null,
-            "color": "purple"
-        },
-        {
-            "text": "前缀和",
-            "link": null,
-            "color": "cyan"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "维护端点信息，并用前缀和更新区间",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/330.patching-array.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/330.patching-array.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def minPatches(self, nums: List[int], n: int) -> int:\n        furthest = i = ans = 0\n        while furthest < n:\n            # 可覆盖到，直接用前缀和更新区间\n            if i < len(nums) and nums[i] <= furthest + 1:\n                furthest += nums[i] #  [1, furthest] -> [1, furthest + nums[i]]\n                i += 1\n            else:\n                # 不可覆盖到，增加一个数 furthest + 1，并用前缀和更新区间\n                # 如果 nums[i] > furthest + 1，说明我们必须添加一个数 x，其中 1 <= x <= furthest + 1，从贪心的角度我们应该选择  furthest + 1，这在前面已经讲过\n                furthest = 2 * furthest + 1 # [1, furthest] -> [1, furthest + furthest + 1]\n                ans += 1\n        return ans\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def minPatches(self, nums: List[int], n: int) -> int:\n        furthest, i, ans = 1, 0, 0\n        # 结束条件也要相应改变\n        while furthest <= n:\n            if i < len(nums) and nums[i] <= furthest:\n                furthest += nums[i] #  [1, furthest) -> [1, furthest + nums[i])\n                i += 1\n            else:\n                furthest = 2 * furthest # [1, furthest) -> [1, furthest + furthest)\n                ans += 1\n        return ans\n"
-        }
-    ]
+    "code": []
 },
 "verify-preorder-serialization-of-a-binary-tree":{
     "id": "331",
     "name": "verify-preorder-serialization-of-a-binary-tree",
-    "pre": [
-        {
-            "text": "图论",
-            "link": null,
-            "color": "gold"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "从入度和出度的角度思考",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/331.verify-preorder-serialization-of-a-binary-tree.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/331.verify-preorder-serialization-of-a-binary-tree.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def isValidSerialization(self, preorder: str) -> bool:\n        diff = 0\n\n        for node in preorder.split(\",\"):\n            diff -= 1\n            if diff < -1:\n                return False\n            if node != \"#\":\n                diff += 2\n        return diff == -1\n\n"
-        }
-    ]
+    "code": []
 },
 "increasing-triplet-subsequence":{
     "id": "334",
     "name": "increasing-triplet-subsequence",
-    "pre": [
-        {
-            "text": "双指针",
-            "link": null,
-            "color": "green"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "维护两个变量，分别记录最小值，第二小值。只要我们能够填满这三个变量就返回true，否则返回false",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/334.increasing-triplet-subsequence.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/334.increasing-triplet-subsequence.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/*\n/**\n * @param {number[]} nums\n * @return {boolean}\n */\nvar increasingTriplet = function (nums) {\n  if (nums.length < 3) return false;\n  let n1 = Number.MAX_VALUE;\n  let n2 = Number.MAX_VALUE;\n\n  for (let i = 0; i < nums.length; i++) {\n    if (nums[i] <= n1) {\n      n1 = nums[i];\n    } else if (nums[i] <= n2) {\n      n2 = nums[i];\n    } else {\n      return true;\n    }\n  }\n\n  return false;\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def increasingTriplet(self, A: List[int]) -> bool:\n        a1 = a2 = float(\"inf\")\n\n        for a in A:\n            if a > a2:\n                return True\n            elif a > a1:\n                a2 = a\n            else:\n                a1 = a\n        return False\n"
-        }
-    ]
+    "code": []
 },
 "self-crossing":{
     "id": "335",
     "name": "self-crossing",
-    "pre": [
-        {
-            "text": "滚动数组",
-            "link": null,
-            "color": "gold"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "一定要画图辅助",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "对于这种$O(1)$空间复杂度有固定的套路。常见的有：1.直接修改原数组2.滚动数组（当前状态并不是和之前所有状态有关，而是仅和某几个有关）。我们采用的是滚动数组。如果你了解动态规划的滚动数组优化的话应该理解我的意思。但是难点就在于我们怎么知道当前状态和哪几个有关。对于这道题来说，画图或许可以帮助你打开思路。另外面试的时候说出$O(B)$的思路也不失为一个帮助你冷静分析问题的手段。感谢[@saberjiang",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "b](https://leetcode",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "cn.com/u/saberjiang",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "b/)指出的代码重复判断问题",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/335.self-crossing.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/335.self-crossing.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def isSelfCrossing(self, x: List[int]) -> bool:\n        n = len(x)\n        if n < 4:\n            return False\n        for i in range(3, n):\n            if x[i] >= x[i - 2] and x[i - 1] <= x[i - 3]:\n                return True\n            if i > 3 and x[i - 1] == x[i - 3] and x[i] + x[i - 4] == x[i - 2]:\n                return True\n            if i > 4 and x[i] + x[i - 4] >= x[i - 2] and x[i - 1] >= x[i - 3] - x[i - 5] \\\n                    and x[i - 1] <= x[i - 3] and x[i - 2] >= x[i - 4] and x[i - 3] >= x[i - 5]:\n                return True\n        return False\n"
-        }
-    ]
+    "code": []
 },
 "house-robber-iii":{
     "id": "337",
     "name": "house-robber-iii",
-    "pre": [
-        {
-            "text": "二叉树",
-            "link": null,
-            "color": "geekblue"
-        },
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "对每一个节点都分析，是抢还是不抢",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/337.house-robber-iii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/337.house-robber-iii.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\n/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode(int x) { val = x; }\n * }\n */\nclass Solution {\n    public int rob(TreeNode root) {\n        int[] res = dfs(root);\n        return Math.max(res[0], res[1]);\n    }\n\n    public int[] dp(TreeNode root)\n    {\n        int[] res = new int[2];\n        if(root == null)\n        {\n            return res;\n        }\n\n        int[] left = dfs(root.left);\n        int[] right = dfs(root.right);\n        // 0 代表不偷，1 代表偷\n        res[0] = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);\n        res[1] = left[0] + right[0] + root.val;\n        return res;\n    }\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\nfunction helper(root) {\n  if (root === null) return [0, 0];\n  // 0: rob 1: notRob\n  const l = helper(root.left);\n  const r = helper(root.right);\n\n  const robed = root.val + l[1] + r[1];\n  const notRobed = Math.max(l[0], l[1]) + Math.max(r[0], r[1]);\n\n  return [robed, notRobed];\n}\n/**\n * @param {TreeNode} root\n * @return {number}\n */\nvar rob = function (root) {\n  const [robed, notRobed] = helper(root);\n  return Math.max(robed, notRobed);\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\n/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}\n * };\n */\nclass Solution {\npublic:\n    int rob(TreeNode* root) {\n        pair<int, int> res = dfs(root);\n        return max(res.first, res.second);\n    }\n\n    pair<int, int> dfs(TreeNode* root)\n    {\n        pair<int, int> res = {0, 0};\n        if(root == NULL)\n        {\n            return res;\n        }\n\n        pair<int, int> left = dfs(root->left);\n        pair<int, int> right = dfs(root->right);\n        // 0 代表不偷，1 代表偷\n        res.first = max(left.first, left.second) + max(right.first, right.second);\n        res.second = left.first + right.first + root->val;\n        return res;\n    }\n\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def rob(self, root: TreeNode) -> int:\n        def dfs(node):\n            if not node:\n                return [0, 0]\n            [l_rob, l_not_rob] = dfs(node.left)\n            [r_rob, r_not_rob] = dfs(node.right)\n            return [node.val + l_not_rob + r_not_rob, max([l_rob, l_not_rob]) +  max([r_rob, r_not_rob])]\n        return max(dfs(root))\n\n\n# @lc code=end\n\n"
-        }
-    ]
+    "code": []
 },
 "power-of-four":{
     "id": "342",
     "name": "power-of-four",
-    "pre": [
-        {
-            "text": "数论",
-            "link": null,
-            "color": "green"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "数论",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "2的幂次方特点（数学性质以及二进制表示）",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "4的幂次方特点（数学性质以及二进制表示）",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "百度"
-        },
-        {
-            "name": "twosigma"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/342.power-of-four.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/342.power-of-four.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\nwhile (num && num % 4 == 0) {\n  num /= 4;\n}\nreturn num == 1;\n"
-        },
-        {
-            "language": "js",
-            "text": "\nreturn num > 0 && (num & (num - 1)) === 0 && (num - 1) % 3 === 0;\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=342 lang=javascript\n *\n * [342] Power of Four\n */\n/**\n * @param {number} num\n * @return {boolean}\n */\nvar isPowerOfFour = function (num) {\n  // tag: 数论\n\n  if (num === 1) return true;\n  if (num < 4) return false;\n\n  if ((num & (num - 1)) !== 0) return false;\n\n  return (num & 0x55555555) === num;\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def isPowerOfFour(self, num: int) -> bool:\n        if num == 1:\n            return True\n        elif num < 4:\n            return False\n        else:\n            if not num & (num-1) == 0:\n                return False\n            else:\n                return num & 0x55555555 == num\n\n    # 另一种解法：将数字转化为二进制表示的字符串，利用字符串的相关操作进行判断\n    def isPowerOfFour(self, num: int) -> bool:\n        binary_num = bin(num)[2:]\n        return binary_num.strip('0') == '1' and len(binary_num) % 2 == 1\n"
-        }
-    ]
+    "code": []
 },
 "integer-break":{
     "id": "343",
     "name": "integer-break",
-    "pre": [
-        {
-            "text": "递归",
-            "link": null,
-            "color": "orange"
-        },
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "数学抽象",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "递归分析",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "记忆化递归",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/343.integer-break.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/343.integer-break.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def integerBreak(self, n: int) -> int:\n        dp = [1] * (n + 1)\n        for i in range(3, n + 1):\n            for j in range(1, i):\n                dp[i] = max(j * dp[i - j], j * (i - j), dp[i])\n        return dp[n]\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def integerBreak(self, n: int) -> int:\n        if n == 2: return 1\n        res = 0\n        for i in range(1, n):\n            res = max(res, max(i * self.integerBreak(n - i),i * (n - i)))\n        return res\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    @lru_cache()\n    def integerBreak(self, n: int) -> int:\n        if n == 2: return 1\n        res = 0\n        for i in range(1, n):\n            res = max(res, max(i * self.integerBreak(n - i),i * (n - i)))\n        return res\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def integerBreak(self, n: int) -> int:\n        dp = [1] * (n + 1)\n        for i in range(3, n + 1):\n            for j in range(1, i):\n                dp[i] = max(j * dp[i - j], j * (i - j), dp[i])\n        return dp[n]\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def integerBreak(self, n: int) -> int:\n        dp = [1] * (n + 1)\n        for i in range(3, n + 1):\n            for j in range(1, i):\n                dp[i] = max(j * dp[i - j], j * (i - j), dp[i])\n        return dp[n]\n"
-        }
-    ]
+    "code": []
 },
 "intersection-of-two-arrays":{
     "id": "349",
     "name": "intersection-of-two-arrays",
-    "pre": [
-        {
-            "text": "hashtable",
-            "link": null,
-            "color": "lime"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "空间换时间",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/349.intersection-of-two-arrays.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/349.intersection-of-two-arrays.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/**\n * @param {number[]} nums1\n * @param {number[]} nums2\n * @return {number[]}\n */\nvar intersection = function (nums1, nums2) {\n  const visited = {};\n  const ret = [];\n  for (let i = 0; i < nums1.length; i++) {\n    const num = nums1[i];\n\n    visited[num] = num;\n  }\n\n  for (let i = 0; i < nums2.length; i++) {\n    const num = nums2[i];\n\n    if (visited[num] !== undefined) {\n      ret.push(num);\n      visited[num] = undefined;\n    }\n  }\n\n  return ret;\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:\n        visited, result = {}, []\n        for num in nums1:\n            visited[num] = num\n        for num in nums2:\n            if num in visited:\n                result.append(num)\n                visited.pop(num)\n        return result\n\n    # 另一种解法：利用 Python 中的集合进行计算\n    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:\n        return set(nums1) & set(nums2)\n"
-        }
-    ]
+    "code": []
 },
 "water-and-jug-problem":{
     "id": "365",
     "name": "water-and-jug-problem",
-    "pre": [
-        {
-            "text": "BFS",
-            "link": null,
-            "color": "purple"
-        },
-        {
-            "text": "最大公约数",
-            "link": null,
-            "color": "magenta"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/365.water-and-jug-problem.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/365.water-and-jug-problem.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/**\n * @param {number} x\n * @param {number} y\n * @param {number} z\n * @return {boolean}\n */\nvar canMeasureWater = function (x, y, z) {\n  if (x + y < z) return false;\n\n  if (z === 0) return true;\n\n  if (x === 0) return y === z;\n\n  if (y === 0) return x === z;\n\n  function GCD(a, b) {\n    let min = Math.min(a, b);\n    while (min) {\n      if (a % min === 0 && b % min === 0) return min;\n      min--;\n    }\n    return 1;\n  }\n\n  return z % GCD(x, y) === 0;\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def canMeasureWater(self, x: int, y: int, z: int) -> bool:\n        if x + y < z:\n            return False\n        queue = [(0, 0)]\n        seen = set((0, 0))\n\n        while(len(queue) > 0):\n            a, b = queue.pop(0)\n            if a ==z or b == z or a + b == z:\n                return True\n            states = set()\n\n            states.add((x, b))\n            states.add((a, y))\n            states.add((0, b))\n            states.add((a, 0))\n            states.add((min(x, b + a), 0 if b < x - a else b - (x - a)))\n            states.add((0 if a + b < y else a - (y - b), min(b + a, y)))\n            for state in states:\n                if state in seen:\n                    continue;\n                queue.append(state)\n                seen.add(state)\n        return False\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def canMeasureWater(self, x: int, y: int, z: int) -> bool:\n        if x + y < z:\n            return False\n\n        if (z == 0):\n            return True\n\n        if (x == 0):\n            return y == z\n\n        if (y == 0):\n            return x == z\n\n        def GCD(a, b):\n            smaller = min(a, b)\n            while smaller:\n                if a % smaller == 0 and b % smaller == 0:\n                    return smaller\n                smaller -= 1\n\n        return z % GCD(x, y) == 0\n"
-        },
-        {
-            "language": "py",
-            "text": "\ndef GCD(a, b):\n    if b == 0: return a\n    return GCD(b, a % b)\n"
-        }
-    ]
+    "code": []
 },
 "sum-of-two-integers":{
     "id": "371",
     "name": "sum-of-two-integers",
-    "pre": [
-        {
-            "text": "位运算",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/bit.md",
-            "color": "blue"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "位运算",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "异或是一种不进位的加减法",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "求与之后左移一位来可以表示进位",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/371.sum-of-two-integers.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/371.sum-of-two-integers.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\nclass Solution {\n    public int getSum(int a, int b) {\n        if(a==0) return b;\n        if(b==0) return a;\n\n        while(b!=0)\n        {\n            int carry = a&b;\n            // 计算无进位的结果\n            a = a^b;\n            //将存在进位的位置置1\n            b =carry<<1;\n        }\n        return a;\n    }\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=371 lang=javascript\n *\n * [371] Sum of Two Integers\n */\n/**\n * @param {number} a\n * @param {number} b\n * @return {number}\n */\nvar getSum = function (a, b) {\n  if (a === 0) return b;\n\n  if (b === 0) return a;\n\n  return getSum(a ^ b, (a & b) << 1);\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    int getSum(int a, int b) {\n        if(a==0) return b;\n        if(b==0) return a;\n\n        while(b!=0)\n        {\n            // 防止 AddressSanitizer 对有符号左移的溢出保护处理\n            auto carry = ((unsigned int ) (a & b))<<1;\n            // 计算无进位的结果\n            a = a^b;\n            //将存在进位的位置置1\n            b =carry;\n        }\n        return a;\n    }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\n# python整数类型为Unifying Long Integers, 即无限长整数类型.\n# 模拟 32bit 有符号整型加法\nclass Solution:\n    def getSum(self, a: int, b: int) -> int:\n        a &= 0xFFFFFFFF\n        b &= 0xFFFFFFFF\n        while b:\n            carry = a & b\n            a ^= b\n            b = ((carry) << 1) & 0xFFFFFFFF\n            # print((a, b))\n        return a if a < 0x80000000 else ~(a^0xFFFFFFFF)\n"
-        }
-    ]
+    "code": []
 },
 "kth-smallest-element-in-a-sorted-matrix":{
     "id": "378",
     "name": "kth-smallest-element-in-a-sorted-matrix",
-    "pre": [
-        {
-            "text": "二分查找",
-            "link": null,
-            "color": "magenta"
-        },
-        {
-            "text": "堆",
-            "link": null,
-            "color": "green"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "二分查找",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "有序矩阵的套路（文章末尾还有一道有序矩阵的题目）",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "堆（优先级队列）",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/378.kth-smallest-element-in-a-sorted-matrix.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/378.kth-smallest-element-in-a-sorted-matrix.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=378 lang=javascript\n *\n * [378] Kth Smallest Element in a Sorted Matrix\n */\nfunction notGreaterCount(matrix, target) {\n  // 等价于在matrix 中搜索mid，搜索的过程中利用有序的性质记录比mid小的元素个数\n\n  // 我们选择左下角，作为开始元素\n  let curRow = 0;\n  // 多少列\n  const COL_COUNT = matrix[0].length;\n  // 最后一列的索引\n  const LAST_COL = COL_COUNT - 1;\n  let res = 0;\n\n  while (curRow < matrix.length) {\n    // 比较最后一列的数据和target的大小\n    if (matrix[curRow][LAST_COL] < target) {\n      res += COL_COUNT;\n    } else {\n      let i = COL_COUNT - 1;\n      while (i < COL_COUNT && matrix[curRow][i] > target) {\n        i--;\n      }\n      // 注意这里要加1\n      res += i + 1;\n    }\n    curRow++;\n  }\n\n  return res;\n}\n/**\n * @param {number[][]} matrix\n * @param {number} k\n * @return {number}\n */\nvar kthSmallest = function (matrix, k) {\n  if (matrix.length < 1) return null;\n  let start = matrix[0][0];\n  let end = matrix[matrix.length - 1][matrix[0].length - 1];\n  while (start < end) {\n    const mid = start + ((end - start) >> 1);\n    const count = notGreaterCount(matrix, mid);\n    if (count < k) start = mid + 1;\n    else end = mid;\n  }\n  // 返回start,mid, end 都一样\n  return start;\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    bool check(vector<vector<int>>& matrix, int mid, int k, int n) {\n        int row = n - 1;\n        int col = 0;\n        int num = 0;\n        while (row >= 0 && col < n) {\n            if (matrix[row][col] <= mid) {\n                num += i + 1;\n                col++;\n            } else {\n                row--;\n            }\n        }\n        return num >= k;\n    }\n\n    int kthSmallest(vector<vector<int>>& matrix, int k) {\n        int n = matrix.size();\n        int left = matrix[0][0];\n        int right = matrix[n - 1][n - 1];\n        while (left <= right) {\n            int mid = left + ((right - left) >> 1);\n            if (check(matrix, mid, k, n)) {\n                right = mid - 1;\n            } else {\n                left = mid + 1;\n            }\n        }\n        return left;\n    }\n};\n\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def kthSmallest(self, matrix: List[List[int]], k: int) -> int:\n        n = len(matrix)\n\n        def check(mid):\n            row, col = n - 1, 0\n            num = 0\n            while row >= 0 and col < n:\n                # 增加 col\n                if matrix[row][col] <= mid:\n                    num += row + 1\n                    col += 1\n                # 减少 row\n                else:\n                    row -= 1\n            return num >= k\n\n        left, right = matrix[0][0], matrix[-1][-1]\n        while left <= right:\n            mid = (left + right) // 2\n            if check(mid):\n                right = mid - 1\n            else:\n                left = mid + 1\n\n        return left\n\n"
-        }
-    ]
+    "code": []
 },
 "insert-delete-getrandom-o1":{
     "id": "380",
     "name": "insert-delete-getrandom-o1",
     "pre": [],
-    "keyPoints": [
-        {
-            "text": "数组",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "哈希表",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "数组+哈希表",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "基本算法时间复杂度分析",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/380.insert-delete-getrandom-o1.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/380.insert-delete-getrandom-o1.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nfrom random import random\n\n\nclass RandomizedSet:\n\n    def __init__(self):\n        \"\"\"\n        Initialize your data structure here.\n        \"\"\"\n        self.data = dict()\n        self.arr = []\n        self.n = 0\n\n    def insert(self, val: int) -> bool:\n        \"\"\"\n        Inserts a value to the set. Returns true if the set did not already contain the specified element.\n        \"\"\"\n        if val in self.data:\n            return False\n        self.data[val] = self.n\n        self.arr.append(val)\n        self.n += 1\n\n        return True\n\n    def remove(self, val: int) -> bool:\n        \"\"\"\n        Removes a value from the set. Returns true if the set contained the specified element.\n        \"\"\"\n        if val not in self.data:\n            return False\n        i = self.data[val]\n        # 更新data\n        self.data[self.arr[-1]] = i\n        self.data.pop(val)\n        # 更新arr\n        self.arr[i] = self.arr[-1]\n        # 删除最后一项\n        self.arr.pop()\n        self.n -= 1\n\n        return True\n\n    def getRandom(self) -> int:\n        \"\"\"\n        Get a random element from the set.\n        \"\"\"\n\n        return self.arr[int(random() * self.n)]\n\n\n# Your RandomizedSet object will be instantiated and called as such:\n# obj = RandomizedSet()\n# param_1 = obj.insert(val)\n# param_2 = obj.remove(val)\n# param_3 = obj.getRandom()\n"
-        }
-    ]
+    "code": []
 },
 "mini-parser":{
     "id": "385",
     "name": "mini-parser",
-    "pre": [
-        {
-            "text": "栈",
-            "link": null,
-            "color": "red"
-        },
-        {
-            "text": "递归",
-            "link": null,
-            "color": "orange"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "栈+递归。遇到[开启新的递归，遇到]返回",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/385.mini-parser.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/385.mini-parser.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def deserialize(self, s: str) -> NestedInteger:\n        def dfs(cur):\n            if type(cur) == int:\n                return NestedInteger(cur)\n            ans = NestedInteger()\n            for nxt in cur:\n                ans.add(dfs(nxt))\n            return ans\n\n        return dfs(eval(s))\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\n# \"\"\"\n# This is the interface that allows for creating nested lists.\n# You should not implement it, or speculate about its implementation\n# \"\"\"\n#class NestedInteger:\n#    def __init__(self, value=None):\n#        \"\"\"\n#        If value is not specified, initializes an empty list.\n#        Otherwise initializes a single integer equal to value.\n#        \"\"\"\n#\n#    def isInteger(self):\n#        \"\"\"\n#        @return True if this NestedInteger holds a single integer, rather than a nested list.\n#        :rtype bool\n#        \"\"\"\n#\n#    def add(self, elem):\n#        \"\"\"\n#        Set this NestedInteger to hold a nested list and adds a nested integer elem to it.\n#        :rtype void\n#        \"\"\"\n#\n#    def setInteger(self, value):\n#        \"\"\"\n#        Set this NestedInteger to hold a single integer equal to value.\n#        :rtype void\n#        \"\"\"\n#\n#    def getInteger(self):\n#        \"\"\"\n#        @return the single integer that this NestedInteger holds, if it holds a single integer\n#        Return None if this NestedInteger holds a nested list\n#        :rtype int\n#        \"\"\"\n#\n#    def getList(self):\n#        \"\"\"\n#        @return the nested list that this NestedInteger holds, if it holds a nested list\n#        Return None if this NestedInteger holds a single integer\n#        :rtype List[NestedInteger]\n#        \"\"\"\nclass Solution:\n    def deserialize(self, s: str) -> NestedInteger:\n        def dfs(cur):\n            if type(cur) == int:\n                return NestedInteger(cur)\n            ans = NestedInteger()\n            for nxt in cur:\n                ans.add(dfs(nxt))\n            return ans\n        def to_array(i):\n            stack = []\n            num = ''\n            while i < len(s):\n                if s[i] == ' ':\n                    i += 1\n                    continue\n                elif s[i] == ',':\n                    if num:\n                        stack.append(int(num or '0'))\n                        num = ''\n                elif s[i] == '[':\n                    j, t = to_array(i+1)\n                    stack.append(t)\n                    i = j\n                elif s[i] == ']':\n                    break\n                else:\n                    num += s[i]\n                i += 1\n            if num:\n                stack.append(int(num))\n            return i, stack\n        return dfs(to_array(0)[1][0])\n\n"
-        }
-    ]
+    "code": []
 },
 "decode-string":{
     "id": "394",
     "name": "decode-string",
-    "pre": [
-        {
-            "text": "栈",
-            "link": null,
-            "color": "red"
-        },
-        {
-            "text": "括号匹配",
-            "link": null,
-            "color": "cyan"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/394.decode-string.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/394.decode-string.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def decodeString(self, s: str) -> str:\n        stack = []\n        for c in s:\n            if c == ']':\n                repeatStr = ''\n                repeatCount = ''\n                while stack and stack[-1] != '[':\n                    repeatStr = stack.pop() + repeatStr\n                # pop 掉 \"[\"\n                stack.pop()\n                while stack and stack[-1].isnumeric():\n                    repeatCount = stack.pop() + repeatCount\n                stack.append(repeatStr * int(repeatCount))\n            else:\n                stack.append(c)\n        return \"\".join(stack)\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n\n    def decodeString(self, s: str) -> str:\n        def dfs(start):\n            repeat_str = repeat_count = ''\n            while start < len(s):\n                if s[start].isnumeric():\n                    repeat_count += s[start]\n                elif s[start] == '[':\n                    # 更新指针\n                    start, t_str = dfs(start + 1)\n                    # repeat_count 仅作用于 t_str，而不作用于当前的 repeat_str\n                    repeat_str = repeat_str + t_str * int(repeat_count)\n                    repeat_count = ''\n                elif s[start] == ']':\n                    return start, repeat_str\n                else:\n                    repeat_str += s[start]\n                start += 1\n            return repeat_str\n        return dfs(0)\n"
-        }
-    ]
+    "code": []
 },
 "binary-watch":{
     "id": "401",
     "name": "binary-watch",
-    "pre": [
-        {
-            "text": "笛卡尔积",
-            "link": null,
-            "color": "red"
-        },
-        {
-            "text": "回溯",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/backtrack.md",
-            "color": "green"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/401.binary-watch.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/401.binary-watch.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n# 枚举小时\nfor a in possible_number(i):\n    # 小时确定了，分就是 num - i\n    for b in possible_number(num - i, True):\n        ans.add(str(a) + \":\" + str(b).rjust(2, '0'))\n"
-        },
-        {
-            "language": "py",
-            "text": "\nfor i in range(min(4, num + 1)):\n    for a in possible_number(i):\n        for b in possible_number(num - i, True):\n            ans.add(str(a) + \":\" + str(b).rjust(2, '0'))\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def readBinaryWatch(self, num: int) -> List[str]:\n        def possible_number(count, minute=False):\n            if count == 0: return [0]\n            if minute:\n                return filter(lambda a: a < 60, map(sum, combinations([1, 2, 4, 8, 16, 32], count)))\n            return filter(lambda a: a < 12, map(sum, combinations([1, 2, 4, 8], count)))\n        ans = set()\n        for i in range(min(4, num + 1)):\n            for a in possible_number(i):\n                for b in possible_number(num - i, True):\n                    ans.add(str(a) + \":\" + str(b).rjust(2, '0'))\n        return list(ans)\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def readBinaryWatch(self, num: int) -> List[str]:\n        return [str(a) + \":\" + str(b).rjust(2, '0') for a in range(12) for b in range(60) if (bin(a)+bin(b)).count('1') == num]\n"
-        }
-    ]
+    "code": []
 },
 "partition-equal-subset-sum":{
     "id": "416",
     "name": "partition-equal-subset-sum",
-    "pre": [
-        {
-            "text": "DFS",
-            "link": null,
-            "color": "red"
-        },
-        {
-            "text": "动态规划",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/dynamic-programming.md",
-            "color": "red"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/416.partition-equal-subset-sum.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/416.partition-equal-subset-sum.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\nvar canPartition = function (nums) {\n  let sum = nums.reduce((acc, num) => acc + num, 0);\n  if (sum % 2) {\n    return false;\n  }\n  sum = sum / 2;\n  return dfs(nums, sum, 0);\n};\n\nfunction dfs(nums, target, cur) {\n  if (target < 0 || cur > nums.length) {\n    return false;\n  }\n  return (\n    target === 0 ||\n    dfs(nums, target - nums[cur], cur + 1) ||\n    dfs(nums, target, cur + 1)\n  );\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\nvar canPartition = function (nums) {\n  let sum = nums.reduce((acc, num) => acc + num, 0);\n  if (sum % 2) {\n    return false;\n  }\n  sum = sum / 2;\n  nums = nums.sort((a, b) => b - a);\n  if (sum < nums[0]) {\n    return false;\n  }\n  return dfs(nums, sum, sum, 0);\n};\n\nfunction dfs(nums, pickRemain, discardRemain, cur) {\n  if (pickRemain === 0 || discardRemain === 0) {\n    return true;\n  }\n\n  if (pickRemain < 0 || discardRemain < 0 || cur > nums.length) {\n    return false;\n  }\n\n  return (\n    dfs(nums, pickRemain - nums[cur], discardRemain, cur + 1) ||\n    dfs(nums, pickRemain, discardRemain - nums[cur], cur + 1)\n  );\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\nvar canPartition = function (nums) {\n  let sum = nums.reduce((acc, num) => acc + num, 0);\n  if (sum % 2) {\n    return false;\n  } else {\n    sum = sum / 2;\n  }\n\n  const dp = Array.from(nums).map(() =>\n    Array.from({ length: sum + 1 }).fill(false)\n  );\n\n  for (let i = 0; i < nums.length; i++) {\n    dp[i][0] = true;\n  }\n\n  for (let i = 0; i < dp.length - 1; i++) {\n    for (let j = 0; j < dp[0].length; j++) {\n      dp[i + 1][j] =\n        j - nums[i] >= 0 ? dp[i][j] || dp[i][j - nums[i]] : dp[i][j];\n    }\n  }\n\n  return dp[nums.length - 1][sum];\n};\n"
-        },
-        {
-            "language": "js",
-            "text": "\nvar canPartition = function (nums) {\n  let sum = nums.reduce((acc, num) => acc + num, 0);\n  if (sum % 2) {\n    return false;\n  }\n  sum = sum / 2;\n  const dp = Array.from({ length: sum + 1 }).fill(false);\n  dp[0] = true;\n\n  for (let i = 0; i < nums.length; i++) {\n    for (let j = sum; j > 0; j--) {\n      dp[j] = dp[j] || (j - nums[i] >= 0 && dp[j - nums[i]]);\n    }\n  }\n\n  return dp[sum];\n};\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/**\n * @param {number} amount\n * @param {number[]} coins\n * @return {number}\n */\nvar change = function (amount, coins) {\n  const dp = Array.from({ length: amount + 1 }).fill(0);\n  dp[0] = 1;\n  for (let i = 0; i < coins.length; i++) {\n    for (let j = 1; j <= amount; j++) {\n      dp[j] = dp[j] + (j - coins[i] >= 0 ? dp[j - coins[i]] : 0);\n    }\n  }\n  return dp[amount];\n};\n"
-        }
-    ]
+    "code": []
 },
 "longest-repeating-character-replacement":{
     "id": "424",
     "name": "longest-repeating-character-replacement",
     "pre": [],
-    "keyPoints": [
-        {
-            "text": "最长连续1模型",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/424.longest-repeating-character-replacement.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/424.longest-repeating-character-replacement.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def characterReplacement(self, s: str, k: int) -> int:\n        def fix(c, k):\n            ans = i = 0\n            for j in range(len(s)):\n                k -= s[j] != c\n                while i < j and k < 0:\n                    k += s[i] != c\n                    i += 1\n                ans = max(ans, j - i + 1)\n            return ans\n \n        ans = 0\n        for i in range(26):\n            ans = max(ans, fix(chr(ord(\"A\") + i), k))\n        return ans\n \n\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def characterReplacement(self, s: str, k: int) -> int:\n        if not s: return 0\n        counts = [0] * 26\n        i = most_fraq = 0\n        for j in range(len(s)):\n            counts[ord(s[j]) - ord(\"A\")] += 1\n            most_fraq = max(most_fraq, counts[ord(s[j]) - ord(\"A\")])\n            if i < j and j - i + 1 - most_fraq > k:\n                counts[ord(s[i]) - ord(\"A\")] -= 1\n                i += 1\n        return j - i + 1\n"
-        }
-    ]
+    "code": []
 },
 "path-sum-iii":{
     "id": "437",
     "name": "path-sum-iii",
-    "pre": [
-        {
-            "text": "hashmap",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "通过hashmap，以空间换时间",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "对于这种连续的元素求和问题，有一个共同的思路，可以参考[这道题目](./560.subarray",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "sum",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "equals",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "k.md)",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/437.path-sum-iii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/437.path-sum-iii.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n// the number of the paths starting from self\nfunction helper(root, sum) {\n  if (root === null) return 0;\n  const l = helper(root.left, sum - root.val);\n  const r = helper(root.right, sum - root.val);\n\n  return l + r + (root.val === sum ? 1 : 0);\n}\n/**\n * @param {TreeNode} root\n * @param {number} sum\n * @return {number}\n */\nvar pathSum = function (root, sum) {\n  // 空间复杂度O(n) 时间复杂度介于O(nlogn) 和 O(n^2)\n  // tag: dfs tree\n  if (root === null) return 0;\n  // the number of the paths starting from self\n  const self = helper(root, sum);\n  // we don't know the answer, so we just pass it down\n  const l = pathSum(root.left, sum);\n  // we don't know the answer, so we just pass it down\n  const r = pathSum(root.right, sum);\n\n  return self + l + r;\n};\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=437 lang=javascript\n *\n * [437] Path Sum III\n */\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\nfunction helper(root, acc, target, hashmap) {\n  // see also : https://leetcode.com/problems/subarray-sum-equals-k/\n\n  if (root === null) return 0;\n  let count = 0;\n  acc += root.val;\n  if (acc === target) count++;\n  if (hashmap[acc - target] !== void 0) {\n    count += hashmap[acc - target];\n  }\n  if (hashmap[acc] === void 0) {\n    hashmap[acc] = 1;\n  } else {\n    hashmap[acc] += 1;\n  }\n  const res =\n    count +\n    helper(root.left, acc, target, hashmap) +\n    helper(root.right, acc, target, hashmap);\n\n  // 这里要注意别忘记了\n  hashmap[acc] = hashmap[acc] - 1;\n\n  return res;\n}\n\nvar pathSum = function (root, sum) {\n  const hashmap = {};\n  return helper(root, 0, sum, hashmap);\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nimport collections\n'''\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n'''\nclass Solution:\n    def helper(self,root,acc,target,hashmap):\n        if not root:\n            return 0\n        count=0\n        acc+=root.val\n        if acc==target:\n            count+=1\n        if acc-target in hashmap:\n            count+=hashmap[acc-target]\n        hashmap[acc]+=1\n        if root.left:\n            count+=self.helper(root.left,acc,target,hashmap)\n        if root.right:\n            count+=self.helper(root.right,acc,target,hashmap)\n        hashmap[acc]-=1\n        return count\n    \n    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:\n        hashmap=collections.defaultdict(lambda:0)\n        return self.helper(root,0,targetSum,hashmap)\n"
-        }
-    ]
+    "code": []
 },
 "find-all-anagrams-in-a-string":{
     "id": "438",
     "name": "find-all-anagrams-in-a-string",
-    "pre": [
-        {
-            "text": "Sliding Window",
-            "link": null,
-            "color": "orange"
-        },
-        {
-            "text": "哈希表",
-            "link": null,
-            "color": "gold"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/438.find-all-anagrams-in-a-string.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/438.find-all-anagrams-in-a-string.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\npublic List<Integer> findAnagrams(String s, String p) {\n\n    List<Integer> res = new LinkedList<>();\n    if (s == null || p == null || s.length() < p.length())\n        return res;\n\n    int[] ch = new int[26];\n    //统计p串字符个数\n    for (char c : p.toCharArray())\n        ch[c - 'a']++;\n    //把窗口扩成p串的长度\n    int start = 0, end = 0, rest = p.length();\n    for (; end < p.length(); end++) {\n        char temp = s.charAt(end);\n        ch[temp - 'a']--;\n        if (ch[temp - 'a'] >= 0)\n            rest--;\n    }\n\n    if (rest == 0)\n        res.add(0);\n    //开始一步一步向右移动窗口。\n    while (end < s.length()) {\n        //左边的拿出来一个并更新状态\n        char temp = s.charAt(start);\n        if (ch[temp - 'a'] >= 0)\n            rest++;\n        ch[temp - 'a']++;\n        start++;\n        //右边的拿进来一个并更新状态\n        temp = s.charAt(end);\n        ch[temp - 'a']--;\n        if (ch[temp - 'a'] >= 0)\n            rest--;\n        end++;\n        // 状态合法就存到结果集合\n        if (rest == 0)\n            res.add(start);\n    }\n\n    return res;\n}\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def findAnagrams(self, s: str, p: str) -> List[int]:\n        target = collections.Counter(p)\n        ans = []\n        for i in range(len(s)):\n            if i >= len(p):\n                target[s[i - len(p)]] += 1\n                if target[s[i - len(p)]] == 0:\n                    del target[s[i - len(p)]]\n            target[s[i]] -= 1\n            if target[s[i]] == 0:\n                del target[s[i]]\n            if len(target) == 0:\n                ans.append(i - len(p) + 1)\n        return ans\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass FrequencyDict:\n   def __init__(self, s):\n       self.d = collections.Counter()\n       for char in s:\n           self.increment(char)\n\n   def _del_if_zero(self, char):\n       if self.d[char] == 0:\n           del self.d[char]\n\n   def is_empty(self):\n       return not self.d\n\n   def decrement(self, char):\n       self.d[char] -= 1\n       self._del_if_zero(char)\n\n   def increment(self, char):\n       self.d[char] += 1\n       self._del_if_zero(char)\n\n\nclass Solution:\n   def findAnagrams(self, s: str, p: str) -> List[int]:\n       ans = []\n\n       freq = FrequencyDict(p)\n\n       for char in s[:len(p)]:\n           freq.decrement(char)\n\n       if freq.is_empty():\n           ans.append(0)\n\n       for i in range(len(p), len(s)):\n           start, end = s[i - len(p)], s[i]\n           freq.increment(start)\n           freq.decrement(end)\n           if freq.is_empty():\n               ans.append(i - len(p) + 1)\n\n       return ans\n"
-        }
-    ]
+    "code": []
 },
 "add-two-numbers-ii":{
     "id": "445",
     "name": "add-two-numbers-ii",
-    "pre": [
-        {
-            "text": "链表",
-            "link": null,
-            "color": "magenta"
-        },
-        {
-            "text": "栈",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "栈的基本操作",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "carried变量记录进位",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "循环的终止条件设置成`stack.length>0`可以简化操作",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "注意特殊情况，比如1+99=100",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/445.add-two-numbers-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/445.add-two-numbers-ii.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=445 lang=javascript\n *\n * [445] Add Two Numbers II\n */\n/**\n * Definition for singly-linked list.\n * function ListNode(val) {\n *     this.val = val;\n *     this.next = null;\n * }\n */\n/**\n * @param {ListNode} l1\n * @param {ListNode} l2\n * @return {ListNode}\n */\nvar addTwoNumbers = function (l1, l2) {\n  const stack1 = [];\n  const stack2 = [];\n  const stack = [];\n\n  let cur1 = l1;\n  let cur2 = l2;\n  let curried = 0;\n\n  while (cur1) {\n    stack1.push(cur1.val);\n    cur1 = cur1.next;\n  }\n\n  while (cur2) {\n    stack2.push(cur2.val);\n    cur2 = cur2.next;\n  }\n\n  let a = null;\n  let b = null;\n\n  while (stack1.length > 0 || stack2.length > 0) {\n    a = Number(stack1.pop()) || 0;\n    b = Number(stack2.pop()) || 0;\n\n    stack.push((a + b + curried) % 10);\n\n    if (a + b + curried >= 10) {\n      curried = 1;\n    } else {\n      curried = 0;\n    }\n  }\n\n  if (curried === 1) {\n    stack.push(1);\n  }\n\n  const dummy = {};\n\n  let current = dummy;\n\n  while (stack.length > 0) {\n    current.next = {\n      val: stack.pop(),\n      next: null,\n    };\n\n    current = current.next;\n  }\n\n  return dummy.next;\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\n# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.next = None\n\nclass Solution:\n    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:\n        def listToStack(l: ListNode) -> list:\n            stack, c = [], l\n            while c:\n                stack.append(c.val)\n                c = c.next\n            return stack\n\n        # transfer l1 and l2 into stacks\n        stack1, stack2 = listToStack(l1), listToStack(l2)\n\n        # add stack1 and stack2\n        diff = abs(len(stack1) - len(stack2))\n        stack1 = ([0]*diff + stack1 if len(stack1) < len(stack2) else stack1)\n        stack2 = ([0]*diff + stack2 if len(stack2) < len(stack1) else stack2)\n        stack3 = [x + y for x, y in zip(stack1, stack2)]\n\n        # calculate carry for each item in stack3 and add one to the item before it\n        carry = 0\n        for i, val in enumerate(stack3[::-1]):\n            index = len(stack3) - i - 1\n            carry, stack3[index] = divmod(val + carry, 10)\n            if carry and index == 0:\n                stack3 = [1] + stack3\n            elif carry:\n                stack3[index - 1] += 1\n\n        # transfer stack3 to a linkedList\n        result = ListNode(0)\n        c = result\n        for item in stack3:\n            c.next = ListNode(item)\n            c = c.next\n\n        return result.next\n"
-        }
-    ]
+    "code": []
 },
 "4-sum-ii":{
     "id": "454",
     "name": "4-sum-ii",
-    "pre": [
-        {
-            "text": "hashTable",
-            "link": null,
-            "color": "green"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "空间换时间",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "两两分组，求出两两结合能够得出的可能数，然后合并即可。",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/454.4-sum-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/454.4-sum-ii.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=454 lang=javascript\n *\n * [454] 4Sum II\n *\n * https://leetcode.com/problems/4sum-ii/description/\n/**\n * @param {number[]} A\n * @param {number[]} B\n * @param {number[]} C\n * @param {number[]} D\n * @return {number}\n */\nvar fourSumCount = function (A, B, C, D) {\n  const sumMapper = {};\n  let res = 0;\n  for (let i = 0; i < A.length; i++) {\n    for (let j = 0; j < B.length; j++) {\n      sumMapper[A[i] + B[j]] = (sumMapper[A[i] + B[j]] || 0) + 1;\n    }\n  }\n\n  for (let i = 0; i < C.length; i++) {\n    for (let j = 0; j < D.length; j++) {\n      res += sumMapper[-(C[i] + D[j])] || 0;\n    }\n  }\n\n  return res;\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def fourSumCount(self, A: List[int], B: List[int], C: List[int], D: List[int]) -> int:\n        mapper = {}\n        res = 0\n        for i in A:\n            for j in B:\n                mapper[i + j] = mapper.get(i + j, 0) + 1\n\n        for i in C:\n            for j in D:\n                res += mapper.get(-1 * (i + j), 0)\n        return res\n"
-        }
-    ]
+    "code": []
 },
 "AssignCookies":{
     "id": "455",
     "name": "AssignCookies",
-    "pre": [
-        {
-            "text": "贪心算法",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/greedy.md",
-            "color": "magenta"
-        },
-        {
-            "text": "双指针",
-            "link": null,
-            "color": "green"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "先排序再贪心",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/455.AssignCookies.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/455.AssignCookies.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/**\n * @param {number[]} g\n * @param {number[]} s\n * @return {number}\n */\nconst findContentChildren = function (g, s) {\n    g = g.sort((a, b) => a - b);\n    s = s.sort((a, b) => a - b);\n    let gi = 0; // 胃口值\n    let sj = 0; // 饼干尺寸\n    let res = 0;\n    while (gi < g.length && sj < s.length) {\n        // 当饼干 sj >= 胃口 gi 时，饼干满足胃口，更新满足的孩子数并移动指针\n        if (s[sj] >= g[gi]) {\n            gi++;\n            sj++;\n            res++;\n        } else {\n            // 当饼干 sj < 胃口 gi 时，饼干不能满足胃口，需要换大的\n            sj++;\n        }\n    }\n    return res;\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def findContentChildren(self, g: List[int], s: List[int]) -> int:\n        g.sort()\n        s.sort()\n        count=gIdx=sIdx=0\n        while gIdx<len(g) and sIdx<len(s):\n            if s[sIdx]>=g[gIdx]:\n                gIdx+=1\n                count+=1\n            sIdx+=1\n        return count\n"
-        }
-    ]
+    "code": []
 },
 "132-pattern":{
     "id": "456",
     "name": "132-pattern",
-    "pre": [
-        {
-            "text": "单调栈",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/monotone-stack.md",
-            "color": "purple"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "先找到32模式，再找132模式。",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "固定2,从右往左遍历,使用单调栈获取最大的小于当前数的2，并将当前数作为3。",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/456.132-pattern.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/456.132-pattern.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def find132pattern(self, A: List[int]) -> bool:\n        stack = []\n        p2 = float(\"-inf\")\n        for a in A[::-1]:\n            # p2 不为初始值意味着我们已经找到了 32 模式，因此 a < p2 时候，我们就找到了 132 模式\n            if a < p2:\n                return True\n            while stack and a > stack[-1]:\n                p2 = stack.pop()\n            stack.append(a)\n\n        return False\n"
-        }
-    ]
+    "code": []
 },
 "circular-array-loop":{
     "id": "457",
     "name": "circular-array-loop",
-    "pre": [
-        {
-            "text": "图",
-            "link": null,
-            "color": "green"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/457.circular-array-loop.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/457.circular-array-loop.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nfor i in range(n):\n    if can(i): return True\nreturn False\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def circularArrayLoop(self, nums: List[int]) -> bool:\n        def can(cur, start, steps):\n            if nums[cur] ^ nums[start] < 0: return False\n            if cur == start and steps != 0: return steps > 1\n            if cur in visited: return False\n            visited.add(cur)\n            return can(((cur + nums[cur]) % n + n ) % n, start, steps + 1)\n        n = len(nums)\n        visited = None\n        for i in range(n):\n            visited = set()\n            if can(i, i, 0): return True\n        return False\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def circularArrayLoop(self, nums: List[int]) -> bool:\n        def can(cur, start, steps):\n            if nums[cur] ^ nums[start] < 0: return False\n            if cur == start and steps != 0: return steps > 1\n            if steps > n: return False\n            return can(((cur + nums[cur]) % n + n ) % n, start, steps + 1)\n        n = len(nums)\n        for i in range(n):\n            if can(i, i, 0): return True\n        return False\n\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def circularArrayLoop(self, nums: List[int]) -> bool:\n        def can(cur, start, start_v):\n            if nums[cur] >= 5000: return nums[cur] - 5000 == start\n            if nums[cur] ^ start_v < 0: return False\n            nxt = ((cur + nums[cur]) % n + n ) % n\n            if nxt == cur: return False\n            nums[cur] = start + 5000\n            return can(nxt, start, start_v)\n        n = len(nums)\n        for i in range(n):\n            if can(i, i, nums[i]): return True\n        return False\n\n"
-        }
-    ]
+    "code": []
 },
 "lfu-cache":{
     "id": "460",
     "name": "lfu-cache",
-    "pre": [
-        {
-            "text": "链表",
-            "link": null,
-            "color": "magenta"
-        },
-        {
-            "text": "HashMap",
-            "link": null,
-            "color": "orange"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "分析用两个`Map`分别保存`nodeMap{key,node}`和`freqMap{frequent,DoublyLinkedList}`。实现`get`和`put`操作都是`O(1)`的时间复杂度。可以用Java自带的一些数据结构，比如HashLinkedHashSet，这样就不需要自己自建Node，DoublelyLinkedList。可以很大程度的缩减代码量。",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/460.lfu-cache.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/460.lfu-cache.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\npublic class LC460LFUCache {\n  class Node {\n    int key, val, freq;\n    Node prev, next;\n\n    Node(int key, int val) {\n      this.key = key;\n      this.val = val;\n      freq = 1;\n    }\n  }\n\n  class DoubleLinkedList {\n    private Node head;\n    private Node tail;\n    private int size;\n\n    DoubleLinkedList() {\n      head = new Node(0, 0);\n      tail = new Node(0, 0);\n      head.next = tail;\n      tail.prev = head;\n    }\n\n    void add(Node node) {\n      head.next.prev = node;\n      node.next = head.next;\n      node.prev = head;\n      head.next = node;\n      size++;\n    }\n\n    void remove(Node node) {\n      node.prev.next = node.next;\n      node.next.prev = node.prev;\n      size--;\n    }\n\n    // always remove last node if last node exists\n    Node removeLast() {\n      if (size > 0) {\n        Node node = tail.prev;\n        remove(node);\n        return node;\n      } else return null;\n    }\n  }\n\n  // cache capacity\n  private int capacity;\n  // min frequent\n  private int minFreq;\n  Map<Integer, Node> nodeMap;\n  Map<Integer, DoubleLinkedList> freqMap;\n  public LC460LFUCache(int capacity) {\n    this.minFreq = 0;\n    this.capacity = capacity;\n    nodeMap = new HashMap<>();\n    freqMap = new HashMap<>();\n  }\n\n  public int get(int key) {\n    Node node = nodeMap.get(key);\n    if (node == null) return -1;\n    update(node);\n    return node.val;\n  }\n\n  public void put(int key, int value) {\n    if (capacity == 0) return;\n    Node node;\n    if (nodeMap.containsKey(key)) {\n      node = nodeMap.get(key);\n      node.val = value;\n      update(node);\n    } else {\n      node = new Node(key, value);\n      nodeMap.put(key, node);\n      if (nodeMap.size() == capacity) {\n        DoubleLinkedList lastList = freqMap.get(minFreq);\n        nodeMap.remove(lastList.removeLast().key);\n      }\n      minFreq = 1;\n      DoubleLinkedList newList = freqMap.getOrDefault(node.freq, new DoubleLinkedList());\n      newList.add(node);\n      freqMap.put(node.freq, newList);\n    }\n  }\n\n  private void update(Node node) {\n    DoubleLinkedList oldList = freqMap.get(node.freq);\n    oldList.remove(node);\n    if (node.freq == minFreq && oldList.size == 0) minFreq++;\n    node.freq++;\n    DoubleLinkedList newList = freqMap.getOrDefault(node.freq, new DoubleLinkedList());\n    newList.add(node);\n    freqMap.put(node.freq, newList);\n  }\n }\n"
-        }
-    ]
+    "code": []
 },
 "can-i-win":{
     "id": "464",
     "name": "can-i-win",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/dynamic-programming.md \"动态规划\"",
-            "color": "red"
-        },
-        {
-            "text": "回溯",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/backtrack.md",
-            "color": "green"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "分析",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "回溯",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "状态压缩",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "linkedin"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/464.can-i-win.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/464.can-i-win.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\npublic class Solution {\n    public boolean canIWin(int maxChoosableInteger, int desiredTotal) {\n\n        if (maxChoosableInteger >= desiredTotal) return true;\n        if ((1 + maxChoosableInteger) * maxChoosableInteger / 2 < desiredTotal) return false;\n\n        Boolean[] dp = new Boolean[(1 << maxChoosableInteger) - 1];\n        return dfs(maxChoosableInteger, desiredTotal, 0, dp);\n    }\n\n    private boolean dfs(int maxChoosableInteger, int desiredTotal, int state, Boolean[] dp) {\n        if (dp[state] != null)\n            return dp[state];\n        for (int i = 1; i <= maxChoosableInteger; i++){\n            int tmp = (1 << (i - 1));\n            if ((tmp & state) == 0){\n                if (desiredTotal - i <= 0 || !dfs(maxChoosableInteger, desiredTotal - i, tmp|state, dp)) {\n                    dp[state] = true;\n                    return true;\n                }\n            }\n        }\n        dp[state] = false;\n        return false;\n    }\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\nvar canIWin = function (maxChoosableInteger, desiredTotal) {\n  // 直接获胜\n  if (maxChoosableInteger >= desiredTotal) return true;\n\n  // 全部拿完也无法到达\n  var sum = (maxChoosableInteger * (maxChoosableInteger + 1)) / 2;\n  if (desiredTotal > sum) return false;\n\n  // 记忆化\n  var dp = {};\n\n  /**\n   * @param {number} total 剩余的数量\n   * @param {number} state 使用二进制位表示抽过的状态\n   */\n  function f(total, state) {\n    // 有缓存\n    if (dp[state] !== undefined) return dp[state];\n\n    for (var i = 1; i <= maxChoosableInteger; i++) {\n      var curr = 1 << i;\n      // 已经抽过这个数\n      if (curr & state) continue;\n      // 直接获胜\n      if (i >= total) return (dp[state] = true);\n      // 可以让对方输\n      if (!f(total - i, state | curr)) return (dp[state] = true);\n    }\n\n    // 没有任何让对方输的方法\n    return (dp[state] = false);\n  }\n\n  return f(desiredTotal, 0);\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    bool canIWin(int maxChoosableInteger, int desiredTotal) {\n        int sum = (1+maxChoosableInteger)*maxChoosableInteger/2;\n        if(sum < desiredTotal){\n            return false;\n        }\n        unordered_map<int,int> d;\n        return dfs(maxChoosableInteger,0,desiredTotal,0,d);\n    }\n\n    bool dfs(int n,int s,int t,int S,unordered_map<int,int>& d){\n        if(d[S]) return  d[S];\n        int& ans = d[S];\n\n        if(s >= t){\n            return ans = true;\n        }\n        if(S == (((1 << n)-1) << 1)){\n            return ans = false;\n        }\n\n        for(int m = 1;m <=n;++m){\n            if(S & (1 << m)){\n                continue;\n            }\n            int nextS = S|(1 << m);\n            if(s+m >= t){\n                return ans = true;\n            }\n            bool r1 = dfs(n,s+m,t,nextS,d);\n            if(!r1){\n                return ans = true;\n            }\n        }\n        return ans = false;\n    }\n};\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\ndef canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:\n        # acc 表示当前累计的数字和\n        def dfs(acc):\n            if acc >= desiredTotal:\n                return False\n            for n in range(1, maxChoosableInteger + 1):\n                # 对方有一种情况赢不了，我就选这个数字就能赢了，返回 true，代表可以赢。\n                if not dfs(acc + n):\n                    return True\n            return False\n\n        # 初始化集合，用于保存当前已经选择过的数。\n        return dfs(0)\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:\n        if desiredTotal <= maxChoosableInteger:\n            return True\n        if sum(range(maxChoosableInteger + 1)) < desiredTotal:\n            return False\n        # picked 用于保存当前已经选择过的数。\n        # acc 表示当前累计的数字和\n        def backtrack(picked, acc):\n            if acc >= desiredTotal:\n                return False\n            if len(picked) == maxChoosableInteger:\n                # 说明全部都被选了，没得选了，返回 False， 代表输了。\n                return False\n            for n in range(1, maxChoosableInteger + 1):\n                if n not in picked:\n                    picked.add(n)\n                    # 对方有一种情况赢不了，我就选这个数字就能赢了，返回 true，代表可以赢。\n                    if not backtrack(picked, acc + n):\n                        picked.remove(n)\n                        return True\n                    picked.remove(n)\n            return False\n\n        # 初始化集合，用于保存当前已经选择过的数。\n        return backtrack(set(), 0)\n"
-        },
-        {
-            "language": "py",
-            "text": "\n1 << a\n"
-        },
-        {
-            "language": "py",
-            "text": "\na | b\n"
-        },
-        {
-            "language": "py",
-            "text": "\nseen = 0b0000000\na = 0b0000001\nb = ob0000010\n\nseen |= a 后，  seen 为 0b0000001\nseen |= b 后，  seen 为 0b0000011\n"
-        },
-        {
-            "language": "py",
-            "text": "\na & b\n"
-        },
-        {
-            "language": "py",
-            "text": "\nmask = 0b0000010\na & mask == 1 说明 a 在第二位（从低到高）是 1\na & mask == 0 说明 a 在第二位（从低到高）是 0\n"
-        },
-        {
-            "language": "py",
-            "text": "\npicked == (1 << (maxChoosableInteger + 1)) - 2\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:\n        if desiredTotal <= maxChoosableInteger:\n            return True\n        if sum(range(maxChoosableInteger + 1)) < desiredTotal:\n            return False\n\n        @lru_cache(None)\n        def dp(picked, acc):\n            if acc >= desiredTotal:\n                return False\n            if picked == (1 << (maxChoosableInteger + 1)) - 2:\n                return False\n            for n in range(1, maxChoosableInteger + 1):\n                if picked & 1 << n == 0:\n                    if not dp(picked | 1 << n, acc + n):\n                        return True\n            return False\n\n        return dp(0, 0)\n"
-        }
-    ]
+    "code": []
 },
 "implement-rand10-using-rand7":{
     "id": "470",
     "name": "implement-rand10-using-rand7",
-    "pre": [
-        {
-            "text": "概率",
-            "link": null,
-            "color": "red"
-        },
-        {
-            "text": "拒绝采样",
-            "link": null,
-            "color": "orange"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "选择等概率的十个数即可实现rand10",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/470.implement-rand10-using-rand7.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/470.implement-rand10-using-rand7.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def rand10(self):\n        while True:\n            row = rand7()\n            col = rand7()\n            idx = col + (row - 1) * 7\n            if idx <= 40:\n                break\n\n        return 1 + (idx - 1)%10\n\n"
-        }
-    ]
+    "code": []
 },
 "concatenated-words":{
     "id": "472",
     "name": "concatenated-words",
-    "pre": [
-        {
-            "text": "前缀树",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/trie.md",
-            "color": "purple"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "分析",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "前缀树",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "记忆化搜索",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "排序后word**选择性**插入到trie中",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/472.concatenated-words.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/472.concatenated-words.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nfor word in words:\n    if trie.cntWords(word) >= 2:\n        res.append(word)\n    else:\n        trie.insert(word)\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Trie:\n\n    def __init__(self):\n        self.Trie = {}\n        self.visited = {}\n\n    def insert(self, word):\n        curr = self.Trie\n        for w in word:\n            if w not in curr:\n                curr[w] = {}\n            curr = curr[w]\n        curr['#'] = 1\n\n    def cntWords(self, word):\n        if not word:\n            return 0\n        if word in self.visited:\n            return self.visited[word]\n        curr = self.Trie\n        res = float('-inf')\n\n        for i, w in enumerate(word):\n            if w not in curr:\n                return res\n            curr = curr[w]\n            if '#' in curr:\n                res = max(res, 1 + self.cntWords(word[i + 1:]))\n        self.visited[word] = res\n        return res\n\n\nclass Solution:\n    def findAllConcatenatedWordsInADict(self, words: List[str]) -> List[str]:\n        trie = Trie()\n        res = []\n        words.sort(key=len)\n        for word in words:\n            if trie.cntWords(word) >= 2:\n                res.append(word)\n            else:\n                trie.insert(word)\n        return res\n\n"
-        }
-    ]
+    "code": []
 },
 "matchsticks-to-square":{
     "id": "473",
     "name": "matchsticks-to-square",
-    "pre": [
-        {
-            "text": "回溯",
-            "link": null,
-            "color": "green"
-        },
-        {
-            "text": "剪枝",
-            "link": null,
-            "color": "gold"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "如果火柴和不是4的倍数，需要剪枝。",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "降序排序，优先选择权值大的可以介绍搜索树的规模。这是放置型回溯的常见的固定套路之一。",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/473.matchsticks-to-square.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/473.matchsticks-to-square.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def makesquare(self, matchsticks: List[int]) -> bool:\n        side = sum(matchsticks) // 4\n        sides = [0] * 4\n        # 剪枝处理\n        if side * 4 != sum(matchsticks):\n            return False\n\n        matchsticks.sort(reverse=True)\n        #  带权值的放置型回溯，有一个剪枝套路就是进行一次降序排序。\n        # 由于:\n        # 1. 性能瓶颈不在排序，并且先放大的可以有效减少极端情况下的执行次数，因此剪枝效果很棒。\n        # 2. 既然都回溯了，那么顺序也是无所谓的，因此打乱顺序无所谓。 而如果真的顺序有所谓，我们也可以排序后记录下排序前的索引也帮不难。\n        # 3. 优先选择大的，这样可选择变少了，可以有效减少递归树节点的个数，进而使得搜索时间大大降低。\n        def backtrack(i):\n            if i == len(matchsticks):\n                return sides[0] == sides[1] == sides[2] == sides[3] == side\n            for j in range(4):\n                if sides[j] + matchsticks[i] <= side:\n                    sides[j] += matchsticks[i]\n                    if backtrack(i + 1):\n                        return True\n                    sides[j] -= matchsticks[i]\n            return False\n\n        return backtrack(0)\n\n\n"
-        }
-    ]
+    "code": []
 },
 "sliding-window-median":{
     "id": "480",
     "name": "sliding-window-median",
-    "pre": [
-        {
-            "text": "二分查找",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/91/binary-search.md",
-            "color": "magenta"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "滑动窗口+二分",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/480.sliding-window-median.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/480.sliding-window-median.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def medianSlidingWindow(self, A: List[int], k: int) -> List[float]:\n        ans = []\n        win = []\n\n        for i, a in enumerate(A):\n            bisect.insort(win, a)\n            if i >= k:\n                win.pop(bisect.bisect_left(win, A[i - k]))\n            if i >= k - 1:\n                if k & 1:\n                    median = win[k // 2]\n                else:\n                    median = (win[k // 2] + win[k // 2 - 1]) / 2\n                ans.append(median)\n        return ans\n\n\n"
-        }
-    ]
+    "code": []
 },
 "smallest-good-base":{
     "id": "483",
     "name": "smallest-good-base",
-    "pre": [
-        {
-            "text": "二分法",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "进制转换",
-            "link": null,
-            "color": "purple"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "利用等比数列求和公式可降低时间复杂度",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "从进制转换入手发现单调性，从而使用二分解决",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/483.smallest-good-base.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/483.smallest-good-base.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def smallestGoodBase(self, n: str) -> str:\n        n = int(n)\n        # 上面提到的 base 进制转十进制公式。\n        # 使用等比数列求和公式可简化时间复杂度\n        def sum_with(base, N):\n            return (1 - base ** N) // (1 - base)\n            # return sum(1 * base ** i for i in range(N))\n        # bin(n) 会计算出 n 的二进制表示， 其会返回形如 '0b10111' 的字符串，因此需要减去 2。\n        for N in range(len(bin(n)) - 2, 0, -1):\n            l = 2\n            r = n - 1\n            while l <= r:\n                mid = (l + r) // 2\n                v = sum_with(mid, N)\n\n                if v < n:\n                    l = mid + 1\n                elif v > n:\n                    r = mid - 1\n                else:\n                    return str(mid)\n\n"
-        }
-    ]
+    "code": []
 },
 "zuma-game":{
     "id": "488",
     "name": "zuma-game",
-    "pre": [
-        {
-            "text": "回溯",
-            "link": null,
-            "color": "green"
-        },
-        {
-            "text": "哈希表",
-            "link": null,
-            "color": "gold"
-        },
-        {
-            "text": "双指针",
-            "link": null,
-            "color": "green"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "回溯模板",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "双指针写法",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "百度"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/488.zuma-game.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/488.zuma-game.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\ni = 0\nwhile i < len(board):\n    j = i + 1\n    while j < len(board) and board[i] == board[j]: j += 1\n    # 其他逻辑\n\n    # 更新左指针\n    i = j\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def findMinStep(self, board: str, hand: str) -> int:\n        def backtrack(board):\n            if not board: return 0\n            i = 0\n            ans = 6\n            while i < len(board):\n                j = i + 1\n                while j < len(board) and board[i] == board[j]: j += 1\n                balls = 3 - (j - i)\n                if counter[board[i]] >= balls:\n                    balls = max(0, balls)\n                    counter[board[i]] -= balls\n                    ans = min(ans, balls + backtrack(board[:i] + board[j:]))\n                    counter[board[i]] += balls\n                i = j\n            return ans\n\n        counter = collections.Counter(hand)\n        ans = backtrack(board)\n        return -1 if ans > 5 else ans\n\n"
-        }
-    ]
+    "code": []
 },
 "reverse-pairs":{
     "id": "493",
     "name": "reverse-pairs",
-    "pre": [
-        {
-            "text": "归并排序",
-            "link": null,
-            "color": "cyan"
-        },
-        {
-            "text": "逆序数",
-            "link": null,
-            "color": "volcano"
-        },
-        {
-            "text": "分治",
-            "link": null,
-            "color": "gold"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "归并排序",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "逆序数",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "分治",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "识别考点，其他非重点可以使用语言内置方法",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/493.reverse-pairs.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/493.reverse-pairs.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution(object):\n    def reversePairs(self, nums):\n        n = len(nums)\n        cnt = 0\n        for i in range(n):\n            for j in range(i + 1, n):\n                if nums[i] > 2 * nums[j]:\n                    cnt += 1\n        return cnt\n"
-        },
-        {
-            "language": "py",
-            "text": "\nl = r = 0\nwhile l < len(left) and r < len(right):\n    if left[l] <= 2 * right[r]:\n        l += 1\n    else:\n        self.cnt += len(left) - l\n        r += 1\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution(object):\n    def reversePairs(self, nums):\n        self.cnt = 0\n\n        def mergeSort(lst):\n            L = len(lst)\n            if L <= 1:\n                return lst\n            return mergeTwo(mergeSort(lst[:L//2]), mergeSort(lst[L//2:]))\n\n        def mergeTwo(left, right):\n            l = r = 0\n            while l < len(left) and r < len(right):\n                if left[l] <= 2 * right[r]:\n                    l += 1\n                else:\n                    self.cnt += len(left) - l\n                    r += 1\n            return sorted(left+right)\n\n        mergeSort(nums)\n        return self.cnt\n\n"
-        }
-    ]
+    "code": []
 },
 "target-sum":{
     "id": "494",
     "name": "target-sum",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "对元素进行分组，分组的依据是符号，是`+`或者`",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "`",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "通过数学公式推导可以简化我们的求解过程，这需要一点`数学知识和数学意识`",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/494.target-sum.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/494.target-sum.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=494 lang=javascript\n *\n * [494] Target Sum\n *\n */\n// 这个是我们熟悉的问题了\n// 我们这里需要求解的是nums里面有多少种可以组成target的方式\nvar sumCount = function (nums, target) {\n  // 这里通过观察，我们没必要使用二维数组去存储这些计算结果\n  // 使用一维数组可以有效节省空间\n  const dp = Array(target + 1).fill(0);\n  dp[0] = 1;\n  for (let i = 0; i < nums.length; i++) {\n    for (let j = target; j >= nums[i]; j--) {\n      dp[j] += dp[j - nums[i]];\n    }\n  }\n  return dp[target];\n};\nconst add = (nums) => nums.reduce((a, b) => (a += b), 0);\n/**\n * @param {number[]} nums\n * @param {number} S\n * @return {number}\n */\nvar findTargetSumWays = function (nums, S) {\n  const sum = add(nums);\n  if (sum < S) return 0;\n  if ((S + sum) % 2 === 1) return 0;\n  return sumCount(nums, (S + sum) >> 1);\n};\n"
-        }
-    ]
+    "code": []
 },
 "base-7":{
     "id": "504",
     "name": "base-7",
     "pre": [],
-    "keyPoints": [
-        {
-            "text": "除x取余，并逆序输出",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/504.base-7.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/504.base-7.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def convertToBase7(self, num: int) -> str:\n        if num < 0:\n            return \"-\" + self.convertToBase7(-num)\n        if num < 7:\n            return str(num)\n        return self.convertToBase7(num // 7) + str(num % 7)\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def convertToBase7(self, num: int) -> str:\n        if num == 0:\n            return \"0\"\n        ans = []\n        is_negative = num < 0\n        num = abs(num)\n        while num > 0:\n            num, remain = num // 7, num % 7\n            ans.append(str(remain))\n\n        return \"-\" + \"\".join(ans[::-1]) if is_negative else \"\".join(ans[::-1])\n\n"
-        }
-    ]
+    "code": []
 },
 "find-bottom-left-tree-value":{
     "id": "513",
@@ -8911,182 +5075,37 @@
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/513.find-bottom-left-tree-value.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/513.find-bottom-left-tree-value.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\nclass Solution {\n    Map<Integer,Integer> map = new HashMap<>();\n    int maxLevel = 0;\n    public int findBottomLeftValue(TreeNode root) {\n        if (root == null) return 0;\n        LinkedList<TreeNode> deque = new LinkedList<>();\n        deque.add(root);\n        int res = 0;\n        while(!deque.isEmpty()) {\n            int size = deque.size();\n            for (int i = 0; i < size; i++) {\n                TreeNode node = deque.pollFirst();\n                if (i == 0) {\n                    res = node.val;\n                }\n                if (node.left != null)deque.addLast(node.left);\n                if (node.right != null)deque.addLast(node.right);\n            }\n        }\n        return res;\n    }\n}\n"
-        },
-        {
-            "language": "java",
-            "text": "\nclass Solution {\n    int max = 0;\n    Map<Integer,Integer> map = new HashMap<>();\n    public int findBottomLeftValue(TreeNode root) {\n        if (root == null) return 0;\n        dfs(root,0);\n        return map.get(max);\n    }\n\n    void dfs (TreeNode node,int level){\n        if (node == null){\n            return;\n        }\n        int curLevel = level+1;\n        dfs(node.left,curLevel);\n        if (curLevel > max && !map.containsKey(curLevel)){\n            map.put(curLevel,node.val);\n            max = curLevel;\n        }\n        dfs(node.right,curLevel);\n    }\n\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\nvar findBottomLeftValue = function (root) {\n  let curLevel = [root];\n  let res = root.val;\n  while (curLevel.length) {\n    let nextLevel = [];\n    for (let i = 0; i < curLevel.length; i++) {\n      curLevel[i].left && nextLevel.push(curLevel[i].left);\n      curLevel[i].right && nextLevel.push(curLevel[i].right);\n    }\n    res = curLevel[0].val;\n    curLevel = nextLevel;\n  }\n  return res;\n};\n"
-        },
-        {
-            "language": "js",
-            "text": "\nfunction findBottomLeftValue(root) {\n  let maxDepth = 0;\n  let res = root.val;\n\n  dfs(root.left, 0);\n  dfs(root.right, 0);\n\n  return res;\n\n  function dfs(cur, depth) {\n    if (!cur) {\n      return;\n    }\n    const curDepth = depth + 1;\n    if (curDepth > maxDepth) {\n      maxDepth = curDepth;\n      res = cur.val;\n    }\n    dfs(cur.left, curDepth);\n    dfs(cur.right, curDepth);\n  }\n}\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    int findBottomLeftValue_bfs(TreeNode* root) {\n        queue<TreeNode*> q;\n        TreeNode* ans = NULL;\n        q.push(root);\n        while (!q.empty()) {\n            ans = q.front();\n            int size = q.size();\n            while (size--) {\n                TreeNode* cur = q.front();\n                q.pop();\n                if (cur->left )\n                    q.push(cur->left);\n                if (cur->right)\n                    q.push(cur->right);\n            }\n        }\n        return ans->val;\n    }\n}\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    int res;\n    int max_depth = 0;\n    void findBottomLeftValue_core(TreeNode* root, int depth) {\n        if (root->left || root->right) {\n            if (root->left)\n                findBottomLeftValue_core(root->left, depth + 1);\n            if (root->right)\n                findBottomLeftValue_core(root->right, depth + 1);\n        } else {\n            if (depth > max_depth) {\n                res = root->val;\n                max_depth = depth;\n            }\n        }\n    }\n    int findBottomLeftValue(TreeNode* root) {\n        findBottomLeftValue_core(root, 1);\n        return res;\n    }\n};\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution(object):\n    def findBottomLeftValue(self, root):\n        queue = collections.deque()\n        queue.append(root)\n        while queue:\n            length = len(queue)\n            res = queue[0].val\n            for _ in range(length):\n                cur = queue.popleft()\n                if cur.left:\n                    queue.append(cur.left)\n                if cur.right:\n                    queue.append(cur.right)\n        return res\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution(object):\n\n    def __init__(self):\n        self.res = 0\n        self.max_level = 0\n\n    def findBottomLeftValue(self, root):\n        self.res = root.val\n        def dfs(root, level):\n            if not root:\n                return\n            if level > self.max_level:\n                self.res = root.val\n                self.max_level = level\n            dfs(root.left, level + 1)\n            dfs(root.right, level + 1)\n        dfs(root, 0)\n\n        return self.res\n"
-        }
-    ]
+    "code": []
 },
 "longest-palindromic-subsequence":{
     "id": "516",
     "name": "longest-palindromic-subsequence",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "”延伸“（extend）",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/516.longest-palindromic-subsequence.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/516.longest-palindromic-subsequence.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\nif (s[i] === s[j]) {\n  dp[i][j] = dp[i + 1][j - 1] + 2;\n} else {\n  dp[i][j] = Math.max(dp[i][j - 1], dp[i + 1][j]);\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=516 lang=javascript\n *\n * [516] Longest Palindromic Subsequence\n */\n/**\n * @param {string} s\n * @return {number}\n */\nvar longestPalindromeSubseq = function (s) {\n  // bbbab 返回4\n  // tag : dp\n  const dp = [];\n\n  for (let i = s.length - 1; i >= 0; i--) {\n    dp[i] = Array(s.length).fill(0);\n    for (let j = i; j < s.length; j++) {\n      if (i - j === 0) dp[i][j] = 1;\n      else if (s[i] === s[j]) {\n        dp[i][j] = dp[i + 1][j - 1] + 2;\n      } else {\n        dp[i][j] = Math.max(dp[i][j - 1], dp[i + 1][j]);\n      }\n    }\n  }\n\n  return dp[0][s.length - 1];\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def longestPalindromeSubseq(self, s: str) -> int:\n        @cache\n        def dp(l,r):\n            if l >= r: return int(l == r)\n            if s[l] == s[r]: \n                return 2 + dp(l+1,r-1)\n            return max(dp(l+1, r), dp(l, r-1))\n        return dp(0, len(s)-1)\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def longestPalindromeSubseq(self, s: str) -> int:\n        n = len(s)\n        dp = [[0]*n for _ in range(n)]\n\n        for i in range(n-1, -1, -1):\n            for j in range(i, n):\n                if i == j:\n                    dp[i][j] = 1\n                elif s[i] == s[j]:\n                    dp[i][j] = dp[i+1][j-1]+2\n                else:\n                    dp[i][j] = max(dp[i+1][j], dp[i][j-1])\n        return dp[0][-1]\n        \n "
-        }
-    ]
+    "code": []
 },
 "coin-change-2":{
     "id": "518",
     "name": "coin-change-2",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/dynamic-programming.md",
-            "color": "red"
-        },
-        {
-            "text": "背包问题",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/518.coin-change-2.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/518.coin-change-2.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\nif (amount === 0) return 1;\n\nconst dp = [Array(amount + 1).fill(1)];\n\nfor (let i = 1; i < amount + 1; i++) {\n  dp[i] = Array(coins.length + 1).fill(0);\n  for (let j = 1; j < coins.length + 1; j++) {\n    // 从1开始可以简化运算\n    if (i - coins[j - 1] >= 0) {\n      // 注意这里是coins[j -1]而不是coins[j]\n      dp[i][j] = dp[i][j - 1] + dp[i - coins[j - 1]][j]; // 由于可以重复使用硬币所以这里是j不是j-1\n    } else {\n      dp[i][j] = dp[i][j - 1];\n    }\n  }\n}\n\nreturn dp[dp.length - 1][coins.length];\n"
-        },
-        {
-            "language": "js",
-            "text": "\n// 这种答案是不对的。\n// 原因在于比如amount = 5, coins = [1,2,5]\n// 这种算法会将[1,2,2] [2,1,2] [2, 2, 1] 算成不同的\n\nif (amount === 0) return 1;\n\nconst dp = [1].concat(Array(amount).fill(0));\n\nfor (let i = 1; i < amount + 1; i++) {\n  for (let j = 0; j < coins.length; j++) {\n    if (i - coins[j] >= 0) {\n      dp[i] = dp[i] + dp[i - coins[j]];\n    }\n  }\n}\n\nreturn dp[dp.length - 1];\n\n// 正确的写法应该是内外循环调换一下, 具体可以看下方代码区\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=518 lang=javascript\n *\n * [518] Coin Change 2\n *\n */\n/**\n * @param {number} amount\n * @param {number[]} coins\n * @return {number}\n */\nvar change = function (amount, coins) {\n  if (amount === 0) return 1;\n\n  const dp = [1].concat(Array(amount).fill(0));\n\n  for (let j = 0; j < coins.length; j++) {\n    for (let i = 1; i < amount + 1; i++) {\n      if (i - coins[j] >= 0) {\n        dp[i] = dp[i] + dp[i - coins[j]];\n      }\n    }\n  }\n\n  return dp[dp.length - 1];\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def change(self, amount: int, coins: List[int]) -> int:\n        dp = [0] * (amount + 1)\n        dp[0] = 1\n\n        for j in range(len(coins)):\n            for i in range(1, amount + 1):\n                if i >= coins[j]:\n                    dp[i] += dp[i - coins[j]]\n\n        return dp[-1]\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def change(self, amount: int, coins: List[int]) -> int:\n        dp = [[0 for _ in range(len(coins) + 1)] for _ in range(amount + 1)]\n        for j in range(len(coins) + 1):\n            dp[0][j] = 1\n\n        for i in range(amount + 1):\n            for j in range(1, len(coins) + 1):\n                if i >= coins[j - 1]:\n                    dp[i][j] = dp[i - coins[j - 1]][j] + dp[i][j - 1]\n                else:\n                    dp[i][j] = dp[i][j - 1]\n        return dp[-1][-1]\n"
-        }
-    ]
+    "code": []
 },
 "contiguous-array":{
     "id": "525",
     "name": "contiguous-array",
-    "pre": [
-        {
-            "text": "前缀和",
-            "link": null,
-            "color": "cyan"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "将0/1数组转化为",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "1/1数组",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/525.contiguous-array.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/525.contiguous-array.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def findMaxLength(self, A: List[int]) -> int:\n        A = [1 if a == 0 else -1 for a in A]\n        ans = acc = 0\n        mapper = {0: -1}\n        for i in range(len(A)):\n            acc += A[i]\n            if acc not in mapper:\n                mapper[acc] = i\n            else:\n                ans = max(ans, i - mapper[acc])\n        return ans\n"
-        }
-    ]
+    "code": []
 },
 "friend-circles":{
     "id": "547",
@@ -9125,2043 +5144,532 @@
 "number-of-provinces":{
     "id": "547",
     "name": "number-of-provinces",
-    "pre": [
-        {
-            "text": "并查集",
-            "link": null,
-            "color": "volcano"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/547.number-of-provinces.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/547.number-of-provinces.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass UF:\n    parent = {}\n    cnt = 0\n    def __init__(self, M):\n        n = len(M)\n        for i in range(n):\n            self.parent[i] = i\n            self.cnt += 1\n\n    def find(self, x):\n        while x != self.parent[x]:\n            x = self.parent[x]\n        return x\n    def union(self, p, q):\n        if self.connected(p, q): return\n        self.parent[self.find(p)] = self.find(q)\n        self.cnt -= 1\n    def connected(self, p, q):\n        return self.find(p) == self.find(q)\n\nclass Solution:\n    def findCircleNum(self, M: List[List[int]]) -> int:\n        n = len(M)\n        uf = UF(M)\n        for i in range(n):\n            for j in range(i):\n                if M[i][j] == 1:\n                    uf.union(i, j)\n        return uf.cnt\n\n"
-        }
-    ]
+    "code": []
 },
 "subarray-sum-equals-k":{
     "id": "560",
     "name": "subarray-sum-equals-k",
-    "pre": [
-        {
-            "text": "哈希表",
-            "link": null,
-            "color": "gold"
-        },
-        {
-            "text": "前缀和",
-            "link": null,
-            "color": "cyan"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "前缀和",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "可以利用hashmap记录和的累加值来避免重复计算",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/560.subarray-sum-equals-k.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/560.subarray-sum-equals-k.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=560 lang=javascript\n *\n * [560] Subarray Sum Equals K\n */\n/**\n * @param {number[]} nums\n * @param {number} k\n * @return {number}\n */\nvar subarraySum = function (nums, k) {\n  const hashmap = {};\n  let acc = 0;\n  let count = 0;\n\n  for (let i = 0; i < nums.length; i++) {\n    acc += nums[i];\n\n    if (acc === k) count++;\n\n    if (hashmap[acc - k] !== void 0) {\n      count += hashmap[acc - k];\n    }\n\n    if (hashmap[acc] === void 0) {\n      hashmap[acc] = 1;\n    } else {\n      hashmap[acc] += 1;\n    }\n  }\n\n  return count;\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def subarraySum(self, nums: List[int], k: int) -> int:\n        cnt, n =  0, len(nums)\n        for i in range(n):\n            sum = 0\n            for j in range(i, n):\n                sum += nums[j]\n                if (sum == k): cnt += 1\n        return cnt\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def subarraySum(self, nums: List[int], k: int) -> int:\n      cnt, n =  0, len(nums)\n      pre = [0] * (n + 1)\n      for i in range(1, n + 1):\n          pre[i] = pre[i - 1] + nums[i - 1]\n      for i in range(1, n + 1):\n          for j in range(i, n + 1):\n              if (pre[j] - pre[i - 1] == k): cnt += 1\n      return cnt\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def subarraySum(self, nums: List[int], k: int) -> int:\n        d = {}\n        acc = count = 0\n        for num in nums:\n            acc += num\n            if acc == k:\n                count += 1\n            if acc - k in d:\n                count += d[acc-k]\n            if acc in d:\n                d[acc] += 1\n            else:\n                d[acc] = 1\n        return count\n"
-        }
-    ]
+    "code": []
 },
 "distribute-candies":{
     "id": "575",
     "name": "distribute-candies",
-    "pre": [
-        {
-            "text": "数组",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/basic-data-structure.md",
-            "color": "purple"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "这是一道逻辑题目，因此如果逻辑分析清楚了，代码是自然而然的",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/575.distribute-candies.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/575.distribute-candies.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/*\n * @lc app=leetcode id=575 lang=javascript\n *\n * [575] Distribute Candies\n */\n/**\n * @param {number[]} candies\n * @return {number}\n */\nvar distributeCandies = function (candies) {\n  const count = new Set(candies);\n  return Math.min(count.size, candies.length >> 1);\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def distributeCandies(self, candies: List[int]) -> int:\n        return min(len(set(candies)), len(candies) >> 1)\n"
-        }
-    ]
+    "code": []
 },
 "construct-string-from-binary-tree":{
     "id": "606",
     "name": "construct-string-from-binary-tree",
-    "pre": [
-        {
-            "text": "DFS",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "理解什么是可以省略的括号",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/606.construct-string-from-binary-tree.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/606.construct-string-from-binary-tree.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\n# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.left = None\n#         self.right = None\n\nclass Solution:\n    def tree2str(self, root: TreeNode) -> str:\n        if not root: return ''\n        ans = str(root.val)\n        l = self.tree2str(root.left)\n        r = self.tree2str(root.right)\n        if l or r: ans += '(' +  l + ')'\n        if r: ans += '(' +  r + ')'\n        return ans\n\n\n"
-        }
-    ]
+    "code": []
 },
 "find-duplicate-file-in-system":{
     "id": "609",
     "name": "find-duplicate-file-in-system",
-    "pre": [
-        {
-            "text": "哈希表",
-            "link": null,
-            "color": "gold"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "hashtable",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/609.find-duplicate-file-in-system.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/609.find-duplicate-file-in-system.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/**\n * @param {string[]} paths\n * @return {string[][]}\n */\nvar findDuplicate = function(paths) {\n  const hashmap = {};\n\n  for (let path of paths) {\n    const [folder, ...files] = path.split(\" \");\n    for (let file of files) {\n      const lpi = file.indexOf(\"(\");\n      const rpi = file.lastIndexOf(\")\");\n      const filename = file.slice(0, lpi);\n      const content = file.slice(lpi, rpi);\n      const fullname = `${folder}/${filename}`;\n      if (!hashmap[content]) hashmap[content] = [];\n      hashmap[content].push(fullname);\n    }\n  }\n\n  return Object.values(hashmap).filter(q => q.length >= 2);\n};\n"
-        }
-    ]
+    "code": []
 },
 "valid-triangle-number":{
     "id": "611",
     "name": "valid-triangle-number",
-    "pre": [
-        {
-            "text": "排序",
-            "link": null,
-            "color": "purple"
-        },
-        {
-            "text": "双指针",
-            "link": null,
-            "color": "green"
-        },
-        {
-            "text": "二分法",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "三角形边的关系",
-            "link": null,
-            "color": "green"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "三角形边的关系",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "三层循环确定三个线段",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/611.valid-triangle-number.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/611.valid-triangle-number.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def is_triangle(self, a, b, c):\n        if a == 0 or b == 0 or c == 0: return False\n        if a + b > c and a + c > b and b + c > a: return True\n        return False\n    def triangleNumber(self, nums: List[int]) -> int:\n        n = len(nums)\n        ans = 0\n        for i in range(n - 2):\n            for j in range(i + 1, n - 1):\n                for k in range(j + 1, n):\n                    if self.is_triangle(nums[i], nums[j], nums[k]): ans += 1\n\n        return ans\n"
-        },
-        {
-            "language": "py",
-            "text": "\n    def is_triangle(self, a, b, c):\n        if a == 0 or b == 0 or c == 0: return False\n        # a + c > b 和  b + c > a 是无效的判断，因为恒成立\n        if a + b > c and a + c > b and b + c > a: return True\n        return False\n"
-        },
-        {
-            "language": "py",
-            "text": "\nfor i in range(n - 2):\n    for j in range(i + 1, n - 1):\n        k = j + 1\n        while k < n and num[i] + nums[j] > nums[k]:\n            k += 1\n        ans += k - j - 1\n"
-        },
-        {
-            "language": "py",
-            "text": "\nfor i in range(n - 2):\n    k = i + 2\n    for j in range(i + 1, n - 1):\n        while k < n and nums[i] + nums[j] > nums[k]:\n            k += 1\n        ans += k - j - 1\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def triangleNumber(self, nums: List[int]) -> int:\n        n = len(nums)\n        ans = 0\n        nums.sort()\n        for i in range(n - 2):\n            if nums[i] == 0: continue\n            k = i + 2\n            for j in range(i + 1, n - 1):\n                while k < n and nums[i] + nums[j] > nums[k]:\n                    k += 1\n                ans += k - j - 1\n        return ans\n"
-        }
-    ]
+    "code": []
 },
 "image-smoother":{
     "id": "661",
     "name": "image-smoother",
     "pre": [],
-    "keyPoints": [
-        {
-            "text": "位运算",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "前缀和",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/661.image-smoother.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/661.image-smoother.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def imageSmoother(self, matrix: List[List[int]]) -> List[List[int]]:\n        m,n = len(matrix), len(matrix[0])\n        # 建立\n        pre = [[0 for _ in range(n + 1)] for _ in range(m + 1)]\n        for i in range(1, m+1):\n            for j in range(1, n +1):\n                pre[i][j] = pre[i-1][j]+ pre[i][j-1] - pre[i-1][j-1] + matrix[i-1][j-1]\n        ans = [[0 for _ in range(n)] for _ in range(m)]\n        # 使用，等价于以(x1,y1)为矩阵左上角以(x2,y2)为矩阵右下角的所有格子的和\n        for i in range(m):\n            for j in range(n):\n                x1,y1,x2,y2 = max(0, i-1),max(0, j-1),min(m-1, i+1),min(n-1, j+1)\n                cnt = (y2 - y1 + 1) * (x2 - x1 + 1)\n                ans[i][j] = (pre[x2+1][y2+1] + pre[x1][y1] - pre[x1][y2+1] - pre[x2+1][y1])//cnt\n        return ans\n\n\n"
-        }
-    ]
+    "code": []
 },
 "strange-printer":{
     "id": "664",
     "name": "strange-printer",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        },
-        {
-            "text": "区间 DP",
-            "link": null,
-            "color": "red"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/664.strange-printer.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/664.strange-printer.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\ndef dp(l, r):\n    # ...\n    # 将 分别处理 A 和 部分\n    for i in range(l, r):\n        ans = min(ans, dp(l, i) + dp(i + 1, r))\n    # ...\ndp(0, len(s) - 1)\n"
-        },
-        {
-            "language": "py",
-            "text": "\ndef dp(l, r):\n    # ...\n    if s[l] == s[r]:\n        return dp(l, r - 1)\n    # ...\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def strangePrinter(self, s: str) -> int:\n        @lru_cache(None)\n        def dp(l, r):\n            if l >= r:\n                return int(l == r)\n            if s[l] == s[r]:\n                return dp(l, r - 1)\n            ans = len(s)\n            #  枚举分割点\n            for i in range(l, r):\n                ans = min(ans, dp(l, i) + dp(i + 1, r))\n            return ans\n\n        return dp(0, len(s) - 1)\n\n\n"
-        }
-    ]
+    "code": []
 },
 "non-decreasing-array":{
     "id": "665",
     "name": "non-decreasing-array",
-    "pre": [
-        {
-            "text": "数组",
-            "link": null,
-            "color": "purple"
-        },
-        {
-            "text": "贪心",
-            "link": null,
-            "color": "purple"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "考虑各种边界情况，贪心改变数组的值",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/665.non-decreasing-array.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/665.non-decreasing-array.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def checkPossibility(self, A: List[int]) -> bool:\n        count = 0\n        for i in range(1, len(A)):\n            if A[i] < A[i - 1]:\n                if count == 1: return False\n                count += 1\n        return True\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\nclass Solution(object):\n    def checkPossibility(self, A):\n        N = len(A)\n        count = 0\n        for i in range(1, N):\n            if A[i] < A[i - 1]:\n                count += 1\n                if count > 1:\n                    return False\n                # [4,2,3]  [4,2,1]   [1,2,1,2]  [1,1,1,] []\n                if i >= 2 and A[i] < A[i - 2]:\n                    A[i] = A[i - 1]\n\n        return True\n\n"
-        }
-    ]
+    "code": []
 },
 "number-of-longest-increasing-subsequence":{
     "id": "673",
     "name": "number-of-longest-increasing-subsequence",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "[最长上升子序列问题](https://lucifer.ren/blog/2020/06/20/LIS/)",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "dp[j][1]=dp[i][1]容易忘记",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/673.number-of-longest-increasing-subsequence.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/673.number-of-longest-increasing-subsequence.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nfor i in range(n):\n    for j in range(i + 1, n):\n        if nums[j] > nums[i]:\n            # ...\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def findNumberOfLIS(self, nums: List[int]) -> int:\n        n = len(nums)\n        # dp[i][0] ->  LIS\n        # dp[i][1] -> NumberOfLIS\n        dp = [[1, 1] for _ in range(n)]\n        longest = 1\n        for i in range(n):\n            for j in range(i + 1, n):\n                if nums[j] > nums[i]:\n                    if dp[i][0] + 1 > dp[j][0]:\n                        dp[j][0] = dp[i][0] + 1\n                        # 下面这行代码容易忘记，导致出错\n                        dp[j][1] = dp[i][1]\n                        longest = max(longest, dp[j][0])\n                    elif dp[i][0] + 1 == dp[j][0]:\n                        dp[j][1] += dp[i][1]\n        return sum(dp[i][1] for i in range(n) if dp[i][0] == longest)\n\n"
-        }
-    ]
+    "code": []
 },
 "24-game":{
     "id": "679",
     "name": "24-game",
-    "pre": [
-        {
-            "text": "回溯",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/backtrack.md \"回溯\"",
-            "color": "green"
-        },
-        {
-            "text": "数字精度问题",
-            "link": null,
-            "color": "geekblue"
-        },
-        {
-            "text": "分治",
-            "link": null,
-            "color": "gold"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "使用递归将问题分解成规模更小的同样问题",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "精度控制，即如果误差不超过某一个较小的数字就认为二者是相等的",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/679.24-game.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/679.24-game.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def judgePoint24(self, nums: List[int]) -> bool:\n        if len(nums) == 1:\n            return math.isclose(nums[0], 24)\n        return any(self.judgePoint24([x] + rest) for a, b, *rest in permutations(nums) \nfor x in [a+b, a-b, a*b, b and a/b])\n\n"
-        }
-    ]
+    "code": []
 },
 "repeated-string-match":{
     "id": "686",
     "name": "repeated-string-match",
-    "pre": [
-        {
-            "text": "set",
-            "link": null,
-            "color": "volcano"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "答案是有限的，搞清楚解空间是关键",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/686.repeated-string-match.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/686.repeated-string-match.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\ncnt = 1\nwhile True:\n    if b in a * cnt:\n        return cnt\n    cnt += 1\nreturn -1\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def repeatedStringMatch(self, a: str, b: str) -> int:\n        if not set(b).issubset(set(a)):\n            return -1\n        cnt = 1\n        while len(a * cnt) < 2 * len(a) + len(b):\n            if b in a * cnt:\n                return cnt\n            cnt += 1\n        return -1\n"
-        }
-    ]
+    "code": []
 },
 "random-pick-with-blacklist":{
     "id": "710",
     "name": "random-pick-with-blacklist",
-    "pre": [
-        {
-            "text": "哈希表",
-            "link": null,
-            "color": "gold"
-        },
-        {
-            "text": "概率",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "将黑名单中的数字映射到白名单",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/710.random-pick-with-blacklist.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/710.random-pick-with-blacklist.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def __init__(self, n: int, blacklist: List[int]):\n        m = len(blacklist)\n        self.bound = w = n - m\n        black = {b for b in blacklist if b >= self.bound}\n        self.b2w = {}\n        for b in blacklist:\n            if b < self.bound:\n                while w in black:\n                    w += 1\n                self.b2w[b] = w\n                w += 1\n\n    def pick(self) -> int:\n        x = randrange(self.bound)\n        return self.b2w.get(x, x)\n\n"
-        }
-    ]
+    "code": []
 },
 "best-time-to-buy-and-sell-stock-with-transaction-fee":{
     "id": "714",
     "name": "best-time-to-buy-and-sell-stock-with-transaction-fee",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "记忆化递归",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/714.best-time-to-buy-and-sell-stock-with-transaction-fee.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/714.best-time-to-buy-and-sell-stock-with-transaction-fee.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def maxProfit(self, prices: List[int], fee: int) -> int:\n        def dp(i):\n            if i == 0:\n                return 0, -prices[0] - fee\n            sell, buy = dp(i - 1)\n            return max(sell, buy + prices[i]), max(buy, sell - prices[i] - fee)\n\n        return dp(len(prices) - 1)[0]\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def maxProfit(self, prices: List[int], fee: int) -> int:\n        @lru_cache(None)\n        def dp(i, state):\n            if i == len(prices) - 1:\n                return prices[i] - fee if state == 1 else 0\n            if state == 1:\n                return max(dp(i + 1, 1), dp(i + 1, 0) + prices[i] - fee)\n            return max(dp(i + 1, 0), dp(i + 1, 1) - prices[i])\n\n        return dp(0, 0)\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def maxProfit(self, prices: List[int], fee: int) -> int:\n        n = len(prices)\n        dp = [[0 for i in range(2)]] * n\n        for i in range(n):\n            if i == 0:\n                dp[i][0] = 0\n                dp[i][1] = -1 * prices[i]\n            else:\n                dp[i][0] = max(dp[i - 1][1] + prices[i] - fee, dp[i - 1][0])\n                dp[i][1] = max(dp[i - 1][1], dp[i - 1][0] - prices[i])\n\n        return dp[-1][0]\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def maxProfit(self, prices: List[int], fee: int) -> int:\n        n = len(prices)\n        # [手里没股票, 手里有股票]\n        dp = [0, 0]\n        for i in range(n):\n            if i == 0:\n                dp[0] = 0\n                dp[1] = -1 * prices[i] - fee\n            else:\n                dp[0] = max(dp[0], dp[1] + prices[i])\n                dp[1] = max(dp[1], dp[0] - prices[i] - fee)\n\n        return dp[0]\n"
-        }
-    ]
+    "code": []
 },
 "range-module":{
     "id": "715",
     "name": "range-module",
-    "pre": [
-        {
-            "text": "区间查找问题",
-            "link": null,
-            "color": "gold"
-        },
-        {
-            "text": "二分查找",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/91/binary-search.md \"二分查找\"",
-            "color": "magenta"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "二分查找的灵活使用（最左插入和最右插入）",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "将区间一维化处理",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/715.range-module.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/715.range-module.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass RangeModule(object):\n    def __init__(self):\n        # [(1,2),(3,6),(8,12)]\n        self.ranges = []\n    def overlap(self, left, right):\n        i, j = 0, len(self.ranges) - 1\n        while i < len(self.ranges) and self.ranges[i][1] < left:\n            i += 1\n        while j >= 0 and self.ranges[j][0] > right:\n            j -= 1\n        return i, j\n\n    def addRange(self, left, right):\n        i, j = self.overlap(left, right)\n        if i <= j:\n            left = min(left, self.ranges[i][0])\n            right = max(right, self.ranges[j][1])\n        self.ranges[i:j+1] = [(left, right)]\n    def queryRange(self, left, right):\n        i = bisect.bisect_right(self.ranges, (left, float('inf'))) - 1\n        return bool(self.ranges and self.ranges[i][0] <= left and right <= self.ranges[i][1])\n\n    def removeRange(self, left, right):\n        i, j = self.overlap(left, right)\n        merge = []\n        for k in xrange(i, j+1):\n            if self.ranges[k][0] < left:\n                merge.append((self.ranges[k][0], left))\n            if right < self.ranges[k][1]:\n                merge.append((right, self.ranges[k][1]))\n        self.ranges[i:j+1] = merge\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass RangeModule(object):\n    def __init__(self):\n        # [1,2,3,5,8,12]\n        self.ranges = []\n\n    def overlap(self, left, right, is_odd):\n        i = bisect_left(self.ranges, left)\n        j = bisect_right(self.ranges, right)\n        merge = []\n        if i & 1 == int(is_odd):\n            merge.append(left)\n        if j & 1 == int(is_odd):\n            merge.append(right)\n        # 修改 ranges 的 [i:j-1] 部分\n        self.ranges[i:j] = merge\n\n    def addRange(self, left, right):\n        # [1,2,3,5,8,12]， 代入 left = 3, right = 5，此时需要保持不变， 就不难知道应该用 bisect_left 还是 bisect_right\n        return self.overlap(left, right, False)\n\n    def removeRange(self, left, right):\n        # [1,2,3,5,8,12]， 代入 left = 3, right = 5，此时需要为 [1,2,8,12]， 就不难知道应该用 bisect_left 还是 bisect_right\n        return self.overlap(left, right, True)\n\n    def queryRange(self, left, right):\n        # [1,2,3,5,8,12]， 代入 left = 3, right = 5，此时需要返回 true， 就不难知道应该用 bisect_left 还是 bisect_right\n        i = bisect_right(self.ranges, left)\n        j = bisect_left(self.ranges, right)\n        return i & 1 == 1 and i == j  # 都在一个区间内\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\nclass Node:\n    def __init__(self, l, r):\n        self.left = None # 左孩子的指针\n        self.right = None # 右孩子的指针\n        self.l = l # 区间左端点\n        self.r = r # 区间右端点\n        self.m = (l + r) >> 1 # 中点\n        self.v = 0 # 当前值\n        self.add = -1   # 懒标记\n\nclass SegmentTree:\n    def __init__(self,n):\n        # 默认就一个根节点，不 build 出整个树，节省空间\n        self.root = Node(0,n-1)  # 根节点\n\n    def update(self, l, r, v, node):\n        if l > node.r or r < node.l:\n            return\n        if l <= node.l and node.r <= r:\n            node.v = (node.r - node.l + 1) * v\n            node.add = v #   做了一个标记\n            return\n        self.__pushdown(node) # 动态开点。为子节点赋值，这个值就从 add 传递过来\n        if l <= node.m:\n            self.update(l, r, v, node.left)\n        if r > node.m:\n            self.update(l, r, v, node.right) \n        self.__pushup(node) # 动态开点结束后，修复当前节点的值\n\n    def query(self, l, r,node):\n        if l > node.r or r < node.l:\n            return False\n        if l <= node.l and node.r <= r:\n            return node.v == node.r - node.l + 1\n        self.__pushdown(node) # 动态开点。为子节点赋值，这个值就从 add 传递过来\n        ans = True\n        if l <= node.m:\n            ans = self.query(l, r, node.left)\n        if ans and r > node.m:\n            ans = self.query(l, r, node.right)\n        return ans\n\n    def __pushdown(self,node):\n        if node.left is None:\n            node.left = Node(node.l, node.m)\n        if node.right is None:\n            node.right = Node(node.m + 1, node.r)\n        if node.add != -1:\n            node.left.v = (node.left.r - node.left.l + 1) * node.add\n            node.right.v = (node.right.r - node.right.l + 1) * node.add\n            node.left.add = node.add\n            node.right.add = node.add\n            node.add = -1\n\n    def __pushup(self,node):\n        node.v = node.left.v + node.right.v\n\n    def updateSum(self,index,val):\n        self.update(index,index,val,self.root)\n\n    def querySum(self,left,right):\n        return self.query(left,right,self.root)\n           \nclass RangeModule:\n    def __init__(self):\n        self.tree = SegmentTree(10 ** 9)\n\n    def addRange(self, left: int, right: int) -> None:\n        self.tree.update(left, right - 1, 1, self.tree.root)\n\n    def queryRange(self, left: int, right: int) -> bool:\n        return not not self.tree.querySum(left, right - 1)\n\n    def removeRange(self, left: int, right: int) -> None:\n        self.tree.update(left, right - 1, 0, self.tree.root)\n\n# Your RangeModule object will be instantiated and called as such:\n# obj = RangeModule()\n# obj.addRange(left,right)\n# param_2 = obj.queryRange(left,right)\n# obj.removeRange(left,right)\n"
-        }
-    ]
+    "code": []
 },
 "maximum-length-of-repeated-subarray":{
     "id": "718",
     "name": "maximum-length-of-repeated-subarray",
-    "pre": [
-        {
-            "text": "哈希表",
-            "link": null,
-            "color": "gold"
-        },
-        {
-            "text": "数组",
-            "link": null,
-            "color": "purple"
-        },
-        {
-            "text": "二分查找",
-            "link": null,
-            "color": "magenta"
-        },
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "dp建模套路",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "腾讯"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/718.maximum-length-of-repeated-subarray.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/718.maximum-length-of-repeated-subarray.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def findLength(self, A, B):\n        m, n = len(A), len(B)\n        ans = 0\n        dp = [[0 for _ in range(n + 1)] for _ in range(m + 1)]\n        for i in range(1, m + 1):\n            for j in range(1, n + 1):\n                if A[i - 1] == B[j - 1]:\n                    dp[i][j] = dp[i - 1][j - 1] + 1\n                    ans = max(ans, dp[i][j])\n        return ans\n"
-        }
-    ]
+    "code": []
 },
 "accounts-merge":{
     "id": "721",
     "name": "accounts-merge",
-    "pre": [
-        {
-            "text": "并查集",
-            "link": null,
-            "color": "volcano"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
-    "companies": [
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/721.accounts-merge.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/721.accounts-merge.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass UF:\n    def __init__(self):\n        self.parent = {}\n\n    def find(self, x):\n        self.parent.setdefault(x, x)\n        while x != self.parent[x]:\n            x = self.parent[x]\n        return x\n    def union(self, p, q):\n        self.parent[self.find(p)] = self.find(q)\n\n\nclass Solution:\n    def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:\n        uf = UF()\n        email_to_name = {}\n        res = collections.defaultdict(list)\n        for account in accounts:\n            for i in range(1, len(account)):\n                email_to_name[account[i]] = account[0]\n                if i < len(account) - 1:uf.union(account[i], account[i + 1])\n        for email in email_to_name:\n            res[uf.find(email)].append(email)\n\n        return [[email_to_name[value[0]]] + sorted(value) for value in res.values()]\n"
-        }
-    ]
+    "code": []
 },
 "number-of-atoms":{
     "id": "726",
     "name": "number-of-atoms",
-    "pre": [
-        {
-            "text": "栈",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "从后往前遍历",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/726.number-of-atoms.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/726.number-of-atoms.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def countOfAtoms(self, s: str) -> str:\n        stack = [1]\n        i = len(s) - 1\n        dic = collections.defaultdict(int)\n        lower = count = ''\n        while i > -1:\n            if '0' <= s[i] <= '9':\n                count = s[i] + count\n            elif 'a' <= s[i] <= 'z':\n                lower = s[i] + lower\n            elif s[i] == ')':\n                stack.append(stack[-1] * int(count or '1'))\n                count = ''\n            elif s[i] == '(':\n                stack.pop()\n            elif 'A' <= s[i] <= 'Z':\n                dic[s[i] + lower] += stack[-1] * int(count or '1')\n                count = ''\n                lower = ''\n            i -= 1\n        ans = ''\n        for k, v in sorted(dic.items()):\n            if v == 1:\n                ans += k\n            else:\n                ans += k + str(v)\n        return ans\n\n\n"
-        }
-    ]
+    "code": []
 },
 "asteroid-collision":{
     "id": "735",
     "name": "asteroid-collision",
-    "pre": [
-        {
-            "text": "栈",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "whilebreakifelse的灵活使用",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/735.asteroid-collision.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/735.asteroid-collision.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def asteroidCollision(self, asteroids):\n        stack = []\n        for asteroid in asteroids:\n            if not stack or asteroid > 0:\n                stack.append(asteroid)\n            else:\n                while stack and stack[-1] > 0:\n                    if stack[-1] + asteroid > 0:\n                        break\n                    elif stack[-1] + asteroid < 0:\n                        # 这种情况需要继续和前前星球继续判断是否碰撞\n                        stack.pop()\n                    else:\n                        stack.pop()\n                        break\n                else:\n                    stack.append(asteroid)\n\n        return stack\n\n\n"
-        }
-    ]
+    "code": []
 },
 "reach-a-number":{
     "id": "754",
     "name": "reach-a-number",
-    "pre": [
-        {
-            "text": "数学",
-            "link": null,
-            "color": "geekblue"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "对元素进行分组，分组的依据是符号，是`+`或者`",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "`",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "通过数学公式推导可以简化我们的求解过程，这需要一点`数学知识和数学意识`",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/754.reach-a-number.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/754.reach-a-number.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution(object):\n    def reachNumber(self, target):\n        target = abs(target)\n        steps = 0\n        while target > 0:\n            steps += 1\n            target -= steps\n        if target & 1 == 0: return steps\n        steps += 1\n        if (target - steps) & 1 == 0: return steps\n        return steps + 1\n\n\n"
-        }
-    ]
+    "code": []
 },
 "max-chunks-to-make-sorted-ii":{
     "id": "768",
     "name": "max-chunks-to-make-sorted-ii",
-    "pre": [
-        {
-            "text": "栈",
-            "link": null,
-            "color": "red"
-        },
-        {
-            "text": "队列",
-            "link": null,
-            "color": "volcano"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "计数",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/768.max-chunks-to-make-sorted-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/768.max-chunks-to-make-sorted-ii.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\nclass Solution {\n    public int maxChunksToSorted(int[] arr) {\n        LinkedList<Integer> stack = new LinkedList<Integer>();\n        for (int num : arr) {\n            // 遇到一个比栈顶小的元素，而前面的块不应该有比 a 小的\n            // 而栈中每一个元素都是一个块，并且栈的存的是块的最大值，因此栈中比 a 小的值都需要 pop 出来\n            if (!stack.isEmpty() && num < stack.getLast()) {\n                // 我们需要将融合后的区块的最大值重新放回栈\n                // 而 stack 是递增的，因此 stack[-1] 是最大的\n                int cur = stack.removeLast();\n                // 维持栈的单调递增\n                while (!stack.isEmpty() && num < stack.getLast()) {\n                    stack.removeLast();\n                }\n                stack.addLast(cur);\n            } else {\n                stack.addLast(num);\n            }\n        }\n        // 栈存的是块信息，因此栈的大小就是块的数量\n        return stack.size();\n    }\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\nvar maxChunksToSorted = function (arr) {\n  const stack = [];\n\n  for (let i = 0; i < arr.length; i++) {\n    a = arr[i];\n    if (stack.length > 0 && stack[stack.length - 1] > a) {\n      const cur = stack[stack.length - 1];\n      while (stack && stack[stack.length - 1] > a) stack.pop();\n      stack.push(cur);\n    } else {\n      stack.push(a);\n    }\n  }\n  return stack.length;\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    int maxChunksToSorted(vector<int>& arr) {\n        stack<int> stack;\n        for(int i =0;i<arr.size();i++){\n            // 遇到一个比栈顶小的元素，而前面的块不应该有比 a 小的\n            // 而栈中每一个元素都是一个块，并且栈的存的是块的最大值，因此栈中比 a 小的值都需要 pop 出来\n            if(!stack.empty()&&stack.top()>arr[i]){\n                // 我们需要将融合后的区块的最大值重新放回栈\n                // 而 stack 是递增的，因此 stack[-1] 是最大的\n                int cur = stack.top();\n                // 维持栈的单调递增\n                while(!stack.empty()&&stack.top()>arr[i]){\n                    sstackta.pop();\n                }\n\n                stack.push(cur);\n            }else{\n\n                stack.push(arr[i]);\n            }\n        }\n        // 栈存的是块信息，因此栈的大小就是块的数量\n        return stack.size();\n    }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution(object):\n    def maxChunksToSorted(self, arr):\n        count_a = collections.defaultdict(int)\n        count_b = collections.defaultdict(int)\n        ans = 0\n\n        for a, b in zip(arr, sorted(arr)):\n            count_a[a] += 1\n            count_b[b] += 1\n            if count_a == count_b: ans += 1\n\n        return ans\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution(object):\n    class Solution(object):\n    def maxChunksToSorted(self, arr):\n        count = collections.defaultdict(int)\n        non_zero_cnt = 0\n        ans = 0\n\n        for a, b in zip(arr, sorted(arr)):\n            if count[a] == -1: non_zero_cnt -= 1\n            if count[a] == 0: non_zero_cnt += 1\n            count[a] += 1\n            if count[b] == 1: non_zero_cnt -= 1\n            if count[b] == 0: non_zero_cnt += 1\n            count[b] -= 1\n            if non_zero_cnt == 0: ans += 1\n\n        return ans\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def maxChunksToSorted(self, A: [int]) -> int:\n        stack = []\n        for a in A:\n            # 遇到一个比栈顶小的元素，而前面的块不应该有比 a 小的\n            # 而栈中每一个元素都是一个块，并且栈的存的是块的最大值，因此栈中比 a 小的值都需要 pop 出来\n            if stack and stack[-1] > a:\n                # 我们需要将融合后的区块的最大值重新放回栈\n                # 而 stack 是递增的，因此 stack[-1] 是最大的\n                cur = stack[-1]\n                # 维持栈的单调递增\n                while stack and stack[-1] > a: stack.pop()\n                stack.append(cur)\n            else:\n                stack.append(a)\n        # 栈存的是块信息，因此栈的大小就是块的数量\n        return len(stack)\n\n\n"
-        }
-    ]
+    "code": []
 },
 "is-graph-bipartite":{
     "id": "785",
     "name": "is-graph-bipartite",
-    "pre": [
-        {
-            "text": "图的遍历",
-            "link": null,
-            "color": "geekblue"
-        },
-        {
-            "text": "DFS",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "图的建立和遍历",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "colors数组",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/785.is-graph-bipartite.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/785.is-graph-bipartite.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\n// weighted quick-union with path compression\nclass Solution {\n    class UF {\n\t    int numOfUnions; // number of unions\n\t    int[] parent;\n\t    int[] size; \n\t\n\t    UF(int numOfElements) {\n\t\t    numOfUnions = numOfElements;\n\t\t    parent = new int[numOfElements];\n\t\t    size = new int[numOfElements];\n\t\t    for (int i = 0; i < numOfElements; i++) {\n\t\t\t    parent[i] = i;\n\t\t\t    size[i] = 1;\n\t\t    }\n\t    }\n\n\t    // find the head/representative of x\n\t    int find(int x) {\n\t\t    while (x != parent[x]) {\n\t\t\t    parent[x] = parent[parent[x]]; \n\t\t\t    x = parent[x]; \t\n\t\t    }\n\t\t    return x;\n\t    }\n\n\t    void union(int p, int q) {\n\t\t    int headOfP = find(p);\n\t\t    int headOfQ = find(q);\n\t\t    if (headOfP == headOfQ) {\n\t\t\t    return;\n\t\t    }\n\t\t    // connect the small tree to the larger tree\n\t\t    if (size[headOfP] < size[headOfQ]) {\n\t\t\t    parent[headOfP] = headOfQ; // set headOfP's parent to be headOfQ \n\t\t\t    size[headOfQ] += size[headOfP];\n\t\t    } else {\n\t\t\t    parent[headOfQ] = headOfP;\n\t\t\t    size[headOfP] += size[headOfQ];\n\t\t    }\n\t\t    numOfUnions -= 1;\n\t    }\n\n\t    boolean connected(int p, int q) {\n\t\t    return find(p) == find(q);\n\t    }\n    }\n\n    public boolean isBipartite(int[][] graph) {\n        int n = graph.length;\n        UF unionfind = new UF(n);\n        // i is what node each adjacent list is for\n        for (int i = 0; i < n; i++) {\n            // i's neighbors\n            for (int neighbor : graph[i]) {\n                // i should not be in the union of its neighbors\n                if (unionfind.connected(i, neighbor)) {\n                    return false;\n                }\n                // add into unions\n                unionfind.union(graph[i][0], neighbor);\n            }\n        }\n        \n        return true;\n    }\n    \n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def dfs(self, grid, colors, i, color, N):\n        colors[i] = color\n        for j in range(N):\n            if grid[i][j] == 1:\n                if colors[j] == color:\n                    return False\n                if colors[j] == 0 and not self.dfs(grid, colors, j, -1 * color, N):\n                    return False\n        return True\n\n    def isBipartite(self, graph: List[List[int]]) -> bool:\n        N = len(graph)\n        grid = [[0] * N for _ in range(N)]\n        colors = [0] * N\n        for i in range(N):\n            for j in graph[i]:\n                grid[i][j] = 1\n        for i in range(N):\n            if colors[i] == 0 and not self.dfs(grid, colors, i, 1, N):\n                return False\n        return True\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def isBipartite(self, graph: List[List[int]]) -> bool:\n        n = len(graph)\n        colors = [0] * n\n        def dfs(i, color):\n            colors[i] = color\n            for neibor in graph[i]:\n                if colors[neibor] == color: return False\n                if colors[neibor] == 0 and not dfs(neibor,-1*color): return False\n            return True\n        for i in range(n):\n            if colors[i] == 0 and not dfs(i,1): return False\n        return True\n "
-        },
-        {
-            "language": "py",
-            "text": "\nclass UF:\n    def __init__(self, n):\n        self.parent = {}\n        for i in range(n):\n            self.parent[i] = i\n    def union(self, i,j):\n        self.parent[self.find(i)] = self.find(j)\n    def find(self, i):\n        if i == self.parent[i]: return i\n        self.parent[i] = self.find(self.parent[i])\n        return self.parent[i]\n    def is_connected(self, i,j):\n        return self.find(i) == self.find(j)\n\nclass Solution:\n    def isBipartite(self, graph: List[List[int]]) -> bool:\n        n = len(graph)\n        uf = UF(n)\n        for i in range(n):\n            for neibor in graph[i]:\n                if uf.is_connected(i, neibor): return False\n                uf.union(graph[i][0], neibor)\n        return True\n"
-        }
-    ]
+    "code": []
 },
 "domino-and-tromino-tiling":{
     "id": "790",
     "name": "domino-and-tromino-tiling",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "识别最优子结构",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "对一块瓷砖能拼成的图形进行分解，并对每一种情况进行讨论",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/790.domino-and-tromino-tiling.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/790.domino-and-tromino-tiling.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def numTilings(self, N: int) -> int:\n        dp = [0] * (N + 3)\n        # f(3) = 2 * f(2) + f(0) = 2 + f(0) = 1 -> f(0) = -1\n        # f(4) = 2 * f(3) + f(1) = 2 + f(1) = 2 -> f(1) = 0\n        dp[0] = -1\n        dp[1] = 0\n        dp[2] = 1\n        # f(n) = f(n-1) + f(n-2) + 2 * T(n-1)\n        # 2 * T(n-1) = 2 * f(n-3) + 2 * T(n-2)\n        # f(n) = f(n-1) + 2 * f(n-3) + f(n-2) + 2T(n-2) = f(n-1) + f(n-3) + f(n-3) + f(n-2) + 2T(n-2) = f(n-1) + f(n-3) + f(n-1) = 2 * f(n-1) + f(n-3)\n        for i in range(3, N + 3):\n            dp[i] = 2 * dp[i-1] + dp[i-3]\n        return dp[-1] % (10 ** 9 + 7)\n\n"
-        }
-    ]
+    "code": []
 },
 "champagne-tower":{
     "id": "799",
     "name": "champagne-tower",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        },
-        {
-            "text": "杨辉三角",
-            "link": null,
-            "color": "green"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "不必模拟多步，而是只模拟一次即可",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/799.champagne-tower.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/799.champagne-tower.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def champagneTower(self, poured, R, C):\n        # 这种初始化方式有一半空间是浪费的\n        A = [[0] * (R+1) for _ in range(R+1)]\n        A[0][0] = poured\n        # 从上到下，从左到右模拟每一行每一列\n        for i in range(R + 1):\n            for j in range(i+1):\n                overflow = (A[i][j] - 1.0) / 2.0\n                # 不必模拟多步，而是只模拟一次即可。也就是说我们无需溢出到下一层之后，下一层的杯子容量大于 1，因为我们后面处理即可，这和直觉上或许有所不一样。体现在代码上只需要 if 即可，无需 while\n                if overflow > 0 and i < R and j <= C:\n                    A[i+1][j] += overflow\n                    if j+1<=C: A[i+1][j+1] += overflow\n\n        return min(1, A[R][C]) # 最后的结果如果大于 1，说明流到地板上了，需要和 1 取最小值。\n\n"
-        }
-    ]
+    "code": []
 },
 "minimum-swaps-to-make-sequences-increasing":{
     "id": "801",
     "name": "minimum-swaps-to-make-sequences-increasing",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "一：无需考虑全部整体，而只需要考虑相邻两个数字即可这其实也是可以使用动态规划解决问题的关键条件。对于这道题来说，**最小**的子问题就是当前项和前一项组成的局部，**无法**再小了，**没有必要**再大了。为什么只关心两个数字即可？因为要使得整个数组递增，**假设**前面的i",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "2项已经满足递增了，那么现在**采取某种方式**使得满足A[i]>A[i",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "1]即可(B也是同理)。>因为A[i",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "1]>A[i",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "2]已经成立，因此如果A[i]>A[i",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "1]，那么整体就递增了。这提示我们可以使用动态规划来完成。如果上面的这些没有听懂，则很有可能对动态规划不熟悉，建议先看下基础知识。",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/801.minimum-swaps-to-make-sequences-increasing.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/801.minimum-swaps-to-make-sequences-increasing.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def minSwap(self, A: List[int], B: List[int]) -> int:\n        n = len(A)\n        swap = [n] * n\n        no_swap = [n] * n\n        swap[0] = 1\n        no_swap[0] = 0\n\n        for i in range(1, len(A)):\n            q1 = A[i-1] < A[i] and B[i-1] < B[i]\n            q2 = A[i-1] < B[i] and B[i-1] < A[i]\n            if q1 and q2:\n                no_swap[i] = min(swap[i-1], no_swap[i-1]) # 都不换或者换i-1\n                swap[i] = min(swap[i-1], no_swap[i-1]) + 1 # 都换 或者 换 i\n            if q1 and not q2:\n                swap[i] = swap[i-1] + 1 # 都换\n                no_swap[i] = no_swap[i-1] # 都不换\n            if not q1 and q2:\n                swap[i] = no_swap[i-1] + 1 # 换 i\n                no_swap[i] = swap[i-1] # 换 i - 1\n\n        return min(swap[n-1], no_swap[n-1])\n"
-        },
-        {
-            "language": "py",
-            "text": "\nif q1:\n    no_swap[i] = no_swap[i-1] # 都不换\n    swap[i] = swap[i-1] + 1 # 都换\nif q2:\n    swap[i] = min(swap[i], no_swap[i-1] + 1) # 换 i\n    no_swap[i] =  min(no_swap[i], swap[i-1]) # 换 i - 1\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def minSwap(self, A: List[int], B: List[int]) -> int:\n        n = len(A)\n        swap = [n] * n\n        no_swap = [n] * n\n        swap[0] = 1\n        no_swap[0] = 0\n\n        for i in range(1, len(A)):\n            # 如果交换之前有序，则可以不交换\n            if A[i-1] < A[i] and B[i-1] < B[i]:\n                no_swap[i] = no_swap[i-1]\n                swap[i] = swap[i-1] + 1\n            # 否则至少需要交换一次（交换当前项或者前一项）\n            if A[i-1] < B[i] and B[i-1] < A[i]:\n                swap[i] = min(swap[i], no_swap[i-1] + 1) # i 换\n                no_swap[i] =  min(no_swap[i], swap[i-1]) # i - 1 换\n\n        return min(swap[n-1], no_swap[n-1])\n"
-        }
-    ]
+    "code": []
 },
 "split-array-with-same-average":{
     "id": "805",
     "name": "split-array-with-same-average",
-    "pre": [
-        {
-            "text": "回溯",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/backtrack.md",
-            "color": "green"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "双端搜索",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/805.split-array-with-same-average.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/805.split-array-with-same-average.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\ndef splitArraySameAverage(self, A: List[int]) -> bool:\n        n = len(A)\n        avg = sum(A) / n\n\n        for i in range(1, n // 2 + 1):\n            for combination in combinations(A, i):\n                if abs(sum(combination) - avg * i) < 1e-6:\n                    return True\n        return False\n"
-        },
-        {
-            "language": "py",
-            "text": "\ndef splitArraySameAverage(self, A: List[int]) -> bool:\n        n = len(A)\n        avg = sum(A) / n\n\n        for i in range(1, n // 2 + 1):\n            for s in combinationSum(A, i):\n                if abs(s - avg * i) < 1e-6:\n                    return True\n        return False\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution(object):\n    def splitArraySameAverage(self, A):\n        from fractions import Fraction\n        N = len(A)\n        total = sum(A)\n        A = [a - Fraction(total, N) for a in A] # 转化后的 A，免于计算 sum\n\n        if N == 1: return False\n\n        S1 = set() # 所有 B 可能的和的集合\n        for i in range(N//2):\n            # {a + A[i] for a in S1} 在之前选择的基础上选择 A[i] 的新集合\n            # {A[i]} 是仅选择 A[i] 的新集合\n            # S1 是不选择 A[i] 的集合\n            # | 是集合并操作\n            S1 = {a + A[i] for a in S1} | S1 | {A[i]}\n        if 0 in S1: return True\n\n        S2 = set() # 所有 C 可能的和的集合\n        for i in range(N//2, N):\n            S2 = {a + A[i] for a in S2} | S2 | {A[i]}\n        if 0 in S2: return True\n        # 如果 S1 和 S2 都没有和为 0 的组合。那么我们就需要从 S1 和 S2 分别找一个 a 和 b，看其和是否能达到 0. 如果可以，说明也能满足题意\n        # 为了避免 B 或者 C 为空，我们增加一个这样的判断： (ha, -ha) != (sleft, sright)\n        sleft = sum(A[i] for i in range(N//2))\n        sright = sum(A[i] for i in range(N//2, N))\n\n        return any(-ha in S2 and (ha, -ha) != (sleft, sright) for ha in S1)\n"
-        }
-    ]
+    "code": []
 },
 "ambiguous-coordinates":{
     "id": "816",
     "name": "ambiguous-coordinates",
-    "pre": [
-        {
-            "text": "回溯",
-            "link": null,
-            "color": "green"
-        },
-        {
-            "text": "笛卡尔积",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "笛卡尔积优化",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/816.ambiguous-coordinates.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/816.ambiguous-coordinates.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n\n    def subset(self, s: str):\n        ans = []\n        for i in range(1, len(s)):\n            ans.append(s[:i] + \".\" + s[i:])\n        ans.append(s)\n        return ans\n\n    def ambiguousCoordinates(self, s: str) -> List[str]:\n        ans = []\n        s = s[1:-1]\n        for i in range(1, len(s)):\n            x = self.subset(s[:i])\n            y = self.subset(s[i:])\n            for i in x:\n                for j in y:\n                    ans.append('(' + i + ', ' + j + ')')\n        return ans\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    # \"123\" => [\"1.23\", \"12.3\", \"123\"]\n    def subset(self, s: str):\n        ans = []\n\n        #  带小数点的\n        for i in range(1, len(s)):\n            # 不允许 00.111， 0.0，01.1，1.0\n            if s[0] == '0' and i > 1:\n                continue\n            if s[-1] == '0':\n                continue\n            ans.append(s[:i] + \".\" + s[i:])\n        # 不带小数点的（不允许 001）\n        if s == '0' or not s.startswith('0'):\n            ans.append(s)\n        return ans\n\n    def ambiguousCoordinates(self, s: str) -> List[str]:\n        ans = []\n        s = s[1:-1]\n        for i in range(1, len(s)):\n            x = self.subset(s[:i])\n            y = self.subset(s[i:])\n            for i in x:\n                for j in y:\n                    ans.append('(' + i + ', ' + j + ')')\n        return ans\n\n"
-        }
-    ]
+    "code": []
 },
 "short-encoding-of-words":{
     "id": "820",
     "name": "short-encoding-of-words",
-    "pre": [
-        {
-            "text": "前缀树",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/trie.md",
-            "color": "purple"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "前缀树",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "去重",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/820.short-encoding-of-words.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/820.short-encoding-of-words.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Trie:\n\n    def __init__(self):\n        \"\"\"\n        Initialize your data structure here.\n        \"\"\"\n        self.Trie = {}\n\n    def insert(self, word):\n        \"\"\"\n        Inserts a word into the trie.\n        :type word: str\n        :rtype: void\n        \"\"\"\n        curr = self.Trie\n        for w in word:\n            if w not in curr:\n                curr[w] = {}\n            curr = curr[w]\n        curr['#'] = 1\n\n    def search(self, word):\n        \"\"\"\n        Returns if the word is in the trie.\n        :type word: str\n        :rtype: bool\n        \"\"\"\n        curr = self.Trie\n        for w in word:\n            curr = curr[w]\n        # len(curr) == 1 means we meet '#'\n        # when we search 'em'(which reversed from 'me')\n        # the result is len(curr) > 1\n        # cause the curr look like { '#': 1, i: {...}}\n        return len(curr) == 1\nclass Solution:\n    def minimumLengthEncoding(self, words: List[str]) -> int:\n        trie = Trie()\n        cnt = 0\n        words = set(words)\n        for word in words:\n            trie.insert(word[::-1])\n        for word in words:\n            if trie.search(word[::-1]):\n                cnt += len(word) + 1\n        return cnt\n\n"
-        }
-    ]
+    "code": []
 },
 "shortest-distance-to-a-character":{
     "id": "821",
     "name": "shortest-distance-to-a-character",
-    "pre": [
-        {
-            "text": "数组的遍历(正向遍历和反向遍历)",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/821.shortest-distance-to-a-character.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/821.shortest-distance-to-a-character.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\nclass Solution {\n    public int[] shortestToChar(String S, char C) {\n        int N = S.length();\n        int[] ans = new int[N];\n        int prev = -10000;\n\n        for (int i = 0; i < N; ++i) {\n            if (S.charAt(i) == C) prev = i;\n            ans[i] = i - prev;\n        }\n\n        prev = 20000;\n        for (int i = N-1; i >= 0; --i) {\n            if (S.charAt(i) == C) prev = i;\n            ans[i] = Math.min(ans[i], prev - i);\n        }\n\n        return ans;\n    }\n}\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n   vector<int> shortestToChar(string S, char C) {\n       vector<int> ans(S.size(), 0);\n       int prev = -10000;\n       for(int i = 0; i < S.size(); i ++){\n           if(S[i] == C) prev = i;\n           ans[i] = i - prev;\n       }\n       prev = 20000;\n       for(int i = S.size() - 1; i >= 0; i --){\n           if(S[i] == C) prev = i;\n           ans[i] = min(ans[i], prev - i);\n       }\n       return ans;\n   }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def shortestToChar(self, S: str, C: str) -> List[int]:\n        ans = []\n\n        for i in range(len(S)):\n            # 从 i 向左向右扩展\n            l = r = i\n            # 向左找到第一个 C\n            while l > -1:\n                if S[l] == C: break\n                l -= 1\n            # 向左找到第一个 C\n            while r < len(S):\n                if S[r] == C: break\n                r += 1\n            # 如果至死没有找到，则赋值一个无限大的数字，由于题目的数据范围是 [1, 10000]，因此 -10000 或者  10000就够了。\n            if l == -1: l = -10000\n            if r == len(S): r = 10000\n            # 选较近的即可\n            ans.append(min(r - i, i - l))\n        return ans\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def shortestToChar(self, S: str, C: str) -> List[int]:\n        ans = [10000] * len(S)\n        stack = []\n        for i in range(len(S)):\n            while stack and S[i] == C:\n                ans[stack.pop()] = i - stack[-1]\n            if S[i] != C:stack.append(i)\n            else: ans[i] = 0\n        for i in range(len(S) - 1, -1, -1):\n            while stack and S[i] == C:\n                ans[stack.pop()] = min(ans[stack[-1]], stack[-1] - i)\n            if S[i] != C:stack.append(i)\n            else: ans[i] = 0\n\n        return ans\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def shortestToChar(self, S: str, C: str) -> List[int]:\n        pre = -10000\n        ans = []\n\n        for i in range(len(S)):\n            if S[i] == C: pre = i\n            ans.append(i - pre)\n        pre = 20000\n        for i in range(len(S) - 1, -1, -1):\n            if S[i] == C: pre = i\n            ans[i] = min(ans[i], pre - i)\n        return ans\n"
-        }
-    ]
+    "code": []
 },
 "push-dominoes":{
     "id": "838",
     "name": "push-dominoes",
-    "pre": [
-        {
-            "text": "双指针",
-            "link": null,
-            "color": "green"
-        },
-        {
-            "text": "哨兵",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "只有相邻的受力dominoes才会相互影响",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "使用哨兵简化操作",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/838.push-dominoes.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/838.push-dominoes.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def pushDominoes(self, dominoes: str) -> str:\n        dominoes = 'L' + dominoes + 'R'\n        i = 0\n        j = i + 1\n        ans = ''\n        while j < len(dominoes):\n            if dominoes[j] == '.':\n                j += 1\n                continue\n            count = (j - i - 1)\n            if i != 0 :ans += dominoes[i]\n            if dominoes[i] == 'L' and dominoes[j] == 'R':\n                ans += '.' * count\n            elif dominoes[i] == 'L' and dominoes[j] == 'L':\n                ans += 'L' * count\n            elif dominoes[i] == 'R' and dominoes[j] == 'R':\n                ans += 'R' * count\n            elif dominoes[i] == 'R' and dominoes[j] == 'L':\n                ans += 'R' * (count//2) + '.'*(count%2) + 'L' * (count//2)\n            i = j\n            j += 1\n        return ans\n\n\n\n"
-        }
-    ]
+    "code": []
 },
 "similar-string-groups":{
     "id": "839",
     "name": "similar-string-groups",
-    "pre": [
-        {
-            "text": "并查集",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/union-find.md",
-            "color": "volcano"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "判断两个字符串是否相似的函数is_similar没有必须真实交换并判断，而是判断不相等字符是否等于2",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/839.similar-string-groups.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/839.similar-string-groups.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nuf = UF(n)\nfor i in range(n):\n      for j in range(i + 1, n):\n           if strs[i] == strs[j] or is_similar(list(strs[i]), list(strs[j])):\n              uf.union(i, j)\nreturn uf.cnt\n"
-        },
-        {
-            "language": "py",
-            "text": "\ndef is_similar(A, B):\n    n = len(A)\n    for i in range(n):\n        for j in range(i + 1, n):\n            A[i], A[j] = A[j], A[i]\n            if A == B: return True\n            A[i], A[j] = A[j], A[i]\n    return False\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\n\nclass UF:\n  def __init__(self, M):\n      self.parent = {}\n      self.cnt = 0\n      # 初始化 parent，size 和 cnt\n      for i in range(M):\n          self.parent[i] = i\n          self.cnt += 1\n\n  def find(self, x):\n      if x != self.parent[x]:\n          self.parent[x] = self.find(self.parent[x])\n          return self.parent[x]\n      return x\n  def union(self, p, q):\n      if self.connected(p, q): return\n      leader_p = self.find(p)\n      leader_q = self.find(q)\n      self.parent[leader_p] = leader_q\n      self.cnt -= 1\n  def connected(self, p, q):\n      return self.find(p) == self.find(q)\n\nclass Solution:\n    def numSimilarGroups(self, strs: List[str]) -> int:\n        n = len(strs)\n        uf = UF(n)\n        def is_similar(A, B):\n            n = len(A)\n            diff = 0\n            for i in range(n):\n                if A[i] != B[i]: diff += 1\n            return diff == 2\n\n        for i in range(n):\n            for j in range(i + 1, n):\n                if strs[i] == strs[j] or is_similar(list(strs[i]), list(strs[j])):\n                    uf.union(i, j)\n        return uf.cnt\n\n"
-        }
-    ]
+    "code": []
 },
 "length-of-longest-fibonacci-subsequence":{
     "id": "873",
     "name": "length-of-longest-fibonacci-subsequence",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "使用集合存储数组中的所有数，然后枚举数组中的两两组合并，去集合中不断延伸斐波那契数列",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/873.length-of-longest-fibonacci-subsequence.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/873.length-of-longest-fibonacci-subsequence.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def lenLongestFibSubseq(self, A: List[int]) -> int:\n        s = set(A)\n        ans = 0\n        for i in range(len(A)):\n            for j in range(i + 1, len(A)):\n                a, b = A[j], A[i] + A[j]\n                t = 2\n                while b in s:\n                    a, b = b, a + b\n                    t += 1\n                ans = max(ans, t)\n        return 0 if ans < 3 else ans\n\n"
-        }
-    ]
+    "code": []
 },
 "walking-robot-simulation":{
     "id": "874",
     "name": "walking-robot-simulation",
-    "pre": [
-        {
-            "text": "hashtable",
-            "link": null,
-            "color": "lime"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "理解题意，这道题容易理解错题意，求解为`最终位置距离原点的距离`",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "建立坐标系",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "空间换时间",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/874.walking-robot-simulation.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/874.walking-robot-simulation.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def robotSim(self, commands: List[int], obstacles: List[List[int]]) -> int:\n        pos = [0, 0]\n        deg = 90\n        ans = 0\n        obstaclesSet = set(map(tuple, obstacles))\n\n        for command in commands:\n            if command == -1:\n                deg = (deg + 270) % 360\n            elif command == -2:\n                deg = (deg + 90) % 360\n            else:\n                if deg == 0:\n                    i = 0\n                    while i < command and not (pos[0] + 1, pos[1]) in obstaclesSet:\n                        pos[0] += 1\n                        i += 1\n                if deg == 90:\n                    i = 0\n                    while i < command and not (pos[0], pos[1] + 1) in obstaclesSet:\n                        pos[1] += 1\n                        i += 1\n                if deg == 180:\n                    i = 0\n                    while i < command and not (pos[0] - 1, pos[1]) in obstaclesSet:\n                        pos[0] -= 1\n                        i += 1\n                if deg == 270:\n                    i = 0\n                    while i < command and not (pos[0], pos[1] - 1) in obstaclesSet:\n                        pos[1] -= 1\n                        i += 1\n                ans = max(ans, pos[0] ** 2 + pos[1] ** 2)\n        return ans\n"
-        }
-    ]
+    "code": []
 },
 "koko-eating-bananas":{
     "id": "875",
     "name": "koko-eating-bananas",
-    "pre": [
-        {
-            "text": "二分查找",
-            "link": "../91/binary-search.md",
-            "color": "magenta"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "二分查找模板",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/875.koko-eating-bananas.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/875.koko-eating-bananas.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\npublic int binarySearch(int[] nums, int target) {\n    // 左右都闭合的区间 [l, r]\n    int left = 0;\n    int right = nums.length - 1;\n\n    while(left <= right) {\n        int mid = left + (right - left) / 2;\n        if(nums[mid] == target)\n            return mid;\n        else if (nums[mid] < target)\n\t\t\t// 搜索区间变为 [mid+1, right]\n            left = mid + 1;\n        else if (nums[mid] > target)\n            // 搜索区间变为 [left, mid - 1]\n            right = mid - 1;\n    }\n    return -1;\n}\n"
-        },
-        {
-            "language": "java",
-            "text": "\npublic int binarySearchLeft(int[] nums, int target) {\n\t// 搜索区间为 [left, right]\n    int left = 0;\n    int right = nums.length - 1;\n    while (left <= right) {\n        int mid = left + (right - left) / 2;\n        if (nums[mid] < target) {\n            // 搜索区间变为 [mid+1, right]\n            left = mid + 1;\n        } else if (nums[mid] > target) {\n            // 搜索区间变为 [left, mid-1]\n            right = mid - 1;\n        } else if (nums[mid] == target) {\n            // 收缩右边界\n            right = mid - 1;\n        }\n    }\n    // 检查是否越界\n    if (left >= nums.length || nums[left] != target)\n        return -1;\n    return left;\n}\n"
-        },
-        {
-            "language": "java",
-            "text": "\npublic int binarySearchRight(int[] nums, int target) {\n\t// 搜索区间为 [left, right]\n    int left = 0\n    int right = nums.length - 1;\n    while (left <= right) {\n        int mid = left + (right - left) / 2;\n        if (nums[mid] < target) {\n\t\t\t// 搜索区间变为 [mid+1, right]\n            left = mid + 1;\n        } else if (nums[mid] > target) {\n\t\t\t// 搜索区间变为 [left, mid-1]\n            right = mid - 1;\n        } else if (nums[mid] == target) {\n            // 收缩左边界\n            left = mid + 1;\n        }\n    }\n    // 检查是否越界\n    if (right < 0 || nums[right] != target)\n        return -1;\n    return right;\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\nfunction canEatAllBananas(piles, H, mid) {\n  let h = 0;\n  for (let pile of piles) {\n    h += Math.ceil(pile / mid);\n  }\n\n  return h <= H;\n}\n/**\n * @param {number[]} piles\n * @param {number} H\n * @return {number}\n */\nvar minEatingSpeed = function (piles, H) {\n  let lo = 1,\n    hi = Math.max(...piles);\n  // [l, r) ， 左闭右开的好处是如果能找到，那么返回 l 和 r 都是一样的，因为最终 l 等于 r。\n  while (lo <= hi) {\n    let mid = lo + ((hi - lo) >> 1);\n    if (canEatAllBananas(piles, H, mid)) {\n      hi = mid - 1;\n    } else {\n      lo = mid + 1;\n    }\n  }\n\n  return lo; //  不能选择hi\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def solve(self, piles, k):\n        def possible(mid):\n            t = 0\n            for pile in piles:\n                t += (pile + mid - 1) // mid\n            return t <= k\n\n        l, r = 1, max(piles)\n\n        while l <= r:\n            mid = (l + r) // 2\n            if possible(mid):\n                r = mid - 1\n            else:\n                l = mid + 1\n        return l\n\n"
-        }
-    ]
+    "code": []
 },
 "stone-game":{
     "id": "877",
     "name": "stone-game",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "可以用DP（动态规划）",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "可以从数学的角度去分析",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/877.stone-game.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/877.stone-game.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/**\n * @param {number[]} piles\n * @return {boolean}\n */\nvar stoneGame = function(piles) {\n  return true;\n};\n"
-        }
-    ]
+    "code": []
 },
 "possible-bipartition":{
     "id": "886",
     "name": "possible-bipartition",
-    "pre": [
-        {
-            "text": "图的遍历",
-            "link": null,
-            "color": "geekblue"
-        },
-        {
-            "text": "DFS",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "二分图",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "染色法",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "图的建立和遍历",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "colors数组",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/886.possible-bipartition.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/886.possible-bipartition.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\ngraph = [[0] * N for i in range(N)]\nfor a, b in dislikes:\n    graph[a - 1][b - 1] = 1\n    graph[b - 1][a - 1] = 1\n"
-        },
-        {
-            "language": "py",
-            "text": "\n# 其中j 表示当前是第几个人，N表示总人数。 dfs的功能就是根据colors和graph分配组，true表示可以分，false表示不可以，具体代码见代码区。\nif colors[j] == 0 and not self.dfs(graph, colors, j, -1 * color, N)\n"
-        },
-        {
-            "language": "py",
-            "text": "\nfor i in range(n):\n    if random.random() > 0.5:\n        if colors[i] == 0 and not dfs(i, -1): return False\n    else:\n        if colors[i] == 0 and not dfs(i, 1): return False\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def dfs(self, graph, colors, i, color, N):\n        colors[i] = color\n        for j in range(N):\n            # dislike eachother\n            if graph[i][j] == 1:\n                if colors[j] == color:\n                    return False\n                if colors[j] == 0 and not self.dfs(graph, colors, j, -1 * color, N):\n                    return False\n        return True\n\n    def possibleBipartition(self, N: int, dislikes: List[List[int]]) -> bool:\n        graph = [[0] * N for i in range(N)]\n        colors = [0] * N\n        for a, b in dislikes:\n            graph[a - 1][b - 1] = 1\n            graph[b - 1][a - 1] = 1\n        for i in range(N):\n            if colors[i] == 0 and not self.dfs(graph, colors, i, 1, N):\n                return False\n        return True\n\n"
-        }
-    ]
+    "code": []
 },
 "super-egg-drop":{
     "id": "887",
     "name": "super-egg-drop",
-    "pre": [
-        {
-            "text": "递归",
-            "link": null,
-            "color": "orange"
-        },
-        {
-            "text": "动态规划",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/dynamic-programming.md \"动态规划\"",
-            "color": "red"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/887.super-egg-drop.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/887.super-egg-drop.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\nimport java.util.Arrays;\n\nclass Solution {\n    public int superEggDrop(int K, int N) {\n        int[][] dp = new int[K + 1][N + 1];\n        \n        for (int m = 1; m <= N; ++m) {\n            for (int k = 1; k <= K; ++k) {\n                dp[k][m] = dp[k - 1][m - 1] + 1 + dp[k][m - 1];\n                if (dp[k][m] >= N) {\n                    return m;\n                }\n            }\n        }\n        \n        return N; // Fallback, should not reach here\n    }\n}\n\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/**\n * @param {number} k\n * @param {number} n\n * @return {number}\n */\nvar superEggDrop = function superEggDrop(K, N) {\n    const dp = Array.from({ length: K + 1 }, () => Array(N + 1).fill(0));\n    \n    for (let m = 1; m <= N; ++m) {\n        for (let k = 1; k <= K; ++k) {\n            dp[k][m] = dp[k - 1][m - 1] + 1 + dp[k][m - 1];\n            if (dp[k][m] >= N) {\n                return m;\n            }\n        }\n    }\n    \n    return N; // Fallback, should not reach here\n}\n\n\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\n#include <vector>\n#include <functional>\n\nclass Solution {\npublic:\n    int superEggDrop(int K, int N) {\n        std::vector<std::vector<int>> dp(K + 1, std::vector<int>(N + 1, 0));\n        \n        for (int m = 1; m <= N; ++m) {\n            for (int k = 1; k <= K; ++k) {\n                dp[k][m] = dp[k - 1][m - 1] + 1 + dp[k][m - 1];\n                if (dp[k][m] >= N) {\n                    return m;\n                }\n            }\n        }\n        \n        return N; // Fallback, should not reach here\n    }\n};\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\ndef superEggDrop(K, N):\n    ans = N\n    # 暴力枚举从第 i 层开始扔\n    for i in range(1, N + 1):\n        ans = min(ans, max(self.superEggDrop(K - 1, i - 1) + 1, self.superEggDrop(K,  N - i) + 1))\n    return ans\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def superEggDrop(self, K: int, N: int) -> int:\n        if K == 1: return N\n        if N == 0 or N == 1: return N\n        ans = N\n        # 暴力枚举从第 i 层开始扔\n        for i in range(1, N + 1):\n            ans = min(ans, max(self.superEggDrop(K - 1, i - 1) + 1, self.superEggDrop(K,  N - i) + 1))\n        return ans\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    @lru_cache()\n    def superEggDrop(self, K: int, N: int) -> int:\n        if K == 1: return N\n        if N == 0 or N == 1: return N\n        ans = N\n        # 暴力枚举从第 i 层开始扔\n        for i in range(1, N + 1):\n            ans = min(ans, max(self.superEggDrop(K - 1, i - 1) + 1, self.superEggDrop(K,  N - i) + 1))\n        return ans\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def superEggDrop(self, K: int, N: int) -> int:\n        dp = [[i for _ in range(K+1)] for i in range(N + 1)]\n        for i in range(N + 1):\n            for j in range(1, K + 1):\n                dp[i][j] = i\n                if j == 1:\n                    continue\n                if i == 1 or i == 0:\n                    break\n                for k in range(1, i + 1):\n                    dp[i][j] = min(dp[i][j], max(dp[k - 1][j-1] + 1, dp[i-k][j] + 1))\n        return dp[N][K]\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def superEggDrop(self, K: int, N: int) -> int:\n        dp = [[i for i in range(N+1)] for _ in range(K + 1)]\n        for i in range(1, K + 1):\n            for j in range(N + 1):\n                dp[i][j] = j\n                if i == 1:\n                    break\n                if j == 1 or j == 0:\n                    continue\n                for k in range(1, j + 1):\n                    dp[i][j] = min(dp[i][j], max(dp[i - 1][k - 1] + 1, dp[i][j - k] + 1))\n        return dp[K][N]\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def superEggDrop(self, K: int, N: int) -> int:\n        \n        @cache\n        def f(m, k):\n            if k == 0 or m == 0: return 0\n            return f(m - 1, k - 1) + 1 +  f(m - 1, k)\n        l, r = 1, N\n        while l <= r:\n            mid = (l + r) // 2\n            if f(mid, K) >= N:\n                r = mid - 1\n            else:\n                l = mid + 1\n            \n        return l\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def superEggDrop(self, K: int, N: int) -> int:\n        dp = [[0] * (N + 1) for _ in range(K + 1)]\n        \n        for m in range(1, N + 1):\n            for k in range(1, K + 1):\n                dp[k][m] = dp[k - 1][m - 1] + 1 + dp[k][m - 1]\n                if dp[k][m] >= N:\n                    return m\n        \n        return N  # Fallback, should not reach here\n"
-        }
-    ]
+    "code": []
 },
 "maximum-frequency-stack":{
     "id": "895",
     "name": "maximum-frequency-stack",
-    "pre": [
-        {
-            "text": "设计题",
-            "link": null,
-            "color": "magenta"
-        },
-        {
-            "text": "栈",
-            "link": null,
-            "color": "red"
-        },
-        {
-            "text": "哈希表",
-            "link": null,
-            "color": "gold"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "栈的基本性质",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "hashtable的基本性质",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "fraq_stack的设计。fraq_stack中当前频率的栈要保存所有大于等于其频率的数字",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "push和pop的时候同时更新fraq，max_fraq和fraq_stack。",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/895.maximum-frequency-stack.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/895.maximum-frequency-stack.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass FreqStack:\n\n    def __init__(self):\n        self.fraq = collections.defaultdict(lambda: 0)\n        self.fraq_stack = collections.defaultdict(list)\n        self.max_fraq = 0\n\n    def push(self, x: int) -> None:\n        self.fraq[x] += 1\n        if self.fraq[x] > self.max_fraq:\n            self.max_fraq = self.fraq[x]\n        self.fraq_stack[self.fraq[x]].append(x)\n\n    def pop(self) -> int:\n        ans = self.fraq_stack[self.max_fraq].pop()\n        self.fraq[ans] -= 1\n        if not self.fraq_stack[self.max_fraq]:\n            self.max_fraq -= 1\n        return ans\n\n# Your FreqStack object will be instantiated and called as such:\n# obj = FreqStack()\n# obj.push(x)\n# param_2 = obj.pop()\n"
-        }
-    ]
+    "code": []
 },
 "bitwise-ors-of-subarrays":{
     "id": "898",
     "name": "bitwise-ors-of-subarrays",
-    "pre": [
-        {
-            "text": "【西法带你学算法】一次搞定前缀和",
-            "link": "https://lucifer.ren/blog/2020/09/27/atMostK/",
-            "color": "gold"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "子数组是连续的，有很多性质可以利用",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/898.bitwise-ors-of-subarrays.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/898.bitwise-ors-of-subarrays.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution(object):\n    def subarrayBitwiseORs(self, A):\n        pres = set([0])\n        ans = set()\n        for a in A:\n            nxt = set()\n            for pre in pres:\n                nxt.add(a | pre)\n                nxt.add(a)\n            pres = nxt\n            ans |= nxt\n        return len(ans)\n\n\n"
-        }
-    ]
+    "code": []
 },
 "rle-iterator":{
     "id": "900",
     "name": "rle-iterator",
-    "pre": [
-        {
-            "text": "哈夫曼编码和游程编码",
-            "link": null,
-            "color": "purple"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/900.rle-iterator.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/900.rle-iterator.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/**\n * @param {number[]} A\n */\nvar RLEIterator = function(A) {\n    this.A = A;\n    this.current = 0;\n};\n\n\n/** \n * @param {number} n\n * @return {number}\n */\nRLEIterator.prototype.next = function(n) {\n    const A = this.A;\n    while(this.current < A.length && A[this.current] < n){\n        n = n - A[this.current];\n        this.current += 2;\n    }\n    \n    if(this.current >= A.length){\n        return -1;\n    }\n    \n    A[this.current] = A[this.current] - n; // 更新Count\n    return A[this.current + 1]; // 返回element\n};\n\n/** \n * Your RLEIterator object will be instantiated and called as such:\n * var obj = new RLEIterator(A)\n * var param_1 = obj.next(n)\n */\n"
-        }
-    ]
+    "code": []
 },
 "snakes-and-ladders":{
     "id": "909",
     "name": "snakes-and-ladders",
-    "pre": [
-        {
-            "text": "广度优先遍历",
-            "link": null,
-            "color": "gold"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "根据矩阵编号如何算出其都在的行号和列号。这里其实用到了number=(row",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "1)\\*n+col这样的一个公式，后面的所有公式都是基于它产生的。",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/909.snakes-and-ladders.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/909.snakes-and-ladders.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def snakesAndLadders(self, board: List[List[int]]) -> int:\n        q = collections.deque([(1, 0)])\n        n = len(board)\n        visited = set()\n\n        def get_pos(pos):\n            row = (n - 1) - (pos - 1) // n\n            col = (n - 1) - ((pos - 1) % n) if row & 1 == n & 1 else (pos - 1) % n\n            return row, col\n\n        while q:\n            for _ in range(len(q)):\n                cur, steps = q.popleft()\n                if cur in visited:\n                    continue\n                visited.add(cur)\n                if cur == n ** 2:\n                    return steps\n                for nxt in range(cur + 1, min(cur + 6, n * n) + 1):\n                    row, col = get_pos(nxt)\n                    if board[row][col] == -1:\n                        q.append((nxt, steps + 1))\n                    else:\n                        q.append((board[row][col], steps + 1))\n        return -1\n\n"
-        }
-    ]
+    "code": []
 },
 "online-election":{
     "id": "911",
     "name": "online-election",
-    "pre": [
-        {
-            "text": "二分查找",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/91/binary-search.md \"二分查找\"",
-            "color": "magenta"
-        },
-        {
-            "text": "哈希表",
-            "link": null,
-            "color": "gold"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "使用哈希表记录times中每一个时刻的优胜信息",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "最左插入模板",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/911.online-election.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/911.online-election.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass TopVotedCandidate:\n\n    def __init__(self, persons: List[int], times: List[int]):\n        vote_count = collections.defaultdict(int) # 哈希表统计每个人的票数信息\n        max_voted_person = -1\n        max_voted_count = 0\n        winner = []\n        # zip([1,2,3], [4,5,6]) 会返回 [[1,4], [2,5], [3,6]]\n        for p, t in zip(persons, times):\n            vote_count[p] += 1\n            if vote_count[p] >= max_voted_count:\n                max_voted_count = vote_count[p]\n                max_voted_person = p\n            # 更新 winner\n            winner.append(max_voted_person)\n"
-        },
-        {
-            "language": "py",
-            "text": "\nq(int t) -> int\n"
-        },
-        {
-            "language": "py",
-            "text": "\ntimes =  [2,4,5,6]\nwinner = [1,2,1,1]\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass TopVotedCandidate:\n\n    def __init__(self, persons: List[int], times: List[int]):\n        vote_count = collections.defaultdict(int)\n        max_voted_person = -1\n        max_voted_count = 0\n        winner = []\n        for p, t in zip(persons, times):\n            vote_count[p] += 1\n            if vote_count[p] >= max_voted_count:\n                max_voted_count = vote_count[p]\n                max_voted_person = p\n            winner.append(max_voted_person)\n        self.winner = winner\n        self.times = times\n\n    def q(self, t: int) -> int:\n        winner = self.winner\n        # times 是不重复的，也就是严格递增的，类似 [2,4,5,6]，这是关键\n        # eg:\n        # times  [2,4,5,6]\n        # winner [1,2,1,1]\n        i = bisect.bisect_left(self.times, t)\n        if i != len(self.times) and self.times[i] == t:\n            return winner[i]\n        return winner[i - 1]\n"
-        }
-    ]
+    "code": []
 },
 "sort-an-array":{
     "id": "912",
     "name": "sort-an-array",
-    "pre": [
-        {
-            "text": "数组",
-            "link": null,
-            "color": "purple"
-        },
-        {
-            "text": "排序",
-            "link": null,
-            "color": "purple"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "排序算法",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "注意题目的限制条件从而选择合适的算法",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "companies": [
-        {
-            "name": "阿里巴巴"
-        },
-        {
-            "name": "百度"
-        },
-        {
-            "name": "字节跳动"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/912.sort-an-array.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/912.sort-an-array.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n/**\n * @param {number[]} nums\n * @return {number[]}\n */\nvar sortArray = function (nums) {\n  const counts = Array(50000 * 2 + 1).fill(0);\n  const res = [];\n  for (const num of nums) counts[50000 + num] += 1;\n  for (let i in counts) {\n    while (counts[i]--) {\n      res.push(i - 50000);\n    }\n  }\n  return res;\n};\n"
-        },
-        {
-            "language": "js",
-            "text": "\nfunction swap(nums, a, b) {\n  const temp = nums[a];\n  nums[a] = nums[b];\n  nums[b] = temp;\n}\n\nfunction helper(nums, start, end) {\n  if (start >= end) return;\n  const pivotIndex = start + ((end - start) >>> 1);\n  const pivot = nums[pivotIndex];\n  let i = start;\n  let j = end;\n  while (i <= j) {\n    while (nums[i] < pivot) i++;\n    while (nums[j] > pivot) j--;\n    if (i <= j) {\n      swap(nums, i, j);\n      i++;\n      j--;\n    }\n  }\n  helper(nums, start, j);\n  helper(nums, i, end);\n}\n\n/**\n * @param {number[]} nums\n * @return {number[]}\n */\nvar sortArray = function (nums) {\n  helper(nums, 0, nums.length - 1);\n  return nums;\n};\n"
-        }
-    ]
+    "code": []
 },
 "maximum-sum-circular-subarray":{
     "id": "918",
     "name": "maximum-sum-circular-subarray",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "其中一种情况（两段子序和）：转化为sum(nums)",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "最小子序和",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/918.maximum-sum-circular-subarray.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/918.maximum-sum-circular-subarray.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    # 最小子序和\n    def solve1(self, A):\n        A = A\n        dp = [inf] * len(A)\n        for i in range(len(A)):\n            dp[i] = min(A[i], dp[i - 1] + A[i])\n        return min(dp)\n    # 最大子序和\n    def solve2(self, A):\n        A = A\n        dp = [-inf] * len(A)\n        for i in range(len(A)):\n            dp[i] = max(A[i], dp[i - 1] + A[i])\n        return max(dp)\n    def maxSubarraySumCircular(self, nums: List[int]) -> int:\n        ans1 = sum(nums) - self.solve1(nums)\n        ans2 = self.solve2(nums)\n        if ans1 == 0: ans1 = max(nums) # 不能为空，那就选一个最大的吧\n        return max(ans1, ans2)\n\n"
-        }
-    ]
+    "code": []
 },
 "beautiful-array":{
     "id": "932",
     "name": "beautiful-array",
-    "pre": [
-        {
-            "text": "分治",
-            "link": null,
-            "color": "gold"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "利用性质**奇数+偶数=奇数**",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "对问题进行分解",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/932.beautiful-array.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/932.beautiful-array.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def beautifulArray(self, N: int) -> List[int]:\n        @lru_cache(None)\n        def dp(n):\n            if n == 1:\n                return [1]\n            ans = []\n            # [1,n] 中奇数比偶数多1或一样\n            for a in dp(n - n // 2):\n                ans += [a * 2 - 1]\n            for b in dp(n // 2):\n                ans += [b * 2]\n            return ans\n\n        return dp(N)\n\n"
-        }
-    ]
+    "code": []
 },
 "knight-dialer":{
     "id": "935",
     "name": "knight-dialer",
-    "pre": [
-        {
-            "text": "DFS",
-            "link": null,
-            "color": "red"
-        },
-        {
-            "text": "记忆化搜索",
-            "link": null,
-            "color": "lime"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/935.knight-dialer.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/935.knight-dialer.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def knightDialer(self, N: int) -> int:\n        cnt = 0\n        jump = [[4, 6], [6, 8], [7, 9], [4, 8], [\n            0, 3, 9], [], [0, 1, 7], [2, 6], [1, 3], [2, 4]]\n        visited = dict()\n\n        def helper(i, n):\n            if (i, n) in visited: return visited[(i, n)]\n            if n == 1:\n                return 1\n            cnt = 0\n            for j in jump[i]:\n                cnt += helper(j, n - 1)\n            visited[(i, n)] = cnt\n            return cnt\n        for i in range(10):\n            cnt += helper(i, N)\n        return cnt % (10**9 + 7)\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def knightDialer(self, N: int) -> int:\n        a0 = a1 = a2 = a3 = a4 = a5 = a6 = a7 = a8 = a9 = 1\n        for _ in range(N - 1):\n            a0, a1, a2, a3, a4, a5, a6, a7, a8, a9 = a4 + a6, a6 + a8, a7 + \\\n                a9, a4 + a8, a0 + a3 + a9, 0, a0 + a1 + a7, a2 + a6, a1 + a3, a2 + a4\n        return (a0 + a1 + a2 + a3 + a4 + a5 + a6 + a7 + a8 + a9) % (10**9 + 7)\n"
-        }
-    ]
+    "code": []
 },
 "most-stones-removed-with-same-row-or-column":{
     "id": "947",
     "name": "most-stones-removed-with-same-row-or-column",
-    "pre": [
-        {
-            "text": "并查集",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/union-find.md",
-            "color": "volcano"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/947.most-stones-removed-with-same-row-or-column.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/947.most-stones-removed-with-same-row-or-column.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\npublic int removeStones(int[][] stones) {\n        Set visit = new HashSet();\n        int count = 0;\n        int offset = 10000;\n        HashMap <Integer,List<int []>>map = new HashMap();\n\n        // 构造图 每一项是一个节点\n        for (int i = 0; i < stones.length; i++) {\n            int [] node = stones[i];\n            List<int []> list =   map.getOrDefault(node[0]-offset,new ArrayList<>());\n            list.add(node);\n            map.put(node[0]-offset,list);\n\n            List<int []> list1 = map.getOrDefault(node[1],new ArrayList<>());\n            list1.add(node);\n            map.put(node[1],list1);\n        }\n        // 寻找联通分量\n        for (int i = 0; i < stones.length; i++) {\n            int [] node = stones[i];\n            if (!visit.contains((node))){\n                visit.add((node));\n                dfs(node,visit,map);\n                count++;\n            }\n        }\n        return stones.length-count;\n    }\n\n    // 遍历节点\n    public void dfs(int[]node, Set set,HashMap <Integer,List<int []>>map){\n        int offset = 10000;\n        List<int []> list =   map.getOrDefault(node[0]-offset,new ArrayList<>());\n        for (int i = 0; i < list.size(); i++) {\n            int[] item = list.get(i);\n            if (!set.contains((item))){\n                set.add((item));\n                dfs(item,set,map);\n            }\n        }\n        List<int []> list2 =   map.getOrDefault(node[1],new ArrayList<>());\n        for (int i = 0; i < list2.size(); i++) {\n            int[] item = list2.get(i);\n            if (!set.contains((item))){\n                set.add((item));\n                dfs(item,set,map);\n            }\n        }\n    }\n"
-        },
-        {
-            "language": "py",
-            "text": "\nn = len(stones)\n# 标准并查集模板\nuf = UF(n)\n# 两个 for 循环作用是将所有石子两两合并\nfor i in range(n):\n    for j in range(i + 1, n):\n        # 如果行或者列相同，将其联通成一个子图\n        if stones[i][0] == stones[j][0] or stones[i][1] == stones[j][1]: uf.union(i, j)\nreturn n - uf.cnt\n"
-        },
-        {
-            "language": "py",
-            "text": "\nn = len(stones)\nuf = UF(0)\nfor i in range(n):\n    uf.union(stones[i][0] + 10001, stones[i][1])\nreturn n - uf.cnt\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass UF:\n    def __init__(self, M):\n        self.parent = {}\n        self.cnt = 0\n        # 初始化 parent，size 和 cnt\n        for i in range(M):\n            self.parent[i] = i\n            self.cnt += 1\n\n    def find(self, x):\n        if x != self.parent[x]:\n            self.parent[x] = self.find(self.parent[x])\n            return self.parent[x]\n        return x\n    def union(self, p, q):\n        if self.connected(p, q): return\n        leader_p = self.find(p)\n        leader_q = self.find(q)\n        self.parent[leader_p] = leader_q\n        self.cnt -= 1\n    def connected(self, p, q):\n        return self.find(p) == self.find(q)\n\nclass Solution:\n    def removeStones(self, stones: List[List[int]]) -> int:\n        n = len(stones)\n        uf = UF(n)\n        for i in range(n):\n            for j in range(i + 1, n):\n                if stones[i][0] == stones[j][0] or stones[i][1] == stones[j][1]: uf.union(i, j)\n        return n - uf.cnt\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass UF:\n    def __init__(self, M):\n        self.parent = {}\n        self.cnt = 0\n\n    def find(self, x):\n        if x not in self.parent:\n            self.cnt += 1\n            self.parent[x] = x\n        if x != self.parent[x]:\n            self.parent[x] = self.find(self.parent[x])\n            return self.parent[x]\n        return x\n    def union(self, p, q):\n        if self.connected(p, q): return\n        leader_p = self.find(p)\n        leader_q = self.find(q)\n        self.parent[leader_p] = leader_q\n        self.cnt -= 1\n    def connected(self, p, q):\n        return self.find(p) == self.find(q)\n\nclass Solution:\n    def removeStones(self, stones: List[List[int]]) -> int:\n        n = len(stones)\n        uf = UF(0)\n        for i in range(n):\n            uf.union(stones[i][0] + 10001, stones[i][1])\n        return n - uf.cnt\n"
-        }
-    ]
+    "code": []
 },
 "regions-cut-by-slashes":{
     "id": "959",
     "name": "regions-cut-by-slashes",
-    "pre": [
-        {
-            "text": "BFS",
-            "link": null,
-            "color": "purple"
-        },
-        {
-            "text": "DFS",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/DFS.md \"DFS\"",
-            "color": "red"
-        },
-        {
-            "text": "并查集",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/union-find.md \"并查集\"",
-            "color": "volcano"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/959.regions-cut-by-slashes.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/959.regions-cut-by-slashes.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\ndef get_pos(row, col):\n    return row * n + col\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\ndef get_pos(row, col, i):\n    return row * n + col + i\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\n\nclass UF:\n  def __init__(self, M):\n      self.parent = {}\n      self.cnt = 0\n      # 初始化 parent，size 和 cnt\n      for i in range(M):\n          self.parent[i] = i\n          self.cnt += 1\n\n  def find(self, x):\n      if x != self.parent[x]:\n          self.parent[x] = self.find(self.parent[x])\n          return self.parent[x]\n      return x\n  def union(self, p, q):\n      if self.connected(p, q): return\n      leader_p = self.find(p)\n      leader_q = self.find(q)\n      self.parent[leader_p] = leader_q\n      self.cnt -= 1\n  def connected(self, p, q):\n      return self.find(p) == self.find(q)\n\nclass Solution:\n    def regionsBySlashes(self, grid):\n        n = len(grid)\n        N = n * n * 4\n        uf = UF(N)\n        def get_pos(row, col, i):\n            return (row * n + col) * 4 + i\n        for row in range(n):\n            for col in range(n):\n                v = grid[row][col]\n                if row > 0:\n                    uf.union(get_pos(row - 1, col, 2), get_pos(row, col, 1))\n                if col > 0:\n                    uf.union(get_pos(row, col - 1, 3), get_pos(row, col, 0))\n                if v == '/':\n                    uf.union(get_pos(row, col, 0), get_pos(row, col, 1))\n                    uf.union(get_pos(row, col, 2), get_pos(row, col, 3))\n                if v == '\\\\':\n                    uf.union(get_pos(row, col, 1), get_pos(row, col, 3))\n                    uf.union(get_pos(row, col, 0), get_pos(row, col, 2))\n                if v == ' ':\n                    uf.union(get_pos(row, col, 0), get_pos(row, col, 1))\n                    uf.union(get_pos(row, col, 1), get_pos(row, col, 2))\n                    uf.union(get_pos(row, col, 2), get_pos(row, col, 3))\n\n        return uf.cnt\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def regionsBySlashes(self, grid: List[str]) -> int:\n        m, n = len(grid), len(grid[0])\n        new_grid = [[0 for _ in range(3 * n)] for _ in range(3 * m)]\n        ans = 0\n        for i in range(m):\n            for j in range(n):\n                if grid[i][j] == '/':\n                    new_grid[3 * i][3 * j + 2] = 1\n                    new_grid[3 * i + 1][3 * j + 1] = 1\n                    new_grid[3 * i + 2][3 * j] = 1\n                if grid[i][j] == '\\\\':\n                    new_grid[3 * i][3 * j] = 1\n                    new_grid[3 * i + 1][3 * j + 1] = 1\n                    new_grid[3 * i + 2][3 * j + 2] = 1\n        def dfs(i, j):\n            if 0 <= i < 3 * m and 0 <= j < 3 * n and new_grid[i][j] == 0:\n                new_grid[i][j] = 1\n                dfs(i + 1, j)\n                dfs(i - 1, j)\n                dfs(i, j + 1)\n                dfs(i, j - 1)\n        for i in range(3 * m):\n            for j in range(3 * n):\n                if new_grid[i][j] == 0:\n                    ans += 1\n                    dfs(i, j)\n        return ans\n"
-        }
-    ]
+    "code": []
 },
 "odd-even-jump":{
     "id": "975",
     "name": "odd-even-jump",
-    "pre": [
-        {
-            "text": "单调栈",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/monotone-stack.md",
-            "color": "purple"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/975.odd-even-jump.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/975.odd-even-jump.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nn = len(A)\nnext_higher, next_lower = [-1] * n, [-1] * n\n\nstack = []\nfor i, a in enumerate(A):\n    while stack and A[stack[-1]] <= A[i]:\n        next_higher[stack.pop()] = i\n    stack.append(i)\nstack = []\nfor i, a in enumerate(A):\n    while stack and A[stack[-1]] >= A[i]:\n        next_lower[stack.pop()] = i\n    stack.append(i)\n"
-        },
-        {
-            "language": "py",
-            "text": "\nA = sorted([a, i] for i, a in enumerate(A))\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def oddEvenJumps(self, A):\n        n = len(A)\n        next_higher, next_lower = [0] * n, [0] * n\n        A = sorted([a, i] for i, a in enumerate(A))\n\n        stack = []\n        for _, i in A:\n            # it means stack[-1]'s next bigger(or equal) is i\n            while stack and stack[-1] < i:\n                next_higher[stack.pop()] = i\n            stack.append(i)\n\n        stack = []\n        for _, i in A[::-1]:\n            # it means stack[-1]'s next smaller(or equal) is i\n            while stack and stack[-1] < i:\n                next_lower[stack.pop()] = i\n            stack.append(i)\n\n        # ...\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def oddEvenJumps(self, A):\n        n = len(A)\n        next_higher, next_lower = [0] * n, [0] * n\n\n        stack = []\n        for _, i in sorted([a, i] for i, a in enumerate(A)):\n            # it means stack[-1]'s next bigger(or equal) is i\n            while stack and stack[-1] < i:\n                next_higher[stack.pop()] = i\n            stack.append(i)\n\n        stack = []\n        for _, i in sorted([-a, i] for i, a in enumerate(A)):\n            # it means stack[-1]'s next smaller(or equal) is i\n            while stack and stack[-1] < i:\n                next_lower[stack.pop()] = i\n            stack.append(i)\n\n        higher, lower = [False] * n, [False] * n\n        higher[-1] = lower[-1] = True\n        ans = 1\n        for i in range(n - 2, -1, -1):\n            higher[i] = lower[next_higher[i]]\n            lower[i] = higher[next_lower[i]]\n            ans += higher[i]\n        return ans\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\nans = 1\nfor i in range(n - 2, -1, -1):\n    higher[i] = lower[next_higher[i]]\n    lower[i] = higher[next_lower[i]]\n    ans += higher[i] or lower[i]\nreturn ans\n"
-        }
-    ]
+    "code": []
 },
 "longest-turbulent-subarray":{
     "id": "978",
     "name": "longest-turbulent-subarray",
-    "pre": [
-        {
-            "text": "滑动窗口",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/slide-window.md",
-            "color": "purple"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/978.longest-turbulent-subarray.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/978.longest-turbulent-subarray.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def maxTurbulenceSize(self, A: List[int]) -> int:\n        ans = 1\n        i = 0\n        for j in range(2, len(A)):\n            if (A[j] == A[j - 1]):\n                i = j\n            elif (A[j] - A[j - 1]) ^ (A[j - 1] - A[j - 2]) >= 0:\n                i = j - 1\n            ans = max(ans, j - i + 1)\n        return ans\n\n"
-        }
-    ]
+    "code": []
 },
 "vertical-order-traversal-of-a-binary-tree":{
     "id": "987",
     "name": "vertical-order-traversal-of-a-binary-tree",
-    "pre": [
-        {
-            "text": "DFS",
-            "link": null,
-            "color": "red"
-        },
-        {
-            "text": "排序",
-            "link": null,
-            "color": "purple"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/987.vertical-order-traversal-of-a-binary-tree.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/987.vertical-order-traversal-of-a-binary-tree.md",
-    "code": [
-        {
-            "language": "js",
-            "text": "\n{\n    1: [1,3,4]\n    -1: [5]\n}\n\n"
-        },
-        {
-            "language": "js",
-            "text": "\n{\n    1: {\n        -2,[1,3,4]\n        -3,[5]\n\n    },\n    -1: {\n        -3: [6]\n    }\n}\n"
-        },
-        {
-            "language": "js",
-            "text": "\n/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @return {number[][]}\n */\nvar verticalTraversal = function (root) {\n  if (!root) return [];\n\n  // 坐标集合以 x 坐标分组\n  const pos = {};\n  // dfs 遍历节点并记录每个节点的坐标\n  dfs(root, 0, 0);\n\n  // 得到所有节点坐标后，先按 x 坐标升序排序\n  let sorted = Object.keys(pos)\n    .sort((a, b) => +a - +b)\n    .map((key) => pos[key]);\n\n  // 再给 x 坐标相同的每组节点坐标分别排序\n  sorted = sorted.map((g) => {\n    g.sort((a, b) => {\n      // y 坐标相同的，按节点值升序排\n      if (a[0] === b[0]) return a[1] - b[1];\n      // 否则，按 y 坐标降序排\n      else return b[0] - a[0];\n    });\n    // 把 y 坐标去掉，返回节点值\n    return g.map((el) => el[1]);\n  });\n\n  return sorted;\n\n  // *********************************\n  function dfs(root, x, y) {\n    if (!root) return;\n\n    x in pos || (pos[x] = []);\n    // 保存坐标数据，格式是: [y, val]\n    pos[x].push([y, root.val]);\n\n    dfs(root.left, x - 1, y - 1);\n    dfs(root.right, x + 1, y - 1);\n  }\n};\n"
-        },
-        {
-            "language": "cpp",
-            "text": "\nclass Solution {\npublic:\n    struct node\n    {\n        int val;\n        int x;\n        int y;\n        node(int v,int X,int Y):val(v),x(X),y(Y){};\n    };\n    static bool cmp(node a,node b)\n    {\n        if(a.x^b.x)\n            return a.x<b.x;\n        if(a.y^b.y)\n            return a.y<b.y;\n        return a.val<b.val;\n    }\n    vector<node> a;\n    int minx=1000,maxx=-1000;\n    vector<vector<int>> verticalTraversal(TreeNode* root) {\n        dfs(root,0,0);\n        sort(a.begin(),a.end(),cmp);\n        vector<vector<int>>ans(maxx-minx+1);\n        for(auto xx:a)\n        {\n            ans[xx.x-minx].push_back(xx.val);\n        }\n        return ans;\n    }\n    void dfs(TreeNode* root,int x,int y)\n    {\n        if(root==nullptr)\n            return;\n        if(x<minx)\n            minx=x;\n        if(x>maxx)\n            maxx=x;\n        a.push_back(node(root->val,x,y));\n        dfs(root->left,x-1,y+1);\n        dfs(root->right,x+1,y+1);\n    }\n};\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution(object):\n    def verticalTraversal(self, root):\n        seen = collections.defaultdict(\n            lambda: collections.defaultdict(list))\n\n        def dfs(root, x=0, y=0):\n            if not root:\n                return\n            seen[x][y].append(root.val)\n            dfs(root.left, x-1, y+1)\n            dfs(root.right, x+1, y+1)\n\n        dfs(root)\n        ans = []\n        # x 排序、\n        for x in sorted(seen):\n            level = []\n            # y 排序\n            for y in sorted(seen[x]):\n                # 值排序\n                level += sorted(v for v in seen[x][y])\n            ans.append(level)\n\n        return ans\n"
-        }
-    ]
+    "code": []
 },
 "minimum-number-of-k-consecutive-bit-flips":{
     "id": "995",
     "name": "minimum-number-of-k-consecutive-bit-flips",
-    "pre": [
-        {
-            "text": "连续子数组优化",
-            "link": null,
-            "color": "lime"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "连续子数组优化技巧",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/995.minimum-number-of-k-consecutive-bit-flips.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/995.minimum-number-of-k-consecutive-bit-flips.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def minKBitFlips(self, A, K):\n        N = len(A)\n        ans = 0\n        for i in range(N - K + 1):\n            if A[i] == 1:\n                continue\n            for j in range(K):\n                A[i + j] ^= 1\n            ans += 1\n        for i in range(N):\n            if A[i] == 0:\n                return -1\n        return ans\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def minKBitFlips(self, A: List[int], K: int) -> int:\n        n = len(A)\n        diff = [0] * (n + 1)\n        ans, cur = 0, 0\n        for i in range(n):\n            cur += diff[i]\n            if cur % 2 == A[i]:\n                if i + K > n:\n                    return -1\n                ans += 1\n                cur += 1\n                diff[i + K] -= 1\n        return ans\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def minKBitFlips(self, A, K):\n        N = len(A)\n        q = collections.deque()\n        ans = 0\n        for i in range(N):\n            if q and i >= q[0] + K:\n                q.popleft()\n            if len(q) % 2 == A[i]:\n                if i + K > N:\n                    return -1\n                q.append(i)\n                ans += 1\n        return ans\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def minKBitFlips(self, A, K):\n        flips = ans = 0\n        for i in range(len(A)):\n            if i >= K and A[i - K] - 2 == 0:\n                flips -= 1\n            if (flips % 2) == A[i]:\n                if i + K > len(A):\n                    return -1\n                A[i] = 2\n                flips += 1\n                ans += 1\n        return ans\n\n"
-        }
-    ]
+    "code": []
 },
 "find-the-town-judge":{
     "id": "997",
     "name": "find-the-town-judge",
-    "pre": [
-        {
-            "text": "图",
-            "link": null,
-            "color": "green"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "将问题抽象为图，问题转为求图的入度和出度",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/997.find-the-town-judge.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/997.find-the-town-judge.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n     def findJudge(self, N, trust):\n        in_degree = [0] * (N + 1)\n        out_degree = [0] * (N + 1)\n        for a, b in trust:\n            in_degree[b] += 1\n            out_degree[a] += 1\n        for i in range(1, N + 1):\n            if in_degree[i] == N - 1 and out_degree[i] == 0:\n                return i\n        return -1\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n     def findJudge(self, N, trust):\n        count = [0] * (N + 1)\n        for i, j in trust:\n            count[i] -= 1\n            count[j] += 1\n        for i in range(1, N + 1):\n            if count[i] == N - 1:\n                return i\n        return -1\n"
-        }
-    ]
+    "code": []
 },
 "max-consecutive-ones-iii":{
     "id": "1004",
@@ -14210,248 +8718,92 @@
 "minimum-absolute-difference-between-elements-with-constraint":{
     "id": "2817",
     "name": "minimum-absolute-difference-between-elements-with-constraint",
-    "pre": [
-        {
-            "text": "二分查找",
-            "link": null,
-            "color": "magenta"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/2817.minimum-absolute-difference-between-elements-with-constraint.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/2817.minimum-absolute-difference-between-elements-with-constraint.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def minAbsoluteDifference(self, nums: List[int], x: int) -> int:\n        n = len(nums)\n        minDiff = float('inf')\n\n        for i in range(n):\n            for j in range(i + x, n):\n                absDiff = abs(nums[i] - nums[j])\n                if absDiff < minDiff:\n                    minDiff = absDiff\n\n        return minDiff\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\nfrom sortedcontainers import SortedList\n\nclass Solution:\n    def minAbsoluteDifference(self, nums: List[int], x: int) -> int:\n        n = len(nums)\n\n        # 初始化答案为无穷大\n        res = float('inf')  \n\n        # 维护前面元素的有序序列\n        ls = SortedList()  \n\n        for i in range(n - x):\n\n            # 将nums[i]加入有序序列ls，SortedList保证插入后仍然有序\n            v = nums[i]\n            ls.add(v) \n\n            # 使用二分查找寻找前面序列中最后一个<=nums[i+x]的元素\n            v = nums[i + x]\n            idx = ls.bisect_right(v)\n\n            # 使用和nums[i+x]最接近的元素更新答案,将答案更新为当前答案和新差值中的较小值\n            res = min(res, abs(v - ls[idx - 1]))\n\n            # 如果存在更接近的元素，也尝试更新答案\n            if idx < len(ls):  \n                res = min(res, abs(ls[idx] - v))\n\n        return res\n"
-        }
-    ]
+    "code": []
 },
 "count-k-subsequences-of-a-string-with-maximum-beauty":{
     "id": "2842",
     "name": "count-k-subsequences-of-a-string-with-maximum-beauty",
-    "pre": [
-        {
-            "text": "排列组合",
-            "link": null,
-            "color": "green"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/2842.count-k-subsequences-of-a-string-with-maximum-beauty.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/2842.count-k-subsequences-of-a-string-with-maximum-beauty.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def countKSubsequencesWithMaxBeauty(self, s: str, k: int) -> int:\n        MOD = 10 ** 9 + 7\n        ans = 1\n        cnt = Counter(Counter(s).values())\n        for c, num in sorted(cnt.items(), reverse=True):\n            # c 是出现次数\n            # num 是出现次数为 c 的有多少个\n            if num >= k:\n                return ans * pow(c, k, MOD) * comb(num, k) % MOD\n            ans *= pow(c, num, MOD) * comb(num, num) % MOD\n            k -= num\n        return 0\n\n"
-        }
-    ]
+    "code": []
 },
 "beautiful-towers-i":{
     "id": "2865",
     "name": "beautiful-towers-i",
-    "pre": [
-        {
-            "text": "单调栈",
-            "link": null,
-            "color": "purple"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "单调栈优化",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/2865.beautiful-towers-i.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/2865.beautiful-towers-i.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nans, n = 0, len(maxHeight)\n        for i, x in enumerate(maxHeight):\n            y = t = x\n            # t 是高度和，y 是 min_v\n            for j in range(i - 1, -1, -1):\n                y = min(y, maxHeight[j])\n                t += y\n            y = x\n            for j in range(i + 1, n):\n                y = min(y, maxHeight[j])\n                t += y\n            ans = max(ans, t)\n        return ans\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def maximumSumOfHeights(self, maxHeight: List[int]) -> int:\n        n = len(maxHeight)\n        f = [-1] * n # f[i] 表示 i 作为峰顶左侧的高度和\n        g = [-1] * n # g[i] 表示 -i-1 作为峰顶右侧的高度和\n        def gao(f):\n            st = []\n            for i in range(len(maxHeight)):\n                while st and maxHeight[i] <= maxHeight[st[-1]]:\n                    st.pop()\n                if st:\n                    f[i] = (i - st[-1]) * maxHeight[i] + f[st[-1]]\n                else:\n                    f[i] = maxHeight[i] * (i + 1)\n                st.append(i)\n        gao(f)\n        maxHeight = maxHeight[::-1]\n        gao(g)\n        maxHeight = maxHeight[::-1]\n        ans = 0\n        for i in range(len(maxHeight)):\n            ans = max(ans, f[i] + g[-i-1] - maxHeight[i])\n        return ans\n\n"
-        }
-    ]
+    "code": []
 },
 "beautiful-towers-ii":{
     "id": "2866",
     "name": "beautiful-towers-ii",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        },
-        {
-            "text": "单调栈",
-            "link": null,
-            "color": "purple"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/2866.beautiful-towers-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/2866.beautiful-towers-ii.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def maximumSumOfHeights(self, maxHeight: List[int]) -> int:\n        # 枚举 i 作为顶峰，其取值贪心的取 maxHeight[i]\n        # 其左侧第一个小于它的位置 l，[l + 1, i] 都可以且最多取到 maxHeight[i]\n        n = len(maxHeight)\n        f = [-1] * n # f[i] 表示 i 为峰顶，左侧高度和最大值\n        g = [-1] * n # g[i] 表示 i 为峰顶，右侧高度和最大值\n        def cal(f):\n            st = []\n            for i in range(len(maxHeight)):\n                while st and maxHeight[i] < maxHeight[st[-1]]:\n                    st.pop()\n                # 其左侧第一个小于它的位置 l，[l + 1, i] 都可以且最多取到 maxHeight[i]\n                if st:\n                    f[i] = (i - st[-1]) * maxHeight[i] + f[st[-1]]\n                else:\n                    f[i] = maxHeight[i] * (i + 1)\n                st.append(i)\n        cal(f)\n        maxHeight = maxHeight[::-1]\n        cal(g)\n        maxHeight = maxHeight[::-1]\n        ans = 0\n        for i in range(len(maxHeight)):\n            ans = max(ans, f[i] + g[n - 1 - i] - maxHeight[i])\n        return ans\n"
-        }
-    ]
+    "code": []
 },
 "maximum-xor-product":{
     "id": "2939",
     "name": "maximum-xor-product",
-    "pre": [
-        {
-            "text": "位运算",
-            "link": null,
-            "color": "blue"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "除了低n位，其他不受x异或影响",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "对于每一位，贪心地使得异或结果为1，如果不能，贪心地使较小的异或结果为1",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/2939.maximum-xor-product.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/2939.maximum-xor-product.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def maximumXorProduct(self, a: int, b: int, n: int) -> int:\n        axorx = (a >> n) << n # 低 n 位去掉，剩下的前 m 位就是答案中的 axorb 二进制位。剩下要做的是确定低 n 位具体是多少\n        bxorx = (b >> n) << n\n        MOD = 10 ** 9 + 7\n        for i in range(n-1, -1, -1):\n            t1 = a >> i & 1\n            t2 = b >> i & 1\n            if t1 == t2:\n                axorx |= 1 << i\n                bxorx |= 1 << i\n            else:\n                if axorx < bxorx:\n                    axorx |= 1 << i # 和一定，两者相差越小，乘积越大 \n                else:\n                    bxorx |= 1 << i\n        axorx %= MOD\n        bxorx %= MOD\n        return (axorx * bxorx) % MOD\n\n"
-        }
-    ]
+    "code": []
 },
 "count-the-number-of-incremovable-subarrays-ii":{
     "id": "2972",
     "name": "count-the-number-of-incremovable-subarrays-ii",
     "pre": [],
-    "keyPoints": [
-        {
-            "text": "枚举每一个后缀对答案的贡献",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/2972.count-the-number-of-incremovable-subarrays-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/2972.count-the-number-of-incremovable-subarrays-ii.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def incremovableSubarrayCount(self, nums: List[int]) -> int:\n        i = 0\n        n = len(nums)\n        while i < n - 1 and nums[i] < nums[i+1]:\n            i += 1\n        if i == n - 1: return (n * (n + 1)) // 2\n        j = n - 1\n        ans = i + 2 # 后缀是空的时候，答案是 i + 2\n        while j > -1:\n            if j+1<n and nums[j] >= nums[j+1]: break # 后缀不再递增，不满足 2\n            while i > -1 and nums[j] <= nums[i]:\n                i -= 1 # 只能靠缩小前缀来满足。而 i 不回退，因此时间复杂度还是 n\n            j -= 1\n            ans += i + 2\n        return ans\n        \n\n"
-        }
-    ]
+    "code": []
 },
 "find-the-number-of-ways-to-place-people-ii":{
     "id": "3027",
     "name": "find-the-number-of-ways-to-place-people-ii",
-    "pre": [
-        {
-            "text": "暂无",
-            "link": null,
-            "color": "green"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "排序",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/3027.find-the-number-of-ways-to-place-people-ii.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/3027.find-the-number-of-ways-to-place-people-ii.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def numberOfPairs(self, points: List[List[int]]) -> int:\n        points.sort(key=lambda p: (p[0], -p[1]))\n        ans = 0\n        for i, (x1, y1) in enumerate(points): # point i\n            max_y = -inf\n            min_y = inf\n            for (x2, y2) in points[i + 1:]: # point j\n                if y1 < y2: continue # 确保条件1\n                if  y2 > max_y or y1 < min_y: # 确保条件2\n                    ans += 1\n                max_y = max(max_y, y2)\n                min_y = min(min_y, y2)\n        return ans\n\n"
-        }
-    ]
+    "code": []
 },
 "maximize-consecutive-elements-in-an-array-after-modification":{
     "id": "3041",
     "name": "maximize-consecutive-elements-in-an-array-after-modification",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "将以每一个元素结尾的最长连续子序列的长度统统存起来",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/3041.maximize-consecutive-elements-in-an-array-after-modification.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/3041.maximize-consecutive-elements-in-an-array-after-modification.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def maxSelectedElements(self, arr: List[int]) -> int:\n        memo = collections.defaultdict(int)\n        arr.sort()\n        def dp(pos):\n            if pos == len(arr): return 0\n            memo[arr[pos]+1] = memo[arr[pos]]+1 # 由于可以重排，因此这一句要写\n            memo[arr[pos]] = memo[arr[pos]-1]+1\n            dp(pos+1)\n        dp(0)\n        return max(memo.values())\n\n\n"
-        }
-    ]
+    "code": []
 },
 "find-the-sum-of-the-power-of-all-subsequences":{
     "id": "3082",
     "name": "find-the-sum-of-the-power-of-all-subsequences",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "分解问题",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/3082.find-the-sum-of-the-power-of-all-subsequences.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/3082.find-the-sum-of-the-power-of-all-subsequences.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\ndef f(i, k):\n    if i == n:\n        if k == 0: 找到了\n        else: 没找到\n    if k == 0:\n        没找到\n    f(i + 1, k) # 不选择\n    f(i + 1, k - nums[i]) # 选择\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def sumOfPower(self, nums: List[int], k: int) -> int:\n        n = len(nums)\n        MOD = 10 ** 9 + 7\n        @cache\n        def dfs(i, k):\n            if k == 0: return pow(2, n - i, MOD)\n            if i == n or k < 0: return 0\n            ans = dfs(i + 1, k) * 2 # 不选\n            ans += dfs(i + 1, k - nums[i]) # 选\n            return ans % MOD\n        \n        return dfs(0, k)\n\n"
-        }
-    ]
+    "code": []
 },
 "minimum-cost-walk-in-weighted-graph":{
     "id": "3108",
@@ -14461,38 +8813,27 @@
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/3108.minimum-cost-walk-in-weighted-graph.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/3108.minimum-cost-walk-in-weighted-graph.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\n\nclass UF:\n  def __init__(self, M):\n      self.parent = {}\n      self.cnt = 0\n      self.all_and = {}\n      # 初始化 parent，size 和 cnt\n      # Initialize parent, size and cnt\n      for i in range(M):\n          self.parent[i] = i\n          self.cnt += 1\n          self.all_and[i] = 2 ** 30 - 1 # 也可以初始化为 -1\n\n  def find(self, x):\n      if x != self.parent[x]:\n          self.parent[x] = self.find(self.parent[x])\n          return self.parent[x]\n      return x\n  def union(self, p, q, w):\n    #   if self.connected(p, q): return # 这道题对于联通的情况不能直接 return，具体可以参考示例 2. 环的存在\n      leader_p = self.find(p)\n      leader_q = self.find(q)\n      self.parent[leader_p] = leader_q\n      # p 连通块的 and 值为 w1，q 连通块的 and 值为 w2，合并后就是 w1 & w2 & w\n      self.all_and[leader_p] = self.all_and[leader_q] = self.all_and[leader_p] & w & self.all_and[leader_q]\n      self.cnt -= 1\n  def connected(self, p, q):\n      return self.find(p) == self.find(q)\n        \nclass Solution:\n    def minimumCost(self, n: int, edges: List[List[int]], query: List[List[int]]) -> List[int]:\n        g = [[] for _ in range(n)]\n        uf = UF(n)\n        for x, y, w in edges:\n            g[x].append((y, w))\n            g[y].append((x, w))\n            uf.union(x, y, w)\n\n        ans = []\n        for s, t in query:\n            if not uf.connected(s, t):\n                ans.append(-1)\n            else:\n                ans.append(uf.all_and[uf.parent[s]])\n        return ans\n\n\n\n\n"
-        }
-    ]
+    "code": []
 },
 "minimum-operations-to-make-array-equal-to-target":{
     "id": "3229",
     "name": "minimum-operations-to-make-array-equal-to-target",
     "pre": [],
-    "keyPoints": [
-        {
-            "text": "考虑修改的左右端点",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "正负交替的情况，可以直接新开一段",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/3229.minimum-operations-to-make-array-equal-to-target.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/3229.minimum-operations-to-make-array-equal-to-target.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def minimumOperations(self, nums: List[int], target: List[int]) -> int:\n        diff = []\n        for i in range(len(nums)):\n            diff.append(nums[i] - target[i])\n        ans = abs(diff[0])\n        for i in range(1, len(nums)):\n            if diff[i] * diff[i - 1] >= 0: # 符号相同，可以贪心地复用\n                if abs(diff[i]) > abs(diff[i - 1]): # 这种情况，说明前面不能顺便把我改了，还需要我操作一次\n                    ans += abs(diff[i]) - abs(diff[i - 1])\n            else: # 符号不同，不可以复用，必须重新开启一段\n                ans += abs(diff[i])\n        return ans\n\n\n"
-        }
-    ]
+    "code": []
+},
+"maximum-frequency-of-an-element-after-performing-operations-ii":{
+    "id": "3347",
+    "name": "maximum-frequency-of-an-element-after-performing-operations-ii",
+    "pre": [],
+    "keyPoints": [],
+    "companies": [],
+    "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/3347.maximum-frequency-of-an-element-after-performing-operations-ii.md",
+    "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/3347.maximum-frequency-of-an-element-after-performing-operations-ii.md",
+    "code": []
 },
 "selling-pieces-of-wood":{
     "id": "5254",
@@ -14524,161 +8865,52 @@
 "maximum-xor-with-an-element-from-array":{
     "id": "5640",
     "name": "maximum-xor-with-an-element-from-array",
-    "pre": [
-        {
-            "text": "异或",
-            "link": null,
-            "color": "geekblue"
-        },
-        {
-            "text": "位运算",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "剪枝",
-            "link": null,
-            "color": "gold"
-        },
-        {
-            "text": "双指针",
-            "link": null,
-            "color": "green"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/5640.maximum-xor-with-an-element-from-array.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/5640.maximum-xor-with-an-element-from-array.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def maximizeXor(self, nums: List[int], queries: List[List[int]]) -> List[int]:\n        def solve(x, m, s, e):\n            if nums[0] > m: return -1\n            max_v = 0\n            for i in range(31, -1, -1):\n                if nums[s] & (1<<i) == nums[e] & (1<<i):\n                    max_v += nums[s] & (1<<i)\n                elif nums[dp[i][e]] <= m and x ^ nums[s] < x ^ nums[e]:\n                    max_v += nums[e] & (1<<i)\n                    # 直接移动较小指针（s）到 dp[i][e]，其他不可能是答案\n                    s = dp[i][e]\n                else:\n                    max_v += nums[s] & (1<<i)\n                    # 直接移动较小指针（e）到 dp[i][e] - 1，其他不可能是答案\n                    e = dp[i][e] - 1\n\n            return max_v ^ x\n\n        nums.sort()\n        n = len(nums)\n        #  dp[i][j] 是和 nums[j] 第 i 位相等的最小的数组下标\n        dp = [[0 for _ in range(n)] for _ in range(32)]\n        for i in range(32):\n            for j in range(n):\n                if j == 0 or (nums[j] & (1<<i)) != (nums[j-1] & (1<<i)): dp[i][j] = j\n                else: dp[i][j] = dp[i][j-1]\n        return [solve(x, m, 0, n-1) for x,m in queries]\n"
-        }
-    ]
+    "code": []
 },
 "minimum-skips-to-arrive-at-meeting-on-time":{
     "id": "5775",
     "name": "minimum-skips-to-arrive-at-meeting-on-time",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        },
-        {
-            "text": "浮点精度",
-            "link": null,
-            "color": "purple"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "浮点精度",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "dp[i][j]定义为到达dist[i",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "1]且休息j次（第j次休息完）所需要的时间。",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/5775.minimum-skips-to-arrive-at-meeting-on-time.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/5775.minimum-skips-to-arrive-at-meeting-on-time.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def minSkips(self, dists: List[int], s: int, h: int) -> int:\n        n = len(dists)\n        dp = [[s * h + 1] * (n + 1) for i in range(n + 1)]\n        dp[0][0] = 0\n        for i in range(1, n + 1):\n            cur = dists[i - 1]\n            for j in range(i + 1):\n                dp[i][j] = (dp[i - 1][j] + cur + s - 1) // s * s # rest\n                if j > 0: dp[i][j] = min(dp[i][j], dp[i - 1][j - 1] + cur) # no rest\n                if dp[-1][j] <= h * s:\n                    return j\n        return -1\n\n"
-        }
-    ]
+    "code": []
 },
 "find-good-days-to-rob-the-bank":{
     "id": "5935",
     "name": "find-good-days-to-rob-the-bank",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "预处理出数组l和r",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/5935.find-good-days-to-rob-the-bank.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/5935.find-good-days-to-rob-the-bank.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def goodDaysToRobBank(self, security: List[int], time: int) -> List[int]:\n        n = len(security)\n        l, r = [0]*n, [0]*n\n        ans = []\n\n        for i in range(1, n):\n            if security[i] <= security[i-1]:\n                l[i] += l[i-1] + 1\n        for i in range(n-2,-1,-1):\n            if security[i] <= security[i+1]:\n                r[i] += r[i+1] + 1\n\n        for i in range(n):\n            if l[i] >= time and r[i] >= time:\n                ans.append(i)\n        return ans\n\n"
-        }
-    ]
+    "code": []
 },
 "detonate-the-maximum-bombs":{
     "id": "5936",
     "name": "detonate-the-maximum-bombs",
-    "pre": [
-        {
-            "text": "BFS",
-            "link": null,
-            "color": "purple"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "BFS",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/5936.detonate-the-maximum-bombs.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/5936.detonate-the-maximum-bombs.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\n\n\nclass Solution:\n    def maximumDetonation(self, bombs: List[List[int]]) -> int:\n        n = len(bombs)\n        d = collections.defaultdict(list)\n        def overlap(i, j):\n            x1, y1, r1 = bombs[i]\n            x2, y2, r2 = bombs[j]\n            return (x1 - x2) ** 2 + (y1 - y2) ** 2 <= r1 ** 2\n        for i in range(n):\n            for j in range(i+1, n):\n                if overlap(i, j):\n                    d[i].append(j)\n                if overlap(j, i):\n                    d[j].append(i)\n        ans = 1\n        for i in range(n):\n            q = collections.deque([i])\n            vis = set()\n            count = 0\n            while q:\n                cur = q.popleft()\n                if cur in vis: continue\n                vis.add(cur)\n                count += 1\n                for neibor in d[cur]:\n                    q.append(neibor)\n            ans = max(ans, count)\n        return ans\n\n\n\n\n"
-        }
-    ]
+    "code": []
 },
 "intervals-between-identical-elements":{
     "id": "5965",
     "name": "intervals-between-identical-elements",
-    "pre": [
-        {
-            "text": "前缀和",
-            "link": null,
-            "color": "cyan"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "前缀和+后缀和优化时间复杂度",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/5965.intervals-between-identical-elements.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/5965.intervals-between-identical-elements.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def getDistances(self, arr: List[int]) -> List[int]:\n        ans = []\n        n = len(arr)\n        last_map = collections.defaultdict(lambda:-1)\n        pre = collections.defaultdict(lambda:(0,0))\n        suf = collections.defaultdict(lambda:(0,0))\n        for i in range(n):\n            a = arr[i]\n            last = last_map[a]\n            v, c = pre[last]\n            pre[i] = v + c * (i - last), c + 1\n            last_map[a] = i\n        last_map = collections.defaultdict(lambda:len(arr))\n        for i in range(n-1,-1,-1):\n            a = arr[i]\n            last = last_map[a]\n            v, c = suf[last]\n            suf[i] = v + c * (last - i), c + 1\n            last_map[a] = i\n        for i, a in enumerate(arr):\n            ans.append(pre[i][0] + suf[i][0])\n        return ans\n\n\n"
-        }
-    ]
+    "code": []
 },
 "count-good-triplets-in-an-array":{
     "id": "5999",
@@ -14737,216 +8969,77 @@
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/6201.maximize-number-of-subsequences-in-a-string.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/6201.maximize-number-of-subsequences-in-a-string.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def maximumSubsequenceCount(self, text: str, pattern: str) -> int:\n        a = b = ans = 0\n        for c in text:\n            if c == pattern[1]:\n                b += 1\n                ans += a # 这里累加答案。含义为以当前位置结尾的子序列有 a 个，因此累加上 a\n            if c == pattern[0]:\n                a += 1\n        return ans\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def maximumSubsequenceCount(self, text: str, pattern: str) -> int:\n        a = b = ans = 0\n        for c in text:\n            if c == pattern[1]:\n                b += 1\n                ans += a\n            if c == pattern[0]:\n                a += 1\n        return ans + max(a, b)\n\n"
-        }
-    ]
+    "code": []
 },
 "md":{
     "id": "Bus-Fare",
     "name": "md",
-    "pre": [
-        {
-            "text": "递归树",
-            "link": null,
-            "color": "volcano"
-        },
-        {
-            "text": "多指针",
-            "link": null,
-            "color": "magenta"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/Bus-Fare.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/Bus-Fare.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def solve(self, days):\n        n = len(days)\n        prices = [2, 7, 25]\n        durations = [1, 7, 30]\n        dp = [float(\"inf\")] * (n + 1)\n        dp[0] = 0\n\n        for i in range(1, n + 1):\n            for j in range(i, n + 1):\n                # 如何第 i + 1天到第 j 天的天数小于等于 2，那么我们就试一下在 i + 1 天买一张 2 天的票，看会不会是最优解。\n                # 7 和 25 的逻辑也是一样\n        return dp[-1]\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def solve(self, days):\n        n = len(days)\n        prices = [2, 7, 25]\n        durations = [1, 7, 30]\n        dp = [float(\"inf\")] * (n + 1)\n        # dp[i] 表示截止第 i + 1 天（包括）需要多少钱，因此答案就是 dp[n]，其中 n 为 max(days)，由于 day 是升序的，因此就是 day 最后一项。\n        dp[0] = 0\n\n        for i in range(1, n + 1):\n            for j in range(i, n + 1):\n                for price, duration in zip(prices, durations):\n                    if days[j - 1] - days[i - 1] + 1 <= duration:\n                        dp[j] = min(dp[j], dp[i - 1] + price)\n        return dp[-1]\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def solve(self, days):\n        prices = [2, 7, 25]\n        durations = [1, 7, 30]\n        n = len(days)\n        m = len(prices)\n        dp = [float(\"inf\")] * (n + 1)\n        dp[0] = 0\n        pointers = [0] * m\n        for i in range(1, n + 1):\n            for j in range(m):\n                while days[i - 1] - days[pointers[j]] >= durations[j]:\n                    pointers[j] += 1\n                dp[i] = min(dp[i], dp[pointers[j]] + prices[j])\n        return dp[-1]\n"
-        }
-    ]
+    "code": []
 },
 "md":{
     "id": "Connected-Road-to-Destination",
     "name": "md",
-    "pre": [
-        {
-            "text": "二分",
-            "link": null,
-            "color": "purple"
-        },
-        {
-            "text": "并查集",
-            "link": null,
-            "color": "volcano"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/Connected-Road-to-Destination.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/Connected-Road-to-Destination.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def solve(self, sx, sy, ex, ey, roads):\n        def possible(mid):\n            dic = set([(sx, sy), (ex, ey)])\n            visited = set()\n            q = collections.deque([(sx, sy)])\n            for x, y in roads[:mid]:\n                dic.add((x, y))\n            while q:\n                x, y = q.popleft()\n                if (x, y) in visited: continue\n                visited.add((x, y))\n                if (x, y) == (ex, ey): return True\n                for dx, dy in [(1,0),(-1,0), (0,1), (0,-1)]:\n                    if (x + dx, y + dy) in dic:\n                        q.append((x + dx, y + dy))\n            return False\n        l, r = 0, len(roads)\n\n        while l <= r:\n            mid = (l + r) // 2\n            if possible(mid):\n                r = mid - 1\n            else:\n                l = mid + 1\n        return -1 if l > len(roads) else l\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\nclass UF:\n  def __init__(self):\n      self.parent = {}\n      self.cnt = 0\n  def add(self, i):\n      self.parent[i] = i\n      self.cnt += 1\n\n  def find(self, x):\n      if x != self.parent[x]:\n          self.parent[x] = self.find(self.parent[x])\n          return self.parent[x]\n      return x\n  def union(self, p, q):\n      if p not in self.parent or q not in self.parent: return\n      if self.connected(p, q): return\n      leader_p = self.find(p)\n      leader_q = self.find(q)\n      self.parent[leader_p] = leader_q\n      self.cnt -= 1\n  def connected(self, p, q):\n      return self.find(p) == self.find(q)\n\nclass Solution:\n    def solve(self, sx, sy, ex, ey, roads):\n        start = (sx, sy)\n        end = (ex, ey)\n        # 注意特判\n        for dx, dy in [(0, 0), (1,0), (-1,0), (0,1), (0,-1)]:\n            x = sx + dx\n            y = sy + dy\n            if (x, y) == (ex, ey): return 0\n\n        uf = UF()\n        uf.add(start)\n        uf.add(end)\n\n        for i, road in enumerate(map(tuple, roads)):\n            uf.add(road)\n            for dx, dy in [(1,0), (-1,0), (0,1), (0,-1)]:\n                x = road[0] + dx\n                y = road[1] + dy\n                uf.union(road, (x, y))\n                if uf.connected(start, end):\n                    return i + 1\n\n        return -1\n"
-        }
-    ]
+    "code": []
 },
 "md":{
     "id": "Every-Sublist-Min-Sum",
     "name": "md",
-    "pre": [
-        {
-            "text": "单调栈",
-            "link": null,
-            "color": "purple"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "分别计算以每一个被pop出来的为最小数的贡献",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/Every-Sublist-Min-Sum.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/Every-Sublist-Min-Sum.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def solve(self, nums):\n        nums += [float('-inf')]\n        mod = 10 ** 9 + 7\n        stack = []\n        ans = 0\n\n        for i, num in enumerate(nums):\n            while stack and nums[stack[-1]] > num:\n                last = stack.pop()\n                left = stack[-1] if stack else -1\n                ans += (i - last) * (last - left) * nums[last]\n            stack.append(i)\n        return ans % mod\n\n"
-        }
-    ]
+    "code": []
 },
 "md":{
     "id": "Increasing-Digits",
     "name": "md",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "数位DP",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/Increasing-Digits.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/Increasing-Digits.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def solve(self, n):\n        dp = [[0] * 10 for _ in range(n)]\n        dp[0] = [0] + [1] * 9\n\n        for i in range(1, n):\n            for j in range(1, 10):\n                for k in range(j):\n                    dp[i][j] += dp[i - 1][k]\n        return sum(dp[-1])\n\n"
-        }
-    ]
+    "code": []
 },
 "md":{
     "id": "Kth-Pair-Distance",
     "name": "md",
-    "pre": [
-        {
-            "text": "排序",
-            "link": null,
-            "color": "purple"
-        },
-        {
-            "text": "二分法",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/Kth-Pair-Distance.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/Kth-Pair-Distance.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def solve(self, A, k):\n        A.sort()\n        h = [(A[i] - A[i-1], i-1,i) for i in range(1, len(A))]\n        heapq.heapify(h)\n\n        while True:\n            top, i, j = heapq.heappop(h)\n            if not k: return top\n            k -= 1\n            if j + 1 < len(A): heapq.heappush(h, (A[j+1] - A[i], i, j + 1))\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def solve(self, A, k):\n        A.sort()\n        def count_not_greater(diff):\n            i = ans = 0\n            for j in range(1, len(A)):\n                while A[j] - A[i] > diff:\n                    i += 1\n                ans += j - i\n            return ans\n        l, r = 0, A[-1] - A[0]\n\n        while l <= r:\n            mid = (l + r) // 2\n            if count_not_greater(mid) > k:\n                r = mid - 1\n            else:\n                l = mid + 1\n        return l\n"
-        }
-    ]
+    "code": []
 },
 "md":{
     "id": "Largest-Equivalent-Set-of-Pairs",
     "name": "md",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/Largest-Equivalent-Set-of-Pairs.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/Largest-Equivalent-Set-of-Pairs.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def solve(self, nums):\n        n = len(nums)\n\n        @lru_cache(None)\n        def dp(i, diff):\n            if i == n:\n                return 0 if diff == 0 else float(\"-inf\")\n            return max(\n                dp(i + 1, diff),\n                dp(i + 1, diff - nums[i]),\n                dp(i + 1, diff + nums[i]) + nums[i],\n            )\n\n        return dp(0, 0)\n"
-        }
-    ]
+    "code": []
 },
 "md":{
     "id": "Longest-Contiguously-Strictly-Increasing-Sublist-After-Deletion",
     "name": "md",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "连续性DP",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/Longest-Contiguously-Strictly-Increasing-Sublist-After-Deletion.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/Longest-Contiguously-Strictly-Increasing-Sublist-After-Deletion.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\ndp[i][0] = dp[i-1][0] + 1\ndp[i][1] = dp[i-1][1] + 1\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def solve(self, nums):\n        n = len(nums)\n        if not n: return 0\n        dp = [[1, 0] for _ in range(n)]\n        ans = 1\n\n        for i in range(1,n):\n            if nums[i] > nums[i-1]:\n                dp[i][0] = dp[i-1][0] + 1\n                dp[i][1] = dp[i-1][1] + 1\n            else:\n                dp[i][0] = 1\n                dp[i][1] = 1\n            if i > 1 and nums[i] > nums[i-2]:\n                dp[i][1] = max(dp[i][1], 1 + dp[i-2][0])\n            ans = max(ans, dp[i][0], dp[i][1])\n\n        return ans\n\n"
-        }
-    ]
+    "code": []
 },
 "md":{
     "id": "Longest-Matrix-Path-Length",
@@ -14956,193 +9049,67 @@
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/Longest-Matrix-Path-Length.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/Longest-Matrix-Path-Length.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def solve(self, matrix):\n        m, n = len(matrix), len(matrix[0])\n        visited = set()\n        def dp(i, j):\n            if (i, j) in visited: return float('-inf')\n            if j < 0 or j >= n: return float('-inf')\n            if i >= m: return 0\n            if matrix[i][j] == 1: return float('-inf')\n            visited.add((i, j))\n            ans = 1 + max(dp(i+1, j), dp(i,j+1), dp(i, j-1))\n            visited.remove((i, j))\n            return ans\n        ans = max([dp(0, j) for j in range(n)])\n        return 0 if ans == float('-inf') else ans\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def solve(self, matrix):\n        m, n = len(matrix), len(matrix[0])\n\n        @lru_cache(None)\n        def dp(i, j, d):\n            if j < 0 or j >= n: return float('-inf')\n            if i >= m: return 0\n            if matrix[i][j] == 1: return float('-inf')\n            ans = 1 + max(dp(i+1, j, 0), float('-inf') if d == -1 else dp(i,j+1, 1), float('-inf') if d == 1 else dp(i, j-1, -1))\n            return ans\n        ans = max([dp(0, j, 0) for j in range(n)])\n        return 0 if ans == float('-inf') else ans\n"
-        }
-    ]
+    "code": []
 },
 "md":{
     "id": "Maximize-the-Number-of-Equivalent-Pairs-After-Swaps",
     "name": "md",
-    "pre": [
-        {
-            "text": "并查集",
-            "link": null,
-            "color": "volcano"
-        },
-        {
-            "text": "BFS",
-            "link": null,
-            "color": "purple"
-        },
-        {
-            "text": "DFS",
-            "link": null,
-            "color": "red"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/Maximize-the-Number-of-Equivalent-Pairs-After-Swaps.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/Maximize-the-Number-of-Equivalent-Pairs-After-Swaps.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass UF:\n  def __init__(self, M):\n      self.parent = {}\n      self.cnt = 0\n      # 初始化 parent，size 和 cnt\n      for i in range(M):\n          self.parent[i] = i\n          self.cnt += 1\n\n  def find(self, x):\n      if x != self.parent[x]:\n          self.parent[x] = self.find(self.parent[x])\n          return self.parent[x]\n      return x\n  def union(self, p, q):\n      if self.connected(p, q): return\n      leader_p = self.find(p)\n      leader_q = self.find(q)\n      self.parent[leader_p] = leader_q\n      self.cnt -= 1\n  def connected(self, p, q):\n      return self.find(p) == self.find(q)\n\nclass Solution:\n    def solve(self, A, B, C):\n        n = len(A)\n        uf = UF(n)\n        for fr, to in C:\n            print(fr, to)\n            uf.union(fr, to)\n        group = collections.defaultdict(list)\n\n        for i in uf.parent:\n            group[uf.find(i)].append(i)\n        ans = 0\n        for i in group:\n            indices = group[i]\n            values = collections.Counter([A[i] for i in indices])\n            for i in indices:\n                if values[B[i]] > 0:\n                    values[B[i]] -= 1\n                    ans += 1\n        return ans\n\n"
-        }
-    ]
+    "code": []
 },
 "md":{
     "id": "Minimum-Dropping-Path-Sum",
     "name": "md",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/dynamic-programming.md \"动态规划\"",
-            "color": "red"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/Minimum-Dropping-Path-Sum.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/Minimum-Dropping-Path-Sum.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def solve(self, matrix):\n        dp = [(0, -1)]\n        m, n = len(matrix), len(matrix[0])\n        for i in range(m):\n            next_dp = [(float(\"inf\"), -1), (float(\"inf\"), -1)]# (smallest, 2nd smallest)\n            for j in range(n):\n                for v, k in dp:\n                    if k == j:\n                        continue\n                    nxt = matrix[i][j] + v\n                    if nxt < next_dp[0][0]:\n                        next_dp = [(nxt, j), next_dp[0]]\n                    elif nxt < next_dp[1][0]:\n                        next_dp[1] = (nxt, j)\n                    break\n            dp = next_dp # rolling array\n        return dp[0][0]\n\n"
-        }
-    ]
+    "code": []
 },
 "md":{
     "id": "Minimum-Light-Radius",
     "name": "md",
-    "pre": [
-        {
-            "text": "排序",
-            "link": null,
-            "color": "purple"
-        },
-        {
-            "text": "二分法",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/Minimum-Light-Radius.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/Minimum-Light-Radius.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\ndef possible(diameter):\n    start = nums[0]\n    end = start + diameter\n    for i in range(LIGHTS):\n        idx = bisect_right(nums, end)\n        if idx >= N:\n            return True\n        start = nums[idx]\n        end = start + diameter\n    return False\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def solve(self, nums):\n        nums.sort()\n        N = len(nums)\n        if N <= 3:\n            return 0\n        LIGHTS = 3\n        # 这里使用的是直径，因此最终返回需要除以 2\n        def possible(diameter):\n            start = nums[0]\n            end = start + diameter\n            for i in range(LIGHTS):\n                idx = bisect_right(nums, end)\n                if idx >= N:\n                    return True\n                start = nums[idx]\n                end = start + diameter\n            return False\n\n        l, r = 0, nums[-1] - nums[0]\n        while l <= r:\n            mid = (l + r) // 2\n            if possible(mid):\n                r = mid - 1\n            else:\n                l = mid + 1\n        return l / 2\n"
-        }
-    ]
+    "code": []
 },
 "md":{
     "id": "Number-Stream-to-Intervals",
     "name": "md",
-    "pre": [
-        {
-            "text": "哈希表",
-            "link": null,
-            "color": "gold"
-        },
-        {
-            "text": "有序哈希表",
-            "link": null,
-            "color": "purple"
-        },
-        {
-            "text": "二分法",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/Number-Stream-to-Intervals.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/Number-Stream-to-Intervals.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\ns.add(1)\ns.add(3)\ns.add(2)\ns.add(9)\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\ns.add(1) # [ [1,1] ]\ns.add(3) # [ [1,1], [3,3] ]\ns.add(2) # [ [1,1], [2,2], [3,3] ] 可合并为 [ [1,3] ]\ns.add(9) # [ [1,3], [9,9] ]\n"
-        },
-        {
-            "language": "py",
-            "text": "\nfrom sortedcontainers import SortedDict\n\n\nclass StreamSummary:\n    def __init__(self):\n        self.start = SortedDict()\n        self.end = SortedDict()\n\n    def add(self, val):\n        if val - 1 in self.end and val + 1 in self.start:\n            # [a, val-1] + [val,val] + [val+1, b] -> [a, b]\n            self.end[self.start[val + 1]] = self.end[val - 1]\n            self.start[self.end[val - 1]] = self.start[val + 1]\n            del self.start[val + 1]\n            del self.end[val - 1]\n        elif val - 1 in self.end:\n            # [a, val -1] + [val, val] -> [a, val]\n            self.end[val] = self.end[val - 1]\n            self.start[self.end[val]] = val\n            del self.end[val - 1]\n        elif val + 1 in self.start:\n            # [val,val] + [val+1, b] -> [val, b]\n            self.start[val] = self.start[val + 1]\n            self.end[self.start[val]] = val\n            del self.start[val + 1]\n        else:\n            self.start[val] = val\n            self.end[val] = val\n\n    def get(self):\n        # iterate start or end get same correct answer\n        ans = []\n        for s, e in self.start.items():\n            ans.append([s, e])\n        return ans\n\n"
-        }
-    ]
+    "code": []
 },
 "md":{
     "id": "Number-of-Substrings-with-Single-Character-Difference",
     "name": "md",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "建立前后缀dp数组，将问题转化为前后缀的笛卡尔积",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/Number-of-Substrings-with-Single-Character-Difference.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/Number-of-Substrings-with-Single-Character-Difference.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def solve(self, s, t):\n        ans = 0\n        for i in range(len(s)):\n            for j in range(len(t)):\n                mismatches = 0\n                for k in range(min(len(s) - i, len(t) - j)):\n                    mismatches += s[i + k] != t[j + k]\n                    if mismatches == 1:\n                        ans += 1\n                    elif mismatches > 1:\n                        break\n        return ans\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def solve(self, s, t):\n        m, n = len(s), len(t)\n        prefix = [[0] * (n + 1) for _ in range(m + 1)]\n        suffix = [[0] * (n + 1) for _ in range(m + 1)]\n\n        for i in range(1, m + 1):\n            for j in range(1, n + 1):\n                if s[i - 1] == t[j - 1]:\n                    prefix[i][j] = prefix[i - 1][j - 1] + 1\n\n        for i in range(m - 1, -1, -1):\n            for j in range(n - 1, -1, -1):\n                if s[i] == t[j]:\n                    suffix[i][j] = suffix[i + 1][j + 1] + 1\n\n        ans = 0\n        for i in range(1, m + 1):\n            for j in range(1, n + 1):\n                if s[i - 1] != t[j - 1]:\n                    ans += (prefix[i - 1][j - 1] + 1) * (suffix[i][j] + 1)\n        return ans\n\n"
-        }
-    ]
+    "code": []
 },
 "md":{
     "id": "Sort-String-by-Flipping",
     "name": "md",
-    "pre": [
-        {
-            "text": "无",
-            "link": null,
-            "color": "purple"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/Sort-String-by-Flipping.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/Sort-String-by-Flipping.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nans = n\nfor i in range(n):\n    # 如果 i 是分界点，那么此时需要翻转多少次？假设我们求出来是需要翻转 x 次\n    ans = min(ans, x)\nreturn ans\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def solve(self, s):\n        x_count = y_count = 0\n        ans = len(s)\n        for c in s:\n            x_count += c == 'x'\n        for c in s:\n            x_count -= c == 'x'\n            ans = min(ans, x_count + y_count)\n            y_count += c == 'y'\n        return ans\n\n"
-        }
-    ]
+    "code": []
 },
 "md":{
     "id": "Ticket-Order",
@@ -15152,322 +9119,87 @@
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/Ticket-Order.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/Ticket-Order.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def solve(self, tickets):\n        q = collections.deque([(i, ticket) for i, ticket in enumerate(tickets)])\n        ans = [0] * len(tickets)\n        time = 0\n        while q:\n            i, cur = q.popleft()\n            time += 1\n            if cur > 1:\n                q.append((i, cur - 1))\n            else:\n                ans[i] = time\n\n        return ans\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def solve(self, a):\n        n = len(a)\n        answer = [0 for i in range(n)]\n        sl = SortedList()\n        ps = 0\n        for j, (ai, i) in enumerate(sorted((ai, i) for i, ai in enumerate(a))):\n            answer[i] = ps + (n - j) * (ai - 1) + (i + 1 - sl.bisect_left(i))\n            sl.add(i)\n            ps += ai\n        return answer\n"
-        }
-    ]
+    "code": []
 },
 "md":{
     "id": "Triple-Inversion",
     "name": "md",
-    "pre": [
-        {
-            "text": "二分法",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/Triple-Inversion.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/Triple-Inversion.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def solve(self, A):\n        ans = 0\n        for i in range(len(A)):\n            for j in range(i+1,len(A)):\n                if A[i] > A[j] * 3: ans += 1\n        return ans\n"
-        },
-        {
-            "language": "py",
-            "text": "\nd = []\nfor a in A:\n    bisect.insort(d, a)\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def solve(self, A):\n        d = []\n        ans = 0\n\n        for a in A:\n            i = bisect.bisect_right(d, a * 3)\n            ans += len(d) - i\n            bisect.insort(d, a)\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\nfrom sortedcontainers import SortedList\nclass Solution:\n    def solve(self, A):\n        d = SortedList()\n        ans = 0\n\n        for a in A:\n            i = d.bisect_right(a * 3)\n            ans += len(d) - i\n            d.add(a)\n        return ans\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\ndef mergeTwo(nums1, nums2):\n    res = []\n    i = j = 0\n    while i < len(nums1) and j < len(nums2):\n        if nums1[i] < nums[j]:\n            res.append(nums[i])\n            i += 1\n        else:\n            res.append(nums[j])\n            j += 1\n    while i < len(nums1) :\n        res.append(num[i])\n        i += 1\n    while j < len(nums1) :\n        res.append(num[j])\n        j += 1\n    return res\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def solve(self, nums: List[int]) -> int:\n        self.cnt = 0\n        def merge(nums, start, mid, end):\n            i, j, temp = start, mid + 1, []\n            while i <= mid and j <= end:\n                if nums[i] <= nums[j]:\n                    temp.append(nums[i])\n                    i += 1\n                else:\n                    self.cnt += mid - i + 1\n                    temp.append(nums[j])\n                    j += 1\n            while i <= mid:\n                temp.append(nums[i])\n                i += 1\n            while j <= end:\n                temp.append(nums[j])\n                j += 1\n\n            for i in range(len(temp)):\n                nums[start + i] = temp[i]\n\n\n        def mergeSort(nums, start, end):\n            if start >= end: return\n            mid = (start + end) >> 1\n            mergeSort(nums, start, mid)\n            mergeSort(nums, mid + 1, end)\n            merge(nums, start, mid,  end)\n        mergeSort(nums, 0, len(nums) - 1)\n        return self.cnt\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def solve(self, nums) -> int:\n        self.cnt = 0\n        def merge(nums, start, mid, end, temp):\n            i, j = start, mid + 1\n            while i <= mid and j <= end:\n                if nums[i] <=  nums[j]:\n                    temp.append(nums[i])\n                    i += 1\n                else:\n                    temp.append(nums[j])\n                    j += 1\n            # 防住\n            # 这里代码开始\n            ti, tj = start, mid + 1\n            while ti <= mid and tj <= end:\n                if nums[ti] <=  3 * nums[tj]:\n                    ti += 1\n                else:\n                    self.cnt += mid - ti + 1\n                    tj += 1\n            # 这里代码结束\n            while i <= mid:\n                temp.append(nums[i])\n                i += 1\n            while j <= end:\n                temp.append(nums[j])\n                j += 1\n            for i in range(len(temp)):\n                nums[start + i] = temp[i]\n            temp.clear()\n\n\n        def mergeSort(nums, start, end, temp):\n            if start >= end: return\n            mid = (start + end) >> 1\n            mergeSort(nums, start, mid, temp)\n            mergeSort(nums, mid + 1, end, temp)\n            merge(nums, start, mid,  end, temp)\n        mergeSort(nums, 0, len(nums) - 1, [])\n        return self.cnt\n"
-        }
-    ]
+    "code": []
 },
 "md":{
     "id": "binode-lcci",
     "name": "md",
-    "pre": [
-        {
-            "text": "二叉查找树",
-            "link": null,
-            "color": "purple"
-        },
-        {
-            "text": "递归",
-            "link": null,
-            "color": "orange"
-        },
-        {
-            "text": "二叉树的遍历",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/binary-tree-traversal.md",
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "指针操作",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "返回值的处理",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/binode-lcci.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/binode-lcci.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\ncur.left = None\npre.right = cur\npre = cur\n"
-        },
-        {
-            "language": "py",
-            "text": "\nself.pre = None\ndef dfs(root):\n    dfs(root.left)\n    # 上面的指针改变逻辑写到这里\n    self.pre = root\n    dfs(root.right)\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\n    self.pre = self.ans = None\n    def dfs(root):\n        if not root: return\n        dfs(root.left)\n        root.left = None\n        if self.pre: self.pre.right = root\n        # 当第一次执行到下面这一行代码，恰好是在最左下角，此时 self.pre = None，其他任何时候 self.pre 都不是 None。\n        if self.pre is None: self.ans = root\n        self.pre = root\n        dfs(root.right)\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def convertBiNode(self, root: TreeNode) -> TreeNode:\n        self.pre = self.ans = None\n        def dfs(root):\n            if not root: return\n            dfs(root.left)\n            root.left = None\n            if self.pre: self.pre.right = root\n            if self.pre is None: self.ans = root\n            self.pre = root\n\n            dfs(root.right)\n        dfs(root)\n        return self.ans\n"
-        }
-    ]
+    "code": []
 },
 "md":{
     "id": "consecutive-wins",
     "name": "md",
-    "pre": [
-        {
-            "text": "递归树",
-            "link": null,
-            "color": "volcano"
-        },
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/consecutive-wins.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/consecutive-wins.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def solve(self, n, k):\n        @lru_cache(None)\n        def dp(i, cnt):\n            if i == n:\n                return 1\n            ans = dp(i + 1, 0)  # place L\n            if cnt < k:\n                ans += dp(i + 1, cnt + 1)  # place W if I can\n            return ans\n\n        return dp(0, 0) % (10 ** 9 + 7)\n"
-        }
-    ]
+    "code": []
 },
 "md":{
     "id": "get-kth-magic-number-lcci",
     "name": "md",
-    "pre": [
-        {
-            "text": "堆",
-            "link": null,
-            "color": "green"
-        },
-        {
-            "text": "状态机",
-            "link": null,
-            "color": "orange"
-        },
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "去重",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/get-kth-magic-number-lcci.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/get-kth-magic-number-lcci.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nfrom heapq import heappop, heappush\nclass Solution:\n    def getKthMagicNumber(self, k: int) -> int:\n        heap = [1]\n        numbers = set()\n        # 每次从小顶堆取一个， 取 k 次即可\n        while k:\n            cur = heappop(heap)\n            if cur not in numbers:\n                k -= 1\n                heappush(heap, cur * 3)\n                heappush(heap, cur * 5)\n                heappush(heap, cur * 7)\n            numbers.add(cur)\n        return cur\n\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def getKthMagicNumber(self, k: int) -> int:\n        p3 = p5 = p7 = 0\n        state = [1] + [0] * (k - 1)\n\n        for i in range(1, k):\n            state[i] = min(state[p3] * 3, state[p5] * 5, state[p7] * 7)\n            if 3 * state[p3] == state[i]: p3 += 1\n            if 5 * state[p5] == state[i]: p5 += 1\n            if 7 * state[p7] == state[i]: p7 += 1\n        return state[-1]\n"
-        }
-    ]
+    "code": []
 },
 "meChtZ":{
     "id": "lcp20",
     "name": "meChtZ",
-    "pre": [
-        {
-            "text": "递归",
-            "link": null,
-            "color": "orange"
-        },
-        {
-            "text": "回溯",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/backtrack.md",
-            "color": "green"
-        },
-        {
-            "text": "动态规划",
-            "link": null,
-            "color": "red"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "逆向思维",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/lcp20.meChtZ.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/lcp20.meChtZ.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\ndef dfs(pos):\n if pos === target: return 0\n if pos > target: return float('inf')\n ans = (target - pos) * inc\n for jump in jumps:\n      ans = min(ans, 乘坐本次公交的花费)\n  return ans\ndfs(0)\n"
-        },
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def busRapidTransit(self, target: int, inc: int, dec: int, jumps: List[int], cost: List[int]) -> int:\n        @lru_cache(None)\n        def dfs(pos):\n            if pos == 0: return 0\n            if pos == 1: return inc\n            ans = pos * inc\n            for i, jump in enumerate(jumps):\n                pre_pos, left = pos // jump, pos % jump\n                if left == 0: ans = min(ans, cost[i] + dfs(pre_pos))\n                else: ans = min(ans, cost[i] + dfs(pre_pos) + inc * left, cost[i] + dfs(pre_pos + 1) + dec * (jump - left))\n            return ans\n        return dfs(target) % 1000000007\n\n"
-        }
-    ]
+    "code": []
 },
 "Za25hA":{
     "id": "lcp21",
     "name": "Za25hA",
-    "pre": [
-        {
-            "text": "BFS",
-            "link": null,
-            "color": "purple"
-        },
-        {
-            "text": "DFS",
-            "link": null,
-            "color": "red"
-        },
-        {
-            "text": "图论",
-            "link": null,
-            "color": "gold"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "明确这道题中有且仅有一个环",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "当且仅当环的长度大于3，A到环入口的距离大于B到环入口的距离+1才永远追不上",
-            "link": null,
-            "color": "blue"
-        },
-        {
-            "text": "如何检测环，如果计算单点到图中所有点的距离",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/lcp21.Za25hA.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/lcp21.Za25hA.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def chaseGame(self, edges: List[List[int]], startA: int, startB: int) -> int:\n        n = len(edges)\n        graph = collections.defaultdict(list)\n        for fr, to in edges:\n            graph[fr].append(to)\n            graph[to].append(fr)\n\n        def bfs(fr, find_entry=False):\n            dist = collections.defaultdict(lambda: float(\"inf\"))\n            q = collections.deque([fr])\n            steps = 0\n            nonlocal entry\n            while q:\n                for i in range(len(q)):\n                    cur = q.popleft()\n                    if cur in dist:\n                        continue\n                    if find_entry and cur in circle:\n                        entry = cur\n                        return\n                    dist[cur] = steps\n                    for neibor in graph[cur]:\n                        q.append(neibor)\n                steps += 1\n            return dist\n\n        parent = {}\n        depth = collections.defaultdict(int)  # 可以被用作 visited\n        circle = set()\n        entry = 0  # 环的入口\n\n        def cal_circle(node, p):\n            parent[node] = p\n            depth[node] = depth[p] + 1\n            for neibor in graph[node]:\n                if neibor == p:\n                    continue\n                if neibor not in depth:\n                    cal_circle(neibor, node)\n                elif depth[neibor] < depth[node]:\n                    # 检测到了环\n                    cur = node\n                    while cur != neibor:\n                        circle.add(cur)\n                        cur = parent[cur]\n                    circle.add(neibor)\n\n        cal_circle(1, 0)\n\n        d1, d2 = bfs(startA), bfs(startB)\n        bfs(startB, True)\n\n        if len(circle) > 3:\n            if d1[entry] > d2[entry] + 1:\n                return -1\n        if d1[startA] == 1:\n            return 1\n        ans = 1\n        for i in range(1, n + 1):\n            if d1[i] - d2[i] > 1:\n                ans = max(ans, d1[i])\n        return ans\n\n"
-        }
-    ]
+    "code": []
 },
 "md":{
     "id": "max-black-square-lcci",
     "name": "md",
-    "pre": [
-        {
-            "text": "动态规划",
-            "link": "https://github.com/azl397985856/leetcode/blob/master/thinkings/dynamic-programming.md \"动态规划\"",
-            "color": "red"
-        }
-    ],
+    "pre": [],
     "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/max-black-square-lcci.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/max-black-square-lcci.md",
-    "code": [
-        {
-            "language": "java",
-            "text": "\nclass Solution {\n    public int[] findSquare(int[][] matrix) {\n        int [] res = new int [0];\n        int [][][] dp = new int [2][matrix.length+1][matrix[0].length+1];\n        int max = 0\n        for(int i=1;i<=matrix.length;i++){\n            for(int j=1;j<=matrix[0].length;j++){\n                if(matrix[i-1][j-1]==0){\n                    dp[0][i][j] = dp[0][i-1][j]+1;\n                    dp[1][i][j] = dp[1][i][j-1]+1;\n                    int bound = Math.min(dp[0][i][j], dp[1][i][j]);\n                    for(int k=0;k<bound;k++){\n                        if(dp[1][i-k][j]>=k+1&&dp[0][i][j-k]>=k+1){\n                            if(k+1>max){\n                                res = new int [3];\n                                max = k+1;\n                                res[0] = i-k-1;\n                                res[1] = j-k-1;\n                                res[2] = max;\n                            }\n                        }\n                    }\n                }\n            }\n        }\n        return res;\n    }\n}\n"
-        },
-        {
-            "language": "py",
-            "text": "\nclass Solution:\n    def findSquare(self, matrix: List[List[int]]) -> List[int]:\n        n = len(matrix)\n        dp = [[[0, 0] for _ in range(n + 1)] for _ in range(n + 1)]\n        ans = []\n        for i in range(1, n + 1):\n            for j in range(1, n + 1):\n                if matrix[i - 1][j - 1] == 0:\n                    dp[i][j][0] = dp[i-1][j][0] + 1\n                    dp[i][j][1] = dp[i][j-1][1] + 1\n                    upper = min(dp[i][j][0], dp[i][j][1])\n                    for k in range(upper):\n                        if min(dp[i-k][j][1], dp[i][j-k][0]) >= k + 1:\n                            if not ans or k + 1 > ans[2]:\n                                ans = [i-k-1, j-k-1, k + 1]\n\n        return ans\n"
-        }
-    ]
+    "code": []
 },
 "md":{
     "id": "sub-sort-lcci",
     "name": "md",
-    "pre": [
-        {
-            "text": "无",
-            "link": null,
-            "color": "purple"
-        }
-    ],
-    "keyPoints": [
-        {
-            "text": "两次遍历",
-            "link": null,
-            "color": "blue"
-        }
-    ],
+    "pre": [],
+    "keyPoints": [],
     "companies": [],
     "giteeSolution": "https://gitee.com/golong/leetcode/blob/master/problems/sub-sort-lcci.md",
     "solution": "https://github.com/azl397985856/leetcode/blob/master/problems/sub-sort-lcci.md",
-    "code": [
-        {
-            "language": "py",
-            "text": "\n\nclass Solution:\n    def subSort(self, A: List[int]) -> List[int]:\n        max_v, min_v = float('-inf'), float('inf')\n        right = left = -1\n        for i in range(len(A)):\n            if A[i] < max_v:\n                right = i\n            max_v = max(max_v, A[i])\n        for i in range(len(A) - 1, -1, -1):\n            if A[i] > min_v:\n                left = i\n            min_v = min(min_v, A[i])\n        return [-1,-1] if right - left == len(A) - 1 else [left, right]\n\n\n"
-        }
-    ]
+    "code": []
 },
 
      }

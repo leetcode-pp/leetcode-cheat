@@ -372,7 +372,7 @@ function insertButton() {
 
   for (var i = 0; i < buttons.length; ++i) {
     if (buttons[i].innerText.includes(t("Locale.app.run"))) {
-
+      
       // const container = document.createElement("div");
 
       // buttons[i].parentElement.prepend(container);
@@ -404,10 +404,11 @@ function insertButton() {
       writeSolutionButton.className = buttons[i].className;
 
       writeSolutionButton.onclick = () => {
+        console.log("writeSolutionButton");
         // d: "<a href="/problems/remove-max-number-of-edges-to-keep-graph-fully-traversable/">1579. 保证图可完全遍历</a>"
 
         const desc = document.querySelector(
-          "[data-track-load=\"description_content\"]"
+          '[data-track-load="description_content"]'
         ).innerHTML;
 
         if (!desc) {
@@ -415,6 +416,7 @@ function insertButton() {
             content: t("app.getProblemError"),
           });
         }
+
         const title = document.title;
         const link = window.location.href;
         const language = getCodeLanguage();
@@ -426,6 +428,8 @@ function insertButton() {
         // const desc = document.querySelector("#question-detail-main-tabs")?.children[1]?.children[0]?.children[1]?.innerText;
 
         const hide = message.loading(t("app.savingProblem"), 0);
+
+        console.log("writeSolutionButton", title, link, language, code, desc);
         writeSolutionButton.setAttribute("disabled", true);
         // Dismiss manually and asynchronously
         setTimeout(() => {
@@ -442,7 +446,8 @@ function insertButton() {
             raw: "e574bf60b50d8d2d2db2320ee83aba3cd29cecf2",
           }))
           .then((res) => {
-            const t = res.raw;
+            const token = res.raw;
+            console.log("getStorage", token);
             setCloundStorage(
               {
                 title,
@@ -453,10 +458,11 @@ function insertButton() {
               },
 
               {
-                token: t,
+                token: token,
               }
             )
               .then((res) => {
+                console.log("setCloundStorage", res);
                 hide();
                 writeSolutionButton.removeAttribute("disabled");
                 if (res.id) {
@@ -468,15 +474,24 @@ function insertButton() {
                     content: t("app.githubAPIError"),
                   });
                   setTimeout(() => {
-                    window.open(
-                      `https://leetcode-pp.github.io/leetcode-cheat/?title=${title}&link=${link}&language=${language}&tab=solution-template`
-                    );
-                  }, 2000);
+                    const url = `https://leetcode-pp.github.io/leetcode-cheat/?title=${title}&link=${link}&language=${language}&tab=solution-template`;
+                    console.log("window.open", url);
+                    window.open(url);
+                  }, 1000);
                 }
               })
               .catch(() => {
+                console.log("setCloundStorage", "catch");
                 hide();
                 writeSolutionButton.removeAttribute("disabled");
+                message.warn({
+                  content: t("app.githubAPIError"),
+                });
+                setTimeout(() => {
+                  window.open(
+                    `https://leetcode-pp.github.io/leetcode-cheat/?title=${title}&link=${link}&language=${language}&tab=solution-template`
+                  );
+                }, 1000);
               });
           });
       };
@@ -501,7 +516,7 @@ function insertButton() {
       inserted = true;
     } else if (buttons[i].innerText.includes(t("app.submit"))) {
       const click = buttons[i].onclick;
-      const originalFn = buttons[i]
+      const originalFn = buttons[i];
       buttons[i].onclick = (...args) => {
         click.call(originalFn, ...args);
 
@@ -543,8 +558,8 @@ const timerId = setInterval(() => {
   }
 
   // 防止 insertButton 在本插件应用中执行，会匹配到题目中包含 "Run" 的情况,例如：“1480. Running Sum of 1d Array”
-  if (document.title.includes("力扣加加")) return
-  
+  if (document.title.includes("力扣加加")) return;
+
   insertButton();
 
   // if (inserted && submitProxied) {

@@ -56,7 +56,7 @@ const en = {
       "Failed to get the problem description, please switch to the problem description tab first",
     savingProblem: "Saving problem information, please wait~",
     githubAPIError:
-      "Failed to use Github API, has been switched to normal mode, normal mode can only automatically bring in the problem name, problem address and solution language.",
+      "Failed to use Github API, has been switched to normal mode, normal mode can only automatically bring in the problem name, link and solution language. if still unable to use, please try to unblock open the website from the browser address bar and retry.",
     notYet: "Not yet",
   },
   problem: {
